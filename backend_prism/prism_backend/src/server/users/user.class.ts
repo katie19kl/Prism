@@ -1,4 +1,3 @@
-import { IUser } from "./iuser.interface";
 import * as bcrypt from 'bcrypt';
 
 export class User extends Document {
@@ -10,6 +9,6 @@ export class User extends Document {
             arg1(null, isMatch);
         });
     }
-    email: string;
+    username: string;
     password: string;
 }

@@ -10,6 +10,8 @@ export class AuthController {
     @Post() 
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
 
+        console.log(loginUserDto); // to be deleted!
+
         const result = await this.authService.validateUserByPassword(loginUserDto);
 
         if (result) {
@@ -18,7 +20,7 @@ export class AuthController {
 
         } else {
 
-            return new UnauthorizedException('Bad boy!');
+            return new UnauthorizedException('You are unauthorized');
         
         }
     }

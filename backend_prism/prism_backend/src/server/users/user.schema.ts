@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 import { IUser } from './iuser.interface';
 
 export const UserSchema = new mongoose.Schema({
-    email: {
+    username: {
         type: String,
         unique: true,
         required: true

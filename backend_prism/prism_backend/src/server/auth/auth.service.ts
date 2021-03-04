@@ -14,7 +14,7 @@ export class AuthService {
 
         // This will be used for the initial login
         let userToAttempt: IUser | undefined;
-        userToAttempt = await this.usersService.findOneByEmail(loginAttempt.email);
+        userToAttempt = await this.usersService.findOneByUsername(loginAttempt.username);
         
         let isMatch = false;
 
@@ -41,7 +41,7 @@ export class AuthService {
     async validateUserByJwt(payload: JwtPayload) { 
 
         // This will be used when the user has already logged in and has a JWT
-        let user = await this.usersService.findOneByEmail(payload.email);
+        let user = await this.usersService.findOneByUsername(payload.email);
 
         if (user) {
 
