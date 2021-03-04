@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UnauthorizedException, HttpCode, Res, UseGuards, Get } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, HttpStatus, HttpException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto'
 import { IsEmptyGuard } from './guards/IsEmptyGuard.guard';
@@ -9,10 +9,6 @@ import { UseFilters } from '@nestjs/common';
 export class AuthController {
 
     constructor(private authService: AuthService) {}
-
-    
-
-
     //@Post()
     @Get()
     @UseGuards(IsEmptyGuard)
@@ -29,9 +25,10 @@ export class AuthController {
             return result;
 
         } else {
-            
-            return new UnauthorizedException('You are unauthorized');
-        
+
+            console.log("an exception has occured");
+            //return new UnauthorizedException('Unauthorized');
+            throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
         }
     }
 }

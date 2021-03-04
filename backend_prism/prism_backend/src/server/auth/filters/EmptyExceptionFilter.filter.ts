@@ -2,11 +2,9 @@ import { ArgumentsHost, Catch, ExceptionFilter, ForbiddenException } from '@nest
 
 @Catch()
 export class EmptyExceptionFilter<T> implements ExceptionFilter {
-  
-  
-  catch(exception: ForbiddenException, host: ArgumentsHost) 
-  {
-    console.log("in filter");
-    host.switchToHttp().getResponse().redirect("/hello");  
-  }
+	
+	catch(exception: ForbiddenException, host: ArgumentsHost) {
+		console.log("in filter");
+		host.switchToHttp().getResponse().redirect("/hello");  
+	}
 }
