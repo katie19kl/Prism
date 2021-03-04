@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
+import { Controller, Post, Body, UnauthorizedException, HttpCode, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto'
 
@@ -7,7 +7,7 @@ export class AuthController {
 
     constructor(private authService: AuthService) {}
 
-    @Post() 
+    @Post()
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
 
         console.log(loginUserDto); // to be deleted!
@@ -19,7 +19,7 @@ export class AuthController {
             return result;
 
         } else {
-
+            
             return new UnauthorizedException('You are unauthorized');
         
         }
