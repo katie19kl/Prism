@@ -5,6 +5,8 @@ import { LoginUserDto } from '../users/dto/login-user.dto';
 import { UsersService } from '../users/users.service';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
+
+ 
 @Injectable()
 export class AuthService {
 
@@ -16,9 +18,15 @@ export class AuthService {
         let userToAttempt: IUser | undefined;
         userToAttempt = await this.usersService.findOneByUsername(loginAttempt.username);
         
+        // username not exists
+        if (userToAttempt == null){
+            return undefined;
+        }
+
         let isMatch = false;
 
         try {
+            // passport is right
             isMatch = await userToAttempt.checkPassword(loginAttempt.password);
 
         } catch (error) {
@@ -61,9 +69,9 @@ export class AuthService {
         };
 
         let jwt = this.jwtService.sign(data);
-
+        console.log(jwt)
         return {
-            expiresIn: 3600,
+            expiresIn: 300,
             token: jwt            
         }
     }

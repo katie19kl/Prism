@@ -1186,22 +1186,17 @@
         "signature": "3293b0d1d6a7f902316e164fcf36ae099f1bbb0224484586eaab30d9dea78d32",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts": {
         "version": "8777e8b9e2aaad9e400a18387113faf9593806889cf4ef4267ce5271fce8b8be",
         "signature": "8777e8b9e2aaad9e400a18387113faf9593806889cf4ef4267ce5271fce8b8be",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/rxjs/index.d.ts": {
-        "version": "a588d0765b1d18bf00a498b75a83e095aef75a9300b6c1e91cbf39e408f2fe2f",
-        "signature": "a588d0765b1d18bf00a498b75a83e095aef75a9300b6c1e91cbf39e408f2fe2f",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts": {
         "version": "94f798f2ee81af6b0767403ef94fbc6d7d7a5e2dc0953a2ea3de98f2cab587c2",
         "signature": "94f798f2ee81af6b0767403ef94fbc6d7d7a5e2dc0953a2ea3de98f2cab587c2",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/common/index.d.ts": {
         "version": "23dbd21c1fe8ee7c2e1b260de8610d1ce67a785cd40d349520306c8d876385c4",
         "signature": "23dbd21c1fe8ee7c2e1b260de8610d1ce67a785cd40d349520306c8d876385c4",
         "affectsGlobalScope": false
@@ -1441,367 +1436,137 @@
         "signature": "9c4c395e927045b324877acdc4bfb95f128f36bc9f073266a2f0342495075a4f",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@types/bson/index.d.ts": {
+      "./node_modules/@types/bson/index.d.ts": {
         "version": "2d23edce1d4a3b33280970484e17ca87b03e2829d8677ae1501de18269f0498f",
         "signature": "2d23edce1d4a3b33280970484e17ca87b03e2829d8677ae1501de18269f0498f",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@types/mongodb/index.d.ts": {
+      "./node_modules/@types/mongodb/index.d.ts": {
         "version": "cdcaff91efe06dc77ea5e8b3672fd6ae722c91ad4bf804ea4f5017714abf7084",
         "signature": "cdcaff91efe06dc77ea5e8b3672fd6ae722c91ad4bf804ea4f5017714abf7084",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/mongoose/index.d.ts": {
+      "./node_modules/mongoose/index.d.ts": {
         "version": "cb707471dd6b1b1c93fed0dfe882cb82ec1dd368c9ba13277b8afed3e6283421",
         "signature": "cb707471dd6b1b1c93fed0dfe882cb82ec1dd368c9ba13277b8afed3e6283421",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts": {
         "version": "0111f89e770e819588d0b064bdaabf02ee3eaf8d2664ea32cf95beca95d1e604",
         "signature": "0111f89e770e819588d0b064bdaabf02ee3eaf8d2664ea32cf95beca95d1e604",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts": {
         "version": "0b6d47ef5eb8df1f39f04b670d4e35c0e81d3b429b1950f881e343d98e614e54",
         "signature": "0b6d47ef5eb8df1f39f04b670d4e35c0e81d3b429b1950f881e343d98e614e54",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/decorators/index.d.ts": {
         "version": "4bdb4a78b01987583507ae0d44b33f164b3bdef16caca951e40a86d4a595d31d",
         "signature": "4bdb4a78b01987583507ae0d44b33f164b3bdef16caca951e40a86d4a595d31d",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts": {
         "version": "efdd470f201058f6567c9e131e38d653b26a7da5f441c9c6090f294135ec3650",
         "signature": "efdd470f201058f6567c9e131e38d653b26a7da5f441c9c6090f294135ec3650",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/errors/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/errors/index.d.ts": {
         "version": "4e1529ce3e1894332dc96d20c9e9c88e2ea2fd5d39cc834001fd67b707352331",
         "signature": "4e1529ce3e1894332dc96d20c9e9c88e2ea2fd5d39cc834001fd67b707352331",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/common/index.d.ts": {
-        "version": "95b5a3078fdc51508d5d9cde59a1dd9525b53fd42dc12265a55261fd415d3274",
-        "signature": "95b5a3078fdc51508d5d9cde59a1dd9525b53fd42dc12265a55261fd415d3274",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts": {
         "version": "0dedbf967cd103b2137aa98da6f6d5a3000a09f1352f0fd713628614d4f65d9e",
         "signature": "0dedbf967cd103b2137aa98da6f6d5a3000a09f1352f0fd713628614d4f65d9e",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts": {
         "version": "0bf2e233d9ccc80c1393433918871d6e8e5f86dbefd17090a772f8ea66457f59",
         "signature": "0bf2e233d9ccc80c1393433918871d6e8e5f86dbefd17090a772f8ea66457f59",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/factories/index.d.ts": {
         "version": "fc7e6b96801268ffb81f13f35953ec5847a60170341beb40ccf6badf0ea325b6",
         "signature": "fc7e6b96801268ffb81f13f35953ec5847a60170341beb40ccf6badf0ea325b6",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/common/interfaces/abstract.interface.d.ts": {
-        "version": "e89535c3ec439608bcd0f68af555d0e5ddf121c54abe69343549718bd7506b9c",
-        "signature": "e89535c3ec439608bcd0f68af555d0e5ddf121c54abe69343549718bd7506b9c",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/controllers/controller-metadata.interface.d.ts": {
-        "version": "622a984b60c294ffb2f9152cf1d4d12e91d2b733d820eec949cf54d63a3c1025",
-        "signature": "622a984b60c294ffb2f9152cf1d4d12e91d2b733d820eec949cf54d63a3c1025",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/controllers/controller.interface.d.ts": {
-        "version": "1a25c4d02a013b4690efa24ab48184a2c10b1906a379565ba558b2c3ba679a6d",
-        "signature": "1a25c4d02a013b4690efa24ab48184a2c10b1906a379565ba558b2c3ba679a6d",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts": {
-        "version": "75b57b109d774acca1e151df21cf5cb54c7a1df33a273f0457b9aee4ebd36fb9",
-        "signature": "75b57b109d774acca1e151df21cf5cb54c7a1df33a273f0457b9aee4ebd36fb9",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts": {
-        "version": "795a08ae4e193f345073b49f68826ab6a9b280400b440906e4ec5c237ae777e6",
-        "signature": "795a08ae4e193f345073b49f68826ab6a9b280400b440906e4ec5c237ae777e6",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/ws-exception-filter.interface.d.ts": {
-        "version": "8153df63cf65122809db17128e5918f59d6bb43a371b5218f4430c4585f64085",
-        "signature": "8153df63cf65122809db17128e5918f59d6bb43a371b5218f4430c4585f64085",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/external/validation-error.interface.d.ts": {
-        "version": "a8150bc382dd12ce58e00764d2366e1d59a590288ee3123af8a4a2cb4ef7f9df",
-        "signature": "a8150bc382dd12ce58e00764d2366e1d59a590288ee3123af8a4a2cb4ef7f9df",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts": {
-        "version": "ba6f9c5491bcf018dbbc813e1dd488beb26f876b825007ba76db485df341a8ee",
-        "signature": "ba6f9c5491bcf018dbbc813e1dd488beb26f876b825007ba76db485df341a8ee",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts": {
-        "version": "d5c41a741cd408c34cb91f84468f70e9bda3dfeabf33251a61039b3cdb8b22d8",
-        "signature": "d5c41a741cd408c34cb91f84468f70e9bda3dfeabf33251a61039b3cdb8b22d8",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/custom-route-param-factory.interface.d.ts": {
-        "version": "6e87c0c1cf06fe7dd6e545d72edefd61d86b4f13d2f9d34140e8168af94a7b7d",
-        "signature": "6e87c0c1cf06fe7dd6e545d72edefd61d86b4f13d2f9d34140e8168af94a7b7d",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts": {
-        "version": "5adfaf2f9f33957264ad199a186456a4676b2724ed700fc313ff945d03372169",
-        "signature": "5adfaf2f9f33957264ad199a186456a4676b2724ed700fc313ff945d03372169",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts": {
-        "version": "cbaf4a4aa8a8c02aa681c5870d5c69127974de29b7e01df570edec391a417959",
-        "signature": "cbaf4a4aa8a8c02aa681c5870d5c69127974de29b7e01df570edec391a417959",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/paramtype.interface.d.ts": {
-        "version": "b8d9df5c49858df86ffa6c497f1840528963c14ca0dea7684e813b008fe797b3",
-        "signature": "b8d9df5c49858df86ffa6c497f1840528963c14ca0dea7684e813b008fe797b3",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts": {
-        "version": "b1f8c85b27619ccfae9064e433b3b32a11d93d54de5a1afdaeca23c8b30e38a5",
-        "signature": "b1f8c85b27619ccfae9064e433b3b32a11d93d54de5a1afdaeca23c8b30e38a5",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/before-application-shutdown.interface.d.ts": {
-        "version": "6f622e7f054f5ab86258362ac0a64a2d6a27f1e88732d6f5f052f422e08a70e7",
-        "signature": "6f622e7f054f5ab86258362ac0a64a2d6a27f1e88732d6f5f052f422e08a70e7",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-application-bootstrap.interface.d.ts": {
-        "version": "d62d2ef93ceeb41cf9dfab25989a1e5f9ca5160741aac7f1453c69a6c14c69be",
-        "signature": "d62d2ef93ceeb41cf9dfab25989a1e5f9ca5160741aac7f1453c69a6c14c69be",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-application-shutdown.interface.d.ts": {
-        "version": "1491e80d72873fc586605283f2d9056ee59b166333a769e64378240df130d1c9",
-        "signature": "1491e80d72873fc586605283f2d9056ee59b166333a769e64378240df130d1c9",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-destroy.interface.d.ts": {
-        "version": "c32c073d389cfaa3b3e562423e16c2e6d26b8edebbb7d73ccffff4aa66f2171d",
-        "signature": "c32c073d389cfaa3b3e562423e16c2e6d26b8edebbb7d73ccffff4aa66f2171d",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-init.interface.d.ts": {
-        "version": "eca72bf229eecadb63e758613c62fab13815879053539a22477d83a48a21cd73",
-        "signature": "eca72bf229eecadb63e758613c62fab13815879053539a22477d83a48a21cd73",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/index.d.ts": {
-        "version": "633db46fd1765736409a4767bfc670861468dde60dbb9a501fba4c1b72f8644d",
-        "signature": "633db46fd1765736409a4767bfc670861468dde60dbb9a501fba4c1b72f8644d",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts": {
-        "version": "de2e39833685a4746ad290c790f8e357edd5fb84945a3a6785915b7658089750",
-        "signature": "de2e39833685a4746ad290c790f8e357edd5fb84945a3a6785915b7658089750",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/http/message-event.interface.d.ts": {
-        "version": "5c4c5b49bbb01828402bb04af1d71673b18852c11b7e95bfd5cf4c3d80d352c8",
-        "signature": "5c4c5b49bbb01828402bb04af1d71673b18852c11b7e95bfd5cf4c3d80d352c8",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/http/index.d.ts": {
-        "version": "8a4a75382ad915be014991cffdfef0e8d78572fe6dfa7f8f8eb748288bec27e2",
-        "signature": "8a4a75382ad915be014991cffdfef0e8d78572fe6dfa7f8f8eb748288bec27e2",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/injectable.interface.d.ts": {
-        "version": "44ec212fbf43580505de3d6054376ced252c534ced872c53698047387213efb9",
-        "signature": "44ec212fbf43580505de3d6054376ced252c534ced872c53698047387213efb9",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/microservices/nest-hybrid-application-options.interface.d.ts": {
-        "version": "4880c2a2caa941aff7f91f51948ebfb10f15283ff0b163f8ea2a74499add61aa",
-        "signature": "4880c2a2caa941aff7f91f51948ebfb10f15283ff0b163f8ea2a74499add61aa",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts": {
-        "version": "ebf6ea6f412af15674333149f7f6561c0de9e36a4d4b350daccf6c5acbbf9fa3",
-        "signature": "ebf6ea6f412af15674333149f7f6561c0de9e36a4d4b350daccf6c5acbbf9fa3",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts": {
-        "version": "8e1453c4f07194ab558fa0648cc30356c7536b134a8d7516edf86fd93706c222",
-        "signature": "8e1453c4f07194ab558fa0648cc30356c7536b134a8d7516edf86fd93706c222",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts": {
-        "version": "eee530aaa93e9ec362e3941ee8355e2d073c7b21d88c2af4713e3d701dab8fef",
-        "signature": "eee530aaa93e9ec362e3941ee8355e2d073c7b21d88c2af4713e3d701dab8fef",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/nest-middleware.interface.d.ts": {
-        "version": "3d26959cb8d1c11bf3cbaf17f8d2cb0c0488ab787fac1b222e924e04bd235965",
-        "signature": "3d26959cb8d1c11bf3cbaf17f8d2cb0c0488ab787fac1b222e924e04bd235965",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/index.d.ts": {
-        "version": "7a0e4cd92545ad03910fd019ae9838718643bd4dde39881c745f236914901dfa",
-        "signature": "7a0e4cd92545ad03910fd019ae9838718643bd4dde39881c745f236914901dfa",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts": {
-        "version": "d7c30f0abfe9e197e376b016086cf66b2ffb84015139963f37301ed0da9d3d0d",
-        "signature": "d7c30f0abfe9e197e376b016086cf66b2ffb84015139963f37301ed0da9d3d0d",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/forward-reference.interface.d.ts": {
-        "version": "19c3760af3cbc9da99d5b7763b9e33aaf8d018bc2ed843287b7ff4343adf4634",
-        "signature": "19c3760af3cbc9da99d5b7763b9e33aaf8d018bc2ed843287b7ff4343adf4634",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/introspection-result.interface.d.ts": {
-        "version": "ff75bba0148f07775bcb54bf4823421ed4ebdb751b3bf79cc003bd22e49d7d73",
-        "signature": "ff75bba0148f07775bcb54bf4823421ed4ebdb751b3bf79cc003bd22e49d7d73",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts": {
-        "version": "9ddf8e9069327faa75d20135cab675779844f66590249769c3d35dd2a38c2ba9",
-        "signature": "9ddf8e9069327faa75d20135cab675779844f66590249769c3d35dd2a38c2ba9",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/nest-module.interface.d.ts": {
-        "version": "69196fa55fab9cd52c4eecba6051902bd5adff63ecf65e0546cb484b5a279fb1",
-        "signature": "69196fa55fab9cd52c4eecba6051902bd5adff63ecf65e0546cb484b5a279fb1",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts": {
-        "version": "d1e22bc4ba2142678ca7e7a57b0df2952363cf6ee2546b820f38d46c2148cc72",
-        "signature": "d1e22bc4ba2142678ca7e7a57b0df2952363cf6ee2546b820f38d46c2148cc72",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/index.d.ts": {
-        "version": "65cc10e9ccfba05590414409f6117b1cd945212ccf37dfb4bd1f0b8d3f8b0fe0",
-        "signature": "65cc10e9ccfba05590414409f6117b1cd945212ccf37dfb4bd1f0b8d3f8b0fe0",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts": {
-        "version": "6953edf2f16d26d14413d2d8d0891e75fdaa07ae7312042592e5d7893fed34ba",
-        "signature": "6953edf2f16d26d14413d2d8d0891e75fdaa07ae7312042592e5d7893fed34ba",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts": {
-        "version": "9aee949dd6fab5a9910aa0675b7c0dc99f8e877146873832f5cd884e464eed01",
-        "signature": "9aee949dd6fab5a9910aa0675b7c0dc99f8e877146873832f5cd884e464eed01",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application.interface.d.ts": {
-        "version": "c8671371107b900ba70a02705dd35015b3854f76d417eaecbd6212e1b900f854",
-        "signature": "c8671371107b900ba70a02705dd35015b3854f76d417eaecbd6212e1b900f854",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-microservice.interface.d.ts": {
-        "version": "95e3cb43454d0ddba30701325e9a4b559792a8e1382621246168ce2f4d794109",
-        "signature": "95e3cb43454d0ddba30701325e9a4b559792a8e1382621246168ce2f4d794109",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts": {
-        "version": "c3befd91fe65a95f9a70f9fb62cdc98f0ffd28bebbc12ab09298de70f9cddc66",
-        "signature": "c3befd91fe65a95f9a70f9fb62cdc98f0ffd28bebbc12ab09298de70f9cddc66",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/type.interface.d.ts": {
-        "version": "340a45cd77b41d8a6deda248167fa23d3dc67ec798d411bd282f7b3d555b1695",
-        "signature": "340a45cd77b41d8a6deda248167fa23d3dc67ec798d411bd282f7b3d555b1695",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts": {
-        "version": "b75aa590b103f8491e1c943f9bc4989df55323d7e68fba393d3de11f4aae6bb8",
-        "signature": "b75aa590b103f8491e1c943f9bc4989df55323d7e68fba393d3de11f4aae6bb8",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts": {
-        "version": "e6d6a0a155ca5c8a3199eff98b658f2cb34f1455bec312e0768fd4f93f725657",
-        "signature": "e6d6a0a155ca5c8a3199eff98b658f2cb34f1455bec312e0768fd4f93f725657",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts": {
         "version": "b2ab44e0037a31a7c03076eb643913eebeaa10305e3a9f9ec136b634449d2f6c",
         "signature": "b2ab44e0037a31a7c03076eb643913eebeaa10305e3a9f9ec136b634449d2f6c",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts": {
         "version": "8019aa8a0aa73abe67c6618300f073fd3079c5dc09364165c028957f755ef6db",
         "signature": "8019aa8a0aa73abe67c6618300f073fd3079c5dc09364165c028957f755ef6db",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts": {
         "version": "f3ff9ca111489034699157502ef62a19eacc986171439a0effe2072311f4c0b4",
         "signature": "f3ff9ca111489034699157502ef62a19eacc986171439a0effe2072311f4c0b4",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts": {
         "version": "34382c2dd229b11deee828fb033820d26d823ef89aa679127c7abfa79ec7dc39",
         "signature": "34382c2dd229b11deee828fb033820d26d823ef89aa679127c7abfa79ec7dc39",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts": {
         "version": "e4f5fb7725eda896f02384930da65d171bba03b6f7e2a7f6ff4989aed531c826",
         "signature": "e4f5fb7725eda896f02384930da65d171bba03b6f7e2a7f6ff4989aed531c826",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts": {
         "version": "9a95baf6f94c31e1d9ce4d7c9664ae9fc54842004ef0a6a3b5205c5d121a8ea4",
         "signature": "9a95baf6f94c31e1d9ce4d7c9664ae9fc54842004ef0a6a3b5205c5d121a8ea4",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/utils/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/utils/index.d.ts": {
         "version": "2b9d837d90728c6bddee2cce1352bea7f6e9b8d74ad6b491779ec0f0451935e8",
         "signature": "2b9d837d90728c6bddee2cce1352bea7f6e9b8d74ad6b491779ec0f0451935e8",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/dist/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/dist/index.d.ts": {
         "version": "c7b0ec461b2d94e8ead4ec75c04850cedfcd5c2ef9a32cbe9445e14cb6c558df",
         "signature": "c7b0ec461b2d94e8ead4ec75c04850cedfcd5c2ef9a32cbe9445e14cb6c558df",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/mongoose/index.d.ts": {
+      "./node_modules/@nestjs/mongoose/index.d.ts": {
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@types/jsonwebtoken/index.d.ts": {
+      "./node_modules/@types/jsonwebtoken/index.d.ts": {
         "version": "f67c920eba6ab8e4558cb9ab661d900188f101c5657e19b1e15829a1d491d46e",
         "signature": "f67c920eba6ab8e4558cb9ab661d900188f101c5657e19b1e15829a1d491d46e",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts": {
+      "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts": {
         "version": "fc0140cf41d169b3b77e09831c9d2eed1cdb131aa34f4fa27e4c01896ec97ad6",
         "signature": "fc0140cf41d169b3b77e09831c9d2eed1cdb131aa34f4fa27e4c01896ec97ad6",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": {
+      "./node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": {
         "version": "7c14e702387296711c1a829bc95052ff02f533d4aa27d53cc0186c795094a3a9",
         "signature": "7c14e702387296711c1a829bc95052ff02f533d4aa27d53cc0186c795094a3a9",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.module.d.ts": {
+      "./node_modules/@nestjs/jwt/dist/jwt.module.d.ts": {
         "version": "579f8828da42ae02db6915a0223d23b0da07157ff484fecdbf8a96fffa0fa4df",
         "signature": "579f8828da42ae02db6915a0223d23b0da07157ff484fecdbf8a96fffa0fa4df",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.service.d.ts": {
+      "./node_modules/@nestjs/jwt/dist/jwt.service.d.ts": {
         "version": "d1e16a1778a336ae49607ca0becd8688e74a020bea949047dcfcbb1bd2dc0f5a",
         "signature": "d1e16a1778a336ae49607ca0becd8688e74a020bea949047dcfcbb1bd2dc0f5a",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/jwt/dist/index.d.ts": {
+      "./node_modules/@nestjs/jwt/dist/index.d.ts": {
         "version": "a13aac535101a942283e3d00bce50f483bfa9bed6e1f8dfda33a3bb072498776",
         "signature": "a13aac535101a942283e3d00bce50f483bfa9bed6e1f8dfda33a3bb072498776",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/jwt/index.d.ts": {
+      "./node_modules/@nestjs/jwt/index.d.ts": {
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "affectsGlobalScope": false
@@ -1822,33 +1587,63 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/users.service.ts": {
-        "version": "fae97f705e6b3ef8a3203a626757bae0edb06acbd99414558eafb7c3a51e80b2",
-        "signature": "b1178a625ecafc897298cef518bdf8950b45dea73fb5c36d5f5864a7a765bebe",
+        "version": "d55598d7a60e21966d3f29f029febdcd5b331756c551389f74a3a7bfc4e68a7c",
+        "signature": "93227714003b7f94fc3609e8f93006c90545c3868a396f914447190afd23e86b",
         "affectsGlobalScope": false
       },
       "./src/server/auth/interfaces/jwt-payload.interface.ts": {
-        "version": "3d43b8d1419cb3d4394bd57377039ac32cdeb13f56f52ab58e6d3a1f779ccef2",
-        "signature": "889a8b5d0ce8e725535d0fa99fa3b6251dbc6b779f980bf99c13fbf5a0ad8c68",
+        "version": "96fda16913b1be9e9898bdb896e6e7e2c793b17d12b9445eb17a03c930bc7daf",
+        "signature": "c240d4cac48a4fe0a23b3a1d4fa97aa941f63474ad03f5fe0178e759aeac48ae",
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
-        "version": "bd36676827ae83f0836ecbc698f1e0145909039edd0f462765487851d7fd7eee",
+        "version": "6bc04df364ab6c1a38858e907768057cf472465a9643c97db178ad44f4c251c2",
         "signature": "3b2b4b9d0a292306a2b35f16d498506bb3a1f37c0631335e3d63fa648bfa1985",
         "affectsGlobalScope": false
       },
       "./src/server/auth/guards/isemptyguard.guard.ts": {
-        "version": "71e70bd59fd9323c514e000680c84368ffc8fba081784f2465a6b7a4f4333766",
+        "version": "41424a240d82207df3c13c947426fd9c4bb2472a32525efd415513ece8af9f5b",
         "signature": "712bc577e6aa09408a4df8cf17060624f63b59afd3743d9777403a464d8a39d5",
         "affectsGlobalScope": false
       },
+      "./src/server/auth/exception/usernotfound.exception.ts": {
+        "version": "7020041b8f80066b3069501316aedab861b76cb13aa06cc5782716e241143e96",
+        "signature": "6a044a6c07c3f5c3b485118d04a8d5d23be51d0c312ba7ea8a23d789a57e41c5",
+        "affectsGlobalScope": false
+      },
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts": {
-        "version": "4b69abfdfab4f17e889ebc748f0194eea64b86e375fb6cdace2e2c5a1a685b10",
+        "version": "47b0c742e139fc04996bb17ff1bf14c896e0a23e233f5ee7d56156789dc7616c",
         "signature": "a6ec783db8023cd8965043f26617dbc128cd90b930fc583e1ab7c1fbddb7bd2b",
         "affectsGlobalScope": false
       },
-      "./src/server/auth/auth.controller.ts": {
-        "version": "049583ad79052007abf380e83ece1a568301b4d5c3cfa0c0569cc57e2530bd6c",
-        "signature": "33889898a9cef87cea2330ccc7eb598012083bfd5995b0bb2c0802501e432c1a",
+      "./node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": {
+        "version": "ba63131c5e91f797736444933af16ffa42f9f8c150d859ec65f568f037a416ea",
+        "signature": "ba63131c5e91f797736444933af16ffa42f9f8c150d859ec65f568f037a416ea",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts": {
+        "version": "142e2e1abd8603dfdeaa1c88d73003a7912aa949b3a19234fa91f729ebfa2fcc",
+        "signature": "142e2e1abd8603dfdeaa1c88d73003a7912aa949b3a19234fa91f729ebfa2fcc",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts": {
+        "version": "340a45cd77b41d8a6deda248167fa23d3dc67ec798d411bd282f7b3d555b1695",
+        "signature": "340a45cd77b41d8a6deda248167fa23d3dc67ec798d411bd282f7b3d555b1695",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts": {
+        "version": "0e9aa853b5eb2ca09e0e3e3eb94cbd1d5fb3d682ab69817d4d11fe225953fc57",
+        "signature": "0e9aa853b5eb2ca09e0e3e3eb94cbd1d5fb3d682ab69817d4d11fe225953fc57",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/passport/dist/auth.guard.d.ts": {
+        "version": "ffa1885ad546522fa1046644db93b17de7a29191a547edeeac57391909a73846",
+        "signature": "ffa1885ad546522fa1046644db93b17de7a29191a547edeeac57391909a73846",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/passport/dist/passport.module.d.ts": {
+        "version": "793c353144f16601da994fa4e62c09b7525836ce999c44f69c28929072ca206a",
+        "signature": "793c353144f16601da994fa4e62c09b7525836ce999c44f69c28929072ca206a",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/range-parser/index.d.ts": {
@@ -1876,108 +1671,78 @@
         "signature": "3b02517f9be71f255eadab9892406055d069167891f1e1ea16c96c4ff1ddda01",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@types/connect/index.d.ts": {
+      "./node_modules/@types/connect/index.d.ts": {
         "version": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
         "signature": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@types/body-parser/index.d.ts": {
+      "./node_modules/@types/body-parser/index.d.ts": {
         "version": "ebddbd167c2fabd0151f50e5df94ca6d845149c47521280d8867afe3429dd078",
         "signature": "ebddbd167c2fabd0151f50e5df94ca6d845149c47521280d8867afe3429dd078",
         "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/serve-static/index.d.ts": {
-        "version": "3b02517f9be71f255eadab9892406055d069167891f1e1ea16c96c4ff1ddda01",
-        "signature": "3b02517f9be71f255eadab9892406055d069167891f1e1ea16c96c4ff1ddda01",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/express-serve-static-core/index.d.ts": {
-        "version": "1630272009eb17f1577a172cce36619460d96a6df7ad24153897f7836e19f992",
-        "signature": "1630272009eb17f1577a172cce36619460d96a6df7ad24153897f7836e19f992",
-        "affectsGlobalScope": true
-      },
-      "../../../../../node_modules/@types/qs/index.d.ts": {
-        "version": "c236451df6139a965bb9b8fba15a43a8bebf4400ca589998e2bdc5e1291fa0f9",
-        "signature": "c236451df6139a965bb9b8fba15a43a8bebf4400ca589998e2bdc5e1291fa0f9",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/express/index.d.ts": {
-        "version": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
-        "signature": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/passport/index.d.ts": {
-        "version": "d504adcb8e0c47a5e8863da80db139e680b349842bd7c9d4518d2a1019c140a7",
-        "signature": "d504adcb8e0c47a5e8863da80db139e680b349842bd7c9d4518d2a1019c140a7",
-        "affectsGlobalScope": true
       },
       "./node_modules/@types/express/index.d.ts": {
         "version": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
         "signature": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@types/passport-strategy/index.d.ts": {
-        "version": "29d59e921bc723594bbfc98230d24f38f0d5a669f28fcf989b7468f4f95b7c52",
-        "signature": "29d59e921bc723594bbfc98230d24f38f0d5a669f28fcf989b7468f4f95b7c52",
-        "affectsGlobalScope": false
+      "./node_modules/@types/passport/index.d.ts": {
+        "version": "d504adcb8e0c47a5e8863da80db139e680b349842bd7c9d4518d2a1019c140a7",
+        "signature": "d504adcb8e0c47a5e8863da80db139e680b349842bd7c9d4518d2a1019c140a7",
+        "affectsGlobalScope": true
       },
-      "../../../../../node_modules/@types/passport-jwt/index.d.ts": {
-        "version": "991f4413ebcec9e96a13c02f596e9b75dca9c618ac8a3a2466e054b33632bf01",
-        "signature": "991f4413ebcec9e96a13c02f596e9b75dca9c618ac8a3a2466e054b33632bf01",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts": {
-        "version": "ba63131c5e91f797736444933af16ffa42f9f8c150d859ec65f568f037a416ea",
-        "signature": "ba63131c5e91f797736444933af16ffa42f9f8c150d859ec65f568f037a416ea",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts": {
-        "version": "142e2e1abd8603dfdeaa1c88d73003a7912aa949b3a19234fa91f729ebfa2fcc",
-        "signature": "142e2e1abd8603dfdeaa1c88d73003a7912aa949b3a19234fa91f729ebfa2fcc",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts": {
-        "version": "340a45cd77b41d8a6deda248167fa23d3dc67ec798d411bd282f7b3d555b1695",
-        "signature": "340a45cd77b41d8a6deda248167fa23d3dc67ec798d411bd282f7b3d555b1695",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts": {
-        "version": "0e9aa853b5eb2ca09e0e3e3eb94cbd1d5fb3d682ab69817d4d11fe225953fc57",
-        "signature": "0e9aa853b5eb2ca09e0e3e3eb94cbd1d5fb3d682ab69817d4d11fe225953fc57",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/auth.guard.d.ts": {
-        "version": "ffa1885ad546522fa1046644db93b17de7a29191a547edeeac57391909a73846",
-        "signature": "ffa1885ad546522fa1046644db93b17de7a29191a547edeeac57391909a73846",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/passport.module.d.ts": {
-        "version": "793c353144f16601da994fa4e62c09b7525836ce999c44f69c28929072ca206a",
-        "signature": "793c353144f16601da994fa4e62c09b7525836ce999c44f69c28929072ca206a",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts": {
+      "./node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts": {
         "version": "599ac4a84b7aa6a298731179ec1663a623ff8ac324cdc1dabb9c73c1259dc854",
         "signature": "599ac4a84b7aa6a298731179ec1663a623ff8ac324cdc1dabb9c73c1259dc854",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts": {
+      "./node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts": {
         "version": "100509817f7a12b93f2ca4e07c1e3fe7f73ce2cbe2d69b609df2bf35fbbe7cf8",
         "signature": "100509817f7a12b93f2ca4e07c1e3fe7f73ce2cbe2d69b609df2bf35fbbe7cf8",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/passport/dist/index.d.ts": {
+      "./node_modules/@nestjs/passport/dist/index.d.ts": {
         "version": "585bc61f439c027640754dd26e480afa202f33e51db41ee283311a59c12c62e7",
         "signature": "585bc61f439c027640754dd26e480afa202f33e51db41ee283311a59c12c62e7",
         "affectsGlobalScope": false
       },
-      "../../../../../node_modules/@nestjs/passport/index.d.ts": {
+      "./node_modules/@nestjs/passport/index.d.ts": {
         "version": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "signature": "8f1241f5d9f0d3d72117768b3c974e462840fbd85026fb66685078945404cf2f",
         "affectsGlobalScope": false
       },
+      "./src/server/auth/guards/localauthguard.guard.ts": {
+        "version": "80871795cd5dca4ea9daa59dc9e812b36f498550759b39eb571d50cbd1aa4d8b",
+        "signature": "de00899ee8403ca6d4ac89938059031acd4e52dd417186b11c3803fd1e2247ba",
+        "affectsGlobalScope": false
+      },
+      "./src/server/auth/guards/jwt_authguard.guard.ts": {
+        "version": "9d636dbbb3bee2bfed3df04a182070d2d1181f2e44b9167bcf85ab2ee174687f",
+        "signature": "baf608b3f1bf90782d8b003287213bceae5e9b31f56c2ce676e223ea85ea10b2",
+        "affectsGlobalScope": false
+      },
+      "./src/server/auth/auth.controller.ts": {
+        "version": "4e01edff9b3a1e4e167e5e404f928199180d95a8520e02e15dfaf08266eaa688",
+        "signature": "5d4a7274802040278fd74dcc402a1310f136449d41ca6630e3fb2d1df8ab5e5a",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/passport-strategy/index.d.ts": {
+        "version": "29d59e921bc723594bbfc98230d24f38f0d5a669f28fcf989b7468f4f95b7c52",
+        "signature": "29d59e921bc723594bbfc98230d24f38f0d5a669f28fcf989b7468f4f95b7c52",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/passport-jwt/index.d.ts": {
+        "version": "991f4413ebcec9e96a13c02f596e9b75dca9c618ac8a3a2466e054b33632bf01",
+        "signature": "991f4413ebcec9e96a13c02f596e9b75dca9c618ac8a3a2466e054b33632bf01",
+        "affectsGlobalScope": false
+      },
+      "./src/server/auth/constants.ts": {
+        "version": "21eb2228ba117608c2a51e00bac457bbe86bfee781103ee98a4630ad82cb5724",
+        "signature": "541603c0913bf3791cdca6f10c3bcd0042e5858974e191e345bfecb3523124fb",
+        "affectsGlobalScope": false
+      },
       "./src/server/auth/strategies/jwt.strategy.ts": {
-        "version": "0564ca027e731c690b95eee3a23ba75fc48479c86151b02f033205603801e466",
+        "version": "7151048f6b2cc7fd646e35a9596d0d7a42cbcc06c459fb160cec2a664647ce9e",
         "signature": "b5670c5be2da5bbdc682e666117ea2fe51116899e466027f67d639e2925eab25",
         "affectsGlobalScope": false
       },
@@ -1997,17 +1762,27 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/users.module.ts": {
-        "version": "74003fcf993bb08fb0b34bd7a0796c7006de72343c40d005e5f991add2ee9e90",
+        "version": "e04f1651ad986792bedb62b456bf82a6253143b7e91aff4e89db51ac2be5fa3c",
         "signature": "12dec6c99bd8d11167fa91a31e737abbbf8c9cc789c151a25a9a1d13f328175c",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/passport-local/index.d.ts": {
+        "version": "e50f9ae34bb92232533e3a32848970dd04f874a8f64d3ae48980e062b6489f26",
+        "signature": "e50f9ae34bb92232533e3a32848970dd04f874a8f64d3ae48980e062b6489f26",
+        "affectsGlobalScope": false
+      },
+      "./src/server/auth/strategies/local.strategy.ts": {
+        "version": "814e2567690034c330463af3bdb17a312a95ea7fd7513f86af460b24e3c02da6",
+        "signature": "705479766f3bed2506030dd0b39234f27c81642affbd858dc0022553058bb984",
+        "affectsGlobalScope": false
+      },
       "./src/server/auth/auth.module.ts": {
-        "version": "d63815fc1f77c00382b2cddf7900e3e9e445ccada95a1fa60c6e205ceed3e5d3",
+        "version": "4a3af9937dae11f91cd9e87aa376e9f65451001ece3714efaaf4c9c1d1a3948f",
         "signature": "2e5d258cf85349b02b015c3f1b8873c152d182c3819a7ccc3aff16fc3037a5fc",
         "affectsGlobalScope": false
       },
       "./src/server/app/app.module.ts": {
-        "version": "d8063642c3dc28b9e8fa3b395e9bc614de0835b8c0cd6a3736e63ea3facb90be",
+        "version": "bff76faf9556ee133e3772b135724fa09c5285b2649bb79970b85ad495a713e0",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
         "affectsGlobalScope": false
       },
@@ -2201,44 +1976,14 @@
         "signature": "c240d4cac48a4fe0a23b3a1d4fa97aa941f63474ad03f5fe0178e759aeac48ae",
         "affectsGlobalScope": false
       },
-      "./src/server/student/dto/create-student.dto.ts": {
-        "version": "f40b321e2559f199e57d5863313626c65858e38002b9b2ae04ce9e355bf79ae3",
-        "signature": "d8b5d9f85f3cdcfb51fe166b3d80af050ca3a3595d0c82a243d91591be83b1ec",
-        "affectsGlobalScope": false
-      },
-      "./src/server/student/interfaces/student-doc.interface.ts": {
-        "version": "22ec93e78e428cb94614db257537be40813830e5fcb6c335838897e6e0134bef",
-        "signature": "682493f169252d7d8ae523a05d82bda7658b452107e918664c0cb584c3e1758b",
-        "affectsGlobalScope": false
-      },
-      "./src/server/student/interfaces/student.interface.ts": {
-        "version": "619a126db054f757dbe32cf796ff069d6c9e6f0ea6fcaf2132e7d6aae82b965d",
-        "signature": "f9bdb3afadc01e7e5254726e91e5db59ed88b0e9eaa6e8e0119f594cb925ecff",
-        "affectsGlobalScope": false
-      },
-      "./src/server/student/student.service.ts": {
-        "version": "948c6334c888eeb24bcbe3472c0c734b23298711f2c9f0b006e83007ccd0a5cb",
-        "signature": "e5e6e57e592571fc8722428a8d369d2b261f0785e39c907d96a1cd9158988f9f",
-        "affectsGlobalScope": false
-      },
-      "./src/server/student/student.controller.ts": {
-        "version": "9e99466663fb688d4aae848dbacfb7cbf305dd1eed1c9d28c054cc5c7db23677",
-        "signature": "0a2c7fcd119918f6d658fa96a83b67340599b634011a1fe9afbffb4d692e5016",
-        "affectsGlobalScope": false
-      },
-      "./src/server/student/schemas/student.schema.ts": {
-        "version": "e251d49b9b675c52241f51b6c8eb845a8fd88a012e029d4ddf4cf0065c5012bf",
-        "signature": "4ec290d27072a75c33b06e37cccc8916ebf3012d76ed0318bf9d7aa351e37965",
-        "affectsGlobalScope": false
-      },
-      "./src/server/student/student.module.ts": {
-        "version": "54c08c69d4c0aee8875dc44875d4bd0d013877bca380db55f13dc0443b783856",
-        "signature": "1c96c46f4c97389adc49b95b3c8c8b21c1bbbfcd3a61f8071fbdbf9d51e15bce",
-        "affectsGlobalScope": false
-      },
       "./src/server/users/user.class.ts": {
         "version": "8cff2982e6715a9215d3f1150d67243a50ea845c3f5390185567e539f144e06d",
         "signature": "b0f95f6e9f89118e20d309ea9b1fac21ee66b0dfb4b78ba8a6f56bd5991f5603",
+        "affectsGlobalScope": false
+      },
+      "./src/server/users/common/bodyfieldsuser.ts": {
+        "version": "2e0a778a16a93b09753021c1cdab16eafe40cb3c978e105e5fef06b00011ca14",
+        "signature": "70277329b34682b1d4acec337dc6e9c8af6cd922f3e3dd15ec0ad313ce816bc3",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/anymatch/index.d.ts": {
@@ -2274,16 +2019,6 @@
       "./node_modules/@types/babel__core/index.d.ts": {
         "version": "a66e700ed470a0cb52d14f3376c1605c70fec8e9659e45f7e22ad07fcd06ae04",
         "signature": "a66e700ed470a0cb52d14f3376c1605c70fec8e9659e45f7e22ad07fcd06ae04",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/body-parser/index.d.ts": {
-        "version": "ebddbd167c2fabd0151f50e5df94ca6d845149c47521280d8867afe3429dd078",
-        "signature": "ebddbd167c2fabd0151f50e5df94ca6d845149c47521280d8867afe3429dd078",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@types/connect/index.d.ts": {
-        "version": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
-        "signature": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/cookiejar/index.d.ts": {
@@ -2396,6 +2131,26 @@
         "signature": "a0ff15c451ab2827c785924230942fa2ab13141530688b824948d6b43bdb2e07",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/prop-types/index.d.ts": {
+        "version": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
+        "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/react/global.d.ts": {
+        "version": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "affectsGlobalScope": true
+      },
+      "./node_modules/csstype/index.d.ts": {
+        "version": "0a6f28e1d77b99b0ef7da2f0bf50f301ea8a7eb7b4f573e458e725452a477bd2",
+        "signature": "0a6f28e1d77b99b0ef7da2f0bf50f301ea8a7eb7b4f573e458e725452a477bd2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/react/index.d.ts": {
+        "version": "9692a141afe8f30a5542189ffceb1a043f3d1fbaf0e07d28a8e9ac6d32c4cb01",
+        "signature": "9692a141afe8f30a5542189ffceb1a043f3d1fbaf0e07d28a8e9ac6d32c4cb01",
+        "affectsGlobalScope": true
+      },
       "./node_modules/@types/source-list-map/index.d.ts": {
         "version": "67fc055eb86a0632e2e072838f889ffe1754083cb13c8c80a06a7d895d877aae",
         "signature": "67fc055eb86a0632e2e072838f889ffe1754083cb13c8c80a06a7d895d877aae",
@@ -2429,6 +2184,11 @@
       "./node_modules/@types/uglify-js/index.d.ts": {
         "version": "6eb4533a72414577ea2d61cac639e20bea6c60639d9238a6aac2b5683f0ac64e",
         "signature": "6eb4533a72414577ea2d61cac639e20bea6c60639d9238a6aac2b5683f0ac64e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/validator/index.d.ts": {
+        "version": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
+        "signature": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
         "affectsGlobalScope": false
       },
       "./node_modules/anymatch/index.d.ts": {
@@ -2519,11 +2279,6 @@
       "./node_modules/@types/yargs/index.d.ts": {
         "version": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
         "signature": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
-        "affectsGlobalScope": false
-      },
-      "../../../../../node_modules/@types/passport-local/index.d.ts": {
-        "version": "e50f9ae34bb92232533e3a32848970dd04f874a8f64d3ae48980e062b6489f26",
-        "signature": "e50f9ae34bb92232533e3a32848970dd04f874a8f64d3ae48980e062b6489f26",
         "affectsGlobalScope": false
       }
     },
@@ -3169,6 +2924,133 @@
       "./node_modules/@nestjs/core/services/reflector.service.d.ts": [
         "./node_modules/@nestjs/common/index.d.ts"
       ],
+      "./node_modules/@nestjs/jwt/dist/index.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/jwt/dist/jwt.module.d.ts",
+        "./node_modules/@nestjs/jwt/dist/jwt.service.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts": [
+        "./node_modules/@nestjs/common/interfaces/index.d.ts",
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/jwt.module.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/jwt.service.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/index.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/common/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts": [
+        "./node_modules/rxjs/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/decorators/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/errors/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/factories/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/decorators/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/errors/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/factories/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/utils/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts": [
+        "./node_modules/@nestjs/common/interfaces/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/common/interfaces/index.d.ts",
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/utils/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/auth.guard.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/index.d.ts": [
+        "./node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
+        "./node_modules/@nestjs/passport/dist/auth.guard.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/passport/dist/passport.module.d.ts",
+        "./node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts",
+        "./node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts": [
+        "./node_modules/@nestjs/common/interfaces/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts": [
+        "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/passport.module.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts": [
+        "./node_modules/@types/passport/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts": [
+        "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/index.d.ts": [
+        "./node_modules/@nestjs/passport/dist/index.d.ts"
+      ],
       "./node_modules/@types/babel__core/index.d.ts": [
         "./node_modules/@babel/parser/typings/babel-parser.d.ts",
         "./node_modules/@babel/types/lib/index.d.ts",
@@ -3187,8 +3069,11 @@
         "./node_modules/@babel/types/lib/index.d.ts"
       ],
       "./node_modules/@types/body-parser/index.d.ts": [
-        "../../../../../node_modules/@types/connect/index.d.ts",
+        "./node_modules/@types/connect/index.d.ts",
         "./node_modules/@types/node/http.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@types/bson/index.d.ts": [
         "./node_modules/@types/node/index.d.ts"
       ],
       "./node_modules/@types/connect/index.d.ts": [
@@ -3212,7 +3097,7 @@
         "./node_modules/@types/range-parser/index.d.ts"
       ],
       "./node_modules/@types/express/index.d.ts": [
-        "../../../../../node_modules/@types/body-parser/index.d.ts",
+        "./node_modules/@types/body-parser/index.d.ts",
         "./node_modules/@types/express-serve-static-core/index.d.ts",
         "./node_modules/@types/qs/index.d.ts",
         "./node_modules/@types/serve-static/index.d.ts"
@@ -3230,6 +3115,16 @@
       "./node_modules/@types/jest/index.d.ts": [
         "./node_modules/jest-diff/build/index.d.ts",
         "./node_modules/pretty-format/build/index.d.ts"
+      ],
+      "./node_modules/@types/jsonwebtoken/index.d.ts": [
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@types/mongodb/index.d.ts": [
+        "./node_modules/@types/bson/index.d.ts",
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/index.d.ts",
+        "./node_modules/@types/node/stream.d.ts",
+        "./node_modules/@types/node/tls.d.ts"
       ],
       "./node_modules/@types/node/assert.d.ts": [
         "./node_modules/@types/node/assert.d.ts"
@@ -3462,6 +3357,29 @@
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/zlib.d.ts"
       ],
+      "./node_modules/@types/passport-jwt/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/@types/passport-strategy/index.d.ts"
+      ],
+      "./node_modules/@types/passport-local/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/passport-strategy/index.d.ts",
+        "./node_modules/@types/passport/index.d.ts"
+      ],
+      "./node_modules/@types/passport-strategy/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/passport/index.d.ts"
+      ],
+      "./node_modules/@types/passport/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/node/http.d.ts"
+      ],
+      "./node_modules/@types/react/index.d.ts": [
+        "./node_modules/@types/prop-types/index.d.ts",
+        "./node_modules/@types/react/global.d.ts",
+        "./node_modules/csstype/index.d.ts"
+      ],
       "./node_modules/@types/serve-static/index.d.ts": [
         "./node_modules/@types/mime/index.d.ts",
         "./node_modules/@types/node/http.d.ts",
@@ -3578,6 +3496,12 @@
       "./node_modules/jest-diff/build/printdiffs.d.ts": [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "./node_modules/jest-diff/build/types.d.ts"
+      ],
+      "./node_modules/mongoose/index.d.ts": [
+        "./node_modules/@types/mongodb/index.d.ts",
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/stream.d.ts",
+        "./node_modules/mongoose/index.d.ts"
       ],
       "./node_modules/pretty-format/build/index.d.ts": [
         "./node_modules/pretty-format/build/types.d.ts"
@@ -3884,8 +3808,8 @@
         "./src/server/app/app.service.ts"
       ],
       "./src/server/app/app.module.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/index.d.ts",
         "./src/server/app/app.controller.ts",
         "./src/server/app/app.service.ts",
         "./src/server/auth/auth.module.ts",
@@ -3900,514 +3824,96 @@
       ],
       "./src/server/auth/auth.controller.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts",
         "./src/server/auth/auth.service.ts",
+        "./src/server/auth/exception/usernotfound.exception.ts",
         "./src/server/auth/filters/emptyexceptionfilter.filter.ts",
         "./src/server/auth/guards/isemptyguard.guard.ts",
+        "./src/server/auth/guards/jwt_authguard.guard.ts",
+        "./src/server/auth/guards/localauthguard.guard.ts",
         "./src/server/users/dto/login-user.dto.ts"
       ],
       "./src/server/auth/auth.module.ts": [
-        "../../../../../node_modules/@nestjs/jwt/index.d.ts",
-        "../../../../../node_modules/@nestjs/passport/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/jwt/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts",
         "./src/server/auth/auth.controller.ts",
         "./src/server/auth/auth.service.ts",
+        "./src/server/auth/constants.ts",
         "./src/server/auth/strategies/jwt.strategy.ts",
+        "./src/server/auth/strategies/local.strategy.ts",
         "./src/server/users/users.module.ts"
       ],
       "./src/server/auth/auth.service.ts": [
-        "../../../../../node_modules/@nestjs/jwt/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/jwt/index.d.ts",
         "./src/server/auth/interfaces/jwt-payload.interface.ts",
         "./src/server/users/dto/login-user.dto.ts",
         "./src/server/users/iuser.interface.ts",
         "./src/server/users/users.service.ts"
       ],
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts": [
-        "./node_modules/@nestjs/common/index.d.ts"
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./src/server/auth/exception/usernotfound.exception.ts"
       ],
       "./src/server/auth/guards/isemptyguard.guard.ts": [
+        "./node_modules/@nestjs/common/index.d.ts"
+      ],
+      "./src/server/auth/guards/jwt_authguard.guard.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
-        "./node_modules/rxjs/index.d.ts"
+        "./node_modules/@nestjs/passport/index.d.ts"
+      ],
+      "./src/server/auth/guards/localauthguard.guard.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts"
       ],
       "./src/server/auth/strategies/jwt.strategy.ts": [
-        "../../../../../node_modules/@nestjs/passport/index.d.ts",
-        "../../../../../node_modules/@types/passport-jwt/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts",
+        "./node_modules/@types/passport-jwt/index.d.ts",
         "./src/server/auth/auth.service.ts",
+        "./src/server/auth/constants.ts",
         "./src/server/auth/interfaces/jwt-payload.interface.ts"
       ],
-      "./src/server/student/interfaces/student-doc.interface.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "./src/server/student/schemas/student.schema.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "./src/server/student/student.controller.ts": [
+      "./src/server/auth/strategies/local.strategy.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
-        "./src/server/student/dto/create-student.dto.ts",
-        "./src/server/student/interfaces/student.interface.ts",
-        "./src/server/student/student.service.ts"
-      ],
-      "./src/server/student/student.module.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts",
-        "./src/server/student/schemas/student.schema.ts",
-        "./src/server/student/student.controller.ts",
-        "./src/server/student/student.service.ts"
-      ],
-      "./src/server/student/student.service.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts",
-        "./src/server/student/dto/create-student.dto.ts",
-        "./src/server/student/interfaces/student-doc.interface.ts",
-        "./src/server/student/interfaces/student.interface.ts"
+        "./node_modules/@nestjs/passport/index.d.ts",
+        "./node_modules/@types/passport-local/index.d.ts",
+        "./src/server/auth/auth.service.ts",
+        "./src/server/users/dto/create-user.dto.ts",
+        "./src/server/users/dto/login-user.dto.ts"
       ],
       "./src/server/users/iuser.interface.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
+        "./node_modules/mongoose/index.d.ts"
       ],
       "./src/server/users/user.class.ts": [
         "../../../../../node_modules/@types/bcrypt/index.d.ts"
       ],
       "./src/server/users/user.schema.ts": [
         "../../../../../node_modules/@types/bcrypt/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
+        "./node_modules/mongoose/index.d.ts",
         "./src/server/users/iuser.interface.ts"
       ],
       "./src/server/users/users.controller.ts": [
-        "../../../../../node_modules/@nestjs/passport/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts",
         "./src/server/users/dto/create-user.dto.ts",
         "./src/server/users/users.service.ts"
       ],
       "./src/server/users/users.module.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/index.d.ts",
-        "../../../../../node_modules/@nestjs/passport/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts",
         "./src/server/users/user.schema.ts",
         "./src/server/users/users.controller.ts",
         "./src/server/users/users.service.ts"
       ],
       "./src/server/users/users.service.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
         "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/index.d.ts",
+        "./node_modules/mongoose/index.d.ts",
         "./src/server/users/dto/create-user.dto.ts",
         "./src/server/users/iuser.interface.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/index.d.ts": [
-        "./node_modules/@nestjs/common/cache/index.d.ts",
-        "./node_modules/@nestjs/common/decorators/index.d.ts",
-        "./node_modules/@nestjs/common/enums/index.d.ts",
-        "./node_modules/@nestjs/common/exceptions/index.d.ts",
-        "./node_modules/@nestjs/common/http/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/index.d.ts",
-        "./node_modules/@nestjs/common/pipes/index.d.ts",
-        "./node_modules/@nestjs/common/serializer/index.d.ts",
-        "./node_modules/@nestjs/common/services/index.d.ts",
-        "./node_modules/@nestjs/common/utils/index.d.ts",
-        "./node_modules/reflect-metadata/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/ws-exception-filter.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/paramtype.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/hooks/before-application-shutdown.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-application-bootstrap.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-application-shutdown.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-destroy.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-init.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts": [
-        "./node_modules/@nestjs/common/enums/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/external/cors-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/http/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/http/message-event.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/hooks/index.d.ts",
-        "../../../../../node_modules/@nestjs/common/interfaces/http/index.d.ts",
-        "../../../../../node_modules/@nestjs/common/interfaces/middleware/index.d.ts",
-        "../../../../../node_modules/@nestjs/common/interfaces/modules/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/controllers/controller-metadata.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/controllers/controller.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/exceptions/ws-exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/external/validation-error.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/custom-route-param-factory.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/paramtype.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/injectable.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/microservices/nest-hybrid-application-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-microservice.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/nest-middleware.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts": [
-        "./node_modules/@nestjs/common/enums/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/forward-reference.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/introspection-result.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/nest-module.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/introspection-result.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/forward-reference.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/nest-module.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts": [
-        "./node_modules/@nestjs/common/enums/shutdown-signal.enum.d.ts",
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts",
-        "./node_modules/@nestjs/common/services/logger.service.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/external/cors-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/external/https-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/external/cors-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-microservice.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts": [
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/index.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/jwt/dist/jwt.module.d.ts",
-        "../../../../../node_modules/@nestjs/jwt/dist/jwt.service.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-        "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.module.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.service.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
-        "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/index.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts": [
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/errors/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/common/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/decorators/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/errors/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/factories/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/utils/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/utils/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/auth.guard.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/index.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/auth.guard.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/passport.module.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/passport.module.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts": [
-        "../../../../../node_modules/@types/passport/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/index.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/body-parser/index.d.ts": [
-        "../../../../../node_modules/@types/connect/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/bson/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/connect/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/express-serve-static-core/index.d.ts": [
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/range-parser/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/express/index.d.ts": [
-        "../../../../../node_modules/@types/body-parser/index.d.ts",
-        "./node_modules/@types/express-serve-static-core/index.d.ts",
-        "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/serve-static/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/jsonwebtoken/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/mongodb/index.d.ts": [
-        "../../../../../node_modules/@types/bson/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/stream.d.ts",
-        "./node_modules/@types/node/tls.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport-jwt/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-        "../../../../../node_modules/@types/passport-strategy/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport-local/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "../../../../../node_modules/@types/passport-strategy/index.d.ts",
-        "../../../../../node_modules/@types/passport/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport-strategy/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "../../../../../node_modules/@types/passport/index.d.ts",
-        "./node_modules/@types/express/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "./node_modules/@types/node/http.d.ts"
-      ],
-      "../../../../../node_modules/@types/serve-static/index.d.ts": [
-        "./node_modules/@types/mime/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/mongoose/index.d.ts": [
-        "../../../../../node_modules/@types/mongodb/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/stream.d.ts"
-      ],
-      "../../../../../node_modules/rxjs/index.d.ts": [
-        "./node_modules/rxjs/internal/asyncsubject.d.ts",
-        "./node_modules/rxjs/internal/behaviorsubject.d.ts",
-        "./node_modules/rxjs/internal/config.d.ts",
-        "./node_modules/rxjs/internal/notification.d.ts",
-        "./node_modules/rxjs/internal/observable.d.ts",
-        "./node_modules/rxjs/internal/observable/bindcallback.d.ts",
-        "./node_modules/rxjs/internal/observable/bindnodecallback.d.ts",
-        "./node_modules/rxjs/internal/observable/combinelatest.d.ts",
-        "./node_modules/rxjs/internal/observable/concat.d.ts",
-        "./node_modules/rxjs/internal/observable/connectableobservable.d.ts",
-        "./node_modules/rxjs/internal/observable/defer.d.ts",
-        "./node_modules/rxjs/internal/observable/empty.d.ts",
-        "./node_modules/rxjs/internal/observable/forkjoin.d.ts",
-        "./node_modules/rxjs/internal/observable/from.d.ts",
-        "./node_modules/rxjs/internal/observable/fromevent.d.ts",
-        "./node_modules/rxjs/internal/observable/fromeventpattern.d.ts",
-        "./node_modules/rxjs/internal/observable/generate.d.ts",
-        "./node_modules/rxjs/internal/observable/iif.d.ts",
-        "./node_modules/rxjs/internal/observable/interval.d.ts",
-        "./node_modules/rxjs/internal/observable/merge.d.ts",
-        "./node_modules/rxjs/internal/observable/never.d.ts",
-        "./node_modules/rxjs/internal/observable/of.d.ts",
-        "./node_modules/rxjs/internal/observable/onerrorresumenext.d.ts",
-        "./node_modules/rxjs/internal/observable/pairs.d.ts",
-        "./node_modules/rxjs/internal/observable/partition.d.ts",
-        "./node_modules/rxjs/internal/observable/race.d.ts",
-        "./node_modules/rxjs/internal/observable/range.d.ts",
-        "./node_modules/rxjs/internal/observable/throwerror.d.ts",
-        "./node_modules/rxjs/internal/observable/timer.d.ts",
-        "./node_modules/rxjs/internal/observable/using.d.ts",
-        "./node_modules/rxjs/internal/observable/zip.d.ts",
-        "./node_modules/rxjs/internal/operator.d.ts",
-        "./node_modules/rxjs/internal/operators/groupby.d.ts",
-        "./node_modules/rxjs/internal/replaysubject.d.ts",
-        "./node_modules/rxjs/internal/scheduled/scheduled.d.ts",
-        "./node_modules/rxjs/internal/scheduler.d.ts",
-        "./node_modules/rxjs/internal/scheduler/animationframe.d.ts",
-        "./node_modules/rxjs/internal/scheduler/asap.d.ts",
-        "./node_modules/rxjs/internal/scheduler/async.d.ts",
-        "./node_modules/rxjs/internal/scheduler/queue.d.ts",
-        "./node_modules/rxjs/internal/scheduler/virtualtimescheduler.d.ts",
-        "./node_modules/rxjs/internal/subject.d.ts",
-        "./node_modules/rxjs/internal/subscriber.d.ts",
-        "./node_modules/rxjs/internal/subscription.d.ts",
-        "./node_modules/rxjs/internal/symbol/observable.d.ts",
-        "./node_modules/rxjs/internal/types.d.ts",
-        "./node_modules/rxjs/internal/util/argumentoutofrangeerror.d.ts",
-        "./node_modules/rxjs/internal/util/emptyerror.d.ts",
-        "./node_modules/rxjs/internal/util/identity.d.ts",
-        "./node_modules/rxjs/internal/util/isobservable.d.ts",
-        "./node_modules/rxjs/internal/util/noop.d.ts",
-        "./node_modules/rxjs/internal/util/objectunsubscribederror.d.ts",
-        "./node_modules/rxjs/internal/util/pipe.d.ts",
-        "./node_modules/rxjs/internal/util/timeouterror.d.ts",
-        "./node_modules/rxjs/internal/util/unsubscriptionerror.d.ts"
       ]
     },
     "exportedModulesMap": {
@@ -5036,6 +4542,133 @@
       "./node_modules/@nestjs/core/services/reflector.service.d.ts": [
         "./node_modules/@nestjs/common/index.d.ts"
       ],
+      "./node_modules/@nestjs/jwt/dist/index.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/jwt/dist/jwt.module.d.ts",
+        "./node_modules/@nestjs/jwt/dist/jwt.service.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts": [
+        "./node_modules/@nestjs/common/interfaces/index.d.ts",
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/jwt.module.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/dist/jwt.service.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@nestjs/jwt/index.d.ts": [
+        "./node_modules/@nestjs/jwt/dist/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/common/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts": [
+        "./node_modules/rxjs/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/decorators/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/errors/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/factories/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/decorators/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/errors/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/factories/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/utils/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts": [
+        "./node_modules/@nestjs/common/interfaces/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/common/interfaces/index.d.ts",
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/dist/utils/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts"
+      ],
+      "./node_modules/@nestjs/mongoose/index.d.ts": [
+        "./node_modules/@nestjs/mongoose/dist/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/auth.guard.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/index.d.ts": [
+        "./node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
+        "./node_modules/@nestjs/passport/dist/auth.guard.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
+        "./node_modules/@nestjs/passport/dist/passport.module.d.ts",
+        "./node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts",
+        "./node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts": [
+        "./node_modules/@nestjs/common/interfaces/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts": [
+        "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/passport.module.d.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts": [
+        "./node_modules/@types/passport/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts": [
+        "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts"
+      ],
+      "./node_modules/@nestjs/passport/index.d.ts": [
+        "./node_modules/@nestjs/passport/dist/index.d.ts"
+      ],
       "./node_modules/@types/babel__core/index.d.ts": [
         "./node_modules/@babel/parser/typings/babel-parser.d.ts",
         "./node_modules/@babel/types/lib/index.d.ts",
@@ -5056,6 +4689,9 @@
       "./node_modules/@types/body-parser/index.d.ts": [
         "../../../../../node_modules/@types/connect/index.d.ts",
         "./node_modules/@types/node/http.d.ts",
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@types/bson/index.d.ts": [
         "./node_modules/@types/node/index.d.ts"
       ],
       "./node_modules/@types/connect/index.d.ts": [
@@ -5097,6 +4733,16 @@
       "./node_modules/@types/jest/index.d.ts": [
         "./node_modules/jest-diff/build/index.d.ts",
         "./node_modules/pretty-format/build/index.d.ts"
+      ],
+      "./node_modules/@types/jsonwebtoken/index.d.ts": [
+        "./node_modules/@types/node/index.d.ts"
+      ],
+      "./node_modules/@types/mongodb/index.d.ts": [
+        "./node_modules/@types/bson/index.d.ts",
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/index.d.ts",
+        "./node_modules/@types/node/stream.d.ts",
+        "./node_modules/@types/node/tls.d.ts"
       ],
       "./node_modules/@types/node/assert.d.ts": [
         "./node_modules/@types/node/assert.d.ts"
@@ -5329,6 +4975,29 @@
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/zlib.d.ts"
       ],
+      "./node_modules/@types/passport-jwt/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/jsonwebtoken/index.d.ts",
+        "./node_modules/@types/passport-strategy/index.d.ts"
+      ],
+      "./node_modules/@types/passport-local/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/passport-strategy/index.d.ts",
+        "./node_modules/@types/passport/index.d.ts"
+      ],
+      "./node_modules/@types/passport-strategy/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/passport/index.d.ts"
+      ],
+      "./node_modules/@types/passport/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/node/http.d.ts"
+      ],
+      "./node_modules/@types/react/index.d.ts": [
+        "./node_modules/@types/prop-types/index.d.ts",
+        "./node_modules/@types/react/global.d.ts",
+        "./node_modules/csstype/index.d.ts"
+      ],
       "./node_modules/@types/serve-static/index.d.ts": [
         "./node_modules/@types/mime/index.d.ts",
         "./node_modules/@types/node/http.d.ts",
@@ -5445,6 +5114,12 @@
       "./node_modules/jest-diff/build/printdiffs.d.ts": [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "./node_modules/jest-diff/build/types.d.ts"
+      ],
+      "./node_modules/mongoose/index.d.ts": [
+        "./node_modules/@types/mongodb/index.d.ts",
+        "./node_modules/@types/node/events.d.ts",
+        "./node_modules/@types/node/stream.d.ts",
+        "./node_modules/mongoose/index.d.ts"
       ],
       "./node_modules/pretty-format/build/index.d.ts": [
         "./node_modules/pretty-format/build/types.d.ts"
@@ -5765,27 +5440,21 @@
       "./src/server/auth/guards/isemptyguard.guard.ts": [
         "./node_modules/@nestjs/common/index.d.ts"
       ],
+      "./src/server/auth/guards/jwt_authguard.guard.ts": [
+        "./node_modules/@nestjs/passport/index.d.ts"
+      ],
+      "./src/server/auth/guards/localauthguard.guard.ts": [
+        "./node_modules/@nestjs/passport/index.d.ts"
+      ],
       "./src/server/auth/strategies/jwt.strategy.ts": [
         "../../../../../node_modules/@types/passport-jwt/index.d.ts",
         "./src/server/auth/auth.service.ts",
         "./src/server/auth/interfaces/jwt-payload.interface.ts"
       ],
-      "./src/server/student/interfaces/student-doc.interface.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "./src/server/student/schemas/student.schema.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "./src/server/student/student.controller.ts": [
-        "./src/server/student/dto/create-student.dto.ts",
-        "./src/server/student/interfaces/student.interface.ts",
-        "./src/server/student/student.service.ts"
-      ],
-      "./src/server/student/student.service.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./src/server/student/dto/create-student.dto.ts",
-        "./src/server/student/interfaces/student-doc.interface.ts",
-        "./src/server/student/interfaces/student.interface.ts"
+      "./src/server/auth/strategies/local.strategy.ts": [
+        "./node_modules/@types/passport-local/index.d.ts",
+        "./src/server/auth/auth.service.ts",
+        "./src/server/users/dto/create-user.dto.ts"
       ],
       "./src/server/users/iuser.interface.ts": [
         "../../../../../node_modules/mongoose/index.d.ts"
@@ -5799,423 +5468,9 @@
         "./src/server/users/users.service.ts"
       ],
       "./src/server/users/users.service.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts",
+        "./node_modules/mongoose/index.d.ts",
         "./src/server/users/dto/create-user.dto.ts",
         "./src/server/users/iuser.interface.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/index.d.ts": [
-        "./node_modules/@nestjs/common/cache/index.d.ts",
-        "./node_modules/@nestjs/common/decorators/index.d.ts",
-        "./node_modules/@nestjs/common/enums/index.d.ts",
-        "./node_modules/@nestjs/common/exceptions/index.d.ts",
-        "./node_modules/@nestjs/common/http/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/index.d.ts",
-        "./node_modules/@nestjs/common/pipes/index.d.ts",
-        "./node_modules/@nestjs/common/serializer/index.d.ts",
-        "./node_modules/@nestjs/common/services/index.d.ts",
-        "./node_modules/@nestjs/common/utils/index.d.ts",
-        "./node_modules/reflect-metadata/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/ws-exception-filter.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/features/paramtype.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/hooks/before-application-shutdown.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-application-bootstrap.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-application-shutdown.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-destroy.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/hooks/on-init.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts": [
-        "./node_modules/@nestjs/common/enums/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/external/cors-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/http/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/http/message-event.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/hooks/index.d.ts",
-        "../../../../../node_modules/@nestjs/common/interfaces/http/index.d.ts",
-        "../../../../../node_modules/@nestjs/common/interfaces/middleware/index.d.ts",
-        "../../../../../node_modules/@nestjs/common/interfaces/modules/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/controllers/controller-metadata.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/controllers/controller.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/exceptions/ws-exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/external/validation-error.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/custom-route-param-factory.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/paramtype.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/injectable.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/microservices/nest-hybrid-application-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-microservice.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/nest-middleware.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts": [
-        "./node_modules/@nestjs/common/enums/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/index.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/forward-reference.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/introspection-result.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/nest-module.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/introspection-result.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/forward-reference.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/nest-module.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts": [
-        "./node_modules/@nestjs/common/enums/shutdown-signal.enum.d.ts",
-        "./node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/modules/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/type.interface.d.ts",
-        "./node_modules/@nestjs/common/services/logger.service.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/external/cors-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/external/https-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/external/cors-options.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/index.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-microservice.interface.d.ts": [
-        "./node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-        "./node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts": [
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/index.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/jwt/dist/jwt.module.d.ts",
-        "../../../../../node_modules/@nestjs/jwt/dist/jwt.service.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-        "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.module.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.service.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
-        "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/jwt/index.d.ts": [
-        "../../../../../node_modules/@nestjs/jwt/dist/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts": [
-        "./node_modules/rxjs/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/errors/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/common/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/decorators/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/errors/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/factories/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/utils/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts": [
-        "../../../../../node_modules/mongoose/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/dist/utils/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/mongoose/index.d.ts": [
-        "../../../../../node_modules/@nestjs/mongoose/dist/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/auth.guard.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/index.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/auth.guard.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/passport.module.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts": [
-        "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/passport.module.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-        "./node_modules/@nestjs/common/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts": [
-        "../../../../../node_modules/@types/passport/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts"
-      ],
-      "../../../../../node_modules/@nestjs/passport/index.d.ts": [
-        "../../../../../node_modules/@nestjs/passport/dist/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/body-parser/index.d.ts": [
-        "../../../../../node_modules/@types/connect/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/bson/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/connect/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/express-serve-static-core/index.d.ts": [
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/range-parser/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/express/index.d.ts": [
-        "../../../../../node_modules/@types/body-parser/index.d.ts",
-        "./node_modules/@types/express-serve-static-core/index.d.ts",
-        "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/serve-static/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/jsonwebtoken/index.d.ts": [
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/mongodb/index.d.ts": [
-        "../../../../../node_modules/@types/bson/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/stream.d.ts",
-        "./node_modules/@types/node/tls.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport-jwt/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-        "../../../../../node_modules/@types/passport-strategy/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport-local/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "../../../../../node_modules/@types/passport-strategy/index.d.ts",
-        "../../../../../node_modules/@types/passport/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport-strategy/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "../../../../../node_modules/@types/passport/index.d.ts",
-        "./node_modules/@types/express/index.d.ts"
-      ],
-      "../../../../../node_modules/@types/passport/index.d.ts": [
-        "../../../../../node_modules/@types/express/index.d.ts",
-        "./node_modules/@types/node/http.d.ts"
-      ],
-      "../../../../../node_modules/@types/serve-static/index.d.ts": [
-        "./node_modules/@types/mime/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
-      ],
-      "../../../../../node_modules/mongoose/index.d.ts": [
-        "../../../../../node_modules/@types/mongodb/index.d.ts",
-        "../../../../../node_modules/mongoose/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/stream.d.ts"
-      ],
-      "../../../../../node_modules/rxjs/index.d.ts": [
-        "./node_modules/rxjs/internal/asyncsubject.d.ts",
-        "./node_modules/rxjs/internal/behaviorsubject.d.ts",
-        "./node_modules/rxjs/internal/config.d.ts",
-        "./node_modules/rxjs/internal/notification.d.ts",
-        "./node_modules/rxjs/internal/observable.d.ts",
-        "./node_modules/rxjs/internal/observable/bindcallback.d.ts",
-        "./node_modules/rxjs/internal/observable/bindnodecallback.d.ts",
-        "./node_modules/rxjs/internal/observable/combinelatest.d.ts",
-        "./node_modules/rxjs/internal/observable/concat.d.ts",
-        "./node_modules/rxjs/internal/observable/connectableobservable.d.ts",
-        "./node_modules/rxjs/internal/observable/defer.d.ts",
-        "./node_modules/rxjs/internal/observable/empty.d.ts",
-        "./node_modules/rxjs/internal/observable/forkjoin.d.ts",
-        "./node_modules/rxjs/internal/observable/from.d.ts",
-        "./node_modules/rxjs/internal/observable/fromevent.d.ts",
-        "./node_modules/rxjs/internal/observable/fromeventpattern.d.ts",
-        "./node_modules/rxjs/internal/observable/generate.d.ts",
-        "./node_modules/rxjs/internal/observable/iif.d.ts",
-        "./node_modules/rxjs/internal/observable/interval.d.ts",
-        "./node_modules/rxjs/internal/observable/merge.d.ts",
-        "./node_modules/rxjs/internal/observable/never.d.ts",
-        "./node_modules/rxjs/internal/observable/of.d.ts",
-        "./node_modules/rxjs/internal/observable/onerrorresumenext.d.ts",
-        "./node_modules/rxjs/internal/observable/pairs.d.ts",
-        "./node_modules/rxjs/internal/observable/partition.d.ts",
-        "./node_modules/rxjs/internal/observable/race.d.ts",
-        "./node_modules/rxjs/internal/observable/range.d.ts",
-        "./node_modules/rxjs/internal/observable/throwerror.d.ts",
-        "./node_modules/rxjs/internal/observable/timer.d.ts",
-        "./node_modules/rxjs/internal/observable/using.d.ts",
-        "./node_modules/rxjs/internal/observable/zip.d.ts",
-        "./node_modules/rxjs/internal/operator.d.ts",
-        "./node_modules/rxjs/internal/operators/groupby.d.ts",
-        "./node_modules/rxjs/internal/replaysubject.d.ts",
-        "./node_modules/rxjs/internal/scheduled/scheduled.d.ts",
-        "./node_modules/rxjs/internal/scheduler.d.ts",
-        "./node_modules/rxjs/internal/scheduler/animationframe.d.ts",
-        "./node_modules/rxjs/internal/scheduler/asap.d.ts",
-        "./node_modules/rxjs/internal/scheduler/async.d.ts",
-        "./node_modules/rxjs/internal/scheduler/queue.d.ts",
-        "./node_modules/rxjs/internal/scheduler/virtualtimescheduler.d.ts",
-        "./node_modules/rxjs/internal/subject.d.ts",
-        "./node_modules/rxjs/internal/subscriber.d.ts",
-        "./node_modules/rxjs/internal/subscription.d.ts",
-        "./node_modules/rxjs/internal/symbol/observable.d.ts",
-        "./node_modules/rxjs/internal/types.d.ts",
-        "./node_modules/rxjs/internal/util/argumentoutofrangeerror.d.ts",
-        "./node_modules/rxjs/internal/util/emptyerror.d.ts",
-        "./node_modules/rxjs/internal/util/identity.d.ts",
-        "./node_modules/rxjs/internal/util/isobservable.d.ts",
-        "./node_modules/rxjs/internal/util/noop.d.ts",
-        "./node_modules/rxjs/internal/util/objectunsubscribederror.d.ts",
-        "./node_modules/rxjs/internal/util/pipe.d.ts",
-        "./node_modules/rxjs/internal/util/timeouterror.d.ts",
-        "./node_modules/rxjs/internal/util/unsubscriptionerror.d.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -6394,12 +5649,49 @@
       "./node_modules/@nestjs/core/router/request/request-constants.d.ts",
       "./node_modules/@nestjs/core/services/index.d.ts",
       "./node_modules/@nestjs/core/services/reflector.service.d.ts",
+      "./node_modules/@nestjs/jwt/dist/index.d.ts",
+      "./node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
+      "./node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
+      "./node_modules/@nestjs/jwt/dist/jwt.module.d.ts",
+      "./node_modules/@nestjs/jwt/dist/jwt.service.d.ts",
+      "./node_modules/@nestjs/jwt/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/common/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/decorators/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/errors/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/factories/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/utils/index.d.ts",
+      "./node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts",
+      "./node_modules/@nestjs/mongoose/index.d.ts",
+      "./node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
+      "./node_modules/@nestjs/passport/dist/auth.guard.d.ts",
+      "./node_modules/@nestjs/passport/dist/index.d.ts",
+      "./node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
+      "./node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
+      "./node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts",
+      "./node_modules/@nestjs/passport/dist/passport.module.d.ts",
+      "./node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts",
+      "./node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts",
+      "./node_modules/@nestjs/passport/index.d.ts",
       "./node_modules/@types/anymatch/index.d.ts",
       "./node_modules/@types/babel__core/index.d.ts",
       "./node_modules/@types/babel__generator/index.d.ts",
       "./node_modules/@types/babel__template/index.d.ts",
       "./node_modules/@types/babel__traverse/index.d.ts",
       "./node_modules/@types/body-parser/index.d.ts",
+      "./node_modules/@types/bson/index.d.ts",
       "./node_modules/@types/connect/index.d.ts",
       "./node_modules/@types/cookiejar/index.d.ts",
       "./node_modules/@types/eslint-scope/index.d.ts",
@@ -6415,7 +5707,9 @@
       "./node_modules/@types/jest/index.d.ts",
       "./node_modules/@types/json-schema/index.d.ts",
       "./node_modules/@types/json5/index.d.ts",
+      "./node_modules/@types/jsonwebtoken/index.d.ts",
       "./node_modules/@types/mime/index.d.ts",
+      "./node_modules/@types/mongodb/index.d.ts",
       "./node_modules/@types/node/assert.d.ts",
       "./node_modules/@types/node/async_hooks.d.ts",
       "./node_modules/@types/node/base.d.ts",
@@ -6465,9 +5759,16 @@
       "./node_modules/@types/node/zlib.d.ts",
       "./node_modules/@types/normalize-package-data/index.d.ts",
       "./node_modules/@types/parse-json/index.d.ts",
+      "./node_modules/@types/passport-jwt/index.d.ts",
+      "./node_modules/@types/passport-local/index.d.ts",
+      "./node_modules/@types/passport-strategy/index.d.ts",
+      "./node_modules/@types/passport/index.d.ts",
       "./node_modules/@types/prettier/index.d.ts",
+      "./node_modules/@types/prop-types/index.d.ts",
       "./node_modules/@types/qs/index.d.ts",
       "./node_modules/@types/range-parser/index.d.ts",
+      "./node_modules/@types/react/global.d.ts",
+      "./node_modules/@types/react/index.d.ts",
       "./node_modules/@types/serve-static/index.d.ts",
       "./node_modules/@types/source-list-map/index.d.ts",
       "./node_modules/@types/stack-utils/index.d.ts",
@@ -6476,6 +5777,7 @@
       "./node_modules/@types/tapable/index.d.ts",
       "./node_modules/@types/uglify-js/index.d.ts",
       "./node_modules/@types/uglify-js/node_modules/source-map/source-map.d.ts",
+      "./node_modules/@types/validator/index.d.ts",
       "./node_modules/@types/webpack-sources/index.d.ts",
       "./node_modules/@types/webpack-sources/lib/cachedsource.d.ts",
       "./node_modules/@types/webpack-sources/lib/compatsource.d.ts",
@@ -6494,11 +5796,13 @@
       "./node_modules/@types/yargs/index.d.ts",
       "./node_modules/anymatch/index.d.ts",
       "./node_modules/axios/index.d.ts",
+      "./node_modules/csstype/index.d.ts",
       "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
       "./node_modules/jest-diff/build/difflines.d.ts",
       "./node_modules/jest-diff/build/index.d.ts",
       "./node_modules/jest-diff/build/printdiffs.d.ts",
       "./node_modules/jest-diff/build/types.d.ts",
+      "./node_modules/mongoose/index.d.ts",
       "./node_modules/pretty-format/build/index.d.ts",
       "./node_modules/pretty-format/build/types.d.ts",
       "./node_modules/reflect-metadata/index.d.ts",
@@ -6606,18 +5910,17 @@
       "./src/server/auth/auth.controller.ts",
       "./src/server/auth/auth.module.ts",
       "./src/server/auth/auth.service.ts",
+      "./src/server/auth/constants.ts",
+      "./src/server/auth/exception/usernotfound.exception.ts",
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts",
       "./src/server/auth/guards/isemptyguard.guard.ts",
+      "./src/server/auth/guards/jwt_authguard.guard.ts",
+      "./src/server/auth/guards/localauthguard.guard.ts",
       "./src/server/auth/interfaces/jwt-payload.interface.ts",
       "./src/server/auth/strategies/jwt.strategy.ts",
+      "./src/server/auth/strategies/local.strategy.ts",
       "./src/server/interfaces/jwt-payload.interface.ts",
-      "./src/server/student/dto/create-student.dto.ts",
-      "./src/server/student/interfaces/student-doc.interface.ts",
-      "./src/server/student/interfaces/student.interface.ts",
-      "./src/server/student/schemas/student.schema.ts",
-      "./src/server/student/student.controller.ts",
-      "./src/server/student/student.module.ts",
-      "./src/server/student/student.service.ts",
+      "./src/server/users/common/bodyfieldsuser.ts",
       "./src/server/users/dto/create-user.dto.ts",
       "./src/server/users/dto/login-user.dto.ts",
       "./src/server/users/iuser.interface.ts",
@@ -6626,104 +5929,7 @@
       "./src/server/users/users.controller.ts",
       "./src/server/users/users.module.ts",
       "./src/server/users/users.service.ts",
-      "../../../../../node_modules/@nestjs/common/index.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/abstract.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/controllers/controller-metadata.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/controllers/controller.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/exception-filter.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/rpc-exception-filter.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/exceptions/ws-exception-filter.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/external/validation-error.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/arguments-host.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/can-activate.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/custom-route-param-factory.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/execution-context.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/nest-interceptor.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/paramtype.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/features/pipe-transform.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/before-application-shutdown.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/index.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-application-bootstrap.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-application-shutdown.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-destroy.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/hooks/on-init.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/http/http-server.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/http/index.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/http/message-event.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/index.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/injectable.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/microservices/nest-hybrid-application-options.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/index.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-config-proxy.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-configuration.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/middleware-consumer.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/middleware/nest-middleware.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/dynamic-module.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/forward-reference.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/index.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/introspection-result.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/module-metadata.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/nest-module.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/modules/provider.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-context.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application-options.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-application.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/nest-microservice.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/scope-options.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/type.interface.d.ts",
-      "../../../../../node_modules/@nestjs/common/interfaces/websockets/web-socket-adapter.interface.d.ts",
-      "../../../../../node_modules/@nestjs/jwt/dist/index.d.ts",
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/index.d.ts",
-      "../../../../../node_modules/@nestjs/jwt/dist/interfaces/jwt-module-options.interface.d.ts",
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.module.d.ts",
-      "../../../../../node_modules/@nestjs/jwt/dist/jwt.service.d.ts",
-      "../../../../../node_modules/@nestjs/jwt/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/common/mongoose.utils.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/prop.decorator.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/decorators/schema.decorator.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/errors/cannot-determine-type.error.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/errors/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/definitions.factory.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/factories/schema.factory.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/async-model-factory.interface.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/model-definition.interface.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/interfaces/mongoose-options.interface.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/mongoose.module.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/utils/index.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/dist/utils/raw.util.d.ts",
-      "../../../../../node_modules/@nestjs/mongoose/index.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/abstract.strategy.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/auth.guard.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/index.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/auth-module.options.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/index.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/interfaces/type.interface.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/passport.module.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.serializer.d.ts",
-      "../../../../../node_modules/@nestjs/passport/dist/passport/passport.strategy.d.ts",
-      "../../../../../node_modules/@nestjs/passport/index.d.ts",
-      "../../../../../node_modules/@types/bcrypt/index.d.ts",
-      "../../../../../node_modules/@types/body-parser/index.d.ts",
-      "../../../../../node_modules/@types/bson/index.d.ts",
-      "../../../../../node_modules/@types/connect/index.d.ts",
-      "../../../../../node_modules/@types/express-serve-static-core/index.d.ts",
-      "../../../../../node_modules/@types/express/index.d.ts",
-      "../../../../../node_modules/@types/jsonwebtoken/index.d.ts",
-      "../../../../../node_modules/@types/mongodb/index.d.ts",
-      "../../../../../node_modules/@types/passport-jwt/index.d.ts",
-      "../../../../../node_modules/@types/passport-local/index.d.ts",
-      "../../../../../node_modules/@types/passport-strategy/index.d.ts",
-      "../../../../../node_modules/@types/passport/index.d.ts",
-      "../../../../../node_modules/@types/qs/index.d.ts",
-      "../../../../../node_modules/@types/serve-static/index.d.ts",
-      "../../../../../node_modules/mongoose/index.d.ts",
-      "../../../../../node_modules/rxjs/index.d.ts"
+      "../../../../../node_modules/@types/bcrypt/index.d.ts"
     ]
   },
   "version": "4.2.2"
