@@ -1,15 +1,36 @@
-import { Controller, Post, Body, UseGuards, Get, HttpStatus, HttpException } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, HttpStatus, HttpException, UnauthorizedException, NotFoundException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto'
 import { IsEmptyGuard } from './guards/IsEmptyGuard.guard';
 import { EmptyExceptionFilter } from './filters/EmptyExceptionFilter.filter';
-import { UseFilters } from '@nestjs/common';
+import { UseFilters, Request } from '@nestjs/common';
+import { UserNotFoundException } from './exception/UserNotFound.exception';
+import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from './guards/LocalAuthGuard.guard';
+import { JwtAuthGuard } from './guards/JWT_AuthGuard.guard';
 
 @Controller('auth')
 export class AuthController {
 
     constructor(private authService: AuthService) {}
-    @Post()
+
+    @UseGuards(LocalAuthGuard)
+    @Post('login')
+    async login_TRY(@Request() req) {
+      return req.user;
+    }
+
+
+
+    @Get("helloJWT")
+    @UseGuards(JwtAuthGuard)
+    async try(@Request() req){
+        return " hello JWT"
+    }
+
+
+    @Post('user')
+    //@Get("sign_in")
     @UseGuards(IsEmptyGuard)
     @UseFilters(new EmptyExceptionFilter())
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
@@ -17,17 +38,18 @@ export class AuthController {
         console.log("auth controller")
         console.log(loginUserDto); // to be deleted!
 
-        const result = await this.authService.validateUserByPassword(loginUserDto);
+        // JWT token
+        const resultJWTtoken = await this.authService.validateUserByPassword(loginUserDto);
 
-        if (result) {
+        if (resultJWTtoken) {
 
-            return result;
+            return resultJWTtoken;
 
         } else {
 
-            console.log("an exception has occured");
-            //return new UnauthorizedException('Unauthorized');
-            throw new HttpException('Unauthorized', HttpStatus.UNAUTHORIZED);
+            console.log("Unauthorized an exception has occured");
+            throw new NotFoundException(UserNotFoundException.NotFound);
+            
         }
     }
 }
