@@ -1,5 +1,6 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useState } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import axios from 'axios';
 
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
@@ -26,7 +27,8 @@ const useStyles = makeStyles((theme: Theme) =>
 			color: '#fff'
 		},
 		card: {
-			marginTop: theme.spacing(10)
+			marginTop: theme.spacing(10),
+			background: 'linear-gradient(45deg, #b3ecff 40%, #e6ccff 80%)',
 		}
 	})
 );
@@ -97,6 +99,21 @@ const Login = () => {
 	const classes = useStyles();
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	function getToken() {
+
+		const tokenString = localStorage.getItem('token')!;
+		const userToken = JSON.parse(tokenString);
+		//console.log(userToken);
+		return userToken;
+	
+	}
+	
+	function setToken(userToken: string) {
+	
+		localStorage.setItem('token', JSON.stringify(userToken));
+	
+	}
+
 	useEffect(() => {
 
 		if (state.username.trim() && state.password.trim()) {
@@ -110,16 +127,32 @@ const Login = () => {
 		}
 	}, [state.username, state.password]);
 
+	// REST requests to the server will be done here.
 	const handleLogin = () => {
-		if (state.username === 'abc@email.com' && state.password === 'password') {
 
+		axios.post("http://localhost:4000/auth", {
+
+			username: state.username,
+			password: state.password
+		
+		})
+		.then((response) => {
+
+			console.log(response);
+
+			// if status code is ok- pull out the token
+			const token = response.data.token;
+			setToken(token);
+			console.log(getToken());
+			
 			dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
-
-		} else {
-
+		
+		}, (error) => {
+		
+			console.log(error);
 			dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
-
-		}
+		
+		});
 	};
 
 	const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -148,7 +181,7 @@ const Login = () => {
 	return (
 		<form className={classes.container} noValidate autoComplete="off">
 		<Card className={classes.card}>
-			<CardHeader className={classes.header} title="Login App" />
+			<CardHeader className={classes.header} title="Login" />
 			<CardContent>
 			<div>
 				<TextField

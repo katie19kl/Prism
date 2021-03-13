@@ -9,8 +9,7 @@ import { UseFilters } from '@nestjs/common';
 export class AuthController {
 
     constructor(private authService: AuthService) {}
-    //@Post()
-    @Get()
+    @Post()
     @UseGuards(IsEmptyGuard)
     @UseFilters(new EmptyExceptionFilter())
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {

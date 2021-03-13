@@ -64,7 +64,7 @@ export class AuthService {
 
         return {
             expiresIn: 3600,
-            token: jwt            
+            token: jwt
         }
     }
 }

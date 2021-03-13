@@ -1592,12 +1592,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/interfaces/jwt-payload.interface.ts": {
-        "version": "3d43b8d1419cb3d4394bd57377039ac32cdeb13f56f52ab58e6d3a1f779ccef2",
-        "signature": "889a8b5d0ce8e725535d0fa99fa3b6251dbc6b779f980bf99c13fbf5a0ad8c68",
+        "version": "96fda16913b1be9e9898bdb896e6e7e2c793b17d12b9445eb17a03c930bc7daf",
+        "signature": "c240d4cac48a4fe0a23b3a1d4fa97aa941f63474ad03f5fe0178e759aeac48ae",
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
-        "version": "bd36676827ae83f0836ecbc698f1e0145909039edd0f462765487851d7fd7eee",
+        "version": "bb2b62f02e84d08c075a7c33276d2b05fb0014b003c2031bbe27c53827ea31ad",
         "signature": "3b2b4b9d0a292306a2b35f16d498506bb3a1f37c0631335e3d63fa648bfa1985",
         "affectsGlobalScope": false
       },
@@ -1607,12 +1607,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts": {
-        "version": "96d1c844b9ec4905063a11f251d6d94a3055c4c7ccf3ba8e354f0dd2f1d5d31f",
+        "version": "4b69abfdfab4f17e889ebc748f0194eea64b86e375fb6cdace2e2c5a1a685b10",
         "signature": "a6ec783db8023cd8965043f26617dbc128cd90b930fc583e1ab7c1fbddb7bd2b",
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.controller.ts": {
-        "version": "049583ad79052007abf380e83ece1a568301b4d5c3cfa0c0569cc57e2530bd6c",
+        "version": "553179152ea7b1e1bc048c7e827bc04b155e27c65d0b25f83e2a96a85d9b2c15",
         "signature": "33889898a9cef87cea2330ccc7eb598012083bfd5995b0bb2c0802501e432c1a",
         "affectsGlobalScope": false
       },
@@ -2184,6 +2184,11 @@
       "./node_modules/@types/uglify-js/index.d.ts": {
         "version": "6eb4533a72414577ea2d61cac639e20bea6c60639d9238a6aac2b5683f0ac64e",
         "signature": "6eb4533a72414577ea2d61cac639e20bea6c60639d9238a6aac2b5683f0ac64e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/validator/index.d.ts": {
+        "version": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
+        "signature": "4538d6984fc78e9886c00aa0cc7910dd25dc7a82edf7935aaf2141a3683f1bbb",
         "affectsGlobalScope": false
       },
       "./node_modules/anymatch/index.d.ts": {
@@ -6008,6 +6013,7 @@
       "./node_modules/@types/tapable/index.d.ts",
       "./node_modules/@types/uglify-js/index.d.ts",
       "./node_modules/@types/uglify-js/node_modules/source-map/source-map.d.ts",
+      "./node_modules/@types/validator/index.d.ts",
       "./node_modules/@types/webpack-sources/index.d.ts",
       "./node_modules/@types/webpack-sources/lib/cachedsource.d.ts",
       "./node_modules/@types/webpack-sources/lib/compatsource.d.ts",
