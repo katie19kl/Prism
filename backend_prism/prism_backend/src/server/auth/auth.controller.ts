@@ -16,14 +16,6 @@ export class AuthController {
 
 
 
-    @UseGuards(LocalAuthGuard)
-    @Post('login')
-    async login_TRY(@Request() req) {
-      return req.user;
-    }
-
-
-
     @Get("helloJWT")
     @UseGuards(JwtAuthGuard)
     async try(@Request() req){

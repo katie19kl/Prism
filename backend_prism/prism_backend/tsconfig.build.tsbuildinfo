@@ -1717,13 +1717,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/guards/jwt_authguard.guard.ts": {
-        "version": "9d636dbbb3bee2bfed3df04a182070d2d1181f2e44b9167bcf85ab2ee174687f",
-        "signature": "baf608b3f1bf90782d8b003287213bceae5e9b31f56c2ce676e223ea85ea10b2",
+        "version": "03366bbc3b1cd4a1ec7e07ca14ef3a9e878635271b6535e4515bbeb964e000cb",
+        "signature": "dccbaa44c032ccb262fce49d53d88a1df25a7b4db46aed506780b58ff77a23c3",
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.controller.ts": {
-        "version": "4e01edff9b3a1e4e167e5e404f928199180d95a8520e02e15dfaf08266eaa688",
-        "signature": "5d4a7274802040278fd74dcc402a1310f136449d41ca6630e3fb2d1df8ab5e5a",
+        "version": "a2232cdc6d12fabe76ceebd24e4ef8ec59bc63b4b452d4a3b4ff943900602432",
+        "signature": "cbd9c21fbf706cbacf8663c796c32b26ced36a1594ac1260b8b16c0fbda56f06",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/passport-strategy/index.d.ts": {
@@ -1977,8 +1977,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/user.class.ts": {
-        "version": "8cff2982e6715a9215d3f1150d67243a50ea845c3f5390185567e539f144e06d",
-        "signature": "b0f95f6e9f89118e20d309ea9b1fac21ee66b0dfb4b78ba8a6f56bd5991f5603",
+        "version": "2366f0ebbbe9638e0c686f0573b509462f58ae2d69879c98f23ad26b4262b7d2",
+        "signature": "1065f848fd5739d5882a4106bf70291e1e00cd8a6186be33491f9ea3ca060bbf",
         "affectsGlobalScope": false
       },
       "./src/server/users/common/bodyfieldsuser.ts": {
@@ -5441,7 +5441,9 @@
         "./node_modules/@nestjs/common/index.d.ts"
       ],
       "./src/server/auth/guards/jwt_authguard.guard.ts": [
-        "./node_modules/@nestjs/passport/index.d.ts"
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/passport/index.d.ts",
+        "./node_modules/rxjs/index.d.ts"
       ],
       "./src/server/auth/guards/localauthguard.guard.ts": [
         "./node_modules/@nestjs/passport/index.d.ts"
