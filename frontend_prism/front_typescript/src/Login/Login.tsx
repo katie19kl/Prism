@@ -81,7 +81,7 @@ const reducer = (state: State, action: Action): State => {
 				helperText: action.payload,
 				isError: false
 			};
-		case 'loginFailed': 
+		case 'loginFailed':
 			return {
 				...state,
 				helperText: action.payload,
@@ -127,10 +127,13 @@ const Login = () => {
 		}
 	}, [state.username, state.password]);
 
-	// REST requests to the server will be done here.
+	/*// REST requests to the server will be done here.
+	if (localStorage.getItem() !== null) {
+
+	}*/
 	const handleLogin = () => {
 
-		axios.post("http://localhost:4000/auth", {
+		axios.post("http://localhost:4000/auth/user", {
 
 			username: state.username,
 			password: state.password
@@ -141,6 +144,7 @@ const Login = () => {
 			console.log(response);
 
 			// if status code is ok- pull out the token
+
 			const token = response.data.token;
 			setToken(token);
 			console.log(getToken());
