@@ -12,19 +12,17 @@ export class EmptyExceptionFilter<T> implements ExceptionFilter {
 			? exception.getStatus()
 			: UserNotFoundException.NotFound;
 
-			
-
 		const x = exception.getStatus()
 
 		// forbidden from guard
 		if (exception.getStatus() == 403){
 
 		}
+
 		// not found
 		if (exception.getStatus() == 404){
 
 		}
-
 
 		host.switchToHttp().getResponse().redirect("/hello");  
 	}

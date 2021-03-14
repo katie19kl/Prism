@@ -17,7 +17,7 @@ export class UsersController {
     // to access the route
     @Get('test')
     @UseGuards(AuthGuard())
-    testAuthRoute(){
+    testAuthRoute() {
         return {
             message: 'You did it!'
         }

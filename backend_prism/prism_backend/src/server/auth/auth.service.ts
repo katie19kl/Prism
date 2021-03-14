@@ -6,7 +6,6 @@ import { UsersService } from '../users/users.service';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 
- 
 @Injectable()
 export class AuthService {
 
@@ -69,7 +68,6 @@ export class AuthService {
         };
 
         let jwt = this.jwtService.sign(data);
-        console.log(jwt)
         return {
             expiresIn: 300,
             token: jwt            
