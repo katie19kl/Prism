@@ -131,32 +131,80 @@ const Login = () => {
 	if (localStorage.getItem() !== null) {
 
 	}*/
+
+	
 	const handleLogin = () => {
-
-		axios.post("http://localhost:4000/auth/user", {
-
-			username: state.username,
-			password: state.password
 		
-		})
-		.then((response) => {
-
-			console.log(response);
-
-			// if status code is ok- pull out the token
-
-			const token = response.data.token;
-			setToken(token);
-			console.log(getToken());
-			
-			dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
 		
-		}, (error) => {
+
+
+		let token = getToken();
+		console.log("token is " + token);
+
 		
-			console.log(error);
-			dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
+		let url : string 
+	
+
 		
-		});
+		if (token === null){
+				url = "http://localhost:4000/auth/user";
+				axios.post(url, {
+
+
+		
+					username: state.username,
+					password: state.password,
+					
+		
+				})
+				.then((response) => {// token after authentification
+		
+					console.log(response);
+		
+					// if status code is ok- pull out the token
+		
+					const token = response.data.token;
+					setToken(token);
+					console.log(getToken());
+					
+					dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
+				
+				}, (error) => {
+				
+					console.log(error);
+					dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
+				
+				});
+		}
+
+		else {
+
+			url = "http://localhost:4000/auth/helloJWT"; 
+
+			const REQ = axios.create({
+				baseURL: url,
+				timeout: 1000,
+				headers: {'Authorization': 'Bearer '+ token}
+			});
+		
+				//////////
+
+				REQ.get(url, {
+
+				})
+				.then((response) => {
+						console.log(response);
+				},(error) => {
+				
+					console.log(error);
+					
+				
+				});
+		}
+		
+
+
+
 	};
 
 	const handleKeyPress = (event: React.KeyboardEvent) => {
