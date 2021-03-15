@@ -126,35 +126,21 @@ const Login = () => {
 
 		}
 	}, [state.username, state.password]);
-
-	/*// REST requests to the server will be done here.
-	if (localStorage.getItem() !== null) {
-
-	}*/
-
 	
 	const handleLogin = () => {
 		
-		
-
-
 		let token = getToken();
 		console.log("token is " + token);
 
-		
-		let url : string 
+		let url : string;
 	
+		if (token === null) {
 
-		
-		if (token === null){
 				url = "http://localhost:4000/auth/user";
 				axios.post(url, {
 
-
-		
 					username: state.username,
 					password: state.password,
-					
 		
 				})
 				.then((response) => {// token after authentification
@@ -186,8 +172,6 @@ const Login = () => {
 				timeout: 1000,
 				headers: {'Authorization': 'Bearer '+ token}
 			});
-		
-				//////////
 
 				REQ.get(url, {
 
@@ -198,12 +182,8 @@ const Login = () => {
 				
 					console.log(error);
 					
-				
 				});
 		}
-		
-
-
 
 	};
 
