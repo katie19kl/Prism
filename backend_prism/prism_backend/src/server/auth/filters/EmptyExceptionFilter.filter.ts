@@ -16,12 +16,12 @@ export class EmptyExceptionFilter<T> implements ExceptionFilter {
 
 		// forbidden from guard
 		if (exception.getStatus() == 403){
-
+			console.log("403")
 		}
 
 		// not found
 		if (exception.getStatus() == 404){
-
+			console.log("404")
 		}
 
 		host.switchToHttp().getResponse().redirect("/hello");  

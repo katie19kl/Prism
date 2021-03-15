@@ -14,10 +14,13 @@ export class AuthController {
     
     constructor(private authService: AuthService) {}
 
+
+
     @Get("helloJWT")
     @UseGuards(JwtAuthGuard)
-    async try(@Request() req) {
-        return " hello JWT"
+    async try(@Request() req){
+        console.log("in JWT nahui   ")
+        return "hello JWT"
     }
 
 
