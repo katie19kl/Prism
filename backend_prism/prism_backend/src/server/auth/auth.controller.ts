@@ -8,6 +8,7 @@ import { UserNotFoundException } from './exception/UserNotFound.exception';
 import { AuthGuard } from '@nestjs/passport';
 import { LocalAuthGuard } from './guards/LocalAuthGuard.guard';
 import { JwtAuthGuard } from './guards/JWT_AuthGuard.guard';
+import { NoJWTFilter } from './filters/NoJWTFilter.filter';
 
 @Controller('auth')
 export class AuthController {
@@ -16,6 +17,7 @@ export class AuthController {
 
     @Get("helloJWT")
     @UseGuards(JwtAuthGuard)
+    @UseFilters(NoJWTFilter)
     async try(@Request() req){
         console.log("in JWT")
         return "hello JWT"

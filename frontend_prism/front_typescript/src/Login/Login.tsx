@@ -102,8 +102,19 @@ const Login = () => {
 	function getToken() {
 
 		const tokenString = localStorage.getItem('token')!;
+		//console.log(tokenString + ' in get Token')
+		//console.log(tokenString === undefined)//false
+	//	console.log(tokenString == undefined)//false
+//		console.log(tokenString === 'undefined')//true
+//		console.log(tokenString == "undefined")//true
+
+
+		if (tokenString === "undefined"){
+			console.log("1")
+			return " "
+		}
 		const userToken = JSON.parse(tokenString);
-		//console.log(userToken);
+		console.log(userToken);
 		return userToken;
 	
 	}
@@ -145,7 +156,7 @@ const Login = () => {
 				})
 				.then((response) => {// token after authentification
 		
-					console.log(response);
+					console.log(response + "in response ");
 		
 					// if status code is ok- pull out the token
 		
@@ -157,7 +168,7 @@ const Login = () => {
 				
 				}, (error) => {
 				
-					console.log(error);
+					console.log(error + "in error");
 					dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
 				
 				});
