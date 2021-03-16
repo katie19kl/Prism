@@ -70,7 +70,7 @@ export class AuthService {
         let jwt = this.jwtService.sign(data);
         return {
             expiresIn: 300,
-            token: jwt            
+            token: jwt
         }
     }
 }

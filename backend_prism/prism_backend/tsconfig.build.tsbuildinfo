@@ -1597,7 +1597,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
-        "version": "ba24dbae103db3b0ea6c8325f644b54dc7c2acc5c7db51b2a0c8c8e6c61e099f",
+        "version": "0aa41f1f7530ef924646ec3c54dc0cee098f64eb012ca78a10df28319849b515",
         "signature": "3b2b4b9d0a292306a2b35f16d498506bb3a1f37c0631335e3d63fa648bfa1985",
         "affectsGlobalScope": false
       },
@@ -1612,7 +1612,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts": {
-        "version": "7ba7621aace623a907c35120f5e61a1be81256892e2a3180361b9eb2501ceff2",
+        "version": "58086e268fc924cbb97812491b65e326ac6ddf800875ffccae45dc2def8302f2",
         "signature": "a6ec783db8023cd8965043f26617dbc128cd90b930fc583e1ab7c1fbddb7bd2b",
         "affectsGlobalScope": false
       },
@@ -1721,8 +1721,13 @@
         "signature": "dccbaa44c032ccb262fce49d53d88a1df25a7b4db46aed506780b58ff77a23c3",
         "affectsGlobalScope": false
       },
+      "./src/server/auth/filters/nojwtfilter.filter.ts": {
+        "version": "a088607d49903055ab38a486fdd79568cab6a459111fc866dd6cac43b6a760da",
+        "signature": "e3b0dcbc28893a43ce7e4775eebd30f2e3f31d69376b3c708cd9d80db158ab18",
+        "affectsGlobalScope": false
+      },
       "./src/server/auth/auth.controller.ts": {
-        "version": "5a8c5c8f9d728828b203a3c83ad84c8e41fac6817c5d035eb5ff0a7dca51c132",
+        "version": "29227469002a5866cac0598322c5fd9f7812e065bf017ecdf6a1279738ecbea3",
         "signature": "cbd9c21fbf706cbacf8663c796c32b26ced36a1594ac1260b8b16c0fbda56f06",
         "affectsGlobalScope": false
       },
@@ -3970,6 +3975,7 @@
         "./src/server/auth/auth.service.ts",
         "./src/server/auth/exception/usernotfound.exception.ts",
         "./src/server/auth/filters/emptyexceptionfilter.filter.ts",
+        "./src/server/auth/filters/nojwtfilter.filter.ts",
         "./src/server/auth/guards/isemptyguard.guard.ts",
         "./src/server/auth/guards/jwt_authguard.guard.ts",
         "./src/server/auth/guards/localauthguard.guard.ts",
@@ -3996,6 +4002,11 @@
       ],
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
+        "./src/server/auth/exception/usernotfound.exception.ts"
+      ],
+      "./src/server/auth/filters/nojwtfilter.filter.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@types/express/index.d.ts",
         "./src/server/auth/exception/usernotfound.exception.ts"
       ],
       "./src/server/auth/guards/isemptyguard.guard.ts": [
@@ -5642,6 +5653,9 @@
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts": [
         "./node_modules/@nestjs/common/index.d.ts"
       ],
+      "./src/server/auth/filters/nojwtfilter.filter.ts": [
+        "./node_modules/@nestjs/common/index.d.ts"
+      ],
       "./src/server/auth/guards/isemptyguard.guard.ts": [
         "./node_modules/@nestjs/common/index.d.ts"
       ],
@@ -6136,6 +6150,7 @@
       "./src/server/auth/constants.ts",
       "./src/server/auth/exception/usernotfound.exception.ts",
       "./src/server/auth/filters/emptyexceptionfilter.filter.ts",
+      "./src/server/auth/filters/nojwtfilter.filter.ts",
       "./src/server/auth/guards/isemptyguard.guard.ts",
       "./src/server/auth/guards/jwt_authguard.guard.ts",
       "./src/server/auth/guards/localauthguard.guard.ts",

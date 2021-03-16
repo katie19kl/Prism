@@ -1,4 +1,4 @@
-import { ArgumentsHost, Catch, ExceptionFilter, ForbiddenException, HttpException, HttpStatus } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, ForbiddenException, HttpException } from '@nestjs/common';
 import { UserNotFoundException } from '../exception/UserNotFound.exception';
 
 @Catch()
@@ -12,18 +12,17 @@ export class EmptyExceptionFilter<T> implements ExceptionFilter {
 			? exception.getStatus()
 			: UserNotFoundException.NotFound;
 
-		const x = exception.getStatus()
-
-		// forbidden from guard
-		if (exception.getStatus() == 403){
-			console.log("403")
+		// forbidden from guard - did not enter all the required fields.
+		// SHOULD CHANGE TO 400=BAD REQUEST!!!!!
+		if (exception.getStatus() == 403) {
+			console.log("403") // forbidden.
 		}
 
-		// not found
-		if (exception.getStatus() == 404){
-			console.log("404")
+		// not found - the user does not exist.(keep it that way).
+		if (exception.getStatus() == 404) {
+			console.log("404") // not found.
 		}
 
-		host.switchToHttp().getResponse().redirect("/hello");  
+		host.switchToHttp().getResponse().redirect("/hello");
 	}
 }

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect, useState } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import axios from 'axios';
 
@@ -102,16 +102,10 @@ const Login = () => {
 	function getToken() {
 
 		const tokenString = localStorage.getItem('token')!;
-		//console.log(tokenString + ' in get Token')
-		//console.log(tokenString === undefined)//false
-	//	console.log(tokenString == undefined)//false
-//		console.log(tokenString === 'undefined')//true
-//		console.log(tokenString == "undefined")//true
-
 
 		if (tokenString === "undefined"){
-			console.log("1")
-			return " "
+			console.log("no token given");
+			return " ";
 		}
 		const userToken = JSON.parse(tokenString);
 		console.log(userToken);
@@ -144,7 +138,8 @@ const Login = () => {
 		console.log("token is " + token);
 
 		let url : string;
-	
+		
+		// first time trying to login.
 		if (token === null) {
 
 				url = "http://localhost:4000/auth/user";
@@ -154,26 +149,25 @@ const Login = () => {
 					password: state.password,
 		
 				})
-				.then((response) => {// token after authentification
+				.then((response) => {
 		
 					console.log(response + "in response ");
-		
-					// if status code is ok- pull out the token
-		
+					
+					// either a token or "undefined"(in case the username/password was wrong).
 					const token = response.data.token;
 					setToken(token);
-					console.log(getToken());
 					
 					dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
 				
 				}, (error) => {
 				
-					console.log(error + "in error");
+					console.log(error + "in error, first login");
 					dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
 				
 				});
 		}
-
+		
+		// a token is stored in the localStorage.
 		else {
 
 			url = "http://localhost:4000/auth/helloJWT"; 
@@ -184,16 +178,17 @@ const Login = () => {
 				headers: {'Authorization': 'Bearer '+ token}
 			});
 
-				REQ.get(url, {
+			REQ.get(url, {
+			})
+			.then((response) => {
+				console.log(response);
 
-				})
-				.then((response) => {
-						console.log(response);
-				},(error) => {
+			},(error) => {
 				
-					console.log(error);
-					
-				});
+				// In case the token was "undefined".
+				console.log("error in the 'else' scope: " + error);
+				
+			});
 		}
 
 	};
