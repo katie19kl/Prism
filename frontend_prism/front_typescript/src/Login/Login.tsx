@@ -182,7 +182,7 @@ const Login = () => {
 				
 				}, (error) => {
 				
-					console.log(error + "in error");
+					console.log(/*error +*/ "in error-----------------------------------------");
 					dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
 				
 				});
@@ -204,10 +204,12 @@ const Login = () => {
 
 				})
 				.then((response) => {
-						console.log(response);
+						console.log("response-------")
+						//console.log(response);
 				},(error) => {
 				
-					console.log(error);
+					console.log(error.response.data.xui);
+					console.log(/*error +*/ "in error-----------------------------------------");
 					
 				
 				});

@@ -24,6 +24,10 @@ export class EmptyExceptionFilter<T> implements ExceptionFilter {
 			console.log("404")
 		}
 
-		host.switchToHttp().getResponse().redirect("/hello");  
+		//host.switchToHttp().getResponse().redirect("/hello");
+
+
+
+
 	}
 }
