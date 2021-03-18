@@ -155,6 +155,10 @@ const Login = () => {
 					
 					// either a token or "undefined"(in case the username/password was wrong).
 					const token = response.data.token;
+
+					console.log("the token received in login is: " + token);
+					console.log(typeof(token));
+
 					setToken(token);
 					
 					dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
@@ -187,7 +191,8 @@ const Login = () => {
 				
 				// In case the token was "undefined".
 				console.log("error in the 'else' scope: " + error);
-				
+				dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
+
 			});
 		}
 

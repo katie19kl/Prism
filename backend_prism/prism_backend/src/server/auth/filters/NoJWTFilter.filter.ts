@@ -4,7 +4,7 @@ import { UserNotFoundException } from '../exception/UserNotFound.exception';
 import { Request, Response } from 'express';
 
 @Catch()
-export class NoJWTFilter<T> implements ExceptionFilter {//401
+export class NoJWTFilter<T> implements ExceptionFilter {// Was received 401
 	
 	catch(exception: UnauthorizedException, host: ArgumentsHost) {
 
@@ -28,6 +28,7 @@ export class NoJWTFilter<T> implements ExceptionFilter {//401
 			statusCode: status,
 			timestamp: new Date().toISOString(),
 			path: request.url,
+			isValid: false,
       	});
 
     ///////////////////////////////////

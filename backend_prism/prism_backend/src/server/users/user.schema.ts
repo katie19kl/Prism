@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import * as bcrypt from 'bcrypt';
 import { IUser } from './iuser.interface';
+import { Role } from '../authorization/role.enum';
 
 export const UserSchema = new mongoose.Schema({
     username: {
@@ -10,6 +11,10 @@ export const UserSchema = new mongoose.Schema({
     },
     password: {
         type: String,
+        required: true
+    },
+    role: {
+        type: Role, 
         required: true
     }
 });

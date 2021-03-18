@@ -18,7 +18,7 @@ export class AuthService {
         userToAttempt = await this.usersService.findOneByUsername(loginAttempt.username);
         
         // username not exists
-        if (userToAttempt == null){
+        if (userToAttempt == null) {
             return undefined;
         }
 
