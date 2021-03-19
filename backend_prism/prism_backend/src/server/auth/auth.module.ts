@@ -6,7 +6,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
-import { jwtConstants } from './constants';
+import { jwtConstants } from '../TRY_ROLES/constants';
 
 @Module({
     exports: [AuthService, JwtModule],
@@ -14,10 +14,12 @@ import { jwtConstants } from './constants';
     imports: [
         PassportModule.register({ defaultStrategy: 'jwt', session: false }),
         JwtModule.register({
+        
         secretOrPrivateKey: 'thisismykickasssecretthatiwilltotallychangelater',
-        secret: jwtConstants.secret,
+        //secretOrPrivateKey : jwtConstants.secret,
+        //secret: jwtConstants.secret,
         signOptions: {
-            expiresIn: '300s'
+            expiresIn: '30000s'
         }
         }),
         UsersModule,

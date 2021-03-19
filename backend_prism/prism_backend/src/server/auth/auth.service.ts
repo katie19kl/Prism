@@ -3,6 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { IUser } from 'src/server/users/iuser.interface';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { UsersService } from '../users/users.service';
+import { jwtStaticRandomSTR } from '../TRY_ROLES/constants';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 
@@ -62,15 +63,26 @@ export class AuthService {
     }
 
     createJwtPayload(user) {
+        
+        // Generates rand||CurrentTime
+        // new string per server activating
+        let str = jwtStaticRandomSTR.stringRandomTime
+        console.log(str + '\\n-------')
+
 
         let data: JwtPayload = {
-            username: user.username
+            // adding randomality
+            username: user.username //+ jwtStaticRandomSTR.stringRandomTime
+            
         };
 
         let jwt = this.jwtService.sign(data);
         return {
-            expiresIn: 300,
+            expiresIn: 30000,
             token: jwt
         }
     }
+
+
+
 }
