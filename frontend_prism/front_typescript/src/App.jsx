@@ -45,6 +45,7 @@ const myAuth = {
 	isAuthenticated: false,
 
 	authenticate() {
+		console.log("try to authentificate")
 		let token = localStorage.getItem('token');
 		
 		if (token === null || token === 'undefined') {
