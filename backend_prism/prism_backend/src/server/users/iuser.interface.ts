@@ -1,5 +1,5 @@
 import { Document } from 'mongoose'
-import { Role } from '../TRY_ROLES/role.enum';
+import { Role } from '../authorization/role.enum';
 
 export interface IUser extends Document {
     checkPassword(password: string): Promise<boolean>;

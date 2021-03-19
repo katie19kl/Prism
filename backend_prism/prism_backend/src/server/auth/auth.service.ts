@@ -19,7 +19,7 @@ export class AuthService {
         userToAttempt = await this.usersService.findOneByUsername(loginAttempt.username);
         
         // username not exists
-        if (userToAttempt == null){
+        if (userToAttempt == null) {
             return undefined;
         }
 
@@ -79,7 +79,7 @@ export class AuthService {
         let jwt = this.jwtService.sign(data);
         return {
             expiresIn: 300,
-            token: jwt            
+            token: jwt
         }
     }
 
