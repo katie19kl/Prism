@@ -9,7 +9,11 @@ import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 
-import ReactDOM from 'react-dom';
+import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
+
+
+
+//import MainPage from '../MainPage/MainCommonPage';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -138,14 +142,33 @@ const Login = () => {
 		}
 	}, [state.username, state.password]);
 	
+
+
+
+
+	// if there is token OR log in successfully done 
+	function RedirectToMainPage(){
+
+
+		console.log("before redirection")
+		history.push("/about");
+	}
+
+
+	
+	
+	let history = useHistory();
+
 	const handleLogin = () => {
 		
 		let token = getToken();
-		console.log("token is " + token);
+		console.log("in handle log IN      -----token is " + token);
 
 		let url : string;
 		
 		// first time trying to login.
+
+		// IF TOKEN is not valid ---> should be taken care of 
 		if (token === null) {
 
 				url = "http://localhost:4000/auth/user";
@@ -168,6 +191,12 @@ const Login = () => {
 					setToken(token);
 					
 					dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
+					// log in succeeded !!!!!!! => go to main page
+					
+					
+					RedirectToMainPage()
+	
+							
 				
 				}, (error) => {
 				
@@ -176,32 +205,11 @@ const Login = () => {
 				
 				});
 		}
-		
-		// a token is stored in the localStorage.
 		else {
-
-			url = "http://localhost:4000/auth/helloJWT"; 
-
-			const REQ = axios.create({
-				baseURL: url,
-				timeout: 1000,
-				headers: {'Authorization': 'Bearer '+ token}
-			});
-
-			REQ.get(url, {
-			})
-			.then((response) => {
-				console.log(response);
-
-			},(error) => {
-				
-				// In case the token was "undefined".
-				console.log("error in the 'else' scope: " + error);
-				dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
-
-			});
+			return; 
 		}
 
+	
 	};
 
 	const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -226,6 +234,17 @@ const Login = () => {
 			});
 		};
 
+		//e.preventDefault()
+		function Foo(e:Event){ // works
+		
+			e.preventDefault()
+		
+	
+
+  	  history.push("/about");
+  
+		}
+
 
 	return (
 		<form className={classes.container} noValidate autoComplete="off">
@@ -233,6 +252,17 @@ const Login = () => {
 			<CardHeader className={classes.header} title="Login" />
 			<CardContent>
 			<div>
+
+			
+			<button color='primary' onClick = {(event:any) => Foo(event)}> ON CLICK </button>
+
+			<br></br>
+			<br></br>
+			<br></br>
+			
+			
+			<br></br>
+			<br></br>
 				<TextField
 				error={state.isError}
 				fullWidth

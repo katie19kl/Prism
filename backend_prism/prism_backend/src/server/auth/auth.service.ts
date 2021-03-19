@@ -72,13 +72,13 @@ export class AuthService {
 
         let data: JwtPayload = {
             // adding randomality
-            username: user.username + jwtStaticRandomSTR.stringRandomTime
+            username: user.username //+ jwtStaticRandomSTR.stringRandomTime
             
         };
 
         let jwt = this.jwtService.sign(data);
         return {
-            expiresIn: 300,
+            expiresIn: 30000,
             token: jwt
         }
     }

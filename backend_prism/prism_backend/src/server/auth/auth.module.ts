@@ -14,11 +14,12 @@ import { jwtConstants } from '../TRY_ROLES/constants';
     imports: [
         PassportModule.register({ defaultStrategy: 'jwt', session: false }),
         JwtModule.register({
-        //secretOrPrivateKey: 'thisismykickasssecretthatiwilltotallychangelater',
-        secretOrPrivateKey : jwtConstants.secret,
+        
+        secretOrPrivateKey: 'thisismykickasssecretthatiwilltotallychangelater',
+        //secretOrPrivateKey : jwtConstants.secret,
         //secret: jwtConstants.secret,
         signOptions: {
-            expiresIn: '300s'
+            expiresIn: '30000s'
         }
         }),
         UsersModule,

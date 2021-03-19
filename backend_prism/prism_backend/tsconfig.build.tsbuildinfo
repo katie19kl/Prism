@@ -2,8 +2,8 @@
   "program": {
     "fileInfos": {
       "./node_modules/typescript/lib/lib.es5.d.ts": {
-        "version": "9622e8bd7cc72a7dab819a8011ecbf81d443638082e5cb99ecf2e75ff56ffc9d",
-        "signature": "9622e8bd7cc72a7dab819a8011ecbf81d443638082e5cb99ecf2e75ff56ffc9d",
+        "version": "b3584bc5798ed422ce2516df360ffa9cf2d80b5eae852867db9ba3743145f895",
+        "signature": "b3584bc5798ed422ce2516df360ffa9cf2d80b5eae852867db9ba3743145f895",
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.es2015.d.ts": {
@@ -27,8 +27,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/typescript/lib/lib.dom.d.ts": {
-        "version": "abadddbf660adeec27e9a56584907d52fa1d6e1e1dc49f639a921baa951b7a84",
-        "signature": "abadddbf660adeec27e9a56584907d52fa1d6e1e1dc49f639a921baa951b7a84",
+        "version": "feeeb1dd8a80fb76be42b0426e8f3ffa9bdef3c2f3c12c147e7660b1c5ba8b3b",
+        "signature": "feeeb1dd8a80fb76be42b0426e8f3ffa9bdef3c2f3c12c147e7660b1c5ba8b3b",
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.dom.iterable.d.ts": {
@@ -72,13 +72,13 @@
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.es2015.proxy.d.ts": {
-        "version": "7207e317a2cb07a177e7d963ab7b8c0e85dde7f9ddb50351f830239bf597569e",
-        "signature": "7207e317a2cb07a177e7d963ab7b8c0e85dde7f9ddb50351f830239bf597569e",
+        "version": "810627a82ac06fb5166da5ada4159c4ec11978dfbb0805fe804c86406dab8357",
+        "signature": "810627a82ac06fb5166da5ada4159c4ec11978dfbb0805fe804c86406dab8357",
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.es2015.reflect.d.ts": {
-        "version": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
-        "signature": "cb609802a8698aa28b9c56331d4b53f590ca3c1c3a255350304ae3d06017779d",
+        "version": "62d80405c46c3f4c527ee657ae9d43fda65a0bf582292429aea1e69144a522a6",
+        "signature": "62d80405c46c3f4c527ee657ae9d43fda65a0bf582292429aea1e69144a522a6",
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.es2015.symbol.d.ts": {
@@ -152,13 +152,23 @@
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.esnext.intl.d.ts": {
-        "version": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
-        "signature": "89bf2b7a601b73ea4311eda9c41f86a58994fec1bee3b87c4a14d68d9adcdcbd",
+        "version": "506b80b9951c9381dc5f11897b31fca5e2a65731d96ddefa19687fbc26b23c6e",
+        "signature": "506b80b9951c9381dc5f11897b31fca5e2a65731d96ddefa19687fbc26b23c6e",
         "affectsGlobalScope": true
       },
       "./node_modules/typescript/lib/lib.es2017.full.d.ts": {
         "version": "d2f31f19e1ba6ed59be9259d660a239d9a3fcbbc8e038c6b2009bde34b175fed",
         "signature": "d2f31f19e1ba6ed59be9259d660a239d9a3fcbbc8e038c6b2009bde34b175fed",
+        "affectsGlobalScope": false
+      },
+      "./src/server/try_roles/constants.ts": {
+        "version": "027af3297389271a902992052c848102b555f7535648aeb8969cb03339bc03f3",
+        "signature": "ffa638c784e51441882816cde79db080efd4e383ec42b0c28dec42847c861f62",
+        "affectsGlobalScope": false
+      },
+      "./src/server/try_roles/role.enum.ts": {
+        "version": "3bab1800644679bd8a6075df21ef6ff89914fa4ad1eced4ccf7ec96e5b7c82a0",
+        "signature": "e705b831209ff23578923b648e052a6afdf3a0540dbb62776e1f08bcda3d3c2e",
         "affectsGlobalScope": false
       },
       "./node_modules/reflect-metadata/index.d.ts": {
@@ -1176,6 +1186,196 @@
         "signature": "95b5a3078fdc51508d5d9cde59a1dd9525b53fd42dc12265a55261fd415d3274",
         "affectsGlobalScope": false
       },
+      "./src/server/try_roles/roles.decorator.ts": {
+        "version": "e0b58687b543d694ac4dd81b51f53407d14acc02ed4e6acb01187f53879d264a",
+        "signature": "55c5a06048ca07dde6d77d9e204355bc7c0597c90003b7e6fd50331623d430ec",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
+        "version": "d2ab8259c09e56c7df26a2d038d2d716efb51d4f43762a8c4278514590ce1e07",
+        "signature": "d2ab8259c09e56c7df26a2d038d2d716efb51d4f43762a8c4278514590ce1e07",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/adapters/index.d.ts": {
+        "version": "8b0b6a4c032a56d5651f7dd02ba3f05fbfe4131c4095093633cda3cae0991972",
+        "signature": "8b0b6a4c032a56d5651f7dd02ba3f05fbfe4131c4095093633cda3cae0991972",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/module-token-factory.d.ts": {
+        "version": "27484cb3aa328bc5d0957fcb34df68a5db1be280af510d9ed3a282b1a0a93b38",
+        "signature": "27484cb3aa328bc5d0957fcb34df68a5db1be280af510d9ed3a282b1a0a93b38",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/modules-container.d.ts": {
+        "version": "c1c60dd235d2ce756231cec4bfec763980de6913efcfc3fb459938fee9ea26a5",
+        "signature": "c1c60dd235d2ce756231cec4bfec763980de6913efcfc3fb459938fee9ea26a5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/container.d.ts": {
+        "version": "67bdd2a7bdda53477e3342d4d28e0426afcc9232018c81b801b4423fd6ba4cf5",
+        "signature": "67bdd2a7bdda53477e3342d4d28e0426afcc9232018c81b801b4423fd6ba4cf5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/module-ref.d.ts": {
+        "version": "9473e83a3ccd24983ca2bc517ad41d81542f5a8215288be71bcd73655ee5ace0",
+        "signature": "9473e83a3ccd24983ca2bc517ad41d81542f5a8215288be71bcd73655ee5ace0",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/module.d.ts": {
+        "version": "56c3861bbf4c47c5490585fd601d412b371836edc4df1bf1fa8ef511ee49f981",
+        "signature": "56c3861bbf4c47c5490585fd601d412b371836edc4df1bf1fa8ef511ee49f981",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/instance-wrapper.d.ts": {
+        "version": "841487542d9a8f579ba6f644f754c5b90ed872a345d2a3fa4b08077db03e7027",
+        "signature": "841487542d9a8f579ba6f644f754c5b90ed872a345d2a3fa4b08077db03e7027",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/application-config.d.ts": {
+        "version": "620eaa2096c69dff36875f086e8a63c326fccda643360b7d7cd580b403753488",
+        "signature": "620eaa2096c69dff36875f086e8a63c326fccda643360b7d7cd580b403753488",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/constants.d.ts": {
+        "version": "f23601713615719b1a1394deae884fb9f507de819a086d5a019c63793da9efc6",
+        "signature": "f23601713615719b1a1394deae884fb9f507de819a086d5a019c63793da9efc6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/discovery/discovery-module.d.ts": {
+        "version": "50fd11b764194f06977c162c37e5a70bcf0d3579bf82dd4de4eee3ac68d0f82f",
+        "signature": "50fd11b764194f06977c162c37e5a70bcf0d3579bf82dd4de4eee3ac68d0f82f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/discovery/discovery-service.d.ts": {
+        "version": "ad5ad568f2f537a43dcc1588b2379f9dc79539ae36b8821b13a5d03625211eb2",
+        "signature": "ad5ad568f2f537a43dcc1588b2379f9dc79539ae36b8821b13a5d03625211eb2",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/discovery/index.d.ts": {
+        "version": "99579aa074ed298e7a3d6a47e68f0cd099e92411212d5081ce88344a5b1b528d",
+        "signature": "99579aa074ed298e7a3d6a47e68f0cd099e92411212d5081ce88344a5b1b528d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/helpers/context-id-factory.d.ts": {
+        "version": "a4d05f346ba48f5685f9142fdd90b1e12e463535c38bdea74fce64813f2a8661",
+        "signature": "a4d05f346ba48f5685f9142fdd90b1e12e463535c38bdea74fce64813f2a8661",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/helpers/http-adapter-host.d.ts": {
+        "version": "d2d58166965f631fa203f405f3713b0f86f1f8b80755e9daea43057a25311e16",
+        "signature": "d2d58166965f631fa203f405f3713b0f86f1f8b80755e9daea43057a25311e16",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/helpers/index.d.ts": {
+        "version": "0256d60785ede7860b5262f504f139aa68f74db44ba9f03807b752864580772c",
+        "signature": "0256d60785ede7860b5262f504f139aa68f74db44ba9f03807b752864580772c",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/exceptions/base-exception-filter.d.ts": {
+        "version": "e4fc4090c3687640d033fd75585ccb54dcdf3bf406338228df50b0dcee0314d0",
+        "signature": "e4fc4090c3687640d033fd75585ccb54dcdf3bf406338228df50b0dcee0314d0",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/exceptions/index.d.ts": {
+        "version": "942ab34f62ac3f3d20014615b6442b6dc51815e30a878ebc390dd70e0dec63bf",
+        "signature": "942ab34f62ac3f3d20014615b6442b6dc51815e30a878ebc390dd70e0dec63bf",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/inquirer/inquirer-constants.d.ts": {
+        "version": "396c1e5a39706999ec8cc582916e05fcb4f901631d2c192c1292e95089a494d9",
+        "signature": "396c1e5a39706999ec8cc582916e05fcb4f901631d2c192c1292e95089a494d9",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/inquirer/index.d.ts": {
+        "version": "89df75d28f34fc698fe261f9489125b4e5828fbd62d863bbe93373d3ed995056",
+        "signature": "89df75d28f34fc698fe261f9489125b4e5828fbd62d863bbe93373d3ed995056",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/index.d.ts": {
+        "version": "e99e3ad9035927f61b1d6b54c51fca01e46bdcaf861fd9484086d871e76d0aef",
+        "signature": "e99e3ad9035927f61b1d6b54c51fca01e46bdcaf861fd9484086d871e76d0aef",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/metadata-scanner.d.ts": {
+        "version": "7cb9b6d5c1e3508fbc81e7bbab314eac54715f9326ac72fd0eb65f17a4393d50",
+        "signature": "7cb9b6d5c1e3508fbc81e7bbab314eac54715f9326ac72fd0eb65f17a4393d50",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/middleware/routes-mapper.d.ts": {
+        "version": "5175a0f207a73df7426acc2bdc854b0c4bfab7434742f873816f0fc71f4fa2f5",
+        "signature": "5175a0f207a73df7426acc2bdc854b0c4bfab7434742f873816f0fc71f4fa2f5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/middleware/builder.d.ts": {
+        "version": "9daabcf8cac2bd41d4cb83511c0358fc24650fd08f9ae73e888582285a116a3f",
+        "signature": "9daabcf8cac2bd41d4cb83511c0358fc24650fd08f9ae73e888582285a116a3f",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/middleware/index.d.ts": {
+        "version": "82d3e00d56a71fc169f3cf9ec5f5ffcc92f6c0e67d4dfc130dafe9f1886d5515",
+        "signature": "82d3e00d56a71fc169f3cf9ec5f5ffcc92f6c0e67d4dfc130dafe9f1886d5515",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/injector/injector.d.ts": {
+        "version": "a32c70b9753eec66043f470348cc6c4aa5d5d121f23999da704fd768f57f437c",
+        "signature": "a32c70b9753eec66043f470348cc6c4aa5d5d121f23999da704fd768f57f437c",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/nest-application-context.d.ts": {
+        "version": "bcf53ab536b5623e8697585d313e1095d5da535dc8157a01c38f9f65c9ebdda0",
+        "signature": "bcf53ab536b5623e8697585d313e1095d5da535dc8157a01c38f9f65c9ebdda0",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/nest-application.d.ts": {
+        "version": "2930a81fa7fcbba47a74d5b972349757afe19ef7aff993816f5a10ffc135882d",
+        "signature": "2930a81fa7fcbba47a74d5b972349757afe19ef7aff993816f5a10ffc135882d",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/common/interfaces/microservices/nest-microservice-options.interface.d.ts": {
+        "version": "e3d221660c0b79a9a3ba1111b3dfbb1136c0b52d7609b0054d3ce09ce711a3e6",
+        "signature": "e3d221660c0b79a9a3ba1111b3dfbb1136c0b52d7609b0054d3ce09ce711a3e6",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/nest-factory.d.ts": {
+        "version": "8dcb9206a5ff25c0d64ddc39611814296851d3be1a24e20c13efc205a35e7ec5",
+        "signature": "8dcb9206a5ff25c0d64ddc39611814296851d3be1a24e20c13efc205a35e7ec5",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/router/request/request-constants.d.ts": {
+        "version": "e47adc2176f43c617c0ab47f2d9b2bb1706d9e0669bf349a30c3fe09ddd63261",
+        "signature": "e47adc2176f43c617c0ab47f2d9b2bb1706d9e0669bf349a30c3fe09ddd63261",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/router/request/index.d.ts": {
+        "version": "7fec79dfd7319fec7456b1b53134edb54c411ba493a0aef350eee75a4f223eeb",
+        "signature": "7fec79dfd7319fec7456b1b53134edb54c411ba493a0aef350eee75a4f223eeb",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/router/index.d.ts": {
+        "version": "c6d07008f2a83d1294adf9fb18b9fe6c0e01964a66263c5a827d7ff0d0cd7abd",
+        "signature": "c6d07008f2a83d1294adf9fb18b9fe6c0e01964a66263c5a827d7ff0d0cd7abd",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/services/reflector.service.d.ts": {
+        "version": "abdc0a8843b28c3cafbefb90079690b17b7b4e2a9c9bbf2cd8762e11a3958034",
+        "signature": "abdc0a8843b28c3cafbefb90079690b17b7b4e2a9c9bbf2cd8762e11a3958034",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/services/index.d.ts": {
+        "version": "2e252235037a2cd8feebfbf74aa460f783e5d423895d13f29a934d7655a1f8be",
+        "signature": "2e252235037a2cd8feebfbf74aa460f783e5d423895d13f29a934d7655a1f8be",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@nestjs/core/index.d.ts": {
+        "version": "7b5ed961a0e03965299591d73de8b8c41e8a68105ff4fc07a240b0dfb94a5a3d",
+        "signature": "7b5ed961a0e03965299591d73de8b8c41e8a68105ff4fc07a240b0dfb94a5a3d",
+        "affectsGlobalScope": false
+      },
+      "./src/server/try_roles/roles.guard.ts": {
+        "version": "b9ccd48d1ed39a8a81d0227906167b62380262429bedc91d49a86be0677f4109",
+        "signature": "bfee690dd166dc8df5b75d2cc7fbca80bfddc49750123b8a9ddd1ecadbe53e10",
+        "affectsGlobalScope": false
+      },
       "./src/server/auth/exception/usernotfound.exception.ts": {
         "version": "43507f190e9cf5f2ec89d874df2be3ee130dae020f980b679a1ba7e153266341",
         "signature": "6a044a6c07c3f5c3b485118d04a8d5d23be51d0c312ba7ea8a23d789a57e41c5",
@@ -1521,208 +1721,13 @@
         "signature": "dccbaa44c032ccb262fce49d53d88a1df25a7b4db46aed506780b58ff77a23c3",
         "affectsGlobalScope": false
       },
-      "./src/server/help_stuff/role.enum.ts": {
-        "version": "3bab1800644679bd8a6075df21ef6ff89914fa4ad1eced4ccf7ec96e5b7c82a0",
-        "signature": "e705b831209ff23578923b648e052a6afdf3a0540dbb62776e1f08bcda3d3c2e",
-        "affectsGlobalScope": false
-      },
-      "./src/server/help_stuff/roles.decorator.ts": {
-        "version": "5b69752eecf3aae83741cc4eb6a3f79cf9ac44f18517dcce39eed9870fa1b2d0",
-        "signature": "deae33a567c5060cd9499802ecad6db90f3390a34cd1725fc15ff92d5b99ecd3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/adapters/http-adapter.d.ts": {
-        "version": "d2ab8259c09e56c7df26a2d038d2d716efb51d4f43762a8c4278514590ce1e07",
-        "signature": "d2ab8259c09e56c7df26a2d038d2d716efb51d4f43762a8c4278514590ce1e07",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/adapters/index.d.ts": {
-        "version": "8b0b6a4c032a56d5651f7dd02ba3f05fbfe4131c4095093633cda3cae0991972",
-        "signature": "8b0b6a4c032a56d5651f7dd02ba3f05fbfe4131c4095093633cda3cae0991972",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/module-token-factory.d.ts": {
-        "version": "27484cb3aa328bc5d0957fcb34df68a5db1be280af510d9ed3a282b1a0a93b38",
-        "signature": "27484cb3aa328bc5d0957fcb34df68a5db1be280af510d9ed3a282b1a0a93b38",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/modules-container.d.ts": {
-        "version": "c1c60dd235d2ce756231cec4bfec763980de6913efcfc3fb459938fee9ea26a5",
-        "signature": "c1c60dd235d2ce756231cec4bfec763980de6913efcfc3fb459938fee9ea26a5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/container.d.ts": {
-        "version": "67bdd2a7bdda53477e3342d4d28e0426afcc9232018c81b801b4423fd6ba4cf5",
-        "signature": "67bdd2a7bdda53477e3342d4d28e0426afcc9232018c81b801b4423fd6ba4cf5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/module-ref.d.ts": {
-        "version": "9473e83a3ccd24983ca2bc517ad41d81542f5a8215288be71bcd73655ee5ace0",
-        "signature": "9473e83a3ccd24983ca2bc517ad41d81542f5a8215288be71bcd73655ee5ace0",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/module.d.ts": {
-        "version": "56c3861bbf4c47c5490585fd601d412b371836edc4df1bf1fa8ef511ee49f981",
-        "signature": "56c3861bbf4c47c5490585fd601d412b371836edc4df1bf1fa8ef511ee49f981",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/instance-wrapper.d.ts": {
-        "version": "841487542d9a8f579ba6f644f754c5b90ed872a345d2a3fa4b08077db03e7027",
-        "signature": "841487542d9a8f579ba6f644f754c5b90ed872a345d2a3fa4b08077db03e7027",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/application-config.d.ts": {
-        "version": "620eaa2096c69dff36875f086e8a63c326fccda643360b7d7cd580b403753488",
-        "signature": "620eaa2096c69dff36875f086e8a63c326fccda643360b7d7cd580b403753488",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/constants.d.ts": {
-        "version": "f23601713615719b1a1394deae884fb9f507de819a086d5a019c63793da9efc6",
-        "signature": "f23601713615719b1a1394deae884fb9f507de819a086d5a019c63793da9efc6",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/discovery/discovery-module.d.ts": {
-        "version": "50fd11b764194f06977c162c37e5a70bcf0d3579bf82dd4de4eee3ac68d0f82f",
-        "signature": "50fd11b764194f06977c162c37e5a70bcf0d3579bf82dd4de4eee3ac68d0f82f",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/discovery/discovery-service.d.ts": {
-        "version": "ad5ad568f2f537a43dcc1588b2379f9dc79539ae36b8821b13a5d03625211eb2",
-        "signature": "ad5ad568f2f537a43dcc1588b2379f9dc79539ae36b8821b13a5d03625211eb2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/discovery/index.d.ts": {
-        "version": "99579aa074ed298e7a3d6a47e68f0cd099e92411212d5081ce88344a5b1b528d",
-        "signature": "99579aa074ed298e7a3d6a47e68f0cd099e92411212d5081ce88344a5b1b528d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/helpers/context-id-factory.d.ts": {
-        "version": "a4d05f346ba48f5685f9142fdd90b1e12e463535c38bdea74fce64813f2a8661",
-        "signature": "a4d05f346ba48f5685f9142fdd90b1e12e463535c38bdea74fce64813f2a8661",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/helpers/http-adapter-host.d.ts": {
-        "version": "d2d58166965f631fa203f405f3713b0f86f1f8b80755e9daea43057a25311e16",
-        "signature": "d2d58166965f631fa203f405f3713b0f86f1f8b80755e9daea43057a25311e16",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/helpers/index.d.ts": {
-        "version": "0256d60785ede7860b5262f504f139aa68f74db44ba9f03807b752864580772c",
-        "signature": "0256d60785ede7860b5262f504f139aa68f74db44ba9f03807b752864580772c",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/exceptions/base-exception-filter.d.ts": {
-        "version": "e4fc4090c3687640d033fd75585ccb54dcdf3bf406338228df50b0dcee0314d0",
-        "signature": "e4fc4090c3687640d033fd75585ccb54dcdf3bf406338228df50b0dcee0314d0",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/exceptions/index.d.ts": {
-        "version": "942ab34f62ac3f3d20014615b6442b6dc51815e30a878ebc390dd70e0dec63bf",
-        "signature": "942ab34f62ac3f3d20014615b6442b6dc51815e30a878ebc390dd70e0dec63bf",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/inquirer/inquirer-constants.d.ts": {
-        "version": "396c1e5a39706999ec8cc582916e05fcb4f901631d2c192c1292e95089a494d9",
-        "signature": "396c1e5a39706999ec8cc582916e05fcb4f901631d2c192c1292e95089a494d9",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/inquirer/index.d.ts": {
-        "version": "89df75d28f34fc698fe261f9489125b4e5828fbd62d863bbe93373d3ed995056",
-        "signature": "89df75d28f34fc698fe261f9489125b4e5828fbd62d863bbe93373d3ed995056",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/index.d.ts": {
-        "version": "e99e3ad9035927f61b1d6b54c51fca01e46bdcaf861fd9484086d871e76d0aef",
-        "signature": "e99e3ad9035927f61b1d6b54c51fca01e46bdcaf861fd9484086d871e76d0aef",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/metadata-scanner.d.ts": {
-        "version": "7cb9b6d5c1e3508fbc81e7bbab314eac54715f9326ac72fd0eb65f17a4393d50",
-        "signature": "7cb9b6d5c1e3508fbc81e7bbab314eac54715f9326ac72fd0eb65f17a4393d50",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/middleware/routes-mapper.d.ts": {
-        "version": "5175a0f207a73df7426acc2bdc854b0c4bfab7434742f873816f0fc71f4fa2f5",
-        "signature": "5175a0f207a73df7426acc2bdc854b0c4bfab7434742f873816f0fc71f4fa2f5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/middleware/builder.d.ts": {
-        "version": "9daabcf8cac2bd41d4cb83511c0358fc24650fd08f9ae73e888582285a116a3f",
-        "signature": "9daabcf8cac2bd41d4cb83511c0358fc24650fd08f9ae73e888582285a116a3f",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/middleware/index.d.ts": {
-        "version": "82d3e00d56a71fc169f3cf9ec5f5ffcc92f6c0e67d4dfc130dafe9f1886d5515",
-        "signature": "82d3e00d56a71fc169f3cf9ec5f5ffcc92f6c0e67d4dfc130dafe9f1886d5515",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/injector/injector.d.ts": {
-        "version": "a32c70b9753eec66043f470348cc6c4aa5d5d121f23999da704fd768f57f437c",
-        "signature": "a32c70b9753eec66043f470348cc6c4aa5d5d121f23999da704fd768f57f437c",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/nest-application-context.d.ts": {
-        "version": "bcf53ab536b5623e8697585d313e1095d5da535dc8157a01c38f9f65c9ebdda0",
-        "signature": "bcf53ab536b5623e8697585d313e1095d5da535dc8157a01c38f9f65c9ebdda0",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/nest-application.d.ts": {
-        "version": "2930a81fa7fcbba47a74d5b972349757afe19ef7aff993816f5a10ffc135882d",
-        "signature": "2930a81fa7fcbba47a74d5b972349757afe19ef7aff993816f5a10ffc135882d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/common/interfaces/microservices/nest-microservice-options.interface.d.ts": {
-        "version": "e3d221660c0b79a9a3ba1111b3dfbb1136c0b52d7609b0054d3ce09ce711a3e6",
-        "signature": "e3d221660c0b79a9a3ba1111b3dfbb1136c0b52d7609b0054d3ce09ce711a3e6",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/nest-factory.d.ts": {
-        "version": "8dcb9206a5ff25c0d64ddc39611814296851d3be1a24e20c13efc205a35e7ec5",
-        "signature": "8dcb9206a5ff25c0d64ddc39611814296851d3be1a24e20c13efc205a35e7ec5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/router/request/request-constants.d.ts": {
-        "version": "e47adc2176f43c617c0ab47f2d9b2bb1706d9e0669bf349a30c3fe09ddd63261",
-        "signature": "e47adc2176f43c617c0ab47f2d9b2bb1706d9e0669bf349a30c3fe09ddd63261",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/router/request/index.d.ts": {
-        "version": "7fec79dfd7319fec7456b1b53134edb54c411ba493a0aef350eee75a4f223eeb",
-        "signature": "7fec79dfd7319fec7456b1b53134edb54c411ba493a0aef350eee75a4f223eeb",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/router/index.d.ts": {
-        "version": "c6d07008f2a83d1294adf9fb18b9fe6c0e01964a66263c5a827d7ff0d0cd7abd",
-        "signature": "c6d07008f2a83d1294adf9fb18b9fe6c0e01964a66263c5a827d7ff0d0cd7abd",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/services/reflector.service.d.ts": {
-        "version": "abdc0a8843b28c3cafbefb90079690b17b7b4e2a9c9bbf2cd8762e11a3958034",
-        "signature": "abdc0a8843b28c3cafbefb90079690b17b7b4e2a9c9bbf2cd8762e11a3958034",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/services/index.d.ts": {
-        "version": "2e252235037a2cd8feebfbf74aa460f783e5d423895d13f29a934d7655a1f8be",
-        "signature": "2e252235037a2cd8feebfbf74aa460f783e5d423895d13f29a934d7655a1f8be",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@nestjs/core/index.d.ts": {
-        "version": "7b5ed961a0e03965299591d73de8b8c41e8a68105ff4fc07a240b0dfb94a5a3d",
-        "signature": "7b5ed961a0e03965299591d73de8b8c41e8a68105ff4fc07a240b0dfb94a5a3d",
-        "affectsGlobalScope": false
-      },
-      "./src/server/help_stuff/roles.guard.ts": {
-        "version": "637bee4630a674168b10cbfa6e02640432054b98c0ebaabe8d06dafb5f6d42f5",
-        "signature": "bfee690dd166dc8df5b75d2cc7fbca80bfddc49750123b8a9ddd1ecadbe53e10",
-        "affectsGlobalScope": false
-      },
       "./src/server/app/app.service.ts": {
         "version": "e3f7d0257c9827ef61a984a0ca071096fa42f5f83726d8d830589df4fc73435c",
         "signature": "d878efa86de3d781357cb24cbc9d29e838f3fabc09fd96b8805115244d5119d0",
         "affectsGlobalScope": false
       },
       "./src/server/app/app.controller.ts": {
-        "version": "3e40615bd0bc65a913ea25babe34208f7867acae2ff657b8c8ca21f44c4480cf",
+        "version": "65f31c0b759d93e2347e0a9d1b42c262d89bcc30dba435e5b069e02cbd119983",
         "signature": "91e46a6f480f3ee4381863188b884d50c41911e7ebd1a956fa3ca6bb4d2e7eca",
         "affectsGlobalScope": false
       },
@@ -1901,18 +1906,13 @@
         "signature": "93227714003b7f94fc3609e8f93006c90545c3868a396f914447190afd23e86b",
         "affectsGlobalScope": false
       },
-      "./src/server/help_stuff/constants.ts": {
-        "version": "027af3297389271a902992052c848102b555f7535648aeb8969cb03339bc03f3",
-        "signature": "ffa638c784e51441882816cde79db080efd4e383ec42b0c28dec42847c861f62",
-        "affectsGlobalScope": false
-      },
       "./src/server/auth/interfaces/jwt-payload.interface.ts": {
         "version": "96fda16913b1be9e9898bdb896e6e7e2c793b17d12b9445eb17a03c930bc7daf",
         "signature": "c240d4cac48a4fe0a23b3a1d4fa97aa941f63474ad03f5fe0178e759aeac48ae",
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
-        "version": "b15dd1a14ecd35dba3ba448965ca976b61ab8b7a0024b46ceb36db9c38554943",
+        "version": "4dac62727c751072ff5eb28a0266157b1a9900089d2a941e0f77da3ba6da488a",
         "signature": "3b2b4b9d0a292306a2b35f16d498506bb3a1f37c0631335e3d63fa648bfa1985",
         "affectsGlobalScope": false
       },
@@ -1952,13 +1952,18 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/strategies/jwt.strategy.ts": {
-        "version": "674cb9476860f34367f65b107b38954b0007621a9dfc511ca4a47a996258a49c",
+        "version": "6d5df8d3f3ed1d02388544fd5b396bab5d58b105288af4beb091832ecbb9d466",
         "signature": "b5670c5be2da5bbdc682e666117ea2fe51116899e466027f67d639e2925eab25",
         "affectsGlobalScope": false
       },
       "./src/server/users/users.controller.ts": {
         "version": "8bb7b756761d455dea0912ee1e65de71e76be6ff4fb6edca6b5eee819196cfd4",
         "signature": "f1b3225ea0590b01995fe7ac3f1fe49907fb1a86ce6bcc25d90a9f7cafafbcef",
+        "affectsGlobalScope": false
+      },
+      "../../../../../node_modules/@types/bcrypt/index.d.ts": {
+        "version": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
+        "signature": "18b9a9702d2fc7d3766b0c8124133c761ad25a9d767925005777eb2c2cd8aeba",
         "affectsGlobalScope": false
       },
       "./src/server/users/user.schema.ts": {
@@ -1982,12 +1987,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.module.ts": {
-        "version": "fa354194a4bccb467fa090add2b9092d20dcf4df51b0e9010e2a9548fa09ba6b",
+        "version": "4e12768da8b3fcb28676aa4f495abe54e9b9412ed41aba03413604646a359df2",
         "signature": "2e5d258cf85349b02b015c3f1b8873c152d182c3819a7ccc3aff16fc3037a5fc",
         "affectsGlobalScope": false
       },
       "./src/server/app/app.module.ts": {
-        "version": "e2721d9310790868899b2cfb2cb6c4d4415f2911563c71babc12d105d43d848d",
+        "version": "d33ebfc34cd6c33703d7438b1dc870b7c91acf08a0aba982db8bb55e8cbc99f6",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
         "affectsGlobalScope": false
       },
@@ -1999,196 +2004,6 @@
       "./src/server/authorization/action.enum.ts": {
         "version": "8082fcbdeba183629e7736429958e24e9f100df0f523636e62273d3ebaadb565",
         "signature": "396c92fbc8a6a78c9971186158e2fa4da695ffa462b31cf5842418a26a87893f",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/condition.d.ts": {
-        "version": "7d630f207a66aaa4ad2e3e5e6dac1dc40585ca012ea60cb8ccb292e425882899",
-        "signature": "7d630f207a66aaa4ad2e3e5e6dac1dc40585ca012ea60cb8ccb292e425882899",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/types.d.ts": {
-        "version": "cc42f8b3aeaf33e44edcc6ac736d81a1cfb10611832d25701ab96f389db4adf5",
-        "signature": "cc42f8b3aeaf33e44edcc6ac736d81a1cfb10611832d25701ab96f389db4adf5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/interpreter.d.ts": {
-        "version": "51858552745d17efa808ac92b37b0ad7a151e0a4dd2898987e0ddaac43ed875e",
-        "signature": "51858552745d17efa808ac92b37b0ad7a151e0a4dd2898987e0ddaac43ed875e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/translator.d.ts": {
-        "version": "3991442ac433a969fb5a453979cf62917d3997bedbc508525ae8e439523ef76b",
-        "signature": "3991442ac433a969fb5a453979cf62917d3997bedbc508525ae8e439523ef76b",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/builder.d.ts": {
-        "version": "e5d0c5dcdff8b4b7dbcc1b1d6d06fa2f0905a33869b8cd0b8d3dbd085d7b56d5",
-        "signature": "e5d0c5dcdff8b4b7dbcc1b1d6d06fa2f0905a33869b8cd0b8d3dbd085d7b56d5",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/utils.d.ts": {
-        "version": "9ec810b00db86ddc7c8d2ba8129ebcd7190f63828451de3ff3e52ab78a325633",
-        "signature": "9ec810b00db86ddc7c8d2ba8129ebcd7190f63828451de3ff3e52ab78a325633",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/parsers/objectqueryparser.d.ts": {
-        "version": "c4f0d4060a5d77f83e076c243cbd7f8ded91cf14e12b7a7c8dc282a474e35424",
-        "signature": "c4f0d4060a5d77f83e076c243cbd7f8ded91cf14e12b7a7c8dc282a474e35424",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/parsers/defaultinstructionparsers.d.ts": {
-        "version": "2fd85921792be2e04692ed1b26c468ca95aecad22527170bb5d47480258f2758",
-        "signature": "2fd85921792be2e04692ed1b26c468ca95aecad22527170bb5d47480258f2758",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/core/dist/types/index.d.ts": {
-        "version": "a942c714d3c3692650fa2359a6b237e5923dc73164cf3ab4f34805da0bd0e218",
-        "signature": "a942c714d3c3692650fa2359a6b237e5923dc73164cf3ab4f34805da0bd0e218",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/mongo/dist/types/types.d.ts": {
-        "version": "e7d2e8448600b8605597199b1d83c93db15d80367a03e0b58ac08ef76cf9d237",
-        "signature": "e7d2e8448600b8605597199b1d83c93db15d80367a03e0b58ac08ef76cf9d237",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/mongo/dist/types/instructions.d.ts": {
-        "version": "85ea7c3e9f3b7d93d11e8082e2aac95a0c56c28cad863108d94ac7660027e23c",
-        "signature": "85ea7c3e9f3b7d93d11e8082e2aac95a0c56c28cad863108d94ac7660027e23c",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/mongo/dist/types/mongoqueryparser.d.ts": {
-        "version": "6dd643f03f95644c51ade4d1569d4b6af7d701d7cc2b456b23c0ac27fae63aed",
-        "signature": "6dd643f03f95644c51ade4d1569d4b6af7d701d7cc2b456b23c0ac27fae63aed",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/mongo/dist/types/index.d.ts": {
-        "version": "87d444caec5135116657d8cfd09fc3a9a4a8bd1e375cc80325459de4a598f22e",
-        "signature": "87d444caec5135116657d8cfd09fc3a9a4a8bd1e375cc80325459de4a598f22e",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/js/dist/types/types.d.ts": {
-        "version": "1ecd2a7fd8ba4a1d18c4933a2216b4ffc1fcbc5f97ce6cbc55f5588b092dcf50",
-        "signature": "1ecd2a7fd8ba4a1d18c4933a2216b4ffc1fcbc5f97ce6cbc55f5588b092dcf50",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/js/dist/types/utils.d.ts": {
-        "version": "272aa6064ef79f6d561e1111cc0269f0daffafef6550c59d42f4b235d362de71",
-        "signature": "272aa6064ef79f6d561e1111cc0269f0daffafef6550c59d42f4b235d362de71",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/js/dist/types/interpreters.d.ts": {
-        "version": "d3faf237654bb007931951f8a783b8c1982a3a62659ce6833d23eefd1bf2a7ec",
-        "signature": "d3faf237654bb007931951f8a783b8c1982a3a62659ce6833d23eefd1bf2a7ec",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/js/dist/types/interpreter.d.ts": {
-        "version": "9cb4625b02253cf3c0818f59c70d19c542175ceba18ec1e18318de0bc0932727",
-        "signature": "9cb4625b02253cf3c0818f59c70d19c542175ceba18ec1e18318de0bc0932727",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/js/dist/types/defaults.d.ts": {
-        "version": "45c48571bfd80f129ef9e5f143c7dc8f228b381d87af7cb9a796f4865b30bc33",
-        "signature": "45c48571bfd80f129ef9e5f143c7dc8f228b381d87af7cb9a796f4865b30bc33",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/js/dist/types/index.d.ts": {
-        "version": "e9da0698eb51c586e4f210be87cd7ce957d403517dba89b3697fec2f539413a4",
-        "signature": "e9da0698eb51c586e4f210be87cd7ce957d403517dba89b3697fec2f539413a4",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/mongo2js/dist/types/factory.d.ts": {
-        "version": "5a85c6c8966322f562748f32a0e30ed212fa08661d4d8759ee56e660fd04be9c",
-        "signature": "5a85c6c8966322f562748f32a0e30ed212fa08661d4d8759ee56e660fd04be9c",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@ucast/mongo2js/dist/types/index.d.ts": {
-        "version": "966f01c60963e2c2e1a455d187feff969fd13768dda55542d77bb57e266910b2",
-        "signature": "966f01c60963e2c2e1a455d187feff969fd13768dda55542d77bb57e266910b2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/hkt.d.ts": {
-        "version": "627fd523a87c691c02329f1ad7985582b354400cebe9a7a83092a200bf782ad2",
-        "signature": "627fd523a87c691c02329f1ad7985582b354400cebe9a7a83092a200bf782ad2",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/types.d.ts": {
-        "version": "9c7d644eca08297ab9c839abf0338460e8f4ab918ec46b3caf05205a9a1b2502",
-        "signature": "9c7d644eca08297ab9c839abf0338460e8f4ab918ec46b3caf05205a9a1b2502",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/rawrule.d.ts": {
-        "version": "6929240c1a63a9b345c994ae24ffb36a22ec635289edbd022cdc56cc0d594f36",
-        "signature": "6929240c1a63a9b345c994ae24ffb36a22ec635289edbd022cdc56cc0d594f36",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/rule.d.ts": {
-        "version": "97ddce16eafb5f794b5d9ddb5e861303f661a25f25e47e970f228b470c4b7515",
-        "signature": "97ddce16eafb5f794b5d9ddb5e861303f661a25f25e47e970f228b470c4b7515",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/structures/linkeditem.d.ts": {
-        "version": "3b3218143ce54069b0086f62c7e8113b66eaa44c5da6e18108be06cbc5634cf3",
-        "signature": "3b3218143ce54069b0086f62c7e8113b66eaa44c5da6e18108be06cbc5634cf3",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/ruleindex.d.ts": {
-        "version": "62463c50c0420bd8075d7ccfaa2af09678daf9bcf0656e330cd70a1fd93ecde7",
-        "signature": "62463c50c0420bd8075d7ccfaa2af09678daf9bcf0656e330cd70a1fd93ecde7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/pureability.d.ts": {
-        "version": "428a327108f2773c5b2ae9a90ba0ea982445cc5e2d26f2f5667be302349cfe47",
-        "signature": "428a327108f2773c5b2ae9a90ba0ea982445cc5e2d26f2f5667be302349cfe47",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts": {
-        "version": "0c16a563469daf74268c80401a3f29978a19a4db692b15beee5217bf46352644",
-        "signature": "0c16a563469daf74268c80401a3f29978a19a4db692b15beee5217bf46352644",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/ability.d.ts": {
-        "version": "60b9256ce72e1710a29684890f590cbf3290eb3c57509321d2d893ab535e69a7",
-        "signature": "60b9256ce72e1710a29684890f590cbf3290eb3c57509321d2d893ab535e69a7",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/abilitybuilder.d.ts": {
-        "version": "3af0cffc6fe04c809cbe3ba528427dbacf8920ec03ece4fd0b7525d8737a1497",
-        "signature": "3af0cffc6fe04c809cbe3ba528427dbacf8920ec03ece4fd0b7525d8737a1497",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/forbiddenerror.d.ts": {
-        "version": "738c8ddacd9e82574a8d80c87b9232acd477d3d7464b15cb53bedb2288b348e6",
-        "signature": "738c8ddacd9e82574a8d80c87b9232acd477d3d7464b15cb53bedb2288b348e6",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/matchers/field.d.ts": {
-        "version": "bed94765baccbd1c3a797d09836ae7ecd5a3408cb7bcf8d39262f970bedc3a77",
-        "signature": "bed94765baccbd1c3a797d09836ae7ecd5a3408cb7bcf8d39262f970bedc3a77",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/utils.d.ts": {
-        "version": "b2f8fe82bf239e76dbc6409267421d9d9a9df6d308b465679726927085cc1b0a",
-        "signature": "b2f8fe82bf239e76dbc6409267421d9d9a9df6d308b465679726927085cc1b0a",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/dist/types/index.d.ts": {
-        "version": "a7ad6b8aa8e5efd33cb837fea00b8d374daf92959e3001db9a91f9e4fd89c098",
-        "signature": "a7ad6b8aa8e5efd33cb837fea00b8d374daf92959e3001db9a91f9e4fd89c098",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/@casl/ability/index.d.ts": {
-        "version": "33ca55bdff472d604b62d87cf15440de57d634b27da84b457ae13ab106414a77",
-        "signature": "33ca55bdff472d604b62d87cf15440de57d634b27da84b457ae13ab106414a77",
-        "affectsGlobalScope": false
-      },
-      "./src/server/authorization/casl/casl-ability.factory.ts": {
-        "version": "d4e854020e998c56062d7d541c36922e37527b12b5dc86ba816af45c3962da3e",
-        "signature": "b9204475e53b6f5547826667959e06d2afb237e78952719436ad4ed6af217799",
-        "affectsGlobalScope": false
-      },
-      "./src/server/authorization/casl/casl.module.ts": {
-        "version": "39ebb9fa0bb6d98f07baf13ba7b826e39ac6c292229a03132a701119f17f332f",
-        "signature": "c37ae6eb5dbd23f5dfe41605cfbaaf6e61e5cc5ef9da152b292a1ca56f4e90be",
         "affectsGlobalScope": false
       },
       "./src/server/interfaces/jwt-payload.interface.ts": {
@@ -2207,8 +2022,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@babel/types/lib/index.d.ts": {
-        "version": "7b5e26235ce4dcc952636ac7f5f881998ee0c82647e83afe028f652fd7748504",
-        "signature": "7b5e26235ce4dcc952636ac7f5f881998ee0c82647e83afe028f652fd7748504",
+        "version": "368d98ad7e5cb65c247aa95c97e86b3812b4d91a74bafa6b0d4420d1ce91557c",
+        "signature": "368d98ad7e5cb65c247aa95c97e86b3812b4d91a74bafa6b0d4420d1ce91557c",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/babel__generator/index.d.ts": {
@@ -2252,8 +2067,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/estree/index.d.ts": {
-        "version": "6a38e250306ceccbab257d11b846d5bd12491157d20901fa01afe4050c93c1b5",
-        "signature": "6a38e250306ceccbab257d11b846d5bd12491157d20901fa01afe4050c93c1b5",
+        "version": "745a853d60bf782583a58584f59e202cae5c7a898b0c92696442602a3ef17a87",
+        "signature": "745a853d60bf782583a58584f59e202cae5c7a898b0c92696442602a3ef17a87",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/eslint/index.d.ts": {
@@ -2342,8 +2157,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/prettier/index.d.ts": {
-        "version": "d065397724b88df62e79aa428d0844e94d90c8754608dfee0685dcdbbe7b25d9",
-        "signature": "d065397724b88df62e79aa428d0844e94d90c8754608dfee0685dcdbbe7b25d9",
+        "version": "a0ff15c451ab2827c785924230942fa2ab13141530688b824948d6b43bdb2e07",
+        "signature": "a0ff15c451ab2827c785924230942fa2ab13141530688b824948d6b43bdb2e07",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/prop-types/index.d.ts": {
@@ -2362,8 +2177,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/react/index.d.ts": {
-        "version": "9692a141afe8f30a5542189ffceb1a043f3d1fbaf0e07d28a8e9ac6d32c4cb01",
-        "signature": "9692a141afe8f30a5542189ffceb1a043f3d1fbaf0e07d28a8e9ac6d32c4cb01",
+        "version": "d56c6438290d31f32f1bfb70afe7496098f76c6e7ee1c9eb6b4ea6e9b7b928ca",
+        "signature": "d56c6438290d31f32f1bfb70afe7496098f76c6e7ee1c9eb6b4ea6e9b7b928ca",
         "affectsGlobalScope": true
       },
       "./node_modules/@types/source-list-map/index.d.ts": {
@@ -2496,84 +2311,64 @@
         "signature": "5a2a25feca554a8f289ed62114771b8c63d89f2b58325e2f8b7043e4e0160d11",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/accepts/index.d.ts": {
-        "version": "6738101ae8e56cd3879ab3f99630ada7d78097fc9fd334df7e766216778ca219",
-        "signature": "6738101ae8e56cd3879ab3f99630ada7d78097fc9fd334df7e766216778ca219",
+      "../../../../node_modules/@types/react/global.d.ts": {
+        "version": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "signature": "ecf78e637f710f340ec08d5d92b3f31b134a46a4fcf2e758690d8c46ce62cba6",
+        "affectsGlobalScope": true
+      },
+      "../../../../node_modules/@types/react/node_modules/csstype/index.d.ts": {
+        "version": "0a6f28e1d77b99b0ef7da2f0bf50f301ea8a7eb7b4f573e458e725452a477bd2",
+        "signature": "0a6f28e1d77b99b0ef7da2f0bf50f301ea8a7eb7b4f573e458e725452a477bd2",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/content-disposition/index.d.ts": {
-        "version": "e51de415deb172e3595b5194113cb82c416822bcce55d9a8ca0d8fac57510546",
-        "signature": "e51de415deb172e3595b5194113cb82c416822bcce55d9a8ca0d8fac57510546",
+      "../../../../node_modules/@types/prop-types/index.d.ts": {
+        "version": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
+        "signature": "a7e32dcb90bf0c1b7a1e4ac89b0f7747cbcba25e7beddc1ebf17be1e161842ad",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/keygrip/index.d.ts": {
-        "version": "ce013414484233b24f42c0fcfca48a60bb66ab4e13c82953662305e8f1ee4925",
-        "signature": "ce013414484233b24f42c0fcfca48a60bb66ab4e13c82953662305e8f1ee4925",
+      "../../../../node_modules/@types/scheduler/tracing.d.ts": {
+        "version": "f5a8b384f182b3851cec3596ccc96cb7464f8d3469f48c74bf2befb782a19de5",
+        "signature": "f5a8b384f182b3851cec3596ccc96cb7464f8d3469f48c74bf2befb782a19de5",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/express/index.d.ts": {
-        "version": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
-        "signature": "3b05c396564e51753e921e1cc4aae1cf7cd9be53c891cf2e81fa29f11c0bd373",
+      "../../../../node_modules/@types/react/index.d.ts": {
+        "version": "5d708266116e778d6a4140fca2ac36f71d99b4c68bc3be63a45ba8bf5ade5348",
+        "signature": "5d708266116e778d6a4140fca2ac36f71d99b4c68bc3be63a45ba8bf5ade5348",
+        "affectsGlobalScope": true
+      },
+      "../../../../node_modules/@types/react-transition-group/transition.d.ts": {
+        "version": "92decc8ffcee1e19965486f4c7440ab3fee1d6dfde4054eb308fc57b466cc12a",
+        "signature": "92decc8ffcee1e19965486f4c7440ab3fee1d6dfde4054eb308fc57b466cc12a",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/connect/index.d.ts": {
-        "version": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
-        "signature": "81c14b89fa607b86dd726e2e3e91360cf8155ce97468404324d404a5bd65b2eb",
+      "../../../../node_modules/@types/react-transition-group/csstransition.d.ts": {
+        "version": "1429ac61feca4fdc074f60eb9b07f8b9e2c0ef9335c26e18d05f8ab67653f72b",
+        "signature": "1429ac61feca4fdc074f60eb9b07f8b9e2c0ef9335c26e18d05f8ab67653f72b",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/cookies/index.d.ts": {
-        "version": "00574a8bdd163e2888014e23e7b1c42a24cecdf11c0ca2181e2de0541a3b4514",
-        "signature": "00574a8bdd163e2888014e23e7b1c42a24cecdf11c0ca2181e2de0541a3b4514",
+      "../../../../node_modules/@types/react-transition-group/transitiongroup.d.ts": {
+        "version": "e0db728e68cfb650b729496d5b1cb436930f593b6bf5b4ad692c18ebe40e9ee0",
+        "signature": "e0db728e68cfb650b729496d5b1cb436930f593b6bf5b4ad692c18ebe40e9ee0",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/fs-capacitor/index.d.ts": {
-        "version": "ca106dc27136bcfabaf1e0b261e9721e7c8119c7ff9dfd5c96ec2211cff926bd",
-        "signature": "ca106dc27136bcfabaf1e0b261e9721e7c8119c7ff9dfd5c96ec2211cff926bd",
+      "../../../../node_modules/@types/react-transition-group/switchtransition.d.ts": {
+        "version": "9155a57743465e6540e3e81a73f3d0c0630a5c5ff80e1be6232fbd46bcb6dc90",
+        "signature": "9155a57743465e6540e3e81a73f3d0c0630a5c5ff80e1be6232fbd46bcb6dc90",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/http-assert/index.d.ts": {
-        "version": "97fd9fd06a67deac133ddeac0b4a266db5eede2e40ec6ad67b31b0b862559643",
-        "signature": "97fd9fd06a67deac133ddeac0b4a266db5eede2e40ec6ad67b31b0b862559643",
+      "../../../../node_modules/@types/react-transition-group/config.d.ts": {
+        "version": "960a68ced7820108787135bdae5265d2cc4b511b7dcfd5b8f213432a8483daf1",
+        "signature": "960a68ced7820108787135bdae5265d2cc4b511b7dcfd5b8f213432a8483daf1",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/http-errors/index.d.ts": {
-        "version": "85e7ed2eea56d4ecaf94420c82f541dd30ed657f4b82efc34f6377c774db7fc8",
-        "signature": "85e7ed2eea56d4ecaf94420c82f541dd30ed657f4b82efc34f6377c774db7fc8",
+      "../../../../node_modules/@types/react-transition-group/index.d.ts": {
+        "version": "ed3b711f533ddb3a5451f4c4bb0df3a0b95e9d0433b3b7834644dd1718d06d31",
+        "signature": "ed3b711f533ddb3a5451f4c4bb0df3a0b95e9d0433b3b7834644dd1718d06d31",
         "affectsGlobalScope": false
       },
-      "../../../../node_modules/@types/koa-compose/index.d.ts": {
-        "version": "5006668996956580886022c05108e32c742823e1b5652aff7914917233731518",
-        "signature": "5006668996956580886022c05108e32c742823e1b5652aff7914917233731518",
-        "affectsGlobalScope": false
-      },
-      "../../../../node_modules/@types/koa/index.d.ts": {
-        "version": "7a8d7a2d241556d322c18e6e069d56a5bb4f49ad26d39cde762c2817f75fc3ce",
-        "signature": "7a8d7a2d241556d322c18e6e069d56a5bb4f49ad26d39cde762c2817f75fc3ce",
-        "affectsGlobalScope": false
-      },
-      "../../../../node_modules/@types/long/index.d.ts": {
-        "version": "e8465811693dfe4e96ef2b3dffda539d6edfe896961b7af37b44db2c0e48532b",
-        "signature": "e8465811693dfe4e96ef2b3dffda539d6edfe896961b7af37b44db2c0e48532b",
-        "affectsGlobalScope": false
-      },
-      "../../../../node_modules/form-data/index.d.ts": {
-        "version": "736097ddbb2903bef918bb3b5811ef1c9c5656f2a73bd39b22a91b9cc2525e50",
-        "signature": "736097ddbb2903bef918bb3b5811ef1c9c5656f2a73bd39b22a91b9cc2525e50",
-        "affectsGlobalScope": false
-      },
-      "../../../../node_modules/@types/node-fetch/externals.d.ts": {
-        "version": "972f1e91dab93b182624a17eeed02f683b8cb3fefbda7b689cc84570029d5f73",
-        "signature": "972f1e91dab93b182624a17eeed02f683b8cb3fefbda7b689cc84570029d5f73",
-        "affectsGlobalScope": false
-      },
-      "../../../../node_modules/@types/node-fetch/index.d.ts": {
-        "version": "f51382950fa81e3a54e9fd9f343fe583cfbb221f15a51936e12411699347effe",
-        "signature": "f51382950fa81e3a54e9fd9f343fe583cfbb221f15a51936e12411699347effe",
-        "affectsGlobalScope": false
-      },
-      "../../../../node_modules/@types/ws/index.d.ts": {
-        "version": "c6e185824cae1ddea6706f4256d4bd499e8e9a37ed10689946c22984d68798c3",
-        "signature": "c6e185824cae1ddea6706f4256d4bd499e8e9a37ed10689946c22984d68798c3",
+      "../../../../node_modules/@types/scheduler/index.d.ts": {
+        "version": "3169db033165677f1d414baf0c82ba27801089ca1b66d97af464512a47df31b5",
+        "signature": "3169db033165677f1d414baf0c82ba27801089ca1b66d97af464512a47df31b5",
         "affectsGlobalScope": false
       }
     },
@@ -2594,144 +2389,35 @@
       "configFilePath": "./tsconfig.build.json"
     },
     "referencedMap": {
-      "../../../../node_modules/@types/accepts/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/csstransition.d.ts": [
+        "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/connect/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/index.d.ts": [
+        "../../../../node_modules/@types/react-transition-group/config.d.ts",
+        "../../../../node_modules/@types/react-transition-group/csstransition.d.ts",
+        "../../../../node_modules/@types/react-transition-group/switchtransition.d.ts",
+        "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+        "../../../../node_modules/@types/react-transition-group/transitiongroup.d.ts"
       ],
-      "../../../../node_modules/@types/cookies/index.d.ts": [
-        "../../../../node_modules/@types/keygrip/index.d.ts",
-        "./node_modules/@types/connect/index.d.ts",
-        "./node_modules/@types/express/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/switchtransition.d.ts": [
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/express/index.d.ts": [
-        "./node_modules/@types/body-parser/index.d.ts",
-        "./node_modules/@types/express-serve-static-core/index.d.ts",
-        "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/serve-static/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/transition.d.ts": [
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/fs-capacitor/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/transitiongroup.d.ts": [
+        "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/koa-compose/index.d.ts": [
-        "../../../../node_modules/@types/koa/index.d.ts"
-      ],
-      "../../../../node_modules/@types/koa/index.d.ts": [
-        "../../../../node_modules/@types/accepts/index.d.ts",
-        "../../../../node_modules/@types/content-disposition/index.d.ts",
-        "../../../../node_modules/@types/cookies/index.d.ts",
-        "../../../../node_modules/@types/http-assert/index.d.ts",
-        "../../../../node_modules/@types/http-errors/index.d.ts",
-        "../../../../node_modules/@types/keygrip/index.d.ts",
-        "../../../../node_modules/@types/koa-compose/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/http2.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/net.d.ts",
-        "./node_modules/@types/node/querystring.d.ts",
-        "./node_modules/@types/node/url.d.ts"
-      ],
-      "../../../../node_modules/@types/node-fetch/index.d.ts": [
-        "../../../../node_modules/@types/node-fetch/externals.d.ts",
-        "../../../../node_modules/form-data/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/url.d.ts"
-      ],
-      "../../../../node_modules/@types/ws/index.d.ts": [
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/https.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/net.d.ts",
-        "./node_modules/@types/node/stream.d.ts",
-        "./node_modules/@types/node/tls.d.ts",
-        "./node_modules/@types/node/url.d.ts",
-        "./node_modules/@types/node/zlib.d.ts"
-      ],
-      "../../../../node_modules/form-data/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/stream.d.ts"
+      "../../../../node_modules/@types/react/index.d.ts": [
+        "../../../../node_modules/@types/react/global.d.ts",
+        "../../../../node_modules/@types/scheduler/tracing.d.ts",
+        "./node_modules/@types/prop-types/index.d.ts",
+        "./node_modules/csstype/index.d.ts"
       ],
       "./node_modules/@babel/parser/typings/babel-parser.d.ts": [
         "./node_modules/@babel/types/lib/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/ability.d.ts": [
-        "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts",
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/abilitybuilder.d.ts": [
-        "./node_modules/@casl/ability/dist/types/ability.d.ts",
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/forbiddenerror.d.ts": [
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/index.d.ts": [
-        "./node_modules/@casl/ability/dist/types/ability.d.ts",
-        "./node_modules/@casl/ability/dist/types/abilitybuilder.d.ts",
-        "./node_modules/@casl/ability/dist/types/forbiddenerror.d.ts",
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts",
-        "./node_modules/@casl/ability/dist/types/matchers/field.d.ts",
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts",
-        "./node_modules/@casl/ability/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts": [
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/matchers/field.d.ts": [
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/pureability.d.ts": [
-        "./node_modules/@casl/ability/dist/types/rule.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/rawrule.d.ts": [
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/rule.d.ts": [
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/ruleindex.d.ts": [
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/rule.d.ts",
-        "./node_modules/@casl/ability/dist/types/structures/linkeditem.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/types.d.ts": [
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/utils.d.ts": [
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/index.d.ts": [
-        "./node_modules/@casl/ability/dist/types/index.d.ts"
       ],
       "./node_modules/@nestjs/common/cache/cache.module.d.ts": [
         "./node_modules/@nestjs/common/cache/interfaces/cache-module.interface.d.ts",
@@ -3913,96 +3599,6 @@
       ],
       "./node_modules/@types/yargs/index.d.ts": [
         "./node_modules/@types/yargs-parser/index.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/builder.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/index.d.ts": [
-        "./node_modules/@ucast/core/dist/types/builder.d.ts",
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/interpreter.d.ts",
-        "./node_modules/@ucast/core/dist/types/parsers/defaultinstructionparsers.d.ts",
-        "./node_modules/@ucast/core/dist/types/parsers/objectqueryparser.d.ts",
-        "./node_modules/@ucast/core/dist/types/translator.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts",
-        "./node_modules/@ucast/core/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/interpreter.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/parsers/defaultinstructionparsers.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/parsers/objectqueryparser.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/translator.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/interpreter.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/types.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/utils.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/defaults.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/index.d.ts": [
-        "./node_modules/@ucast/js/dist/types/defaults.d.ts",
-        "./node_modules/@ucast/js/dist/types/interpreter.d.ts",
-        "./node_modules/@ucast/js/dist/types/interpreters.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/interpreter.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts",
-        "./node_modules/@ucast/js/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/interpreters.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts",
-        "./node_modules/@ucast/js/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/types.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/utils.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/index.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/instructions.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/mongoqueryparser.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/instructions.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/mongoqueryparser.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/types.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts"
-      ],
-      "./node_modules/@ucast/mongo2js/dist/types/factory.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/index.d.ts"
-      ],
-      "./node_modules/@ucast/mongo2js/dist/types/index.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/factory.d.ts"
       ],
       "./node_modules/jest-diff/build/difflines.d.ts": [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
@@ -4329,9 +3925,9 @@
         "./src/server/app/app.service.ts",
         "./src/server/auth/filters/mainjwtfilter.filter.ts",
         "./src/server/auth/guards/jwt_authguard.guard.ts",
-        "./src/server/help_stuff/role.enum.ts",
-        "./src/server/help_stuff/roles.decorator.ts",
-        "./src/server/help_stuff/roles.guard.ts"
+        "./src/server/try_roles/role.enum.ts",
+        "./src/server/try_roles/roles.decorator.ts",
+        "./src/server/try_roles/roles.guard.ts"
       ],
       "./src/server/app/app.module.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -4339,6 +3935,7 @@
         "./src/server/app/app.controller.ts",
         "./src/server/app/app.service.ts",
         "./src/server/auth/auth.module.ts",
+        "./src/server/try_roles/roles.guard.ts",
         "./src/server/users/users.module.ts"
       ],
       "./src/server/app/app.service.ts": [
@@ -4369,14 +3966,14 @@
         "./src/server/auth/auth.service.ts",
         "./src/server/auth/strategies/jwt.strategy.ts",
         "./src/server/auth/strategies/local.strategy.ts",
-        "./src/server/help_stuff/constants.ts",
+        "./src/server/try_roles/constants.ts",
         "./src/server/users/users.module.ts"
       ],
       "./src/server/auth/auth.service.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/jwt/index.d.ts",
         "./src/server/auth/interfaces/jwt-payload.interface.ts",
-        "./src/server/help_stuff/constants.ts",
+        "./src/server/try_roles/constants.ts",
         "./src/server/users/dto/login-user.dto.ts",
         "./src/server/users/iuser.interface.ts",
         "./src/server/users/users.service.ts"
@@ -4412,7 +4009,7 @@
         "./node_modules/@types/passport-jwt/index.d.ts",
         "./src/server/auth/auth.service.ts",
         "./src/server/auth/interfaces/jwt-payload.interface.ts",
-        "./src/server/help_stuff/constants.ts"
+        "./src/server/try_roles/constants.ts"
       ],
       "./src/server/auth/strategies/local.strategy.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -4422,17 +4019,15 @@
         "./src/server/users/dto/create-user.dto.ts",
         "./src/server/users/dto/login-user.dto.ts"
       ],
-      "./src/server/authorization/casl/casl-ability.factory.ts": [
-        "./node_modules/@casl/ability/index.d.ts",
+      "./src/server/try_roles/roles.decorator.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
-        "./src/server/authorization/action.enum.ts",
-        "./src/server/authorization/role.enum.ts",
-        "./src/server/users/dto/create-user.dto.ts",
-        "./src/server/users/iuser.interface.ts"
+        "./src/server/try_roles/role.enum.ts"
       ],
-      "./src/server/authorization/casl/casl.module.ts": [
+      "./src/server/try_roles/roles.guard.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
-        "./src/server/authorization/casl/casl-ability.factory.ts"
+        "./node_modules/@nestjs/core/index.d.ts",
+        "./src/server/try_roles/role.enum.ts",
+        "./src/server/try_roles/roles.decorator.ts"
       ],
       "./src/server/users/dto/create-user.dto.ts": [
         "./src/server/authorization/role.enum.ts"
@@ -4442,6 +4037,7 @@
         "./src/server/authorization/role.enum.ts"
       ],
       "./src/server/users/user.schema.ts": [
+        "../../../../../node_modules/@types/bcrypt/index.d.ts",
         "./node_modules/mongoose/index.d.ts",
         "./src/server/authorization/role.enum.ts",
         "./src/server/users/iuser.interface.ts"
@@ -4469,144 +4065,35 @@
       ]
     },
     "exportedModulesMap": {
-      "../../../../node_modules/@types/accepts/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/csstransition.d.ts": [
+        "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/connect/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/index.d.ts": [
+        "../../../../node_modules/@types/react-transition-group/config.d.ts",
+        "../../../../node_modules/@types/react-transition-group/csstransition.d.ts",
+        "../../../../node_modules/@types/react-transition-group/switchtransition.d.ts",
+        "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+        "../../../../node_modules/@types/react-transition-group/transitiongroup.d.ts"
       ],
-      "../../../../node_modules/@types/cookies/index.d.ts": [
-        "../../../../node_modules/@types/keygrip/index.d.ts",
-        "./node_modules/@types/connect/index.d.ts",
-        "./node_modules/@types/express/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/switchtransition.d.ts": [
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/express/index.d.ts": [
-        "./node_modules/@types/body-parser/index.d.ts",
-        "./node_modules/@types/express-serve-static-core/index.d.ts",
-        "./node_modules/@types/qs/index.d.ts",
-        "./node_modules/@types/serve-static/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/transition.d.ts": [
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/fs-capacitor/index.d.ts": [
-        "./node_modules/@types/node/fs.d.ts",
-        "./node_modules/@types/node/index.d.ts"
+      "../../../../node_modules/@types/react-transition-group/transitiongroup.d.ts": [
+        "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+        "../../../../node_modules/@types/react/index.d.ts"
       ],
-      "../../../../node_modules/@types/koa-compose/index.d.ts": [
-        "../../../../node_modules/@types/koa/index.d.ts"
-      ],
-      "../../../../node_modules/@types/koa/index.d.ts": [
-        "../../../../node_modules/@types/accepts/index.d.ts",
-        "../../../../node_modules/@types/content-disposition/index.d.ts",
-        "../../../../node_modules/@types/cookies/index.d.ts",
-        "../../../../node_modules/@types/http-assert/index.d.ts",
-        "../../../../node_modules/@types/http-errors/index.d.ts",
-        "../../../../node_modules/@types/keygrip/index.d.ts",
-        "../../../../node_modules/@types/koa-compose/index.d.ts",
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/http2.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/net.d.ts",
-        "./node_modules/@types/node/querystring.d.ts",
-        "./node_modules/@types/node/url.d.ts"
-      ],
-      "../../../../node_modules/@types/node-fetch/index.d.ts": [
-        "../../../../node_modules/@types/node-fetch/externals.d.ts",
-        "../../../../node_modules/form-data/index.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/url.d.ts"
-      ],
-      "../../../../node_modules/@types/ws/index.d.ts": [
-        "./node_modules/@types/node/events.d.ts",
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/https.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/net.d.ts",
-        "./node_modules/@types/node/stream.d.ts",
-        "./node_modules/@types/node/tls.d.ts",
-        "./node_modules/@types/node/url.d.ts",
-        "./node_modules/@types/node/zlib.d.ts"
-      ],
-      "../../../../node_modules/form-data/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/stream.d.ts"
+      "../../../../node_modules/@types/react/index.d.ts": [
+        "../../../../node_modules/@types/react/global.d.ts",
+        "../../../../node_modules/@types/scheduler/tracing.d.ts",
+        "./node_modules/@types/prop-types/index.d.ts",
+        "./node_modules/csstype/index.d.ts"
       ],
       "./node_modules/@babel/parser/typings/babel-parser.d.ts": [
         "./node_modules/@babel/types/lib/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/ability.d.ts": [
-        "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts",
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/abilitybuilder.d.ts": [
-        "./node_modules/@casl/ability/dist/types/ability.d.ts",
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/forbiddenerror.d.ts": [
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/index.d.ts": [
-        "./node_modules/@casl/ability/dist/types/ability.d.ts",
-        "./node_modules/@casl/ability/dist/types/abilitybuilder.d.ts",
-        "./node_modules/@casl/ability/dist/types/forbiddenerror.d.ts",
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts",
-        "./node_modules/@casl/ability/dist/types/matchers/field.d.ts",
-        "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts",
-        "./node_modules/@casl/ability/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts": [
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/matchers/field.d.ts": [
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/pureability.d.ts": [
-        "./node_modules/@casl/ability/dist/types/rule.d.ts",
-        "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/rawrule.d.ts": [
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/rule.d.ts": [
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/ruleindex.d.ts": [
-        "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-        "./node_modules/@casl/ability/dist/types/rule.d.ts",
-        "./node_modules/@casl/ability/dist/types/structures/linkeditem.d.ts",
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/types.d.ts": [
-        "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/index.d.ts"
-      ],
-      "./node_modules/@casl/ability/dist/types/utils.d.ts": [
-        "./node_modules/@casl/ability/dist/types/types.d.ts"
-      ],
-      "./node_modules/@casl/ability/index.d.ts": [
-        "./node_modules/@casl/ability/dist/types/index.d.ts"
       ],
       "./node_modules/@nestjs/common/cache/cache.module.d.ts": [
         "./node_modules/@nestjs/common/cache/interfaces/cache-module.interface.d.ts",
@@ -5788,96 +5275,6 @@
       ],
       "./node_modules/@types/yargs/index.d.ts": [
         "./node_modules/@types/yargs-parser/index.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/builder.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/index.d.ts": [
-        "./node_modules/@ucast/core/dist/types/builder.d.ts",
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/interpreter.d.ts",
-        "./node_modules/@ucast/core/dist/types/parsers/defaultinstructionparsers.d.ts",
-        "./node_modules/@ucast/core/dist/types/parsers/objectqueryparser.d.ts",
-        "./node_modules/@ucast/core/dist/types/translator.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts",
-        "./node_modules/@ucast/core/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/interpreter.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/parsers/defaultinstructionparsers.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/parsers/objectqueryparser.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/translator.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts",
-        "./node_modules/@ucast/core/dist/types/interpreter.d.ts",
-        "./node_modules/@ucast/core/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/types.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/core/dist/types/utils.d.ts": [
-        "./node_modules/@ucast/core/dist/types/condition.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/defaults.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/index.d.ts": [
-        "./node_modules/@ucast/js/dist/types/defaults.d.ts",
-        "./node_modules/@ucast/js/dist/types/interpreter.d.ts",
-        "./node_modules/@ucast/js/dist/types/interpreters.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/interpreter.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts",
-        "./node_modules/@ucast/js/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/interpreters.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts",
-        "./node_modules/@ucast/js/dist/types/utils.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/types.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts"
-      ],
-      "./node_modules/@ucast/js/dist/types/utils.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/index.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/instructions.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/mongoqueryparser.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/instructions.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/mongoqueryparser.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/types.d.ts"
-      ],
-      "./node_modules/@ucast/mongo/dist/types/types.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts"
-      ],
-      "./node_modules/@ucast/mongo2js/dist/types/factory.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/index.d.ts"
-      ],
-      "./node_modules/@ucast/mongo2js/dist/types/index.d.ts": [
-        "./node_modules/@ucast/core/dist/types/index.d.ts",
-        "./node_modules/@ucast/js/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo/dist/types/index.d.ts",
-        "./node_modules/@ucast/mongo2js/dist/types/factory.d.ts"
       ],
       "./node_modules/jest-diff/build/difflines.d.ts": [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
@@ -6242,11 +5639,13 @@
         "./src/server/auth/auth.service.ts",
         "./src/server/users/dto/create-user.dto.ts"
       ],
-      "./src/server/authorization/casl/casl-ability.factory.ts": [
-        "./node_modules/@casl/ability/index.d.ts",
-        "./src/server/authorization/action.enum.ts",
-        "./src/server/users/dto/create-user.dto.ts",
-        "./src/server/users/iuser.interface.ts"
+      "./src/server/try_roles/roles.decorator.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./src/server/try_roles/role.enum.ts"
+      ],
+      "./src/server/try_roles/roles.guard.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/core/index.d.ts"
       ],
       "./src/server/users/dto/create-user.dto.ts": [
         "./src/server/authorization/role.enum.ts"
@@ -6270,39 +5669,20 @@
       ]
     },
     "semanticDiagnosticsPerFile": [
-      "../../../../node_modules/@types/accepts/index.d.ts",
-      "../../../../node_modules/@types/connect/index.d.ts",
-      "../../../../node_modules/@types/content-disposition/index.d.ts",
-      "../../../../node_modules/@types/cookies/index.d.ts",
-      "../../../../node_modules/@types/express/index.d.ts",
-      "../../../../node_modules/@types/fs-capacitor/index.d.ts",
-      "../../../../node_modules/@types/http-assert/index.d.ts",
-      "../../../../node_modules/@types/http-errors/index.d.ts",
-      "../../../../node_modules/@types/keygrip/index.d.ts",
-      "../../../../node_modules/@types/koa-compose/index.d.ts",
-      "../../../../node_modules/@types/koa/index.d.ts",
-      "../../../../node_modules/@types/long/index.d.ts",
-      "../../../../node_modules/@types/node-fetch/externals.d.ts",
-      "../../../../node_modules/@types/node-fetch/index.d.ts",
-      "../../../../node_modules/@types/ws/index.d.ts",
-      "../../../../node_modules/form-data/index.d.ts",
+      "../../../../node_modules/@types/prop-types/index.d.ts",
+      "../../../../node_modules/@types/react-transition-group/config.d.ts",
+      "../../../../node_modules/@types/react-transition-group/csstransition.d.ts",
+      "../../../../node_modules/@types/react-transition-group/index.d.ts",
+      "../../../../node_modules/@types/react-transition-group/switchtransition.d.ts",
+      "../../../../node_modules/@types/react-transition-group/transition.d.ts",
+      "../../../../node_modules/@types/react-transition-group/transitiongroup.d.ts",
+      "../../../../node_modules/@types/react/global.d.ts",
+      "../../../../node_modules/@types/react/index.d.ts",
+      "../../../../node_modules/@types/react/node_modules/csstype/index.d.ts",
+      "../../../../node_modules/@types/scheduler/index.d.ts",
+      "../../../../node_modules/@types/scheduler/tracing.d.ts",
       "./node_modules/@babel/parser/typings/babel-parser.d.ts",
       "./node_modules/@babel/types/lib/index.d.ts",
-      "./node_modules/@casl/ability/dist/types/ability.d.ts",
-      "./node_modules/@casl/ability/dist/types/abilitybuilder.d.ts",
-      "./node_modules/@casl/ability/dist/types/forbiddenerror.d.ts",
-      "./node_modules/@casl/ability/dist/types/hkt.d.ts",
-      "./node_modules/@casl/ability/dist/types/index.d.ts",
-      "./node_modules/@casl/ability/dist/types/matchers/conditions.d.ts",
-      "./node_modules/@casl/ability/dist/types/matchers/field.d.ts",
-      "./node_modules/@casl/ability/dist/types/pureability.d.ts",
-      "./node_modules/@casl/ability/dist/types/rawrule.d.ts",
-      "./node_modules/@casl/ability/dist/types/rule.d.ts",
-      "./node_modules/@casl/ability/dist/types/ruleindex.d.ts",
-      "./node_modules/@casl/ability/dist/types/structures/linkeditem.d.ts",
-      "./node_modules/@casl/ability/dist/types/types.d.ts",
-      "./node_modules/@casl/ability/dist/types/utils.d.ts",
-      "./node_modules/@casl/ability/index.d.ts",
       "./node_modules/@nestjs/common/cache/cache.constants.d.ts",
       "./node_modules/@nestjs/common/cache/cache.module.d.ts",
       "./node_modules/@nestjs/common/cache/decorators/cache-key.decorator.d.ts",
@@ -6621,27 +6001,6 @@
       "./node_modules/@types/webpack/node_modules/source-map/source-map.d.ts",
       "./node_modules/@types/yargs-parser/index.d.ts",
       "./node_modules/@types/yargs/index.d.ts",
-      "./node_modules/@ucast/core/dist/types/builder.d.ts",
-      "./node_modules/@ucast/core/dist/types/condition.d.ts",
-      "./node_modules/@ucast/core/dist/types/index.d.ts",
-      "./node_modules/@ucast/core/dist/types/interpreter.d.ts",
-      "./node_modules/@ucast/core/dist/types/parsers/defaultinstructionparsers.d.ts",
-      "./node_modules/@ucast/core/dist/types/parsers/objectqueryparser.d.ts",
-      "./node_modules/@ucast/core/dist/types/translator.d.ts",
-      "./node_modules/@ucast/core/dist/types/types.d.ts",
-      "./node_modules/@ucast/core/dist/types/utils.d.ts",
-      "./node_modules/@ucast/js/dist/types/defaults.d.ts",
-      "./node_modules/@ucast/js/dist/types/index.d.ts",
-      "./node_modules/@ucast/js/dist/types/interpreter.d.ts",
-      "./node_modules/@ucast/js/dist/types/interpreters.d.ts",
-      "./node_modules/@ucast/js/dist/types/types.d.ts",
-      "./node_modules/@ucast/js/dist/types/utils.d.ts",
-      "./node_modules/@ucast/mongo/dist/types/index.d.ts",
-      "./node_modules/@ucast/mongo/dist/types/instructions.d.ts",
-      "./node_modules/@ucast/mongo/dist/types/mongoqueryparser.d.ts",
-      "./node_modules/@ucast/mongo/dist/types/types.d.ts",
-      "./node_modules/@ucast/mongo2js/dist/types/factory.d.ts",
-      "./node_modules/@ucast/mongo2js/dist/types/index.d.ts",
       "./node_modules/anymatch/index.d.ts",
       "./node_modules/axios/index.d.ts",
       "./node_modules/csstype/index.d.ts",
@@ -6769,10 +6128,12 @@
       "./src/server/auth/strategies/jwt.strategy.ts",
       "./src/server/auth/strategies/local.strategy.ts",
       "./src/server/authorization/action.enum.ts",
-      "./src/server/authorization/casl/casl-ability.factory.ts",
-      "./src/server/authorization/casl/casl.module.ts",
       "./src/server/authorization/role.enum.ts",
       "./src/server/interfaces/jwt-payload.interface.ts",
+      "./src/server/try_roles/constants.ts",
+      "./src/server/try_roles/role.enum.ts",
+      "./src/server/try_roles/roles.decorator.ts",
+      "./src/server/try_roles/roles.guard.ts",
       "./src/server/users/common/bodyfieldsuser.ts",
       "./src/server/users/dto/create-user.dto.ts",
       "./src/server/users/dto/login-user.dto.ts",
@@ -6780,8 +6141,9 @@
       "./src/server/users/user.schema.ts",
       "./src/server/users/users.controller.ts",
       "./src/server/users/users.module.ts",
-      "./src/server/users/users.service.ts"
+      "./src/server/users/users.service.ts",
+      "../../../../../node_modules/@types/bcrypt/index.d.ts"
     ]
   },
-  "version": "4.1.5"
+  "version": "4.2.2"
 }
