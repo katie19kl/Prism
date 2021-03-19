@@ -9,6 +9,8 @@ import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 
+import ReactDOM from 'react-dom';
+
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		container: {
@@ -32,6 +34,10 @@ const useStyles = makeStyles((theme: Theme) =>
 		}
 	})
 );
+
+
+// localStorage.clear();  cleans 
+
 
 //state type
 
@@ -183,6 +189,7 @@ const Login = () => {
 				}, (error) => {
 				
 					console.log(/*error +*/ "in error-----------------------------------------");
+
 					dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
 				
 				});
@@ -208,7 +215,10 @@ const Login = () => {
 						//console.log(response);
 				},(error) => {
 				
-					console.log(error.response.data.xui);
+					//console.log(error.response.data.xui);
+
+
+
 					console.log(/*error +*/ "in error-----------------------------------------");
 					
 				

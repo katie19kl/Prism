@@ -3,7 +3,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 import { AuthService } from '../auth.service';
 import { PassportStrategy } from '@nestjs/passport';
 import { JwtPayload } from '../interfaces/jwt-payload.interface';
-import { jwtConstants } from '../constants';
+import { jwtConstants } from '../../TRY_ROLES/constants';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -14,10 +14,10 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             
             // if expired was obtained => 401 Unauthorized
             ignoreExpriration: false,
-            secret: jwtConstants.secret,
+            /////secret: jwtConstants.secret,
             // symmetric key for signing the token
-            secretOrKey: 'thisismykickasssecretthatiwilltotallychangelater'
-            
+            ////secretOrKey: 'thisismykickasssecretthatiwilltotallychangelater'
+            secretOrKey: jwtConstants.secret
         });
     }
 

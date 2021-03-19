@@ -10,9 +10,8 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
     
-    <Login />
   </React.StrictMode>,
-  document.getElementById('root')
+   document.getElementById('root')
 );
 
 reportWebVitals();
