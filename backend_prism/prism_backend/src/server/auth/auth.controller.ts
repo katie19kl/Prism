@@ -1,38 +1,32 @@
-import { Controller, Post, Body, UseGuards, Get, HttpStatus,
-     HttpException, UnauthorizedException, NotFoundException, Res } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, NotFoundException, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto'
 import { IsEmptyGuard } from './guards/IsEmptyGuard.guard';
 import { EmptyExceptionFilter } from './filters/EmptyExceptionFilter.filter';
 import { UseFilters } from '@nestjs/common';
 import { UserNotFoundException } from './exception/UserNotFound.exception';
-import { AuthGuard } from '@nestjs/passport';
-import { LocalAuthGuard } from './guards/LocalAuthGuard.guard';
 import { JwtAuthGuard } from './guards/JWT_AuthGuard.guard';
 import { NoJWTFilter } from './filters/NoJWTFilter.filter';
-import { Request, Response } from 'express';
+
 
 @Controller('auth')
 export class AuthController {
     
     constructor(private authService: AuthService) {}
 
-    @Get("helloJWT")
+    @Get("validate")
     @UseGuards(JwtAuthGuard)
     @UseFilters(NoJWTFilter)
-    async try(@Res() res) { // <= see Response type from express being used here
+    async tokenValidator(@Res() res) {
 
         console.log("in JWT");
 
         return res.json({ isValid: true});
         
-        //return "helloJWT";
     }
 
     
-
     @Post('user')
-    //@Get("sign_in")
     @UseGuards(IsEmptyGuard)
     @UseFilters(new EmptyExceptionFilter())
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {

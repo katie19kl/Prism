@@ -1,10 +1,7 @@
-import React, { Component, ReactNode } from 'react';
 import './App.css';
-import Login from './Login/Login';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 import MainPage from './MainPage/MainCommonPage';
-import { useState, useEffect } from 'react';
 import LogINComp from './Component/LogINComp' 
 
 
@@ -44,43 +41,17 @@ export default function App() {
 }
 
 function About() {
-	/*
-		console.log("-----in log in comp func------")
-		myAuth.authenticate()
-		
-		if (myAuth.isAuthenticated){
-			return <MainPage />
-		}*/
 	
-		return <h2> HUI WHERE IS ?? </h2>;
+	return <h2> About Page </h2>;
 }
-
-
-
-
-
-
-/*
-function LoginComp() {
-
-	console.log("-----in log in comp func------")
-	
-	if (myAuth.isAuthenticated){
-		return <MainPage />
-	}
-
-	return <Login />;
-}*/
-  
-
 
 const myAuth = {
 
 	isAuthenticated: false,
 
-	async authenticate()  {
+	async validateToken()  {
 
-		console.log("try to authentificate")
+		console.log("try to authentificate, inside App")
 		
 		let token = localStorage.getItem('token');
 		
@@ -93,7 +64,7 @@ const myAuth = {
 			}
 			
 			// send the token to the server and check its response.
-			let url = "http://localhost:4000/auth/helloJWT"; 
+			let url = "http://localhost:4000/auth/validate"; 
 
 			const req = await axios.create({
 				baseURL: url,
@@ -107,7 +78,7 @@ const myAuth = {
 				console.log(response);
 
 				// response is ok.
-				if (response.data.isValid) {
+				if (response.data.isValid) {	
 					console.log("I am authentificated !!!! in checking ")
 					this.isAuthenticated = true;
 					
@@ -121,15 +92,13 @@ const myAuth = {
 			});
 
 		}
-
-	
 	}
 }
 
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
 	
-	myAuth.authenticate(),
+	myAuth.validateToken(),
 
 	<Route {...rest} render={(props) => (
 	  myAuth.isAuthenticated === true

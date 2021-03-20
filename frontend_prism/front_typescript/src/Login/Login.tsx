@@ -11,9 +11,6 @@ import Button from '@material-ui/core/Button';
 import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 
 
-
-//import MainPage from '../MainPage/MainCommonPage';
-
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
 		container: {
@@ -37,9 +34,6 @@ const useStyles = makeStyles((theme: Theme) =>
 		}
 	})
 );
-
-
-// localStorage.clear();  cleans 
 
 
 //state type
@@ -142,73 +136,95 @@ const Login = () => {
 	}, [state.username, state.password]);
 	
 
+	let history = useHistory();
 
-
-
-	// if there is token OR log in successfully done 
+	// if there is token OR log in was successfully done 
 	function RedirectToMainPage(){
 
-
-		console.log("before redirection")
+		console.log("before redirection");
 		history.push("/about");
 	}
-
-
-	
-	
-	let history = useHistory();
 
 	const handleLogin = () => {
 		
 		let token = getToken();
-		console.log("in handle log IN      -----token is " + token);
+		console.log("in handle log IN-----token is " + token);
 
 		let url : string;
 		
 		// first time trying to login.
-
-		// IF TOKEN is not valid ---> should be taken care of 
 		if (token === null) {
 
-				url = "http://localhost:4000/auth/user";
-				axios.post(url, {
+			url = "http://localhost:4000/auth/user";
 
-					username: state.username,
-					password: state.password,
-		
-				})
-				.then((response) => {
-		
-					console.log(response + "in response ");
-					
-					// either a token or "undefined"(in case the username/password was wrong).
-					const token = response.data.token;
+			let data = {
+				username: state.username,
+				password: state.password
+			};
 
-					console.log("the token received in login is: " + token);
-					console.log(typeof(token));
+			fetch(url, {
+				method: 'POST',
+				headers: { 
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data),
+			})
+			.then((response) => response.json())
+			.then((response) => {
 
-					setToken(token);
-					
-					dispatch({type: 'loginSuccess', payload: 'Login Successfully'});
-					// log in succeeded !!!!!!! => go to main page
-					
-					
-					RedirectToMainPage()
-	
-							
+				console.log("the token received from server: " + response.token);
+				const token = response.token;
 				
-				}, (error) => {
+				// Save the token in the localStorage.
+				setToken(token);
 				
-					console.log(error + "in error, first login");
-					dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
-				
-				});
+				// Since it's a successful login.
+				RedirectToMainPage();
+
+			})
+			.catch((error) => {
+				console.log("an error has occured, trying to login: " + error);
+
+				// Show informative msg to the user.
+				dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
+
+			})
 		}
 		else {
-			return; 
-		}
-
+			let url = "http://localhost:4000/auth/validate";
+			
+			// in case it's a token with the right format.
+			if (token[0] === '"' && token[token.length - 1] === '"') {
+				token = token.substring(1, token.length - 1);
+			}
 	
+			const req = axios.create({
+				baseURL: url,
+				timeout: 1000,
+				headers: { 'Authorization': 'Bearer '+ token }
+			});
+	
+			req.get(url, {
+			})
+			.then((response) => {
+
+				console.log(response);
+		
+				// response is ok.
+				if (response.data.isValid) {
+					console.log("I am authentificated, in login!")
+					
+				}
+	
+			},(error) => {
+			
+				// In case the token was "undefined" or not the expected one.
+				console.log("------------error in the 'else' scope, app: " + error);
+
+				return <Redirect to="/login" />
+				
+			});
+		}
 	};
 
 	const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -233,17 +249,12 @@ const Login = () => {
 			});
 		};
 
-		//e.preventDefault()
-		function Foo(e:Event){ // works
-		
-			e.preventDefault()
-		
+	function Foo(e:Event) { // works, to be deleted!
 	
+		e.preventDefault()
+		history.push("/about");
 
-  	  history.push("/about");
-  
-		}
-
+	}
 
 	return (
 		<form className={classes.container} noValidate autoComplete="off">
@@ -252,14 +263,11 @@ const Login = () => {
 			<CardContent>
 			<div>
 
-			
 			<button color='primary' onClick = {(event:any) => Foo(event)}> ON CLICK </button>
 
 			<br></br>
 			<br></br>
 			<br></br>
-			
-			
 			<br></br>
 			<br></br>
 				<TextField
