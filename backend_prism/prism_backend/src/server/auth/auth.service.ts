@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { IUser } from 'src/server/users/iuser.interface';
 import { LoginUserDto } from '../users/dto/login-user.dto';
 import { UsersService } from '../users/users.service';
-import { jwtStaticRandomSTR } from '../TRY_ROLES/constants';
+import { jwtStaticRandomSTR } from '../RolesActivity/constants';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
 
 
@@ -45,6 +45,10 @@ export class AuthService {
       
         return undefined;
     }
+    
+
+
+
 
     async validateUserByJwt(payload: JwtPayload) { 
 

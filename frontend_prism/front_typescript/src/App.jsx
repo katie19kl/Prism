@@ -1,8 +1,16 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import axios from 'axios';
-import MainPage from './MainPage/MainCommonPage';
 import LogINComp from './Component/LogINComp' 
+import CommanderMainPage from './MainPage/CommanderMainPage';
+import NoPermissions from './MainPage/NoPermissions';
+
+import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
+import MainView from './Component/MainView'
+
+const Role = {
+	Admin: 'admin',
+	User: 'user'    
+}
 
 
 export default function App() {
@@ -11,6 +19,9 @@ export default function App() {
 		<div>
 		  <nav>
 			<ul>
+
+				
+
 			  <li>
 				<Link to="/login">Login</Link>
 			  </li>
@@ -21,30 +32,51 @@ export default function App() {
 				<Link to="/about">About</Link>
 			  </li>
 
+				
+			  <li>
+				<Link to="/adminPage">Admin Page</Link>
+			  </li>
+
+			
+
+
 			</ul>
 		  </nav>
   
 		  <Switch>
-			<PrivateRoute path="/mainPage" component={MainPage}>
-			</PrivateRoute>
+				
+				<PrivateRoutingComponent path="/mainPage" component={MainView}>
+
+				</PrivateRoutingComponent>
+
+
+				<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin]}  component={CommanderMainPage}>
+			
+				</PrivateRoutingComponent>
+
 			
 			<Route path="/login" component={LogINComp}>
 			</Route>
 			
 			<Route path="/about" component={About}>
 			</Route>
-		  
+
+			<Route path="/noPermissions" component={NoPermissions}>
+			</Route>
+
 			</Switch>
 		</div>
 	  </Router>
 	);
 }
 
+
 function About() {
 	
 	return <h2> About Page </h2>;
 }
 
+/*
 const myAuth = {
 
 	isAuthenticated: false,
@@ -106,3 +138,4 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 		: <Redirect to='/login' />
 	)} />
 )
+*/

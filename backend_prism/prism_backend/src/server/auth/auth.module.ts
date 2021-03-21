@@ -6,7 +6,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
-import { jwtConstants } from '../TRY_ROLES/constants';
+import { jwtConstants } from '../RolesActivity/constants';
 
 @Module({
     exports: [AuthService, JwtModule],
