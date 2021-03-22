@@ -1,35 +1,42 @@
 
-import { Test } from '@nestjs/testing';
-import { IUser } from './iuser.interface';
-import { UsersController } from './users.controller';
-import { UsersService } from './users.service';
+import { HttpStatus } from '@nestjs/common';
+import { response } from 'express';
+
+//import * as request from 'supertest';
+const request = require('supertest');
 
 
-describe('UserController', () => {
-  let userController: UsersController;
-  let userService: UsersService;
+const app = "http://localhost:4000";
 
-  beforeEach(async () => {
-    const moduleRef = await Test.createTestingModule({
-        controllers: [UsersController],
-        providers: [UsersService],
-      }).compile();
 
-      userService = moduleRef.get<UsersService>(UsersService);
-      userController = moduleRef.get<UsersController>(UsersController);
-  });
+describe(' checks returning admin permissions', () => {
 
-  describe(' checks returning admin permissions', () => {
+	
+it('checks admin permissions', async () => {
 
-    it('should return admin string', async () => {
-      
+			let role_check ={ role : "admin"}
 
-      let user : Promise<IUser>
-      
+			//let check1_true = await request(app).get('/users/fooAdmin')
+			//						.send(role_check).expect("admin")
 
-      jest.spyOn(userService, 'findOneByUsername').mockImplementation(() => user);
 
-      expect(await userController.checkAdminPermission()).toBe("xui");
-    });
-  });
-});
+			await request(app).get('/users/fooAdmin')
+									.send(role_check)
+									.expect( ({text, statusCode, forbidden, password}) => {
+										
+										expect(text).toEqual('admin')
+										expect(statusCode).toBe(HttpStatus.OK)
+										expect(password).toBeUndefined()
+
+									})
+
+
+
+			await request(app).get('/users/fooAdmin').expect( ({body}) =>{
+				expect(body.message).toEqual("Forbidden resource")
+			})
+
+
+		});
+	});
+
