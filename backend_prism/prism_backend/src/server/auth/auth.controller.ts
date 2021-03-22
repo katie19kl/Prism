@@ -7,12 +7,13 @@ import { UseFilters } from '@nestjs/common';
 import { UserNotFoundException } from './exception/UserNotFound.exception';
 import { JwtAuthGuard } from './guards/JWT_AuthGuard.guard';
 import { NoJWTFilter } from './filters/NoJWTFilter.filter';
+import { UsersService } from '../users/users.service';
 
 
 @Controller('auth')
 export class AuthController {
     
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService, private usersService: UsersService) {}
 
     @Get("validate")
     @UseGuards(JwtAuthGuard)
@@ -37,9 +38,17 @@ export class AuthController {
         // JWT token
         const resultJWTtoken = await this.authService.validateUserByPassword(loginUserDto);
 
+        let user = await this.usersService.findOneByUsername(loginUserDto.username)
         if (resultJWTtoken) {
 
-            return resultJWTtoken;
+
+            let body = JSON.stringify({
+                username: user.username,
+                tokenInfo: resultJWTtoken,
+                role: user.role
+
+            })
+            return body;
 
         } else {
 
@@ -48,4 +57,6 @@ export class AuthController {
             
         }
     }
+
+
 }

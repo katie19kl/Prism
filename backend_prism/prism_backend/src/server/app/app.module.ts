@@ -4,7 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from '.././auth/auth.module';
 import { UsersModule } from '.././users/users.module';
-import { RolesGuard } from '../TRY_ROLES/roles.guard';
+import { AdminRolesGuard } from '../RolesActivity/admin_roles.guard';
 
 
 @Module({
@@ -14,6 +14,6 @@ import { RolesGuard } from '../TRY_ROLES/roles.guard';
     MongooseModule.forRoot('mongodb://localhost:27017/nest-prism-project')
   ],
   controllers: [AppController],
-  providers: [AppService, RolesGuard],
+  providers: [AppService, AdminRolesGuard],
 })
 export class AppModule {}

@@ -122,6 +122,13 @@ const Login = () => {
 	
 	}
 
+	function setUserInfo(response: { username: string; role: string; }){
+
+		localStorage.setItem('currentUserName', response.username)
+		localStorage.setItem('currentRole', response.role)
+	}
+
+
 	useEffect(() => {
 
 		if (state.username.trim() && state.password.trim()) {
@@ -141,9 +148,10 @@ const Login = () => {
 	// if there is token OR log in was successfully done 
 	function RedirectToMainPage(){
 
-		console.log("before redirection");
-		history.push("/about");
+		console.log("before redirection to about ");
+		history.push("/mainPage");
 	}
+
 
 	const handleLogin = () => {
 		
@@ -153,7 +161,7 @@ const Login = () => {
 		let url : string;
 		
 		// first time trying to login.
-		if (token === null) {
+		//if (token === null || 1 === 1) {
 
 			url = "http://localhost:4000/auth/user";
 
@@ -172,12 +180,18 @@ const Login = () => {
 			.then((response) => response.json())
 			.then((response) => {
 
-				console.log("the token received from server: " + response.token);
-				const token = response.token;
+				console.log("the token received from server: " + response.tokenInfo.token);
+				const token = response.tokenInfo.token;
 				
+
+				localStorage.clear()
 				// Save the token in the localStorage.
 				setToken(token);
 				
+				// Save the username and his role in the localStorage.
+				setUserInfo(response)
+
+
 				// Since it's a successful login.
 				RedirectToMainPage();
 
@@ -189,43 +203,9 @@ const Login = () => {
 				dispatch({type: 'loginFailed', payload: 'Incorrect username or password'});
 
 			})
-		}
-		else {
-			let url = "http://localhost:4000/auth/validate";
-			
-			// in case it's a token with the right format.
-			if (token[0] === '"' && token[token.length - 1] === '"') {
-				token = token.substring(1, token.length - 1);
-			}
-	
-			const req = axios.create({
-				baseURL: url,
-				timeout: 1000,
-				headers: { 'Authorization': 'Bearer '+ token }
-			});
-	
-			req.get(url, {
-			})
-			.then((response) => {
+		//}
 
-				console.log(response);
-		
-				// response is ok.
-				if (response.data.isValid) {
-					console.log("I am authentificated, in login!")
-					
-				}
-	
-			},(error) => {
-			
-				// In case the token was "undefined" or not the expected one.
-				console.log("------------error in the 'else' scope, app: " + error);
-
-				return <Redirect to="/login" />
-				
-			});
-		}
-	};
+ };
 
 	const handleKeyPress = (event: React.KeyboardEvent) => {
 		if (event.keyCode === 13 || event.which === 13) {
