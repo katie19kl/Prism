@@ -5,7 +5,7 @@ export default class MainPage extends React.Component {
 
 
   render(){
-      return (<h2>Main page view Component</h2>)
+      return (<h2>Main page view Component {this.props.title}</h2>)
   }
 
   

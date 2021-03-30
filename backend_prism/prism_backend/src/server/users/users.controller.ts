@@ -31,7 +31,7 @@ export class UsersController {
 
 
     @Get("fooAdmin")
-   //@UseGuards(AdminRolesGuard)
+    @UseGuards(AdminRolesGuard)
     checkAdminPermission(): string {
         return "admin"
     }

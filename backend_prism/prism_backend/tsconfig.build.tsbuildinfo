@@ -1907,13 +1907,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/interfaces/jwt-payload.interface.ts": {
-        "version": "96fda16913b1be9e9898bdb896e6e7e2c793b17d12b9445eb17a03c930bc7daf",
-        "signature": "c240d4cac48a4fe0a23b3a1d4fa97aa941f63474ad03f5fe0178e759aeac48ae",
+        "version": "c3bd8904201132a4a1c3165160a692a80acbf8af20736b8115181d562b4e9cc9",
+        "signature": "15882a55b21c03eb97033cc905543ba58793241acced7a3d76e38fcb66d3aaf9",
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
-        "version": "ae15eabce19d263dabe15b9a29597b30bdd369f28dce27f11770d157e4381d92",
-        "signature": "3b2b4b9d0a292306a2b35f16d498506bb3a1f37c0631335e3d63fa648bfa1985",
+        "version": "66a5961fb79aec38df3aea0a057251404501ccd824f8110b218a85bad139ef4d",
+        "signature": "4e21ec01fd640a6d9c38ee1be5c9e80986b6bc940fda0bd8e7d2eaa4197ccb4f",
         "affectsGlobalScope": false
       },
       "./src/server/auth/guards/isemptyguard.guard.ts": {
@@ -1932,8 +1932,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.controller.ts": {
-        "version": "d4c308b2d6a380e68abb20aab5e4be56d83aa254a70deb7fbf22d5100066e7c4",
-        "signature": "65bf8a96997c8b6abdff8d65ceea48fe5763bbbe3934ece634050607fb6e86a1",
+        "version": "ebc1f30e80c2a87d876d3af623008692444bbeefe9ef79599bf9a46a0efe7cc1",
+        "signature": "fe2032b1d748724b7b62d2590745c52e56b34c10211198caa33b7c2f7a645f28",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/passport-strategy/index.d.ts": {
@@ -1947,12 +1947,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/strategies/jwt.strategy.ts": {
-        "version": "37a97320c0e721b09e4703a7f3d1b2e4df12af56609c9197a9994eef2aa66100",
+        "version": "cca1686f1a13273bee0ba9657b914cb714208bc4ee61d875678292643b232912",
         "signature": "b5670c5be2da5bbdc682e666117ea2fe51116899e466027f67d639e2925eab25",
         "affectsGlobalScope": false
       },
       "./src/server/users/users.controller.ts": {
-        "version": "b1b275d29f79c63a314723444a7533db642b12f1c54c4f20059856dd1affc6e2",
+        "version": "6630997aecc42032ed09e1dab8e84c5a3a8870df2bc953b329a99d01cfa0287e",
         "signature": "870fceb17dbd0e2c4ea3a2151481d5ace54182b8de6c64a746be2ce7af50091c",
         "affectsGlobalScope": false
       },
@@ -1982,7 +1982,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.module.ts": {
-        "version": "f5f96bcadce3aac69cae6340ec1144880ced7f9690a27ce4cd6bc9994d5f10d4",
+        "version": "8215deaf90a8bfc766a2ae110735176b1949fa9ca86397270ad8074b888a0923",
         "signature": "2e5d258cf85349b02b015c3f1b8873c152d182c3819a7ccc3aff16fc3037a5fc",
         "affectsGlobalScope": false
       },
@@ -3953,6 +3953,7 @@
         "./src/server/auth/filters/nojwtfilter.filter.ts",
         "./src/server/auth/guards/isemptyguard.guard.ts",
         "./src/server/auth/guards/jwt_authguard.guard.ts",
+        "./src/server/rolesactivity/constants.ts",
         "./src/server/users/dto/login-user.dto.ts",
         "./src/server/users/users.service.ts"
       ],

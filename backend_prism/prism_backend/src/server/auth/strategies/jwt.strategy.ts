@@ -16,8 +16,8 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             ignoreExpriration: false,
             /////secret: jwtConstants.secret,
             // symmetric key for signing the token
-            secretOrKey: 'thisismykickasssecretthatiwilltotallychangelater'
-            //secretOrKey: jwtConstants.secret
+            //secretOrKey: 'thisismykickasssecretthatiwilltotallychangelater'
+            secretOrKey: jwtConstants.secret
         });
     }
 

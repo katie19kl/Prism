@@ -66,8 +66,8 @@ export class AuthService {
         }
     }
 
-    createJwtPayload(user) {
-        
+    async createJwtPayload(user) {
+        let userObj = await this.usersService.findOneByUsername(user.username);
         // Generates rand||CurrentTime
         // new string per server activating
         let str = jwtStaticRandomSTR.stringRandomTime
@@ -76,8 +76,8 @@ export class AuthService {
 
         let data: JwtPayload = {
             // adding randomality
-            username: user.username //+ jwtStaticRandomSTR.stringRandomTime
-            
+            username: user.username,  //+ jwtStaticRandomSTR.stringRandomTime
+            role: userObj.role
         };
 
         let jwt = this.jwtService.sign(data);

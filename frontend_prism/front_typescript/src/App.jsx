@@ -6,6 +6,8 @@ import NoPermissions from './MainPage/NoPermissions';
 
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './Component/MainView'
+import Logout from './Component/Logout'
+
 
 const Role = {
 	Admin: 'admin',
@@ -20,7 +22,9 @@ export default function App() {
 		  <nav>
 			<ul>
 
-				
+			  <li>
+				<Link to="/foo">Login</Link>
+			  </li>				
 
 			  <li>
 				<Link to="/login">Login</Link>
@@ -36,7 +40,10 @@ export default function App() {
 			  <li>
 				<Link to="/adminPage">Admin Page</Link>
 			  </li>
-
+			  
+				<li>
+				<Link to="/logout">Logout</Link>
+			  </li>
 			
 
 
@@ -58,10 +65,17 @@ export default function App() {
 			<Route path="/login" component={LogINComp}>
 			</Route>
 			
+		
+			<Route path="/foo" component={MaterialUI}>
+			</Route>
+
 			<Route path="/about" component={About}>
 			</Route>
 
 			<Route path="/noPermissions" component={NoPermissions}>
+			</Route>
+
+			<Route path="/logout" component={Logout}>
 			</Route>
 
 			</Switch>

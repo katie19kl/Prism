@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, Get, NotFoundException, Res } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Get, NotFoundException, Res, Req } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto'
 import { IsEmptyGuard } from './guards/IsEmptyGuard.guard';
@@ -8,6 +8,7 @@ import { UserNotFoundException } from './exception/UserNotFound.exception';
 import { JwtAuthGuard } from './guards/JWT_AuthGuard.guard';
 import { NoJWTFilter } from './filters/NoJWTFilter.filter';
 import { UsersService } from '../users/users.service';
+import { jwtConstants } from '../RolesActivity/constants';
 
 
 @Controller('auth')
@@ -59,4 +60,19 @@ export class AuthController {
     }
 
 
+
+    @Get("role_by_token")
+    @UseGuards(JwtAuthGuard)
+    async roleValidator(@Req() req){
+        
+        console.log("here")
+        var jwt = require('jsonwebtoken')
+        //let decoded = jwt.verify(token, jwtConstants.secret);
+        const usertoken = req.headers.authorization;
+        const token = usertoken.split(' ');
+        
+        const decoded = jwt.verify(token[1], jwtConstants.secret);
+        console.log(decoded);
+        return "xui"
+    }
 }

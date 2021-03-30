@@ -153,6 +153,7 @@ const Login = () => {
 	}
 
 
+
 	const handleLogin = () => {
 		
 		let token = getToken();
@@ -277,6 +278,7 @@ const Login = () => {
 			</CardContent>
 			<CardActions>
 			<Button
+				id = 'logInButton'
 				variant="contained"
 				size="large"
 				color="secondary"

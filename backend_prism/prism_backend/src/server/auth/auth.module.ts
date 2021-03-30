@@ -15,8 +15,8 @@ import { jwtConstants } from '../RolesActivity/constants';
         PassportModule.register({ defaultStrategy: 'jwt', session: false }),
         JwtModule.register({
         
-        secretOrPrivateKey: 'thisismykickasssecretthatiwilltotallychangelater',
-        //secretOrPrivateKey : jwtConstants.secret,
+        //secretOrPrivateKey: 'thisismykickasssecretthatiwilltotallychangelater',
+        secretOrPrivateKey : jwtConstants.secret,
         //secret: jwtConstants.secret,
         signOptions: {
             expiresIn: '30000s'
