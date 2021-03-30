@@ -1,7 +1,7 @@
 import { Controller, Post, Body, UseGuards, Get, NotFoundException, Res } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginUserDto } from '../users/dto/login-user.dto'
-import { IsEmptyGuard } from './guards/IsEmptyGuard.guard';
+import { IsEmptyGuardLogin } from './guards/IsEmptyGuardLogin.guard';
 import { EmptyExceptionFilter } from './filters/EmptyExceptionFilter.filter';
 import { UseFilters } from '@nestjs/common';
 import { UserNotFoundException } from './exception/UserNotFound.exception';
@@ -28,7 +28,7 @@ export class AuthController {
 
     
     @Post('user')
-    @UseGuards(IsEmptyGuard)
+    @UseGuards(IsEmptyGuardLogin)
     @UseFilters(new EmptyExceptionFilter())
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
 
@@ -40,7 +40,6 @@ export class AuthController {
 
         let user = await this.usersService.findOneByUsername(loginUserDto.username)
         if (resultJWTtoken) {
-
 
             let body = JSON.stringify({
                 username: user.username,

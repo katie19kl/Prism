@@ -18,7 +18,7 @@ export class AuthService {
         let userToAttempt: IUser | undefined;
         userToAttempt = await this.usersService.findOneByUsername(loginAttempt.username);
         
-        // username not exists
+        // username does not exist
         if (userToAttempt == null) {
             return undefined;
         }
@@ -46,9 +46,6 @@ export class AuthService {
         return undefined;
     }
     
-
-
-
 
     async validateUserByJwt(payload: JwtPayload) { 
 

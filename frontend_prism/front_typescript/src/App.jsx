@@ -1,27 +1,19 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import LogINComp from './Component/LogINComp' 
 import CommanderMainPage from './MainPage/CommanderMainPage';
 import NoPermissions from './MainPage/NoPermissions';
-
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './Component/MainView'
-
-const Role = {
-	Admin: 'admin',
-	User: 'user'    
-}
+import Role from './Roles/Role';
 
 
 export default function App() {
 	return (
 	  <Router>
 		<div>
-		  <nav>
+		   {/*<nav>
 			<ul>
-
-				
-
 			  <li>
 				<Link to="/login">Login</Link>
 			  </li>
@@ -30,30 +22,19 @@ export default function App() {
 			  </li>
 				<li>
 				<Link to="/about">About</Link>
-			  </li>
-
-				
+			  </li>				
 			  <li>
 				<Link to="/adminPage">Admin Page</Link>
 			  </li>
-
-			
-
-
 			</ul>
-		  </nav>
+		   </nav>*/}
   
 		  <Switch>
 				
-				<PrivateRoutingComponent path="/mainPage" component={MainView}>
+				<PrivateRoutingComponent path="/mainPage" component={MainView} />
 
+				<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin]} component={CommanderMainPage}>
 				</PrivateRoutingComponent>
-
-
-				<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin]}  component={CommanderMainPage}>
-			
-				</PrivateRoutingComponent>
-
 			
 			<Route path="/login" component={LogINComp}>
 			</Route>
@@ -64,6 +45,7 @@ export default function App() {
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>
 
+			<PrivateRoutingComponent path="/" component={MainView}/>
 			</Switch>
 		</div>
 	  </Router>
