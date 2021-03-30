@@ -6,7 +6,7 @@ import { Request, Response } from 'express';
 export class EmptyExceptionFilter<T> implements ExceptionFilter {
 	
 	catch(exception: ForbiddenException, host: ArgumentsHost) {
-		console.log("in filter");
+		console.log("in empty filter");
 		
 		const status =
 		exception instanceof HttpException
@@ -35,8 +35,6 @@ export class EmptyExceptionFilter<T> implements ExceptionFilter {
 		if (exception.getStatus() == 404) {
 			console.log("404") // not found.
 		}
-
-		//host.switchToHttp().getResponse().redirect("/hello");
 
 	}
 }

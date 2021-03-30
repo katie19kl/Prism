@@ -1,14 +1,12 @@
 import React, { useReducer, useEffect } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import axios from 'axios';
-
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
-import { Link, Redirect, Route, Switch, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -36,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 
-//state type
+// state type
 
 type State = {
 	username: string
@@ -106,7 +104,7 @@ const Login = () => {
 
 		const tokenString = localStorage.getItem('token')!;
 
-		if (tokenString === "undefined"){
+		if (tokenString === "undefined") {
 			console.log("no token given");
 			return " ";
 		}
@@ -146,7 +144,7 @@ const Login = () => {
 	let history = useHistory();
 
 	// if there is token OR log in was successfully done 
-	function RedirectToMainPage(){
+	function RedirectToMainPage() {
 
 		console.log("before redirection to about ");
 		history.push("/mainPage");
@@ -244,13 +242,7 @@ const Login = () => {
 			<CardContent>
 			<div>
 
-			<button color='primary' onClick = {(event:any) => Foo(event)}> ON CLICK </button>
-
-			<br></br>
-			<br></br>
-			<br></br>
-			<br></br>
-			<br></br>
+			{/*<button color='primary' onClick = {(event:any) => Foo(event)}> ON CLICK </button>*/}
 				<TextField
 				error={state.isError}
 				fullWidth

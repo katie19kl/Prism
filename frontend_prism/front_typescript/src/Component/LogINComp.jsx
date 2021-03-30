@@ -1,14 +1,18 @@
-import axios from "axios";
 import React from "react";
 import Login from "../Login/Login";
-import ReactDOM from 'react-dom'
-import {validateTokenFunc} from "../HelperJS/authentification_helper.js"
+import { validateTokenFunc } from "../HelperJS/authentification_helper.js"
+
 
 export default class LogINComp extends React.Component {
   
 	constructor(props) {
 		super(props);
-		this.state = { isLoggedIn: undefined, validateToken : validateTokenFunc };
+		this.state = { 
+		
+			isLoggedIn: undefined,
+			validateToken : validateTokenFunc
+		
+		};
 	}
   
 
@@ -51,7 +55,7 @@ export default class LogINComp extends React.Component {
 		
 		if (check === false ){
 			return <Login />;
-		}else {
+		} else {
 			return null;
 		}
 
