@@ -24,7 +24,10 @@ import AdjustRoundedIcon from '@material-ui/icons/AdjustRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import LocalPostOfficeRoundedIcon from '@material-ui/icons/LocalPostOfficeRounded';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
+import Button from '@material-ui/core/Button';
 
+import { Link } from 'react-router-dom';
+import prism from './../../Images/prism.jpg'
 
 const drawerWidth = 240;
 
@@ -103,6 +106,7 @@ const useStyles = (theme) => ({
 });
 
 
+
 class MenuAppBar extends React.Component {
 
     constructor(props) {
@@ -111,8 +115,12 @@ class MenuAppBar extends React.Component {
         this.handleDrawerClose = this.handleDrawerClose.bind(this);
         this.getUserName = currentUserUsername;
 
+
+      
+
         this.state = {
-            open: false,
+            //open: false,
+            open: true,
             username: undefined
         };
     }
@@ -139,7 +147,12 @@ class MenuAppBar extends React.Component {
     };
 
 
+ 
+
+
+
     render() {
+
         const { classes, theme } = this.props;
         const { username } = this.state;
         return (
@@ -157,6 +170,13 @@ class MenuAppBar extends React.Component {
                     <Typography variant="h6" className={classes.title}>
                         Prism Dashboard
                     </Typography>
+
+                    <Link   to="/login" 
+                            style={{ textDecoration: 'none', color:"white" }}
+                            onClick={()=> localStorage.clear()}>
+                        <Button color="inherit" >Log out </Button>
+                    </Link>
+                    
                     </Toolbar>
                 </AppBar>
                 <Drawer
@@ -174,7 +194,7 @@ class MenuAppBar extends React.Component {
                 </div>
                 <List>
                     <ListItem key="greeting">
-                        <Avatar alt={username} className={classes.purple} src=".././../Images/prism.jpg"/>
+                        <Avatar alt={username} className={classes.purple}/>
                         <ListItemText primary="Hello Commander" className={classes.text}>
                         </ListItemText>
                     </ListItem>
@@ -220,20 +240,42 @@ class MenuAppBar extends React.Component {
                         </ListItemIcon>
                         <ListItemText primary="Posts"/>
                     </ListItem>
-                    <ListItem button key="settings">
-                        <ListItemIcon>
-                            <SettingsRoundedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Settings"/>
-                    </ListItem>
+
+
+
+
+
+
+
+
+                    <Link to="/admin/edit_profile" style={{ textDecoration: 'none', color:"black" }}> 
+
+
+                        <ListItem button key="settings">
+                            <ListItemIcon>
+                                <SettingsRoundedIcon color="primary"/>
+                            </ListItemIcon>
+                            <ListItemText primary="Edit profile"                          
+                         />
+                        </ListItem>
+                    </Link>
+                    
                     
                 </List>
                 <Divider />
-                </Drawer>
-                <div className={classes.toolbar}/>
 
-                <div className={clsx(classes.appBar, {[classes.appBarShift]: this.state.open,})}>
-                <h1 className={classes.text}>hiii</h1>
+                <img src={prism} 
+                        height="350" width="239"></img>
+                <h2 >==================   </h2>
+                </Drawer>
+
+
+                
+                <div className={classes.toolbar} />
+
+                <div className={clsx(classes.appBar, {[classes.appBarShift]: this.state.open,})} id="toInsert">
+                    <h1 className={classes.text}>Title from MenuAppBar Itself</h1>
+                    {this.props.children}
                 </div>
                 
             </div>
