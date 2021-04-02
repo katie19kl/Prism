@@ -75,8 +75,12 @@ export default class AdminSettings extends React.Component {
 		updateUser(username,newUserName, newFirstName,newLastName, newPhoneNum).then(
 			(res) =>
 			{
-				console.log(res)
-				window.location.reload(false)
+				if (res !== undefined){
+					
+					console.log(res)
+					window.location.reload(false)
+					
+				}
 				
 			}
 			
