@@ -10,7 +10,7 @@ export class jwtStaticRandomSTR {
         finalStr = r + dateTime
  
         
-        console.log("random str to output",finalStr);
+        console.log("random str to output", finalStr);
         return finalStr
 
         
@@ -23,5 +23,5 @@ export class jwtStaticRandomSTR {
 // we ensure that the verify phase performed by Passport, 
 // and the sign phase performed in our AuthService, use a common secret.
 export const jwtConstants = {
-    secret: '-*Xsxx-=!2@@sawvpoA5~233Sx*-x+2+<+>?||sa3G44&r#oi6^n^Ms^df45-*sd4%*(W$%da#{q}}-}{s',
+    secret: '-*Xsxx-=!2@@sawvpoA5~233Sx*-x+2+<+>?||sa3G44&r#oi6^n^Ms^df45-*sd4%*(W$%da#{q}}-<{s',
 };

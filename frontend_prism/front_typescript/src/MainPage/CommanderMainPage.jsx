@@ -5,11 +5,9 @@ import MenuAppBar from './Components/MenuAppBar';
 
 export default class CommanderMainPage extends React.Component {
 
-	constructor(props) {
-		super(props);
-	}
-
 	render() {
+
+		
 
 		return (
 			<div>

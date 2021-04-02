@@ -1,21 +1,18 @@
 import axios from "axios";
+import Token from "./Token"
+import LocalStorage from "./LocalStorage";
+
 
 async function validateTokenFunc()  {
 
-	console.log("@@@@@@@@ try to authentificate, inside PrivateComponent")
 	
-	let token = localStorage.getItem('token');
+	let token = Token.getToken()
 	
-	if (token === null || token === 'undefined') {
+	if (token === null) {
 		
-		//this.isAuthenticated = false;
 		return false;
 
 	} else {
-
-		if (token[0] === '"' && token[token.length - 1] === '"') {
-			token = token.substring(1, token.length - 1);
-		}
     
 		// send the token to the server and check its response.
 		let url = "http://localhost:4000/auth/validate"; 
@@ -29,18 +26,16 @@ async function validateTokenFunc()  {
     	return await req.get(url, {
     	})
 		.then((response) => {
+			console.log(" ======== in auth helper ======")
 			console.log(response);
 
 			// response is ok.
 			if (response.data.isValid) {
 					
-				console.log(" true after server validation ")
-				//this.isAuthenticated = true;
 				return true;
 		
 			} else {
 				
-				//this.isAuthenticated = false;
 				return false
 			}
 
@@ -55,8 +50,58 @@ async function validateTokenFunc()  {
   	}
 }
 
+
+// if current role in local storage is allowed to access &
+// corresponds to one associated with token in server
+async function validateRoleByToken(rolesRequired){
+
+	let token = Token.getToken()
+	
+	if (token === null) {
+		
+		return false;
+
+	} else {
+	
+		let url = "http://localhost:4000/users/role_by_JWT"
+
+		const req = await axios.create({
+			baseURL: url,
+			timeout: 1000,
+			headers: {'Authorization': 'Bearer '+ token}
+		});
+		
+		return await req.get(url, {
+
+		}).then((response) => {
+			
+			let role = LocalStorage.getItem(LocalStorage.role)
+			let roleFromServer = response.data.role
+			
+			let indexInRoles = rolesRequired.indexOf(role);
+			
+			// if role in local storage corresponds to role associated 
+			// with token in server 
+			//// indexInRoles != -1 => current role is  allowed according to  list permitted roles 
+			if (role === roleFromServer && (indexInRoles !== -1)){
+				return true
+			}
+
+			return false 
+			
+		},(error) => {
+			
+			// server answer was bad
+			return false;
+    	});
+
+	}
+}
+
+
 function currentUserRole(){
-	let role = localStorage.getItem('currentRole');
+
+	let role = LocalStorage.getItem(LocalStorage.role);
 	
 	if (role === undefined || role === null) {
 		role = " ";
@@ -67,7 +112,7 @@ function currentUserRole(){
 
 function currentUserUsername() {
 
-	let username = localStorage.getItem('currentUserName');
+	let username = LocalStorage.getItem(LocalStorage.username);
 
 	if (username === undefined || username === null) {
 		username = " ";
@@ -76,4 +121,6 @@ function currentUserUsername() {
 	return username;
 }
 
-export { validateTokenFunc, currentUserRole, currentUserUsername }
+
+
+export { validateTokenFunc, currentUserRole, validateRoleByToken,currentUserUsername }

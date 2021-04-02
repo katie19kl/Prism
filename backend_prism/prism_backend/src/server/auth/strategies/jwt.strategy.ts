@@ -14,9 +14,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
             
             // if expired was obtained => 401 Unauthorized
             ignoreExpriration: false,
-            /////secret: jwtConstants.secret,
-            // symmetric key for signing the token
-            //secretOrKey: 'thisismykickasssecretthatiwilltotallychangelater'
             secretOrKey: jwtConstants.secret
         });
     }

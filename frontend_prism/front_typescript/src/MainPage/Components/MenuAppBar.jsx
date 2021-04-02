@@ -26,6 +26,7 @@ import LocalPostOfficeRoundedIcon from '@material-ui/icons/LocalPostOfficeRounde
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import Button from '@material-ui/core/Button';
 
+import LocalStorage from "./../../HelperJS/LocalStorage"
 import { Link } from 'react-router-dom';
 import prism from './../../Images/prism.jpg'
 
@@ -173,7 +174,7 @@ class MenuAppBar extends React.Component {
 
                     <Link   to="/login" 
                             style={{ textDecoration: 'none', color:"white" }}
-                            onClick={()=> localStorage.clear()}>
+                            onClick={()=> LocalStorage.cleanAll()}>
                         <Button color="inherit" >Log out </Button>
                     </Link>
                     
@@ -248,14 +249,14 @@ class MenuAppBar extends React.Component {
 
 
 
-                    <Link to="/admin/edit_profile" style={{ textDecoration: 'none', color:"black" }}> 
+                    <Link to="/admin/info" style={{ textDecoration: 'none', color:"black" }}> 
 
 
                         <ListItem button key="settings">
                             <ListItemIcon>
                                 <SettingsRoundedIcon color="primary"/>
                             </ListItemIcon>
-                            <ListItemText primary="Edit profile"                          
+                            <ListItemText primary="My Info"                          
                          />
                         </ListItem>
                     </Link>
@@ -266,7 +267,7 @@ class MenuAppBar extends React.Component {
 
                 <img src={prism} 
                         height="350" width="239"></img>
-                <h2 >==================   </h2>
+                <h2 > Prism Logo   </h2>
                 </Drawer>
 
 

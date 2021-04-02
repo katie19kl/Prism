@@ -30,11 +30,9 @@ export default class LogINComp extends React.Component {
 
 	componentDidMount() {
 	
-		console.log("	in  log in MOUNT");
 			
 		this.state.validateToken().then((isAuthenticated) => {
 
-			console.log("--------authentification is done  with result-------- " + isAuthenticated)
 			
 			this.setState({isLoggedIn: isAuthenticated})
 			
@@ -49,9 +47,7 @@ export default class LogINComp extends React.Component {
 
 	render() {
 
-		console.log("	%%% 	Log in rendering 	");
 		let check = this.state.isLoggedIn;
-		console.log("%%% 	is Logged in " + check);
 		
 		if (check === false ){
 			return <Login />;

@@ -1,4 +1,4 @@
-import { IsAlpha, IsAlphanumeric, IsDefined, IsNotEmpty, IsOptional, Length, MaxLength, MinLength } from "class-validator";
+import { IsAlpha, IsAlphanumeric, IsDefined, IsNotEmpty, IsOptional, Length, MaxLength, MinLength, IsInt } from "class-validator";
 import { Role } from "src/server/RolesActivity/role.enum";
 import { Gender } from "../common/gender.enum";
 import { Major } from "../common/major.enum";
@@ -61,4 +61,9 @@ export class CreateUserDto {
         message: "The given major does not exist"
     })
     major: Major;
+
+
+    @IsInt()
+    personalId: string
+
 }

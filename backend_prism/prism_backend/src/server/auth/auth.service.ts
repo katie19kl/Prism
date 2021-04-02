@@ -50,7 +50,7 @@ export class AuthService {
     async validateUserByJwt(payload: JwtPayload) { 
 
         // This will be used when the user has already logged in and has a JWT
-        let user = await this.usersService.findOneByUsername(payload.username);
+        let user = await this.usersService.findOneByPersonalId(payload.personalId);
 
         if (user) {
 
@@ -64,17 +64,20 @@ export class AuthService {
     }
 
     async createJwtPayload(user) {
-        let userObj = await this.usersService.findOneByUsername(user.username);
+        console.log(user + " in creating JWT payload")
+        //let userObj = await this.usersService.findOneByUsername(user.username);
+        
+        
         // Generates rand||CurrentTime
         // new string per server activating
-        let str = jwtStaticRandomSTR.stringRandomTime
-        console.log(str + '\\n-------')
+        let randStr = jwtStaticRandomSTR.stringRandomTime
+        console.log(randStr + '\\n-------')
 
 
         let data: JwtPayload = {
             // adding randomality
-            username: user.username,  //+ jwtStaticRandomSTR.stringRandomTime
-            role: userObj.role
+            personalId: user.personalId,  //+ jwtStaticRandomSTR.stringRandomTime
+            randString: randStr
         };
 
         let jwt = this.jwtService.sign(data);

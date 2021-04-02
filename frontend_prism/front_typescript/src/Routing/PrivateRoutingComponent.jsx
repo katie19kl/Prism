@@ -1,13 +1,15 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
 
-import { validateTokenFunc, currentUserRole, currentUserUsername} from "../HelperJS/authentification_helper"
+import { validateTokenFunc, currentUserRole, validateRoleByToken} from "../HelperJS/authentification_helper"
+import LocalStorage from "../HelperJS/LocalStorage";
 
 export default class PrivateRoutingComponent extends React.Component {
   
 	constructor(props) {
 		super(props);
-		this.state = { 
+		this.state = {
+			pretentAttempt: false,
 			isLoggedIn: undefined, 
 			validateToken : validateTokenFunc,
 			getCurrRole : currentUserRole
@@ -16,6 +18,11 @@ export default class PrivateRoutingComponent extends React.Component {
   
 
 	render() {
+
+		// pretending attempt detection
+		if (this.state.pretentAttempt){
+			return <h2>DONT PRETEND PIDOR</h2>
+		}
 
 		// validate token with server
 		this.state.validateToken().then((isAuthenticated) => {
@@ -35,10 +42,25 @@ export default class PrivateRoutingComponent extends React.Component {
 
 		let rolesRequired = this.props.roles;
 		let allowedToEveryOne = false;
-
+		
+		// no specified role restriction 
 		if (rolesRequired === undefined) {
 			rolesRequired = [];
 			allowedToEveryOne = true;
+		}
+		else {
+
+			//Call back validation --> if problem -> redirects to no permissions			
+			// if role was defined, but user try to pretend 
+			// with higher role. If it occurs => redirects to no permission
+			validateRoleByToken(rolesRequired).then((resp) =>{
+				console.log(resp + "---------I am here ")
+				if (resp === false ){
+					console.log("want to redirect this hara")
+					//return <h2> NIHUI PRETEND OKK ?</h2>
+					this.setState({pretentAttempt: true})
+				}
+			});
 		}
 
 		// role of current authentificated user

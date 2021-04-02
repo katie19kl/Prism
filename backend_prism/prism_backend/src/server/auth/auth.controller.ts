@@ -22,7 +22,6 @@ export class AuthController {
     async tokenValidator(@Res() res) {
 
         console.log("in JWT");
-
         return res.json({ isValid: true});
         
     }
@@ -64,14 +63,8 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     async roleValidator(@Req() req){
         
-        console.log("here")
-        var jwt = require('jsonwebtoken')
-        //let decoded = jwt.verify(token, jwtConstants.secret);
         const usertoken = req.headers.authorization;
-        const token = usertoken.split(' ');
-        
-        const decoded = jwt.verify(token[1], jwtConstants.secret);
-        console.log(decoded);
-        return "xui"
+        let role = this.usersService.getRoleByJWT(usertoken)
+        return role
     }
 }

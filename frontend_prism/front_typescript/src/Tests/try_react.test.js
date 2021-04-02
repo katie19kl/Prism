@@ -18,7 +18,7 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 import MainView from "../Component/MainView";
 import Login from "../Login/Login"
-
+import LocalStorage from "./../HelperJS/LocalStorage";
 
 import Enzyme from 'enzyme';
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
@@ -28,7 +28,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 let container = null;
 beforeEach(() => {
-	localStorage.clear()
+	LocalStorage.cleanAll()
 	// setup a DOM element as a render target
 	container = document.createElement("div");
 	document.body.appendChild(container);
@@ -36,7 +36,7 @@ beforeEach(() => {
 
 afterEach(() => {
 	
-	localStorage.clear()		
+	LocalStorage.cleanAll()		
 	// cleanup on exiting
 	unmountComponentAtNode(container);
 	container.remove();
@@ -96,7 +96,7 @@ it ("local storage testing ", async ()=>{
 	
 	component.find('button#logInButton')
 	.simulate('onclick', {token: "asd"})
-	localStorage.getItem('token')
+	LocalStorage.getItem('token')
 
 
 	global.fetch.mockRestore();

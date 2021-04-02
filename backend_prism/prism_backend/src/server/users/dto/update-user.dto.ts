@@ -2,6 +2,7 @@ import { Role } from "src/server/RolesActivity/role.enum";
 import { Gender } from "../common/gender.enum";
 import { Major } from "../common/major.enum";
 import { CreateUserDto } from "./create-user.dto";
+
 import { PartialType } from '@nestjs/mapped-types';
 import { IsAlpha, IsAlphanumeric, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator";
 import { IsRole } from "../decorators/role-validation.decorator";
@@ -64,4 +65,5 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
         message: "The given major does not exist"
     })
     readonly major: Major;
+    
 }

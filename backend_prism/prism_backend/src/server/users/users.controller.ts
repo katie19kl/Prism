@@ -1,16 +1,40 @@
-import { Controller, Get, Post, Body, UseGuards, Param, Put, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Param, Put, Delete, Req } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { AdminRolesGuard } from '../RolesActivity/admin_roles.guard';
 import { IsEmptyGuard } from './guards/isEmptyGuard.guard';
 import { Major } from './common/major.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
+import { jwtConstants } from '../RolesActivity/constants';
 
 
 @Controller('users')
 export class UsersController {
 
     constructor(private usersService: UsersService) {}
+
+
+    @Get("role_by_JWT")
+    @UseGuards(JwtAuthGuard)
+    async extractUserRole(@Req() req){
+        const usertoken = req.headers.authorization;
+        return {role : await this.usersService.getRoleByJWT(usertoken)}
+    }
+
+    
+
+    @Get('info_by_JWT')
+    @UseGuards(JwtAuthGuard)
+    async extractUserInfo(@Req() req){
+        
+        
+		const usertoken = req.headers.authorization;
+        return await this.usersService.getUserByJWT(usertoken)
+       
+    }
+
+
 
     @Post()
     @UseGuards(IsEmptyGuard)

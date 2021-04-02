@@ -1,12 +1,14 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LogINComp from './Component/LogINComp' 
 import CommanderMainPage from './MainPage/CommanderMainPage';
 import NoPermissions from './MainPage/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './Component/MainView'
 import Role from './Roles/Role';
+import AdminSettings from './MainPage/SideBarComponentsAdmin/AdminSettings'
 
+import ChangeAdminSettings from './MainPage/SideBarComponentsAdmin/ChangeAdminSettings'
 
 export default function App() {
 	return (
@@ -38,10 +40,14 @@ export default function App() {
 			
 			<Route path="/login" component={LogINComp}>
 			</Route>
-			
-		
-			<Route path="/foo" component={MaterialUI}>
+
+			{/* /////////////////////////////////////////CHANGE AFTER TO PRIVATE */}
+			<Route path="/admin/info" component={AdminSettings}>
 			</Route>
+
+			<Route path="/admin/info_change" component={ChangeAdminSettings}>
+			</Route>
+
 
 			<Route path="/about" component={About}>
 			</Route>
@@ -61,67 +67,3 @@ function About() {
 	
 	return <h2> About Page </h2>;
 }
-
-/*
-const myAuth = {
-
-	isAuthenticated: false,
-
-	async validateToken()  {
-
-		console.log("try to authentificate, inside App")
-		
-		let token = localStorage.getItem('token');
-		
-		if (token === null || token === 'undefined') {
-			this.isAuthenticated = false;
-		} else {
-
-			if (token[0] === '"' && token[token.length - 1] === '"') {
-				token = token.substring(1, token.length - 1);
-			}
-			
-			// send the token to the server and check its response.
-			let url = "http://localhost:4000/auth/validate"; 
-
-			const req = await axios.create({
-				baseURL: url,
-				timeout: 1000,
-				headers: {'Authorization': 'Bearer '+ token}
-			});
-
-			await req.get(url, {
-			})
-			.then((response) => {
-				console.log(response);
-
-				// response is ok.
-				if (response.data.isValid) {	
-					console.log("I am authentificated !!!! in checking ")
-					this.isAuthenticated = true;
-					
-				}
-
-			},(error) => {
-				
-				// In case the token was "undefined".
-				console.log("------------error in the 'else' scope, app: " + error);
-
-			});
-
-		}
-	}
-}
-
-
-const PrivateRoute = ({ component: Component, ...rest }) => (
-	
-	myAuth.validateToken(),
-
-	<Route {...rest} render={(props) => (
-	  myAuth.isAuthenticated === true
-		? <Component {...props} />
-		: <Redirect to='/login' />
-	)} />
-)
-*/

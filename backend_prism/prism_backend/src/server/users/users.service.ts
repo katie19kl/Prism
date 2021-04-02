@@ -6,12 +6,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { Role } from '../RolesActivity/role.enum';
 import { Major } from './common/major.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { jwtConstants } from '../RolesActivity/constants';
 
 @Injectable()
 export class UsersService {
 
 	constructor(@InjectModel('User') private userModel: Model<IUser>) {}
-
+	
+	// add new user
 	async create(createUserDto: CreateUserDto) {
 
 		// check if the user already exists.
@@ -26,6 +28,47 @@ export class UsersService {
 
 	}
 
+	// get role of given token
+	async getRoleByJWT(usertoken){
+
+		let user = await this.getUserByJWT(usertoken);
+		return user.role;
+
+	}
+
+
+	// Returns user object based on his token
+	async getUserByJWT(usertoken){
+
+		let jwt = require('jsonwebtoken')
+	
+		const token = usertoken.split(' ');
+		
+		// decode JWT & retrieve username
+		const decoded = jwt.verify(token[1], jwtConstants.secret);
+		console.log(decoded);
+		let personalId = decoded['personalId']
+		console.log(personalId)
+
+		// obtain user by his username  & return it outside
+		let user = await this.findOneByPersonalId(personalId)
+		// return outside without password ( password is hashed )
+		user.password = ""
+		console.log(user)
+
+
+		return user
+	}
+
+	// get user by its personalId
+	async findOneByPersonalId(personalId: string): Promise<IUser> {
+
+		const user = await this.userModel.findOne({"personalId": personalId});
+
+		return user;
+	}
+
+	// get user by its username
 	async findOneByUsername(username: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"username": username});
@@ -33,6 +76,7 @@ export class UsersService {
 		return user;
 	}
 
+	// get all soldiers 
 	async findAllSoldiers(): Promise<string[]> {
 		let listNames = [];
 
@@ -52,6 +96,7 @@ export class UsersService {
 		return listNames;
 	}
 
+	// get all soldiers with same majors
 	async findAllSoldiersInMajor(major: Major): Promise<string[]> {
 		
 		let users = await this.userModel.find();
@@ -137,6 +182,7 @@ export class UsersService {
 		return user;
 	}
 
+	// delete user by its username
 	async deleteUser(username: string) {
 		let user = await this.userModel.findOne({"username": username});
 

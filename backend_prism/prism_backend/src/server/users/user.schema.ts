@@ -42,6 +42,13 @@ export const UserSchema = new mongoose.Schema({
     major: {
         type: String,
         required: false
+    },
+
+    personalId: {
+        type: String,
+        required: true,
+        unique: true
+        
     }
 });
 
