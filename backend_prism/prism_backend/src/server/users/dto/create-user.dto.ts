@@ -10,6 +10,9 @@ export class CreateUserDto {
 
     // IN CASE SOMETHING AS TO REMAIN THE SAME- DEFINE AS READONLY.
 
+    @IsNotEmpty()
+    personalId: string;
+
     @IsAlphanumeric()
     @IsNotEmpty()
     username: string;

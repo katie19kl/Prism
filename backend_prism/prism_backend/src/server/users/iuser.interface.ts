@@ -6,6 +6,7 @@ import { Major } from './common/major.enum';
 
 export interface IUser extends Document {
     checkPassword(password: string): Promise<boolean>;
+    personalId: string;
     username: string;
     password: string;
     role: Role;

@@ -1892,8 +1892,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/iuser.interface.ts": {
+<<<<<<< HEAD
         "version": "83b1d22766ef9fddb1970f149001529fb2db99199e45b75f6614a1c3bb5eb5d3",
         "signature": "bcef9cde9a1c09392a018373219a7b845bb944cf3f555da69ca34d08205ecbce",
+=======
+        "version": "2180e5b76e476702fb06ab5a7bb78da1e7392a5ed525084f462f80e417172c11",
+        "signature": "84173a5f2b574059c5ff6eb7e4eb73635e6d583211e0e5515787202f0e77609c",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/login-user.dto.ts": {
@@ -2542,8 +2547,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/create-user.dto.ts": {
+<<<<<<< HEAD
         "version": "36c3f590dcb1e8851e00f1970d107c47d96bfc7236e8e8edb3203acd7c4c12d0",
         "signature": "05eb9e717f2d1808ec3b78dd8ff1ebb1aab4c58ec1f61c0a54b15db450866526",
+=======
+        "version": "d6ea966fb5db7253c47ed3ddd5f8f67a1c36b9a6c11dec94e48662189b2f5f2b",
+        "signature": "c47bf3c2df15640166c4d4bb5b2fbd57e463362942f17af379af1a10d4405206",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/mapped-types/dist/mapped-type.interface.d.ts": {
@@ -2587,8 +2597,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/update-user.dto.ts": {
+<<<<<<< HEAD
         "version": "0539bdbd2cd0a61284a94303c1deb2f8b165c4fd30cded595e9b6d5a14002430",
         "signature": "34dc9c40fc94918ac0c219665993b33343addaa404ac06214b12579064e89e74",
+=======
+        "version": "e88308c64fd7dc240f45ca633f6baea72e10db5f93cff4dcd46df0eeb9ca6d70",
+        "signature": "2b05023f75f78927c570fcd5905a31e8fa9ca7d45297c8c3e800d863dc790199",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "affectsGlobalScope": false
       },
       "./src/server/users/users.service.ts": {
@@ -2602,7 +2617,11 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
+<<<<<<< HEAD
         "version": "186b1607409edcdeb3fed1db63504feafcf645e7f5b9fde97b87b0b01f4f56d7",
+=======
+        "version": "92691fd6e828ba20dc83c26b406b46a5c496492c046a9b7b887726b981596576",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "signature": "4e21ec01fd640a6d9c38ee1be5c9e80986b6bc940fda0bd8e7d2eaa4197ccb4f",
         "affectsGlobalScope": false
       },
@@ -2622,8 +2641,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.controller.ts": {
+<<<<<<< HEAD
         "version": "0f73c638217c656b740085046c8af6a748b108a30acce175479ef2f3466682aa",
         "signature": "b4d808c35705b381d949f8c6cf816120defb5b25b817b26db262e8e69642c9b3",
+=======
+        "version": "8c1d36f14d82c2af65f9ae7b2435292b3b0cce389cfd0db9600443a3ad756202",
+        "signature": "fe2032b1d748724b7b62d2590745c52e56b34c10211198caa33b7c2f7a645f28",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "affectsGlobalScope": false
       },
       "./node_modules/@types/passport-strategy/index.d.ts": {
@@ -2642,7 +2666,11 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/guards/isemptyguard.guard.ts": {
+<<<<<<< HEAD
         "version": "f3582c50a9c4951180b36323ccbdb56ed90f268d3543aedc2abba02c7784e08d",
+=======
+        "version": "2f9512db705a89d934b1525c2c25dd07b83e65d05be9020c2b7822d0ba1fc1ff",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "signature": "712bc577e6aa09408a4df8cf17060624f63b59afd3743d9777403a464d8a39d5",
         "affectsGlobalScope": false
       },
@@ -2657,7 +2685,11 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/user.schema.ts": {
+<<<<<<< HEAD
         "version": "aec13baea33aa1f04d16e243bc06b5805337f59b847740d72a2eb2949f9824a4",
+=======
+        "version": "14577424a5314bfd99fab3d436dc56ed8d9d1ebeb034ea4675f6639ff69f4f9d",
+>>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
         "signature": "55937e9c84b0c90831d4055630c9237f36e44dcc77f2e6be643b6ab98bc9f0e7",
         "affectsGlobalScope": false
       },

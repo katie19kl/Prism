@@ -4,13 +4,15 @@ import { Major } from "../common/major.enum";
 import { CreateUserDto } from "./create-user.dto";
 
 import { PartialType } from '@nestjs/mapped-types';
-import { IsAlpha, IsAlphanumeric, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator";
+import { IsAlpha, IsAlphanumeric, IsInt, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator";
 import { IsRole } from "../decorators/role-validation.decorator";
 import { IsGender } from "../decorators/gender-validation.decorator";
 import { IsMajor } from "../decorators/major-validation.decorator";
 
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
+
+    personalId: string;
 
     @IsAlphanumeric()
     @IsOptional()

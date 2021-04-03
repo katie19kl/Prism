@@ -12,23 +12,16 @@ import Divider from '@material-ui/core/Divider';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import { currentUserUsername } from '.././../HelperJS/authentification_helper';
-import SchoolIcon from '@material-ui/icons/School';
-import BlurOnRoundedIcon from '@material-ui/icons/BlurOnRounded';
-import AdjustRoundedIcon from '@material-ui/icons/AdjustRounded';
-import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import LocalPostOfficeRoundedIcon from '@material-ui/icons/LocalPostOfficeRounded';
-import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import Button from '@material-ui/core/Button';
 
 import LocalStorage from "./../../HelperJS/LocalStorage"
 import { Link } from 'react-router-dom';
 import prism from './../../Images/prism.jpg'
+
 
 const drawerWidth = 240;
 
@@ -107,7 +100,6 @@ const useStyles = (theme) => ({
 });
 
 
-
 class MenuAppBar extends React.Component {
 
     constructor(props) {
@@ -116,11 +108,7 @@ class MenuAppBar extends React.Component {
         this.handleDrawerClose = this.handleDrawerClose.bind(this);
         this.getUserName = currentUserUsername;
 
-
-      
-
         this.state = {
-            //open: false,
             open: true,
             username: undefined
         };
@@ -147,11 +135,6 @@ class MenuAppBar extends React.Component {
         })
     };
 
-
- 
-
-
-
     render() {
 
         const { classes, theme } = this.props;
@@ -172,7 +155,7 @@ class MenuAppBar extends React.Component {
                         Prism Dashboard
                     </Typography>
 
-                    <Link   to="/login" 
+                    <Link to="/login" 
                             style={{ textDecoration: 'none', color:"white" }}
                             onClick={()=> LocalStorage.cleanAll()}>
                         <Button color="inherit" >Log out </Button>
@@ -202,87 +185,24 @@ class MenuAppBar extends React.Component {
                     <h3 className={classes.name}> {username} </h3>
                 </List>
                 <Divider />
-
-
-                <List>
-                    <ListItem button key="General">
-                        <ListItemIcon>
-                            <AccountBalanceIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="General"/>
-                    </ListItem>
-                    <ListItem button key="files">
-                        <ListItemIcon>
-                            <SchoolIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Course Files"/>
-                    </ListItem>
-                    <ListItem button key="user Settings">
-                        <ListItemIcon>
-                            <GroupRoundedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Users"/>
-                    </ListItem>
-                    <ListItem button key="course status">
-                        <ListItemIcon>
-                            <BlurOnRoundedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Course Status"/>
-                    </ListItem>
-                    <ListItem button key="soldier status">
-                        <ListItemIcon>
-                            <AdjustRoundedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Soldier Status"/>
-                    </ListItem>
-                    <ListItem button key="posts">
-                        <ListItemIcon>
-                            <LocalPostOfficeRoundedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Posts"/>
-                    </ListItem>
-
-
-
-
-
-
-
-
-                    <Link to="/admin/info" style={{ textDecoration: 'none', color:"black" }}> 
-
-
-                        <ListItem button key="settings">
-                            <ListItemIcon>
-                                <SettingsRoundedIcon color="primary"/>
-                            </ListItemIcon>
-                            <ListItemText primary="My Info"                          
-                         />
-                        </ListItem>
-                    </Link>
-                    
-                    
-                </List>
+                    <div>
+                    {this.props.menu}
+                    </div>
                 <Divider />
 
-                <img src={prism} 
-                        height="350" width="239"></img>
-                <h2 > Prism Logo   </h2>
+                <img alt="" src={prism} height="350" width="231"></img>
+                <h2></h2>
                 </Drawer>
 
-
-                
+                {/* Separation from the app bar. */}                
                 <div className={classes.toolbar} />
 
                 <div className={clsx(classes.appBar, {[classes.appBarShift]: this.state.open,})} id="toInsert">
-                    <h1 className={classes.text}>Title from MenuAppBar Itself</h1>
-                    {this.props.children}
+                    {this.props.content}
                 </div>
-                
             </div>
         );
     }
 }
-
 
 export default withStyles(useStyles, { withTheme: true })(MenuAppBar)

@@ -6,7 +6,9 @@ import NoPermissions from './MainPage/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './Component/MainView'
 import Role from './Roles/Role';
-import AdminSettings from './MainPage/SideBarComponentsAdmin/AdminSettings'
+import UsersHandling from './MainPage/SideBarComponentsAdmin/UsersHandling';
+import CreateUser from './MainPage/SideBarComponentsAdmin/UserCreation/CreateUser';
+import UpdateUsers from './MainPage/SideBarComponentsAdmin/UpdateUsers';
 
 import ChangeAdminSettings from './MainPage/SideBarComponentsAdmin/ChangeAdminSettings'
 
@@ -51,6 +53,13 @@ export default function App() {
 
 			<Route path="/about" component={About}>
 			</Route>
+
+			<Route path="/admin/users" component={UsersHandling} />
+
+			<Route path="/admin/create_user" component={CreateUser} />
+
+			<Route path="/admin/update_user" component={UpdateUsers} />
+
 
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>

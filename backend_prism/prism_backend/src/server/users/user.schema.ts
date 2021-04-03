@@ -6,6 +6,11 @@ import { Gender } from './common/gender.enum';
 
 
 export const UserSchema = new mongoose.Schema({
+    personalId: {
+        type: String,
+        unique: true,
+        required: true
+    },
     username: {
         type: String,
         unique: true,
