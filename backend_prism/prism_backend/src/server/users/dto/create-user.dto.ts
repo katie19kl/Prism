@@ -65,8 +65,4 @@ export class CreateUserDto {
     })
     major: Major;
 
-
-    @IsInt()
-    personalId: string
-
 }

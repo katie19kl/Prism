@@ -1,16 +1,18 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LogINComp from './Component/LogINComp' 
-import CommanderMainPage from './MainPage/CommanderMainPage';
-import NoPermissions from './MainPage/NoPermissions';
+import LogINComp from './Login/LogINComp' 
+import CommanderMainPage from './GeneralComponent/admin/CommanderMainPage';
+import NoPermissions from './HelperFooStuff/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
-import MainView from './Component/MainView'
+import MainView from './GeneralComponent/main/MainView'
 import Role from './Roles/Role';
-import UsersHandling from './MainPage/SideBarComponentsAdmin/UsersHandling';
-import CreateUser from './MainPage/SideBarComponentsAdmin/UserCreation/CreateUser';
-import UpdateUsers from './MainPage/SideBarComponentsAdmin/UpdateUsers';
+import UsersHandling from './adminOperationSideBar/UserCreation/UsersHandling';
+import CreateUser from './adminOperationSideBar/UserCreation/CreateUser';
+import UpdateUsers from './adminOperationSideBar/UserCreation/UpdateUsers';
 
-import ChangeAdminSettings from './MainPage/SideBarComponentsAdmin/ChangeAdminSettings'
+import ChangeAdminSettings from './adminOperationSideBar/AdminInfoManipulation/ChangeAdminSettings'
+
+import AdminSettings from './adminOperationSideBar/AdminInfoManipulation/AdminSettings'
 
 export default function App() {
 	return (

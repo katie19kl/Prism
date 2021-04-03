@@ -1,12 +1,12 @@
 import React from "react"
-import CssBaseline from '@material-ui/core/CssBaseline';
-import MenuAppBar from '../Components/MenuAppBar';
+import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import SaveIcon from '@material-ui/icons/Save';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {getUserInfoByJWT } from '../../HelperJS/extract_info_by_token'
 
-import { updateUser } from './../../HelperJS/update_user'
+import { updateUser } from '../../HelperJS/update_user'
+import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 
 
 export default class AdminSettings extends React.Component {
@@ -123,20 +123,22 @@ export default class AdminSettings extends React.Component {
 		
 		if (this.state.prev_username === undefined){
 			return(
-				<div>
-					<CssBaseline />
-					<MenuAppBar></MenuAppBar>
-				</div>
+					<MenuAppBar menu={
+						<CommanderMenu/>
+					}></MenuAppBar>
+
 			)
 		}else {
 			
 
 			return(
-				<div>
-					<CssBaseline />
-					<MenuAppBar>
 
-					<TextField onChange={this.handleTextFieldChangeUsername}
+					<MenuAppBar menu={
+						<CommanderMenu/>
+					} 
+					content={
+						<div>
+							<TextField onChange={this.handleTextFieldChangeUsername}
 								
 								variant="filled"
 								label="username" 
@@ -234,8 +236,15 @@ export default class AdminSettings extends React.Component {
 					</Button>
 
 						<h2>CHANGE FIELDS INFO</h2>
+				
+						</div>
+					}>
+					
 					</MenuAppBar>
-				</div>
+
+
+				
+
 			)
 		}
 	}

@@ -7,7 +7,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
-import Token from '../HelperJS/Token';
 import LocalStorage from '../HelperJS/LocalStorage';
 
 
@@ -142,7 +141,6 @@ const Login = () => {
 
 	const handleLogin = () => {
 
-		let token = Token.getToken()
 		let url: string;
 
 

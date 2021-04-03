@@ -6,8 +6,9 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import MenuAppBar from "../../Components/MenuAppBar";
-import CommanderMenu from "../../Components/CommanderMenu";
+import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
+import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+
 import UserCreationForm from "./UserCreationForm";
 
 

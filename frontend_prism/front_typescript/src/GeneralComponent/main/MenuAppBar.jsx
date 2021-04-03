@@ -15,10 +15,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
-import { currentUserUsername } from '.././../HelperJS/authentification_helper';
+import { currentUserUsername } from '../../HelperJS/authentification_helper';
 import Button from '@material-ui/core/Button';
 
-import LocalStorage from "./../../HelperJS/LocalStorage"
+import LocalStorage from "../../HelperJS/LocalStorage"
 import { Link } from 'react-router-dom';
 import prism from './../../Images/prism.jpg'
 
@@ -118,6 +118,8 @@ class MenuAppBar extends React.Component {
 
         let currUsername = this.getUserName();
 
+        
+        console.log("main app setting state with  " + currUsername + " to " + this.state.username)
         this.setState({
             username: currUsername
         })
@@ -136,6 +138,8 @@ class MenuAppBar extends React.Component {
     };
 
     render() {
+
+        console.log("main app bar")
 
         const { classes, theme } = this.props;
         const { username } = this.state;
@@ -163,6 +167,9 @@ class MenuAppBar extends React.Component {
                     
                     </Toolbar>
                 </AppBar>
+                
+                
+                
                 <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -184,6 +191,9 @@ class MenuAppBar extends React.Component {
                     </ListItem>
                     <h3 className={classes.name}> {username} </h3>
                 </List>
+
+
+
                 <Divider />
                     <div>
                     {this.props.menu}
@@ -191,7 +201,7 @@ class MenuAppBar extends React.Component {
                 <Divider />
 
                 <img alt="" src={prism} height="350" width="231"></img>
-                <h2></h2>
+
                 </Drawer>
 
                 {/* Separation from the app bar. */}                

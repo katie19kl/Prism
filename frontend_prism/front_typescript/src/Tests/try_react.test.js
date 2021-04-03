@@ -16,7 +16,7 @@ import { Button } from "@material-ui/core";
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
-import MainView from "../Component/MainView";
+import MainView from "../GeneralComponent/main/MainView";
 import Login from "../Login/Login"
 import LocalStorage from "./../HelperJS/LocalStorage";
 

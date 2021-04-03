@@ -1,7 +1,7 @@
 import { Button, Typography } from "@material-ui/core";
 import React from "react";
-import CommanderMenu from "../Components/CommanderMenu";
-import MenuAppBar from "../Components/MenuAppBar";
+import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
 import { withStyles } from '@material-ui/core/styles';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import EditIcon from '@material-ui/icons/Edit';

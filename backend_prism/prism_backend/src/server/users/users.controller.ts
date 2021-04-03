@@ -12,26 +12,26 @@ import { jwtConstants } from '../RolesActivity/constants';
 @Controller('users')
 export class UsersController {
 
-    constructor(private usersService: UsersService) {}
+    constructor(private usersService: UsersService) { }
 
 
     @Get("role_by_JWT")
     @UseGuards(JwtAuthGuard)
-    async extractUserRole(@Req() req){
+    async extractUserRole(@Req() req) {
         const usertoken = req.headers.authorization;
-        return {role : await this.usersService.getRoleByJWT(usertoken)}
+        return { role: await this.usersService.getRoleByJWT(usertoken) }
     }
 
-    
+
 
     @Get('info_by_JWT')
     @UseGuards(JwtAuthGuard)
-    async extractUserInfo(@Req() req){
-        
-        
-		const usertoken = req.headers.authorization;
+    async extractUserInfo(@Req() req) {
+
+
+        const usertoken = req.headers.authorization;
         return await this.usersService.getUserByJWT(usertoken)
-       
+
     }
 
 
@@ -62,7 +62,7 @@ export class UsersController {
 
         console.log("returning list of all soldiers in the major: " + major);
         return await this.usersService.findAllSoldiersInMajor(major);
-        
+
     }
 
     // ADMIN/COMMANDER

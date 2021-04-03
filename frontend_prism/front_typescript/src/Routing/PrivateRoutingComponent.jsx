@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route } from "react-router";
 
 import { validateTokenFunc, currentUserRole, validateRoleByToken} from "../HelperJS/authentification_helper"
-import LocalStorage from "../HelperJS/LocalStorage";
+
 
 export default class PrivateRoutingComponent extends React.Component {
   

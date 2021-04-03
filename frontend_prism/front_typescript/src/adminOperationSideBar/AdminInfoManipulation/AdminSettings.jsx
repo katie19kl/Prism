@@ -1,6 +1,5 @@
 import React from "react"
-import CssBaseline from '@material-ui/core/CssBaseline';
-import MenuAppBar from '../Components/MenuAppBar';
+import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
@@ -8,6 +7,7 @@ import {getUserInfoByJWT } from '../../HelperJS/extract_info_by_token'
 
 import { Link } from 'react-router-dom';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
+import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 
 
 class AdminSettings extends React.Component {
@@ -26,7 +26,6 @@ class AdminSettings extends React.Component {
 	}
 
 	render() {
-<<<<<<< HEAD
 
 
 
@@ -72,21 +71,23 @@ class AdminSettings extends React.Component {
 		})
 		if (this.state.username === undefined){
 			return(
-				<div>
-					<CssBaseline />
-					<MenuAppBar></MenuAppBar>
-				</div>
+					<MenuAppBar menu={
+						<CommanderMenu/>
+					}></MenuAppBar>
 			)
 		}else {
 			
 
 			return(
-				<div>
-					<CssBaseline />
-					<MenuAppBar>
+					<MenuAppBar menu={
+						<CommanderMenu/>
+					}
+					content={
+						<div>
+
 					<br></br>
 					<h2>Here you see change your info</h2>
-					<div>
+
 						<TextField
 							disabled id="standard-disabled" 
 							variant="filled"
@@ -195,13 +196,14 @@ class AdminSettings extends React.Component {
 						
 
 					</div>
+						
+					}>
 					
 					
 					
-					
+		
 					</MenuAppBar>
 
-				</div>
 
 			
 			
@@ -210,107 +212,6 @@ class AdminSettings extends React.Component {
 		
 	}
 
-=======
-		return(
-			<div>
-				<CssBaseline />
-				<MenuAppBar>
-				<br></br>
-				<br></br>
-				<br></br>
-				<br></br>
-				<h2>Here you can change your info</h2>
-				<div>
-					<TextField 
-						required id="standard-required"
-						variant="filled"
-						label="username" 
-						defaultValue="username from server" >
-
-					</TextField>
-					
-					<TextField 
-						required id="standard-required"
-						variant="filled"
-						label="password" 
-						defaultValue="******" >
-
-					</TextField>
-					
-					<dd></dd>
-					<br></br>
-					
-					<TextField	
-								disabled id="standard-disabled" 	
-								variant="filled"
-								label="majors"
-								defaultValue="megame from server" >
-					</TextField>
-
-					
-					<TextField	
-								disabled id="standard-disabled" 	
-								variant="filled"
-								label="Gender"
-								defaultValue="Gender from server" >
-					</TextField>
-
-					<dd></dd>
-					<br></br>
-
-					<TextField 
-						required id="standard-required"
-						variant="filled"
-						label="First Name" 
-						defaultValue="Actual first name from server">
-
-					</TextField>
-
-					<TextField 
-						required id="standard-required"
-						variant="filled"
-						label="Last Name" 
-						defaultValue="Actual Last  name from server">
-
-					</TextField>
-
-					<dd></dd>
-					<br></br>
-					<TextField	
-								disabled id="standard-disabled" 	
-								variant="filled"
-								label="Role"
-								defaultValue="Role from server" >
-					</TextField>
-
-					<TextField 
-						required id="standard-required"
-						variant="filled"
-						label="Phone number" 
-						defaultValue="Phone Number from server">
-					</TextField>
-
-					<dd></dd>
-					<br></br>
-					<dd></dd>
-					<br></br>
-					<dd></dd>
-					<br></br>
-					<Button
-						variant="contained"
-						color="primary"
-						size="large"
-						className={useStyles.button}
-						startIcon={<SaveIcon />}>
-							Update
-					
-					</Button>
-				</div>
-				</MenuAppBar>
-			</div>
-		);
-  	}
->>>>>>> 80e2a1e6c2ee19c655cfa956364a4c4e8c568705
 }
 	
 export default (AdminSettings);

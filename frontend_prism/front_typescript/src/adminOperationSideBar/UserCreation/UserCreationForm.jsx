@@ -3,11 +3,11 @@ import { withStyles } from '@material-ui/core/styles';
 import { TextField, Typography } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
-import { Gender, genders } from '../../../HelperJS/Gender';
-import { Major, majors } from "../../../HelperJS/Major";
-import Role from "../../../Roles/Role";
+import { Gender, genders } from '../../HelperJS/Gender';
+import { Major, majors } from "../../HelperJS/Major";
+import Role from "../../Roles/Role";
 import axios from "axios";
-import { validateFields, handleOptionalFields } from './validator';
+import { validateFields, handleOptionalFields } from '../../HelperJS/validator';
 
 
 const useStyles = (theme) => ({

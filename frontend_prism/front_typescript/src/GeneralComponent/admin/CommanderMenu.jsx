@@ -60,7 +60,7 @@ function CommanderMenu() {
                 <ListItemText primary="Posts"/>
             </ListItem>
 
-            <Link to="/admin/edit_profile" style={{ textDecoration: 'none', color:"black" }}> 
+            <Link to="/admin/info" style={{ textDecoration: 'none', color:"black" }}> 
 
                 <ListItem button key="settings">
                     <ListItemIcon>

@@ -16,5 +16,4 @@ export interface IUser extends Document {
     gender: Gender;
     commander: string;
     major: Major;
-    personalId: string;
 }

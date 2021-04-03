@@ -1,8 +1,8 @@
 import React from "react";
-import { currentUserRole, currentUserUsername } from "../HelperJS/authentification_helper.js"
-import CommanderMainPage from "../MainPage/CommanderMainPage.jsx";
-import NoPermessions from "../MainPage/NoPermissions";
-import Role from '../Roles/Role';
+import { currentUserRole, currentUserUsername } from "../../HelperJS/authentification_helper.js"
+import CommanderMainPage from "../admin/CommanderMainPage.jsx";
+import NoPermessions from "../../HelperFooStuff/NoPermissions";
+import Role from '../../Roles/Role';
 
 
 export default class MainPage extends React.Component {
