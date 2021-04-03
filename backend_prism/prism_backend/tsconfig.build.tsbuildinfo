@@ -1892,8 +1892,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/iuser.interface.ts": {
-        "version": "c9e5e2253ffcde070fdc2d32123f7b4d1dffee9e2339de0e1bccb5de5b5f7092",
-        "signature": "903833bd43002a172d2cfadc81810a8ff6b5b29e929ed129760d3177edceb15a",
+        "version": "2180e5b76e476702fb06ab5a7bb78da1e7392a5ed525084f462f80e417172c11",
+        "signature": "84173a5f2b574059c5ff6eb7e4eb73635e6d583211e0e5515787202f0e77609c",
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/login-user.dto.ts": {
@@ -2542,8 +2542,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/create-user.dto.ts": {
-        "version": "bf4415c953642ababe24149779fa376b66136b0d76fc200203b484871cf532d8",
-        "signature": "2b7ce03f42cd585717c398a066486690e72a10a10e832e09500fb16f5a6dd8d5",
+        "version": "d6ea966fb5db7253c47ed3ddd5f8f67a1c36b9a6c11dec94e48662189b2f5f2b",
+        "signature": "c47bf3c2df15640166c4d4bb5b2fbd57e463362942f17af379af1a10d4405206",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/mapped-types/dist/mapped-type.interface.d.ts": {
@@ -2587,8 +2587,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/update-user.dto.ts": {
-        "version": "717cde518b8fe298252b3bebad916ea74d4d668d427e45041e9c4ce9d546fb59",
-        "signature": "34dc9c40fc94918ac0c219665993b33343addaa404ac06214b12579064e89e74",
+        "version": "e88308c64fd7dc240f45ca633f6baea72e10db5f93cff4dcd46df0eeb9ca6d70",
+        "signature": "2b05023f75f78927c570fcd5905a31e8fa9ca7d45297c8c3e800d863dc790199",
         "affectsGlobalScope": false
       },
       "./src/server/users/users.service.ts": {
@@ -2602,8 +2602,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.service.ts": {
-        "version": "e8fa9c7f0eb60f30004269d2cbf85f461a9f6ef4f77cba5241ab5f741308e1e9",
-        "signature": "3b2b4b9d0a292306a2b35f16d498506bb3a1f37c0631335e3d63fa648bfa1985",
+        "version": "92691fd6e828ba20dc83c26b406b46a5c496492c046a9b7b887726b981596576",
+        "signature": "4e21ec01fd640a6d9c38ee1be5c9e80986b6bc940fda0bd8e7d2eaa4197ccb4f",
         "affectsGlobalScope": false
       },
       "./src/server/auth/guards/isemptyguardlogin.guard.ts": {
@@ -2622,8 +2622,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/auth/auth.controller.ts": {
-        "version": "ab46d79a37dc7817b5bf605b6fe5c3e5a1631d87f9278a295bff0ab0622d0c85",
-        "signature": "65bf8a96997c8b6abdff8d65ceea48fe5763bbbe3934ece634050607fb6e86a1",
+        "version": "8c1d36f14d82c2af65f9ae7b2435292b3b0cce389cfd0db9600443a3ad756202",
+        "signature": "fe2032b1d748724b7b62d2590745c52e56b34c10211198caa33b7c2f7a645f28",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/passport-strategy/index.d.ts": {
@@ -2642,7 +2642,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/guards/isemptyguard.guard.ts": {
-        "version": "10b5530b6ce070956f09df080a8673588caddf13127375b5c3eef77ad56b80ff",
+        "version": "2f9512db705a89d934b1525c2c25dd07b83e65d05be9020c2b7822d0ba1fc1ff",
         "signature": "712bc577e6aa09408a4df8cf17060624f63b59afd3743d9777403a464d8a39d5",
         "affectsGlobalScope": false
       },
@@ -2652,7 +2652,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/user.schema.ts": {
-        "version": "0da983628bf2ec40be774a1cb2af09547c79925a80e21aca99919f7421b4a8b1",
+        "version": "14577424a5314bfd99fab3d436dc56ed8d9d1ebeb034ea4675f6639ff69f4f9d",
         "signature": "55937e9c84b0c90831d4055630c9237f36e44dcc77f2e6be643b6ab98bc9f0e7",
         "affectsGlobalScope": false
       },

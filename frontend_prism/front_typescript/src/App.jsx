@@ -1,11 +1,14 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LogINComp from './Component/LogINComp' 
 import CommanderMainPage from './MainPage/CommanderMainPage';
 import NoPermissions from './MainPage/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './Component/MainView'
 import Role from './Roles/Role';
+import UsersHandling from './MainPage/SideBarComponentsAdmin/UsersHandling';
+import CreateUser from './MainPage/SideBarComponentsAdmin/UserCreation/CreateUser';
+import UpdateUsers from './MainPage/SideBarComponentsAdmin/UpdateUsers';
 
 
 export default function App() {
@@ -38,13 +41,16 @@ export default function App() {
 			
 			<Route path="/login" component={LogINComp}>
 			</Route>
-			
-		
-			<Route path="/foo" component={MaterialUI}>
-			</Route>
 
 			<Route path="/about" component={About}>
 			</Route>
+
+			<Route path="/admin/users" component={UsersHandling} />
+
+			<Route path="/admin/create_user" component={CreateUser} />
+
+			<Route path="/admin/update_user" component={UpdateUsers} />
+
 
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>

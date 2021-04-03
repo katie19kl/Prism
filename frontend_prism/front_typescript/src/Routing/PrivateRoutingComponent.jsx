@@ -1,7 +1,7 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
 
-import { validateTokenFunc, currentUserRole, currentUserUsername} from "../HelperJS/authentification_helper"
+import { validateTokenFunc, currentUserRole } from "../HelperJS/authentification_helper"
 
 export default class PrivateRoutingComponent extends React.Component {
   

@@ -61,7 +61,7 @@ type Action = { type: 'setUsername', payload: string }
 
 const reducer = (state: State, action: Action): State => {
 	switch (action.type) {
-		case 'setUsername': 
+		case 'setUsername':
 			return {
 				...state,
 				username: action.payload

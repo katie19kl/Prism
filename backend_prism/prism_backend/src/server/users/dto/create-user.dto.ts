@@ -1,4 +1,4 @@
-import { IsAlpha, IsAlphanumeric, IsDefined, IsNotEmpty, IsOptional, Length, MaxLength, MinLength } from "class-validator";
+import { IsAlpha, IsAlphanumeric, IsDefined, IsInt, IsNotEmpty, IsOptional, Length, MaxLength, MinLength } from "class-validator";
 import { Role } from "src/server/RolesActivity/role.enum";
 import { Gender } from "../common/gender.enum";
 import { Major } from "../common/major.enum";
@@ -9,6 +9,9 @@ import { IsRole } from "../decorators/role-validation.decorator";
 export class CreateUserDto {
 
     // IN CASE SOMETHING AS TO REMAIN THE SAME- DEFINE AS READONLY.
+
+    @IsNotEmpty()
+    personalId: string;
 
     @IsAlphanumeric()
     @IsNotEmpty()

@@ -6,6 +6,7 @@ import Role from '../Roles/Role';
 
 
 export default class MainPage extends React.Component {
+
 	constructor(props) {
 		super(props);
 
@@ -31,14 +32,14 @@ export default class MainPage extends React.Component {
 	render() {
 		const { username, role } = this.state;
 
-		if ((role == Role.Admin) || (role == Role.Commander)) {
+		if ((role === Role.Admin) || (role === Role.Commander)) {
 		
 			return <CommanderMainPage/>;
 		
-		} else if (role == Role.Soldier) {
+		} else if (role === Role.Soldier) {
 			
 
-		} else if (role == Role.Tester) {
+		} else if (role === Role.Tester) {
 
 
 		} else {
