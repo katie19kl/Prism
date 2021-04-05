@@ -5,19 +5,19 @@ import LocalStorage from "./LocalStorage";
 function update_fields(newUserName, newFirstName,newLastName, newPhoneNum){
 	let updatedUser = {}
 
-	if (newUserName !== undefined && newUserName  !== ""){
+	if (newUserName !== undefined && newUserName  !== "") {
 		updatedUser["username"] = newUserName
 	}
 
-	if (newFirstName !== undefined && newFirstName !== ""){
+	if (newFirstName !== undefined && newFirstName !== "") {
 		updatedUser["firstName"] = newFirstName
 	}
 
-	if (newLastName !== undefined && newLastName  !== ""){
+	if (newLastName !== undefined && newLastName  !== "") {
 		updatedUser["lastName"] = newLastName
 	}
 
-	if (newPhoneNum !== undefined && newPhoneNum  !== ""){
+	if (newPhoneNum !== undefined && newPhoneNum  !== "") {
 		updatedUser["phoneNumber"] = newPhoneNum
 	}
 

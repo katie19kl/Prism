@@ -28,13 +28,10 @@ export class UsersController {
     @UseGuards(JwtAuthGuard)
     async extractUserInfo(@Req() req) {
 
-
         const usertoken = req.headers.authorization;
-        return await this.usersService.getUserByJWT(usertoken)
+        return await this.usersService.getUserByJWT(usertoken);
 
     }
-
-
 
     @Post()
     @UseGuards(IsEmptyGuard)

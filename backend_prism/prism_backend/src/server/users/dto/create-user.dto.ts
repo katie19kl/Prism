@@ -1,9 +1,11 @@
-import { IsAlpha, IsAlphanumeric, IsDefined, IsNotEmpty, IsOptional, Length, MaxLength, MinLength, IsInt } from "class-validator";
+import { IsAlpha, IsAlphanumeric, IsNotEmpty, IsOptional,
+         MaxLength, MinLength, IsNumberString } from "class-validator";
 import { Role } from "src/server/RolesActivity/role.enum";
 import { Gender } from "../common/gender.enum";
 import { Major } from "../common/major.enum";
 import { IsGender } from "../decorators/gender-validation.decorator";
 import { IsMajor } from "../decorators/major-validation.decorator";
+import { IsPhoneNumber } from "../decorators/phoneNumber-validation.decorator";
 import { IsRole } from "../decorators/role-validation.decorator";
 
 export class CreateUserDto {
@@ -11,6 +13,7 @@ export class CreateUserDto {
     // IN CASE SOMETHING AS TO REMAIN THE SAME- DEFINE AS READONLY.
 
     @IsNotEmpty()
+    @IsNumberString()
     personalId: string;
 
     @IsAlphanumeric()
@@ -45,6 +48,10 @@ export class CreateUserDto {
 
 
     @IsOptional()
+    @IsPhoneNumber({
+        message: "You did not enter an appropriate phone number"
+    })
+    @IsNumberString()
     phoneNumber: string;
 
 
@@ -56,6 +63,7 @@ export class CreateUserDto {
 
 
     @IsOptional()
+    @IsNumberString()
     commander: string;
 
 

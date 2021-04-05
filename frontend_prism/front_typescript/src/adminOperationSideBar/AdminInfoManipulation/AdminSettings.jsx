@@ -9,7 +9,27 @@ import { Link } from 'react-router-dom';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import DisplayUserData from "../../HelperFooStuff/DisplayUserData"
+import { withStyles } from "@material-ui/core";
 
+
+const useStyles = (theme) => ({
+    root: {
+        flexGrow: 1,
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+        marginTop: theme.spacing(3),
+        marginLeft: theme.spacing(30),
+    },
+    button: {
+        marginLeft: theme.spacing(7),
+    },
+    myFont: {
+        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        marginLeft: theme.spacing(15),
+    }
+});
 
 
 class AdminSettings extends React.Component {
@@ -29,15 +49,14 @@ class AdminSettings extends React.Component {
 
 	render() {
 
-
-
+		const { classes } = this.props;
 
 		// retrieve user info from server
 		getUserInfoByJWT().then((user) => {
 
 			if (user === undefined){
 				
-			}else {
+			} else {
 
 				console.log("here user was given")
 				user = user.data
@@ -79,65 +98,55 @@ class AdminSettings extends React.Component {
 						<CommanderMenu/>
 					}></MenuAppBar>
 			)
-		}else {
-			
-
-			return(
+		} else {
+			return (
 					<MenuAppBar menu={
 						<CommanderMenu/>
 					}
 					content={
-						<div>
+					<div className={classes.root}>
+					<h2 className={classes.myFont}>Your Current Info</h2>
 
-							<DisplayUserData  
+						<DisplayUserData  
 							
-								phone_number = {this.state.phone_number} 
-								role = {this.state.role}
-								lastName = {this.state.lastName}
-								firstName = {this.state.firstName}
-								gender = {this.state.gender}
-								major = {this.state.major}
-								username = {this.state.username}
-								>
+							phone_number = {this.state.phone_number} 
+							role = {this.state.role}
+							lastName = {this.state.lastName}
+							firstName = {this.state.firstName}
+							gender = {this.state.gender}
+							major = {this.state.major}
+							username = {this.state.username}
+							>
 
-							</DisplayUserData>
+						</DisplayUserData>
 
-
-							<Link to = "/admin/info_change" style={{ textDecoration: 'none'}}>
-								<Button
-									variant="contained"
-									color="primary"
-									size="large"
-									startIcon={<SaveIcon />}>
-										Update
-								
-								</Button>
-							</Link>
+						<br></br>
+						<br></br>
+						<Link to = "/admin/info_change" style={{ textDecoration: 'none'}}>
+							<Button
+								variant="contained"
+								color="primary"
+								size="large"
+								className={classes.button}
+								startIcon={<SaveIcon />}>
+									Update
+							</Button>
+						</Link>
 						
-							<Link to = "/admin" style={{ textDecoration: 'none'}}>
-								<Button
-									variant="contained"
-									color="primary"
-									size="large"
-									startIcon={<LaptopMacIcon />}>
-										Go to main
-								
-								</Button>
-							</Link>
-						
-
-					</div>
-						
+						<Link to = "/admin" style={{ textDecoration: 'none'}}>
+							<Button
+								variant="contained"
+								color="primary"
+								size="large"
+								className={classes.button}
+								startIcon={<LaptopMacIcon />}>
+									Go to main
+							</Button>
+						</Link>
+					</div>					
 					}>
-					
-					
-					
-		
 					</MenuAppBar>
 
-
-			
-			
 			)
 		}
 		
@@ -145,4 +154,4 @@ class AdminSettings extends React.Component {
 
 }
 	
-export default (AdminSettings);
+export default withStyles(useStyles, { withTheme: true })(AdminSettings);

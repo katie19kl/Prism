@@ -2536,13 +2536,18 @@
         "signature": "25467a56e533d90c7d1bde319ffe50c61c9f8c5f19e253b4a3d687b788d96a17",
         "affectsGlobalScope": false
       },
+      "./src/server/users/decorators/phonenumber-validation.decorator.ts": {
+        "version": "f214c5cd7a6261f8b92a3cabfe674e7c6a486bf42a3b010ef530d114672dffa2",
+        "signature": "e8747189b2d3ad294bfe54daca364a6b287183986194a8cd0fbf15dfae7b8a82",
+        "affectsGlobalScope": false
+      },
       "./src/server/users/decorators/role-validation.decorator.ts": {
         "version": "f2984410d7fd217595984808b55f72eb37387caa12c018da34d039885c47158c",
         "signature": "c6b77eeec938230f00f44231f0e8336894d4712d39814820529de28675c010d2",
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/create-user.dto.ts": {
-        "version": "aef667beeb4f31b49875bddb0617b374e59d832a6555134265c1105f5858a88e",
+        "version": "dd8a6c0d73e23e02c151347cec456eff00c8992db49e7b3f9deef75a743c246c",
         "signature": "c47bf3c2df15640166c4d4bb5b2fbd57e463362942f17af379af1a10d4405206",
         "affectsGlobalScope": false
       },
@@ -2587,7 +2592,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/dto/update-user.dto.ts": {
-        "version": "f321f99278ff01c29931dc59a36a53630e154c2c8e4e25cb0bd77ab50b09438d",
+        "version": "a641aa5d466f9d3ca53b161b6edf9bd20c0332c4131723454c74ca4009ce37ea",
         "signature": "2b05023f75f78927c570fcd5905a31e8fa9ca7d45297c8c3e800d863dc790199",
         "affectsGlobalScope": false
       },
@@ -2642,12 +2647,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/guards/isemptyguard.guard.ts": {
-        "version": "882960f7a5e6da88e3e5179dafa90749a32cd9d0cf7adabea19cbea3911f60b5",
+        "version": "0c0c7f5f5744f4a4c0a8a62c70f791a9358cd7e01897545f72a4c57266e0dc68",
         "signature": "712bc577e6aa09408a4df8cf17060624f63b59afd3743d9777403a464d8a39d5",
         "affectsGlobalScope": false
       },
       "./src/server/users/users.controller.ts": {
-        "version": "1c68263f26beed2db194702ddfea56d760a083841c5e4be3b9d2b66fad95b1be",
+        "version": "322f830d6f053f08259e3d5ddeaafebdbc44555464fd6c54bb5705f380f8c4bd",
         "signature": "93223ce7d58c093cffe04675c9414434df87179cd0a8653b3b7e3473e6d8831b",
         "affectsGlobalScope": false
       },
@@ -5236,6 +5241,10 @@
         "./node_modules/class-validator/types/index.d.ts",
         "./src/server/users/common/major.enum.ts"
       ],
+      "./src/server/users/decorators/phonenumber-validation.decorator.ts": [
+        "./node_modules/class-validator/types/index.d.ts",
+        "./src/server/rolesactivity/role.enum.ts"
+      ],
       "./src/server/users/decorators/role-validation.decorator.ts": [
         "./node_modules/class-validator/types/index.d.ts",
         "./src/server/rolesactivity/role.enum.ts"
@@ -5247,6 +5256,7 @@
         "./src/server/users/common/major.enum.ts",
         "./src/server/users/decorators/gender-validation.decorator.ts",
         "./src/server/users/decorators/major-validation.decorator.ts",
+        "./src/server/users/decorators/phonenumber-validation.decorator.ts",
         "./src/server/users/decorators/role-validation.decorator.ts"
       ],
       "./src/server/users/dto/update-user.dto.ts": [
@@ -5257,6 +5267,7 @@
         "./src/server/users/common/major.enum.ts",
         "./src/server/users/decorators/gender-validation.decorator.ts",
         "./src/server/users/decorators/major-validation.decorator.ts",
+        "./src/server/users/decorators/phonenumber-validation.decorator.ts",
         "./src/server/users/decorators/role-validation.decorator.ts",
         "./src/server/users/dto/create-user.dto.ts"
       ],
@@ -7419,6 +7430,9 @@
       "./src/server/users/decorators/major-validation.decorator.ts": [
         "./node_modules/class-validator/types/index.d.ts"
       ],
+      "./src/server/users/decorators/phonenumber-validation.decorator.ts": [
+        "./node_modules/class-validator/types/index.d.ts"
+      ],
       "./src/server/users/decorators/role-validation.decorator.ts": [
         "./node_modules/class-validator/types/index.d.ts"
       ],
@@ -8063,6 +8077,7 @@
       "./src/server/users/common/major.enum.ts",
       "./src/server/users/decorators/gender-validation.decorator.ts",
       "./src/server/users/decorators/major-validation.decorator.ts",
+      "./src/server/users/decorators/phonenumber-validation.decorator.ts",
       "./src/server/users/decorators/role-validation.decorator.ts",
       "./src/server/users/dto/create-user.dto.ts",
       "./src/server/users/dto/login-user.dto.ts",
