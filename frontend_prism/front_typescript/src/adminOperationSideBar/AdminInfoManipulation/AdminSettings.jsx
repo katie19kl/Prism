@@ -3,11 +3,31 @@ import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import SaveIcon from '@material-ui/icons/Save';
-import {getUserInfoByJWT } from '../../HelperJS/extract_info_by_token'
-
+import { getUserInfoByJWT } from '../../HelperJS/extract_info_by_token'
 import { Link } from 'react-router-dom';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+import { withStyles } from "@material-ui/core";
+
+
+const useStyles = (theme) => ({
+    root: {
+        flexGrow: 1,
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '25ch',
+        },
+        marginTop: theme.spacing(3),
+        marginLeft: theme.spacing(30),
+    },
+    button: {
+        marginLeft: theme.spacing(7),
+    },
+    myFont: {
+        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        marginLeft: theme.spacing(15),
+    }
+});
 
 
 class AdminSettings extends React.Component {
@@ -27,15 +47,14 @@ class AdminSettings extends React.Component {
 
 	render() {
 
-
-
+		const { classes } = this.props;
 
 		// retrieve user info from server
 		getUserInfoByJWT().then((user) => {
 
 			if (user === undefined){
 				
-			}else {
+			} else {
 
 				console.log("here user was given")
 				user = user.data
@@ -75,61 +94,46 @@ class AdminSettings extends React.Component {
 						<CommanderMenu/>
 					}></MenuAppBar>
 			)
-		}else {
-			
-
-			return(
+		} else {
+			return (
 					<MenuAppBar menu={
 						<CommanderMenu/>
 					}
 					content={
-						<div>
-
-					<br></br>
-					<h2>Here you see change your info</h2>
+					<div className={classes.root}>
+					<h2 className={classes.myFont}>Your Current Info</h2>
 
 						<TextField
 							disabled id="standard-disabled" 
 							variant="filled"
 							label="username" 
 							defaultValue= {this.state.username}>
-
 						</TextField>
-						
 						
 						<TextField
 							disabled id="standard-disabled" 
 							variant="filled"
 							label="password" 
 							defaultValue="******" >
-
 						</TextField>
 
-						
-						
-						
-						<dd></dd>
 						<br></br>
 						
 						<TextField	
-									disabled id="standard-disabled" 	
-									variant="filled"
-									label="majors"
-									defaultValue={this.state.major} >
+							disabled id="standard-disabled" 	
+							variant="filled"
+							label="majors"
+							defaultValue={this.state.major} >
 						</TextField>
 
 						
 						<TextField	
-									disabled id="standard-disabled" 	
-									variant="filled"
-									label="Gender"
-									defaultValue={this.state.gender} >
+							disabled id="standard-disabled" 	
+							variant="filled"
+							label="Gender"
+							defaultValue={this.state.gender} >
 						</TextField>
 
-
-
-
-						<dd></dd>
 						<br></br>
 
 						<TextField 
@@ -137,10 +141,8 @@ class AdminSettings extends React.Component {
 							variant="filled"
 							label="First Name" 
 							defaultValue={this.state.firstName}>
-
 						</TextField>
 
-					
 						<TextField 
 							disabled id="standard-disabled"
 							variant="filled"
@@ -149,13 +151,12 @@ class AdminSettings extends React.Component {
 
 						</TextField>
 
-						<dd></dd>
 						<br></br>
 						<TextField	
-									disabled id="standard-disabled" 	
-									variant="filled"
-									label="Role"
-									defaultValue={this.state.role} >
+							disabled id="standard-disabled" 	
+							variant="filled"
+							label="Role"
+							defaultValue={this.state.role} >
 						</TextField>
 
 						<TextField 
@@ -166,20 +167,16 @@ class AdminSettings extends React.Component {
 
 						</TextField>
 
-						<dd></dd>
 						<br></br>
-						<dd></dd>
-						<br></br>
-						<dd></dd>
 						<br></br>
 						<Link to = "/admin/info_change" style={{ textDecoration: 'none'}}>
 							<Button
 								variant="contained"
 								color="primary"
 								size="large"
+								className={classes.button}
 								startIcon={<SaveIcon />}>
 									Update
-							
 							</Button>
 						</Link>
 						
@@ -188,25 +185,15 @@ class AdminSettings extends React.Component {
 								variant="contained"
 								color="primary"
 								size="large"
+								className={classes.button}
 								startIcon={<LaptopMacIcon />}>
 									Go to main
-							
 							</Button>
 						</Link>
-						
-
-					</div>
-						
+					</div>					
 					}>
-					
-					
-					
-		
 					</MenuAppBar>
 
-
-			
-			
 			)
 		}
 		
@@ -214,4 +201,4 @@ class AdminSettings extends React.Component {
 
 }
 	
-export default (AdminSettings);
+export default withStyles(useStyles, { withTheme: true })(AdminSettings);

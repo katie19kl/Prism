@@ -2,16 +2,18 @@ import { Role } from "src/server/RolesActivity/role.enum";
 import { Gender } from "../common/gender.enum";
 import { Major } from "../common/major.enum";
 import { CreateUserDto } from "./create-user.dto";
-
 import { PartialType } from '@nestjs/mapped-types';
-import { IsAlpha, IsAlphanumeric, IsInt, IsNotEmpty, IsOptional, MaxLength, MinLength } from "class-validator";
+import { IsAlpha, IsAlphanumeric, IsNotEmpty, IsNumberString,
+         IsOptional, MaxLength, MinLength } from "class-validator";
 import { IsRole } from "../decorators/role-validation.decorator";
 import { IsGender } from "../decorators/gender-validation.decorator";
 import { IsMajor } from "../decorators/major-validation.decorator";
+import { IsPhoneNumber } from "../decorators/phoneNumber-validation.decorator";
 
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
 
+    @IsNumberString()
     personalId: string;
 
     @IsAlphanumeric()
@@ -48,6 +50,10 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     
     
     @IsOptional()
+    @IsPhoneNumber({
+        message: "You did not enter an appropriate phone number"
+    })
+    @IsNumberString()
     readonly phoneNumber: string;
     
     
@@ -59,6 +65,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     
     
     @IsOptional()
+    @IsNumberString()
     readonly commander: string;
     
     

@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import { Gender, genders } from '../../HelperJS/Gender';
 import { Major, majors } from "../../HelperJS/Major";
 import Role from "../../Roles/Role";
-import axios from "axios";
 import { validateFields, handleOptionalFields } from '../../HelperJS/validator';
+import { sendCreateUserRequest } from "../../HelperJS/request_handler";
 
 
 const useStyles = (theme) => ({
@@ -49,6 +49,7 @@ class UserCreationForm extends React.Component {
         this.handleChangeMajor = this.handleChangeMajor.bind(this);
         this.handleChangeCommander = this.handleChangeCommander.bind(this);
         this.handleSave = this.handleSave.bind(this);
+        this.handleResponse = this.handleResponse.bind(this);
 
         this.personalId = undefined;
         this.username = undefined;
@@ -60,11 +61,13 @@ class UserCreationForm extends React.Component {
         this.major = Major.Undefined;
         this.commander = undefined;
         this.showWarning = false;
+        this.msg = undefined;
 
 
         this.state = {
             role: this.props.myRole,
             updated: false,
+            //creationMsg: undefined
         }
 
     }
@@ -116,9 +119,6 @@ class UserCreationForm extends React.Component {
     }
 
     handleSave() {
-
-        let url = "http://localhost:4000/users";
-
         let data = {
             personalId: this.personalId,
             username: this.username,
@@ -141,6 +141,7 @@ class UserCreationForm extends React.Component {
         if (result.length > 0) {
 
             this.showWarning = true;
+            this.msg = "You have missing fields!"
 
             // cause re-rendering.
             this.setState({updated: true});
@@ -148,23 +149,56 @@ class UserCreationForm extends React.Component {
             return;
         }
 
+        // Add optional fields if they are defined.
         for (var key in optionalFields) {
             data[key] = optionalFields[key];
         }
 
-        console.log("data");
         console.log(data);
 
-        axios.post(url, data)
-        .then((response) => {
+        sendCreateUserRequest(data).then((res) => {
+            console.log(res);
+            this.handleResponse(res);
+
+
+        }, (err) => {
+            console.log(err);
+
+            this.handleResponse(err);
             
-            console.log(response);
-        
-        }, (error) => {
-        
-            console.log(error);
-        
-        });
+        })
+    }
+
+    handleResponse(res) {
+
+        if (res.response !== undefined) {
+
+            if ((res.response.status === 400) || (res.response.status === 403)) {
+            
+                this.showWarning = true;
+                this.msg = "Invalid input, please fix";
+    
+                this.setState({ updated: true });
+    
+            } else {
+                this.showWarning = true;
+                this.msg = "Something went wrong!";
+                this.setState({ updated: true});
+            }
+
+        } else {
+            if (res.status === 201) {
+
+                console.log("successful creation, should reload");
+                
+                window.location.reload(false);
+
+                this.showWarning = true;
+                this.msg = "Created Successfully!";
+                this.setState({ updated: true});
+     
+            }
+        }
     }
     
     render() {
@@ -178,7 +212,7 @@ class UserCreationForm extends React.Component {
                             variant="h6"
                             className={classes.myFont}
                             color="error">
-                            You have Missing fields
+                            {this.msg}
                             </Typography> : ""}
 
                 <form className={classes.root} noValidate autoComplete="off">
