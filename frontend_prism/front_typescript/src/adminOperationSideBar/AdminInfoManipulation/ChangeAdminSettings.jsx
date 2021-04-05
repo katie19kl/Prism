@@ -3,7 +3,7 @@ import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import SaveIcon from '@material-ui/icons/Save';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {getUserInfoByJWT } from '../../HelperJS/extract_info_by_token'
+import {getUserInfoByJWT } from '../../HelperJS/extract_info'
 
 import { updateUser } from '../../HelperJS/update_user'
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
