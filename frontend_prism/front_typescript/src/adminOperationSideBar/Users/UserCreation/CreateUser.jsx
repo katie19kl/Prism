@@ -6,8 +6,8 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
-import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
-import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
+import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 
 import UserCreationForm from "./UserCreationForm";
 
@@ -135,7 +135,10 @@ class CreateUser extends React.Component {
                         </RadioGroup>
                     </FormControl>
                     <div id="form-based-on-roles">
-                        {(this.state.viewForm) ? this.form : ''}
+                        {
+                        // if view - true -> render this.form o.w. -> render ''
+                        (this.state.viewForm) ? this.form : ''
+                        }
                     </div>
                 </div>
             }>

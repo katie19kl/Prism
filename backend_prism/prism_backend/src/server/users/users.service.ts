@@ -37,6 +37,8 @@ export class UsersService {
 	}
 
 
+
+
 	// Returns user object based on his token
 	async getUserByJWT(usertoken){
 
@@ -64,7 +66,7 @@ export class UsersService {
 	async findOneByPersonalId(personalId: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"personalId": personalId});
-
+		console.log(user)
 		return user;
 	}
 
@@ -102,6 +104,9 @@ export class UsersService {
 		let users = await this.userModel.find();
 		let soldiersInMajor = [];
 
+		
+		let soldierData;
+		
 		users.forEach(user => {
 
 			let currMajor = user.major;
@@ -112,9 +117,14 @@ export class UsersService {
 				
 				if (currMajor == major) {
 
-					let fullString = user.username + " - " + user.firstName + " " + user.lastName;
-					soldiersInMajor.push(fullString);
+					let fullString = user.personalId + " - " + user.firstName + " " + user.lastName;
+					//soldiersInMajor.push(fullString);
 
+					soldierData = {personalId : user.personalId,
+										 firstName : user.firstName,
+										 lastName: user.lastName
+										}
+					soldiersInMajor.push(soldierData)
 				}
 			}
 		});
@@ -183,8 +193,8 @@ export class UsersService {
 	}
 
 	// delete user by its username
-	async deleteUser(username: string) {
-		let user = await this.userModel.findOne({"username": username});
+	async deleteUser(personalId: string) {
+		let user = await this.userModel.findOne({"personalId": personalId});
 
 		if (user) {
 			

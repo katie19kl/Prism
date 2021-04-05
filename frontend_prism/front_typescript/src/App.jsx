@@ -6,9 +6,10 @@ import NoPermissions from './HelperFooStuff/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './GeneralComponent/main/MainView'
 import Role from './Roles/Role';
-import UsersHandling from './adminOperationSideBar/UserCreation/UsersHandling';
-import CreateUser from './adminOperationSideBar/UserCreation/CreateUser';
-import UpdateUsers from './adminOperationSideBar/UserCreation/UpdateUsers';
+import UsersHandling from './adminOperationSideBar/Users/UsersHandling';
+import CreateUser from './adminOperationSideBar/Users/UserCreation/CreateUser';
+import UpdateUsers from './adminOperationSideBar/Users/UpdateUser/UpdateUsers';
+import DeleteUser from './adminOperationSideBar/Users/DeleteUser/DeleteUser'
 
 import ChangeAdminSettings from './adminOperationSideBar/AdminInfoManipulation/ChangeAdminSettings'
 
@@ -61,6 +62,10 @@ export default function App() {
 			<Route path="/admin/create_user" component={CreateUser} />
 
 			<Route path="/admin/update_user" component={UpdateUsers} />
+
+			
+			<Route path="/admin/delete_user" component={DeleteUser} />
+
 
 
 			<Route path="/noPermissions" component={NoPermissions}>

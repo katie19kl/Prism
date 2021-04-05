@@ -65,6 +65,14 @@ export class UsersController {
 
     }
 
+    @Get(':id')
+    async getSoldierById(@Param('id') personalId: string){
+
+        console.log(personalId)
+        return await this.usersService.findOneByPersonalId(personalId)
+        
+    }
+
     // ADMIN/COMMANDER
     @Put(':username')
     async updateUser(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
@@ -78,11 +86,11 @@ export class UsersController {
 
 
     // ADMIN/COMMANDER
-    @Delete(':username')
-    async deleteUser(@Param('username') username: string) {
+    @Delete(':id')
+    async deleteUser(@Param('id') personalId: string) {
 
-        console.log('deleting user with the username: ' + username);
-        return await this.usersService.deleteUser(username);
+        console.log('deleting user with the username: ' + personalId);
+        return await this.usersService.deleteUser(personalId);
 
     }
 

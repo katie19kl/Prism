@@ -18,12 +18,16 @@ export default class AdminSettings extends React.Component {
 		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this)
 		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this)
 
-		this.updateMyInfo = this.updateMyInfo.bind(this)
-		
+
+				
 		this._username =  undefined
 		this._firstName = undefined
 		this._lastName = undefined
 		this._phone_number = undefined
+
+		
+		this.updateMyInfo = this.updateMyInfo.bind(this)
+
 
 
 		
@@ -142,7 +146,7 @@ export default class AdminSettings extends React.Component {
 								
 								variant="filled"
 								label="username" 
-								defaultValue={this.state.username}>
+							>
 
 					</TextField>
 
@@ -161,7 +165,7 @@ export default class AdminSettings extends React.Component {
 								
 								variant="filled"
 								label="First Name" 
-								defaultValue={this.state.firstName}>
+								>
 	
 					</TextField>
 
@@ -182,7 +186,7 @@ export default class AdminSettings extends React.Component {
 								
 								variant="filled"
 								label="Last Name" 
-								defaultValue={this.state.lastName}>
+								>
 	
 					</TextField>
 
@@ -203,7 +207,7 @@ export default class AdminSettings extends React.Component {
 								
 								variant="filled"
 								label="Phone num" 
-								defaultValue={this.state.lastName}>
+								>
 	
 					</TextField>
 

@@ -64,7 +64,7 @@ async function updateUser(username, newUserName, newFirstName,newLastName, newPh
 			.then((response) => {
 				
 				console.log("update ------------------")
-				if (username !== undefined && username !== ""){
+				if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined"){
 					console.log("update curr with" + newUserName)
 					LocalStorage.setItem(LocalStorage.username, newUserName)
 				}

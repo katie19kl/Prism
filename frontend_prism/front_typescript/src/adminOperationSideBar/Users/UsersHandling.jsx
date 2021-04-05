@@ -5,6 +5,7 @@ import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
 import { withStyles } from '@material-ui/core/styles';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import EditIcon from '@material-ui/icons/Edit';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { Link } from "react-router-dom";
 
 
@@ -71,15 +72,23 @@ class UsersHandling extends React.Component {
                         
                         </Link>
 
-                        {/*<Switch>
-                            <Route path={'/admin/users/update_user'}>
-                            <UpdateUsers />
-                            </Route>
-                            <Route path={'/admin/users/create_user'}>
-                            <CreateUser />
-                            </Route>
-                        </Switch>
-                        */}
+
+                        <Typography variant="h6" className={classes.padding2}>
+                            To delete an existing user, please press below
+                        </Typography>
+
+                        <Link to="/admin/delete_user" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+                            <Button 
+                                variant="contained"
+                                color="primary"
+                                startIcon={<DeleteForeverIcon />}
+                                className={classes.button}>
+                                Delete User
+                            </Button>
+
+                        </Link>
+
 
                     </div>
                 }/>

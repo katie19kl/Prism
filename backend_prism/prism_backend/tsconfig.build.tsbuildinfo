@@ -2592,8 +2592,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/users.service.ts": {
-        "version": "9abbb13d27d344cbea21f8018b9417a6333182241a162e15ee8d156270f77096",
-        "signature": "407ab6d9d3107b42437098182796b298e96945a70531a836bf804f35d09c1cd4",
+        "version": "cd5cdc3aa9c94f4c97062af1b730fe9145346e895cc74a93684c4aa92f7e3b6a",
+        "signature": "4d473bc409e42a63221822849cd48946abe738b9b8d0a123b45d284dd196ffbb",
         "affectsGlobalScope": false
       },
       "./src/server/auth/interfaces/jwt-payload.interface.ts": {
@@ -2647,8 +2647,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/users.controller.ts": {
-        "version": "09948a80c93aa4ceb38d58150929e5af22e6433818144cab2e4f5079a5e2a325",
-        "signature": "ffb224614ff81777cb6289121eb3cdfe607816829d7abd4cc55088dddae94de2",
+        "version": "1c68263f26beed2db194702ddfea56d760a083841c5e4be3b9d2b66fad95b1be",
+        "signature": "93223ce7d58c093cffe04675c9414434df87179cd0a8653b3b7e3473e6d8831b",
         "affectsGlobalScope": false
       },
       "../../../../../node_modules/@types/bcrypt/index.d.ts": {
