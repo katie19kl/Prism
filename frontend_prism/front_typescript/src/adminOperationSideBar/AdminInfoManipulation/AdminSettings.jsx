@@ -23,12 +23,15 @@ const useStyles = (theme) => ({
         marginLeft: theme.spacing(30),
     },
     button: {
-        marginLeft: theme.spacing(7),
+        marginLeft: theme.spacing(6),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
         marginLeft: theme.spacing(15),
-    }
+    },
+	h3: {
+		marginLeft: theme.spacing(10),
+	}
 });
 
 
@@ -107,7 +110,10 @@ class AdminSettings extends React.Component {
 					<div className={classes.root}>
 					<h2 className={classes.myFont}>Your Current Info</h2>
 
-						<DisplayUserData  
+					<h3 className={classes.h3}>Here You Can See Current Data</h3>
+
+
+						<DisplayUserData
 							
 							phone_number = {this.state.phone_number} 
 							role = {this.state.role}
