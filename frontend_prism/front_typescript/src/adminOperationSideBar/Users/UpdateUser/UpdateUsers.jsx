@@ -52,17 +52,17 @@ class UpdateUsers extends React.Component {
             {
                 firstName: 'Sergio_1',
                 lastName: 'Jack_1',
-                personalId: "1111111111"
+                personalId: "0123456789"
             },
             {
                 firstName: 'Donald_2',
                 lastName: 'Trump_2',
-                personalId: "2222222222"
+                personalId: "0123446789"
             },
             {
                 firstName: 'Ganz_3',
                 lastName: 'Jonica_3',
-                personalId: "333333333333333"
+                personalId: "0123446999"
             }
         ] ;
         
@@ -118,9 +118,14 @@ class UpdateUsers extends React.Component {
 
                         console.log(")))))))))))))))")
 
-                        this.setState({_users_retrieved: true})
+                        //this.setState({_users_retrieved: true})
                     
                     }
+                    
+                    //sort displaying by personal id 
+                    this.soldierInCommanderMajor.sort( (a,b) => a.personalId - b.personalId)
+
+                    this.setState({_users_retrieved: true})
                 })
             }
         });
