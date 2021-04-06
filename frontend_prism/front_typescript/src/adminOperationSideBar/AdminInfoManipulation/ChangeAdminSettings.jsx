@@ -91,7 +91,7 @@ class ChangeAdminSettings extends React.Component {
 		let username = this.state.prev_username
 
 		/////////////////////////////// updating user info in server
-		updateUser(username,newUserName, newFirstName,newLastName, newPhoneNum).then(
+		updateUser(username,newUserName, newFirstName,newLastName, newPhoneNum,true).then(
 			(res) => {
 				if (res !== undefined) {
 					

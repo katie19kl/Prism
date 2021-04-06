@@ -2,12 +2,12 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
-import SaveIcon from '@material-ui/icons/Save';
-import { Button, TextField} from "@material-ui/core";
+import { TextField } from "@material-ui/core";
 import DisplayUserData from "../../../HelperFooStuff/DisplayUserData";
 
 import {getUserInfoByJWT, getUserInfoById, getSoldiersByMajor} from "../../../HelperJS/extract_info"
 import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
+
 
 
 const useStyles = (theme) => ({
@@ -49,7 +49,7 @@ class UpdateUsers extends React.Component {
     constructor(props) {
         super(props);
         this.handleChangeSelectSoldier = this.handleChangeSelectSoldier.bind(this);
-        this.updateUserInfo = this.updateUserInfo(this)
+       
 
         this.soldier_id = undefined
         this.soldier_firstName = undefined
@@ -69,19 +69,14 @@ class UpdateUsers extends React.Component {
                 personalId: ' ' 
             },
             {
-                firstName: 'Sergio_1',
-                lastName: 'Jack_1',
+                firstName: 'DUMMY_1',
+                lastName: 'DUMMY_1',
                 personalId: "0123456789"
             },
             {
-                firstName: 'Donald_2',
-                lastName: 'Trump_2',
+                firstName: 'DUMMY_2',
+                lastName: 'DUMMY_2',
                 personalId: "0123446789"
-            },
-            {
-                firstName: 'Ganz_3',
-                lastName: 'Jonica_3',
-                personalId: "0123446999"
             }
         ] ;
         
@@ -89,14 +84,7 @@ class UpdateUsers extends React.Component {
 
     }
 
-    updateUserInfo() {
 
-        if (this.soldier_id !== undefined){
-
-        }
-
-        
-    }
 
     componentDidMount() {
 
@@ -141,7 +129,7 @@ class UpdateUsers extends React.Component {
                     
                     }
                     //////////////////////////////////////// put as async /////////////////////////////
-                    this.soldierInCommanderMajor.sort( (a,b) => a.personalId - b.personalId)
+                    this.soldierInCommanderMajor.sort((a,b) => a.personalId - b.personalId)
 
                     this.setState({_users_retrieved: true})
                 })
@@ -276,6 +264,8 @@ class UpdateUsers extends React.Component {
                                     (this.state._selected) 
                                     ?
                                     <ChangeUserData 
+                                    soldier_id_ = {this.soldier_id}
+                                    toChangeByUserName={this.soldier_username}
                                     prev_phone_number={this.soldier_phone}
                                     prev_lastName = {this.soldier_secondName}
                                     prev_firstName = {this.soldier_firstName}
@@ -302,25 +292,10 @@ class UpdateUsers extends React.Component {
                                     
                                     : ''
                                     }
-                                                    {
-                                    // if view - true -> render this.form o.w. -> render ''
-                                    (this.state._error) 
-                                    ? this.form
-                                    
-                                    : ''
-                                    }
+      
                             </div>
 
-                            <Button
-                                        onClick={this.updateUserInfo}
-                                        variant="contained"
-                                        className={classes.padding}
-                                        color="primary"
-                                        size="large"
-                                        startIcon={<SaveIcon />}>
-                                        Update user info
-                                            
-                            </Button>
+
 
                             <br/>
                             <br/>

@@ -1,6 +1,9 @@
 import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import React from "react"
+import SaveIcon from '@material-ui/icons/Save';
+import { Button} from "@material-ui/core";
+import {updateUser} from "../HelperJS/update_user"
 
 
 const useStyles = (theme) => ({
@@ -40,12 +43,45 @@ class ChangeUserData extends React.Component {
 		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this)
 
 
-				
+		this.updateUserInfo = this.updateUserInfo.bind(this)
 		this._username =  undefined
 		this._firstName = undefined
 		this._lastName = undefined
 		this._phone_number = undefined
 
+		
+
+    }
+
+	updateUserInfo(event) {
+		console.log("-----------------------")
+		console.log(event)
+
+		console.log("---*-**-*-*-*---------")
+        if (this.props.soldier_id_ !== undefined){
+
+			let newUserName = this._username
+			let newFirstName = this._firstName
+			let newLastName = this._lastName
+			let newPhoneNum = this._phone_number
+
+			let usernameToChange = this.props.toChangeByUserName
+            
+			updateUser(usernameToChange,newUserName, newFirstName,newLastName, newPhoneNum, false).then(
+                (res) => {
+                    if (res !== undefined) {
+                        
+                        console.log(res)
+                        window.location.reload(false)
+                    }
+                }
+                
+            )
+            
+
+        }
+
+        
     }
 
 
@@ -159,6 +195,16 @@ class ChangeUserData extends React.Component {
 
 					<br></br>
 					<br></br>
+					<Button
+                                        onClick={this.updateUserInfo}
+                                        variant="contained"
+                                        className={classes.padding}
+                                        color="primary"
+                                        size="large"
+                                        startIcon={<SaveIcon />}>
+                                        Update user info
+                                            
+                    </Button>
 
 
 

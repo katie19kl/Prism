@@ -28,7 +28,7 @@ function update_fields(newUserName, newFirstName,newLastName, newPhoneNum){
 
 
 
-async function updateUser(username, newUserName, newFirstName,newLastName, newPhoneNum) {
+async function updateUser(username, newUserName, newFirstName,newLastName, newPhoneNum,me) {
 
 
 	let updated_user_json = update_fields(newUserName, newFirstName,newLastName, newPhoneNum)
@@ -66,7 +66,11 @@ async function updateUser(username, newUserName, newFirstName,newLastName, newPh
 				console.log("update ------------------")
 				if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined"){
 					console.log("update curr with" + newUserName)
-					LocalStorage.setItem(LocalStorage.username, newUserName)
+					// if change my username => update local storage
+					if (me){
+	
+						LocalStorage.setItem(LocalStorage.username, newUserName)
+					}
 				}
         		console.log(response + "--------------------------------------")
 				return response;
