@@ -21,7 +21,7 @@ const useStyles = (theme) => ({
         marginLeft: theme.spacing(30),
     },
     button: {
-        marginLeft: theme.spacing(17),
+        marginLeft: theme.spacing(13),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",

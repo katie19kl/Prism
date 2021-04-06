@@ -1,7 +1,35 @@
+import { withStyles } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import React from "react"
 
-export default class ChangeUserData extends React.Component {
+
+const useStyles = (theme) => ({
+    root: {
+        flexGrow: 1,
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '20ch',
+        },
+        //marginTop: theme.spacing(3),
+        marginLeft: theme.spacing(10),
+    },
+    padding: {
+        flexGrow: 1,
+        marginTop: theme.spacing(2),
+        marginLeft: theme.spacing(10),
+    },
+    myFont: {
+        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        marginLeft: theme.spacing(8),
+        marginTop: theme.spacing(2),
+    },
+    select: {
+        marginRight: theme.spacing(20),
+    }
+});
+
+
+class ChangeUserData extends React.Component {
 
 	constructor(props) {
 		super(props);
@@ -48,12 +76,12 @@ export default class ChangeUserData extends React.Component {
 
     render() {
 
-
+		const { classes } = this.props;
 
       return (
 
-			<div>
-                    <h2> HERE YOU CAN CHANGE DATA </h2>
+			<div className={classes.root}>
+                    <h3 className={classes.myFont}> Here You Can Change Data </h3>
 					<TextField onChange={this.handleTextFieldChangeUsername}
 								
 								variant="filled"
@@ -66,7 +94,7 @@ export default class ChangeUserData extends React.Component {
 					<TextField
 								disabled id="standard-disabled" 
 								variant="filled"
-								label="username" 
+								label="username"
 								defaultValue= {this.props.prev_username}>
 
 					</TextField>
@@ -138,4 +166,6 @@ export default class ChangeUserData extends React.Component {
 
       )
     }
-  }
+}
+
+export default withStyles(useStyles, { withTheme: true })(ChangeUserData)

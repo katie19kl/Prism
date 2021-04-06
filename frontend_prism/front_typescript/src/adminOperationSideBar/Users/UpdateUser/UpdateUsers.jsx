@@ -13,15 +13,34 @@ import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
 const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '50ch',
+        },
+        marginTop: theme.spacing(3),
+        marginLeft: theme.spacing(30),
+        display: 'inline',
     },
     padding: {
         flexGrow: 1,
+        marginTop: theme.spacing(2),
         marginLeft: theme.spacing(40),
-        marginTop: theme.spacing(15),
     },
+    myFont: {
+        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        marginLeft: theme.spacing(27),
+        marginTop: theme.spacing(2),
+    },
+    select: {
+        marginLeft: theme.spacing(30),
+        width: "45ch"
+    },
+    h3: {
+        marginLeft: theme.spacing(5),
+        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+
+    }
 });
-
-
 
 
 class UpdateUsers extends React.Component {
@@ -45,8 +64,8 @@ class UpdateUsers extends React.Component {
 
         this.soldierInCommanderMajor = [
             {
-                firstName: ' ',
-                lastName: ' None',
+                firstName: ' None',
+                lastName: ' ',
                 personalId: ' ' 
             },
             {
@@ -72,14 +91,14 @@ class UpdateUsers extends React.Component {
 
     updateUserInfo() {
 
-    if (this.soldier_id !== undefined){
+        if (this.soldier_id !== undefined){
 
-    }
+        }
 
         
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
         getUserInfoByJWT().then((user) => {
 
@@ -118,11 +137,10 @@ class UpdateUsers extends React.Component {
 
                         console.log(")))))))))))))))")
 
-                        //this.setState({_users_retrieved: true})
+                        
                     
                     }
-                    
-                    //sort displaying by personal id 
+                    //////////////////////////////////////// put as async /////////////////////////////
                     this.soldierInCommanderMajor.sort( (a,b) => a.personalId - b.personalId)
 
                     this.setState({_users_retrieved: true})
@@ -136,6 +154,8 @@ class UpdateUsers extends React.Component {
 
     // user selected => display its info 
     handleChangeSelectSoldier(event) {
+
+        const { classes } = this.props;
         
         console.log(event.target.value + "  !!!!!!!!!!!!!!")
         this.soldier_id = event.target.value
@@ -156,7 +176,7 @@ class UpdateUsers extends React.Component {
                 console.log(user + " <--1")
                 this.form = <h2>problem with user loading </h2>
                 this.setState({_error: true})
-            }else {
+            } else {
                 
 
                 console.log(user + " <--2")
@@ -176,7 +196,10 @@ class UpdateUsers extends React.Component {
                 this.soldier_secondName = lastName
                 
                 
-                this.form = <DisplayUserData 
+                this.form = <DisplayUserData title={
+                    <h3 className={classes.h3}>Here You Can See Current Data</h3>
+                }
+                
                 major = {major} 
                 gender = {gender}
                 role = {role}
@@ -199,6 +222,7 @@ class UpdateUsers extends React.Component {
     }
 
     render() {
+        const { classes } = this.props;
 
         console.log(" renders update")
             
@@ -212,7 +236,7 @@ class UpdateUsers extends React.Component {
                         
                         <div>
     
-                            <h2> Choose which one you want to update</h2>
+                            <h2 className={classes.myFont}> Choose which one you want to update</h2>
 
                             
                             <br></br>
@@ -222,6 +246,7 @@ class UpdateUsers extends React.Component {
                             select
                             label="Soldier info "
                             value={this.soldier_id}
+                            className={classes.select}
                             onChange={this.handleChangeSelectSoldier}
                             SelectProps={{
                                 native: true,
@@ -233,46 +258,20 @@ class UpdateUsers extends React.Component {
                                     <option key={sld.personalId} value={sld.personalId}>
                                     {
                                     "Personal id: "  + sld.personalId + " | First name: " + sld.firstName 
-                                    + " | Last name: " + sld.lastName + " "
+                                    //+ " | Last name: " + sld.lastName + " "
                                     }
                                     </option>
                             ))}
 
                         </TextField>
-
-
-                            <Button
-                                        onClick={this.updateUserInfo}
-                                        variant="contained"
-                                        color="primary"
-                                        size="large"
-                                        startIcon={<SaveIcon />}>
-                                        Update user info !!!
-                                            
-                            </Button>
-
-
-                            <div id="form-based-on-selected user">
-                                    {
-                                    // if view - true -> render this.form o.w. -> render ''
-                                    (this.state._selected) 
-                                    ? this.form
-                                    
-                                    : ''
-                                    }
-                                                    {
-                                    // if view - true -> render this.form o.w. -> render ''
-                                    (this.state._error) 
-                                    ? this.form
-                                    
-                                    : ''
-                                    }
-                            </div>
                         
+                            <br/>
+                            <br/>
 
-                                <div>
-                                    
-                                {
+
+
+                            <div id="form-based-on-selected user" style={{ display: 'inline-flex' }}>
+                            {
                                     // if view - true -> render this.form o.w. -> render ''
                                     (this.state._selected) 
                                     ?
@@ -280,7 +279,7 @@ class UpdateUsers extends React.Component {
                                     prev_phone_number={this.soldier_phone}
                                     prev_lastName = {this.soldier_secondName}
                                     prev_firstName = {this.soldier_firstName}
-                                    prev_username = {this.soldier_username} >       
+                                    prev_username = {this.soldier_username} >
                                     </ChangeUserData>
                                     
                                     : ''
@@ -296,14 +295,41 @@ class UpdateUsers extends React.Component {
                                     : ''
                                     }
 
-                                </div>
-                        
-                        
+                                    {
+                                    // if view - true -> render this.form o.w. -> render ''
+                                    (this.state._selected) 
+                                    ? this.form
+                                    
+                                    : ''
+                                    }
+                                                    {
+                                    // if view - true -> render this.form o.w. -> render ''
+                                    (this.state._error) 
+                                    ? this.form
+                                    
+                                    : ''
+                                    }
+                            </div>
+
+                            <Button
+                                        onClick={this.updateUserInfo}
+                                        variant="contained"
+                                        className={classes.padding}
+                                        color="primary"
+                                        size="large"
+                                        startIcon={<SaveIcon />}>
+                                        Update user info
+                                            
+                            </Button>
+
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                    
+                                    
                         
                         </div>
-                        
-                        
-            
                         
                     }>
 
@@ -323,13 +349,5 @@ class UpdateUsers extends React.Component {
         }
     }
 }
-
-
-
-
-
-
-
-
 
 export default withStyles(useStyles, { withTheme: true })(UpdateUsers);
