@@ -45,7 +45,7 @@ export const UserSchema = new mongoose.Schema({
         required: false
     },
     major: {
-        type: String,
+        type: Array,
         required: false
     }
 });

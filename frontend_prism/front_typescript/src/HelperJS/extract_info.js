@@ -38,14 +38,13 @@ async function getUserInfoByJWT() {
 async function getUserInfoById(personalId) {
 
 	let token = LocalStorage.getItem(LocalStorage.token);
+	
 	// User has no token
 	if (token === null || token === 'undefined') {
 
 		return false;
 
 	} else {
-
-
 
 		// send the token to the server and check its response.
 		let url = "http://localhost:4000/users/" + personalId;
@@ -68,7 +67,8 @@ async function getUserInfoById(personalId) {
 	}
 }
 
-async function getSoldiersByMajor(major){
+/*async function getSoldiersByMajor(major) {
+
 	let token = LocalStorage.getItem(LocalStorage.token);
 	// User has no token
 	if (token === null || token === 'undefined') {
@@ -76,8 +76,6 @@ async function getSoldiersByMajor(major){
 		return false;
 
 	} else {
-
-
 
 		// send the token to the server and check its response.
 		let url = "http://localhost:4000/users/soldiers/" + major;
@@ -90,15 +88,46 @@ async function getSoldiersByMajor(major){
 
 		return await req.get(url, {
 		})
-			.then((response) => {
+		.then((response) => {
 
-				return response;
+			return response;
 
-			}, (error) => {
-				return undefined
-			});
+		}, (error) => {
+			return undefined
+		});
+	}
+}*/
+
+async function getSoldiersByMajors(majors) {
+	let token = LocalStorage.getItem(LocalStorage.token);
+	// User has no token
+	if (token === null || token === 'undefined') {
+
+		return false;
+
+	} else {
+
+		// send the token to the server and check its response.
+		let url = "http://localhost:4000/users/soldiers/majors";
+
+		const req = await axios.create({
+			baseURL: url,
+			timeout: 1000,
+			//data: majors,
+			headers: { 'Authorization': 'Bearer ' + token }
+		});
+
+		return await req.post(url, majors, {
+		})
+		.then((response) => {
+
+			return response;
+
+		}, (error) => {
+			return undefined
+		});
 	}
 }
 
 
-export  { getUserInfoByJWT, getUserInfoById, getSoldiersByMajor }
+export  { getUserInfoByJWT, getUserInfoById, /*getSoldiersByMajor,*/ getSoldiersByMajors }

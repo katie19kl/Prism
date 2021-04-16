@@ -12,7 +12,7 @@ async function sendCreateUserRequest(data) {
     
     if (token === null || token === 'undefined') {
 
-		// return the user the login.
+		// return the user to login.
 
 	} else {
 

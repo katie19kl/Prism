@@ -34,16 +34,38 @@ function checkRequired(data) {
 
 }
 
-function handleOptionalFields(data) {
+function handleOptionalFields(data, role) {
 
     let major = data.major;
+    let listOfMajors = data.listMajors;
     let phoneNumber = data.phoneNumber;
     let commander = data.commander;
     let fields = {};
 
+    // Each soldier has only one major.
+    if (role === 'soldier') {
 
-    if (major !== 'None' && major !== undefined) {
-        fields.major = major;
+        if (!major.includes('None') && !major.includes(undefined)) {
+            fields.major = major;
+        }
+
+    // Commanders may have more than one major.
+    } else if (role === 'commander') {
+        
+        let len = Object.keys(listOfMajors).length;
+        if (len > 0) {
+
+            let majors = [];
+
+            for (var currMajor in listOfMajors) {
+                
+                if (listOfMajors[currMajor]) {
+                    majors.push(currMajor);
+                }
+            }
+
+            fields.major = majors;
+        }
     }
 
     if (phoneNumber !== undefined) {

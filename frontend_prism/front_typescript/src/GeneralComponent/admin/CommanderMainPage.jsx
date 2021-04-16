@@ -8,8 +8,6 @@ export default class CommanderMainPage extends React.Component {
 
 	render() {
 
-		
-
 		return (
 			<div>
 				<CssBaseline />
