@@ -1,6 +1,5 @@
 import { Controller, Param, Post, Res, UploadedFile, UploadedFiles, UseInterceptors } from '@nestjs/common';
-import { AnyFilesInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express'
-
+import { AnyFilesInterceptor, FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FileHandlingService } from './file-handling.service';
 import { Express } from 'express'
 import { Get } from '@nestjs/common';
@@ -61,7 +60,4 @@ export class FileHandlingController {
 		console.log("----")
 		return await this.fileHandlingService.deleteMajorDir(dirMajorName)
 	}
-
-
-
 }

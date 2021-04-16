@@ -11,7 +11,7 @@ const someFileUrl_ = 'http://localhost:4000/file-handling/files/';
 @Injectable()
 export class FileHandlingService {
 
-    static get linkSomeFileUrl(){
+    static get linkSomeFileUrl() {
         return someFileUrl_;
     }
 
