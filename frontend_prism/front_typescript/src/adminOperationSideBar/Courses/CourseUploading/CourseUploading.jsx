@@ -2,7 +2,7 @@ import React from "react"
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ModulesDisplaying from "./ModulesDisplaying";
+import UploadBar from './UploadBar';
 
 class CourseUploading  extends React.Component {
 
@@ -14,13 +14,13 @@ class CourseUploading  extends React.Component {
             }
             content={
                 <div>
-                    <ModulesDisplaying/>  
+                 
 
                     <br></br>
                     <br></br>
                     <br></br>
                     <h2> uploading Second  here </h2>
-                    {/*<UploadTryBAR/>*/}
+                    {<UploadBar/>}
                </div>
             }>
 

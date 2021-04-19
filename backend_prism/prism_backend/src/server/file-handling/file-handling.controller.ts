@@ -32,18 +32,30 @@ export class FileHandlingController {
 	}
 
 
-	@Get('all_files')
-	async getFiles(){
-		return this.fileHandlingService.getAllFilesOfPath(FileHandlingService.pathRootDirectory);
+	@Get('files_in_subject/:major/:module/:subject')
+	async getFiles(@Param('major') major: Major, @Param('module') module: string,
+					@Param('subject') subject: string) {
+	
+		let path =  this.fileHandlingService.createPathMajorModuleSubject(major,module,subject);
+		return this.fileHandlingService.getAllFilesOfPath(path);
 	}
+	
+	/*@Get('files_in_subject/:major/:module/:subject')
+	async getAllFilesInSubject		
+		//let result = await this.fileHandlingService.getAllContentOfSubject(major, module, subject);
+
+		//console.log(result);
+
+		return result;
+	}*/
 
 
-	@Get("files/:file_name")
-	async getFileByName(@Param('file_name') file_name: String, @Res() res) {
+	@Get("files/:file_name/:fullPath")
+	async getFileByName(@Param('file_name') file_name: String, @Res() res, @Param('fullPath')fullPath: string) {
 		
 		// no need in return, because service 
 		// inserts file to stream pipe
-		this.fileHandlingService.getFileByName(file_name, res);
+		this.fileHandlingService.getFileByName(file_name, res, fullPath);
 
     }
 
@@ -78,14 +90,4 @@ export class FileHandlingController {
 		return result;
 	}
 
-	@Get('files_in_subject/:major/:module/:subject')
-	async getAllFilesInSubject(@Param('major') major: Major, @Param('module') module: string,
-		@Param('subject') subject: string) {
-		
-		let result = await this.fileHandlingService.getAllContentOfSubject(major, module, subject);
-
-		console.log(result);
-
-		return result;
-	}
 }

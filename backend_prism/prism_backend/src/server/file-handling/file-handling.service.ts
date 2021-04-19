@@ -76,6 +76,9 @@ export class FileHandlingService {
 		const directory = path;
 		const fs = require('fs');
 
+        console.log("path")
+        console.log(path);
+
         const get_f = async() => {
 
 			await new Promise ((resolve, reject) => {
@@ -120,9 +123,9 @@ export class FileHandlingService {
     }
 
 
-    async getFileByName(file_name:String, res){
+    async getFileByName(file_name:String, res, fullPath){
 
-        const directory = FileHandlingService.pathRootDirectory + "/";
+        const directory = fullPath;
 
 		let path = require('path');
 		let mime = require('mime');
@@ -161,7 +164,19 @@ export class FileHandlingService {
     createPathMajor(major:Major){
         let path = FileHandlingService.pathRootDirectory;
         let pathMajor = path + '/' + major
-        return pathMajor
+        return pathMajor;
+    }
+
+    createPathMajorModule(major: Major, module: string) {
+        let path = FileHandlingService.pathRootDirectory;
+        let pathMajor = path + '/' + major + '/' + module;
+        return pathMajor;
+    }
+
+    createPathMajorModuleSubject(major: Major, module: string, subject: string) {
+        let path = FileHandlingService.pathRootDirectory;
+        let pathMajor = path + '/' + major + '/' + module + '/' + subject;
+        return pathMajor;
     }
 
 
@@ -297,19 +312,18 @@ export class FileHandlingService {
     } 
 
     async getAllDirOfMajor(major:Major) {
-        let fullPath = FileHandlingService.pathRootDirectory + "/" + major;
+        let fullPath = this.createPathMajor(major);
         return this.getDirList(fullPath);
     }
 
     async getAllDirOfModule(major: Major, module: string) {
-        let fullPath = FileHandlingService.pathRootDirectory + "/" + major + "/" + module;
+        let fullPath = this.createPathMajorModule(major, module);
 
         return this.getDirList(fullPath);
     }
 
     async getAllContentOfSubject(major: Major, module: string, subject: string) {
-        let fullPath = FileHandlingService.pathRootDirectory 
-            + "/" + major + "/" + module + "/" + subject;
+        let fullPath = this.createPathMajorModuleSubject(major, module, subject);
 
         return await this.getAllFilesOfPath(fullPath);
     }

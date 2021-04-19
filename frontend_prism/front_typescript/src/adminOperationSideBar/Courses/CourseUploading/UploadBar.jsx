@@ -21,12 +21,16 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 
 
-export default class UploadTryBAR extends Component {
+export default class UploadBar extends Component {
 	constructor(props) {
 		super(props)
 		this.selectFile = this.selectFile.bind(this);
 		this.upload = this.upload.bind(this);
 		this.uploadFilesEvent = this.uploadFilesEvent.bind(this);
+
+		this.choosen_module = this.props.module;
+		this.choosen_major = this.props.major;
+		this.choosen_subject = this.props.subject;
 
 		this.state = {
 	
@@ -50,7 +54,7 @@ export default class UploadTryBAR extends Component {
 				this.setState({
 					_progressInfos,
 				});
-		  })
+		  }, this.choosen_major, this.choosen_module, this.choosen_subject)
 		  .then((response) => {
 
 			console.log("*-2")
@@ -69,7 +73,7 @@ export default class UploadTryBAR extends Component {
 			}
 			}
 			console.log("*4")
-			return getListOfAllFiles()
+			return getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject);
 
 		})
 		.then((files) => {
@@ -135,7 +139,7 @@ export default class UploadTryBAR extends Component {
 
 	componentDidMount() {
 		console.log("---1---*")
-		getListOfAllFiles().then((files)=>{
+		getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject).then((files)=>{
 			if (files === undefined){
 
 

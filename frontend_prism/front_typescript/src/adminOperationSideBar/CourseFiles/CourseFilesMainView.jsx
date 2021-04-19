@@ -8,6 +8,7 @@ import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 import { getModulesByMajor, getSubjectsByModule, getFilesBySubject } from "../../HelperJS/files_request_handler";
 import { Major } from "../../HelperJS/Major";
+import UploadBar from "../Courses/CourseUploading/UploadBar";
 
 
 const useStyles = (theme) => ({
@@ -51,6 +52,7 @@ class CourseFilesMainView extends React.Component {
             updated: false,
             chosenMajor: undefined,
             chosenModule: undefined,
+            chosenSubject: undefined,
             moduleUpdate: false,
             filesUpdate: false,
         };
@@ -133,7 +135,8 @@ class CourseFilesMainView extends React.Component {
                 this.filesData = data;
 
                 this.setState({
-                    filesUpdate: true
+                    filesUpdate: true,
+                    chosenSubject: subjectName
                 });
 
             });
@@ -167,7 +170,9 @@ class CourseFilesMainView extends React.Component {
                         <CommanderMenu />
                     }
                     content={
+                        
                         <Grid container spacing={2} justify="flex-start" className={classes.padding}>
+
                             <Grid item xs={12}>
                                 <br/>
                                 <br/>
@@ -262,13 +267,13 @@ class CourseFilesMainView extends React.Component {
                                                                                 No subjects under the module {this.state.chosenModule}
                                                                                 </h2> 
                                                                                 :
-                                                                                <ul>
-                                                                                    {this.filesData.map((file) => (
-                                                                                        <li key={file.file_name}>
-                                                                                            {file.url}
-                                                                                        </li>
-                                                                                    ))}
-                                                                                </ul>
+                                                                                <div>
+                                                                                    <UploadBar 
+                                                                                    major={this.state.chosenMajor}
+                                                                                    module={this.state.chosenModule}
+                                                                                    subject={this.state.chosenSubject}
+                                                                                    />
+                                                                                </div>
                                                                                 }
                                                                             </div>
                                                                             : ''
