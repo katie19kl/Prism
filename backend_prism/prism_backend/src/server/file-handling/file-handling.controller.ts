@@ -21,7 +21,7 @@ export class FileHandlingController {
 		//console.log(file)
 		let module_num = "2"
 		let subject_num = "1"
-		this.fileHandlingService.uploadFile(file,Major.Network,module_num,subject_num);
+		this.fileHandlingService.uploadFile(file,Major.Network, module_num, subject_num);
 		return "xui single"
 
 
@@ -34,7 +34,7 @@ export class FileHandlingController {
 
 	@Get('all_files')
 	async getFiles(){
-		return this.fileHandlingService.getAllFilesOfPath(FileHandlingService.pathRootDirectory)
+		return this.fileHandlingService.getAllFilesOfPath(FileHandlingService.pathRootDirectory);
 	}
 
 
@@ -43,7 +43,7 @@ export class FileHandlingController {
 		
 		// no need in return, because service 
 		// inserts file to stream pipe
-		this.fileHandlingService.getFileByName(file_name, res)
+		this.fileHandlingService.getFileByName(file_name, res);
 
     }
 
@@ -59,5 +59,33 @@ export class FileHandlingController {
 	async deleteMajorDir(@Param('dirMajorName') dirMajorName: String){
 		console.log("----")
 		return await this.fileHandlingService.deleteMajorDir(dirMajorName)
+	}
+
+	@Get('modules/:major')
+	async getAllModulesByMajor(@Param('major') major: Major) {
+		let result = await this.fileHandlingService.getAllDirOfMajor(major);
+		console.log(result);
+
+		return result;
+	}
+
+	@Get('subjects/:major/:module')
+	async getAllSubjectInModule(@Param('major') major: Major, @Param('module') module: string) {
+		let result = await this.fileHandlingService.getAllDirOfModule(major, module);
+
+		console.log(result);
+
+		return result;
+	}
+
+	@Get('files_in_subject/:major/:module/:subject')
+	async getAllFilesInSubject(@Param('major') major: Major, @Param('module') module: string,
+		@Param('subject') subject: string) {
+		
+		let result = await this.fileHandlingService.getAllContentOfSubject(major, module, subject);
+
+		console.log(result);
+
+		return result;
 	}
 }

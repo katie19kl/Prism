@@ -32,15 +32,15 @@ export class FileHandlingService {
 
             fs.mkdir(newMajorDir, function(err) {
                 if (err) {
-                    console.log("here")
-                    console.log(err)
-                    reject(err)
+                    console.log("here");
+                    console.log(err);
+                    reject(err);
                     
 
                 } else {
 
-                    console.log("New directory " +  newMajorDir + " successfully created.")
-                    resolve(newMajorDir)	
+                    console.log("New directory " +  newMajorDir + " successfully created.");
+                    resolve(newMajorDir);
                 }
             });
         })
@@ -53,17 +53,17 @@ export class FileHandlingService {
         let dirRoot = FileHandlingService.pathRootDirectory;
         let deleteMajorDir = dirRoot + '/' + directory_name_delete;
 
-        return await new Promise( (resolve, reject) =>{
+        return await new Promise( (resolve, reject) => {
 
         
                 fs.rmdir(deleteMajorDir, {recursive:true}, function(err) {
                 if (err) { 
-                    console.log("here")
-                    console.log(err)
-                    reject(err)
+                    console.log("here");
+                    console.log(err);
+                    reject(err);
                 } else {
-                    console.log("Directory " + deleteMajorDir + " was deleted")
-                    resolve(deleteMajorDir)
+                    console.log("Directory " + deleteMajorDir + " was deleted");
+                    resolve(deleteMajorDir);
                 }
             });
         })
@@ -71,27 +71,27 @@ export class FileHandlingService {
 
 
     async getAllFilesOfPath(path:string){
-        let all_file_url_ = FileHandlingService.linkSomeFileUrl
-		let files_name = []
+        let all_file_url_ = FileHandlingService.linkSomeFileUrl;
+		let files_name = [];
 		const directory = path;
 		const fs = require('fs');
 
-        const get_f = async() =>{
+        const get_f = async() => {
 
-			await new Promise ((resolve, reject) =>{
+			await new Promise ((resolve, reject) => {
 
 				fs.readdir(directory, async (err, files) => {
                     
                     
-					if (err){
-						reject(err)
+					if (err) {
+						reject(err);
 					}
                     for await(const file of files){
                         const stat = await fs.promises.stat( directory + "/" + file);
-                        if (await stat.isFile()){
-                            console.log("=============")
-                            console.log(file)
-                            console.log("is file only")
+                        if (await stat.isFile()) {
+                            console.log("=============");
+                            console.log(file);
+                            console.log("is file only");
                             files_name.push(
                                 {
                                 file_name: file,
@@ -147,7 +147,7 @@ export class FileHandlingService {
         fs.open(pathToStore, 'wx', (err, desc) => {
             if(!err && desc) {
                 fs.writeFile(desc, file.buffer, (err) => {
-                        if (err){
+                        if (err) {
                             throw err;
                         }                
                         console.log('Results Received');
@@ -165,16 +165,14 @@ export class FileHandlingService {
     }
 
 
-
-
     // returs dir list in given path 
     getDirList(path:string){
         const { readdirSync } = require('fs')
 
         const getDirectories = source =>
-          readdirSync(source, { withFileTypes: true })
+            readdirSync(source, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory())
-            .map(dirent => dirent.name)
+            .map(dirent => dirent.name);
         
         
             
@@ -188,10 +186,10 @@ export class FileHandlingService {
 
     // given list of all dirs in some module path
     // return name with given index
-    getNameOfIndexedDirModule(dirsInMajor, module_index: String){
+    getNameOfIndexedDirModule(dirsInMajor, module_index: String) {
         
-        let index = ''
-        let nameOfIndex = ''
+        let index = '';
+        let nameOfIndex = '';
 
         for (let dir of dirsInMajor){
             let tokenedDir = dir.split(IndexingFormat.ModuleSeparator)
@@ -212,7 +210,7 @@ export class FileHandlingService {
     }
 
     //composes root/major/model of given module index
-    createPathMajorModel(module_index: string,pathMajor){
+    createPathMajorModel(module_index: string, pathMajor){
         
         
         let dirsInMajor = this.getDirList(pathMajor)
@@ -298,17 +296,21 @@ export class FileHandlingService {
 
     } 
 
-
-
-    async getAllDirOfMajor(major:Major){
-
+    async getAllDirOfMajor(major:Major) {
+        let fullPath = FileHandlingService.pathRootDirectory + "/" + major;
+        return this.getDirList(fullPath);
     }
 
-    async getAllDirOfModule(module_index: string){
+    async getAllDirOfModule(major: Major, module: string) {
+        let fullPath = FileHandlingService.pathRootDirectory + "/" + major + "/" + module;
 
+        return this.getDirList(fullPath);
     }
 
-    async getAllContentOfSubject(module_index:string, subject_index:string){
+    async getAllContentOfSubject(major: Major, module: string, subject: string) {
+        let fullPath = FileHandlingService.pathRootDirectory 
+            + "/" + major + "/" + module + "/" + subject;
 
+        return await this.getAllFilesOfPath(fullPath);
     }
 }

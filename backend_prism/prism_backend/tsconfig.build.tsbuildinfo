@@ -2267,8 +2267,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/libphonenumber-js/index.d.ts": {
-        "version": "681fc121c5b11626b3f1f4cd5ab4f375fb866c050a6b66331b3dc57da0bcbdc5",
-        "signature": "681fc121c5b11626b3f1f4cd5ab4f375fb866c050a6b66331b3dc57da0bcbdc5",
+        "version": "6fe0003a5a2485b8d7f98e8530829b027a874c07deb51c42c1cf862900bbbf30",
+        "signature": "6fe0003a5a2485b8d7f98e8530829b027a874c07deb51c42c1cf862900bbbf30",
         "affectsGlobalScope": false
       },
       "./node_modules/class-validator/types/decorator/string/isphonenumber.d.ts": {
@@ -2681,14 +2681,14 @@
         "signature": "2e5d258cf85349b02b015c3f1b8873c152d182c3819a7ccc3aff16fc3037a5fc",
         "affectsGlobalScope": false
       },
-      "./src/server/app/app.module.ts": {
-        "version": "1dbdcc506d2c9463059602ff44b96984877cf071e20dd0be9ca5c6f154ad5748",
-        "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
+      "./src/server/file-handling/common/indexingformat.ts": {
+        "version": "caa86b12d33648b15d16e3f2a022e22052d88cf4f5082e61f27fd5737afe910c",
+        "signature": "9f0962a71f4f5547150c6ca92c7c24586b5e7db8d9dab18d6a01b506f598f921",
         "affectsGlobalScope": false
       },
-      "./src/server/app/main.ts": {
-        "version": "16523bfd5916e7092efab0b3629178fe3b497ae8f6c35529313994eae3dcf5db",
-        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+      "./src/server/file-handling/file-handling.service.ts": {
+        "version": "5dd47c31d4a34a5d7799493b1b7d8739fca0be04a1d0341d53388040452e0a48",
+        "signature": "0d306ee3826b6126af7cda0c1cc29647bd42cb0b0ace0ac7128aa474d2f96512",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
@@ -2771,19 +2771,24 @@
         "signature": "e3cd60be3c4f95c43420be67eaa21637585b7c1a8129f9b39983bbd294f9513c",
         "affectsGlobalScope": false
       },
-      "./src/server/file-handling/file-handling.service.ts": {
-        "version": "bae8874af7c2b40960686d964fcdf42ba675ca490e9706d7e095e9f9a6601523",
-        "signature": "9b096d846389ebf50acde7a1e1bd66397737a16201cad1cd6a194705daf25308",
-        "affectsGlobalScope": false
-      },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "94c0fcd557a859d3ccd12f768304763791e10223afcb8187d729b1453fc212d7",
-        "signature": "8872ea49d808b647f546fe9e01b480baa11a4b5301b77138525fdc9508261e56",
+        "version": "4231ca27de75f58596e99b86318c043b75f6f28893cdb85192e0df63cb07e5d1",
+        "signature": "f1f31b45e5bbea76c8028e15bfa0c7a652d176f48e93f7b96a191a2232566375",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.module.ts": {
         "version": "b25a103e5dc41a3b92dac6c9cc920a568832c39af1792cfa472fca88b7763605",
         "signature": "d9da3ab662f29073b47b7b54388c6f829d08b14f5af5554b8781e42a42d40970",
+        "affectsGlobalScope": false
+      },
+      "./src/server/app/app.module.ts": {
+        "version": "0489e91d2a115343d05fab54bc4cb42bbb9fac5b4963bc4c46311d77c0510e32",
+        "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
+        "affectsGlobalScope": false
+      },
+      "./src/server/app/main.ts": {
+        "version": "16523bfd5916e7092efab0b3629178fe3b497ae8f6c35529313994eae3dcf5db",
+        "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
         "affectsGlobalScope": false
       },
       "./src/server/interfaces/jwt-payload.interface.ts": {
@@ -2802,13 +2807,18 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@babel/types/lib/index.d.ts": {
-        "version": "c13e280d244dc0829d954089e1d0446455efdb72fb4bdc2e3f0561ffbc66c905",
-        "signature": "c13e280d244dc0829d954089e1d0446455efdb72fb4bdc2e3f0561ffbc66c905",
+        "version": "7b5e26235ce4dcc952636ac7f5f881998ee0c82647e83afe028f652fd7748504",
+        "signature": "7b5e26235ce4dcc952636ac7f5f881998ee0c82647e83afe028f652fd7748504",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/babel__generator/index.d.ts": {
         "version": "b25c5f2970d06c729f464c0aeaa64b1a5b5f1355aa93554bb5f9c199b8624b1e",
         "signature": "b25c5f2970d06c729f464c0aeaa64b1a5b5f1355aa93554bb5f9c199b8624b1e",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/@types/babel__traverse/index.d.ts": {
+        "version": "8a278bfba7b081cd849434c1130655046639ae90617a682436ed6954e2b57403",
+        "signature": "8a278bfba7b081cd849434c1130655046639ae90617a682436ed6954e2b57403",
         "affectsGlobalScope": false
       },
       "./node_modules/@babel/parser/typings/babel-parser.d.ts": {
@@ -2821,14 +2831,9 @@
         "signature": "3051751533eee92572241b3cef28333212401408c4e7aa21718714b793c0f4ed",
         "affectsGlobalScope": false
       },
-      "./node_modules/@types/babel__traverse/ts4.1/index.d.ts": {
-        "version": "e60cdc881a28c83e48b0e6f4e335845c7bd83ff9d900a5ed7cc292747580450f",
-        "signature": "e60cdc881a28c83e48b0e6f4e335845c7bd83ff9d900a5ed7cc292747580450f",
-        "affectsGlobalScope": false
-      },
       "./node_modules/@types/babel__core/index.d.ts": {
-        "version": "6f1d39d26959517da3bd105c552eded4c34702705c64d75b03f54d864b6e41c2",
-        "signature": "6f1d39d26959517da3bd105c552eded4c34702705c64d75b03f54d864b6e41c2",
+        "version": "a66e700ed470a0cb52d14f3376c1605c70fec8e9659e45f7e22ad07fcd06ae04",
+        "signature": "a66e700ed470a0cb52d14f3376c1605c70fec8e9659e45f7e22ad07fcd06ae04",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/cookiejar/index.d.ts": {
@@ -2926,6 +2931,11 @@
         "signature": "96d14f21b7652903852eef49379d04dbda28c16ed36468f8c9fa08f7c14c9538",
         "affectsGlobalScope": false
       },
+      "./node_modules/@types/multer/index.d.ts": {
+        "version": "45db8351a5c289dffc40d01ce829f21f25ea7a1831eaafd74f915aa42d5d8353",
+        "signature": "45db8351a5c289dffc40d01ce829f21f25ea7a1831eaafd74f915aa42d5d8353",
+        "affectsGlobalScope": true
+      },
       "./node_modules/@types/normalize-package-data/index.d.ts": {
         "version": "c9ad058b2cc9ce6dc2ed92960d6d009e8c04bef46d3f5312283debca6869f613",
         "signature": "c9ad058b2cc9ce6dc2ed92960d6d009e8c04bef46d3f5312283debca6869f613",
@@ -2937,8 +2947,8 @@
         "affectsGlobalScope": false
       },
       "./node_modules/@types/prettier/index.d.ts": {
-        "version": "08b428a44bc98005536a12456518797e9afe2a08e8b5d9785641713a54475881",
-        "signature": "08b428a44bc98005536a12456518797e9afe2a08e8b5d9785641713a54475881",
+        "version": "d065397724b88df62e79aa428d0844e94d90c8754608dfee0685dcdbbe7b25d9",
+        "signature": "d065397724b88df62e79aa428d0844e94d90c8754608dfee0685dcdbbe7b25d9",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/prop-types/index.d.ts": {
@@ -4105,7 +4115,7 @@
         "./node_modules/@babel/types/lib/index.d.ts",
         "./node_modules/@types/babel__generator/index.d.ts",
         "./node_modules/@types/babel__template/index.d.ts",
-        "./node_modules/@types/babel__traverse/ts4.1/index.d.ts"
+        "./node_modules/@types/babel__traverse/index.d.ts"
       ],
       "./node_modules/@types/babel__generator/index.d.ts": [
         "./node_modules/@babel/types/lib/index.d.ts"
@@ -4114,7 +4124,7 @@
         "./node_modules/@babel/parser/typings/babel-parser.d.ts",
         "./node_modules/@babel/types/lib/index.d.ts"
       ],
-      "./node_modules/@types/babel__traverse/ts4.1/index.d.ts": [
+      "./node_modules/@types/babel__traverse/index.d.ts": [
         "./node_modules/@babel/types/lib/index.d.ts"
       ],
       "./node_modules/@types/body-parser/index.d.ts": [
@@ -4174,6 +4184,10 @@
         "./node_modules/@types/node/index.d.ts",
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/tls.d.ts"
+      ],
+      "./node_modules/@types/multer/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/node/stream.d.ts"
       ],
       "./node_modules/@types/node/assert.d.ts": [
         "./node_modules/@types/node/assert.d.ts"
@@ -5357,6 +5371,7 @@
         "./src/server/app/app.controller.ts",
         "./src/server/app/app.service.ts",
         "./src/server/auth/auth.module.ts",
+        "./src/server/file-handling/file-handling.module.ts",
         "./src/server/rolesactivity/admin_roles.guard.ts",
         "./src/server/users/users.module.ts"
       ],
@@ -5451,6 +5466,7 @@
       ],
       "./src/server/file-handling/file-handling.service.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
+        "./src/server/file-handling/common/indexingformat.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/rolesactivity/admin_roles.guard.ts": [
@@ -6469,7 +6485,7 @@
         "./node_modules/@babel/types/lib/index.d.ts",
         "./node_modules/@types/babel__generator/index.d.ts",
         "./node_modules/@types/babel__template/index.d.ts",
-        "./node_modules/@types/babel__traverse/ts4.1/index.d.ts"
+        "./node_modules/@types/babel__traverse/index.d.ts"
       ],
       "./node_modules/@types/babel__generator/index.d.ts": [
         "./node_modules/@babel/types/lib/index.d.ts"
@@ -6478,7 +6494,7 @@
         "./node_modules/@babel/parser/typings/babel-parser.d.ts",
         "./node_modules/@babel/types/lib/index.d.ts"
       ],
-      "./node_modules/@types/babel__traverse/ts4.1/index.d.ts": [
+      "./node_modules/@types/babel__traverse/index.d.ts": [
         "./node_modules/@babel/types/lib/index.d.ts"
       ],
       "./node_modules/@types/body-parser/index.d.ts": [
@@ -6538,6 +6554,10 @@
         "./node_modules/@types/node/index.d.ts",
         "./node_modules/@types/node/stream.d.ts",
         "./node_modules/@types/node/tls.d.ts"
+      ],
+      "./node_modules/@types/multer/index.d.ts": [
+        "./node_modules/@types/express/index.d.ts",
+        "./node_modules/@types/node/stream.d.ts"
       ],
       "./node_modules/@types/node/assert.d.ts": [
         "./node_modules/@types/node/assert.d.ts"
@@ -7750,7 +7770,8 @@
         "./src/server/users/dto/create-user.dto.ts"
       ],
       "./src/server/file-handling/file-handling.controller.ts": [
-        "./src/server/file-handling/file-handling.service.ts"
+        "./src/server/file-handling/file-handling.service.ts",
+        "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/file-handling/file-handling.service.ts": [
         "./src/server/users/common/major.enum.ts"
@@ -8072,7 +8093,7 @@
       "./node_modules/@types/babel__core/index.d.ts",
       "./node_modules/@types/babel__generator/index.d.ts",
       "./node_modules/@types/babel__template/index.d.ts",
-      "./node_modules/@types/babel__traverse/ts4.1/index.d.ts",
+      "./node_modules/@types/babel__traverse/index.d.ts",
       "./node_modules/@types/body-parser/index.d.ts",
       "./node_modules/@types/bson/index.d.ts",
       "./node_modules/@types/connect/index.d.ts",
@@ -8093,6 +8114,7 @@
       "./node_modules/@types/jsonwebtoken/index.d.ts",
       "./node_modules/@types/mime/index.d.ts",
       "./node_modules/@types/mongodb/index.d.ts",
+      "./node_modules/@types/multer/index.d.ts",
       "./node_modules/@types/node/assert.d.ts",
       "./node_modules/@types/node/async_hooks.d.ts",
       "./node_modules/@types/node/base.d.ts",
@@ -8426,33 +8448,10 @@
       "./src/server/auth/interfaces/jwt-payload.interface.ts",
       "./src/server/auth/strategies/jwt.strategy.ts",
       "./src/server/auth/strategies/local.strategy.ts",
-      [
-        "./src/server/file-handling/file-handling.controller.ts",
-        [
-          {
-            "file": "./src/server/file-handling/file-handling.controller.ts",
-            "start": 712,
-            "length": 6,
-            "messageText": "Namespace 'global.Express' has no exported member 'Multer'.",
-            "category": 1,
-            "code": 2694
-          }
-        ]
-      ],
+      "./src/server/file-handling/common/indexingformat.ts",
+      "./src/server/file-handling/file-handling.controller.ts",
       "./src/server/file-handling/file-handling.module.ts",
-      [
-        "./src/server/file-handling/file-handling.service.ts",
-        [
-          {
-            "file": "./src/server/file-handling/file-handling.service.ts",
-            "start": 130,
-            "length": 25,
-            "messageText": "Cannot find module './common/IndexingFormat' or its corresponding type declarations.",
-            "category": 1,
-            "code": 2307
-          }
-        ]
-      ],
+      "./src/server/file-handling/file-handling.service.ts",
       "./src/server/interfaces/jwt-payload.interface.ts",
       "./src/server/rolesactivity/admin_roles.guard.ts",
       "./src/server/rolesactivity/constants.ts",
