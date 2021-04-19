@@ -13,28 +13,14 @@ import DeleteUser from './adminOperationSideBar/Users/DeleteUser/DeleteUser';
 import ChangeAdminSettings from './adminOperationSideBar/AdminInfoManipulation/ChangeAdminSettings';
 import AdminSettings from './adminOperationSideBar/AdminInfoManipulation/AdminSettings';
 import CourseFilesMainView from './adminOperationSideBar/CourseFiles/CourseFilesMainView';
+import CourseUploading from './adminOperationSideBar/Courses/CourseUploading/CourseUploading' 
+
 
 export default function App() {
 	return (
 	  <Router>
 		<div>
-		   {/*<nav>
-			<ul>
-			  <li>
-				<Link to="/login">Login</Link>
-			  </li>
-			  <li>
-				<Link to="/mainPage">MainPage</Link>
-			  </li>
-				<li>
-				<Link to="/about">About</Link>
-			  </li>				
-			  <li>
-				<Link to="/adminPage">Admin Page</Link>
-			  </li>
-			</ul>
-		   </nav>*/}
-  
+
 		  <Switch>
 				
 				<PrivateRoutingComponent path="/mainPage" component={MainView} />
@@ -66,6 +52,7 @@ export default function App() {
 
 			
 			<Route path="/admin/delete_user" component={DeleteUser} />
+
 
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>
