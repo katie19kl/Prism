@@ -70,7 +70,7 @@ export default class PrivateRoutingComponent extends React.Component {
 		let indexInRoles = rolesRequired.indexOf(currentUserRole);
 		
 
-		// not loged in system
+		// not logged in system
 		if (isLoggedIn === false) {
 
 			return <Redirect to={{ pathname: '/login'}} />

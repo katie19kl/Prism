@@ -36,3 +36,11 @@ lerna-debug.log*
 
 # storing tokes
 .env
+
+
+
+# files_storage
+FILE_ROOT/*
+./FILE_ROOT
+root/*
+./root
