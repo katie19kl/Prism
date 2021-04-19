@@ -19,6 +19,8 @@ export class UsersService {
 		// check if the user already exists.
 		const isExistingUser = await this.findOneByUsername(createUserDto.username);
 
+		// check the user does not have personalID which exists.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 		if (isExistingUser) {
 			throw new HttpException("Username already exists", HttpStatus.BAD_REQUEST);
 		}
@@ -35,9 +37,6 @@ export class UsersService {
 		return user.role;
 
 	}
-
-
-
 
 	// Returns user object based on his token
 	async getUserByJWT(usertoken){
@@ -104,7 +103,6 @@ export class UsersService {
 		let users = await this.userModel.find();
 		let soldiersInMajor = [];
 
-		
 		let soldierData;
 		
 		users.forEach(user => {
@@ -115,21 +113,51 @@ export class UsersService {
 			// A soldier who studies the requested major.
 			if (role == Role.Soldier && currMajor !== undefined) {
 				
-				if (currMajor == major) {
+				if (currMajor.includes(major)) {
 
-					let fullString = user.personalId + " - " + user.firstName + " " + user.lastName;
-					//soldiersInMajor.push(fullString);
-
-					soldierData = {personalId : user.personalId,
-										 firstName : user.firstName,
-										 lastName: user.lastName
-										}
+					soldierData = {
+						personalId : user.personalId,
+						firstName : user.firstName,
+						lastName: user.lastName
+					}
 					soldiersInMajor.push(soldierData)
 				}
 			}
 		});
 
 		return soldiersInMajor;
+	}
+
+	async findSoldiersInAllMajors(majors: Major[]) {
+		let users = await this.userModel.find();
+		let soldiersInMajors = [];
+		let soldierData;
+
+		console.log(majors);
+		
+		users.forEach(user => {
+
+			let currMajor = user.major;
+			let role = user.role;
+			
+			// A soldier who studies the requested major.
+			if (role == Role.Soldier && currMajor !== undefined) {
+				
+				// Soldier's major is a list with one element only.
+				let currSoldierMajor = currMajor[0];
+				if (majors.includes(currSoldierMajor)) {
+
+					soldierData = {
+						personalId : user.personalId,
+						firstName : user.firstName,
+						lastName: user.lastName
+					};
+					soldiersInMajors.push(soldierData);
+				}
+			}
+		});
+
+		return soldiersInMajors;
 	}
 
 	async updateUserInfo(username: string, updateUserDto: UpdateUserDto) {

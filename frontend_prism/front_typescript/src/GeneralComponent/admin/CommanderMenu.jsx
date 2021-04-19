@@ -23,15 +23,16 @@ function CommanderMenu() {
                 <ListItemText primary="General"/>
             </ListItem>
 
-            <Link to="/admin/upload_course_material" style={{ textDecoration: 'none', color: 'inherit' }}>
+
+            <Link to="/admin/course_files" style={{ textDecoration: 'none', color:"black" }}>
                 <ListItem button key="files">
                     <ListItemIcon>
                         <SchoolIcon color="primary"/>
                     </ListItemIcon>
                     <ListItemText primary="Course Files"/>
                 </ListItem>
-                </Link>
-            
+            </Link>
+
             <Link to="/admin/users" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <ListItem button key="user Settings">
                     <ListItemIcon>

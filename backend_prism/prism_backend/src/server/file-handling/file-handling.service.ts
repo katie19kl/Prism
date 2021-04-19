@@ -11,7 +11,7 @@ const someFileUrl_ = 'http://localhost:4000/file-handling/files/';
 @Injectable()
 export class FileHandlingService {
 
-    static get linkSomeFileUrl(){
+    static get linkSomeFileUrl() {
         return someFileUrl_;
     }
 
@@ -32,15 +32,15 @@ export class FileHandlingService {
 
             fs.mkdir(newMajorDir, function(err) {
                 if (err) {
-                    console.log("here")
-                    console.log(err)
-                    reject(err)
+                    console.log("here");
+                    console.log(err);
+                    reject(err);
                     
 
                 } else {
 
-                    console.log("New directory " +  newMajorDir + " successfully created.")
-                    resolve(newMajorDir)	
+                    console.log("New directory " +  newMajorDir + " successfully created.");
+                    resolve(newMajorDir);
                 }
             });
         })
@@ -53,17 +53,17 @@ export class FileHandlingService {
         let dirRoot = FileHandlingService.pathRootDirectory;
         let deleteMajorDir = dirRoot + '/' + directory_name_delete;
 
-        return await new Promise( (resolve, reject) =>{
+        return await new Promise( (resolve, reject) => {
 
         
                 fs.rmdir(deleteMajorDir, {recursive:true}, function(err) {
                 if (err) { 
-                    console.log("here")
-                    console.log(err)
-                    reject(err)
+                    console.log("here");
+                    console.log(err);
+                    reject(err);
                 } else {
-                    console.log("Directory " + deleteMajorDir + " was deleted")
-                    resolve(deleteMajorDir)
+                    console.log("Directory " + deleteMajorDir + " was deleted");
+                    resolve(deleteMajorDir);
                 }
             });
         })
@@ -71,27 +71,30 @@ export class FileHandlingService {
 
 
     async getAllFilesOfPath(path:string){
-        let all_file_url_ = FileHandlingService.linkSomeFileUrl
-		let files_name = []
+        let all_file_url_ = FileHandlingService.linkSomeFileUrl;
+		let files_name = [];
 		const directory = path;
 		const fs = require('fs');
 
-        const get_f = async() =>{
+        console.log("path")
+        console.log(path);
 
-			await new Promise ((resolve, reject) =>{
+        const get_f = async() => {
+
+			await new Promise ((resolve, reject) => {
 
 				fs.readdir(directory, async (err, files) => {
                     
                     
-					if (err){
-						reject(err)
+					if (err) {
+						reject(err);
 					}
                     for await(const file of files){
                         const stat = await fs.promises.stat( directory + "/" + file);
-                        if (await stat.isFile()){
-                            console.log("=============")
-                            console.log(file)
-                            console.log("is file only")
+                        if (await stat.isFile()) {
+                            console.log("=============");
+                            console.log(file);
+                            console.log("is file only");
                             files_name.push(
                                 {
                                 file_name: file,
@@ -120,9 +123,9 @@ export class FileHandlingService {
     }
 
 
-    async getFileByName(file_name:String, res){
+    async getFileByName(file_name:String, res, fullPath){
 
-        const directory = FileHandlingService.pathRootDirectory + "/";
+        const directory = fullPath;
 
 		let path = require('path');
 		let mime = require('mime');
@@ -147,7 +150,7 @@ export class FileHandlingService {
         fs.open(pathToStore, 'wx', (err, desc) => {
             if(!err && desc) {
                 fs.writeFile(desc, file.buffer, (err) => {
-                        if (err){
+                        if (err) {
                             throw err;
                         }                
                         console.log('Results Received');
@@ -161,10 +164,20 @@ export class FileHandlingService {
     createPathMajor(major:Major){
         let path = FileHandlingService.pathRootDirectory;
         let pathMajor = path + '/' + major
-        return pathMajor
+        return pathMajor;
     }
 
+    createPathMajorModule(major: Major, module: string) {
+        let path = FileHandlingService.pathRootDirectory;
+        let pathMajor = path + '/' + major + '/' + module;
+        return pathMajor;
+    }
 
+    createPathMajorModuleSubject(major: Major, module: string, subject: string) {
+        let path = FileHandlingService.pathRootDirectory;
+        let pathMajor = path + '/' + major + '/' + module + '/' + subject;
+        return pathMajor;
+    }
 
 
     // returs dir list in given path 
@@ -172,9 +185,9 @@ export class FileHandlingService {
         const { readdirSync } = require('fs')
 
         const getDirectories = source =>
-          readdirSync(source, { withFileTypes: true })
+            readdirSync(source, { withFileTypes: true })
             .filter(dirent => dirent.isDirectory())
-            .map(dirent => dirent.name)
+            .map(dirent => dirent.name);
         
         
             
@@ -188,10 +201,10 @@ export class FileHandlingService {
 
     // given list of all dirs in some module path
     // return name with given index
-    getNameOfIndexedDirModule(dirsInMajor, module_index: String){
+    getNameOfIndexedDirModule(dirsInMajor, module_index: String) {
         
-        let index = ''
-        let nameOfIndex = ''
+        let index = '';
+        let nameOfIndex = '';
 
         for (let dir of dirsInMajor){
             let tokenedDir = dir.split(IndexingFormat.ModuleSeparator)
@@ -212,7 +225,7 @@ export class FileHandlingService {
     }
 
     //composes root/major/model of given module index
-    createPathMajorModel(module_index: string,pathMajor){
+    createPathMajorModel(module_index: string, pathMajor){
         
         
         let dirsInMajor = this.getDirList(pathMajor)
@@ -298,17 +311,20 @@ export class FileHandlingService {
 
     } 
 
-
-
-    async getAllDirOfMajor(major:Major){
-
+    async getAllDirOfMajor(major:Major) {
+        let fullPath = this.createPathMajor(major);
+        return this.getDirList(fullPath);
     }
 
-    async getAllDirOfModule(module_index: string){
+    async getAllDirOfModule(major: Major, module: string) {
+        let fullPath = this.createPathMajorModule(major, module);
 
+        return this.getDirList(fullPath);
     }
 
-    async getAllContentOfSubject(module_index:string, subject_index:string){
+    async getAllContentOfSubject(major: Major, module: string, subject: string) {
+        let fullPath = this.createPathMajorModuleSubject(major, module, subject);
 
+        return await this.getAllFilesOfPath(fullPath);
     }
 }

@@ -4,10 +4,8 @@ import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import { TextField } from "@material-ui/core";
 import DisplayUserData from "../../../HelperFooStuff/DisplayUserData";
-
-import {getUserInfoByJWT, getUserInfoById, getSoldiersByMajor} from "../../../HelperJS/extract_info"
+import {getUserInfoByJWT, getUserInfoById, getSoldiersByMajors} from "../../../HelperJS/extract_info"
 import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
-
 
 
 const useStyles = (theme) => ({
@@ -44,23 +42,21 @@ const useStyles = (theme) => ({
 
 
 class UpdateUsers extends React.Component {
-    
 
     constructor(props) {
         super(props);
         this.handleChangeSelectSoldier = this.handleChangeSelectSoldier.bind(this);
        
-
-        this.soldier_id = undefined
-        this.soldier_firstName = undefined
-        this.soldier_secondName = undefined
-        this.soldier_phone = undefined
-        this.soldier_username = undefined
+        this.soldier_id = undefined;
+        this.soldier_firstName = undefined;
+        this.soldier_secondName = undefined;
+        this.soldier_phone = undefined;
+        this.soldier_username = undefined;
         
         
-        this.state = { _selected: false, _error: false, _users_retrieved: false }
+        this.state = { _selected: false, _error: false, _users_retrieved: false };
         
-        this.form = undefined
+        this.form = undefined;
 
         this.soldierInCommanderMajor = [
             {
@@ -78,13 +74,8 @@ class UpdateUsers extends React.Component {
                 lastName: 'DUMMY_2',
                 personalId: "0123446789"
             }
-        ] ;
-        
-      
-
+        ];
     }
-
-
 
     componentDidMount() {
 
@@ -92,24 +83,24 @@ class UpdateUsers extends React.Component {
 
             if (user !== undefined) {
                 
-                user = user.data
-                let major = user["major"]
+                user = user.data;
+                let major = user["major"];
 
-                getSoldiersByMajor(major).then((users) =>{
-                    if (users === undefined ){
-                        this.setState({_users_retrieved: true})
+                getSoldiersByMajors(major).then((users) => {
+                    if (users === undefined ) {
+                        this.setState({_users_retrieved: true});
                         
-                    }else {
+                    } else {
                         
-                    console.log("(((((((((((((((")
-                    console.log(users)
+                    console.log("(((((((((((((((");
+                    console.log(users);
 
-                    users = users.data
+                    users = users.data;
                     for (user of users) {
                         console.log(user);
-                        let personalIdUser = user.personalId
-                        let firstNameUser = user.firstName
-                        let lastNameUser = user.lastName
+                        let personalIdUser = user.personalId;
+                        let firstNameUser = user.firstName;
+                        let lastNameUser = user.lastName;
 
                         let line = {
                                 firstName: firstNameUser,
@@ -117,16 +108,10 @@ class UpdateUsers extends React.Component {
                                 personalId: personalIdUser 
                             }
 
-                            this.soldierInCommanderMajor.push(line)
-
-                        }
-
-                      
+                            this.soldierInCommanderMajor.push(line);
+                        };
 
                         console.log(")))))))))))))))")
-
-                        
-                    
                     }
                     //////////////////////////////////////// put as async /////////////////////////////
                     this.soldierInCommanderMajor.sort((a,b) => a.personalId - b.personalId)
@@ -137,21 +122,18 @@ class UpdateUsers extends React.Component {
         });
     }
 
-     
-     
-
     // user selected => display its info 
     handleChangeSelectSoldier(event) {
 
         const { classes } = this.props;
         
         console.log(event.target.value + "  !!!!!!!!!!!!!!")
-        this.soldier_id = event.target.value
+        this.soldier_id = event.target.value;
         
-        // make default values to cause re-rendering when user was sellected
+        // make default values to cause re-rendering when user was selected
         this.setState({_selected: false, _error: false})
 
-        getUserInfoById(this.soldier_id).then( (user) => {
+        getUserInfoById(this.soldier_id).then((user) => {
 
             // none was choosen
             if (user === undefined){
@@ -170,18 +152,17 @@ class UpdateUsers extends React.Component {
                 console.log(user + " <--2")
                 let data = user.data
                 
-                let phone_num = data.phoneNumber
-                let userName = data.username
-                let firstName = data.firstName
-                let lastName = data.lastName
-                let role = data.role
-                let gender = data.gender
-                let major = data.major
-
-                this.soldier_phone = phone_num
-                this.soldier_username = userName
-                this.soldier_firstName = firstName
-                this.soldier_secondName = lastName
+                let phone_num = data.phoneNumber;
+                let userName = data.username;
+                let firstName = data.firstName;
+                let lastName = data.lastName;
+                let role = data.role;
+                let gender = data.gender;
+                let major = data.major;
+                this.soldier_phone = phone_num;
+                this.soldier_username = userName;
+                this.soldier_firstName = firstName;
+                this.soldier_secondName = lastName;
                 
                 
                 this.form = <DisplayUserData title={
@@ -214,102 +195,87 @@ class UpdateUsers extends React.Component {
 
         console.log(" renders update")
             
-        if (this.state._users_retrieved){
-                return (
-                    <MenuAppBar 
-                    menu={
-                        <CommanderMenu/>
-                    }
-                    content={
+        if (this.state._users_retrieved) {
+            return (
+                <MenuAppBar 
+                menu={
+                    <CommanderMenu/>
+                }
+                content={
+                    <div>
+                        <h2 className={classes.myFont}> Choose which one you want to update</h2>                            
                         
-                        <div>
-    
-                            <h2 className={classes.myFont}> Choose which one you want to update</h2>
-
-                            
-                            <br></br>
-
-                            <br></br>
-                            <TextField
-                            select
-                            label="Soldier info "
-                            value={this.soldier_id}
-                            className={classes.select}
-                            onChange={this.handleChangeSelectSoldier}
-                            SelectProps={{
-                                native: true,
-                            }}
-                            helperText="Please select soldier to update"
-                            variant="outlined"
-                            >
-                            {this.soldierInCommanderMajor.map((sld) => (
-                                    <option key={sld.personalId} value={sld.personalId}>
-                                    {
-                                    "Personal id: "  + sld.personalId + " | First name: " + sld.firstName 
-                                    //+ " | Last name: " + sld.lastName + " "
-                                    }
-                                    </option>
-                            ))}
+                        <br></br>
+                        <br></br>
+                        
+                        <TextField
+                        select
+                        label="Soldier info "
+                        value={this.soldier_id}
+                        className={classes.select}
+                        onChange={this.handleChangeSelectSoldier}
+                        SelectProps={{
+                            native: true,
+                        }}
+                        helperText="Please select soldier to update"
+                        variant="outlined"
+                        >
+                        {this.soldierInCommanderMajor.map((sld) => (
+                                <option key={sld.personalId} value={sld.personalId}>
+                                {
+                                "Personal id: "  + sld.personalId + " | First name: " + sld.firstName 
+                                }
+                                </option>
+                        ))}
 
                         </TextField>
-                        
-                            <br/>
-                            <br/>
-
-
-
-                            <div id="form-based-on-selected user" style={{ display: 'inline-flex' }}>
-                            {
-                                    // if view - true -> render this.form o.w. -> render ''
-                                    (this.state._selected) 
-                                    ?
-                                    <ChangeUserData 
-                                    soldier_id_ = {this.soldier_id}
-                                    toChangeByUserName={this.soldier_username}
-                                    prev_phone_number={this.soldier_phone}
-                                    prev_lastName = {this.soldier_secondName}
-                                    prev_firstName = {this.soldier_firstName}
-                                    prev_username = {this.soldier_username} >
-                                    </ChangeUserData>
-                                    
-                                    : ''
-                                    }
-                                                    {
-                                    // if view - true -> render this.form o.w. -> render ''
-                                    (this.state._error) 
-                                    ?
-                                    this.form
-                                    
-                  
-                                    
-                                    : ''
-                                    }
-
-                                    {
-                                    // if view - true -> render this.form o.w. -> render ''
-                                    (this.state._selected) 
-                                    ? this.form
-                                    
-                                    : ''
-                                    }
-      
-                            </div>
-
-
-
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
                     
-                                    
-                        
-                        </div>
-                        
-                    }>
+                        <br/>
+                        <br/>
 
-                    </MenuAppBar>
-                );
+                        <div id="form-based-on-selected user" style={{ display: 'inline-flex' }}>
+                        {
+                                // if view - true -> render this.form o.w. -> render ''
+                                (this.state._selected) 
+                                ?
+                                <ChangeUserData 
+                                soldier_id_ = {this.soldier_id}
+                                toChangeByUserName={this.soldier_username}
+                                prev_phone_number={this.soldier_phone}
+                                prev_lastName = {this.soldier_secondName}
+                                prev_firstName = {this.soldier_firstName}
+                                prev_username = {this.soldier_username} >
+                                </ChangeUserData>
+                                
+                                : ''
+                                }
+                                                {
+                                // if view - true -> render this.form o.w. -> render ''
+                                (this.state._error) 
+                                ?
+                                this.form
+                                : ''
+                                }
+
+                                {
+                                // if view - true -> render this.form o.w. -> render ''
+                                (this.state._selected) 
+                                ? this.form
+                                
+                                : ''
+                                }
+    
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                    
+                }>
+
+                </MenuAppBar>
+            );
         }
         else {
             return (
@@ -320,7 +286,7 @@ class UpdateUsers extends React.Component {
                     }>
                         
                 </MenuAppBar>
-            )
+            );
         }
     }
 }

@@ -71,6 +71,6 @@ export class CreateUserDto {
     @IsMajor({
         message: "The given major does not exist"
     })
-    major: Major;
+    major: Major[];
 
 }

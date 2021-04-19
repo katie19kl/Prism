@@ -3,11 +3,14 @@ import LocalStorage from "./../../../HelperJS/LocalStorage";
 
 
 
-
-async function getListOfAllFiles() {
+// module & major & subject
+async function getListOfAllFiles(major, module, subject) {
 
     let token = LocalStorage.getItem(LocalStorage.token);
-    let url  = "http://localhost:4000/file-handling/all_files"
+    let url  = "http://localhost:4000/file-handling/files_in_subject";
+    let postfix = "/" + major + "/" + module + "/" + subject;
+
+    url = url + postfix;
 
     if (token === null || token === 'undefined') {
 
@@ -36,7 +39,7 @@ async function getListOfAllFiles() {
 
     }
 }
-
+/*
 
 async function uploadMultFiles(FileList){
 
@@ -54,13 +57,19 @@ async function uploadMultFiles(FileList){
         'Content-Type': 'multipart/form-data'
         }
     })
-}
+}*/
 
-async function uploadSingleFiles(file, onUploadProgress){
+async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
    
     ////// IF SINGLE file --- TAKE CARE !!!!!!!!!!!!!!
     let url  = "http://localhost:4000/file-handling/single_file"
+
+    console.log("the major, module..: ")
+    console.log(major, module, subject)
+
+    
+    url_param = url + "/" + major + "/" + module + "/" + subject;
 
     let formData = new FormData();
 
@@ -76,4 +85,4 @@ async function uploadSingleFiles(file, onUploadProgress){
     })
 }
 
-export { getListOfAllFiles, uploadMultFiles,uploadSingleFiles }
+export { getListOfAllFiles, /*uploadMultFiles*/uploadSingleFiles }

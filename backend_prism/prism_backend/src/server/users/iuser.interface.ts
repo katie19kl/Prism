@@ -15,5 +15,5 @@ export interface IUser extends Document {
     phoneNumber: string;
     gender: Gender;
     commander: string;
-    major: Major;
+    major: Major[];
 }

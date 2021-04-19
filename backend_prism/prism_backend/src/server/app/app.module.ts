@@ -6,7 +6,6 @@ import { AuthModule } from '.././auth/auth.module';
 import { UsersModule } from '.././users/users.module';
 import { AdminRolesGuard } from '../RolesActivity/admin_roles.guard';
 import { FileHandlingModule } from '../file-handling/file-handling.module';
-import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({

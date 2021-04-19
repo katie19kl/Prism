@@ -38,7 +38,12 @@ export class UsersController {
     // ADMIN/COMMANDER
     async create(@Body() createUserDto: CreateUserDto) {
         console.log("add new user/admin ");
-        return await this.usersService.create(createUserDto);
+
+        console.log(createUserDto);
+
+        let result = await this.usersService.create(createUserDto);
+        console.log(result);
+        return result;
     }
 
 
@@ -53,13 +58,20 @@ export class UsersController {
 
     }
 
-    // ADMIN/COMMANDERS.
+    /*// ADMIN/COMMANDERS.
     @Get('soldiers/:major')
     async getSoldiersByMajor(@Param('major') major: Major) {
 
         console.log("returning list of all soldiers in the major: " + major);
         return await this.usersService.findAllSoldiersInMajor(major);
 
+    }*/
+
+    @Post('soldiers/majors')
+    async getAllSoldiersInMajors(@Body() majors: Major[]) {
+        console.log(majors);
+        
+        return await this.usersService.findSoldiersInAllMajors(majors);
     }
 
     @Get(':id')

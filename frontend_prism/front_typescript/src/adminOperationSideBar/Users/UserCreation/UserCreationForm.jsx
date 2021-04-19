@@ -1,6 +1,6 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { TextField, Typography } from "@material-ui/core";
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, TextField, Typography } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import { Gender, genders } from '../../../HelperJS/Gender';
@@ -26,7 +26,7 @@ const useStyles = (theme) => ({
         marginTop: theme.spacing(15),
     },
     button: {
-        marginLeft: theme.spacing(51),
+        marginLeft: theme.spacing(48),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
@@ -47,6 +47,7 @@ class UserCreationForm extends React.Component {
         this.handleChangeGender = this.handleChangeGender.bind(this);
         this.handleChangePhoneNumber = this.handleChangePhoneNumber.bind(this);
         this.handleChangeMajor = this.handleChangeMajor.bind(this);
+        this.handleChangeCommanderMajor = this.handleChangeCommanderMajor.bind(this);
         this.handleChangeCommander = this.handleChangeCommander.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.handleResponse = this.handleResponse.bind(this);
@@ -67,9 +68,13 @@ class UserCreationForm extends React.Component {
         this.state = {
             role: this.props.myRole,
             updated: false,
-            //creationMsg: undefined
+            
+            software: false,
+            research: false,
+            firmware: false,
+            validation: false,
+            network: false
         }
-
     }
 
     handleChangePersonalId(event) {
@@ -104,6 +109,10 @@ class UserCreationForm extends React.Component {
         this.major = event.target.value
     }
 
+    handleChangeCommanderMajor(event) {
+        this.setState({ ...this.state, [event.target.name]: event.target.checked });
+    }
+
     handleChangeCommander(event) {
         this.commander = event.target.value
     }
@@ -131,12 +140,19 @@ class UserCreationForm extends React.Component {
 
         let optionals = {
             phoneNumber: this.phoneNumber,
-            major: this.major,
+            major: [this.major],
+            listMajors: {
+                "software" : this.state.software,
+                "research": this.state.research,
+                "firmware": this.state.firmware,
+                "validation": this.state.validation,
+                "network": this.state.network 
+            },
             commander: this.commander
         };
 
         let result = validateFields(data);
-        let optionalFields = handleOptionalFields(optionals);
+        let optionalFields = handleOptionalFields(optionals, data.role);
 
         if (result.length > 0) {
 
@@ -203,6 +219,10 @@ class UserCreationForm extends React.Component {
     
     render() {
         const { classes } = this.props;
+        const { software, research, firmware, validation, network } = this.state;
+
+        console.log("software: " + software + ", research: " + research + ", firmware: " + firmware + ", validation: "  + validation
+        + ", network: " + network);
         
         console.log("role: " + this.state.role);
 
@@ -289,7 +309,36 @@ class UserCreationForm extends React.Component {
                         onChange={this.handleChangePhoneNumber}
                         />
 
-                        {(this.props.myRole !== Role.Tester) ? <TextField
+                        {(this.props.myRole === Role.Commander) 
+                        ? <FormControl component="fieldset" className={classes.formControl}>
+                            <FormLabel component="legend">Choose Your Majors</FormLabel>
+                            <FormGroup style={{display: 'flex', flexDirection: 'row'}}>
+                                <FormControlLabel
+                                    control={<Checkbox checked={software} onChange={this.handleChangeCommanderMajor} name="software" />}
+                                    label="Software"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={research} onChange={this.handleChangeCommanderMajor} name="research" />}
+                                    label="Research"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={firmware} onChange={this.handleChangeCommanderMajor} name="firmware" />}
+                                    label="Firmware"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={validation} onChange={this.handleChangeCommanderMajor} name="validation" />}
+                                    label="Validation"
+                                />
+                                <FormControlLabel
+                                    control={<Checkbox checked={network} onChange={this.handleChangeCommanderMajor} name="network" />}
+                                    label="Network"
+                                />
+                            </FormGroup>
+                            <FormHelperText>You may choose more than one</FormHelperText>
+                        </FormControl> : ''
+                        }
+
+                        {(this.props.myRole === Role.Soldier) ? <TextField
                             id="outlined-select-major"
                             select
                             label="Major"
@@ -305,8 +354,9 @@ class UserCreationForm extends React.Component {
                                 {option.label}
                                 </option>
                             ))}
-                            </TextField> : ''}
-                        
+                            </TextField> : ''
+                        }
+
                         {(this.props.myRole === Role.Soldier) ? <TextField
                         id="outlined-basic-commander"
                         variant="outlined"

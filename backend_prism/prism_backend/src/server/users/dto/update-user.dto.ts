@@ -73,6 +73,6 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     @IsMajor({
         message: "The given major does not exist"
     })
-    readonly major: Major;
+    readonly major: Major[];
     
 }

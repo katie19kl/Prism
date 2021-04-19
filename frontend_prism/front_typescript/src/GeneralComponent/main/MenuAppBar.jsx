@@ -168,8 +168,6 @@ class MenuAppBar extends React.Component {
                     </Toolbar>
                 </AppBar>
                 
-                
-                
                 <Drawer
                 className={classes.drawer}
                 variant="persistent"
@@ -191,8 +189,6 @@ class MenuAppBar extends React.Component {
                     </ListItem>
                     <h3 className={classes.name}> {username} </h3>
                 </List>
-
-
 
                 <Divider />
                     <div>
