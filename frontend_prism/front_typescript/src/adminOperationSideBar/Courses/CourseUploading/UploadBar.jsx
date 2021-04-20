@@ -3,41 +3,25 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import { Button, withStyles } from '@material-ui/core';
 
 import {getListOfAllFiles, uploadSingleFiles} from './file_handle'
-
-
-const BorderLinearProgress = withStyles((theme) => ({
-	root: {
-	  height: 15,
-	  borderRadius: 5,
-	},
-	colorPrimary: {
-	  backgroundColor: "#EEEEEE",
-	},
-	bar: {
-	  borderRadius: 5,
-	  backgroundColor: '#1a90ff',
-	},
-  }))(LinearProgress);
+import DisplayFiles from "./DisplayFiles";
 
 
 
 export default class UploadBar extends Component {
 	constructor(props) {
 		super(props)
+
 		this.selectFile = this.selectFile.bind(this);
 		this.upload = this.upload.bind(this);
 		this.uploadFilesEvent = this.uploadFilesEvent.bind(this);
 
-		this.choosen_module = this.props.module;
-		this.choosen_major = this.props.major;
-		this.choosen_subject = this.props.subject;
+
 
 		this.state = {
 	
 			/////
 			progressInfos: [],
 			message: [],
-	  		fileInfos: [],
 			doesSelected: false,
 			selectedFiles: undefined,
 			fileName: "",
@@ -48,7 +32,7 @@ export default class UploadBar extends Component {
 	upload(idx, file){
 		let _progressInfos = [...this.state.progressInfos];
 		
-		console.log("*1")
+		console.log("*---1")
 		uploadSingleFiles(file, (event) => {
 				_progressInfos[idx].percentage = Math.round((100 * event.loaded) / event.total);
 				this.setState({
@@ -62,6 +46,7 @@ export default class UploadBar extends Component {
 			console.log(response)
 			console.log("*3")
 
+
 			if (response !== undefined){
 				if (response.status === 201 ||response.status === 200 ){
 				this.setState((prev) => {
@@ -70,38 +55,40 @@ export default class UploadBar extends Component {
 						message: nextMessage
 						};
 					});
+				}
+			
+				else if (response.status >= 400){
+					_progressInfos[idx].percentage = 0;
+					this.setState((prev) => {
+						let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
+						  return {
+							  progressInfos: _progressInfos,
+							  message: nextMessage
+						  };
+					});
+				}
 			}
-			}
-			console.log("*4")
-			return getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject);
+			console.log("*4____--___--___---___---___---___---___-_---______--_-")
+			console.log(this.choosen_subject)
+			//return getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject);
 
-		})
-		.then((files) => {
-			console.log("*5")
-			console.log(files)
-			if (files === undefined ){
-				files.data = []
-			}
-			this.setState({
-			  fileInfos: files.data,
-			});
-			console.log("*6")
-		  })
-		.catch(() => {
-			console.log("*7")
+		
+		}).catch(error =>{
+			console.log("_=_=_=_=_=_=_=_")
+			console.log(error)
+			
 			_progressInfos[idx].percentage = 0;
 			this.setState((prev) => {
-			  let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
-				return {
-					progressInfos: _progressInfos,
-					message: nextMessage
-				};
+				let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
+				  return {
+					  progressInfos: _progressInfos,
+					  message: nextMessage
+				  };
 			});
-		});
-			
+
+
+		})
 	}
-
-
 	uploadFilesEvent(event){
 
 		const selectedFiles = this.state.selectedFiles;
@@ -123,8 +110,6 @@ export default class UploadBar extends Component {
 			} 
 		);
 	}
-
-
 	selectFile(event) {
 		console.log(event.target.files)
 		this.setState({
@@ -135,48 +120,23 @@ export default class UploadBar extends Component {
 	}
 
 
-
-
-	componentDidMount() {
-		console.log("---1---*")
-		getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject).then((files)=>{
-			if (files === undefined){
-
-
-				this.setState({
-					//fileInfos: "no files were found on server ",
-					fileInfos:[]
-				});
-
-			}
-			else {
-					files = files.data
-					console.log(files)
-					console.log("---4---*")
-	
-					let filesNamE = " "
-	
-					for (const file of files) {
-						filesNamE = filesNamE + "||" + file
-					}
-
-					this.setState({
-						fileInfos: files,
-						fileName: filesNamE,
-					});
-		
-			}
-		})
-
-	}
-
-
 	render() {
-		const { progressInfos, message, fileInfos, doesSelected} = this.state;
-		console.log("++++++")
-		console.log(fileInfos)
-		console.log("++++++")
 
+
+		let fileInfos_FOO_ONLY = [
+			{
+			url:"xui_1",
+			file_name: "pidor_1"
+			},
+			{
+				url:"xui_2",
+				file_name: "pidor_2"
+			}
+		]
+		const { progressInfos, message, doesSelected} = this.state;
+		
+
+	
 		return (
 		  <div>
 
@@ -229,18 +189,11 @@ export default class UploadBar extends Component {
 				</ul>
 			  </div>
 			)}
-	
-			<div className="card">
-			  <div className="card-header">List of Files</div>
-			  <ul className="list-group list-group-flush">
-				{fileInfos !== [] &&
-				  fileInfos.map((file, index) => (
-					<li className="list-group-item" key={index}>
-					  <a href={file.url}>{file.file_name}</a>
-					</li>
-				  ))}
-			  </ul>
-			</div>
+
+			<DisplayFiles 
+				files={fileInfos_FOO_ONLY}>
+			</DisplayFiles>
+
 		  </div>
 		);
 	
