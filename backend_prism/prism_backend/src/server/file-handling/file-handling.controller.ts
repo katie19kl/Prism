@@ -11,17 +11,96 @@ export class FileHandlingController {
 	constructor(private readonly fileHandlingService: FileHandlingService) {}
 
 
-	@Post('single_file')
+		// put admin permission only
+		@Post("new_directory_major/:dirMajorName")
+		async createNewMajorDir(@Param('dirMajorName') dirMajorName: String){
+			console.log("----")
+			return await this.fileHandlingService.createNewMajorDir(dirMajorName)
+		}
+	
+		// put admin permission only
+		@Get("delete_directory_major/:dirMajorName")
+		async deleteMajorDir(@Param('dirMajorName') dirMajorName: Major){
+			console.log("----")
+			return await this.fileHandlingService.deleteMajorDir(dirMajorName)
+		}
+	
+	
+		@Get('majors')
+		async getAllMajors(){
+			let majors = FileHandlingService.getDirList(FileHandlingService.pathRootDirectory)
+			return majors
+		}
+
+
+		@Get('modules/:major')
+		async getAllModulesByMajor(@Param('major') major: Major) {
+			let result = await this.fileHandlingService.getAllDirOfMajor(major);
+			console.log(result);
+	
+			return result;
+		}
+		// MAJORS WORK!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+	@Post('modules/:major/:newModule')
+	async addNewModuleToMajor(@Param('major') major: Major,@Param('newModule') newModule: string){
+		
+		console.log(major)
+		console.log(newModule)
+
+		this.fileHandlingService.createNewModuleDirInMajor(newModule,major)
+		return "xxx"
+
+	}
+
+	@Get('subjects/:major/:module')
+	async getAllSubjectInModule(@Param('major') major: Major, @Param('module') module: string) {
+		let result = await this.fileHandlingService.getAllDirOfModule(major, module);
+
+		console.log(result);
+		console.log("!!___!!")
+		return result;
+	}
+
+
+	@Get('remove_module/:major/:module_to_del')
+	async removeModuleFromMajor(@Param('major') major: Major,@Param('module_to_del') module_to_del: string){
+		
+		console.log(major)
+		console.log(module_to_del)
+
+		this.fileHandlingService.removeModuleDirInMajor(module_to_del,major)
+		return "xaxaxaxa"
+
+	}
+
+		// Modules WORK!!!!!!!!!!!!!!!!!!!!!
+///////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+	@Post('upload_single_file/:major/:module/:subject')
 	// (key for postman)
 	@UseInterceptors(FileInterceptor('file',/*{dest: ".././FILE_ROOT"}*/))
-	upload(@UploadedFile() file: Express.Multer.File) {
+	upload(@UploadedFile() file: Express.Multer.File,
+			@Param('major') major: Major, @Param('module') module: string,
+			@Param('subject') subject: string) {
 
 		// service => it stores according to hierarchy 
 		console.log("below----|----below")
 		//console.log(file)
-		let module_num = "2"
-		let subject_num = "1"
-		this.fileHandlingService.uploadFile(file,Major.Network, module_num, subject_num);
+		let module_choosen = module
+		let subject_choosen = subject
+		let major_choosen = major
+
+		this.fileHandlingService.storingFileToPath(file,FileHandlingService.pathRootDirectory+"/"+file.originalname	)
+		//this.fileHandlingService.uploadFile(file,major_choosen, module_choosen, subject_choosen);
 		return "xui single"
 
 
@@ -35,59 +114,39 @@ export class FileHandlingController {
 	@Get('files_in_subject/:major/:module/:subject')
 	async getFiles(@Param('major') major: Major, @Param('module') module: string,
 					@Param('subject') subject: string) {
-	
-		let path =  this.fileHandlingService.createPathMajorModuleSubject(major,module,subject);
-		return this.fileHandlingService.getAllFilesOfPath(path);
+		
+			
+		console.log("2-2-2-2-")
+		console.log(subject)
+		
+		return await this.fileHandlingService.getAllFilesOfPath(major,module,subject);
+
+		
 	}
 	
-	/*@Get('files_in_subject/:major/:module/:subject')
-	async getAllFilesInSubject		
-		//let result = await this.fileHandlingService.getAllContentOfSubject(major, module, subject);
 
-		//console.log(result);
-
-		return result;
-	}*/
-
-
-	@Get("files/:file_name/:fullPath")
-	async getFileByName(@Param('file_name') file_name: String, @Res() res, @Param('fullPath')fullPath: string) {
+	@Get("files/:file_name/:major/:module/:subject")
+	async getFileByName(@Param('file_name') file_name: String, @Res() res,
+			@Param('major') major: Major, @Param('module') module: string,@Param('subject') subject: string) {
 		
 		// no need in return, because service 
 		// inserts file to stream pipe
-		this.fileHandlingService.getFileByName(file_name, res, fullPath);
+		let path =  this.fileHandlingService.createPathMajorModuleSubject(major,module,subject);
+		console.log(path)
+		console.log("-=-")
+		await this.fileHandlingService.getFileByName(file_name, res, path);
 
     }
 
-	// put admin permission only
-	@Post("new_directory_major/:dirMajorName")
-	async createNewMajorDir(@Param('dirMajorName') dirMajorName: String){
-		console.log("----")
-		return await this.fileHandlingService.createNewMajorDir(dirMajorName)
-	}
 
-	// put admin permission only
-	@Get("delete_directory_major/:dirMajorName")
-	async deleteMajorDir(@Param('dirMajorName') dirMajorName: String){
-		console.log("----")
-		return await this.fileHandlingService.deleteMajorDir(dirMajorName)
-	}
 
-	@Get('modules/:major')
-	async getAllModulesByMajor(@Param('major') major: Major) {
-		let result = await this.fileHandlingService.getAllDirOfMajor(major);
-		console.log(result);
 
-		return result;
-	}
 
-	@Get('subjects/:major/:module')
-	async getAllSubjectInModule(@Param('major') major: Major, @Param('module') module: string) {
-		let result = await this.fileHandlingService.getAllDirOfModule(major, module);
 
-		console.log(result);
 
-		return result;
-	}
+
+
+
+
 
 }
