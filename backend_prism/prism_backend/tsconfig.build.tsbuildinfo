@@ -2687,8 +2687,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.service.ts": {
-        "version": "065c058e3e13fa68737e725d7954a6de0e954b08374f8162e60a9033ec0093f6",
-        "signature": "06be47519d56e1f83557ed85d283f555614db300bae2b7b85fdefdf0d27b45a5",
+        "version": "ce6d5ec1292b45ee2e14520c6cddf3b163061a4469533d62cbe9f0239f365b94",
+        "signature": "148c7385ee7a7a682ae7e2b523ffff7a35b284475c822169a5820900d4483233",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
@@ -2772,8 +2772,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "b1fb1dc195398fea2918134997dc6c5d97a03afc46efc8a4361cb4e92766a59a",
-        "signature": "4992d2e08a60eb1640d51ec60f03eaa2e3358f9e5e5cbbfc8a4876651e012a87",
+        "version": "39c371a665c31aa1f80aae00ee9e292fa7591c0c41b878003b9b7876a3c520d4",
+        "signature": "74b2fa3474b3030d3bdb424824a47eca07fea6129205a1de13424021c10f7827",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.module.ts": {
@@ -2782,7 +2782,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/app/app.module.ts": {
-        "version": "0489e91d2a115343d05fab54bc4cb42bbb9fac5b4963bc4c46311d77c0510e32",
+        "version": "7005ed8cc6acad26fea7823356d805c87942853e8f8d34ad9aabea6d0e420224",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
         "affectsGlobalScope": false
       },
@@ -5368,7 +5368,6 @@
       "./src/server/app/app.module.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/mongoose/index.d.ts",
-        "./node_modules/@nestjs/platform-express/index.d.ts",
         "./src/server/app/app.controller.ts",
         "./src/server/app/app.service.ts",
         "./src/server/auth/auth.module.ts",

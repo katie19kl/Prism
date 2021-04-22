@@ -1,5 +1,5 @@
 import axios from "axios";
-import LocalStorage from "./LocalStorage";
+import LocalStorage from "../../HelperJS/LocalStorage";
 
 
 async function getModulesByMajor(major) {
