@@ -24,6 +24,7 @@ async function getFilesBySubject(major, module, subject) {
 	return await sendRequest(urlPostFix);
 }
 
+
 async function sendRequest(urlPostFix) {
 
 	let token = LocalStorage.getItem(LocalStorage.token);

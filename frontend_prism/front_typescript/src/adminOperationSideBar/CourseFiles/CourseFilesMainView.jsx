@@ -89,9 +89,11 @@ class CourseFilesMainView extends React.Component {
 
     render() {
         const { classes } = this.props;
-
-        // When we retrieved the current user's majors.
+        
         if (this.state.updated) {
+
+        
+            
             return (
                 <Grid container>
                     <MenuAppBar
