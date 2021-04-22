@@ -31,6 +31,7 @@ export class ModuleManager {
 
 
     }
+    
     createPathMajorModuleGivenIndexing(major: Major, module: string) {
         let path = FileHandlingService.pathRootDirectory;
         let pathMajor = path + '/' + major + '/' + module;
@@ -138,32 +139,12 @@ export class ModuleManager {
         let pathMajor = this.createPathMajor(major)
         let pathModuleNew = this.createPathMajorModule(lastIndex.toString(), pathMajor, new_directory_name)
         console.log(pathModuleNew)
-        await this.createNewDir(pathModuleNew)
+        await FileHandlingService.createNewDir(pathModuleNew)
 
     }
 
 
-    async createNewDir(path: string) {
-
-        let fs = require('fs');
-
-        return await new Promise((resolve, reject) => {
-
-            fs.mkdir(path, function (err) {
-                if (err) {
-                    console.log("here");
-                    console.log(err);
-                    reject(err);
-
-
-                } else {
-
-                    console.log("New directory " + path + " successfully created.");
-                    resolve(path);
-                }
-            });
-        })
-    }
+   
 
 
     //composes root/major/model of given module index
