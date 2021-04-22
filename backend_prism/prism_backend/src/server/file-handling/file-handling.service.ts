@@ -76,6 +76,8 @@ export class FileHandlingService {
 		const directory = path;
 		const fs = require('fs');
 
+        all_file_url_ = all_file_url_ + directory;
+
         console.log("path")
         console.log(path);
 
@@ -123,9 +125,10 @@ export class FileHandlingService {
     }
 
 
-    async getFileByName(file_name:String, res, fullPath){
+    async getFileByName(file_name:String, res, /*fullPath*/){
 
-        const directory = fullPath;
+        //const directory = fullPath;
+        const directory = someFileUrl_;
 
 		let path = require('path');
 		let mime = require('mime');

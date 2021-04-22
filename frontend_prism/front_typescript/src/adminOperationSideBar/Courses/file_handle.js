@@ -1,5 +1,5 @@
 import axios from "axios";
-import LocalStorage from "./../../../HelperJS/LocalStorage";
+import LocalStorage from "../../HelperJS/LocalStorage";
 
 
 
@@ -23,7 +23,7 @@ async function getListOfAllFiles(major, module, subject) {
 			headers: { 
 				'Authorization': 'Bearer ' + token,
 				'Content-Type': 'application/json'
-				},
+			},
 			
 		});
 
@@ -59,6 +59,8 @@ async function uploadMultFiles(FileList){
     })
 }*/
 
+
+// to be changed!!!!!!!!
 async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
    
@@ -69,7 +71,7 @@ async function uploadSingleFiles(file, onUploadProgress, major, module, subject)
     console.log(major, module, subject)
 
     
-    url_param = url + "/" + major + "/" + module + "/" + subject;
+    //url_param = url + "/" + major + "/" + module + "/" + subject;
 
     let formData = new FormData();
 

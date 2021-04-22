@@ -2,8 +2,8 @@ import  { Component } from "react";
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { Button, withStyles } from '@material-ui/core';
 
-import {getListOfAllFiles, uploadSingleFiles} from './file_handle'
-import DisplayFiles from "./DisplayFiles";
+import {getListOfAllFiles, uploadSingleFiles} from '../file_handle'
+import DisplayFiles from "../CourseDisplaying/DisplayFiles";
 
 
 

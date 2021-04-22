@@ -40,22 +40,14 @@ export class FileHandlingController {
 		return this.fileHandlingService.getAllFilesOfPath(path);
 	}
 	
-	/*@Get('files_in_subject/:major/:module/:subject')
-	async getAllFilesInSubject		
-		//let result = await this.fileHandlingService.getAllContentOfSubject(major, module, subject);
 
-		//console.log(result);
-
-		return result;
-	}*/
-
-
-	@Get("files/:file_name/:fullPath")
-	async getFileByName(@Param('file_name') file_name: String, @Res() res, @Param('fullPath')fullPath: string) {
+	//@Get("files/:file_name/:fullPath")
+	@Get("files/:file_name")
+	async getFileByName(@Param('file_name') file_name: String, @Res() res/*, @Param('fullPath')fullPath: string*/) {
 		
 		// no need in return, because service 
 		// inserts file to stream pipe
-		this.fileHandlingService.getFileByName(file_name, res, fullPath);
+		this.fileHandlingService.getFileByName(file_name, res, /*fullPath*/);
 
     }
 
