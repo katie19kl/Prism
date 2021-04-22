@@ -1,28 +1,22 @@
 import React from "react"
-import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
-import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import UploadBar from './UploadBar';
-import getListOfAllFiles from './file_handle'
+import getListOfAllFiles from '../file_handle'
 
 
-class DisplayFiles  extends React.Component {
+class DisplayFiles extends React.Component {
 
 	render() {
 
-
         let fileInfos = this.props.files
-        if (fileInfos === undefined){
+        if (fileInfos === undefined) {
             fileInfos = []
         }
-
 
         return (
             <div>
                 <h2> files are</h2>
                 <br></br>
                 <h2>--------------</h2>
-            
             
                 <div className="card">
                     
@@ -36,15 +30,10 @@ class DisplayFiles  extends React.Component {
                             </li>
                         ))}
                     </ul>
-                </div>
-            
-            
-            
+                </div>       
             </div>
-
-        )
+        );
     }
-
 }
 	
 export default DisplayFiles;
