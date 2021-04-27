@@ -5,10 +5,13 @@ import { Express } from 'express'
 import { Get } from '@nestjs/common';
 import { Major } from '../users/common/major.enum';
 import { Delete } from '@nestjs/common';
+import { HttpCode } from '@nestjs/common';
+import { Put } from '@nestjs/common';
 
 
 @Controller('file-handling')
 export class FileHandlingController {
+
 	constructor(private readonly fileHandlingService: FileHandlingService) {}
 
 
@@ -33,6 +36,7 @@ export class FileHandlingController {
 		}
 
 
+
 		@Get('major/modules/:major')
 		async getAllModulesByMajor(@Param('major') major: Major) {
 			let result = await this.fileHandlingService.getAllDirOfMajor(major);
@@ -47,12 +51,20 @@ export class FileHandlingController {
 	@Post('module/:major/:newModule')
 	async addNewModuleToMajor(@Param('major') major: Major,@Param('newModule') newModule: string){
 		
-		console.log(major)
-		console.log(newModule)
 
-		this.fileHandlingService.createNewModuleDirInMajor(newModule,major)
-		return "xxx"
+		return this.fileHandlingService.createNewModuleDirInMajor(newModule,major)
+		 
 
+	}
+
+	
+	@Get("module/rename/:major/:currentModuleName/:newModuleName")
+	async renameModule(@Param('major') major: Major, 
+						@Param('currentModuleName') currentModuleName:string,
+						@Param('newModuleName') newModuleName:string)
+	{
+		
+		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName)
 	}
 
 
@@ -61,11 +73,10 @@ export class FileHandlingController {
 	@Delete('module/:major/:module_to_del')
 	async removeModuleFromMajor(@Param('major') major: Major,@Param('module_to_del') module_to_del: string){
 		
-		console.log(major)
-		console.log(module_to_del)
 
-		this.fileHandlingService.removeModuleDirInMajor(module_to_del,major)
-		return "xaxaxaxa"
+
+		console.log(" +++++++++++++++++++------------------+++++++++++++++++++++++++++++++")
+		return this.fileHandlingService.removeModuleDirInMajor(module_to_del,major)
 
 	}
 
@@ -90,18 +101,32 @@ export class FileHandlingController {
 						   @Param('module') module: string, @Param('newNameSubject') newNameSubject :string)
 		{
 
-			await this.fileHandlingService.createNewSubject(major,module,newNameSubject)
+			return  this.fileHandlingService.createNewSubject(major,module,newNameSubject)
 
 		}
+
+
 
 	@Delete("subject/:major/:module/:subjectToDelete")
 	async deleteSubject(@Param('major') major: Major,
 						   @Param('module') module: string, @Param('subjectToDelete') subjectToDelete :string)
 	{
 
-		await this.fileHandlingService.removeSubject(major,module,subjectToDelete)
+		return  this.fileHandlingService.removeSubject(major,module,subjectToDelete)
 
 	}
+
+
+	@Get("subject/rename/:major/:module/:subjectToRename/:newSubjectName")
+	async renameSubject(@Param('major') major: Major, @Param('module') module: string,
+						 @Param('subjectToRename') subjectToRename :string,
+						 @Param('newSubjectName') newSubjectName :string)
+	{
+
+		return this.fileHandlingService.renameSubject(major, module, subjectToRename, newSubjectName);
+	}
+
+
 
 
 
@@ -130,9 +155,9 @@ export class FileHandlingController {
 		
 	}
 
+	
 	@Post('files/:major/:module/:subject')
 	// (key for postman)
-	@UseInterceptors(FileInterceptor('file',/*{dest: ".././FILE_ROOT"}*/))
 	upload(@UploadedFile() file: Express.Multer.File,
 			@Param('major') major: Major, @Param('module') module: string,
 			@Param('subject') subject: string) {
@@ -155,13 +180,6 @@ export class FileHandlingController {
 		await this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
 
     }
-
-
-
-
-
-
-
 
 
 
