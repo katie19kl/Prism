@@ -1,31 +1,59 @@
+import { HttpService } from "@nestjs/common";
+import { NotFoundException } from "@nestjs/common";
+import { HttpException } from "@nestjs/common";
+import { BadRequestException } from "@nestjs/common";
+
 import { Major } from "src/server/users/common/major.enum";
 import { IndexingFormat } from "../common/IndexingFormat";
 import { FileHandlingService } from "../file-handling.service";
 
 export class ModuleManager {
 
-    async removeModuleDirInMajor(module_to_del: string, major: Major) {
 
+
+    async removeModuleDirInMajor(module_to_del: string, major: Major) {
+   
         //let dir = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_to_del
         let dir = this.createPathMajorModuleGivenIndexing(major, module_to_del)
         console.log(dir)
         const fs = require("fs")
 
         console.log(" before rem")
-        await fs.rmdir(dir, { recursive: true }, (err) => {
-            if (err) {
+        return await new Promise((resolve,reject) =>{
+            
+            console.log(fs.existsSync(dir))
 
-                console.log(err)
-                throw err;
+            if (fs.existsSync(dir)){
+
+                fs.rmdir(dir, { recursive: true }, async (err) => {
+                    console.log(err)
+                    if (err) {
+        
+                        reject(new NotFoundException("Deleting problem"))
+                    }
+                    else {
+                        
+        
+                        console.log(`${dir} is deleted!`);
+            
+                        console.log(" after rem")
+                        let removedIndex = module_to_del[0]
+                
+                            
+                        let renaming = await this.decreaseIndexesModulesAfterRemoved(removedIndex, major)
+                        if (renaming == -1){
+                            reject(new NotFoundException("Renaming problem"))
+                        }
+                        else {
+                            resolve("Deleting & renaming are done")
+                        }
+                    }
+                });
+            }else {
+                reject(new NotFoundException("Provided directory was not found"))
             }
 
-            console.log(`${dir} is deleted!`);
-
-            console.log(" after rem")
-            let removedIndex = module_to_del[0]
-    
-            this.decreaseIndexesModulesAfterRemoved(removedIndex, major)
-        });
+        }) 
 
 
 
@@ -54,33 +82,33 @@ export class ModuleManager {
         let all_dirs = FileHandlingService.getDirList(path)
         console.log(all_dirs)
 
+        return await new Promise( async (res, rej) => {
 
-        for await (const dir of all_dirs) {
+            for await (const dir of all_dirs) {
 
-            let index_dir = parseInt(dir[0])
-            if (index_dir > removedIndex) {
-                console.log(dir)
-
-                let currentPath = path + "/" + dir;
-                let index_new = parseInt(dir[0]) - 1
-                let dirNew = dir.replace(dir[0], index_new.toString());
-                let newPath = path + "/" + dirNew
-
-                console.log(newPath);
-                console.log(currentPath);
-                console.log("=========");
-
-                fs.rename(currentPath, newPath, function (err) {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        console.log("Successfully renamed the directory.")
-                    }
-                })
+                let index_dir = parseInt(dir[0])
+                if (index_dir > removedIndex) {
+                    console.log(dir)
+    
+                    let currentPath = path + "/" + dir;
+                    let index_new = parseInt(dir[0]) - 1
+                    let dirNew = dir.replace(dir[0], index_new.toString());
+                    let newPath = path + "/" + dirNew
+    
+                    console.log(newPath);
+                    console.log(currentPath);
+                    console.log("=========");
+    
+                    fs.rename(currentPath, newPath, function (err) {
+                        if (err) {
+                            rej(-1)
+                        }
+                    })
+                }
             }
-        }
-
-
+            res(all_dirs)
+    
+        })
 
     }
 
@@ -98,8 +126,6 @@ export class ModuleManager {
 
         let fs = require('fs');
         let dirMajor = FileHandlingService.pathRootDirectory + "/" + major
-
-        console.log(dirMajor)
 
 
         let dirs_in_major: any[] = await new Promise((resolve, reject) => {
@@ -119,14 +145,11 @@ export class ModuleManager {
                 resolve(files)
             });
         })
-        console.log(dirs_in_major)
-        console.log("!@!@!@!@!!@!@")
 
         let amount_modules = 0
         for (const foo of dirs_in_major) {
             amount_modules = amount_modules + 1
         }
-        console.log(amount_modules)
         return amount_modules
 
 
@@ -138,8 +161,7 @@ export class ModuleManager {
         let lastIndex = await this.getIndexOfLastModule(major) + 1
         let pathMajor = this.createPathMajor(major)
         let pathModuleNew = this.createPathMajorModule(lastIndex.toString(), pathMajor, new_directory_name)
-        console.log(pathModuleNew)
-        await FileHandlingService.createNewDir(pathModuleNew)
+        return await FileHandlingService.createNewDir(pathModuleNew)
 
     }
 
@@ -152,11 +174,9 @@ export class ModuleManager {
 
 
         let dirsInMajor = FileHandlingService.getDirList(pathMajor)
-        console.log(dirsInMajor)
-        console.log("==========")
-
+       
         let nameOfIndexedDir = this.getNameOfIndexedDirModule(dirsInMajor, module_index);
-        console.log(nameOfIndexedDir);
+      
 
 
         let pathMajorModel = pathMajor + "/" + module_index + IndexingFormat.ModuleSeparator + new_module;
@@ -189,6 +209,44 @@ export class ModuleManager {
         return " "
     }
 
+    getIndexFromName(moduleName:string){
+        let index_prefix = moduleName[0] + IndexingFormat.ModuleSeparator
+        return index_prefix
+    }
+
+    async renameModule(major: Major, currentModuleName:string, newModuleName:string){
+
+        let currPath = this.createPathMajorModuleGivenIndexing(major, currentModuleName)
+        
+
+        let moduleIndex = this.getIndexFromName(currentModuleName)
+
+        
+        let newPath = this.createPathMajorModuleGivenIndexing(major, moduleIndex + newModuleName)
+        
+        console.log(currPath)
+        console.log(newPath)
+
+        
+
+        const fs = require("fs")
+        return await new Promise((resolve,reject) =>{
+
+            fs.rename(currPath, newPath, function (err) {
+                if (err) {
+                    
+                    reject(new NotFoundException("Provided directory was not found"))
+                    
+                } else {
+                    
+                    resolve("Successfully renamed the directory")
+                    
+                    
+                }
+            })
+
+        }); 
+    }
 
 
 

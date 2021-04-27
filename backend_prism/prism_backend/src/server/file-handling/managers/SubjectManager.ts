@@ -1,3 +1,4 @@
+import { NotFoundException } from "@nestjs/common";
 import { Major } from "src/server/users/common/major.enum";
 import { IndexingFormat } from "../common/IndexingFormat";
 import { FileHandlingService } from "../file-handling.service";
@@ -22,12 +23,16 @@ export class SubjectManager{
                         
                         
                 if (err) {
-                    reject(err);
+                    console.log("1")
+                    reject(new NotFoundException("This sub-directory is not found"));
                 }
-                for await(const file of files){
-                    const stat = await fs.promises.stat( pathToModule + "/" + file);
-                    if (await stat.isDirectory()) {
-                        all_subjects.push(file)
+                else {
+                    for await(const file of files){
+                        console.log("2")
+                        const stat = await fs.promises.stat( pathToModule + "/" + file);
+                        if (await stat.isDirectory()) {
+                            all_subjects.push(file)
+                        }
                     }
                 }
             
@@ -53,23 +58,21 @@ export class SubjectManager{
     {   
  
         let pathToModule = this.createPathToModule(major,module)
-        console.log("-*-*-*-*-*")
 
+        console.log(pathToModule)
         let lastSubjectIndex = await this.getLastIndexOfSubject(pathToModule)
         
         let newIndex = (lastSubjectIndex + 1).toString()
-
-        
         let dirPath = this.createSubjectPathDir(major,module,newNameSubject,newIndex)
 
-        console.log(dirPath)
-        await FileHandlingService.createNewDir(dirPath)
+
+        return  await FileHandlingService.createNewDir(dirPath)
         
     }
 
 
-    concateSubjectPath(major:Major, module:string, subjectToDelete:string){
-        let path = FileHandlingService.pathRootDirectory + "/" + major + "/" +  module + "/" + subjectToDelete
+    concateSubjectPath(major:Major, module:string, subject:string){
+        let path = FileHandlingService.pathRootDirectory + "/" + major + "/" +  module + "/" + subject
         return path
     }
 
@@ -94,33 +97,31 @@ export class SubjectManager{
 
 
         
-        
-        for await (const dir of all_dirs) {
+        return await new Promise( async (resolve, reject) =>{
+            for await (const dir of all_dirs) {
          
-            let index_dir = this.extractIndexOfSubject(dir)
-   
-            if (parseInt(index_dir) > parseInt(removedIndex)) {
-
-                console.log(dir)
-
-                let currentPath = path + "/" + dir;
-                let index_new = parseInt(dir[2]) - 1
-                let dirNew = dir.replace(dir[2], index_new.toString());
-                let newPath = path + "/" + dirNew
-/*
-                console.log("new path -- " + newPath);
-                console.log("prev path -- " + currentPath);
-                console.log("=========");*/
-                
-                fs.rename(currentPath, newPath, function (err) {
-                    if (err) {
-                        console.log(err)
-                    } else {
-                        console.log("Successfully renamed the directory.")
-                    }
-                })
+                let index_dir = this.extractIndexOfSubject(dir)
+       
+                if (parseInt(index_dir) > parseInt(removedIndex)) {
+    
+                    console.log(dir)
+    
+                    let currentPath = path + "/" + dir;
+                    let index_new = parseInt(dir[2]) - 1
+                    let dirNew = dir.replace(dir[2], index_new.toString());
+                    let newPath = path + "/" + dirNew
+    
+                    
+                    fs.rename(currentPath, newPath, function (err) {
+                        if (err) {
+                            reject(-1)
+                        } 
+                    })
+                }
             }
-        }
+            resolve(all_dirs)
+        })
+ 
 
 
     }
@@ -141,25 +142,81 @@ export class SubjectManager{
         console.log(indexToRemove)
 
         console.log(" before rem")
+        return await new Promise((resolve,reject) =>{
+            
+            console.log(fs.existsSync(dir))
 
-        await fs.rmdir(dir, { recursive: true }, (err) => {
-            console.log(dir)
-            if (err) {
+            if (fs.existsSync(dir)){
+                
+                fs.rmdir(dir, { recursive: true }, async (err) => {
+                console.log(dir)
+                if (err) {
+        
+                    reject(new NotFoundException("Deleting problem"))
+                }
+                else {
 
-                console.log(err)
-                throw err;
+                    console.log(`${dir} is deleted!`);
+
+                    console.log(" after rem")
+
+
+                    let renaming =  await this.decreaseIndexesSubjectAfterRemoved(indexToRemove, major, module)
+                    if (renaming == -1){
+                        reject(new NotFoundException("Renaming problem"))
+                    }
+                    else {
+                        resolve("Deleting & renaming are done")
+                    }
+                }
+                });
+            }else {
+                reject(new NotFoundException("Provided directory was not found"))
             }
-
-            console.log(`${dir} is deleted!`);
-
-            console.log(" after rem")
-
-
-            this.decreaseIndexesSubjectAfterRemoved(indexToRemove, major, module)
         });
+      
+
 
     }
 
 
+    getCurrIndexing(subjectToRename:string){
+        let indexNum = subjectToRename.split(IndexingFormat.SubjectSeparator)[0]
+
+        return indexNum + IndexingFormat.SubjectSeparator
+    }
+
+
+
+    async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string){
+
+        let currPath = this.concateSubjectPath(major,module,subjectToRename)
+
+        let indexing = this.getCurrIndexing(subjectToRename)
+
+        let newPath = this.concateSubjectPath(major, module, indexing+newNameForSubject)
+        console.log(currPath)
+        console.log(newPath)
+
+
+        
+        const fs = require("fs")
+        return await new Promise((resolve,reject) =>{
+
+            fs.rename(currPath, newPath, function (err) {
+                if (err) {
+                    
+                    reject(new NotFoundException("Provided directory was not found"))
+                    
+                } else {
+                    
+                    resolve("Successfully renamed the directory")
+                    
+                    
+                }
+            })
+
+        }); 
+    }
 
 }

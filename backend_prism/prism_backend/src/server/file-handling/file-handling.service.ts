@@ -7,6 +7,7 @@ import { ModuleManager } from './managers/ModuleManager';
 
 import { SubjectManager } from './managers/SubjectManager';
 import { FileManager } from './managers/FileManager';
+import { NotFoundException } from '@nestjs/common';
 
 const pathRootDirectory_ = './../root'
 
@@ -41,18 +42,24 @@ export class FileHandlingService {
     static getDirList(path:string){
         const { readdirSync } = require('fs')
 
-        const getDirectories = source =>
-            readdirSync(source, { withFileTypes: true })
-            .filter(dirent => dirent.isDirectory())
-            .map(dirent => dirent.name);
-        
-        
+        try{
             
-        console.log("---------")
-        //console.log(getDirectories(path))
-        let listDir = getDirectories(path)
+            const getDirectories = source =>
+                readdirSync(source, { withFileTypes: true })
+                .filter(dirent => dirent.isDirectory())
+                .map(dirent => dirent.name);
+            
+            
+                
+            let listDir = getDirectories(path)
+            return listDir;
         
-        return listDir;
+        }catch(err){
+            if (err.code === "ENOENT"){
+                console.log("Major not found")
+            }
+        }
+
         
     }
 
@@ -65,15 +72,13 @@ export class FileHandlingService {
 
             fs.mkdir(path, function (err) {
                 if (err) {
-                    console.log("here");
-                    console.log(err);
-                    reject(err);
+
+                    reject(new NotFoundException("Is not able to create file"));
 
 
                 } else {
 
-                    console.log("New directory " + path + " successfully created.");
-                    resolve(path);
+                    resolve("New directory " + path + " successfully created.");
                 }
             });
         })
@@ -107,6 +112,7 @@ export class FileHandlingService {
 /////////////////////////////////////////////////////////////////////////////////////////
 
 
+
 /////////////////////MODULE//////////////////////////////////////////////////////////////
 
 
@@ -116,12 +122,18 @@ export class FileHandlingService {
 
     async createNewModuleDirInMajor(new_directory_name : string, major:Major){
 
-        await this.moduleManager.createNewModuleDirInMajor(new_directory_name, major)
+        return await this.moduleManager.createNewModuleDirInMajor(new_directory_name, major)
 
     }
     async removeModuleDirInMajor(module_to_del:string, major:Major){
+   
+        return await this.moduleManager.removeModuleDirInMajor(module_to_del,major);
+    }
 
-        await this.moduleManager.removeModuleDirInMajor(module_to_del,major);
+
+    async renameModule(major: Major, currentModuleName:string, newModuleName:string){
+        
+        return await this.moduleManager.renameModule(major, currentModuleName, newModuleName)  
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -135,7 +147,7 @@ export class FileHandlingService {
     async createNewSubject(major:Major,module: string,newNameSubject: string)
     {
        
-        this.subjectManager.createNewSubject(major,module,newNameSubject)
+        return await this.subjectManager.createNewSubject(major,module,newNameSubject)
         
     }
 
@@ -143,7 +155,7 @@ export class FileHandlingService {
 
     async removeSubject(major:Major, module:string, subjectToDelete:string){
         
-        this.subjectManager.removeSubject(major, module, subjectToDelete)
+        return await this.subjectManager.removeSubject(major, module, subjectToDelete)
     }
 
 
@@ -153,7 +165,9 @@ export class FileHandlingService {
     }
 
 
-
+    async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string){
+        return await this.subjectManager.renameSubject(major, module, subjectToRename, newNameForSubject)
+    }
 
 
 
@@ -174,9 +188,18 @@ export class FileHandlingService {
     async uploadFile(file, major:Major, module_choosen: string, subject_choosen: string)
     {
 
-        this.fileManager.uploadFile(file, major, module_choosen, subject_choosen)
+            
+        return await this.fileManager.uploadFile(file, major, module_choosen, subject_choosen)
+        
     
-    } 
+    }
+
+
+
+
+
+
+    
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

@@ -142,10 +142,10 @@ export class FileManager{
     }
 
 
-
-
-
-
-
+    createFileFullPath(major:Major,module:string,subject:string ,fileName:string)
+    {
+        let path = this.createPathMajorModuleSubject(major,module,subject) + fileName
+        return path;
+    }
 
 }
