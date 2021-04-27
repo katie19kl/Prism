@@ -3,8 +3,7 @@ import React from "react";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
-import { getModulesByMajor, getSubjectsByModule, getFilesBySubject } from "./files_request_handler";
-import { Major } from "../../HelperJS/Major";
+import { getModulesByMajor } from "./files_request_handler";
 import MajorSelect from "../Courses/CourseDisplaying/MajorSelect";
 import FileSystemDisplay from "../Courses/CourseDisplaying/FileSystemDisplay";
 
@@ -102,11 +101,19 @@ class CourseFilesMainView extends React.Component {
                     }
                     content={
                         
-                        <Grid container spacing={2} justify="flex-start" className={classes.padding}>
+                        <Grid 
+                        container 
+                        spacing={2} 
+                        justify="flex-start" 
+                        className={classes.padding}>
                             
-                            <MajorSelect majors={this.majors} handleMajorChange={this.handleMajorChange}/>
+                            <MajorSelect 
+                            majors={this.majors} 
+                            handleMajorChange={this.handleMajorChange}/>
 
-                            <FileSystemDisplay chosenMajor={this.state.chosenMajor} moduleData={this.moduleData} />
+                            <FileSystemDisplay 
+                            chosenMajor={this.state.chosenMajor} 
+                            moduleData={this.moduleData} />
                             
                         </Grid>
                     }>

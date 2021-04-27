@@ -48,17 +48,17 @@ export class UsersService {
 		// decode JWT & retrieve username
 		const decoded = jwt.verify(token[1], jwtConstants.secret);
 		console.log(decoded);
-		let personalId = decoded['personalId']
+		let personalId = decoded['personalId'];
 		console.log(personalId)
 
 		// obtain user by his username  & return it outside
 		let user = await this.findOneByPersonalId(personalId)
 		// return outside without password ( password is hashed )
-		user.password = ""
-		console.log(user)
+		user.password = "";
+		console.log(user);
 
 
-		return user
+		return user;
 	}
 
 	// get user by its personalId

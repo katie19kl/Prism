@@ -1,10 +1,9 @@
-import { List, Accordion, withStyles, Grid, Typography } from "@material-ui/core";
+import { List, Accordion, withStyles, Grid, Typography, Button } from "@material-ui/core";
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from "react"
 import { getSubjectsByModule, getFilesBySubject } from "../../CourseFiles/files_request_handler";
-import UploadBar from "../CourseUploading/UploadBar";
 import DisplayFiles from "./DisplayFiles";
 
 
@@ -139,8 +138,7 @@ class FileSystemDisplay extends React.Component {
         return (
             <Grid item xs={11}>             
             {
-            (this.state.chosenMajor !== undefined) 
-            ? 
+            (this.state.chosenMajor !== undefined) ? 
             <div>
                 {
                 (this.state.moduleData === undefined) ? <h4 className={classes.myFont}>
@@ -156,6 +154,14 @@ class FileSystemDisplay extends React.Component {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content">
                             {module}
+
+                        <Button
+                        onClick={(event) => {
+                            event.stopPropagation();
+                            console.log("hi");
+                        }}>click me
+                        
+                        </Button>
                         </AccordionSummary>
                         <AccordionDetails>
                             <Grid item xs={12}>

@@ -1,8 +1,8 @@
 import  { Component } from "react";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Button, withStyles } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
-import {getListOfAllFiles, uploadSingleFiles} from '../file_handle'
+import { uploadSingleFiles } from '../file_handle'
 import DisplayFiles from "../CourseDisplaying/DisplayFiles";
 
 
@@ -14,8 +14,6 @@ export default class UploadBar extends Component {
 		this.selectFile = this.selectFile.bind(this);
 		this.upload = this.upload.bind(this);
 		this.uploadFilesEvent = this.uploadFilesEvent.bind(this);
-
-
 
 		this.state = {
 	
@@ -29,7 +27,7 @@ export default class UploadBar extends Component {
 	}
 
 
-	upload(idx, file){
+	upload(idx, file) {
 		let _progressInfos = [...this.state.progressInfos];
 		
 		console.log("*---1")
@@ -73,7 +71,7 @@ export default class UploadBar extends Component {
 			//return getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject);
 
 		
-		}).catch(error =>{
+		}).catch(error => {
 			console.log("_=_=_=_=_=_=_=_")
 			console.log(error)
 			
@@ -89,7 +87,8 @@ export default class UploadBar extends Component {
 
 		})
 	}
-	uploadFilesEvent(event){
+
+	uploadFilesEvent(event) {
 
 		const selectedFiles = this.state.selectedFiles;
 
@@ -122,7 +121,6 @@ export default class UploadBar extends Component {
 
 	render() {
 
-
 		let fileInfos_FOO_ONLY = [
 			{
 			url:"xui_1",
@@ -135,12 +133,9 @@ export default class UploadBar extends Component {
 		]
 		const { progressInfos, message, doesSelected} = this.state;
 		
-
-	
 		return (
 		  <div>
 
-			  
 			{progressInfos &&
 			  progressInfos.map((progressInfo, index) => (
 				<div className="mb-2" key={index}>
@@ -196,16 +191,5 @@ export default class UploadBar extends Component {
 
 		  </div>
 		);
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	}
-
-
 }

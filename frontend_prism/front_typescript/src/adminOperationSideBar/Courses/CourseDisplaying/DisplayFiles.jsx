@@ -1,6 +1,5 @@
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
-import getListOfAllFiles from '../file_handle'
 
 
 class DisplayFiles extends React.Component {

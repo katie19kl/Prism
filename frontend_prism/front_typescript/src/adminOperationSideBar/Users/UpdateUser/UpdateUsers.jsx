@@ -87,7 +87,7 @@ class UpdateUsers extends React.Component {
                 let major = user["major"];
 
                 getSoldiersByMajors(major).then((users) => {
-                    if (users === undefined ) {
+                    if (users === undefined) {
                         this.setState({_users_retrieved: true});
                         
                     } else {
@@ -106,10 +106,10 @@ class UpdateUsers extends React.Component {
                                 firstName: firstNameUser,
                                 lastName: lastNameUser,
                                 personalId: personalIdUser 
-                            }
+                        }
 
-                            this.soldierInCommanderMajor.push(line);
-                        };
+                        this.soldierInCommanderMajor.push(line);
+                    };
 
                         console.log(")))))))))))))))")
                     }
@@ -135,7 +135,7 @@ class UpdateUsers extends React.Component {
 
         getUserInfoById(this.soldier_id).then((user) => {
 
-            // none was choosen
+            // none was chosen
             if (user === undefined){
                 console.log(user + " <--1")
                 this.form = <h2>problem with user loading </h2>
