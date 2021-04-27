@@ -2697,23 +2697,23 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/modulemanager.ts": {
-        "version": "bb2b7e4f63961be974e2cb40f04825b795d096f03cfd01b9a8da2c48da238741",
-        "signature": "3b50e792cb4d3dffb3986b306140b74a5ea74847c3c33e5e1c0c96549f9d2398",
+        "version": "202090589cdb77ede0b9a25326442deae314e0d6304e72c1481fa66ef71adacb",
+        "signature": "e0bc9b9dda64eb048047afe783ddfebe7d1344f20cb11597df3effbc59133f6f",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/subjectmanager.ts": {
-        "version": "6f12f4b16eb2555fa3614122e2d43475e978ba83f8cdb447b8d22220fa82be84",
-        "signature": "e2bd33343c40c9e1cffdbe4a1c82b47f1c6e4cd4ba28dcfc41913612ffdd1fa5",
+        "version": "4fca8e07fab742a35c20501555c11e16314f51b0087001974f1cd0e14d341dd0",
+        "signature": "7f0ea9b8517a6d7d05a247c733cb2b35a925de9bb0e22e5fdc8a1bdef1ca3160",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/filemanager.ts": {
-        "version": "9fc1265257b8fa7317f68203b8fa8cfddaf9240063f589630b8d00a5a43dcd1e",
-        "signature": "18e7c126714bcf5248172a94bb3ac483159c347d81adb00fe798b5805c15d568",
+        "version": "296fc478b1188a49ca3b5b6a4c29048a09210539187e3f315bb4c2bc41f3aa0b",
+        "signature": "f3b44a9227dc404f89481349c4c5df4399f3503601eddff5ade6d21a92feddce",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.service.ts": {
-        "version": "ce6d5ec1292b45ee2e14520c6cddf3b163061a4469533d62cbe9f0239f365b94",
-        "signature": "148c7385ee7a7a682ae7e2b523ffff7a35b284475c822169a5820900d4483233",
+        "version": "5fecce1b16fdce4d689ed7f4c8715aad7df61322ab7c99e9906f9b08ac679710",
+        "signature": "65b0475decb0417a4c87392a7e7f349574eef2c6f7d2c9fecfcbbd1b51419bc8",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
@@ -2797,8 +2797,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "39c371a665c31aa1f80aae00ee9e292fa7591c0c41b878003b9b7876a3c520d4",
-        "signature": "74b2fa3474b3030d3bdb424824a47eca07fea6129205a1de13424021c10f7827",
+        "version": "45bc4495d8e23a5e0c6105a8f9ce155dba6300340504e9308aedd4d6729b7286",
+        "signature": "9caa182b881b122527f4c5bbece8a2e8fa9964a786a0b116c5e336f75d2c5c05",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.module.ts": {
@@ -2814,6 +2814,11 @@
       "./src/server/app/main.ts": {
         "version": "16523bfd5916e7092efab0b3629178fe3b497ae8f6c35529313994eae3dcf5db",
         "signature": "f761c91419d0a89422a0004ef1a92929dd4d2d5e5c16758654d8b0467d1998c6",
+        "affectsGlobalScope": false
+      },
+      "./src/server/file-handling/filters/fileerrorhandling.filter.ts": {
+        "version": "c064c0549928c366d019921e9369589d7933fcb9d4b57562a3189cb68a21bda7",
+        "signature": "54a2911edb2fd5914262ac8676a0b560573f3bee105688e62a5df4be24fd014d",
         "affectsGlobalScope": false
       },
       "./src/server/interfaces/jwt-payload.interface.ts": {
@@ -5450,6 +5455,10 @@
         "./src/server/file-handling/managers/subjectmanager.ts",
         "./src/server/users/common/major.enum.ts"
       ],
+      "./src/server/file-handling/filters/fileerrorhandling.filter.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@types/express/index.d.ts"
+      ],
       "./src/server/file-handling/managers/filemanager.ts": [
         "./src/server/file-handling/file-handling.service.ts",
         "./src/server/users/common/major.enum.ts"
@@ -5459,11 +5468,13 @@
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/file-handling/managers/modulemanager.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
         "./src/server/file-handling/common/indexingformat.ts",
         "./src/server/file-handling/file-handling.service.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/file-handling/managers/subjectmanager.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
         "./src/server/file-handling/common/indexingformat.ts",
         "./src/server/file-handling/file-handling.service.ts",
         "./src/server/users/common/major.enum.ts"
@@ -7746,6 +7757,9 @@
         "./src/server/file-handling/managers/subjectmanager.ts",
         "./src/server/users/common/major.enum.ts"
       ],
+      "./src/server/file-handling/filters/fileerrorhandling.filter.ts": [
+        "./node_modules/@nestjs/common/index.d.ts"
+      ],
       "./src/server/file-handling/managers/filemanager.ts": [
         "./src/server/users/common/major.enum.ts"
       ],
@@ -8431,6 +8445,7 @@
       "./src/server/file-handling/file-handling.controller.ts",
       "./src/server/file-handling/file-handling.module.ts",
       "./src/server/file-handling/file-handling.service.ts",
+      "./src/server/file-handling/filters/fileerrorhandling.filter.ts",
       "./src/server/file-handling/managers/filemanager.ts",
       "./src/server/file-handling/managers/majormanager.ts",
       "./src/server/file-handling/managers/modulemanager.ts",
