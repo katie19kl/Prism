@@ -195,6 +195,11 @@ export class FileHandlingService {
     }
 
 
+    async deleteFile(major:Major, module:string, subject:string, file_to_delete:string){
+        return await this.fileManager.deleteFile(major, module, subject, file_to_delete)
+    }
+
+
 
 
 
