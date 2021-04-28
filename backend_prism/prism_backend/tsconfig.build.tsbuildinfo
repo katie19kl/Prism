@@ -2697,7 +2697,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/subjectmanager.ts": {
-        "version": "4fca8e07fab742a35c20501555c11e16314f51b0087001974f1cd0e14d341dd0",
+        "version": "040982128122cfaf596a835060a0dc57c83d17a5f9542c9bf9b8793bbcd5016f",
         "signature": "7f0ea9b8517a6d7d05a247c733cb2b35a925de9bb0e22e5fdc8a1bdef1ca3160",
         "affectsGlobalScope": false
       },
@@ -2792,7 +2792,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "45bc4495d8e23a5e0c6105a8f9ce155dba6300340504e9308aedd4d6729b7286",
+        "version": "a944bb1f3886e90f901b1278b2686e7448d3ec8964b0dc5731bf84cb40250fb8",
         "signature": "9caa182b881b122527f4c5bbece8a2e8fa9964a786a0b116c5e336f75d2c5c05",
         "affectsGlobalScope": false
       },

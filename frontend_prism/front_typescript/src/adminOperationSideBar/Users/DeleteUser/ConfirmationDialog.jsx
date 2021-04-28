@@ -45,11 +45,11 @@ class ConfirmationDialog extends React.Component {
                 aria-describedby="alert-dialog-description">
                 <DialogTitle 
                 id="alert-dialog-title">
-                    {"User Deletion"}
+                    {"Deletion"}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Are you sure you want to delete the user?
+                        Are you sure you want to delete?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>

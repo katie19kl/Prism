@@ -79,10 +79,12 @@ export class SubjectManager{
 
     extractIndexOfSubject(subjectToDelete){
         let splittedIndexing = subjectToDelete.split(IndexingFormat.SubjectSubIndexing)
-        
-        let subjectIndex = splittedIndexing[1][0] 
-        
-        return subjectIndex
+        if (splittedIndexing !== undefined){
+            let subjectIndex = splittedIndexing[1][0]
+            
+            return subjectIndex
+        } 
+        return " "
     }
 
 

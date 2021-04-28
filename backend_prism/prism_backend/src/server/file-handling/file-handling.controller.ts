@@ -36,7 +36,6 @@ export class FileHandlingController {
 		}
 
 
-
 		@Get('major/modules/:major')
 		async getAllModulesByMajor(@Param('major') major: Major) {
 			let result = await this.fileHandlingService.getAllDirOfMajor(major);
@@ -44,6 +43,8 @@ export class FileHandlingController {
 	
 			return result;
 		}
+
+
 		// MAJORS WORK!!!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -66,8 +67,6 @@ export class FileHandlingController {
 		
 		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName)
 	}
-
-
 
 
 	@Delete('module/:major/:module_to_del')
@@ -111,7 +110,7 @@ export class FileHandlingController {
 	async deleteSubject(@Param('major') major: Major,
 						   @Param('module') module: string, @Param('subjectToDelete') subjectToDelete :string)
 	{
-
+		console.log("deleting subject!");
 		return  this.fileHandlingService.removeSubject(major,module,subjectToDelete)
 
 	}
@@ -127,21 +126,8 @@ export class FileHandlingController {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-	
 	@Get('files/:major/:module/:subject')
 	async getFiles(@Param('major') major: Major, @Param('module') module: string,
 					@Param('subject') subject: string) {
@@ -180,9 +166,5 @@ export class FileHandlingController {
 		await this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
 
     }
-
-
-
-
 
 }

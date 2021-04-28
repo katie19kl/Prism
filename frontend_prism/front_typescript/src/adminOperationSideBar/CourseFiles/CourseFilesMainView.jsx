@@ -36,6 +36,7 @@ class CourseFilesMainView extends React.Component {
     constructor(props) {
         super(props);
         this.handleMajorChange = this.handleMajorChange.bind(this);
+        this.sendGetModulesRequest = this.sendGetModulesRequest.bind(this);
         this.majors = undefined;
         this.moduleData = undefined;
 
@@ -49,7 +50,9 @@ class CourseFilesMainView extends React.Component {
         let eventValue = event.target.value;
 
         if (eventValue !== "None") {
-            getModulesByMajor(eventValue).then(({data}) => {
+            this.sendGetModulesRequest(eventValue);
+
+            /*getModulesByMajor(eventValue).then(({data}) => {
                 
                 if (data === undefined || data === 'None' || data === null || data.length === 0) {
                     data = undefined;
@@ -60,13 +63,31 @@ class CourseFilesMainView extends React.Component {
                 this.setState({
                     chosenMajor: eventValue
                 });
-            });
+            });*/
 
         // The user pressed the default empty option.
         } else {
             this.moduleData = undefined;
             this.setState({
                 chosenMajor: undefined
+            });
+        }
+    }
+
+    sendGetModulesRequest(currMajor) {
+        if (currMajor !== undefined) {
+
+            getModulesByMajor(currMajor).then(({data}) => {
+                
+                if (data === undefined || data === 'None' || data === null || data.length === 0) {
+                    data = undefined;
+                }
+
+                // the list of modules we received from the server.
+                this.moduleData = data;
+                this.setState({
+                    chosenMajor: currMajor
+                });
             });
         }
     }
@@ -91,8 +112,6 @@ class CourseFilesMainView extends React.Component {
         
         if (this.state.updated) {
 
-        
-            
             return (
                 <Grid container>
                     <MenuAppBar
@@ -113,7 +132,8 @@ class CourseFilesMainView extends React.Component {
 
                             <FileSystemDisplay 
                             chosenMajor={this.state.chosenMajor} 
-                            moduleData={this.moduleData} />
+                            moduleData={this.moduleData}
+                            sendGetModulesRequest={this.sendGetModulesRequest} />
                             
                         </Grid>
                     }>
