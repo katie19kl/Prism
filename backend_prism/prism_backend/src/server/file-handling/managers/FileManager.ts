@@ -1,3 +1,4 @@
+import { NotFoundException } from "@nestjs/common";
 import { Major } from "src/server/users/common/major.enum";
 import { FileHandlingService } from "../file-handling.service";
 
@@ -34,32 +35,34 @@ export class FileManager{
                     
                     
 					if (err) {
-						reject(err);
+						reject(new NotFoundException("Provided directory doesnt exists"));
 					}
-                    for await(const file of files){
-                        const stat = await fs.promises.stat( directory + "/" + file);
-                        if (await stat.isFile()) {
-                            console.log("=============");
-                            console.log(file);
-                            console.log("is file only");
-                            files_name.push(
-                                {
-                                file_name: file,
-                                url: all_file_url_ + file + pathToDowload,
-                                }
-                            )		
-                        }
-                        else {
-                            files_name.push(
-                                {
-                                file_name: file,
-                                //url: " ",
-                                }
-                            )	
+                    else {
+                        for await(const file of files){
+                            const stat = await fs.promises.stat( directory + "/" + file);
+                            if (await stat.isFile()) {
+                                console.log("=============");
+                                console.log(file);
+                                console.log("is file only");
+                                files_name.push(
+                                    {
+                                    file_name: file,
+                                    url: all_file_url_ + file + pathToDowload,
+                                    }
+                                )		
+                            }
+                            else {
+                                files_name.push(
+                                    {
+                                    file_name: file,
+                                    //url: " ",
+                                    }
+                                )	
 
+                            }
                         }
+                        resolve(files)
                     }
-					resolve(files)
 				});
 			})
 		}
@@ -144,8 +147,38 @@ export class FileManager{
 
     createFileFullPath(major:Major,module:string,subject:string ,fileName:string)
     {
-        let path = this.createPathMajorModuleSubject(major,module,subject) + fileName
+        let path = this.createPathMajorModuleSubject(major,module,subject) + "/" +fileName
         return path;
     }
+
+
+    async   deleteFile(major:Major, module:string, subject:string, file_to_delete:string){
+        //console.log("Deleting file " + file_to_delete)
+
+        let file_path = this.createFileFullPath(major,module,subject,file_to_delete)
+        //console.log(file_path)
+
+        const fs = require('fs').promises;
+
+        let isDeleted = await (async () => {
+        try {
+            await fs.unlink(file_path);
+            return 1
+        } catch (e) {
+            return 0
+        }
+        })();
+
+        if (isDeleted){
+            return "Deleted Successfully"
+        }else{
+            await new Promise((res,rej)=>{
+                rej(new NotFoundException("Provided file doesnt exist"))
+            })
+            
+        }
+    }
+
+
 
 }

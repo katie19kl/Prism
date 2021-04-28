@@ -166,5 +166,12 @@ export class FileHandlingController {
 		await this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
 
     }
+	@Delete("file/:major/:module/:subject/:file_name")
+	async deleteFile(
+			@Param('major') major: Major, @Param('module') module: string,
+			@Param('subject') subject: string,@Param('file_name') file_name: string) 
+	{
+		return this.fileHandlingService.deleteFile(major,module,subject, file_name)
+	}
 
 }
