@@ -95,7 +95,7 @@ class AdminSettings extends React.Component {
 		})
 		if (this.state.username === undefined){
 			return(
-					<MenuAppBar menu={
+					<MenuAppBar role = "Commander"  menu={
 						<CommanderMenu/>
 					}></MenuAppBar>
 			)

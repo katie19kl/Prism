@@ -2707,12 +2707,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/filemanager.ts": {
-        "version": "bce4c5fbecb3a895244272bd3b382f297687ef6c5742ba8f9783320b21608d69",
+        "version": "b1c09b4b71ccb8be7b035ca066ae5ad703ccc3fb207c2ea0d9a1473e4bbaf13c",
         "signature": "e0590137a675ab85c8a93ba61cd8e55156eccf3adfdad75ea6a5d8d930dd7fed",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.service.ts": {
-        "version": "6c3aa6360d8501596818b91cbb2b0bf90a492b722cdd7214c986fab7d5e35ada",
+        "version": "b9031625a224a99737827be54d4dde5a8f7de329c515a9bc2b99dbfb3a2fc70e",
         "signature": "be8abc36b13a7f3f16e082df7d81219ef0d6531ca7b504fae3b511128a10835d",
         "affectsGlobalScope": false
       },
@@ -2797,7 +2797,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "15b40be1102262bc85fabf0ae5f42f0dac30480239e856b971f5192cdf4cacd7",
+        "version": "34a93d52a3ec6b9b67aaf2f873149e9c9d0bf07f13d5f26c3f57912312bc64ac",
         "signature": "b7bb90d857ed630f26eab38a0916f61772600ffb651c8518c06c8a96ab271d24",
         "affectsGlobalScope": false
       },
@@ -8443,10 +8443,14 @@
       "./src/server/auth/strategies/jwt.strategy.ts",
       "./src/server/auth/strategies/local.strategy.ts",
       "./src/server/file-handling/common/indexingformat.ts",
+      "./src/server/file-handling/file-handling.controller.ts",
       "./src/server/file-handling/file-handling.module.ts",
+      "./src/server/file-handling/file-handling.service.ts",
       "./src/server/file-handling/filters/fileerrorhandling.filter.ts",
+      "./src/server/file-handling/managers/filemanager.ts",
       "./src/server/file-handling/managers/majormanager.ts",
       "./src/server/file-handling/managers/modulemanager.ts",
+      "./src/server/file-handling/managers/subjectmanager.ts",
       "./src/server/interfaces/jwt-payload.interface.ts",
       "./src/server/rolesactivity/admin_roles.guard.ts",
       "./src/server/rolesactivity/constants.ts",
@@ -8467,6 +8471,7 @@
       "./src/server/users/user.schema.ts",
       "./src/server/users/users.controller.ts",
       "./src/server/users/users.module.ts",
+      "./src/server/users/users.service.ts",
       "../../../../../node_modules/@types/bcrypt/index.d.ts"
     ]
   },

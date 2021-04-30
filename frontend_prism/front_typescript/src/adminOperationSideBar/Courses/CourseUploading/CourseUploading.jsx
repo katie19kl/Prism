@@ -30,28 +30,10 @@ class CourseUploading extends React.Component {
         }
     }
 
-	constructor(props) {
-		super(props)
-
-
-		this.state = {
-            pageNum: 1
-		};
-	}
     
     
 	render() {
-        let path_1 = 'http://localhost:4000/file-handling/files/2-Aprism_pdf.pdf/firmware/2- new_module_name/2.1- subject_a'
-        
-        let path_2 = "http://localhost:4000/file-handling/files/Part_1 - Copy.pdf/firmware/2- new_module_name/2.2- new name subject"
-        let path = ""
-        let pageNum = this.state.pageNum 
-        if (pageNum == 1){
-            path = path_1
-        }
-        else {
-            path = path_2
-        }
+  
 
 
         return (
@@ -71,11 +53,3 @@ class CourseUploading extends React.Component {
 	
 export default CourseUploading;
 
-/*
-                <Document
-                    file={path}
-                    onLoadSuccess={() => console.log("loaded")}
-                >
-                    <Page pageNumber={pageNum} />
-                </Document>
-*/
