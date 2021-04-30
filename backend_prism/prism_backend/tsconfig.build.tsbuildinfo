@@ -2702,13 +2702,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/filemanager.ts": {
-        "version": "296fc478b1188a49ca3b5b6a4c29048a09210539187e3f315bb4c2bc41f3aa0b",
-        "signature": "f3b44a9227dc404f89481349c4c5df4399f3503601eddff5ade6d21a92feddce",
+        "version": "8c5a198d2f458565572f1e81a52ac431f05f2415f1cfeef064de9d941890afc2",
+        "signature": "e910e1d3bdba596d5e0b4f0286a0f3d4cab936308011c1ffbb9f1c99f84466bf",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.service.ts": {
-        "version": "5fecce1b16fdce4d689ed7f4c8715aad7df61322ab7c99e9906f9b08ac679710",
-        "signature": "65b0475decb0417a4c87392a7e7f349574eef2c6f7d2c9fecfcbbd1b51419bc8",
+        "version": "75051b8cb09e81f6388d5a8c788b7da41315966cd29d5b121c0ad8ac377ab277",
+        "signature": "4783e687d98f93b3c6183f3e3b4021cf2a104b25b6f438fd49a260ed6f4233ad",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
@@ -2792,8 +2792,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "a944bb1f3886e90f901b1278b2686e7448d3ec8964b0dc5731bf84cb40250fb8",
-        "signature": "9caa182b881b122527f4c5bbece8a2e8fa9964a786a0b116c5e336f75d2c5c05",
+        "version": "4217ad91dea4ee978d37e9b0f0bc00144f32ecc56d871a6ff218af62f6ca31b3",
+        "signature": "ff2758c28155a551f7303d5bbacb18a9580804fa0d6f35434fced4a0b06bc756",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.module.ts": {
@@ -5504,6 +5504,7 @@
         "./node_modules/@types/express/index.d.ts"
       ],
       "./src/server/file-handling/managers/filemanager.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
         "./src/server/file-handling/file-handling.service.ts",
         "./src/server/users/common/major.enum.ts"
       ],

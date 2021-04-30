@@ -86,6 +86,9 @@ export class FileManager{
     {
 
             console.log("000")
+            
+            
+            console.log(file)
             let file_name = file.originalname;
             //let finalPath = this.createFinalPath(major, module_index, insideModuleIndex)
             

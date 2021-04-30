@@ -1,10 +1,6 @@
 import  { Component } from "react";
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { Button } from '@material-ui/core';
-
 import { uploadSingleFiles } from '../file_handle'
-import DisplayFiles from "../CourseDisplaying/DisplayFiles";
-
 
 
 export default class UploadBar extends Component {
@@ -14,17 +10,35 @@ export default class UploadBar extends Component {
 		this.selectFile = this.selectFile.bind(this);
 		this.upload = this.upload.bind(this);
 		this.uploadFilesEvent = this.uploadFilesEvent.bind(this);
+		this.handleGetFilesRequest = this.props.handleGetFilesRequest;
 
 		this.state = {
 	
-			/////
 			progressInfos: [],
 			message: [],
 			doesSelected: false,
 			selectedFiles: undefined,
 			fileName: "",
+
+			chosenMajor: this.props.chosenMajor,
+			chosenModule: this.props.chosenModule,
+			chosenSubject: this.props.chosenSubject
 		};
 	}
+
+	componentDidUpdate() {
+        if (this.props.chosenMajor !== this.state.chosenMajor) {
+            this.setState({ chosenMajor: this.props.chosenMajor});
+        }
+
+        if (this.props.chosenModule !== this.state.chosenModule) {
+            this.setState({ chosenModule: this.props.chosenModule});
+        }
+
+        if (this.props.chosenSubject !== this.state.chosenSubject) {
+            this.setState({ chosenSubject: this.props.chosenSubject});
+        }
+    }
 
 
 	upload(idx, file) {
@@ -36,7 +50,7 @@ export default class UploadBar extends Component {
 				this.setState({
 					_progressInfos,
 				});
-		  }, this.choosen_major, this.choosen_module, this.choosen_subject)
+		  }, this.state.chosenMajor, this.state.chosenModule, this.state.chosenSubject)
 		  .then((response) => {
 
 			console.log("*-2")
@@ -45,17 +59,23 @@ export default class UploadBar extends Component {
 			console.log("*3")
 
 
-			if (response !== undefined){
-				if (response.status === 201 ||response.status === 200 ){
-				this.setState((prev) => {
-					let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
-					return {
-						message: nextMessage
+			if (response !== undefined) {
+				if (response.status === 201 || response.status === 200 ) {
+					
+					if (this.state.chosenSubject !== undefined) {
+
+						// update the view to contain the new file.
+						this.handleGetFilesRequest(this.state.chosenSubject);
+					}
+					this.setState((prev) => {
+						let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
+						return {
+							message: nextMessage
 						};
 					});
 				}
 			
-				else if (response.status >= 400){
+				else if (response.status >= 400) {
 					_progressInfos[idx].percentage = 0;
 					this.setState((prev) => {
 						let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
@@ -66,26 +86,19 @@ export default class UploadBar extends Component {
 					});
 				}
 			}
-			console.log("*4____--___--___---___---___---___---___-_---______--_-")
-			console.log(this.choosen_subject)
-			//return getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject);
-
 		
 		}).catch(error => {
-			console.log("_=_=_=_=_=_=_=_")
 			console.log(error)
 			
 			_progressInfos[idx].percentage = 0;
 			this.setState((prev) => {
 				let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
-				  return {
-					  progressInfos: _progressInfos,
-					  message: nextMessage
-				  };
+					return {
+						progressInfos: _progressInfos,
+						message: nextMessage
+					};
 			});
-
-
-		})
+		});
 	}
 
 	uploadFilesEvent(event) {
@@ -109,6 +122,7 @@ export default class UploadBar extends Component {
 			} 
 		);
 	}
+
 	selectFile(event) {
 		console.log(event.target.files)
 		this.setState({
@@ -120,17 +134,6 @@ export default class UploadBar extends Component {
 
 
 	render() {
-
-		let fileInfos_FOO_ONLY = [
-			{
-			url:"xui_1",
-			file_name: "pidor_1"
-			},
-			{
-				url:"xui_2",
-				file_name: "pidor_2"
-			}
-		]
 		const { progressInfos, message, doesSelected} = this.state;
 		
 		return (
@@ -184,11 +187,6 @@ export default class UploadBar extends Component {
 				</ul>
 			  </div>
 			)}
-
-			<DisplayFiles 
-				files={fileInfos_FOO_ONLY}>
-			</DisplayFiles>
-
 		  </div>
 		);
 	}

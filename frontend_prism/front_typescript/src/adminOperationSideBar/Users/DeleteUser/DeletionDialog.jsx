@@ -4,7 +4,7 @@ import { Dialog, DialogActions, DialogContent, DialogTitle,
         Button, InputLabel, NativeSelect, FormControl, Grid,
         Snackbar } from "@material-ui/core";
 import { getUserInfoByJWT, getSoldiersByMajors } from "../../../HelperJS/extract_info"
-import ConfirmationDialog from "./ConfirmationDialog";
+import ConfirmationDialog from "../../../GeneralComponent/dialogs/ConfirmationDialog";
 import { deleteUserByPersonalId } from './delete_user';
 import MuiAlert from '@material-ui/lab/Alert';
 

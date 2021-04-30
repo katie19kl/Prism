@@ -59,12 +59,13 @@ export class FileHandlingController {
 	}
 
 	
-	@Get("module/rename/:major/:currentModuleName/:newModuleName")
+	@Put("module/rename/:major/:currentModuleName/:newModuleName")
 	async renameModule(@Param('major') major: Major, 
 						@Param('currentModuleName') currentModuleName:string,
 						@Param('newModuleName') newModuleName:string)
 	{
-		
+		console.log("rename module")
+		console.log(major, currentModuleName, newModuleName)
 		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName)
 	}
 
@@ -116,7 +117,7 @@ export class FileHandlingController {
 	}
 
 
-	@Get("subject/rename/:major/:module/:subjectToRename/:newSubjectName")
+	@Put("subject/rename/:major/:module/:subjectToRename/:newSubjectName")
 	async renameSubject(@Param('major') major: Major, @Param('module') module: string,
 						 @Param('subjectToRename') subjectToRename :string,
 						 @Param('newSubjectName') newSubjectName :string)
@@ -144,6 +145,7 @@ export class FileHandlingController {
 	
 	@Post('files/:major/:module/:subject')
 	// (key for postman)
+	@UseInterceptors(FileInterceptor("file"))
 	upload(@UploadedFile() file: Express.Multer.File,
 			@Param('major') major: Major, @Param('module') module: string,
 			@Param('subject') subject: string) {

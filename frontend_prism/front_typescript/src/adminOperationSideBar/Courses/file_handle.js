@@ -60,19 +60,12 @@ async function uploadMultFiles(FileList){
 }*/
 
 
-// to be changed!!!!!!!!
 async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
-   
     ////// IF SINGLE file --- TAKE CARE !!!!!!!!!!!!!!
-    let url  = "http://localhost:4000/file-handling/single_file"
-
-    console.log("the major, module..: ")
-    console.log(major, module, subject)
+    let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
 
     
-    //url_param = url + "/" + major + "/" + module + "/" + subject;
-
     let formData = new FormData();
 
     //for (const file of  FileList)
@@ -87,4 +80,22 @@ async function uploadSingleFiles(file, onUploadProgress, major, module, subject)
     })
 }
 
-export { getListOfAllFiles, /*uploadMultFiles*/uploadSingleFiles }
+/* 
+    returns the extention of the file.
+    when there's no extention, returns empty string.
+*/
+function defineIconOfFile(fileName) {
+
+    let indexExtention = fileName.lastIndexOf('.');
+
+    if (indexExtention !== -1) {
+        let extention = fileName.substring(indexExtention + 1, fileName.length);
+
+        return extention;
+
+    } else {
+        return '';
+    }
+}
+
+export { getListOfAllFiles, uploadSingleFiles, defineIconOfFile }

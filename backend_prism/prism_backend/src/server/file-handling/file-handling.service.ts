@@ -188,7 +188,7 @@ export class FileHandlingService {
     async uploadFile(file, major:Major, module_choosen: string, subject_choosen: string)
     {
 
-            
+        console.log(file)
         return await this.fileManager.uploadFile(file, major, module_choosen, subject_choosen)
         
     

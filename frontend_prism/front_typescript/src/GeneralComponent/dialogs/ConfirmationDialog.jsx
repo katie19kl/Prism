@@ -22,6 +22,7 @@ class ConfirmationDialog extends React.Component {
         this.handleCloseConfirm = this.props.handleCloseConfirm;
         this.handleCloseCancel = this.props.handleCloseCancel;
         this.handleClose = this.props.handleCloseCancel;
+        this.dialogGoal = this.props.dialogGoal;
 
         this.state = {
             open: this.props.confirmDialogOpen
@@ -45,11 +46,11 @@ class ConfirmationDialog extends React.Component {
                 aria-describedby="alert-dialog-description">
                 <DialogTitle 
                 id="alert-dialog-title">
-                    {"Deletion"}
+                    {this.dialogGoal}
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Are you sure you want to delete?
+                        Are you sure you want to perform this action?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
