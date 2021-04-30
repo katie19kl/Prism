@@ -2597,7 +2597,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/users.service.ts": {
-        "version": "c385f3fea0f1755d45f248a50c3cbd77f10300778159afaf5661da647cbd2666",
+        "version": "52c5ce145cc9ee61060ec8c6e847235d789f020a992bf01b1a09b208905bd3c1",
         "signature": "2b9538c0fd9d0f93d42029d0ace51eac65e1619e61e632e4fbb8149c5354e60d",
         "affectsGlobalScope": false
       },
@@ -2702,17 +2702,17 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/subjectmanager.ts": {
-        "version": "b1708383b2645813f349e729a2e686e74824b60cbc1cb8d93d2aa8dd0f18395b",
+        "version": "3df0a6245d886d94b1976fd51ded7e3bb29257041199c5d5e0f598d3aae441ac",
         "signature": "bfa4863d37c98a3bbecb34b0e09194b024cd4ee5f736d179f74ee7e8783e742e",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/filemanager.ts": {
-        "version": "b1c09b4b71ccb8be7b035ca066ae5ad703ccc3fb207c2ea0d9a1473e4bbaf13c",
+        "version": "bce4c5fbecb3a895244272bd3b382f297687ef6c5742ba8f9783320b21608d69",
         "signature": "e0590137a675ab85c8a93ba61cd8e55156eccf3adfdad75ea6a5d8d930dd7fed",
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.service.ts": {
-        "version": "b9031625a224a99737827be54d4dde5a8f7de329c515a9bc2b99dbfb3a2fc70e",
+        "version": "6c3aa6360d8501596818b91cbb2b0bf90a492b722cdd7214c986fab7d5e35ada",
         "signature": "be8abc36b13a7f3f16e082df7d81219ef0d6531ca7b504fae3b511128a10835d",
         "affectsGlobalScope": false
       },
@@ -2797,7 +2797,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/file-handling.controller.ts": {
-        "version": "070a54c032f6740e29ec24230dd30ef1a305a57cbc5cb0b2c3ee4cb01c8416fc",
+        "version": "15b40be1102262bc85fabf0ae5f42f0dac30480239e856b971f5192cdf4cacd7",
         "signature": "b7bb90d857ed630f26eab38a0916f61772600ffb651c8518c06c8a96ab271d24",
         "affectsGlobalScope": false
       },
@@ -8443,14 +8443,10 @@
       "./src/server/auth/strategies/jwt.strategy.ts",
       "./src/server/auth/strategies/local.strategy.ts",
       "./src/server/file-handling/common/indexingformat.ts",
-      "./src/server/file-handling/file-handling.controller.ts",
       "./src/server/file-handling/file-handling.module.ts",
-      "./src/server/file-handling/file-handling.service.ts",
       "./src/server/file-handling/filters/fileerrorhandling.filter.ts",
-      "./src/server/file-handling/managers/filemanager.ts",
       "./src/server/file-handling/managers/majormanager.ts",
       "./src/server/file-handling/managers/modulemanager.ts",
-      "./src/server/file-handling/managers/subjectmanager.ts",
       "./src/server/interfaces/jwt-payload.interface.ts",
       "./src/server/rolesactivity/admin_roles.guard.ts",
       "./src/server/rolesactivity/constants.ts",
@@ -8471,7 +8467,6 @@
       "./src/server/users/user.schema.ts",
       "./src/server/users/users.controller.ts",
       "./src/server/users/users.module.ts",
-      "./src/server/users/users.service.ts",
       "../../../../../node_modules/@types/bcrypt/index.d.ts"
     ]
   },

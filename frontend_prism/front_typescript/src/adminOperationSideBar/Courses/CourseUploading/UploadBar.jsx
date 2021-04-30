@@ -65,7 +65,6 @@ class UploadBar extends Component {
 
 		this.state = {
 	
-			/////
 			progressInfos: [],
 			message: [],
 			doesSelected: false,
@@ -77,8 +76,22 @@ class UploadBar extends Component {
 		};
 	}
 
+	componentDidUpdate() {
+        if (this.props.chosenMajor !== this.state.chosenMajor) {
+            this.setState({ chosenMajor: this.props.chosenMajor});
+        }
 
-	upload(idx, file){
+        if (this.props.chosenModule !== this.state.chosenModule) {
+            this.setState({ chosenModule: this.props.chosenModule});
+        }
+
+        if (this.props.chosenSubject !== this.state.chosenSubject) {
+            this.setState({ chosenSubject: this.props.chosenSubject});
+        }
+    }
+
+
+	upload(idx, file) {
 		let _progressInfos = [...this.state.progressInfos];
 		
 		console.log("*---1")
@@ -87,7 +100,7 @@ class UploadBar extends Component {
 				this.setState({
 					_progressInfos,
 				});
-		  }, this.choosen_major, this.choosen_module, this.choosen_subject)
+		  }, this.state.chosenMajor, this.state.chosenModule, this.state.chosenSubject)
 		  .then((response) => {
 
 			console.log("*-2")
@@ -96,17 +109,23 @@ class UploadBar extends Component {
 			console.log("*3")
 
 
-			if (response !== undefined){
-				if (response.status === 201 ||response.status === 200 ){
-				this.setState((prev) => {
-					let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
-					return {
-						message: nextMessage
+			if (response !== undefined) {
+				if (response.status === 201 || response.status === 200 ) {
+					
+					if (this.state.chosenSubject !== undefined) {
+
+						// update the view to contain the new file.
+						this.handleGetFilesRequest(this.state.chosenSubject);
+					}
+					this.setState((prev) => {
+						let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
+						return {
+							message: nextMessage
 						};
 					});
 				}
 			
-				else if (response.status >= 400){
+				else if (response.status >= 400) {
 					_progressInfos[idx].percentage = 0;
 					this.setState((prev) => {
 						let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
@@ -117,28 +136,22 @@ class UploadBar extends Component {
 					});
 				}
 			}
-			console.log("*4____--___--___---___---___---___---___-_---______--_-")
-			console.log(this.choosen_subject)
-			//return getListOfAllFiles(this.choosen_major, this.choosen_module, this.choosen_subject);
-
 		
-		}).catch(error =>{
-			console.log("_=_=_=_=_=_=_=_")
+		}).catch(error => {
 			console.log(error)
 			
 			_progressInfos[idx].percentage = 0;
 			this.setState((prev) => {
 				let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
-				  return {
-					  progressInfos: _progressInfos,
-					  message: nextMessage
-				  };
+					return {
+						progressInfos: _progressInfos,
+						message: nextMessage
+					};
 			});
-
-
-		})
+		});
 	}
-	uploadFilesEvent(event){
+
+	uploadFilesEvent(event) {
 
 		const selectedFiles = this.state.selectedFiles;
 
@@ -482,7 +495,5 @@ class UploadBar extends Component {
 
 	
 	}
-
-
 }
 export default withStyles(useStyles, { withTheme: true })(UploadBar); 

@@ -9,7 +9,6 @@ import Role from './Roles/Role';
 import UsersHandling from './adminOperationSideBar/Users/UsersHandling';
 import CreateUser from './adminOperationSideBar/Users/UserCreation/CreateUser';
 import UpdateUsers from './adminOperationSideBar/Users/UpdateUser/UpdateUsers';
-import DeleteUser from './adminOperationSideBar/Users/DeleteUser/DeleteUser';
 import ChangeAdminSettings from './adminOperationSideBar/AdminInfoManipulation/ChangeAdminSettings';
 import AdminSettings from './adminOperationSideBar/AdminInfoManipulation/AdminSettings';
 import CourseFilesMainView from './adminOperationSideBar/CourseFiles/CourseFilesMainView';
@@ -56,10 +55,6 @@ export default function App() {
 			<Route path="/admin/create_user" component={CreateUser} />
 
 			<Route path="/admin/update_user" component={UpdateUsers} />
-
-			
-			<Route path="/admin/delete_user" component={DeleteUser} />
-
 
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>

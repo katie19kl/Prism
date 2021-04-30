@@ -7,6 +7,7 @@ import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { Link } from "react-router-dom";
+import DeletionDialog from "./DeleteUser/DeletionDialog";
 
 
 const useStyles = (theme) => ({
@@ -31,6 +32,24 @@ const useStyles = (theme) => ({
 });
 
 class UsersHandling extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.handleClickOpen = this.handleClickOpen.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+
+        this.state = {
+            open: false
+        }
+    }
+
+    handleClickOpen() {
+        this.setState({ open: true });
+    };
+    
+    handleClose() {
+        this.setState({ open: false });
+    };
 
     render() {
         const { classes } = this.props;
@@ -78,19 +97,20 @@ class UsersHandling extends React.Component {
                             To delete an existing user, please press below
                         </Typography>
 
-                        <Link to="/admin/delete_user" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Button 
+                            variant="contained"
+                            color="primary"
+                            startIcon={<DeleteForeverIcon />}
+                            onClick={this.handleClickOpen}
+                            className={classes.button}>
+                            Delete User
+                        </Button>
 
-                            <Button 
-                                variant="contained"
-                                color="primary"
-                                startIcon={<DeleteForeverIcon />}
-                                className={classes.button}>
-                                Delete User
-                            </Button>
-
-                        </Link>
-
-
+                        <DeletionDialog 
+                        open={this.state.open}
+                        handleClose={this.handleClose}
+                        handleClickOpen={this.handleClickOpen}
+                        />
                     </div>
                 }/>
         );

@@ -36,7 +36,6 @@ export class FileHandlingController {
 		}
 
 
-
 		@Get('major/modules/:major')
 		async getAllModulesByMajor(@Param('major') major: Major) {
 			let result = await this.fileHandlingService.getAllDirOfMajor(major);
@@ -44,6 +43,8 @@ export class FileHandlingController {
 	
 			return result;
 		}
+
+
 		// MAJORS WORK!!!!!!!!!!!!!!!!!!!!!
 ///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -58,16 +59,15 @@ export class FileHandlingController {
 	}
 
 	
-	@Get("module/rename/:major/:currentModuleName/:newModuleName")
+	@Put("module/rename/:major/:currentModuleName/:newModuleName")
 	async renameModule(@Param('major') major: Major, 
 						@Param('currentModuleName') currentModuleName:string,
 						@Param('newModuleName') newModuleName:string)
 	{
-		
+		console.log("rename module")
+		console.log(major, currentModuleName, newModuleName)
 		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName)
 	}
-
-
 
 
 	@Delete('module/:major/:module_to_del')
@@ -111,13 +111,13 @@ export class FileHandlingController {
 	async deleteSubject(@Param('major') major: Major,
 						   @Param('module') module: string, @Param('subjectToDelete') subjectToDelete :string)
 	{
-
+		console.log("deleting subject!");
 		return  this.fileHandlingService.removeSubject(major,module,subjectToDelete)
 
 	}
 
 
-	@Get("subject/rename/:major/:module/:subjectToRename/:newSubjectName")
+	@Put("subject/rename/:major/:module/:subjectToRename/:newSubjectName")
 	async renameSubject(@Param('major') major: Major, @Param('module') module: string,
 						 @Param('subjectToRename') subjectToRename :string,
 						 @Param('newSubjectName') newSubjectName :string)
@@ -127,21 +127,8 @@ export class FileHandlingController {
 	}
 
 
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-	
 	@Get('files/:major/:module/:subject')
 	async getFiles(@Param('major') major: Major, @Param('module') module: string,
 					@Param('subject') subject: string) {
@@ -158,7 +145,7 @@ export class FileHandlingController {
 	
 	@Post('files/:major/:module/:subject')
 	// (key for postman)
-	@UseInterceptors(FileInterceptor('file'))
+	@UseInterceptors(FileInterceptor("file"))
 	upload(@UploadedFile() file: Express.Multer.File,
 			@Param('major') major: Major, @Param('module') module: string,
 			@Param('subject') subject: string) {
@@ -188,9 +175,5 @@ export class FileHandlingController {
 	{
 		return this.fileHandlingService.deleteFile(major,module,subject, file_name)
 	}
-
-
-
-
 
 }

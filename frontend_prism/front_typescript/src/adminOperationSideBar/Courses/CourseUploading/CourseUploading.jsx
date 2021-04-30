@@ -1,22 +1,34 @@
 import React from "react"
-import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
-import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import UploadBar from './UploadBar';
 
-import DisplayFiles from '../CourseDisplaying/DisplayFiles';
 
+class CourseUploading extends React.Component {
 
-import {  Page } from 'react-pdf';
-import { Document } from 'react-pdf/dist/esm/entry.webpack';
+    constructor(props) {
+        super(props);
+        this.handleGetFilesRequest = this.props.handleGetFilesRequest;
 
+        this.state = {
+            chosenMajor: this.props.chosenMajor,
+			chosenModule: this.props.chosenModule,
+			chosenSubject: this.props.chosenSubject
+        };
+    }
 
+    componentDidUpdate() {
+        if (this.props.chosenMajor !== this.state.chosenMajor) {
+            this.setState({ chosenMajor: this.props.chosenMajor});
+        }
 
-import { pdfjs } from 'react-pdf';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
+        if (this.props.chosenModule !== this.state.chosenModule) {
+            this.setState({ chosenModule: this.props.chosenModule});
+        }
 
-
-class CourseUploading  extends React.Component {
+        if (this.props.chosenSubject !== this.state.chosenSubject) {
+            this.setState({ chosenSubject: this.props.chosenSubject});
+        }
+    }
 
 	constructor(props) {
 		super(props)
@@ -43,32 +55,18 @@ class CourseUploading  extends React.Component {
 
 
         return (
-            <MenuAppBar
-            role = "Commander" 
-            menu={
-                <CommanderMenu/>
-            }
-            content={
-                <div>
-                
-
-
-
-                  
-        
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    <h2> uploading Second  here </h2>
-                    {<UploadBar/>}
-               </div>
-            }>
-
-            </MenuAppBar>
-
-        )
+            <div>
+                <br/>
+                <h2> Upload Files </h2>
+                <h6> You may enter more that one file </h6>
+                <UploadBar 
+                chosenMajor={this.state.chosenMajor}
+                chosenModule={this.state.chosenModule}
+                chosenSubject={this.state.chosenSubject}
+                handleGetFilesRequest={this.handleGetFilesRequest}/>
+            </div>
+        );
     }
-
 }
 	
 export default CourseUploading;
