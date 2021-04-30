@@ -4,7 +4,8 @@ import LocalStorage from "../../HelperJS/LocalStorage";
 
 async function getModulesByMajor(major) {
 
-	let urlPostFix = "modules/" + major;
+	//let urlPostFix = "modules/" + major;
+	let urlPostFix = "major/modules/" + major;
 
 	return await sendRequest(urlPostFix);
 
@@ -16,10 +17,10 @@ async function getSubjectsByModule(major, module) {
 
 	return await sendRequest(urlPostFix);
 }
-
+///////////////////////
 async function getFilesBySubject(major, module, subject) {
 	
-	let urlPostFix = "files_in_subject/" + major + "/" + module + "/" + subject;
+	let urlPostFix = "files/" + major + "/" + module + "/" + subject;
 
 	return await sendRequest(urlPostFix);
 }

@@ -35,7 +35,8 @@ class UsersHandling extends React.Component {
     render() {
         const { classes } = this.props;
         return(
-            <MenuAppBar 
+            <MenuAppBar
+                role = " Commander"
                 menu={
                     <CommanderMenu />
                 }

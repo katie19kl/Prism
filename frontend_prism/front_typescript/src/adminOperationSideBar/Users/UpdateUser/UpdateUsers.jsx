@@ -197,7 +197,8 @@ class UpdateUsers extends React.Component {
             
         if (this.state._users_retrieved) {
             return (
-                <MenuAppBar 
+                <MenuAppBar
+                role = "Commander" 
                 menu={
                     <CommanderMenu/>
                 }
@@ -280,7 +281,8 @@ class UpdateUsers extends React.Component {
         else {
             return (
                 
-                <MenuAppBar 
+                <MenuAppBar
+                    role = "Commander" 
                     menu={
                         <CommanderMenu/>
                     }>

@@ -97,6 +97,7 @@ class CourseFilesMainView extends React.Component {
             return (
                 <Grid container>
                     <MenuAppBar
+                    role = "Commander"
                     menu={
                         <CommanderMenu />
                     }
@@ -116,6 +117,7 @@ class CourseFilesMainView extends React.Component {
         } else {
             return (
                 <MenuAppBar
+                    role = "Commander"
                     menu={
                         <CommanderMenu />
                     }>   

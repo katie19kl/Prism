@@ -104,6 +104,7 @@ class AdminSettings extends React.Component {
 					<MenuAppBar menu={
 						<CommanderMenu/>
 					}
+					role = "Commander"
 					content={
 					<div className={classes.root}>
 					<h2 className={classes.myFont}>Your Current Info</h2>

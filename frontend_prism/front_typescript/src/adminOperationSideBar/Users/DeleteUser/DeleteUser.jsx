@@ -22,7 +22,8 @@ class DeleteUser extends React.Component {
     render(){
         
         return (
-            <MenuAppBar 
+            <MenuAppBar
+                        role = "Commander" 
                         menu={
                             <CommanderMenu/>
                         } 

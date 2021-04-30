@@ -143,6 +143,10 @@ class MenuAppBar extends React.Component {
 
         const { classes, theme } = this.props;
         const { username } = this.state;
+
+        let role = this.props.role
+
+        
         return (
             <div className={classes.root}>
                 <AppBar position="fixed" className={clsx(classes.appBar, {[classes.appBarShift]: this.state.open,})}>
@@ -184,7 +188,7 @@ class MenuAppBar extends React.Component {
                 <List>
                     <ListItem key="greeting">
                         <Avatar alt={username} className={classes.purple}/>
-                        <ListItemText primary="Hello Commander" className={classes.text}>
+                        <ListItemText primary= {"Hello " + role} className={classes.text}>
                         </ListItemText>
                     </ListItem>
                     <h3 className={classes.name}> {username} </h3>
