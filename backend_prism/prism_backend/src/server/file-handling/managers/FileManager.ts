@@ -85,20 +85,20 @@ export class FileManager{
         subject_choosen: string)
     {
 
-            console.log("000")
+    
             
-            
-            console.log(file)
-            let file_name = file.originalname;
-            //let finalPath = this.createFinalPath(major, module_index, insideModuleIndex)
+            let file_name = " "
+            if (file === undefined){
+                file_name = "undefined"
+            }else {
+                file_name = file.originalname;
+            }
             
             
             let pathToStore = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_choosen + "/" + subject_choosen
             pathToStore = pathToStore + "/" + file_name;
-            
-            console.log("1111")
-            console.log(pathToStore)
-            this.storingFileToPath(file, pathToStore)
+     
+            return this.storingFileToPath(file, pathToStore)
 
 
 
@@ -106,18 +106,24 @@ export class FileManager{
 
         
     storingFileToPath(file, pathToStore){
-        console.log(pathToStore)
+
         let fs = require('fs');
-        fs.open(pathToStore, 'wx', (err, desc) => {
-            if(!err && desc) {
-                
-                fs.writeFile(desc, file.buffer, (err) => {
-                        if (err) {
-                            throw err;
-                        }                
-                        console.log('Results Received');
-                })
-            }
+        return new Promise((resolve,reject)=>{
+
+            fs.open(pathToStore, 'wx', (err, desc) => {
+                if(!err && desc) {
+                    fs.writeFile(desc, file.buffer, (err) => {
+                            if (err) {
+                                reject(new NotFoundException("Not able to create file.Please check directory"))
+                            }                
+                            resolve("File successfully added")
+                    })
+               }
+                else {
+
+                    reject(new NotFoundException("Not able to create file.Please check directory!"))
+                }
+            })
         })
     }
 
@@ -126,6 +132,9 @@ export class FileManager{
     async getFileByName(file_name:String, res, major, module, subject){
 
 
+
+        
+        
 
         let dirPath = this.createPathMajorModuleSubject(major, module, subject)
         const directory = dirPath + "/";
@@ -136,15 +145,39 @@ export class FileManager{
 		let fs = require('fs');
 		let file = directory+file_name
 
-		let filename = path.basename(file);
-		let mimetype = mime.lookup(file);
 
-		res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-		res.setHeader('Content-type', mimetype);
+     
+        let fileExist = false
+        
+        try {
+          if (fs.existsSync(file)) {
+            fileExist = true;
+          }
+        } catch(err) {
+            fileExist = false
+        }
 
-		var filestream = fs.createReadStream(file);
-		filestream.pipe(res);
 
+        if (fileExist){
+            let filename = path.basename(file);
+            let mimetype = mime.lookup(file);
+
+            res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+            res.setHeader('Content-type', mimetype);
+
+            var filestream = fs.createReadStream(file);
+            filestream.pipe(res);
+        }
+        else{
+            
+            await new Promise((res,rej)=>{
+                rej(new NotFoundException("Desired file does not exist"))
+            })
+
+
+
+            
+        }
     }
 
 
@@ -155,7 +188,7 @@ export class FileManager{
     }
 
 
-    async   deleteFile(major:Major, module:string, subject:string, file_to_delete:string){
+    async  deleteFile(major:Major, module:string, subject:string, file_to_delete:string){
         //console.log("Deleting file " + file_to_delete)
 
         let file_path = this.createFileFullPath(major,module,subject,file_to_delete)

@@ -30,7 +30,12 @@ class CourseUploading extends React.Component {
         }
     }
 
+    
+    
 	render() {
+  
+
+
         return (
             <div>
                 <br/>
@@ -47,3 +52,4 @@ class CourseUploading extends React.Component {
 }
 	
 export default CourseUploading;
+

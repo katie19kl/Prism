@@ -12,6 +12,11 @@ import UpdateUsers from './adminOperationSideBar/Users/UpdateUser/UpdateUsers';
 import ChangeAdminSettings from './adminOperationSideBar/AdminInfoManipulation/ChangeAdminSettings';
 import AdminSettings from './adminOperationSideBar/AdminInfoManipulation/AdminSettings';
 import CourseFilesMainView from './adminOperationSideBar/CourseFiles/CourseFilesMainView';
+import CourseUploading from './adminOperationSideBar/Courses/CourseUploading/CourseUploading' 
+import SoldierInfo from './soldierOperationSideBar/soldierProfile/SoldierInfo'
+import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
+import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/DisplayContentOfModule';
+
 
 
 export default function App() {
@@ -42,6 +47,9 @@ export default function App() {
 
 			<Route path="/admin/course_files" component={CourseFilesMainView} />
 
+			
+			<Route path="/admin/course_files_foo" component={CourseUploading} />
+
 			<Route path="/admin/users" component={UsersHandling} />
 
 			<Route path="/admin/create_user" component={CreateUser} />
@@ -50,6 +58,18 @@ export default function App() {
 
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>
+
+			<Route path="/soldier_info" component={SoldierInfo}>
+			</Route>
+
+			
+			<Route path="/soldier_tasks" component={SoldierTasks}>
+			</Route>
+
+
+			<Route path="/module_content/:moduleName/:major" component={DisplayContentOfModule}>
+			</Route>
+			
 
 			<PrivateRoutingComponent path="/" component={MainView}/>
 			</Switch>

@@ -16,7 +16,7 @@ async function getSubjectsByModule(major, module) {
 
 	return await sendGetRequest(urlPostFix);
 }
-
+///////////////////////
 async function getFilesBySubject(major, module, subject) {
 	
 	let urlPostFix = "files/" + major + "/" + module + "/" + subject;

@@ -137,7 +137,7 @@ class ChangeAdminSettings extends React.Component {
 		
 		if (this.state.prev_username === undefined) {
 			return (
-					<MenuAppBar menu={
+					<MenuAppBar  role = {"Commander"} menu={
 						<CommanderMenu/>
 					}></MenuAppBar>
 
@@ -146,7 +146,8 @@ class ChangeAdminSettings extends React.Component {
 			return (
 				<MenuAppBar menu={
 					<CommanderMenu/>
-				} 
+				}
+				role = "Commander" 
 				content={
 					<div className={classes.root}>
 						

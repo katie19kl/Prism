@@ -1,6 +1,7 @@
 import { HttpService } from "@nestjs/common";
 import { NotFoundException } from "@nestjs/common";
 import { HttpException } from "@nestjs/common";
+import { ConflictException } from "@nestjs/common";
 import { BadRequestException } from "@nestjs/common";
 
 import { Major } from "src/server/users/common/major.enum";
@@ -144,6 +145,7 @@ export class ModuleManager {
                 }
                 resolve(files)
             });
+
         })
 
         let amount_modules = 0
@@ -156,11 +158,48 @@ export class ModuleManager {
 
     }
 
+
+    nameModuleExist(new_directory_name: string, major: Major, lastIndex) : boolean{
+        
+        const fs = require("fs");
+        for (let i = 0; i<lastIndex; i= i + 1){
+        
+            let pathMajor = this.createPathMajor(major)
+            let pathModuleNew = this.createPathMajorModule(i.toString(), pathMajor, new_directory_name)
+            
+
+            
+            if (fs.existsSync(pathModuleNew)) {
+                console.log("----")
+                console.log("EXIST ALREADY") 
+                console.log(pathModuleNew)
+                console.log("----")
+                return true;        
+            }
+        }
+        return false
+
+        
+    }
+
     // creates directory in major level
     async createNewModuleDirInMajor(new_directory_name: string, major: Major) {
         let lastIndex = await this.getIndexOfLastModule(major) + 1
         let pathMajor = this.createPathMajor(major)
+        
+
+
+
+
         let pathModuleNew = this.createPathMajorModule(lastIndex.toString(), pathMajor, new_directory_name)
+       
+        let alreadyExist = this.nameModuleExist(new_directory_name, major,lastIndex)
+
+        if (alreadyExist){
+            pathModuleNew = "undefined"
+        }
+
+
         return await FileHandlingService.createNewDir(pathModuleNew)
 
     }
@@ -224,6 +263,16 @@ export class ModuleManager {
         
         let newPath = this.createPathMajorModuleGivenIndexing(major, moduleIndex + newModuleName)
         
+        let lastIndex = await this.getIndexOfLastModule(major) + 1
+
+        let existAlready = this.nameModuleExist(newModuleName, major, lastIndex)
+        
+        if (existAlready){
+            newPath = "undefined"
+            
+        }
+
+
         console.log(currPath)
         console.log(newPath)
 
@@ -231,19 +280,24 @@ export class ModuleManager {
 
         const fs = require("fs")
         return await new Promise((resolve,reject) =>{
-
-            fs.rename(currPath, newPath, function (err) {
-                if (err) {
-                    
-                    reject(new NotFoundException("Provided directory was not found"))
-                    
-                } else {
-                    
-                    resolve("Successfully renamed the directory")
-                    
-                    
-                }
-            })
+            if (newPath === "undefined"){
+                reject(new ConflictException("Provided name already exist"))
+            }
+            else {
+                
+                fs.rename(currPath, newPath, function (err) {
+                    if (err) {
+                        
+                        reject(new NotFoundException("Provided directory was not found"))
+                        
+                    } else {
+                        
+                        resolve("Successfully renamed the directory")
+                        
+                        
+                    }
+                })
+            }
 
         }); 
     }

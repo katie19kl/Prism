@@ -112,6 +112,8 @@ class CreateUser extends React.Component {
 
         return (
             <MenuAppBar
+
+            role = "Commander"
             menu={
                 <CommanderMenu />
             }

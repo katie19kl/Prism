@@ -12,6 +12,7 @@ export default class CommanderMainPage extends React.Component {
 			<div>
 				<CssBaseline />
 				<MenuAppBar
+					role = "Commander"
 					menu={
 						<CommanderMenu />
 					} />
