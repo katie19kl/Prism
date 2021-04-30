@@ -1,6 +1,9 @@
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
 import UploadBar from './UploadBar';
+import { Link } from "react-router-dom";
+import { Button, ListItem, ListItemIcon } from "@material-ui/core";
+import PublishIcon from '@material-ui/icons/Publish';
 
 
 class CourseUploading extends React.Component {
@@ -34,18 +37,30 @@ class CourseUploading extends React.Component {
     
 	render() {
   
+        let urlPostfix = this.state.chosenMajor + "/" + this.state.chosenModule 
+            + "/" + this.state.chosenSubject;
 
+        let url = "/admin/file_uploading/" + urlPostfix;
 
         return (
             <div>
                 <br/>
-                <h2> Upload Files </h2>
-                <h6> You may enter more that one file </h6>
-                <UploadBar 
+
+                <Link to={url} style={{ textDecoration: 'none', color:"black" }}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<PublishIcon />}
+                >
+                    Upload
+                </Button>
+                </Link>
+
+                {/* <UploadBar 
                 chosenMajor={this.state.chosenMajor}
                 chosenModule={this.state.chosenModule}
                 chosenSubject={this.state.chosenSubject}
-                handleGetFilesRequest={this.handleGetFilesRequest}/>
+                handleGetFilesRequest={this.handleGetFilesRequest}/>*/}
             </div>
         );
     }

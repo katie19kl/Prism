@@ -59,6 +59,9 @@ async function uploadSingleFiles(file, onUploadProgress, major, module, subject)
     let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
 
     
+    console.log("---------------------------------------")
+    console.log(file)
+    console.log("---------------------------------------")
     let formData = new FormData();
 
     //for (const file of  FileList)

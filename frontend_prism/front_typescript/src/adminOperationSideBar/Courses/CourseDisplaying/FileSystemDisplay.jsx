@@ -411,6 +411,16 @@ class FileSystemDisplay extends React.Component {
                 this.severity = "success";
                 this.setState({ showMsg: true, msgOpen: true});
 
+            } else if (response.response !== undefined) {
+
+                if (response.response.status === 409) {
+                    
+                    console.log("I am here!!!!!!")
+                    this.msg = "The name already exists! Try a different one";
+                    this.severity = "error";
+                    this.setState({ showMsg: true, msgOpen: true});
+                }
+
             } else {
                 console.log("error");
                 this.msg = "Failed to create the " + objToInsert;
@@ -471,7 +481,7 @@ class FileSystemDisplay extends React.Component {
                     // show informative msg to the screen.
                     this.handleInsertionResponse(response, 'module');
 
-                    if (response.status !== undefined) {
+                    if (response !== undefined) {
                         if (response.status === 201) {
 
                             // update the view to contain the new created module.
@@ -512,7 +522,7 @@ class FileSystemDisplay extends React.Component {
 
                     this.handleInsertionResponse(response, 'subject');
 
-                    if (response.status !== undefined) {
+                    if (response !== undefined) {
                         if (response.status === 201) {
 
                             // update the view to contain the new created subject.
@@ -553,6 +563,10 @@ class FileSystemDisplay extends React.Component {
     /* activates the informative msg depending on the server's response. */
     handleRenamingResponse(response, objToRename) {
 
+        console.log(response);
+        console.log("----------------------!!!")
+
+
         if (response !== undefined) {
 
             if (response.status === 200) {
@@ -560,6 +574,16 @@ class FileSystemDisplay extends React.Component {
                 this.msg = objToRename + " renamed successfully";
                 this.severity = "success";
                 this.setState({ showMsg: true, msgOpen: true});
+
+            } else if (response.response !== undefined) {
+
+                if (response.response.status === 409) {
+                    
+                    console.log("I am here!!!!!!")
+                    this.msg = "The name already exists! Try a different one";
+                    this.severity = "error";
+                    this.setState({ showMsg: true, msgOpen: true});
+                }
 
             } else {
                 console.log("error");
@@ -615,7 +639,7 @@ class FileSystemDisplay extends React.Component {
 
                     this.handleRenamingResponse(response, 'module');
 
-                    if (response.status !== undefined) {
+                    if (response !== undefined) {
 
                         console.log("status of put is: ", response.status);
 

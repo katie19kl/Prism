@@ -16,6 +16,7 @@ import CourseUploading from './adminOperationSideBar/Courses/CourseUploading/Cou
 import SoldierInfo from './soldierOperationSideBar/soldierProfile/SoldierInfo'
 import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/DisplayContentOfModule';
+import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 
 
 
@@ -48,7 +49,7 @@ export default function App() {
 			<Route path="/admin/course_files" component={CourseFilesMainView} />
 
 			
-			<Route path="/admin/course_files_foo" component={CourseUploading} />
+			<Route path="/admin/file_uploading/:major/:module/:subject" component={UploadBar} />
 
 			<Route path="/admin/users" component={UsersHandling} />
 

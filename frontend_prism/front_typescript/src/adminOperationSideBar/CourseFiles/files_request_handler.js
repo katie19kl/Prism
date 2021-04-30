@@ -184,7 +184,7 @@ async function sendPostRequest(urlPostFix) {
 			return response;
 
 		}, (error) => {
-			return undefined;
+			return error;
 		});
 	}
 }
@@ -216,7 +216,7 @@ async function sendPutRequest(urlPostFix) {
 			return response;
 
 		}, (error) => {
-			return undefined;
+			return error;
 		});
 	}
 }
