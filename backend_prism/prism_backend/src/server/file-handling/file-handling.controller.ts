@@ -158,6 +158,7 @@ export class FileHandlingController {
 	
 	@Post('files/:major/:module/:subject')
 	// (key for postman)
+	@UseInterceptors(FileInterceptor('file'))
 	upload(@UploadedFile() file: Express.Multer.File,
 			@Param('major') major: Major, @Param('module') module: string,
 			@Param('subject') subject: string) {
@@ -166,8 +167,8 @@ export class FileHandlingController {
 		let subject_choosen = subject
 		let major_choosen = major
 
-		this.fileHandlingService.uploadFile(file,major_choosen, module_choosen, subject_choosen);
-		return "xui single"
+		return this.fileHandlingService.uploadFile(file,major_choosen, module_choosen, subject_choosen);
+		 
 
 
 	}
@@ -177,7 +178,7 @@ export class FileHandlingController {
 			@Param('major') major: Major, @Param('module') module: string,@Param('subject') subject: string) {
 		
 	
-		await this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
+		return this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
 
     }
 	@Delete("file/:major/:module/:subject/:file_name")

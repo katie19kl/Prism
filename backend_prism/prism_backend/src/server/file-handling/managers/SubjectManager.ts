@@ -1,3 +1,4 @@
+import { ConflictException } from "@nestjs/common";
 import { NotFoundException } from "@nestjs/common";
 import { Major } from "src/server/users/common/major.enum";
 import { IndexingFormat } from "../common/IndexingFormat";
@@ -13,7 +14,7 @@ export class SubjectManager{
 
     async getLastIndexOfSubject(pathToModule){
 
-        console.log(pathToModule)
+   
         const fs = require('fs');
 
         let all_subjects = []
@@ -23,12 +24,12 @@ export class SubjectManager{
                         
                         
                 if (err) {
-                    console.log("1")
+                 
                     reject(new NotFoundException("This sub-directory is not found"));
                 }
                 else {
                     for await(const file of files){
-                        console.log("2")
+                        
                         const stat = await fs.promises.stat( pathToModule + "/" + file);
                         if (await stat.isDirectory()) {
                             all_subjects.push(file)
@@ -40,7 +41,7 @@ export class SubjectManager{
             });
         })
 
-        console.log(all_subjects)
+     
         
         let amount = all_subjects.length
 
@@ -54,16 +55,47 @@ export class SubjectManager{
         return pathMajorModelSubject
     }
 
+
+    subjectNameExist(major:Major,module: string,newNameSubject: string,newIndex): boolean{
+        const fs = require("fs");
+        for (let i = 0; i<newIndex; i = i + 1){
+
+            let dirPath = this.createSubjectPathDir(major,module,newNameSubject,i.toString())
+            
+            console.log("----")
+            console.log(dirPath)
+            console.log("----")
+
+            if (fs.existsSync(dirPath)) {
+                console.log("----")
+                console.log("EXIST ALREADY") 
+                console.log(dirPath)
+                console.log("----")
+                return true;        
+            }
+        }
+
+
+        return false
+    }
+
     async createNewSubject(major:Major,module: string,newNameSubject: string)
     {   
  
         let pathToModule = this.createPathToModule(major,module)
 
-        console.log(pathToModule)
         let lastSubjectIndex = await this.getLastIndexOfSubject(pathToModule)
         
         let newIndex = (lastSubjectIndex + 1).toString()
         let dirPath = this.createSubjectPathDir(major,module,newNameSubject,newIndex)
+
+        
+        let existAlready = this.subjectNameExist(major,module,newNameSubject,parseInt(newIndex))
+
+        if (existAlready){
+            console.log("TAFUS NAHUI")
+            dirPath = "undefined"
+        }
 
 
         return  await FileHandlingService.createNewDir(dirPath)
@@ -190,6 +222,14 @@ export class SubjectManager{
 
     async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string){
 
+        let pathToModule = this.createPathToModule(major,module)
+
+        let lastSubjectIndex = await this.getLastIndexOfSubject(pathToModule)
+        
+        let lastIndex = (lastSubjectIndex + 1).toString()
+
+
+
         let currPath = this.concateSubjectPath(major,module,subjectToRename)
 
         let indexing = this.getCurrIndexing(subjectToRename)
@@ -198,23 +238,36 @@ export class SubjectManager{
         console.log(currPath)
         console.log(newPath)
 
+        
+
+        let alreadyExist = this.subjectNameExist(major,module,newNameForSubject,parseInt(lastIndex)) 
+        if (alreadyExist){
+            console.log("XUI UGE TUT")
+            newPath = "undefined"
+        }
 
         
         const fs = require("fs")
         return await new Promise((resolve,reject) =>{
 
-            fs.rename(currPath, newPath, function (err) {
-                if (err) {
-                    
-                    reject(new NotFoundException("Provided directory was not found"))
-                    
-                } else {
-                    
-                    resolve("Successfully renamed the directory")
-                    
-                    
-                }
-            })
+            if (newPath === "undefined"){
+                reject(new ConflictException("Provided name already exists!"))
+            }
+            else {
+
+                fs.rename(currPath, newPath, function (err) {
+                    if (err) {
+                        
+                        reject(new NotFoundException("Provided directory was not found"))
+                        
+                    } else {
+                        
+                        resolve("Successfully renamed the directory")
+                        
+                        
+                    }
+                })
+            }
 
         }); 
     }

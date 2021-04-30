@@ -4,6 +4,7 @@ import CommanderMainPage from "../admin/CommanderMainPage.jsx";
 import NoPermessions from "../../HelperFooStuff/NoPermissions";
 import Role from '../../Roles/Role';
 
+import SoldierMainPage from './../soldier/SoldierMainPage'
 
 export default class MainPage extends React.Component {
 
@@ -38,6 +39,7 @@ export default class MainPage extends React.Component {
 		
 		} else if (role === Role.Soldier) {
 			
+			return <SoldierMainPage/>
 
 		} else if (role === Role.Tester) {
 

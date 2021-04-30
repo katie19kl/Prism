@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { Module } from '@nestjs/core/injector/module';
 import { Major } from '../users/common/major.enum';
 import { IndexingFormat } from './common/IndexingFormat';
@@ -64,26 +64,37 @@ export class FileHandlingService {
     }
 
 
+
     static  async createNewDir(path: string) {
 
         let fs = require('fs');
 
         return await new Promise((resolve, reject) => {
+            
+            if (path == "undefined"){
+                reject(new ConflictException("This name already exist"));
 
-            fs.mkdir(path, function (err) {
-                if (err) {
+            }else {
+                
 
-                    reject(new NotFoundException("Is not able to create file"));
+                fs.mkdir(path, function (err) {
+                        if (err) {
+
+                            reject(new NotFoundException("Is not able to create file"));
 
 
-                } else {
+                        } else {
 
-                    resolve("New directory " + path + " successfully created.");
-                }
-            });
+                            resolve("New directory " + path + " successfully created.");
+                        }
+                });
+            
+            }
+            
         })
     }
     
+
 
 
 //////////////////////////////////MAJOR//////////////////////////////////////////////
@@ -182,16 +193,12 @@ export class FileHandlingService {
 
     async getFileByName(file_name:String, res, major, module, subject){
 
-        await this.fileManager.getFileByName(file_name, res, major, module, subject)
+        return await this.fileManager.getFileByName(file_name, res, major, module, subject)
     }
 
     async uploadFile(file, major:Major, module_choosen: string, subject_choosen: string)
     {
-
-            
-        return await this.fileManager.uploadFile(file, major, module_choosen, subject_choosen)
-        
-    
+        return await this.fileManager.uploadFile(file, major, module_choosen, subject_choosen) 
     }
 
 
