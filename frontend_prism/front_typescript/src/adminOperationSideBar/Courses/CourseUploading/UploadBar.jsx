@@ -4,7 +4,6 @@ import React from "react"
 import {uploadSingleFiles} from './file_uploading_handle'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
@@ -12,16 +11,10 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import {CgRemoveR} from "react-icons/cg"
-import { FaPython } from "react-icons/fa";
-import { FaFileWord } from "react-icons/fa";
-import { FaFileArchive } from "react-icons/fa";
-import {FaFilePdf} from "react-icons/fa";
-import {GrDocumentTxt} from "react-icons/gr";
 import MuiAlert from '@material-ui/lab/Alert';	
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
-import { IconContext } from "react-icons";
-
+import DisplayCourseUploadBar from "./DisplayCoursesUploadBar"
 
 
 const useStyles = (theme) => ({
@@ -62,6 +55,9 @@ class UploadBar extends Component {
 		this.subject = this.props.match.params.subject;
 
 
+		this.uploadedFile = []
+
+
 		this.state = {
 	
 			progressInfos: [],
@@ -93,7 +89,7 @@ class UploadBar extends Component {
 	upload(idx, file) {
 		let _progressInfos = [...this.state.progressInfos];
 		
-		console.log("*---1")
+		
 		uploadSingleFiles(file, (event) => {
 				_progressInfos[idx].percentage = Math.round((100 * event.loaded) / event.total);
 				this.setState({
@@ -102,10 +98,7 @@ class UploadBar extends Component {
 		  }, this.major, this.module, this.subject)
 		  .then((response) => {
 
-			console.log("*-2")
-			
-			console.log(response)
-			console.log("*3")
+
 
 
 			if (response !== undefined) {
@@ -118,6 +111,36 @@ class UploadBar extends Component {
 					}
 					this.setState((prev) => {
 						let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
+						
+						
+						if (!this.uploadedFile.includes(file.name))
+						{
+							this.uploadedFile.push(file.name)
+						}
+
+
+						const dataAlready = new DataTransfer();
+					
+						// store already attached files
+						if (this.filesSelected !== undefined){
+							for (const file_ of this.filesSelected){
+								if (file_.name !== file.name){
+									dataAlready.items.add(file_);
+
+
+									
+								}
+								
+							}
+						}
+
+						//this.cancellChoice()
+						this.filesSelected = dataAlready.files
+
+
+
+
+
 						return {
 							message: nextMessage
 						};
@@ -173,7 +196,7 @@ class UploadBar extends Component {
 	}
 
 	selectFile(event) {
-		console.log("ss")
+
 
 		const dataAlready = new DataTransfer();
 		// store already attached files
@@ -193,8 +216,6 @@ class UploadBar extends Component {
 			dataNew.items.add(file);
 		}
 
-		console.log(dataNew.files)
-		console.log(dataAlready.files)
 		
 		const dataNewMerged = new DataTransfer();
 
@@ -208,7 +229,7 @@ class UploadBar extends Component {
 				if (fileInData.name === file.name){
 					existAlready = 1
 					this.setState({sameFileWasAdded:true})
-					console.log("same file uploading~!!!")
+					
 					
 					this.listSameFiles.push(file.name)
 				}
@@ -223,7 +244,8 @@ class UploadBar extends Component {
 
 		this.setState({
 			progressInfos: [],
-			selectedFiles: event.target.files,
+			//selectedFiles: event.target.files,
+			selectedFiles : dataNewMerged.files,
 			doesSelected: true
 		});
 
@@ -255,11 +277,10 @@ class UploadBar extends Component {
 
 	cancellChoice(){
 		this.filesSelected = []
-		console.log(this.state.emptyFileList)
+		
+
 		this.myRef_toInput.current.files = this.state.emptyFileList 
 		  
-		//this.myRef.files = 
-		//value={""}
 		this.setState({
 			progressInfos: [],
 			message: [],
@@ -293,37 +314,75 @@ class UploadBar extends Component {
 			}
 		}
 	
-		let word = <FaFileWord/>
-		let py  = <FaPython />
-		let archieve = <FaFileArchive/>
-		let pdf = <FaFilePdf/>
-		let txt = <GrDocumentTxt/>
-
+	
 		let copiedFiles = ""
 		for (const fileName of this.listSameFiles){
 			copiedFiles += fileName + " ,  " 
 		}
 
+		let uploadedToServer = this.uploadedFile 
+	
+
+
 		return (
 
 			<MenuAppBar menu={<CommanderMenu />} role="Commander" content={
 				<div>
+
+					
+							
+	
+					<Grid item xs={12} md={6}>
+					
+					
+						<Typography variant="h6" className={classes.title}>
+							Uploaded files
+						</Typography>
+
+					
+						<div className={classes.demo}>
+							<List >
+							{uploadedToServer != [] &&
+							uploadedToServer.map((file,index)=> (
+
+								<ListItem key={index} >
+
+								<DisplayCourseUploadBar file = {file}/>
+
+								
+								<ListItemText
+									primary={file} 
+								/>
+								</ListItem>
+
+								
+							))}
+							
+
+
+
+							</List>
+							
+						</div>
+
+					</Grid>
+
+
+
+
 			  	<h1>{this.major}</h1>
 				<h1>{this.module}</h1>
 				<h1>{this.subject}</h1>
 
+			
+
 				<Snackbar open={this.state.sameFileWasAdded} autoHideDuration={15000}
 							onClose={()=>{this.setState({sameFileWasAdded : false})
 												this.listSameFiles = [] }}>
-				
-				
-				
+
 						<Alert onClose={()=>{this.setState({sameFileWasAdded : false}) 
 																this.listSameFiles = []}}  
 							severity="warning">
-							
-		
-							
 							!! Pay attention !!
 							<br></br>
 							The following was not uploaded
@@ -334,7 +393,7 @@ class UploadBar extends Component {
 							<br></br>
 							Because it is already attached 
 							<br></br>
-							If you do want to override existing file - delete file and upload new one
+ 							If you do want to override existing file - delete file and upload new one
 						</Alert>
 				</Snackbar>
 
@@ -397,6 +456,8 @@ class UploadBar extends Component {
 				</Button>
 
 				<Grid item xs={12} md={6}>
+					
+					
 					<Typography variant="h6" className={classes.title}>
 						Attached files
 					</Typography>
@@ -407,35 +468,7 @@ class UploadBar extends Component {
 
 							<ListItem key={index} >
 
-							{ file.substring(file.length-2) === "py" ? 	
-							<IconContext.Provider
-                            	value={{ color: 'blue', size: '25px' }}>
-                                {py}
-                            </IconContext.Provider> : "" }
-
-							{ file.substring(file.length-3) === "pdf" ? 
-							<IconContext.Provider
-                            	value={{ color: 'blue', size: '25px' }}>
-                                {pdf}
-                            </IconContext.Provider> : "" }
-
-							{ file.substring(file.length-3) === "zip" ? 
-							<IconContext.Provider
-                            	value={{ color: 'blue', size: '25px' }}>
-                                {archieve}
-                            </IconContext.Provider> : "" }
-
-							{ file.substring(file.length-4) === "docx" ? 
-							<IconContext.Provider
-                            	value={{ color: 'blue', size: '25px' }}>
-                                {word}
-                            </IconContext.Provider> : "" }
-
-							{ file.substring(file.length-3) === "txt" ? 
-							<IconContext.Provider
-								value={{ color: 'blue', size: '25px' }}>
-								{txt}
-							</IconContext.Provider> : "" }
+							<DisplayCourseUploadBar file = {file}/>
 
 
 							<ListItemText
@@ -451,10 +484,18 @@ class UploadBar extends Component {
 
 							
 						))}
+						
+
+
 
 						</List>
 						
 					</div>
+
+					
+		
+				
+
 			</Grid>
 			</div>
 			}>
