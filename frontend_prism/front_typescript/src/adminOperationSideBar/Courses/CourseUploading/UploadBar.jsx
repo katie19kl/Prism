@@ -1,5 +1,5 @@
 import  { Component } from "react";
-import { Button, withStyles } from '@material-ui/core';
+import { Button, CssBaseline, withStyles } from '@material-ui/core';
 import React from "react"
 import {uploadSingleFiles} from './file_uploading_handle'
 import List from '@material-ui/core/List';
@@ -15,6 +15,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import DisplayCourseUploadBar from "./DisplayCoursesUploadBar"
+import Breadcrumbs from '@material-ui/core/Breadcrumbs';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 
 const useStyles = (theme) => ({
@@ -28,6 +30,16 @@ const useStyles = (theme) => ({
 	title: {
 	  margin: theme.spacing(4, 0, 2),
 	},
+	myFont: {
+		fontFamily: "Comic Sans MS, Comic Sans, cursive",
+	},
+	displayCenter: {
+		display: 'flex',
+		justifyContent: 'çenter'
+	},
+	padding: {
+		marginRight: theme.spacing(10),
+	}
 });
 
 
@@ -271,11 +283,11 @@ class UploadBar extends Component {
 		this.setState({selectedFiles:newFileList})
 
 		if(newFileList.length === 0){
-			this.cancellChoice()
+			this.cancelChoice()
 		}
 	}
 
-	cancellChoice(){
+	cancelChoice(){
 		this.filesSelected = []
 		
 
@@ -328,9 +340,19 @@ class UploadBar extends Component {
 
 			<MenuAppBar menu={<CommanderMenu />} role="Commander" content={
 				<div>
+				
+				<br/>
+					 
 
-					
-							
+					<Grid container item xs={12} justify="center" alignItems="center">
+					<Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" className={classes.padding}>
+						<Typography className={classes.myFont} variant="h5" color="primary">{this.major}</Typography>
+						<Typography className={classes.myFont} variant="h5" color="primary">{this.module}</Typography>
+						<Typography className={classes.myFont} variant="h5" color="primary">{this.subject}</Typography>
+     				</Breadcrumbs>
+					 </Grid>
+
+
 	
 					<Grid item xs={12} md={6}>
 					
@@ -351,7 +373,8 @@ class UploadBar extends Component {
 
 								
 								<ListItemText
-									primary={file} 
+									primary={<Typography className={classes.myFont}>{file}  </Typography>}
+								
 								/>
 								</ListItem>
 
@@ -366,16 +389,7 @@ class UploadBar extends Component {
 						</div>
 
 					</Grid>
-
-
-
-
-			  	<h1>{this.major}</h1>
-				<h1>{this.module}</h1>
-				<h1>{this.subject}</h1>
-
-			
-
+						
 				<Snackbar open={this.state.sameFileWasAdded} autoHideDuration={15000}
 							onClose={()=>{this.setState({sameFileWasAdded : false})
 												this.listSameFiles = [] }}>
@@ -450,9 +464,9 @@ class UploadBar extends Component {
 
 				<Button
 				variant="contained" color="secondary"
-				onClick={() => this.cancellChoice()}
+				onClick={() => this.cancelChoice()}
 					>
-					Cancell All Choices 
+					Cancel All Choices 
 				</Button>
 
 				<Grid item xs={12} md={6}>
@@ -472,8 +486,13 @@ class UploadBar extends Component {
 
 
 							<ListItemText
-								primary={file} 
+														
+								primary={<Typography className={classes.myFont}>{file}  </Typography>}
+														
+													
 							/>
+
+
 							<ListItemSecondaryAction>
 								<IconButton edge="end" aria-label="delete" color="secondary" 
 								onClick={ (event) => this.regrettOnFile(event, file)}>

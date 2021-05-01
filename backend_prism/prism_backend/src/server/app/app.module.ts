@@ -10,7 +10,6 @@ import { FileHandlingModule } from '../file-handling/file-handling.module';
 
 @Module({
   imports: [
-    //MulterModule.register({dest:'.././FILE_ROOT'}),
     AuthModule, 
     UsersModule,
     FileHandlingModule,

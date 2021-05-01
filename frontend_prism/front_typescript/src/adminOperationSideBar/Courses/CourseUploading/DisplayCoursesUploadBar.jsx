@@ -33,6 +33,10 @@ const useStyles = (theme) => ({
 	title: {
 	  margin: theme.spacing(4, 0, 2),
 	},
+    padding: {
+        flexGrow: 1,
+        marginRight: theme.spacing(2),
+    },
 });
 
 
@@ -52,11 +56,11 @@ class DisplayCoursesUploadBar extends React.Component {
   
         const { classes } = this.props;
 
-		let word = <FaFileWord/>
-		let py  = <FaPython />
-		let archieve = <FaFileArchive/>
-		let pdf = <FaFilePdf/>
-		let txt = <GrDocumentTxt/>
+		let word = <FaFileWord className={classes.padding}/>
+		let py  = <FaPython className={classes.padding}/>
+		let archieve = <FaFileArchive className={classes.padding}/>
+		let pdf = <FaFilePdf className={classes.padding}/>
+		let txt = <GrDocumentTxt className={classes.padding}/>
 
         let file = this.file
 
@@ -69,7 +73,7 @@ class DisplayCoursesUploadBar extends React.Component {
                             </IconContext.Provider> : "" }
 
 							{ file.substring(file.length-3) === "pdf" ? 
-							<IconContext.Provider
+							<IconContext.Provider 
                             	value={{ color: 'blue', size: '25px' }}>
                                 {pdf}
                             </IconContext.Provider> : "" }
