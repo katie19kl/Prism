@@ -17,37 +17,41 @@ import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import DisplayCourseUploadBar from "./DisplayCoursesUploadBar"
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { blue, purple } from "@material-ui/core/colors";
 
 
 const useStyles = (theme) => ({
 	root: {
-	  flexGrow: 1,
-	  maxWidth: 752,
+	  	flexGrow: 1,
+		marginLeft: theme.spacing(2),
 	},
 	demo: {
-	  backgroundColor: theme.palette.background.paper,
+	 	backgroundColor: theme.palette.background.paper,
 	},
 	title: {
-	  margin: theme.spacing(4, 0, 2),
+	  	margin: theme.spacing(4, 0, 2),
+	  	fontFamily: "monospace",
 	},
 	myFont: {
 		fontFamily: "Comic Sans MS, Comic Sans, cursive",
 	},
-	displayCenter: {
-		display: 'flex',
-		justifyContent: 'çenter'
+	myFont2: {
+		fontFamily: "Comic Sans MS, Comic Sans, cursive",
+		color: purple[400],
+	},
+	myFont3: {
+		fontFamily: "Comic Sans MS, Comic Sans, cursive",
+		color: blue[300],
 	},
 	padding: {
 		marginRight: theme.spacing(10),
-	}
+	},
 });
-
 
 
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
-
 
 
 class UploadBar extends Component {
@@ -66,9 +70,7 @@ class UploadBar extends Component {
     	this.major = this.props.match.params.major;
 		this.subject = this.props.match.params.subject;
 
-
 		this.uploadedFile = []
-
 
 		this.state = {
 	
@@ -79,7 +81,6 @@ class UploadBar extends Component {
 			fileName: "",
 			emptyFileList : undefined,
 			sameFileWasAdded : false,
-			
 		};
 	}
 
@@ -110,9 +111,6 @@ class UploadBar extends Component {
 		  }, this.major, this.module, this.subject)
 		  .then((response) => {
 
-
-
-
 			if (response !== undefined) {
 				if (response.status === 201 || response.status === 200 ) {
 					
@@ -122,7 +120,8 @@ class UploadBar extends Component {
 						this.handleGetFilesRequest(this.state.chosenSubject);
 					}
 					this.setState((prev) => {
-						let nextMessage = [...prev.message, "Uploaded the file successfully: " + file.name];
+						let nextMessage = [...prev.message,
+							 "Uploaded the file successfully: " + file.name];
 						
 						
 						if (!this.uploadedFile.includes(file.name))
@@ -138,9 +137,6 @@ class UploadBar extends Component {
 							for (const file_ of this.filesSelected){
 								if (file_.name !== file.name){
 									dataAlready.items.add(file_);
-
-
-									
 								}
 								
 							}
@@ -148,10 +144,6 @@ class UploadBar extends Component {
 
 						//this.cancellChoice()
 						this.filesSelected = dataAlready.files
-
-
-
-
 
 						return {
 							message: nextMessage
@@ -185,7 +177,7 @@ class UploadBar extends Component {
 		});
 	}
 
-	uploadFilesEvent(event) {
+	uploadFilesEvent(_event) {
 
 		const selectedFiles = this.state.selectedFiles;
 
@@ -207,8 +199,7 @@ class UploadBar extends Component {
 		);
 	}
 
-	selectFile(event) {
-
+	selectFile(_event) {
 
 		const dataAlready = new DataTransfer();
 		// store already attached files
@@ -228,7 +219,6 @@ class UploadBar extends Component {
 			dataNew.items.add(file);
 		}
 
-		
 		const dataNewMerged = new DataTransfer();
 
 		// Team up two above files storages
@@ -260,20 +250,17 @@ class UploadBar extends Component {
 			selectedFiles : dataNewMerged.files,
 			doesSelected: true
 		});
-
 	}
 
-	regrettOnFile(event, file_name){
+	regrettOnFile(_event, file_name) {
 
 		const data = new DataTransfer();
 
-
-		for (const file of this.filesSelected){
-			if (file.name !== file_name){
+		for (const file of this.filesSelected) {
+			if (file.name !== file_name) {
 				data.items.add(file);
 			}
 		}
-
 
 		let newFileList = data.files
 		this.filesSelected = newFileList
@@ -282,16 +269,15 @@ class UploadBar extends Component {
 
 		this.setState({selectedFiles:newFileList})
 
-		if(newFileList.length === 0){
+		if(newFileList.length === 0) {
 			this.cancelChoice()
 		}
 	}
 
-	cancelChoice(){
-		this.filesSelected = []
+	cancelChoice() {
+		this.filesSelected = [];
 		
-
-		this.myRef_toInput.current.files = this.state.emptyFileList 
+		this.myRef_toInput.current.files = this.state.emptyFileList;
 		  
 		this.setState({
 			progressInfos: [],
@@ -310,213 +296,203 @@ class UploadBar extends Component {
 		this.setState({emptyFileList:this.myRef_toInput.current.files})
 	}
 
-
-
 	render() {
 
 		const { classes } = this.props;
 
 		const { progressInfos, message, doesSelected} = this.state;
 		
-		let uploaded_files = []
+		let uploaded_files = [];
 
-		if( this.filesSelected !== undefined ){
-			for (const file of this.filesSelected){
-				uploaded_files.push(file.name)
+		if (this.filesSelected !== undefined ) {
+			for (const file of this.filesSelected) {
+				uploaded_files.push(file.name);
 			}
 		}
 	
-	
-		let copiedFiles = ""
-		for (const fileName of this.listSameFiles){
-			copiedFiles += fileName + " ,  " 
+		let copiedFiles = "";
+		for (const fileName of this.listSameFiles) {
+			copiedFiles += fileName + " ,  ";
 		}
 
-		let uploadedToServer = this.uploadedFile 
+		let uploadedToServer = this.uploadedFile;
 	
-
-
 		return (
-
-			<MenuAppBar menu={<CommanderMenu />} role="Commander" content={
-				<div>
+			<MenuAppBar menu={<CommanderMenu />} role="Commander"
+			content={
+				<div className={classes.root}>
 				
-				<br/>
-					 
+					<br/>
 
 					<Grid container item xs={12} justify="center" alignItems="center">
-					<Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" className={classes.padding}>
-						<Typography className={classes.myFont} variant="h5" color="primary">{this.major}</Typography>
-						<Typography className={classes.myFont} variant="h5" color="primary">{this.module}</Typography>
-						<Typography className={classes.myFont} variant="h5" color="primary">{this.subject}</Typography>
-     				</Breadcrumbs>
-					 </Grid>
+						<Breadcrumbs 
+						separator={<NavigateNextIcon fontSize="small" />}
+						aria-label="breadcrumb" 
+						className={classes.padding}>
 
+							<Typography className={classes.myFont}
+							variant="h5" 
+							color="primary">
+								{this.major}
+							</Typography>
 
-	
+							<Typography className={classes.myFont2} 
+							variant="h5"
+							color="primary">
+								{this.module}
+							</Typography>
+
+							<Typography className={classes.myFont3}
+							variant="h5"
+							color="primary">
+								  {this.subject}
+							</Typography>
+
+						</Breadcrumbs>
+					</Grid>
+
 					<Grid item xs={12} md={6}>
-					
-					
+										
 						<Typography variant="h6" className={classes.title}>
-							Uploaded files
+							<b>Uploaded files</b>
 						</Typography>
-
 					
 						<div className={classes.demo}>
+
 							<List >
 							{uploadedToServer != [] &&
 							uploadedToServer.map((file,index)=> (
 
 								<ListItem key={index} >
-
 								<DisplayCourseUploadBar file = {file}/>
 
-								
 								<ListItemText
-									primary={<Typography className={classes.myFont}>{file}  </Typography>}
-								
+									primary={
+									<Typography 
+										className={classes.myFont}>{file}
+									</Typography>
+									}
 								/>
 								</ListItem>
-
-								
 							))}
-							
-
-
-
 							</List>
-							
+
 						</div>
 
 					</Grid>
 						
-				<Snackbar open={this.state.sameFileWasAdded} autoHideDuration={15000}
-							onClose={()=>{this.setState({sameFileWasAdded : false})
-												this.listSameFiles = [] }}>
+					<Snackbar open={this.state.sameFileWasAdded} autoHideDuration={15000}
+						onClose={()=>{this.setState({sameFileWasAdded : false})
+										this.listSameFiles = [] }}>
 
-						<Alert onClose={()=>{this.setState({sameFileWasAdded : false}) 
-																this.listSameFiles = []}}  
-							severity="warning">
-							!! Pay attention !!
-							<br></br>
-							The following was not uploaded
-							<br></br>
-							<br></br>
-							[ {copiedFiles} ]
-							<br></br> 
-							<br></br>
-							Because it is already attached 
-							<br></br>
- 							If you do want to override existing file - delete file and upload new one
+						<Alert 
+						onClose={()=>{this.setState({sameFileWasAdded : false}) 
+										this.listSameFiles = []}}  
+						severity="warning">
+						!! Pay attention !!
+						<br></br>
+						The following files are not added
+						<br></br>
+						<br></br>
+						[ {copiedFiles} ]
+						<br></br> 
+						<br></br>
+						Because they are already attached 
+						<br></br>
+						If you do want to override an existing file - delete the file and upload a new one
 						</Alert>
-				</Snackbar>
-
+					</Snackbar>
 					
-				{progressInfos &&
-				progressInfos.map((progressInfo, index) => (
-					<div className="mb-2" key={index}>
-					<span>{progressInfo.fileName}</span>
-					<div className="progress">
-						<div
-						className="progress-bar progress-bar-info"
-						role="progressbar"
-						aria-valuenow={progressInfo.percentage}
-						aria-valuemin="0"
-						aria-valuemax="100"
-						style={{ width: progressInfo.percentage + "%" }}
-						>
-						{progressInfo.percentage}%
+					{progressInfos &&
+					progressInfos.map((progressInfo, index) => (
+						<div className="mb-2" key={index}>
+						<span>{progressInfo.fileName}</span>
+						<div className="progress">
+							<div
+							className="progress-bar progress-bar-info"
+							role="progressbar"
+							aria-valuenow={progressInfo.percentage}
+							aria-valuemin="0"
+							aria-valuemax="100"
+							style={{ width: progressInfo.percentage + "%" }}
+							>
+							{progressInfo.percentage}%
+							</div>
 						</div>
-					</div>
-					</div>
-				))}
+						</div>
+					))}
 			
+					<div className="row my-3" >
+					<div className="col-8">
+						<label className="btn btn-default p-0">
+						<input ref={this.myRef_toInput} type="file" multiple onChange={this.selectFile}  />
+						</label>
+					</div>
+			
+					<div className="col-4">
+						<Button
+						className="btn-upload"
+						color="primary"
+						variant="contained"
+						disabled={!doesSelected}
+						onClick={this.uploadFilesEvent}
+						>
+						Upload
+						</Button>
+					</div>
 
-				<div className="row my-3" >
-				<div className="col-8">
-					<label className="btn btn-default p-0">
-					<input ref={this.myRef_toInput} type="file" multiple onChange={this.selectFile}  />
-					</label>
-				</div>
-			
-				<div className="col-4">
+					</div>
+					{message.length > 0 && (
+					<div className="alert alert-secondary" role="alert">
+						<ul>
+						{message.map((item, i) => {
+							return <li key={i}>{item}</li>;
+						})}
+						</ul>
+					</div>
+					)}
+
 					<Button
-					className="btn-upload"
-					color="primary"
-					variant="contained"
-					disabled={!doesSelected}
-					onClick={this.uploadFilesEvent}
-					>
-					Upload
+					variant="contained" color="secondary"
+					onClick={() => this.cancelChoice()}
+						>
+						Cancel All Choices 
 					</Button>
-				</div>
 
-				</div>
-				{message.length > 0 && (
-				<div className="alert alert-secondary" role="alert">
-					<ul>
-					{message.map((item, i) => {
-						return <li key={i}>{item}</li>;
-					})}
-					</ul>
-				</div>
-				)}
-
-				<Button
-				variant="contained" color="secondary"
-				onClick={() => this.cancelChoice()}
-					>
-					Cancel All Choices 
-				</Button>
-
-				<Grid item xs={12} md={6}>
-					
-					
-					<Typography variant="h6" className={classes.title}>
-						Attached files
-					</Typography>
-					<div className={classes.demo}>
-						<List >
-						{uploaded_files != [] &&
-						uploaded_files.map((file,index)=> (
-
-							<ListItem key={index} >
-
-							<DisplayCourseUploadBar file = {file}/>
-
-
-							<ListItemText
-														
-								primary={<Typography className={classes.myFont}>{file}  </Typography>}
-														
-													
-							/>
-
-
-							<ListItemSecondaryAction>
-								<IconButton edge="end" aria-label="delete" color="secondary" 
-								onClick={ (event) => this.regrettOnFile(event, file)}>
-								<CgRemoveR />
-								</IconButton>
-							</ListItemSecondaryAction>
-							</ListItem>
-
-							
-						))}
+					<Grid item xs={12} md={6}>
 						
+						<Typography variant="h6" className={classes.title}>
+							<b>Attached files</b>
+						</Typography>
+						<div className={classes.demo}>
+							<List >
+							{uploaded_files != [] &&
+							uploaded_files.map((file,index)=> (
 
+								<ListItem key={index} >
+								<DisplayCourseUploadBar file = {file}/>
+								<ListItemText
+															
+									primary={
+									<Typography 
+										className={classes.myFont}>{file} 
+									</Typography>
+									}						
+								/>
 
-
-						</List>
+								<ListItemSecondaryAction>
+									<IconButton edge="end" aria-label="delete" color="secondary" 
+									onClick={ (event) => this.regrettOnFile(event, file)}>
+									<CgRemoveR />
+									</IconButton>
+								</ListItemSecondaryAction>
+								</ListItem>							
+							))}
 						
-					</div>
-
-					
-		
-				
-
-			</Grid>
-			</div>
+							</List>
+						</div>
+					</Grid>
+				</div>
 			}>
 			</MenuAppBar>
 		);

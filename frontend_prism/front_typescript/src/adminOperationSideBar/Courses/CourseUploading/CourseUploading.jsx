@@ -2,7 +2,7 @@ import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
 import UploadBar from './UploadBar';
 import { Link } from "react-router-dom";
-import { Button, ListItem, ListItemIcon } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import PublishIcon from '@material-ui/icons/Publish';
 
 
