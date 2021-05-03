@@ -6,10 +6,11 @@ import { AuthModule } from '.././auth/auth.module';
 import { UsersModule } from '.././users/users.module';
 import { AdminRolesGuard } from '../RolesActivity/admin_roles.guard';
 import { FileHandlingModule } from '../file-handling/file-handling.module';
-
+import { UserSubmissionModule } from '../UserSubmission/user-submission.module'
 
 @Module({
   imports: [
+    UserSubmissionModule,
     AuthModule, 
     UsersModule,
     FileHandlingModule,
