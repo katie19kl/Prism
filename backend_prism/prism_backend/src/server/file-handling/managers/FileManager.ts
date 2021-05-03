@@ -16,12 +16,17 @@ export class FileManager{
 
 
 
-    async getAllFilesOfPath(major, module_, subject){
+    //async getAllFilesOfPath(major, module_, subject){
+        async getAllFilesOfPath(major, module_, subject){
+
         let path =  this.createPathMajorModuleSubject(major,module_,subject);
         let pathToDowload = "/" + major + "/" + module_ + "/" + subject
         let all_file_url_ = FileHandlingService.dowloadSomeFileUrl_;
 		let files_name = [];
 		const directory = path;
+  
+
+
 		const fs = require('fs');
 
         console.log("path")

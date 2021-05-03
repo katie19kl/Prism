@@ -2,5 +2,6 @@ export enum IndexingFormat {
 
 	ModuleSeparator = "- ",
     SubjectSeparator = "- ",
-    SubjectSubIndexing = "."
+    SubjectSubIndexing = ".",
+    SoldierSolutionSeparator = "_solution"
 }

@@ -168,6 +168,19 @@ export class FileHandlingController {
 		return this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
 
     }
+	
+////////////////////////////////////////////////////////////
+
+	@Get("files/:file_name/:major/:module/:subject/:solutionDir")
+	async getFileFromUserSolutionDir(@Param('file_name') file_name: String, @Res() res,
+			@Param('major') major: Major, @Param('module') module: string,@Param('subject') subject: string,
+			@Param('solutionDir') solutionDir: string) {
+		
+
+		return this.fileHandlingService.getFileByName(file_name, res, major, module, subject + "/" + solutionDir);
+
+	}
+/////////////////////////////////////////////////////
 	@Delete("file/:major/:module/:subject/:file_name")
 	async deleteFile(
 			@Param('major') major: Major, @Param('module') module: string,
