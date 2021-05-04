@@ -18,7 +18,9 @@ export class UserSubmissionController {
 
     @Post()
     @UseInterceptors(FileInterceptor("file"))
-    createUserSubmission(@UploadedFile() file: Express.Multer.File, @Body() userSubmissionDto: UserSubmissionDTO,@Req() req) {
+    createUserSubmission(@UploadedFile() file: Express.Multer.File,
+                         @Body() userSubmissionDto: UserSubmissionDTO
+                         ,@Req() req) {
         
         const usertoken = req.headers.authorization;
         return this.usersService.addNewUserSubmission(userSubmissionDto, file, usertoken);
