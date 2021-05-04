@@ -1,3 +1,4 @@
+import { ConflictException } from "@nestjs/common";
 import { NotFoundException } from "@nestjs/common";
 import { Major } from "src/server/users/common/major.enum";
 import { FileHandlingService } from "../file-handling.service";
@@ -28,27 +29,36 @@ export class FileManager{
 
 
 		const fs = require('fs');
+        
 
-        console.log("path")
-        console.log(path);
 
+        //console.log("path")
+        //console.log(path);
+        console.log("1=")
         const get_f = async() => {
-
+            console.log("2=")
 			await new Promise ((resolve, reject) => {
-
+                console.log("3=")
 				fs.readdir(directory, async (err, files) => {
                     
-                    
+                    console.log("4=")
 					if (err) {
+                        console.log("5=")
 						reject(new NotFoundException("Provided directory doesnt exists"));
 					}
                     else {
+                        console.log("6=")
                         for await(const file of files){
+                            console.log("8=")
+                            console.log(file)
+
                             const stat = await fs.promises.stat( directory + "/" + file);
+                            console.log("9=")
                             if (await stat.isFile()) {
-                                console.log("=============");
-                                console.log(file);
-                                console.log("is file only");
+                                console.log("10=")
+                                //console.log("=============");
+                                //console.log(file);
+                                //console.log("is file only");
                                 files_name.push(
                                     {
                                     file_name: file,
@@ -65,7 +75,12 @@ export class FileManager{
                                 )	
 
                             }
+                            console.log("6.5=")
                         }
+                        
+                        console.log(files)
+                        console.log("7=")
+                        
                         resolve(files)
                     }
 				});
@@ -103,6 +118,8 @@ export class FileManager{
             let pathToStore = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_choosen + "/" + subject_choosen
             pathToStore = pathToStore + "/" + file_name;
      
+     
+
             return this.storingFileToPath(file, pathToStore)
 
 
@@ -119,14 +136,14 @@ export class FileManager{
                 if(!err && desc) {
                     fs.writeFile(desc, file.buffer, (err) => {
                             if (err) {
-                                reject(new NotFoundException("Not able to create file.Please check directory"))
+                                reject(new NotFoundException("Not able to create file.Please check directory!"))
                             }                
                             resolve("File successfully added")
                     })
                }
                 else {
+                    reject(new ConflictException("Not able to create file. File already exist"))
 
-                    reject(new NotFoundException("Not able to create file.Please check directory!"))
                 }
             })
         })
@@ -197,8 +214,7 @@ export class FileManager{
         //console.log("Deleting file " + file_to_delete)
 
         let file_path = this.createFileFullPath(major,module,subject,file_to_delete)
-        //console.log(file_path)
-
+        
         const fs = require('fs').promises;
 
         let isDeleted = await (async () => {
@@ -211,10 +227,11 @@ export class FileManager{
         })();
 
         if (isDeleted){
+            console.log("file " , file_to_delete , " was deleted ")
             return "Deleted Successfully"
         }else{
             await new Promise((res,rej)=>{
-                rej(new NotFoundException("Provided file doesnt exist"))
+                rej(new NotFoundException("Provided file does not  exist"))
             })
             
         }
