@@ -1,39 +1,54 @@
 import { from } from "form-data";
 import { IndexingFormat } from "src/server/file-handling/common/IndexingFormat";
 import { FileHandlingService } from "src/server/file-handling/file-handling.service";
+import { FileManager } from "src/server/file-handling/managers/FileManager";
 import { Major } from "src/server/users/common/major.enum";
-import { UserSubmissionDTO } from '../../users/dto/user-submission.dto';
+import { UserSubmissionDTO } from "src/server/users/dto/user-submission.dto";
+import { UsersService } from "src/server/users/users.service";
+import { UserSubmissionService } from "../user-submission.service";
 
 export class UserSubmissionFileHandler {
 
-    fileHandlerService:FileHandlingService
+    //fileHandlerService:FileHandlingService
+    fileManager: FileManager;
 
     constructor(){
-        this.fileHandlerService = new FileHandlingService()
+        //this.fileHandlerService = new FileHandlingService()
+        this.fileManager = new FileManager()
     }
   
     checkDirExist(pathSolutionDir:string){
         const fs = require("fs"); // Or `import fs from "fs";` with ESM
         if (!fs.existsSync(pathSolutionDir)) {
-            console.log("Solution dir alredy exist")
+            console.log("Solution dir not exist")
             return false    
         }
-        console.log("Solution dir not  exist")
+        console.log("Solution dir already  exist")
         return true 
     }
 
 
-    uploadFile(createUserSubmissionDto: UserSubmissionDTO,file){
-        let major_choosen = createUserSubmissionDto.major
-        let module_choosen = createUserSubmissionDto.module
-        let subject_choosen = createUserSubmissionDto.subject
+    createPathToSolutionDir(createUserSubmissionDto: UserSubmissionDTO){
 
+        let subject_choosen = createUserSubmissionDto.subject
 
         let newSubject = subject_choosen + "/" + createUserSubmissionDto.studentId + IndexingFormat.SoldierSolutionSeparator
 
-        console.log(major_choosen)
+        return newSubject
+    }
 
-        return this.fileHandlerService.uploadFile(file,major_choosen, module_choosen, newSubject);
+
+    uploadFile(createUserSubmissionDto: UserSubmissionDTO,file){
+
+        let major_choosen = createUserSubmissionDto.major
+        let module_choosen = createUserSubmissionDto.module
+        
+
+        let newSubject = this.createPathToSolutionDir(createUserSubmissionDto)
+       
+
+
+        return this.fileManager.uploadFile(file,major_choosen, module_choosen, newSubject);
     }
 
 
@@ -46,8 +61,14 @@ export class UserSubmissionFileHandler {
         let newSubject = subject + "/" + postFix
         
         
-        let allFilesInSolution =  this.fileHandlerService.getAllFilesOfPath(major,module,newSubject)
+        let allFilesInSolution;
+        
+            
+        allFilesInSolution =  this.fileManager.getAllFilesOfPath(major,module,newSubject)
         return allFilesInSolution
+      
+        
+    
     }
 
 
@@ -76,6 +97,25 @@ export class UserSubmissionFileHandler {
 
     }
 
+
+
+    deleteFile(createUserSubmissionDto: UserSubmissionDTO, file_name){
+
+        let major_choosen = createUserSubmissionDto.major
+        let module_choosen = createUserSubmissionDto.module
+
+
+        let newSubjectPath = this.createPathToSolutionDir(createUserSubmissionDto)
+        
+
+        console.log("wanna be deleted")
+        console.log(newSubjectPath)
+        console.log(file_name)
+
+        return this.fileManager.deleteFile(major_choosen,module_choosen,newSubjectPath,file_name)
+
+
+    }
 
 
 }

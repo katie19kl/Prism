@@ -1,11 +1,12 @@
 import { UserSubmissionDTO } from '../users/dto/user-submission.dto';
 import {UserSubmissionService} from './user-submission.service'
-import { Controller, Get, Param, Post, UseInterceptors } from '@nestjs/common';
+import { Controller, Param, Post, Req, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Body } from '@nestjs/common';
 import { UploadedFile } from '@nestjs/common';
-import { Major } from '../users/common/major.enum';
-
+import { Delete } from '@nestjs/common';
+import { AuthService } from '../auth/auth.service';
+import { jwtConstants } from '../RolesActivity/constants';
 
 @Controller('user-submission')
 export class UserSubmissionController {
@@ -20,28 +21,33 @@ export class UserSubmissionController {
 
     /*@Post()
     @UseInterceptors(FileInterceptor("file"))
-    createUserSubmission(@UploadedFile() file: Express.Multer.File, 
-                        @Body() userSubmissionDto: UserSubmissionDTO) {
+    createUserSubmission(@UploadedFile() file: Express.Multer.File,
+                         @Body() userSubmissionDto: UserSubmissionDTO
+                         ,@Req() req) {
         
-        console.log("I am here");
-        return this.usersService.addNewUserSubmission(userSubmissionDto, file);
-    }*/
-
-    @Post()
-    //@UseInterceptors(FileInterceptor("file"))
-    createUserSubmission(@Body() userSubmissionDto: UserSubmissionDTO) {
-        
-        console.log("I am here");
-        //return this.usersService.addNewUserSubmission(userSubmissionDto, file);
+        const usertoken = req.headers.authorization;
+        return this.usersService.addNewUserSubmission(userSubmissionDto, file, usertoken);
     }
 
 	@Get(':soldierId/:major/:module/:subject')
     getUserSubmissionByKey(@Param('soldierId') id: string, @Param('major') major: Major,
         @Param('module') module: string, @Param('subject') subject: string) {
 
-            console.log('bla')
+    @Delete("/:file_name")
+    
+    removeSubmittedFile(@Param('file_name') file_name: String,@Body() userSubmissionDto: UserSubmissionDTO, @Req() req){
         
-        return this.usersService.getUserSubmissionByKey(id, major, module, subject);
+        
+        console.log("=-=-=-=-=-=-=-")
+        console.log(file_name)
+        const usertoken = req.headers.authorization;
+
+
+
+        return this.usersService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
     }
+
+    ///////// Allow delete single file from submission
+    */
 
 }
