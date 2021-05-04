@@ -1,7 +1,8 @@
+import { from } from "form-data";
 import { IndexingFormat } from "src/server/file-handling/common/IndexingFormat";
 import { FileHandlingService } from "src/server/file-handling/file-handling.service";
 import { Major } from "src/server/users/common/major.enum";
-import { UserSubmissionDTO } from "src/server/users/dto/user-submission.dto";
+import { UserSubmissionDTO } from '../../users/dto/user-submission.dto';
 
 export class UserSubmissionFileHandler {
 

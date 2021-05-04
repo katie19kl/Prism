@@ -1,4 +1,3 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Major } from '../users/common/major.enum';
 

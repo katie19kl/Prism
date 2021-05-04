@@ -20,9 +20,14 @@ export class UsersService {
 		const isExistingUser = await this.findOneByUsername(createUserDto.username);
 
 		// check the user does not have personalID which exists.!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		const isExistingUserById = await this.findOneByPersonalId(createUserDto.personalId);
 
 		if (isExistingUser) {
 			throw new HttpException("Username already exists", HttpStatus.BAD_REQUEST);
+		}
+
+		if (isExistingUserById) {
+			throw new HttpException("Personal ID already exists", HttpStatus.BAD_REQUEST);
 		}
 
 		let createdUser = new this.userModel(createUserDto);
