@@ -68,21 +68,11 @@ export default class DisaplayContentOfModule extends React.Component {
 
         if (this.state.dirSubjectFiles !== undefined && subjects !== undefined){
             
-            console.log("---------------------------")
-            console.log(Object.keys(this.state.dirSubjectFiles))
-            
-            console.log(this.numberSubjects)
-            console.log("---------------------------")
             
             if (this.numberSubjects === Object.keys(this.state.dirSubjectFiles).length){
 
-                console.log("------SHOULD BE FULL---------------------")
                 
                 let dict = this.state.dirSubjectFiles
-                console.log(dict)
-                console.log("---------------------------")
-                console.log(Object.keys(dict))
-                console.log("---------------------------")
                                
                 for (var key in dict) {
                     console.log(key)
@@ -97,15 +87,20 @@ export default class DisaplayContentOfModule extends React.Component {
                             <SoldierMenu/>
                         }
                         content={
-                            <ContentOfModule 
-                            moduleName={moduleName}
-                            major = {major}
-                            subjects = {subjects}
-                            dictSubjectFiles = {dict}
                             
-                            >
+                            <div>
+                                <ContentOfModule 
+                                moduleName={moduleName}
+                                major = {major}
+                                subjects = {subjects}
+                                dictSubjectFiles = {dict}
+                                
+                                >
 
-                            </ContentOfModule>
+                                </ContentOfModule>
+
+                                
+                            </div>
                         }>
                             
                     </MenuAppBar>

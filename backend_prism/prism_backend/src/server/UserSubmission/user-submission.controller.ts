@@ -28,19 +28,19 @@ export class UserSubmissionController {
 
 
     @Delete("/:file_name")
+    async removeSubmittedFile(@Param('file_name') file_name: String,@Body() userSubmissionDto: UserSubmissionDTO, @Req() req){
+        
     
-    removeSubmittedFile(@Param('file_name') file_name: String,@Body() userSubmissionDto: UserSubmissionDTO, @Req() req){
-        
-        
         console.log("=-=-=-=-=-=-=-")
         console.log(file_name)
         const usertoken = req.headers.authorization;
 
 
-
-        return this.usersService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
+        let x =  this.usersService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
+        console.log(x)
+        return x
     }
-
+    
     ///////// Allow delete single file from submission
 
 }

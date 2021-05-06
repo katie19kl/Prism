@@ -1,6 +1,6 @@
 import React from "react"
 
-import DisplaySubjectContent from "./DiplsaySubjectContent";
+import DisplaySubjectContent from "./DisplaySubjectContent";
 
 
 export default class ContentOfModule extends React.Component {
@@ -17,6 +17,9 @@ export default class ContentOfModule extends React.Component {
         let dictSubjectFiles = this.props.dictSubjectFiles
         console.log(Object.keys(dictSubjectFiles))
 
+
+        let postfix_param = major + "/" + moduleName + "/"
+        console.log(postfix_param)
         //console.log(dictSubjectFiles[subjects[0]][0].file_name)
         return (
  
@@ -42,10 +45,21 @@ export default class ContentOfModule extends React.Component {
                                     </div>  
                                 </i>
 
+
+                                
+                       
+                                <a href={"/submission/info/" + postfix_param + subject}> Submission info of subject </a>
+                                
+
                             </li>
                             
                             ))
+
+                            
                         }
+
+
+                            
                         </ul>
                 </div>
 

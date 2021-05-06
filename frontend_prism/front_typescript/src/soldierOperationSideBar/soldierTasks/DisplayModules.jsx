@@ -1,7 +1,7 @@
 import React from "react"
 import DescriptionIcon from '@material-ui/icons/Description';
 import {getModulesByMajor} from "./../../adminOperationSideBar/CourseFiles/files_request_handler"
-
+import {IoSchool} from "react-icons/io5";
 
 export default class DisplayModules extends React.Component {
 
@@ -51,9 +51,11 @@ export default class DisplayModules extends React.Component {
 
                    
                         <li className="list-group-item" key={index}  >
-                             <DescriptionIcon />
+                             <IoSchool />
                        
                             <a href={"./module_content/"+module+"/"+major}>{module}</a>
+
+                            
                         </li>
                         
                         ))

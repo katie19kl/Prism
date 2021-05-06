@@ -32,33 +32,20 @@ export class FileManager{
         
 
 
-        //console.log("path")
-        //console.log(path);
-        console.log("1=")
         const get_f = async() => {
-            console.log("2=")
-			await new Promise ((resolve, reject) => {
-                console.log("3=")
-				fs.readdir(directory, async (err, files) => {
+        	await new Promise ((resolve, reject) => {
+        		fs.readdir(directory, async (err, files) => {
                     
-                    console.log("4=")
-					if (err) {
-                        console.log("5=")
-						reject(new NotFoundException("Provided directory doesnt exists"));
+        			if (err) {
+        				reject(new NotFoundException("Provided directory doesnt exists"));
 					}
                     else {
-                        console.log("6=")
                         for await(const file of files){
-                            console.log("8=")
                             console.log(file)
 
                             const stat = await fs.promises.stat( directory + "/" + file);
-                            console.log("9=")
+        
                             if (await stat.isFile()) {
-                                console.log("10=")
-                                //console.log("=============");
-                                //console.log(file);
-                                //console.log("is file only");
                                 files_name.push(
                                     {
                                     file_name: file,
@@ -75,11 +62,7 @@ export class FileManager{
                                 )	
 
                             }
-                            console.log("6.5=")
                         }
-                        
-                        console.log(files)
-                        console.log("7=")
                         
                         resolve(files)
                     }
@@ -88,9 +71,9 @@ export class FileManager{
 		}
 
 		await get_f()
-        console.log("---->>>>>>>>")
-		console.log(files_name)
-        console.log("---->>>>>>>>")
+        //console.log("---->>>>>>>>")
+		//console.log(files_name)
+        //console.log("---->>>>>>>>")
 		return files_name
     }
 
@@ -132,13 +115,29 @@ export class FileManager{
         let fs = require('fs');
         return new Promise((resolve,reject)=>{
 
-            fs.open(pathToStore, 'wx', (err, desc) => {
-                if(!err && desc) {
-                    fs.writeFile(desc, file.buffer, (err) => {
+            fs.open(pathToStore, 'wx', (err, file_descriptor) => {
+                if(!err && file_descriptor) {
+                    fs.writeFile(file_descriptor, file.buffer, (err) => {
+                            
+                            ///////////////
+
+
+                            fs.close(file_descriptor, (err) => {
+                                if (err)
+                                
+                                  reject(new NotFoundException("Failed to close descriptor!"))
+                                else {
+                                    console.log("File descriptor was closed")
+                                    resolve("File successfully added")
+                                }
+                              });
+                            ///////////
+
                             if (err) {
                                 reject(new NotFoundException("Not able to create file.Please check directory!"))
-                            }                
-                            resolve("File successfully added")
+                            }
+
+                            //resolve("File successfully added")
                     })
                }
                 else {
@@ -215,11 +214,15 @@ export class FileManager{
 
         let file_path = this.createFileFullPath(major,module,subject,file_to_delete)
         
+        
         const fs = require('fs').promises;
+        //const fs = require('fs')
 
         let isDeleted = await (async () => {
         try {
             await fs.unlink(file_path);
+            //fs.unlinkSync(file_path);
+            
             return 1
         } catch (e) {
             return 0

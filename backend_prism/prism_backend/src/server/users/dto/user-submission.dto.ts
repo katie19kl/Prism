@@ -2,7 +2,7 @@ import { Major } from "../common/major.enum";
 
 export class UserSubmissionDTO {
     
-    studentId: string;
+    soldierId: string;
 
     major : Major
     module: string
