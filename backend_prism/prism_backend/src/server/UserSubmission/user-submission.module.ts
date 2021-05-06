@@ -16,8 +16,7 @@ import {UserSubmissionSchema } from './userSubmission.schema'
 	],
 	
 	controllers: [UserSubmissionController],
-
-
-	providers: [UserSubmissionService]
+	providers: [UserSubmissionService],
+	exports: [UserSubmissionService]
 })
 export class UserSubmissionModule {}

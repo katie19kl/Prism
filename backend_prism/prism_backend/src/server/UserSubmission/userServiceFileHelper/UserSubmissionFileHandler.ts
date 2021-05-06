@@ -3,7 +3,7 @@ import { IndexingFormat } from "src/server/file-handling/common/IndexingFormat";
 import { FileHandlingService } from "src/server/file-handling/file-handling.service";
 import { FileManager } from "src/server/file-handling/managers/FileManager";
 import { Major } from "src/server/users/common/major.enum";
-import { UserSubmissionDTO } from "src/server/users/dto/user-submission.dto";
+import { UserSubmissionDTO } from "../../users/dto/user-submission.dto";
 import { UsersService } from "src/server/users/users.service";
 import { UserSubmissionService } from "../user-submission.service";
 

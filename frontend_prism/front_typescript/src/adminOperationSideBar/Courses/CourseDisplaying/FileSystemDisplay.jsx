@@ -849,7 +849,7 @@ class FileSystemDisplay extends React.Component {
 
                                                         <IconButton aria-label="edit" 
                                                         onClick={(event) => this.renameSubjectOnClick(event, subject)}>                        
-                                                            <CreateIcon color="primary"/>
+                                                            <CreateIcon style={{ color: purple[400]}}/>
                                                         </IconButton>
 
                                                         <IconButton aria-label="delete" 
