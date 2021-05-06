@@ -1,4 +1,4 @@
-import { Major } from "../common/major.enum";
+import { Major } from "../../users/common/major.enum";
 
 export class UserSubmissionDTO {
     
@@ -16,6 +16,3 @@ export class UserSubmissionDTO {
 
     submittedTimeStamp: Date;
 }
-
-
-

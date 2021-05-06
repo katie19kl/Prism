@@ -3,7 +3,7 @@ import { IndexingFormat } from "src/server/file-handling/common/IndexingFormat";
 import { FileHandlingService } from "src/server/file-handling/file-handling.service";
 import { FileManager } from "src/server/file-handling/managers/FileManager";
 import { Major } from "src/server/users/common/major.enum";
-import { UserSubmissionDTO } from "src/server/users/dto/user-submission.dto";
+import { UserSubmissionDTO } from "../../users/dto/user-submission.dto";
 import { UsersService } from "src/server/users/users.service";
 import { UserSubmissionService } from "../user-submission.service";
 
@@ -32,7 +32,7 @@ export class UserSubmissionFileHandler {
 
         let subject_choosen = createUserSubmissionDto.subject
 
-        let newSubject = subject_choosen + "/" + createUserSubmissionDto.studentId + IndexingFormat.SoldierSolutionSeparator
+        let newSubject = subject_choosen + "/" + createUserSubmissionDto.soldierId + IndexingFormat.SoldierSolutionSeparator
 
         return newSubject
     }
@@ -57,7 +57,7 @@ export class UserSubmissionFileHandler {
         let module = createUserSubmissionDto.module
         let subject = createUserSubmissionDto.subject
 
-        let postFix = createUserSubmissionDto.studentId + IndexingFormat.SoldierSolutionSeparator
+        let postFix = createUserSubmissionDto.soldierId + IndexingFormat.SoldierSolutionSeparator
         let newSubject = subject + "/" + postFix
         
         
@@ -81,7 +81,7 @@ export class UserSubmissionFileHandler {
         major = createUserSubmissionDto.major
         module = createUserSubmissionDto.module
         subject = createUserSubmissionDto.subject
-        soldierId = createUserSubmissionDto.studentId
+        soldierId = createUserSubmissionDto.soldierId
 
 
 

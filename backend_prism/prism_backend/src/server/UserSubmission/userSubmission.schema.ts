@@ -4,7 +4,7 @@ import { Major } from '../users/common/major.enum';
 // how it looks like in db
 export const UserSubmissionSchema = new mongoose.Schema({
 
-    studentId: {
+    soldierId: {
         type: String,
         required: true
     },

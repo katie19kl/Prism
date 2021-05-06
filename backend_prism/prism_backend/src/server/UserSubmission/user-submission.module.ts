@@ -6,23 +6,21 @@ import { AuthService } from '../auth/auth.service';
 import { JwtStrategy } from '../auth/strategies/jwt.strategy';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
-import { UserSubmissionController} from './user-submission.controller';
-import { UserSubmissionService} from './user-submission.service'
-import {UserSubmissionSchema } from './userSubmission.schema'
+import { UserSubmissionController } from './user-submission.controller';
+import { UserSubmissionService } from './user-submission.service'
+import { UserSubmissionSchema } from './userSubmission.schema'
 
 
 @Module({
 
 	imports: [
-		UsersModule,
 		MongooseModule.forFeature([{name: 'User-Submission', schema: UserSubmissionSchema}]),
 		AuthModule,
 		UsersModule
 	],
 	
 	controllers: [UserSubmissionController],
-
-
-	providers: [UserSubmissionService]
+	providers: [UserSubmissionService],
+	exports: [UserSubmissionService]
 })
 export class UserSubmissionModule {}

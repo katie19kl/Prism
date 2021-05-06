@@ -7,12 +7,12 @@ export interface IReview extends Document {
 
     // unique key- all four fields:
     soldierId: string;
-    major : Major
-    module: string
-    subject: string 
+    major : Major;
+    module: string;
+    subject: string;
 
     // grading. Might change to an enum {checked-is good, checked-to be fixed}.
-    grade: number;
+    grade: string;
 
     // time of the review submitting.
     submittedTimeStamp: Date;

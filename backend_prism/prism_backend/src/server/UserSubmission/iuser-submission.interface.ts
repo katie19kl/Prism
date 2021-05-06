@@ -5,7 +5,7 @@ import { Major } from '../users/common/major.enum';
 export interface IUserSubmission extends Document {
 
 
-    studentId: string;
+    soldierId: string;
 
     major : Major
     module: string

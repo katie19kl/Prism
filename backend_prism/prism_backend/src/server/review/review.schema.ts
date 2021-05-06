@@ -26,7 +26,7 @@ export const ReviewSchema = new mongoose.Schema({
     },
 
     grade: {
-        type: Number
+        type: String
     },
 
     submittedTimeStamp: {

@@ -6,13 +6,13 @@ import { AuthModule } from '.././auth/auth.module';
 import { UsersModule } from '.././users/users.module';
 import { AdminRolesGuard } from '../RolesActivity/admin_roles.guard';
 import { FileHandlingModule } from '../file-handling/file-handling.module';
-import { UserSubmissionModule } from '../UserSubmission/user-submission.module'
-//import { ReviewModule } from '../review/review.module';
+import { UserSubmissionModule } from '../UserSubmission/user-submission.module';
+import { ReviewModule } from '../review/review.module';
 
 @Module({
   imports: [
     UserSubmissionModule,
-    //ReviewModule,
+    ReviewModule,
     AuthModule, 
     UsersModule,
     FileHandlingModule,
