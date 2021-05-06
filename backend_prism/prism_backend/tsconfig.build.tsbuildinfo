@@ -1636,9 +1636,9 @@
         "signature": "b074697214932eff62490430ddd99505e54f212c457e10dead9b3785be6825ae",
         "affectsGlobalScope": false
       },
-      "./src/server/users/dto/user-submission.dto.ts": {
-        "version": "65e1e5a278ad4479c66e5a6cbee80548af74880bcf7f697fed20cde1a2ab8a80",
-        "signature": "8fc90dc9a64ad15d6a1b1ea0bb93c033435da796a8bdf3bb7c857347dccad478",
+      "./src/server/usersubmission/dto/user-submission.dto.ts": {
+        "version": "d9f306a925d78e35a0e0d32785601b36c651a3e5cfad11cc9f973b069ba83849",
+        "signature": "9631303b119fc066487086c37ac29361b09528a51f6166f048271bfd05c8b795",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts": {
@@ -1742,7 +1742,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/usersubmission.schema.ts": {
-        "version": "d8f05de357e56c7eaed986880c01aa841b66f5057e36b98b9d1c4488fec33210",
+        "version": "3e113e64cf717878669c8240ea63a0db80cbada2cdd83314d1f00b55a096185b",
         "signature": "8c8ccaadad950a05230217e66252c3bb5fbb12b37d7647511f2401ceb02e09ba",
         "affectsGlobalScope": false
       },
@@ -1779,11 +1779,6 @@
       "./src/server/file-handling/file-handling.service.ts": {
         "version": "b9031625a224a99737827be54d4dde5a8f7de329c515a9bc2b99dbfb3a2fc70e",
         "signature": "be8abc36b13a7f3f16e082df7d81219ef0d6531ca7b504fae3b511128a10835d",
-        "affectsGlobalScope": false
-      },
-      "./node_modules/form-data/index.d.ts": {
-        "version": "736097ddbb2903bef918bb3b5811ef1c9c5656f2a73bd39b22a91b9cc2525e50",
-        "signature": "736097ddbb2903bef918bb3b5811ef1c9c5656f2a73bd39b22a91b9cc2525e50",
         "affectsGlobalScope": false
       },
       "./src/server/users/common/gender.enum.ts": {
@@ -2497,8 +2492,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts": {
-        "version": "00a22dccff0cce835df568bd4e53874e5572793fb6fb8c5a7ff1302128515f22",
-        "signature": "8ce9cbfc285dcc87442e9e1a5282e6932db824f59f4c69faf7954b0020b6cb45",
+        "version": "ad5eddd33fa4d796dc3423e8d484590827ff5676ff3044c2b4fe65581d2f2f13",
+        "signature": "e0327a96a3584b654604cad5528ca662782e9b7d80475cb7e54ecce7b93ab42b",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/jsonwebtoken/index.d.ts": {
@@ -2552,8 +2547,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.service.ts": {
-        "version": "ab6202dad8540a9f586922931ca1ded103b345331f5f95af29498f7df92d2a5b",
-        "signature": "539ccdcd8534ca1f98d72a8891e67dca8e34d000baecd7ac4ad1581526c88be0",
+        "version": "9b9ce8f7689919b2492229dc10abfe86edae5858e69417c9c5a8c48047bfd794",
+        "signature": "d929d311b44869f231ed0fd7f319f5873e420cd338222716ca1ec96c92549a3f",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
@@ -2637,8 +2632,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.controller.ts": {
-        "version": "7964690b1a0a22765db13f854a34cbbda44f31a6174c37e810a1bcbc7c94672c",
-        "signature": "8fe5eea003c49c7a75f1af4ab0eb4f52e5b32047fa28fbed59e1856b62849431",
+        "version": "e2187e2e6b7d3ba20d00101903e9ca6a9623e6bf36ba910a36237c9dd99b7dd6",
+        "signature": "53efd614b9dbe505dd3131d48442feeecdbb7c8b04eb16581063228ee4a96a88",
         "affectsGlobalScope": false
       },
       "./src/server/auth/guards/isemptyguardlogin.guard.ts": {
@@ -2817,8 +2812,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.module.ts": {
-        "version": "8b4d1446e85a5897a35b1be107da9c5e2f1a8e391a3649b134e6d87733349d34",
+        "version": "fc5d245bfd6758bcde6bec537c46ee42f70b503f75cd32282b55cab54a709f1b",
         "signature": "f4ec6f762ae77899613001333f6624bba803ee7e2a8a76452c1612a69ffaa7f0",
+        "affectsGlobalScope": false
+      },
+      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts": {
+        "version": "56b70fc67bacc48997c07d0de745edd2325ac8adfdf336a87aacfae33db6d825",
+        "signature": "d1b64584a5a3370aaf4645dfd637b8ec76a9adc207c0d4ecf5f770bb085f1b96",
         "affectsGlobalScope": false
       },
       "./src/server/auth/filters/mainjwtfilter.filter.ts": {
@@ -2847,7 +2847,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/dto/create-review.dto.ts": {
-        "version": "9323207d586b2e1f55dd61975c65fef7192fefc78b6af05bda1d2cc05f0b7f5c",
+        "version": "6ff80c600caad604189b2441538af7c273f0c3837ca097e9c07cf2114d4e95a2",
         "signature": "70ce570372c0c9d3048edfc8d7dae786f4c54f632d8c39b7b9cc0f79be670c29",
         "affectsGlobalScope": false
       },
@@ -5139,11 +5139,6 @@
       "./node_modules/class-validator/types/validation/validatorconstraintinterface.d.ts": [
         "./node_modules/class-validator/types/validation/validationarguments.d.ts"
       ],
-      "./node_modules/form-data/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/stream.d.ts"
-      ],
       "./node_modules/jest-diff/build/difflines.d.ts": [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "./node_modules/jest-diff/build/types.d.ts"
@@ -5789,6 +5784,7 @@
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/jwt/index.d.ts",
         "./node_modules/@nestjs/mongoose/index.d.ts",
+        "./node_modules/@types/node/path.d.ts",
         "./node_modules/mongoose/index.d.ts",
         "./src/server/auth/auth.service.ts",
         "./src/server/file-handling/file-handling.service.ts",
@@ -5799,6 +5795,17 @@
         "./src/server/usersubmission/iuser-submission.interface.ts",
         "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts",
         "./src/server/usersubmission/usersubmission.schema.ts"
+      ],
+      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts": [
+        "./node_modules/@nestjs/mongoose/index.d.ts",
+        "./node_modules/mongoose/index.d.ts",
+        "./src/server/file-handling/common/indexingformat.ts",
+        "./src/server/file-handling/file-handling.service.ts",
+        "./src/server/file-handling/managers/filemanager.ts",
+        "./src/server/users/common/major.enum.ts",
+        "./src/server/users/dto/user-submission.dto.ts",
+        "./src/server/usersubmission/iuser-submission.interface.ts",
+        "./src/server/usersubmission/user-submission.service.ts"
       ],
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -7656,11 +7663,6 @@
       "./node_modules/class-validator/types/validation/validatorconstraintinterface.d.ts": [
         "./node_modules/class-validator/types/validation/validationarguments.d.ts"
       ],
-      "./node_modules/form-data/index.d.ts": [
-        "./node_modules/@types/node/http.d.ts",
-        "./node_modules/@types/node/index.d.ts",
-        "./node_modules/@types/node/stream.d.ts"
-      ],
       "./node_modules/jest-diff/build/difflines.d.ts": [
         "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
         "./node_modules/jest-diff/build/types.d.ts"
@@ -8168,6 +8170,11 @@
         "./src/server/usersubmission/iuser-submission.interface.ts",
         "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts"
       ],
+      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts": [
+        "./node_modules/mongoose/index.d.ts",
+        "./src/server/users/dto/user-submission.dto.ts",
+        "./src/server/usersubmission/iuser-submission.interface.ts"
+      ],
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts": [
         "./src/server/file-handling/managers/filemanager.ts",
         "./src/server/users/dto/user-submission.dto.ts"
@@ -8663,7 +8670,6 @@
       "./node_modules/class-validator/types/validation/validatorconstraintinterface.d.ts",
       "./node_modules/class-validator/types/validation/validatoroptions.d.ts",
       "./node_modules/csstype/index.d.ts",
-      "./node_modules/form-data/index.d.ts",
       "./node_modules/jest-diff/build/cleanupsemantic.d.ts",
       "./node_modules/jest-diff/build/difflines.d.ts",
       "./node_modules/jest-diff/build/index.d.ts",
@@ -8831,6 +8837,7 @@
       "./src/server/usersubmission/user-submission.controller.ts",
       "./src/server/usersubmission/user-submission.module.ts",
       "./src/server/usersubmission/user-submission.service.ts",
+      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts",
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts",
       "./src/server/usersubmission/usersubmission.schema.ts"
     ]
