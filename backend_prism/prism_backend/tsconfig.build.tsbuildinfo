@@ -1636,9 +1636,9 @@
         "signature": "b074697214932eff62490430ddd99505e54f212c457e10dead9b3785be6825ae",
         "affectsGlobalScope": false
       },
-      "./src/server/usersubmission/dto/user-submission.dto.ts": {
-        "version": "d9f306a925d78e35a0e0d32785601b36c651a3e5cfad11cc9f973b069ba83849",
-        "signature": "9631303b119fc066487086c37ac29361b09528a51f6166f048271bfd05c8b795",
+      "./src/server/users/dto/user-submission.dto.ts": {
+        "version": "65e1e5a278ad4479c66e5a6cbee80548af74880bcf7f697fed20cde1a2ab8a80",
+        "signature": "8fc90dc9a64ad15d6a1b1ea0bb93c033435da796a8bdf3bb7c857347dccad478",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/mongoose/dist/common/mongoose.decorators.d.ts": {
@@ -1742,7 +1742,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/usersubmission.schema.ts": {
-        "version": "3e113e64cf717878669c8240ea63a0db80cbada2cdd83314d1f00b55a096185b",
+        "version": "d8f05de357e56c7eaed986880c01aa841b66f5057e36b98b9d1c4488fec33210",
         "signature": "8c8ccaadad950a05230217e66252c3bb5fbb12b37d7647511f2401ceb02e09ba",
         "affectsGlobalScope": false
       },
@@ -1772,7 +1772,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/filemanager.ts": {
-        "version": "a57cb5deb9c4ed123122ec3241d8a8442463b00d9d0f09ec18e398c3f133db92",
+        "version": "9e075108b17fcef18aca55ad4718f6c8c9e85452976888e70c96b2170c9ebad0",
         "signature": "e0590137a675ab85c8a93ba61cd8e55156eccf3adfdad75ea6a5d8d930dd7fed",
         "affectsGlobalScope": false
       },
@@ -2497,8 +2497,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts": {
-        "version": "5ad1207aafe8e2143a8a13d2db136f0fcc4284c681b1e468ec0506ce422a9f2a",
-        "signature": "50cd87101482ba8144242c6df3a844398daa39ab738093940ba39a6ed68394ef",
+        "version": "00a22dccff0cce835df568bd4e53874e5572793fb6fb8c5a7ff1302128515f22",
+        "signature": "8ce9cbfc285dcc87442e9e1a5282e6932db824f59f4c69faf7954b0020b6cb45",
         "affectsGlobalScope": false
       },
       "./node_modules/@types/jsonwebtoken/index.d.ts": {
@@ -2551,14 +2551,9 @@
         "signature": "4e21ec01fd640a6d9c38ee1be5c9e80986b6bc940fda0bd8e7d2eaa4197ccb4f",
         "affectsGlobalScope": false
       },
-      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts": {
-        "version": "56b70fc67bacc48997c07d0de745edd2325ac8adfdf336a87aacfae33db6d825",
-        "signature": "d1b64584a5a3370aaf4645dfd637b8ec76a9adc207c0d4ecf5f770bb085f1b96",
-        "affectsGlobalScope": false
-      },
       "./src/server/usersubmission/user-submission.service.ts": {
-        "version": "d7b072bb617581cca34ecbc0400329687adbc4ea63140b53b13a3ec7cb16f226",
-        "signature": "6e8b8fd18d3f4495a08c7e7082c0e076c946b058c3e5a0dbcb69ae715bb7c80f",
+        "version": "ab6202dad8540a9f586922931ca1ded103b345331f5f95af29498f7df92d2a5b",
+        "signature": "539ccdcd8534ca1f98d72a8891e67dca8e34d000baecd7ac4ad1581526c88be0",
         "affectsGlobalScope": false
       },
       "./node_modules/@nestjs/platform-express/interfaces/serve-static-options.interface.d.ts": {
@@ -2642,8 +2637,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.controller.ts": {
-        "version": "4f969aad3521592bb28d02d8b359dffc199a2be30a3a2100d18ce3095a92ee12",
-        "signature": "b29eba8a75ece2b501eadbf5545586ece9f81d7aa326e1d87fb0a700a5fbd85b",
+        "version": "7964690b1a0a22765db13f854a34cbbda44f31a6174c37e810a1bcbc7c94672c",
+        "signature": "8fe5eea003c49c7a75f1af4ab0eb4f52e5b32047fa28fbed59e1856b62849431",
         "affectsGlobalScope": false
       },
       "./src/server/auth/guards/isemptyguardlogin.guard.ts": {
@@ -2822,7 +2817,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.module.ts": {
-        "version": "76feb6582399c3c2e9aca8ecb7461d53e8e473a9d22dfccbf68266e7def08f47",
+        "version": "8b4d1446e85a5897a35b1be107da9c5e2f1a8e391a3649b134e6d87733349d34",
         "signature": "f4ec6f762ae77899613001333f6624bba803ee7e2a8a76452c1612a69ffaa7f0",
         "affectsGlobalScope": false
       },
@@ -5783,13 +5778,9 @@
       ],
       "./src/server/usersubmission/user-submission.module.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
-        "./node_modules/@nestjs/jwt/index.d.ts",
         "./node_modules/@nestjs/mongoose/index.d.ts",
         "./src/server/auth/auth.module.ts",
-        "./src/server/auth/auth.service.ts",
-        "./src/server/auth/strategies/jwt.strategy.ts",
         "./src/server/users/users.module.ts",
-        "./src/server/users/users.service.ts",
         "./src/server/usersubmission/user-submission.controller.ts",
         "./src/server/usersubmission/user-submission.service.ts",
         "./src/server/usersubmission/usersubmission.schema.ts"
@@ -5806,23 +5797,11 @@
         "./src/server/users/dto/user-submission.dto.ts",
         "./src/server/users/users.service.ts",
         "./src/server/usersubmission/iuser-submission.interface.ts",
-        "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts",
         "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts",
         "./src/server/usersubmission/usersubmission.schema.ts"
       ],
-      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts": [
-        "./node_modules/@nestjs/mongoose/index.d.ts",
-        "./node_modules/mongoose/index.d.ts",
-        "./src/server/file-handling/common/indexingformat.ts",
-        "./src/server/file-handling/file-handling.service.ts",
-        "./src/server/file-handling/managers/filemanager.ts",
-        "./src/server/users/common/major.enum.ts",
-        "./src/server/users/dto/user-submission.dto.ts",
-        "./src/server/usersubmission/iuser-submission.interface.ts",
-        "./src/server/usersubmission/user-submission.service.ts"
-      ],
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts": [
-        "./node_modules/form-data/index.d.ts",
+        "./node_modules/@nestjs/common/index.d.ts",
         "./src/server/file-handling/common/indexingformat.ts",
         "./src/server/file-handling/file-handling.service.ts",
         "./src/server/file-handling/managers/filemanager.ts",
@@ -8187,13 +8166,7 @@
         "./src/server/users/common/major.enum.ts",
         "./src/server/users/dto/user-submission.dto.ts",
         "./src/server/usersubmission/iuser-submission.interface.ts",
-        "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts",
         "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts"
-      ],
-      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts": [
-        "./node_modules/mongoose/index.d.ts",
-        "./src/server/users/dto/user-submission.dto.ts",
-        "./src/server/usersubmission/iuser-submission.interface.ts"
       ],
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts": [
         "./src/server/file-handling/managers/filemanager.ts",
@@ -8858,7 +8831,6 @@
       "./src/server/usersubmission/user-submission.controller.ts",
       "./src/server/usersubmission/user-submission.module.ts",
       "./src/server/usersubmission/user-submission.service.ts",
-      "./src/server/usersubmission/userservicefilehelper/usersubmissiondbhandler.ts",
       "./src/server/usersubmission/userservicefilehelper/usersubmissionfilehandler.ts",
       "./src/server/usersubmission/usersubmission.schema.ts"
     ]

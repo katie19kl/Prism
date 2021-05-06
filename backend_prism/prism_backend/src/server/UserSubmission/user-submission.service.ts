@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 import { jwtConstants } from '../RolesActivity/constants';
-import { UserSubmissionDBHandler } from './userServiceFileHelper/UserSubmissionDBHandler';
+import { resolve } from 'node:path';
 import { Major } from '../users/common/major.enum';
 
 
@@ -18,19 +18,15 @@ import { Major } from '../users/common/major.enum';
 export class UserSubmissionService {
 
     userSubmissionFileHandler: UserSubmissionFileHandler;
-    userSubmissionDBHandler:UserSubmissionDBHandler
+
 
     // Model<IUserSubmission> ---- Broker  between DB & ME
     constructor(@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>)   
     {
-
         this.userSubmissionFileHandler = new UserSubmissionFileHandler()
-        this.userSubmissionDBHandler = new UserSubmissionDBHandler(userSubmissionModel)
-
-          //this.majorManager = new MajorManager()
-        
     }
 
+    // retrieve personal id, where token is given
     static getIdFromJWT(usertoken){
 
         let jwt = require('jsonwebtoken');
@@ -69,36 +65,34 @@ export class UserSubmissionService {
         } 
     }
 
+    // removes from file root & removes from db only one file
     async removeSubmittedFile(createUserSubmissionDto: UserSubmissionDTO, usertoken, file_name){
         
         let userId = UserSubmissionService.getIdFromJWT(usertoken)
+        //let userId = "12345678"
         createUserSubmissionDto.soldierId = userId
-
-        console.log("1")
-
-        let deletedFromDir = await this.userSubmissionFileHandler.deleteFile(createUserSubmissionDto, file_name);
+ 
+        // delete file from directory
+        let deletedFromDir = await this.userSubmissionFileHandler.deleteFile(createUserSubmissionDto, file_name)
         
-        console.log("2")
-
-        console.log(deletedFromDir);
+        // get new file list - currently presented in solution dir
+        let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto)
         
-        console.log("3")
 
-        let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto);
+        // update db with currentl file list 
+        let updatedInDB = await this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)        
     
-        console.log(filesInDirSolution);
-        //let updatedInDB = await this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)        
-        
-        console.log("4");
-        //console.log(updatedInDB)
-        return "xui";
+
+        return updatedInDB
     }
 
 
-    updateUserSubmissionDB(createUserSubmissionDto: UserSubmissionDTO, usertoken, filesToUpdate){
+    // puts new files & date of submission
+    async updateUserSubmissionDB(createUserSubmissionDto: UserSubmissionDTO, usertoken, filesToUpdate){
 
         const filter = { 
             soldierId: UserSubmissionService.getIdFromJWT(usertoken),
+            //soldierId: "12345678",
             major: createUserSubmissionDto.major,
             module: createUserSubmissionDto.module,
             subject: createUserSubmissionDto.subject
@@ -115,18 +109,35 @@ export class UserSubmissionService {
         };
         
 
-        let updatedSubmissionOfUser =  this.userSubmissionModel.findOneAndUpdate(filter, update, {
-            new: true
+        let updatedSubmissionOfUser =  await this.userSubmissionModel.findOneAndUpdate(filter, update, {
+        new: true
         });
         return updatedSubmissionOfUser;
 
     }
 
+    // сhecks if document in db already exist
+    async checkDocExist(createUserSubmissionDto, idFromJWT){
+        const filter = { 
+            soldierId: idFromJWT,
+            major: createUserSubmissionDto.major,
+            module: createUserSubmissionDto.module,
+            subject: createUserSubmissionDto.subject
+        
+        };
+        
+        let docExist =  this.userSubmissionModel.exists(filter);
+        return docExist
+    }
+   
+
+    /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
 
-        let idFromJWT = UserSubmissionService.getIdFromJWT(usertoken);
-        createUserSubmissionDto.soldierId = idFromJWT;
-
+        let idFromJWT = UserSubmissionService.getIdFromJWT(usertoken)
+        //let idFromJWT = "12345678"
+        
+        createUserSubmissionDto.soldierId = idFromJWT
         // dir with user solutions
         let pathSolutionDir = this.userSubmissionFileHandler.createPathSolution(createUserSubmissionDto);
         
@@ -144,42 +155,24 @@ export class UserSubmissionService {
         // get list of all files in dir solution to update list of files in submission info
         let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto);
         
-
-        // assigning files info to db
-        createUserSubmissionDto.submittedFiles = filesInDirSolution;
-        
         let currentTime = new Date();
         
-        if (dirExist) {
-            const filter = { 
-                soldierId: idFromJWT,
-                major: createUserSubmissionDto.major,
-                module: createUserSubmissionDto.module,
-                subject: createUserSubmissionDto.subject
-            
-            };
-            
-            const update = { 
-                submittedFiles: createUserSubmissionDto.submittedFiles,
-                submittedTimeStamp: currentTime
-                
-            };
-            
+        let docExist = await this.checkDocExist(createUserSubmissionDto, idFromJWT)
 
-            let updatedSubmissionOfUser = await this.userSubmissionModel.findOneAndUpdate(filter, update, {
-            new: true
-            });
-            return updatedSubmissionOfUser
-        } else {
+        if (docExist){
+  
+            let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)
+
+            return await updatedSubmissionOfUser
+        }else {
             
             
-            createUserSubmissionDto.submittedTimeStamp = currentTime;
-            return await this.userSubmissionModel.create(createUserSubmissionDto);
+            let currentTime = new Date()
+            // assigning files info to db
+            createUserSubmissionDto.submittedFiles = filesInDirSolution;
+            createUserSubmissionDto.submittedTimeStamp = currentTime
+            return await this.userSubmissionModel.create(createUserSubmissionDto)
         }
-
-        
-        
-
     }
 
 }

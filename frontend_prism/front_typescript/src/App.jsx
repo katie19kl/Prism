@@ -17,7 +17,7 @@ import SoldierInfo from './soldierOperationSideBar/soldierProfile/SoldierInfo'
 import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/DisplayContentOfModule';
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
-
+import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
 
 
 export default function App() {
@@ -70,6 +70,9 @@ export default function App() {
 
 			<Route path="/module_content/:moduleName/:major" component={DisplayContentOfModule}>
 			</Route>
+
+
+			<Route path="/submission/info/:moduleName/:major/:subject" component={UserSubmission}></Route>
 			
 
 			<PrivateRoutingComponent path="/" component={MainView}/>

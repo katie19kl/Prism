@@ -1,4 +1,4 @@
-import { from } from "form-data";
+import { NotFoundException } from "@nestjs/common";
 import { IndexingFormat } from "src/server/file-handling/common/IndexingFormat";
 import { FileHandlingService } from "src/server/file-handling/file-handling.service";
 import { FileManager } from "src/server/file-handling/managers/FileManager";
@@ -52,7 +52,7 @@ export class UserSubmissionFileHandler {
     }
 
 
-    getFiles(createUserSubmissionDto: UserSubmissionDTO,){
+    async getFiles(createUserSubmissionDto: UserSubmissionDTO,){
         let major = createUserSubmissionDto.major
         let module = createUserSubmissionDto.module
         let subject = createUserSubmissionDto.subject
@@ -64,7 +64,7 @@ export class UserSubmissionFileHandler {
         let allFilesInSolution;
         
             
-        allFilesInSolution =  this.fileManager.getAllFilesOfPath(major,module,newSubject)
+        allFilesInSolution =  await this.fileManager.getAllFilesOfPath(major,module,newSubject)
         return allFilesInSolution
       
         
@@ -108,12 +108,8 @@ export class UserSubmissionFileHandler {
         let newSubjectPath = this.createPathToSolutionDir(createUserSubmissionDto)
         
 
-        console.log("wanna be deleted")
-        console.log(newSubjectPath)
-        console.log(file_name)
-
-        return this.fileManager.deleteFile(major_choosen,module_choosen,newSubjectPath,file_name)
-
+       return this.fileManager.deleteFile(major_choosen, module_choosen, newSubjectPath, file_name)
+        
 
     }
 
