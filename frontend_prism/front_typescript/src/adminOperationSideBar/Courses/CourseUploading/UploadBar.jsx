@@ -18,7 +18,10 @@ import DisplayCourseUploadBar from "./DisplayCoursesUploadBar"
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { blue, purple } from "@material-ui/core/colors";
+import Role from "../../../Roles/Role";
 
+import {uploadSingleSubmission} from "./../../../soldierOperationSideBar/soldierSubmission/submission_handling"
+import SoldierInfo from "../../../soldierOperationSideBar/soldierProfile/SoldierInfo";
 
 const useStyles = (theme) => ({
 	root: {
@@ -70,6 +73,17 @@ class UploadBar extends Component {
     	this.major = this.props.match.params.major;
 		this.subject = this.props.match.params.subject;
 
+		// to use right uploader
+		this.role = this.props.match.params.role;
+		this.funcUploader = undefined
+		if (this.role === Role.Commander){
+			this.funcUploader =  uploadSingleFiles
+		}
+		else if (this.role === Role.MyFiles){
+			this.funcUploader = uploadSingleSubmission
+		}
+
+
 		this.uploadedFile = []
 
 		this.state = {
@@ -99,12 +113,14 @@ class UploadBar extends Component {
     }
 
 
+
 	upload(idx, file) {
 		let _progressInfos = [...this.state.progressInfos];
 		
 		
-		uploadSingleFiles(file, (event) => {
-				_progressInfos[idx].percentage = Math.round((100 * event.loaded) / event.total);
+		//uploadSingleFiles(file, (event) => {
+		this.funcUploader(file, (event) => {
+		_progressInfos[idx].percentage = Math.round((100 * event.loaded) / event.total);
 				this.setState({
 					_progressInfos,
 				});
@@ -316,12 +332,24 @@ class UploadBar extends Component {
 		}
 
 		let uploadedToServer = this.uploadedFile;
+
+		let menu_  = ""
+		let role_ = ""
+
+		if (this.role === Role.Commander){
+			menu_ = <CommanderMenu />
+			role_ = Role.Commander
+		}else if (this.role === Role.MyFiles){
+			menu_ = <SoldierInfo/>
+			role_ = Role.Soldier
+		}
 	
 		return (
-			<MenuAppBar menu={<CommanderMenu />} role="Commander"
+			<MenuAppBar menu={menu_} role={role_}
 			content={
 				<div className={classes.root}>
-				
+					
+					<h3> ROLE FOR WHOOOOOOOOO      {this.role}</h3>
 					<br/>
 
 					<Grid container item xs={12} justify="center" alignItems="center">
@@ -451,6 +479,14 @@ class UploadBar extends Component {
 						</ul>
 					</div>
 					)}
+
+					
+					<Button
+					variant="contained" color="primary"
+					onClick={()=> this.props.history.goBack()}
+						>
+						Go back 
+					</Button>
 
 					<Button
 					variant="contained" color="secondary"

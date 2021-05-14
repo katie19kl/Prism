@@ -35,11 +35,17 @@ export const UserSubmissionSchema = new mongoose.Schema({
     grade: {
         type: Number
     },
+    
+    
+    submittedTime: {
+        type:String
+    },
+    
+    submittedDate: {
+        type:String
+    },
 
 
-    submittedTimeStamp: {
-
-        type: Date
-    }
+    
 
 });

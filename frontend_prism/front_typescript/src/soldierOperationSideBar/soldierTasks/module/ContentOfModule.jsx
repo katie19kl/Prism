@@ -1,8 +1,10 @@
-import { Breadcrumbs, Grid, Typography, withStyles } from "@material-ui/core";
+import { Breadcrumbs, Button, Grid, Typography, withStyles } from "@material-ui/core";
 import React from "react"
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import DisplaySubjectContent from "../../soldierTasks/subject/DisplaySubjectContent";
 import { purple } from "@material-ui/core/colors";
+import { Link } from "react-router-dom";
+import ConfirmationDialog from "../../../GeneralComponent/dialogs/ConfirmationDialog";
 
 
 const useStyles = (theme) => ({
@@ -17,7 +19,11 @@ const useStyles = (theme) => ({
     nav: {
         marginTop: theme.spacing(3),
         marginRight: theme.spacing(10),
-    }
+    },
+    title: {
+        margin: theme.spacing(4, 0, 2),
+        fontFamily: "monospace",
+  },
 });
 
 class ContentOfModule extends React.Component {
@@ -56,8 +62,8 @@ class ContentOfModule extends React.Component {
             
                     <li className="list-group-item" key={index}  >
                         
-
-                        <h6>{subject} </h6>
+  
+                        <h6 className={classes.title}><b>{subject} </b></h6>
 
                         <i className={classes}> 
                             <div>
@@ -68,13 +74,28 @@ class ContentOfModule extends React.Component {
                                 moduleName={moduleName}
                                 >
                                 </DisplaySubjectContent>
+
+                                
+
                             </div>  
                         </i>
-                        <a href={"/submission/info/" + postfix_param + subject}> Submission info of subject </a>
+
+                        <Link to={"/submission/info/" + postfix_param + subject}>
+                            <Button variant="contained" color="primary" size="medium" >
+                                Submission Info
+                            </Button>
+                        </Link>
+
+
+                        
                     </li>
+
+
                     ))
                 } 
                 </ul>
+
+
             </div>
         );
     }

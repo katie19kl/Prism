@@ -4,6 +4,7 @@ import UploadBar from './UploadBar';
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import PublishIcon from '@material-ui/icons/Publish';
+import Role from "../../../Roles/Role";
 
 
 class CourseUploading extends React.Component {
@@ -38,9 +39,9 @@ class CourseUploading extends React.Component {
 	render() {
   
         let urlPostfix = this.state.chosenMajor + "/" + this.state.chosenModule 
-            + "/" + this.state.chosenSubject;
+            + "/" + this.state.chosenSubject + "/" + Role.Commander;
 
-        let url = "/admin/file_uploading/" + urlPostfix;
+        let url = "/file_uploading/" + urlPostfix;
 
         return (
             <div>

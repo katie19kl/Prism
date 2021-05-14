@@ -14,5 +14,13 @@ export class UserSubmissionDTO {
     
     grade: number;
 
-    submittedTimeStamp: Date;
+    submittedTime: string;
+
+    submittedDate: string;
+
+
 }
+
+
+
+
