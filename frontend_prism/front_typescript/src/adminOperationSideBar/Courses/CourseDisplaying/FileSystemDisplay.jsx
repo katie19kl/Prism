@@ -17,6 +17,7 @@ import { getSubjectsByModule, getFilesBySubject,
     deleteFileBySubject, createModuleByMajor, 
     createSubjectByModule, renameModule, 
     renameSubject } from "../../CourseFiles/files_request_handler";
+import Role from "../../../Roles/Role";
 
 
 const useStyles = (_theme) => ({
@@ -878,7 +879,8 @@ class FileSystemDisplay extends React.Component {
                                                                 </div> :
                                                                 <div>
                                                                     <DisplayFiles files={this.filesData}
-                                                                    FileDeletionButtonHandler={this.FileDeletionButtonHandler}/>
+                                                                    FileDeletionButtonHandler={this.FileDeletionButtonHandler}
+                                                                    role={Role.Commander}/>
                                                                     <CourseUploading 
                                                                     chosenMajor={this.state.chosenMajor}
                                                                     chosenModule={this.state.chosenModule}

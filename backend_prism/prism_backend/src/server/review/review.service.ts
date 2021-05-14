@@ -41,7 +41,11 @@ export class ReviewService {
             subject: subject
         };
 
-        return await this.reviewsModel.find(filter);
+        let allReviews =  await this.reviewsModel.find(filter);
+    
+        console.log(allReviews)
+
+        return allReviews
     }
 
     async getAllReviewsToShowSoldier(id: string, major: Major, module: string, subject: string) {
@@ -62,6 +66,10 @@ export class ReviewService {
                 result.push(review);
             }
         }
+
+        
+        console.log(reviews)
+        console.log(result)
 
         return result;
     }

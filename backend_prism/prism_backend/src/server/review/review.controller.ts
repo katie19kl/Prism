@@ -19,7 +19,10 @@ export class ReviewController {
         // use await!
 
         let soldierId = createReviewDto.soldierId;
+//////////////////////////////////////////////////
         let major = createReviewDto.major;
+        console.log(major, '--------------')
+////////////////////////////////////////////////
         let module = createReviewDto.module;
         let subject = createReviewDto.subject;
 
@@ -41,6 +44,7 @@ export class ReviewController {
         }
     }
 
+    
     @Delete(':soldierId/:major/:module/:subject')
     deleteReview(
         @Param('soldierId') id: string,

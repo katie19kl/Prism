@@ -1,8 +1,8 @@
 import React from "react"
-import MenuAppBar from "./../../GeneralComponent/main/MenuAppBar"
-import SoldierMenu from "./../../GeneralComponent/soldier/SoldierMenu"
-import {getSubjectsByModule} from "./../../adminOperationSideBar/CourseFiles/files_request_handler"
-import {getFilesBySubject} from "./../../adminOperationSideBar/CourseFiles/files_request_handler"
+import MenuAppBar from "./../../../GeneralComponent/main/MenuAppBar"
+import SoldierMenu from "./../../../GeneralComponent/soldier/SoldierMenu"
+import {getSubjectsByModule} from "./../../../adminOperationSideBar/CourseFiles/files_request_handler"
+import {getFilesBySubject} from "./../../../adminOperationSideBar/CourseFiles/files_request_handler"
 import ContentOfModule from "./ContentOfModule"
 
 

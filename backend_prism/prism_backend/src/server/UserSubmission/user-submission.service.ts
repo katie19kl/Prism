@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserSubmissionSchema } from './userSubmission.schema';
-import { UserSubmissionDTO } from './../users/dto/user-submission.dto';
+import { UserSubmissionDTO } from './dto/user-submission.dto';
 import { IUserSubmission } from './iuser-submission.interface';
 import { FileHandlingService } from '../file-handling/file-handling.service';
 import { UserSubmissionFileHandler } from './userServiceFileHelper/userSubmissionFileHandler';
@@ -45,23 +45,34 @@ export class UserSubmissionService {
     }
 
     async getUserSubmissionByKey(id: string, major: Major, module: string, subject: string) {
-
+        
+        
+        //////////////// SUKA WHY MAJOR ARRAY ???? ////////////////
+        
+        
+        
+        
+        
+        console.log("1")
         const filter = { 
             soldierId: id,
             major: major,
             module: module,
             subject: subject
         };
-
+        console.log("2")
         let result = await this.userSubmissionModel.findOne(filter);
+        console.log(result)
 
+        console.log(filter)
+        console.log("3")
         if (result) {
-
+            console.log("4")
             return result;
         
         } else {
-
-            throw new HttpException("No submission has been made by the soldier", HttpStatus.NOT_FOUND);
+            console.log("5")
+            throw  new HttpException("No submission has been made by the soldier", HttpStatus.NOT_FOUND);
         } 
     }
 
@@ -101,10 +112,15 @@ export class UserSubmissionService {
       
         createUserSubmissionDto.submittedFiles = filesToUpdate;
         
-        let currentTime = new Date();
+
+        createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
+
+
+        
         const update = { 
             submittedFiles: filesToUpdate,
-            submittedTimeStamp: currentTime
+            submittedTime: createUserSubmissionDto.submittedTime,
+            submittedDate: createUserSubmissionDto.submittedDate,
             
         };
         
@@ -129,10 +145,22 @@ export class UserSubmissionService {
         let docExist =  this.userSubmissionModel.exists(filter);
         return docExist
     }
+
+
+    updateCurrentTime(createUserSubmissionDto: UserSubmissionDTO){
+        createUserSubmissionDto.submittedTime = new Date().toLocaleTimeString(); // 11:18:48 AM
+
+        createUserSubmissionDto.submittedDate = new Date().toLocaleDateString(); // 11/16/2015
+
+        return createUserSubmissionDto
+    }
    
 
     /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
+        
+        createUserSubmissionDto.isChecked = false
+
 
         let idFromJWT = UserSubmissionService.getIdFromJWT(usertoken)
         //let idFromJWT = "12345678"
@@ -155,7 +183,7 @@ export class UserSubmissionService {
         // get list of all files in dir solution to update list of files in submission info
         let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto);
         
-        let currentTime = new Date();
+
         
         let docExist = await this.checkDocExist(createUserSubmissionDto, idFromJWT)
 
@@ -166,11 +194,11 @@ export class UserSubmissionService {
             return await updatedSubmissionOfUser
         }else {
             
-            
-            let currentTime = new Date()
             // assigning files info to db
             createUserSubmissionDto.submittedFiles = filesInDirSolution;
-            createUserSubmissionDto.submittedTimeStamp = currentTime
+
+
+            createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
             return await this.userSubmissionModel.create(createUserSubmissionDto)
         }
     }

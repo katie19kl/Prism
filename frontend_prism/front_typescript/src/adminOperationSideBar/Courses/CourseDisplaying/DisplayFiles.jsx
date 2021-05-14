@@ -11,6 +11,7 @@ import {FaFilePdf} from "react-icons/fa"; // pdf
 import {GrDocumentTxt} from "react-icons/gr"; // txt
 import { defineIconOfFile } from "../file_handle";
 import { AiFillFile } from "react-icons/ai"
+import Role from "../../../Roles/Role";
 
 
 const useStyles = (theme) => ({
@@ -28,6 +29,7 @@ class DisplayFiles extends React.Component {
         this.FileDeletionButtonHandler = this.props.FileDeletionButtonHandler;
         this.determineFileIcons = this.determineFileIcons.bind(this);
         this.fileNameToIcon = {};
+        this.role = this.props.role;
 
         this.state = {
             fileInfos: this.props.files,
@@ -75,7 +77,6 @@ class DisplayFiles extends React.Component {
 
         return (
             <div>
-                <h2> Files </h2>
                 <br></br>
             
                 <div className="card">
@@ -88,16 +89,18 @@ class DisplayFiles extends React.Component {
                             <li className="list-group-item" key={index}>
 
                             <IconContext.Provider
-                            value={{ color: 'blue', size: '25px' }}>
+                            value={{ color: 'black', size: '20px' }}>
                                 {this.fileNameToIcon[file.file_name]}
                             </IconContext.Provider>
 
                                 <a href={file.url}>{file.file_name}</a>
 
+                                {(this.role === Role.Commander || this.role === Role.MyFiles ) ? 
                                 <IconButton aria-label="delete" style={{ float: 'right'}}
                                 onClick={(event) => this.FileDeletionButtonHandler(event, file.file_name)}>                        
                                     <DeleteIcon style={{ color: blue[300]}}/>
                                 </IconButton>
+                                : ''}
 
                             </li>
                         ))}

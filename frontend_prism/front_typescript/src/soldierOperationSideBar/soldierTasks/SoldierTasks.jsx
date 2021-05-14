@@ -3,7 +3,7 @@ import MenuAppBar from "./../../GeneralComponent/main/MenuAppBar"
 import SoldierMenu from "./../../GeneralComponent/soldier/SoldierMenu"
 
 import {getUserInfoByJWT } from './../../HelperJS/extract_info'
-import DisplayModules from "./DisplayModules"
+import DisplayModules from "./module/DisplayModules"
 
 
 export default class SoldierTasks extends React.Component {

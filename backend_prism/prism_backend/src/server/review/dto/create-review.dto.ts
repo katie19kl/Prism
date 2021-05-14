@@ -12,7 +12,7 @@ export class CreateReviewDto {
     soldierId: string;
 
     @IsNotEmpty()
-    @IsMajor()
+    //@IsMajor()
     major : Major
     
     @IsNotEmpty()

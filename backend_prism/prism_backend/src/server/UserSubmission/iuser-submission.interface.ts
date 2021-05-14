@@ -13,7 +13,11 @@ export interface IUserSubmission extends Document {
 
     submittedFiles: string[];
 
-    submittedTimeStamp: Date;
+    submittedTime: string;
+    
+    submittedDate: string;
+
+
    
     // If reaview exist
     isChecked: boolean;
