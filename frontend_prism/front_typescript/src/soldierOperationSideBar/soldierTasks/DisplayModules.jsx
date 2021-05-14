@@ -1,5 +1,4 @@
 import React from "react"
-import DescriptionIcon from '@material-ui/icons/Description';
 import {getModulesByMajor} from "./../../adminOperationSideBar/CourseFiles/files_request_handler"
 import {IoSchool} from "react-icons/io5";
 

@@ -30,7 +30,7 @@ function checkRequired(data) {
         }
     }
 
-    return undefinedFields
+    return undefinedFields;
 
 }
 
@@ -45,7 +45,7 @@ function handleOptionalFields(data, role) {
     // Each soldier has only one major.
     if (role === 'soldier') {
 
-        if (!major.includes('None') && !major.includes(undefined)) {
+        if (!major.includes('None') && !major.includes(undefined) && !major.includes("")) {
             fields.major = major;
         }
 
@@ -68,16 +68,62 @@ function handleOptionalFields(data, role) {
         }
     }
 
-    if (phoneNumber !== undefined) {
+    if (phoneNumber !== undefined && phoneNumber !== "") {
         fields.phoneNumber = phoneNumber;
     }
 
-    if (commander !== undefined) {
+    if (commander !== undefined && commander !== "") {
         fields.commander = commander;
     }
 
     return fields;
 }
 
+/* Returns true if the string is a positive whole number. */
+function isNumeric(value) {
+    return /^\d+$/.test(value);
+}
 
-export { validateFields, handleOptionalFields };
+/* Returns true when the string contains letters and digits only */
+function onlyLettersAndDigits(str) {
+    if (str.match("^[a-zA-Z0-9]+$")) {
+    	return true;
+    }
+    return false;
+}
+
+function checkPassword(input) { 
+
+    // pwd should have the following constraints:
+    // 1. length from 6 to 20.
+    // 2. must contains one uppercase letter
+    // 3. must contains one lowercase letter
+    // 4. must contains at least one digit.
+    var passw = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+    if (input.match(passw)) { 
+        return true;
+    }
+    else { 
+        return false;
+    }
+}
+
+/* Used to validate first name/last name. */
+function isValidName(name) {
+    var reg = /^[a-z]+$/i;
+
+	if (name !== '' && reg.test(name)) {
+  		return true;
+	} else {
+  		return false;
+	}
+}
+
+export { 
+    validateFields,
+    handleOptionalFields, 
+    isNumeric,
+    onlyLettersAndDigits, 
+    checkPassword,
+    isValidName
+};

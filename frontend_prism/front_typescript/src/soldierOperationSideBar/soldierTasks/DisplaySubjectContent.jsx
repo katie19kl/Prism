@@ -14,8 +14,8 @@ export default class DisplaySubjectContent extends React.Component {
         console.log("============= content of subject ")
         
 
-        let moduleName = this.props.moduleName
-        let major = this.props.major
+        //let moduleName = this.props.moduleName
+        //let major = this.props.major
         let subject = this.props.subject
         let dictSubjectFiles = this.props.dictSubjectFiles
 
@@ -62,18 +62,3 @@ export default class DisplaySubjectContent extends React.Component {
     }
 
 }
-
-{/*    <ul className="list-group list-group-flush">
-                
-                        {arrFiles !== undefined && arrFiles.map( (file,index)=>(
-
-                            <h2>
-                                {file.file_name}
-                                 
-                            </h2>
-                            
-                            
-                            ))
-                        }
-                    </ul>
-  */}

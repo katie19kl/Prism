@@ -28,6 +28,10 @@ export class ReviewController {
         if (userSubmission) {
             console.log("all good");
 
+            // update the userSubmission field of "isChecked" to true since a review was given.
+            userSubmission.isChecked = true;
+            await userSubmission.save();
+
             createReviewDto.submittedTimeStamp = new Date();
 
             return this.reviewService.create(createReviewDto);

@@ -1,12 +1,6 @@
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
-import SchoolIcon from '@material-ui/icons/School';
-import BlurOnRoundedIcon from '@material-ui/icons/BlurOnRounded';
-import AdjustRoundedIcon from '@material-ui/icons/AdjustRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
 import LocalPostOfficeRoundedIcon from '@material-ui/icons/LocalPostOfficeRounded';
-import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
-import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';

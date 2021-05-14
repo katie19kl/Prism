@@ -1,5 +1,5 @@
 import  { Component } from "react";
-import { Button, CssBaseline, withStyles } from '@material-ui/core';
+import { Button, withStyles } from '@material-ui/core';
 import React from "react"
 import {uploadSingleFiles} from './file_uploading_handle'
 import List from '@material-ui/core/List';
@@ -360,7 +360,7 @@ class UploadBar extends Component {
 						<div className={classes.demo}>
 
 							<List >
-							{uploadedToServer != [] &&
+							{uploadedToServer !== [] &&
 							uploadedToServer.map((file,index)=> (
 
 								<ListItem key={index} >
@@ -466,7 +466,7 @@ class UploadBar extends Component {
 						</Typography>
 						<div className={classes.demo}>
 							<List >
-							{uploaded_files != [] &&
+							{uploaded_files !== [] &&
 							uploaded_files.map((file,index)=> (
 
 								<ListItem key={index} >

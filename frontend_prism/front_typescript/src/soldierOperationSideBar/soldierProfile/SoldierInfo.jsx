@@ -1,10 +1,9 @@
-import { render } from "react-dom"
 import React from "react"
-import {getUserInfoByJWT } from './../../HelperJS/extract_info'
+import { getUserInfoByJWT } from './../../HelperJS/extract_info'
 import  DisplayUserData from './../../HelperFooStuff/DisplayUserData'
 import SoldierMenu from "../../GeneralComponent/soldier/SoldierMenu";
 import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
-import { withStyles } from "@material-ui/core";
+import { withStyles, Grid } from "@material-ui/core";
 
 const useStyles = (theme) => ({
     root: {
@@ -21,16 +20,15 @@ const useStyles = (theme) => ({
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
-        marginLeft: theme.spacing(15),
     },
-	h3: {
-		marginLeft: theme.spacing(10),
-	}
+    padding: {
+        flexGrow: 1,
+        marginLeft: theme.spacing(5),
+    },
 });
 
 
 class SoldierInfo extends React.Component {
-    
 
 	constructor(props) {
 		super(props);
@@ -45,16 +43,11 @@ class SoldierInfo extends React.Component {
 		}
 	}
 
+    render() {
+        const { classes } = this.props;
 
-
-
-
-    render(){
-            const { classes } = this.props;
-            console.log(" -*-*-*-*-*")
-
-            getUserInfoByJWT().then((user) => {
-       
+        getUserInfoByJWT().then((user) => {
+    
             if (user === undefined){
                 
             } else {
@@ -73,8 +66,6 @@ class SoldierInfo extends React.Component {
                 let phoneNum = user["phoneNumber"]
                 let gender_ = user["gender"]
 
-
-           
                 // server answer differs from out current
                 
                 let wasChanged = (username_ !== this.state.username) 
@@ -95,66 +86,50 @@ class SoldierInfo extends React.Component {
                 }
 
             }
-            })
-            if (this.state.username === undefined){
-                return(
-                        <MenuAppBar menu={
-                            <SoldierMenu/>
-                        }></MenuAppBar>
-                )
-            } else {
-                console.log("--------------------")
-                return (
-                        <MenuAppBar
+        })
 
-                        role = {"Soldier"}
-                        
-                        menu={
-                            <SoldierMenu/>
-                        }
-                        content={
-                        <div className={classes.root}>
-                        <h2 className={classes.myFont}>Your Current Info</h2>
-    
-                        <h3 className={classes.h3}>Here You Can See Current Data</h3>
-    
-    
-                            <DisplayUserData
-                                
-                                phone_number = {this.state.phone_number} 
-                                role = {this.state.role}
-                                lastName = {this.state.lastName}
-                                firstName = {this.state.firstName}
-                                gender = {this.state.gender}
-                                major = {this.state.major}
-                                username = {this.state.username}
-                                >
-    
-                            </DisplayUserData>
-                        </div>
-                        }>	
-				
-					 
-					    </MenuAppBar>
-                )
-    
-            }
+        if (this.state.username === undefined) {
+
+            return (
+                <MenuAppBar menu={
+                    <SoldierMenu/>
+                }></MenuAppBar>
+            );
+        } else {
+
+            return (
+                <MenuAppBar
+                    role = {"Soldier"}
+                    menu={
+                        <SoldierMenu/>
+                    }
+                    content={
+                    <Grid container justify='center' alignItems='center'>
+
+                        <br/>
+                        <br/>
+                        <br/>
+
+                        <DisplayUserData
+                            title={
+                                <Grid justify='center' alignItems='center' container item xs={12}>
+                                    <h4 className={classes.myFont}>Your Current Info</h4>
+                                </Grid>
+                            }
+                            phone_number = {this.state.phone_number} 
+                            role = {this.state.role}
+                            lastName = {this.state.lastName}
+                            firstName = {this.state.firstName}
+                            gender = {this.state.gender}
+                            major = {this.state.major}
+                            username = {this.state.username}
+                            >
+                        </DisplayUserData>
+                    </Grid>
+                    }>	
+                </MenuAppBar>
+            );
+        }
     }
 }
 export default withStyles(useStyles, { withTheme: true })(SoldierInfo);
-/*
-
-                return (
-                <DisplayUserData
-                                
-                    phone_number = {phoneNum} 
-                    role = {role_}
-                    lastName = {lastName_}
-                    firstName = {firstName_}
-                    gender = {gender_}
-                    major = {majors_}
-                    username = {username_}
-                    >
-                </DisplayUserData>
-                )
-*/

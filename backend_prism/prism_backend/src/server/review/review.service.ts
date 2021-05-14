@@ -68,8 +68,6 @@ export class ReviewService {
 
     async updateReview(updateReviewDto: updateReviewDto) {
 
-        //updateReviewDto.submittedTimeStamp = new Date();
-
         // all the following fields must be considered as the key(filter).
         let filter = {
             soldierId: updateReviewDto.soldierId,

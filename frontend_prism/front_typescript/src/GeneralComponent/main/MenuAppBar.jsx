@@ -144,7 +144,7 @@ class MenuAppBar extends React.Component {
         const { classes, theme } = this.props;
         const { username } = this.state;
 
-        let role = this.props.role
+        let role = this.props.role;
 
         
         return (
@@ -191,7 +191,7 @@ class MenuAppBar extends React.Component {
                         <ListItemText primary= {"Hello " + role} className={classes.text}>
                         </ListItemText>
                     </ListItem>
-                    <h3 className={classes.name}> {username} </h3>
+                    <h6 className={classes.name}> <b>{username}</b> </h6>
                 </List>
 
                 <Divider />

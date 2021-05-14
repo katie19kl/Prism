@@ -12,7 +12,6 @@ import UpdateUsers from './adminOperationSideBar/Users/UpdateUser/UpdateUsers';
 import ChangeAdminSettings from './adminOperationSideBar/AdminInfoManipulation/ChangeAdminSettings';
 import AdminSettings from './adminOperationSideBar/AdminInfoManipulation/AdminSettings';
 import CourseFilesMainView from './adminOperationSideBar/CourseFiles/CourseFilesMainView';
-import CourseUploading from './adminOperationSideBar/Courses/CourseUploading/CourseUploading' 
 import SoldierInfo from './soldierOperationSideBar/soldierProfile/SoldierInfo'
 import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/DisplayContentOfModule';

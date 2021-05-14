@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import DisplayUserData from "../../HelperFooStuff/DisplayUserData"
-import { withStyles } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
 
 
 const useStyles = (theme) => ({
@@ -17,19 +17,13 @@ const useStyles = (theme) => ({
             margin: theme.spacing(1),
             width: '25ch',
         },
-        marginTop: theme.spacing(3),
-        marginLeft: theme.spacing(30),
     },
     button: {
-        marginLeft: theme.spacing(6),
+        marginLeft: theme.spacing(10),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
-        marginLeft: theme.spacing(15),
     },
-	h3: {
-		marginLeft: theme.spacing(10),
-	}
 });
 
 
@@ -79,60 +73,60 @@ class AdminSettings extends React.Component {
 					// it causes new rendering
 					
 					this.setState( {
-									username : username_,
-									major: majors_,
-									role: role_,
-									firstName: firstName_,
-									lastName: lastName_,
-									phone_number: phoneNum,
-									gender: gender_,
-									
-						
-									} )
+						username : username_,
+						major: majors_,
+						role: role_,
+						firstName: firstName_,
+						lastName: lastName_,
+						phone_number: phoneNum,
+						gender: gender_,
+					
+					})
 				}
-
 			}
-		})
-		if (this.state.username === undefined){
-			return(
-					<MenuAppBar role = "Commander"  menu={
-						<CommanderMenu/>
-					}></MenuAppBar>
-			)
+		});
+		
+		if (this.state.username === undefined) {
+			return (
+				<MenuAppBar role = "Commander"  menu={
+					<CommanderMenu/>
+				}></MenuAppBar>
+			);
+
 		} else {
 			return (
-					<MenuAppBar menu={
-						<CommanderMenu/>
-					}
-					role = "Commander"
-					content={
-					<div className={classes.root}>
-					<h2 className={classes.myFont}>Your Current Info</h2>
+				<MenuAppBar menu={
+					<CommanderMenu/>
+				}
+				role = "Commander"
+				content={
+				<Grid>
+					<br/>
+					<br/>
 
-					<h3 className={classes.h3}>Here You Can See Current Data</h3>
+					<DisplayUserData
+						title={<Grid justify='center' alignItems='center' container item xs={12}>
+							<h4 className={classes.myFont}>Your Current Info</h4>
+						</Grid>}
+						phone_number = {this.state.phone_number} 
+						role = {this.state.role}
+						lastName = {this.state.lastName}
+						firstName = {this.state.firstName}
+						gender = {this.state.gender}
+						major = {this.state.major}
+						username = {this.state.username}
+						>
 
+					</DisplayUserData>
 
-						<DisplayUserData
-							
-							phone_number = {this.state.phone_number} 
-							role = {this.state.role}
-							lastName = {this.state.lastName}
-							firstName = {this.state.firstName}
-							gender = {this.state.gender}
-							major = {this.state.major}
-							username = {this.state.username}
-							>
-
-						</DisplayUserData>
-
-						<br></br>
-						<br></br>
+					<br/>
+					
+					<Grid container justify='center' alignItems='center'>
 						<Link to = "/admin/info_change" style={{ textDecoration: 'none'}}>
 							<Button
 								variant="contained"
 								color="primary"
 								size="large"
-								className={classes.button}
 								startIcon={<SaveIcon />}>
 									Update
 							</Button>
@@ -148,15 +142,18 @@ class AdminSettings extends React.Component {
 									Go to main
 							</Button>
 						</Link>
-					</div>					
-					}>
-					</MenuAppBar>
+					</Grid>
 
-			)
+					<br></br>
+					<br></br>
+					<br/>
+					<br/>
+				</Grid>				
+				}>
+				</MenuAppBar>
+			);
 		}
-		
 	}
-
 }
 	
 export default withStyles(useStyles, { withTheme: true })(AdminSettings);

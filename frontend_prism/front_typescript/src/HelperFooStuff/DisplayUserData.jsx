@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import React from "react"
 
@@ -7,12 +7,9 @@ const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
         '& .MuiTextField-root': {
-            margin: theme.spacing(1),
+            margin: theme.spacing(2),
             width: '20ch',
         },
-        marginBottom: theme.spacing(3),
-        marginRight: theme.spacing(10),
-        marginLeft: theme.spacing(1),
     },
     padding: {
         flexGrow: 1,
@@ -36,9 +33,10 @@ class DisplayUserData extends React.Component {
         const { classes } = this.props;
         return (
             <div className={classes.root}>
-
+                <Grid container justify='center' alignItems='center'>
                 {this.props.title}
 
+                <Grid container item justify='center' alignItems='center'>
                 <TextField
                     disabled id="standard-disabled_" 
                     variant="filled"
@@ -47,7 +45,6 @@ class DisplayUserData extends React.Component {
 
                 </TextField>
                 
-                
                 <TextField
                     disabled id="standard-disabled=" 
                     variant="filled"
@@ -55,31 +52,32 @@ class DisplayUserData extends React.Component {
                     defaultValue="******" >
 
                 </TextField>
+                </Grid>
 
                 <dd></dd>
                 <br></br>
                 
+                <Grid container item justify='center' alignItems='center'>
                 <TextField	
-                            disabled id="standard-disabled!" 	
-                            variant="filled"
-                            label="majors"
-                            defaultValue={this.props.major} >
+                    disabled id="standard-disabled!" 	
+                    variant="filled"
+                    label="majors"
+                    defaultValue={this.props.major} >
                 </TextField>
 
                 
                 <TextField	
-                            disabled id="standard-disabled__" 	
-                            variant="filled"
-                            label="Gender"
-                            defaultValue={this.props.gender} >
+                    disabled id="standard-disabled__" 	
+                    variant="filled"
+                    label="Gender"
+                    defaultValue={this.props.gender} >
                 </TextField>
-
-
-
+                </Grid>
 
                 <dd></dd>
                 <br></br>
 
+                <Grid container item justify='center' alignItems='center'>
                 <TextField 
                     disabled id="standard-disabled=_"
                     variant="filled"
@@ -96,14 +94,17 @@ class DisplayUserData extends React.Component {
                     defaultValue={this.props.lastName}>
 
                 </TextField>
+                </Grid>
 
                 <dd></dd>
                 <br></br>
+
+                <Grid container item justify='center' alignItems='center'>
                 <TextField	
-                            disabled id="standard-disabled=_=_" 	
-                            variant="filled"
-                            label="Role"
-                            defaultValue={this.props.role} >
+                    disabled id="standard-disabled=_=_" 	
+                    variant="filled"
+                    label="Role"
+                    defaultValue={this.props.role} >
                 </TextField>
 
                 <TextField 
@@ -113,6 +114,8 @@ class DisplayUserData extends React.Component {
                     defaultValue={this.props.phone_number}>
 
                 </TextField>
+                </Grid>
+                </Grid>
             </div>
         );
     }

@@ -1,13 +1,21 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText, FormLabel, TextField, Typography } from "@material-ui/core";
+import { Checkbox, FormControl, FormControlLabel,
+     FormGroup, FormHelperText, FormLabel, Snackbar, TextField } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import { Gender, genders } from '../../../HelperJS/Gender';
 import { Major, majors } from "../../../HelperJS/Major";
 import Role from "../../../Roles/Role";
-import { validateFields, handleOptionalFields } from '../../../HelperJS/validator';
+import { 
+    handleOptionalFields, 
+    isNumeric, 
+    onlyLettersAndDigits, 
+    checkPassword,
+    isValidName 
+} from '../../../HelperJS/validator';
 import { sendCreateUserRequest } from "../../../HelperJS/request_handler";
+import MuiAlert from '@material-ui/lab/Alert';
 
 
 const useStyles = (theme) => ({
@@ -34,6 +42,11 @@ const useStyles = (theme) => ({
     }
 });
 
+/* shows the alert msg when creation attempt is done. */
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 
 class UserCreationForm extends React.Component {
 
@@ -51,7 +64,9 @@ class UserCreationForm extends React.Component {
         this.handleChangeCommander = this.handleChangeCommander.bind(this);
         this.handleSave = this.handleSave.bind(this);
         this.handleResponse = this.handleResponse.bind(this);
+        this.handleMsgClose = this.handleMsgClose.bind(this);
 
+        // TODO - CHANGE TO EMPTY STRINGS!
         this.personalId = undefined;
         this.username = undefined;
         this.password = undefined;
@@ -63,9 +78,12 @@ class UserCreationForm extends React.Component {
         this.commander = undefined;
         this.showWarning = false;
         this.msg = undefined;
+        this.severity = undefined;
 
 
         this.state = {
+            buttonDisable: true,
+            msgOpen: false,
             role: this.props.myRole,
             updated: false,
             
@@ -73,36 +91,145 @@ class UserCreationForm extends React.Component {
             research: false,
             firmware: false,
             validation: false,
-            network: false
+            network: false, // to be deleted!
+
+            personalIdErr: "",
+            usernameErr: "",
+            passwordErr: "",
+            firstNameErr: "",
+            lastNameErr: "",
+            genderErr: "",
+            phoneNumberErr: "",
+            majorErr: "",
+            commanderErr: "",
         }
     }
 
     handleChangePersonalId(event) {
-        this.personalId = event.target.value
+        
+        let val = event.target.value;
+        this.personalId = val;
+
+        if (val.length === 0) {
+            this.setState({ personalIdErr: "You must enter the personal ID"});
+
+        } else if (!isNumeric(val)) {
+            this.setState({ personalIdErr: "Personal ID must contain only numbers"});
+        
+        } else {
+            this.personalId = val;
+            this.setState({ personalIdErr: "" });
+        } 
     }
 
     handleChangeUsername(event) {
-        this.username = event.target.value
+
+        let val = event.target.value;
+        this.username = val;
+
+        if (val.length === 0) {
+            this.setState({ usernameErr: "You must enter the username"});
+
+        } else if (!onlyLettersAndDigits(val)) {
+            this.setState({ usernameErr: "Username must contain only numbers and digits"});
+        
+        } else {
+            this.username = val;
+            this.setState({ usernameErr: "" });
+        } 
     }
 
     handleChangePassword(event) {
-        this.password = event.target.value
+
+        let val = event.target.value;
+        this.password = val;
+
+        if (val.length === 0) {
+            this.setState({ passwordErr: "You must enter the password"});
+
+        } else if (!checkPassword(val)) {
+            this.setState({ 
+                passwordErr: "Should have: one Uppercase letter, " +
+                    "one lowercase, one digit, length in range 6-20"
+            });
+        
+        } else {
+            this.password = val;
+            this.setState({ passwordErr: "" });
+        } 
     }
 
     handleChangeFirstName(event) {
-        this.firstName = event.target.value
+
+        let val = event.target.value;
+        this.firstName = val;
+
+        if (val.length === 0) {
+            this.setState({ firstNameErr: "You must enter the first name"});
+
+        } else if (!isValidName(val)) {
+            this.setState({ 
+                firstNameErr: "First name must contain letters only"
+            });
+        
+        } else {
+            this.firstName = val;
+            this.setState({ firstNameErr: "" });
+        } 
     }
 
     handleChangeLastName(event) {
-        this.lastName = event.target.value
+
+        let val = event.target.value;
+        this.lastName = val;
+
+        if (val.length === 0) {
+            this.setState({ lastNameErr: "You must enter the last name"});
+
+        } else if (!isValidName(val)) {
+            this.setState({ 
+                lastNameErr: "Last name must contain letters only"
+            });
+        
+        } else {
+            this.lastName = val;
+            this.setState({ lastNameErr: "" });
+        }
     }
 
     handleChangeGender(event) {
-        this.gender = event.target.value
+
+        this.gender = event.target.value;
+        
+        if (this.gender === 'None') {
+            this.setState({ genderErr: "You must choose a gender" });
+        } else {
+            this.setState({ genderErr: "" });
+        }
     }
     
     handleChangePhoneNumber(event) {
-        this.phoneNumber = event.target.value
+
+        let val = event.target.value;
+        this.phoneNumber = val;
+
+        if (val.length > 0 && val.length < 10) {
+            this.setState({ phoneNumberErr: "The phone number is not valid" });
+
+        } else if (val.length === 10) {
+
+            if (!isNumeric(val)) {
+                this.setState({ phoneNumberErr: "The phone number is not valid" });
+
+            } else {
+                this.phoneNumber = val;
+                this.setState({ phoneNumberErr: "" });
+
+            }
+        } else if (val.length === 0) {
+            this.phoneNumber = undefined;
+            this.setState({ phoneNumberErr: ""});
+        }
     }
 
     handleChangeMajor(event) {
@@ -114,7 +241,21 @@ class UserCreationForm extends React.Component {
     }
 
     handleChangeCommander(event) {
-        this.commander = event.target.value
+
+        let val = event.target.value;
+        this.commander = val;
+
+        if (val.length === 0) {
+            this.commander = undefined;
+            this.setState({ commanderErr: ""});
+
+        } else if (!isNumeric(val)) {
+            this.setState({ commanderErr: "Personal ID of commander must contain only numbers"});
+        
+        } else {
+            this.commander = val;
+            this.setState({ commanderErr: "" });
+        } 
     }
 
     componentDidUpdate() {
@@ -138,6 +279,8 @@ class UserCreationForm extends React.Component {
             gender: this.gender,
         };
 
+        let role = this.props.myRole;
+
         let optionals = {
             phoneNumber: this.phoneNumber,
             major: [this.major],
@@ -151,35 +294,19 @@ class UserCreationForm extends React.Component {
             commander: this.commander
         };
 
-        let result = validateFields(data);
-        let optionalFields = handleOptionalFields(optionals, data.role);
-
-        if (result.length > 0) {
-
-            this.showWarning = true;
-            this.msg = "You have missing fields!"
-
-            // cause re-rendering.
-            this.setState({updated: true});
-            
-            return;
-        }
+        let optionalFields = handleOptionalFields(optionals, role);
 
         // Add optional fields if they are defined.
         for (var key in optionalFields) {
             data[key] = optionalFields[key];
         }
 
-        console.log(data);
-
         sendCreateUserRequest(data).then((res) => {
             console.log(res);
             this.handleResponse(res);
 
-
         }, (err) => {
             console.log(err);
-
             this.handleResponse(err);
             
         })
@@ -192,48 +319,87 @@ class UserCreationForm extends React.Component {
             if ((res.response.status === 400) || (res.response.status === 403)) {
             
                 this.showWarning = true;
-                this.msg = "Invalid input, please fix";
+                this.severity = "error";
+                
+                if (res.response.data.message !== undefined) {
+
+                    this.msg = res.response.data.message;
+                } else {
+
+                    this.msg = "Invalid input, please fix";
+                }
     
-                this.setState({ updated: true });
+                this.setState({ updated: true, msgOpen: true });
     
             } else {
                 this.showWarning = true;
-                this.msg = "Something went wrong!";
-                this.setState({ updated: true});
+                this.severity = "error"
+                this.msg = "Something went wrong! Please try again";
+                this.setState({ updated: true, msgOpen: true });
             }
 
         } else {
             if (res.status === 201) {
+                //window.location.reload(false);
 
-                console.log("successful creation, should reload");
-                
-                window.location.reload(false);
+                this.personalId = "";
+                this.username = "";
+                this.password = "";
+                this.firstName = "";
+                this.lastName = "";
+                this.gender = "";
+                this.phoneNumber = "";
+                this.major = Major.Undefined;
+                this.commander = "";
 
                 this.showWarning = true;
+                this.severity = "success"
                 this.msg = "Created Successfully!";
-                this.setState({ updated: true});
+                this.setState({ 
+                    updated: true, msgOpen: true, software: false, research: false, 
+                    firmware: false, validation: false, network: false
+                });
      
             }
         }
+    }
+
+    handleMsgClose() {
+        this.showWarning = false;
+        this.setState({ msgOpen: false });
     }
     
     render() {
         const { classes } = this.props;
         const { software, research, firmware, validation, network } = this.state;
 
-        console.log("software: " + software + ", research: " + research + ", firmware: " + firmware + ", validation: "  + validation
-        + ", network: " + network);
-        
-        console.log("role: " + this.state.role);
 
+        let buttonEnable = false;
+        if (this.personalId !== undefined && this.username !== undefined && this.password !== undefined
+            && this.firstName !== undefined && this.lastName !== undefined && this.gender !== 'None'
+            && this.gender !== Gender.Undefined) {  
+
+            if (this.state.personalIdErr === "" && this.state.usernameErr === ""
+                && this.state.passwordErr === "" && this.state.firstNameErr === ""
+                && this.state.lastNameErr === "" && this.state.genderErr === ""
+                && this.state.majorErr === "" && this.state.phoneNumberErr === ""
+                && this.state.commanderErr === "") {
+
+                buttonEnable = true;
+            }
+        }
+        
         return (
             <div>
-                {(this.showWarning) ? <Typography 
-                            variant="h6"
-                            className={classes.myFont}
-                            color="error">
-                            {this.msg}
-                            </Typography> : ""}
+                {(this.showWarning) 
+                ? <Snackbar open={this.state.msgOpen} 
+                autoHideDuration={3000}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                onClose={this.handleMsgClose}>
+                    <Alert onClose={this.handleMsgClose} severity={this.severity}>
+                        {this.msg}
+                    </Alert>
+                </Snackbar> : ""}
 
                 <form className={classes.root} noValidate autoComplete="off">
                     <div>
@@ -242,6 +408,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-personal-id"
                         variant="outlined"
                         label="Required - Personal ID"
+                        value={this.personalId}
+                        error={this.state.personalIdErr.length === 0 ? false : true}
+                        helperText={this.state.personalIdErr}
                         onChange={this.handleChangePersonalId}
                         />
 
@@ -250,6 +419,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-username"
                         variant="outlined"
                         label="Required - Username"
+                        value={this.username}
+                        error={this.state.usernameErr.length === 0 ? false : true}
+                        helperText={this.state.usernameErr}
                         onChange={this.handleChangeUsername}
                         />
 
@@ -258,6 +430,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-pwd"
                         variant="outlined"
                         label="Required - Password"
+                        value={this.password}
+                        error={this.state.passwordErr.length === 0 ? false : true}
+                        helperText={this.state.passwordErr}
                         onChange={this.handleChangePassword}
                         />
 
@@ -269,6 +444,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-first-name"
                         variant="outlined"
                         label="Required - First Name"
+                        value={this.firstName}
+                        error={this.state.firstNameErr.length === 0 ? false : true}
+                        helperText={this.state.firstNameErr}
                         onChange={this.handleChangeFirstName}
                         />
 
@@ -277,6 +455,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-last-name"
                         variant="outlined"
                         label="Required - Last Name"
+                        value={this.lastName}
+                        error={this.state.lastNameErr.length === 0 ? false : true}
+                        helperText={this.state.lastNameErr}
                         onChange={this.handleChangeLastName}
                         />
 
@@ -285,7 +466,9 @@ class UserCreationForm extends React.Component {
                         select
                         required
                         label="Required - Gender"
-                        value={this.state.gender}
+                        error={this.state.genderErr.length === 0 ? false : true}
+                        helperText={this.state.genderErr}
+                        value={this.gender}
                         onChange={this.handleChangeGender}
                         SelectProps={{
                             native: true,
@@ -293,8 +476,10 @@ class UserCreationForm extends React.Component {
                         variant="outlined"
                         >
                         {genders.map((option) => (
-                            <option key={Math.random().toString(36).substr(2, 9)} value={option.value}>
-                            {option.label}
+                            <option 
+                            key={Math.random().toString(36).substr(2, 9)} 
+                            value={option.value}>
+                                {option.label}
                             </option>
                         ))}
                         </TextField>
@@ -306,6 +491,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-phone-number"
                         variant="outlined"
                         label="Phone Number"
+                        value={this.phoneNumber}
+                        error={this.state.phoneNumberErr.length === 0 ? false : true}
+                        helperText={this.state.phoneNumberErr}
                         onChange={this.handleChangePhoneNumber}
                         />
 
@@ -314,23 +502,46 @@ class UserCreationForm extends React.Component {
                             <FormLabel component="legend">Choose Your Majors</FormLabel>
                             <FormGroup style={{display: 'flex', flexDirection: 'row'}}>
                                 <FormControlLabel
-                                    control={<Checkbox checked={software} onChange={this.handleChangeCommanderMajor} name="software" />}
+                                    control={
+                                        <Checkbox 
+                                        checked={software} 
+                                        onChange={this.handleChangeCommanderMajor} 
+                                        name="software" />
+                                    }
                                     label="Software"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox checked={research} onChange={this.handleChangeCommanderMajor} name="research" />}
+                                    control={
+                                    <Checkbox 
+                                    checked={research} 
+                                    onChange={this.handleChangeCommanderMajor} 
+                                    name="research" />
+                                }
                                     label="Research"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox checked={firmware} onChange={this.handleChangeCommanderMajor} name="firmware" />}
+                                    control={<Checkbox 
+                                        checked={firmware} 
+                                        onChange={this.handleChangeCommanderMajor} 
+                                        name="firmware" />
+                                    }
                                     label="Firmware"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox checked={validation} onChange={this.handleChangeCommanderMajor} name="validation" />}
+                                    control={
+                                    <Checkbox 
+                                        checked={validation} 
+                                        onChange={this.handleChangeCommanderMajor} 
+                                        name="validation" />
+                                    }
                                     label="Validation"
                                 />
                                 <FormControlLabel
-                                    control={<Checkbox checked={network} onChange={this.handleChangeCommanderMajor} name="network" />}
+                                    control={<Checkbox 
+                                        checked={network} 
+                                        onChange={this.handleChangeCommanderMajor} 
+                                        name="network" />
+                                    }
                                     label="Network"
                                 />
                             </FormGroup>
@@ -342,7 +553,9 @@ class UserCreationForm extends React.Component {
                             id="outlined-select-major"
                             select
                             label="Major"
-                            value={this.state.major}
+                            value={this.major}
+                            error={this.state.majorErr.length === 0 ? false : true}
+                            helperText={this.state.majorErr}
                             onChange={this.handleChangeMajor}
                             SelectProps={{
                                 native: true,
@@ -350,8 +563,10 @@ class UserCreationForm extends React.Component {
                             variant="outlined"
                             >
                             {majors.map((option) => (
-                                <option key={Math.random().toString(36).substr(2, 9)} value={option.value}>
-                                {option.label}
+                                <option 
+                                key={Math.random().toString(36).substr(2, 9)} 
+                                value={option.value}>
+                                    {option.label}
                                 </option>
                             ))}
                             </TextField> : ''
@@ -361,6 +576,9 @@ class UserCreationForm extends React.Component {
                         id="outlined-basic-commander"
                         variant="outlined"
                         label="Commander ID"
+                        value={this.commander}
+                        error={this.state.commanderErr.length === 0 ? false : true}
+                        helperText={this.state.commanderErr}
                         onChange={this.handleChangeCommander}
                         /> : ''}
 
@@ -374,6 +592,7 @@ class UserCreationForm extends React.Component {
                 variant="contained"
                 color="primary"
                 size="large"
+                disabled={!buttonEnable}
                 startIcon={<SaveIcon />}
                 className={classes.button}
                 onClick={this.handleSave}

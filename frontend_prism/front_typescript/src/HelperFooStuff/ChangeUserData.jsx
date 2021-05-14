@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core';
+import { withStyles, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import React from "react"
 import SaveIcon from '@material-ui/icons/Save';
@@ -10,25 +10,23 @@ const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
         '& .MuiTextField-root': {
-            margin: theme.spacing(1),
+            margin: theme.spacing(2),
             width: '20ch',
         },
-        //marginTop: theme.spacing(3),
         marginLeft: theme.spacing(10),
     },
     padding: {
         flexGrow: 1,
         marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(10),
+        marginLeft: theme.spacing(20),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
-        marginLeft: theme.spacing(8),
-        marginTop: theme.spacing(2),
+
     },
     select: {
         marginRight: theme.spacing(20),
-    }
+    },
 });
 
 
@@ -41,16 +39,11 @@ class ChangeUserData extends React.Component {
 		this.handleTextFieldChangeFirstName = this.handleTextFieldChangeFirstName.bind(this)
 		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this)
 		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this)
-
-
 		this.updateUserInfo = this.updateUserInfo.bind(this)
 		this._username =  undefined
 		this._firstName = undefined
 		this._lastName = undefined
 		this._phone_number = undefined
-
-		
-
     }
 
 	updateUserInfo(event) {
@@ -76,14 +69,9 @@ class ChangeUserData extends React.Component {
                     }
                 }
                 
-            )
-            
-
-        }
-
-        
+            );
+        }        
     }
-
 
     handleTextFieldChangeUsername(event) {
 		let input =  event.target.value
@@ -103,7 +91,7 @@ class ChangeUserData extends React.Component {
 		this._lastName = input
 	}
 
-	handleTextFieldChangePhoneNum(event){
+	handleTextFieldChangePhoneNum(event) {
 		let input =  event.target.value
 		//this.state.phone_number = input
 		this._phone_number = input	
@@ -111,106 +99,103 @@ class ChangeUserData extends React.Component {
 
 
     render() {
-
 		const { classes } = this.props;
 
-      return (
+      	return (
 
 			<div className={classes.root}>
-                    <h3 className={classes.myFont}> Here You Can Change Data </h3>
-					<TextField onChange={this.handleTextFieldChangeUsername}
-								
-								variant="filled"
-								label="username" 
-                                >
+				<Grid container justify='center' alignItems='center'>
 
+				<h4 className={classes.myFont}> Here You Can Change Data </h4>
+				<br/>
+
+				<Grid container item justify='center' alignItems='center'>
+					<TextField onChange={this.handleTextFieldChangeUsername}		
+					variant="filled"
+					label="username" 
+					>
 					</TextField>
-
 
 					<TextField
-								disabled id="standard-disabled" 
-								variant="filled"
-								label="username"
-								defaultValue= {this.props.prev_username}>
-
+					disabled id="standard-disabled" 
+					variant="filled"
+					label="username"
+					defaultValue= {this.props.prev_username}>
 					</TextField>
-					<br></br>
-					<br></br>
-					
+				</Grid>
+
+				<br></br>
+				<br></br>
+				
+				<Grid container item justify='center' alignItems='center'>
 					<TextField onChange={this.handleTextFieldChangeFirstName}
-								
-								variant="filled"
-								label="First Name" >
-	
+					variant="filled"
+					label="First Name" >
 					</TextField>
 
 					
 					<TextField 
-								disabled id="standard-disabled"
-								variant="filled"
-								label="First Name" 
-								defaultValue={this.props.prev_firstName}>
-
+					disabled id="standard-disabled"
+					variant="filled"
+					label="First Name" 
+					defaultValue={this.props.prev_firstName}>
 					</TextField>
-					
+				</Grid>
+				
 
-					<br></br>
-					<br></br>
+				<br></br>
+				<br></br>
 
+				<Grid container item justify='center' alignItems='center'>
 					<TextField onChange={this.handleTextFieldChangeLastName}
-								
-								variant="filled"
-								label="Last Name" >
-	
+					variant="filled"
+					label="Last Name" >	
 					</TextField>
 
 
 					<TextField 
-								disabled id="standard-disabled"
-								variant="filled"
-								label="Last Name" 
-								defaultValue={this.props.prev_lastName}>
-
+					disabled id="standard-disabled"
+					variant="filled"
+					label="Last Name" 
+					defaultValue={this.props.prev_lastName}>
 					</TextField>
+				</Grid>
 
-					<br></br>
-					<br></br>
-					
-
+				<br></br>
+				<br></br>
+				
+				<Grid container item justify='center' alignItems='center'>
 					<TextField onChange={this.handleTextFieldChangePhoneNum}
-								
-								variant="filled"
-								label="Phone num" >
-	
+					variant="filled"
+					label="Phone num" >
 					</TextField>
 
 					<TextField 
-
-								disabled id="standard-disabled" 
-								variant="filled"
-								label="Phone number" 
-								defaultValue={this.props.prev_phone_number}>
-
+					disabled id="standard-disabled" 
+					variant="filled"
+					label="Phone number" 
+					defaultValue={this.props.prev_phone_number}>
 					</TextField>
+				</Grid>
 
-					<br></br>
-					<br></br>
+				<br></br>
+				<br></br>
+
+				</Grid>
+
+				<Grid item container justify='center' alignItems='center'>
 					<Button
-                                        onClick={this.updateUserInfo}
-                                        variant="contained"
-                                        className={classes.padding}
-                                        color="primary"
-                                        size="large"
-                                        startIcon={<SaveIcon />}>
-                                        Update user info
-                                            
-                    </Button>
-
-
+					onClick={this.updateUserInfo}
+					variant="contained"
+					color="primary"
+					size="large"
+					startIcon={<SaveIcon />}>
+						Update user info                    
+					</Button>
+				</Grid>
 
           </div>
-
-      )
+      	);
     }
 }
 
