@@ -1,6 +1,5 @@
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
-import UploadBar from './UploadBar';
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import PublishIcon from '@material-ui/icons/Publish';

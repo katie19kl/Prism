@@ -1,6 +1,6 @@
 import React from "react"
 import { getListSubmissionOfSubject, removeFileFromSubmission } from "./submission_handling"
-import { Box, TextareaAutosize, withStyles } from "@material-ui/core";
+import { Box, Grid, TextareaAutosize, withStyles } from "@material-ui/core";
 import { purple } from "@material-ui/core/colors";
 import Button from '@material-ui/core/Button';
 import {useHistory} from "react-router-dom";
@@ -27,9 +27,9 @@ const useStyles = (theme) => ({
         minWidth: 650,
  
     },
-
-
-
+    space: {
+        marginLeft: theme.spacing(2),
+    }
 });
 
 
@@ -172,9 +172,6 @@ class SubmissionTableInfo extends React.Component {
         })*/
     }
 
-
-
-
     setReviewContent() {
         // if review doesnt exist
         let reviewContent = "There is no review so far"
@@ -189,8 +186,7 @@ class SubmissionTableInfo extends React.Component {
 
     render() {
 
-        let classes = this.props.classes
-
+        let classes = this.props.classes;
 
         let submissionStatus = this.setSubmissionStatus()
 
@@ -222,37 +218,20 @@ class SubmissionTableInfo extends React.Component {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center"
-                  }}
-                  
-                >
-
-
-
+                  }}>
 
                     {(this.state.showConfirmDialog === true) ?
                         <ConfirmationDialog
-                            confirmDialogOpen={this.state.confirmDialogOpen}
-                            handleCloseConfirm={this.handleCloseConfirm}
-                            handleCloseCancel={this.handleCloseCancel}
-                            handleClose={this.handleCloseCancel}
-                            dialogGoal="File Deletion"
-
+                        confirmDialogOpen={this.state.confirmDialogOpen}
+                        handleCloseConfirm={this.handleCloseConfirm}
+                        handleCloseCancel={this.handleCloseCancel}
+                        handleClose={this.handleCloseCancel}
+                        dialogGoal="File Deletion"
                         /> : ''}
 
 
                     <div style={{ height: 400, width: '80%'}} >
                         <TableContainer component={Paper}>
-
-
-
-
-
-                            
-
-
-
-
-
 
                             <Table className={classes.table} aria-label="simple table">
 
@@ -300,105 +279,81 @@ class SubmissionTableInfo extends React.Component {
                                     {/* Row of submitted files */}
                                     <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
 
-
                                         <TableCell >
 
-
-
                                             <div>
-
-
-
-
 
                                                 <DisplayFiles 
                                                 FileDeletionButtonHandler = {this.deleteFileFromSubmissionHandler}
                                                 role ={Role.MyFiles}
                                                 files={this.state.submittedFiles}>
 
-
                                                 </DisplayFiles>
-
 
                                             </div>
 
-
-
-
                                         </TableCell>
-
 
                                         <TableCell component="th" scope="row">   Submitted files        </TableCell>
 
                                     </TableRow>
 
-
-
-
-
                                 </TableBody>
                             </Table>
 
-
-
-
                         </TableContainer>
-
-
-
                       
                         {this.role === Role.MyFiles ? 
+
+                            
+                            <div>
+
+                                <br/>
+                                <br/>
                                 
-                             
                                 <Box textAlign='center'>
 
                                     <Button variant='contained' color="primary" style={{backgroundColor: "red"}}
-                                    onClick={()=>history.goBack}>
+                                    onClick={() => history.goBack}>
                                             GO BACK
                                     </Button>
 
 
                                     <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
-                                        <Button variant='contained' color="primary" startIcon={<PublishIcon />}>
-                                            Make new Submission
+                                        <Button variant='contained' color="primary" className={classes.space} startIcon={<PublishIcon />}>
+                                            Create new Submission
                                         </Button>
 
                                     </Link>
 
-      
+        
                                 </Box>
-
-              
-                          
-
-
-                        : 
-                        " "
+                            </div>
+                        : " "
                         }
 
+                        <br/>
+                        <br/>
 
-                        <SubmissionReview   
+                        <Grid item container xs={12} justify='center' alignItems='center'>
+                            <SubmissionReview
                             major = {this.major}
                             module = {this.module}
                             subject = {this.subject}
                             soldierId = {this.soldierId}
-                            >
+                            />
 
-                        </SubmissionReview>
+                        </Grid>
                     
                     </div>
-
-        
-  
-
 
                 </div>
 
             );
         } else {
             return (
-                <h2> NO submission was made by u pidor </h2>
-            )
+                <h2> NO submission was made by u </h2>
+            );
         }
 
 

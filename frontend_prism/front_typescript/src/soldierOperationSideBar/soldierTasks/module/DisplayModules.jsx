@@ -1,11 +1,8 @@
 import React from "react"
-import DescriptionIcon from '@material-ui/icons/Description';
 import {getModulesByMajor} from "../../../adminOperationSideBar/CourseFiles/files_request_handler"
 import {IoSchool} from "react-icons/io5";
 import { Breadcrumbs, Typography, withStyles } from "@material-ui/core";
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import { Link } from "react-router-dom";
-
 
 
 const useStyles = (theme) => ({
@@ -39,7 +36,7 @@ class DisplayModules extends React.Component {
 
         let major = user["major"]
 
-        getModulesByMajor(major).then( (res)=>{
+        getModulesByMajor(major).then((res)=>{
             if (res !== undefined){
                 
                 console.log(res)

@@ -15,7 +15,8 @@ export interface IReview extends Document {
     grade: string;
 
     // time of the review submitting.
-    submittedTimeStamp: Date;
+    submittedDate: string;
+    submittedTime: string;
 
     // commander/tester.
     checkerRole: Role;

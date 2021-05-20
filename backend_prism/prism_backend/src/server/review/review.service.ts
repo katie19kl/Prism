@@ -14,8 +14,8 @@ export class ReviewService {
 
     async create(createReviewDto: CreateReviewDto) {
 
-        let currentTime = new Date();
-        createReviewDto.submittedTimeStamp = currentTime;
+        createReviewDto.submittedTime = new Date().toLocaleTimeString();
+        createReviewDto.submittedDate = new Date().toLocaleDateString();
 
         return await this.reviewsModel.create(createReviewDto);
     }
@@ -43,9 +43,13 @@ export class ReviewService {
 
         let allReviews =  await this.reviewsModel.find(filter);
     
-        console.log(allReviews)
+        console.log(allReviews);
 
-        return allReviews
+        allReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
+            ? 1 : (a.submittedDate === b.submittedDate) 
+                ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
+
+        return allReviews;
     }
 
     async getAllReviewsToShowSoldier(id: string, major: Major, module: string, subject: string) {
@@ -71,12 +75,14 @@ export class ReviewService {
         console.log(reviews)
         console.log(result)
 
+        result.sort((a, b) => (a.submittedDate > b.submittedDate)
+            ? 1 : (a.submittedDate === b.submittedDate) 
+                ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
+
         return result;
     }
 
     async updateReview(updateReviewDto: updateReviewDto) {
-
-        //updateReviewDto.submittedTimeStamp = new Date();
 
         // all the following fields must be considered as the key(filter).
         let filter = {
@@ -86,7 +92,8 @@ export class ReviewService {
             subject: updateReviewDto.subject,
 
             checkerId: updateReviewDto.checkerId,
-            submittedTimeStamp: updateReviewDto.submittedTimeStamp
+            submittedTime: updateReviewDto.submittedTime,
+            submittedDate: updateReviewDto.submittedDate
         };
 
         // check if the review exists:
@@ -107,7 +114,8 @@ export class ReviewService {
             }
 
             // update the date:
-            review.submittedTimeStamp = new Date();
+            review.submittedTime = new Date().toLocaleTimeString();
+            review.submittedDate = new Date().toLocaleDateString();
 
             return await review.save();
 

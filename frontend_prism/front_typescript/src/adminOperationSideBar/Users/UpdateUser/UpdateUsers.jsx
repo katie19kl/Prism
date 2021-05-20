@@ -2,7 +2,7 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
-import { TextField } from "@material-ui/core";
+import { TextField, Grid } from "@material-ui/core";
 import DisplayUserData from "../../../HelperFooStuff/DisplayUserData";
 import {getUserInfoByJWT, getUserInfoById, getSoldiersByMajors} from "../../../HelperJS/extract_info"
 import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
@@ -11,32 +11,16 @@ import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
 const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '50ch',
-        },
-        marginTop: theme.spacing(3),
-        marginLeft: theme.spacing(30),
-        display: 'inline',
-    },
-    padding: {
-        flexGrow: 1,
-        marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(40),
+        
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
-        marginLeft: theme.spacing(27),
-        marginTop: theme.spacing(2),
     },
     select: {
-        marginLeft: theme.spacing(30),
         width: "45ch"
     },
-    h3: {
-        marginLeft: theme.spacing(5),
-        fontFamily: "Comic Sans MS, Comic Sans, cursive",
-
+    padding: {
+        marginRight: theme.spacing(10),
     }
 });
 
@@ -52,12 +36,8 @@ class UpdateUsers extends React.Component {
         this.soldier_secondName = undefined;
         this.soldier_phone = undefined;
         this.soldier_username = undefined;
-        
-        
         this.state = { _selected: false, _error: false, _users_retrieved: false };
-        
         this.form = undefined;
-
         this.soldierInCommanderMajor = [
             {
                 firstName: ' None',
@@ -166,9 +146,10 @@ class UpdateUsers extends React.Component {
                 
                 
                 this.form = <DisplayUserData title={
-                    <h3 className={classes.h3}>Here You Can See Current Data</h3>
+                    <Grid justify='center' alignItems='center' container item xs={12}>
+                        <h4 className={classes.myFont}>Your Current Info</h4>
+                    </Grid>
                 }
-                
                 major = {major} 
                 gender = {gender}
                 role = {role}
@@ -203,33 +184,42 @@ class UpdateUsers extends React.Component {
                     <CommanderMenu/>
                 }
                 content={
-                    <div>
-                        <h2 className={classes.myFont}> Choose which one you want to update</h2>                            
+                    <div className={classes.padding}>
                         
-                        <br></br>
-                        <br></br>
+                        <Grid container justify='center' alignItems='center'>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <Grid container item justify='center' alignItems='center'>
+                                <h4 className={classes.myFont}> Choose which one you want to update</h4>                          
+                            </Grid>
+                            <br></br>
+                            <br></br>
                         
-                        <TextField
-                        select
-                        label="Soldier info "
-                        value={this.soldier_id}
-                        className={classes.select}
-                        onChange={this.handleChangeSelectSoldier}
-                        SelectProps={{
-                            native: true,
-                        }}
-                        helperText="Please select soldier to update"
-                        variant="outlined"
-                        >
-                        {this.soldierInCommanderMajor.map((sld) => (
-                                <option key={sld.personalId} value={sld.personalId}>
-                                {
-                                "Personal id: "  + sld.personalId + " | First name: " + sld.firstName 
-                                }
-                                </option>
-                        ))}
-
-                        </TextField>
+                            <Grid container item justify='center' alignItems='center'>
+                                <TextField
+                                select
+                                label="Soldier info "
+                                value={this.soldier_id}
+                                className={classes.select}
+                                onChange={this.handleChangeSelectSoldier}
+                                SelectProps={{
+                                    native: true,
+                                }}
+                                helperText="Please select soldier to update"
+                                variant="outlined"
+                                >
+                                {this.soldierInCommanderMajor.map((sld) => (
+                                        <option key={sld.personalId} value={sld.personalId}>
+                                        {
+                                        "Personal id: "  + sld.personalId + " | First name: " + sld.firstName 
+                                        }
+                                        </option>
+                                ))}
+                                </TextField>
+                            </Grid>
+                        </Grid>  
                     
                         <br/>
                         <br/>

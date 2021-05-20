@@ -2,6 +2,7 @@ import { IsAlpha, IsDate, IsNotEmpty, IsNumberString, IsOptional } from "class-v
 import { Role } from "src/server/RolesActivity/role.enum";
 import { IsMajor } from "src/server/users/decorators/major-validation.decorator";
 import { IsRole } from "src/server/users/decorators/role-validation.decorator";
+import { IsSingleMajor } from "src/server/users/decorators/single-major-validation.decorator";
 import { Major } from "../../users/common/major.enum";
 
 
@@ -12,7 +13,7 @@ export class CreateReviewDto {
     soldierId: string;
 
     @IsNotEmpty()
-    //@IsMajor()
+    @IsSingleMajor()
     major : Major
     
     @IsNotEmpty()
@@ -26,9 +27,11 @@ export class CreateReviewDto {
     grade: string;
 
     // time of the review submitting.
-    //@IsDate()
     @IsOptional()
-    submittedTimeStamp: Date;
+    submittedDate: string;
+
+    @IsOptional()
+    submittedTime: string;
 
     // commander/tester.
     @IsNotEmpty()
