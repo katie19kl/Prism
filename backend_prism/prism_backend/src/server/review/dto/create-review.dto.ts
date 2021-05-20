@@ -27,9 +27,11 @@ export class CreateReviewDto {
     grade: string;
 
     // time of the review submitting.
-    //@IsDate()
     @IsOptional()
-    submittedTimeStamp: Date;
+    submittedDate: string;
+
+    @IsOptional()
+    submittedTime: string;
 
     // commander/tester.
     @IsNotEmpty()

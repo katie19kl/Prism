@@ -29,8 +29,12 @@ export const ReviewSchema = new mongoose.Schema({
         type: String
     },
 
-    submittedTimeStamp: {
-        type: Date
+    submittedDate: {
+        type: String
+    },
+
+    submittedTime: {
+        type: String
     },
 
     // commander/tester.

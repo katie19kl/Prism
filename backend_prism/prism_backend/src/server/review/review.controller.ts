@@ -34,8 +34,6 @@ export class ReviewController {
                 userSubmission.isChecked = true;
                 await userSubmission.save();
 
-                createReviewDto.submittedTimeStamp = new Date();
-
                 return this.reviewService.create(createReviewDto);
 
             } else {

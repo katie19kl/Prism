@@ -32,8 +32,10 @@ export class updateReviewDto extends PartialType(CreateReviewDto) {
 
     // time of the review submitting.
     @IsNotEmpty()
-    //@IsDate()
-    submittedTimeStamp: Date;
+    submittedDate: string;
+
+    @IsNotEmpty()
+    submittedTime: string;
 
     // commander/tester.
     @IsOptional()
