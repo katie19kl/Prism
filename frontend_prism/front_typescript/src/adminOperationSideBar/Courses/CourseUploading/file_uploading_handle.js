@@ -55,7 +55,7 @@ async function getListOfAllFiles(major, module, subject) {
 
 async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
-    ////// IF SINGLE file --- TAKE CARE !!!!!!!!!!!!!!
+  
     let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
 
     

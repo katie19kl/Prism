@@ -34,7 +34,6 @@ async function getAllReviewsForSoldier(major, module, subject, studentId) {
 			
 		});
 
-        let filteredArr = []
         return await req.get(url)
 
             .then((response) => {
