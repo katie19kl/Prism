@@ -44,7 +44,7 @@ export class UserSubmissionController {
 
         console.log("------------------------------------------------")
         try {
-            let submissionInfo =   await this.usersService.getUserSubmissionByKey(id, major, module, subject);
+            let submissionInfo = await this.usersService.getUserSubmissionByKey(id, major, module, subject);
             console.log("------------------------------------------------")
             return submissionInfo
     
@@ -53,10 +53,8 @@ export class UserSubmissionController {
             console.log("-------------!!!!!-----------------------------------")
             console.log(error)
             
-            throw  error
-
+            throw error
         }
-                    
     }    
 
 

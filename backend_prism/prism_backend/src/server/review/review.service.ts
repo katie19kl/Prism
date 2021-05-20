@@ -45,7 +45,7 @@ export class ReviewService {
     
         console.log(allReviews)
 
-        return allReviews
+        return allReviews;
     }
 
     async getAllReviewsToShowSoldier(id: string, major: Major, module: string, subject: string) {

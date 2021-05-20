@@ -62,12 +62,6 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
     let token = LocalStorage.getItem(LocalStorage.token);
     let url  = "http://localhost:4000/user-submission/" + file_name;
     
-
-
-
-
-
-
     console.log(url + "    is provided URL ")
 
     if (token === null || token === 'undefined') {
@@ -100,10 +94,6 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 				'Content-Type': 'application/json'
 			},
 
-
-
-
-			
 		});
 
  

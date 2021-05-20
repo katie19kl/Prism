@@ -26,9 +26,6 @@ class SubmissionReview extends React.Component {
         this.subject = this.props.subject
         this.soldierId = this.props.soldierId
 
-
-
-
         this.grade = undefined
         this.lastUpdate = undefined
         this.reviewer = undefined
@@ -120,30 +117,21 @@ class SubmissionReview extends React.Component {
         console.log(this.state.reviews)
         console.log("&&&&&&&&&&&&&&&&&&&&&&&&")
 
-        let reviewContent = this.convertNewLineToNewParagraph("1- good\n2-fifty-fifty\n3-Xuinia")
+        let reviewContent = this.convertNewLineToNewParagraph("1- good\n2-fifty-fifty\n3-bad")
         return (
-            <div style={{ height: 400, width: '80%' }} >
+            <div style={{ height: 400, width: '80%'}} >
                 <TableContainer component={Paper}>
-
-
-
                     <Table className={classes.table} aria-label="simple table">
 
-
                         <TableBody>
-
-
-
 
                             {/* Row of update time */}
                             <TableRow>
 
-                                <TableCell >{"Time:12:23 , ,,, Date: 31 of March"}</TableCell>
+                                <TableCell >{"Time:12:23, Date: 31 of March"}</TableCell>
                                 <TableCell component="th" scope="row">   Last update        </TableCell>
 
                             </TableRow>
-
-
 
 
                             {/* Row of review content */}
@@ -175,14 +163,7 @@ class SubmissionReview extends React.Component {
                         </TableBody>
                     </Table>
 
-
-
-
                 </TableContainer>
-
-
-
-
 
                 <div>
 
@@ -190,6 +171,7 @@ class SubmissionReview extends React.Component {
                         <Typography>{"------------------------------------------1-2-3-...-10"}</Typography>
                     </Paper>
 
+                    <br/>
 
                     <MobileStepper
                         steps={10}
@@ -205,24 +187,18 @@ class SubmissionReview extends React.Component {
                         }
                         backButton={
                             <Button size="small" >
-
                                 <KeyboardArrowLeft />
-                                    Back
-                                </Button>
+                                Back
+                            </Button>
                         }
                     />
+
+                    <br/>
+                    <br/>
                 </div>
-
-
-
-
-
             </div>
-        )
-
+        );
     }
-
-
 }
 
 

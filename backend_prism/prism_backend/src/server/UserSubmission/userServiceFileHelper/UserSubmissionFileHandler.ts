@@ -1,5 +1,5 @@
 import { NotFoundException } from "@nestjs/common";
-import { IndexingFormat } from "src/server/file-handling/common/IndexingFormat";
+import { IndexingFormat } from '../../file-handling/common/IndexingFormat';
 import { FileHandlingService } from "src/server/file-handling/file-handling.service";
 import { FileManager } from "src/server/file-handling/managers/FileManager";
 import { Major } from "src/server/users/common/major.enum";

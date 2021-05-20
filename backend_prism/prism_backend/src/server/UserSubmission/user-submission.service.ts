@@ -49,10 +49,6 @@ export class UserSubmissionService {
         
         //////////////// SUKA WHY MAJOR ARRAY ???? ////////////////
         
-        
-        
-        
-        
         console.log("1")
         const filter = { 
             soldierId: id,
@@ -72,7 +68,7 @@ export class UserSubmissionService {
         
         } else {
             console.log("5")
-            throw  new HttpException("No submission has been made by the soldier", HttpStatus.NOT_FOUND);
+            throw new HttpException("No submission has been made by the soldier", HttpStatus.NOT_FOUND);
         } 
     }
 

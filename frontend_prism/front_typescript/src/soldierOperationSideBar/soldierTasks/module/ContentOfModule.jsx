@@ -63,7 +63,7 @@ class ContentOfModule extends React.Component {
                     <li className="list-group-item" key={index}  >
                         
   
-                        <h6 className={classes.title}><b>{subject} </b></h6>
+                        <h3 className={classes.title}><b>{subject} </b></h3>
 
                         <i className={classes}> 
                             <div>
@@ -80,17 +80,15 @@ class ContentOfModule extends React.Component {
                             </div>  
                         </i>
 
+                        <br/>
+
                         <Link to={"/submission/info/" + postfix_param + subject}>
                             <Button variant="contained" color="primary" size="medium" >
                                 Submission Info
                             </Button>
                         </Link>
 
-
-                        
                     </li>
-
-
                     ))
                 } 
                 </ul>

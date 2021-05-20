@@ -9,39 +9,43 @@ import { ReviewService } from './review.service';
 export class ReviewController {
 
     constructor(private reviewService: ReviewService,
-        private usesSubmissionService: UserSubmissionService) {}
+        private usersSubmissionService: UserSubmissionService) {}
 
 
     @Post()
     async create(@Body() createReviewDto: CreateReviewDto) {
 
         // first check there is a user submission object.
-        // use await!
 
         let soldierId = createReviewDto.soldierId;
-//////////////////////////////////////////////////
         let major = createReviewDto.major;
-        console.log(major, '--------------')
-////////////////////////////////////////////////
         let module = createReviewDto.module;
         let subject = createReviewDto.subject;
 
-        let userSubmission = await this.usesSubmissionService.getUserSubmissionByKey(soldierId, major, module, subject);
+        try {
 
-        if (userSubmission) {
-            console.log("all good");
+            let userSubmission = await 
+                this.usersSubmissionService.getUserSubmissionByKey(soldierId, major, module, subject);
 
-            // update the userSubmission field of "isChecked" to true since a review was given.
-            userSubmission.isChecked = true;
-            await userSubmission.save();
+            if (userSubmission) {
+                console.log("all good");
 
-            createReviewDto.submittedTimeStamp = new Date();
+                // update the userSubmission field of "isChecked" to true since a review was given.
+                userSubmission.isChecked = true;
+                await userSubmission.save();
 
-            return this.reviewService.create(createReviewDto);
+                createReviewDto.submittedTimeStamp = new Date();
 
-        } else {
-            console.log("might be an error")
+                return this.reviewService.create(createReviewDto);
+
+            } else {
+                console.log("might be an error");
+            }
+
+        } catch (error) {
+            throw error;
         }
+    
     }
 
     
@@ -84,9 +88,14 @@ export class ReviewController {
         // 1. comment- the review itself
         // 2. grade
         // 3. showTo
-        return this.reviewService.updateReview(updateReviewDto);
+        try {
+            let updated = this.reviewService.updateReview(updateReviewDto);
+            return updated;
+        }
 
+        catch (error) {
+            throw error;
+        }
+        
     }
-
-    
 }
