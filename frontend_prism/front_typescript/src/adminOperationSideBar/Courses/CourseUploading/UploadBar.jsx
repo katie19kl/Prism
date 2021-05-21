@@ -49,6 +49,9 @@ const useStyles = (theme) => ({
 	padding: {
 		marginRight: theme.spacing(10),
 	},
+	button: {
+		marginLeft: theme.spacing(2),
+	}
 });
 
 
@@ -111,8 +114,6 @@ class UploadBar extends Component {
             this.setState({ chosenSubject: this.props.chosenSubject});
         }
     }
-
-
 
 	upload(idx, file) {
 		let _progressInfos = [...this.state.progressInfos];
@@ -306,7 +307,6 @@ class UploadBar extends Component {
 		});
 	}
 
-
 	componentDidMount(){
 	
 		this.setState({emptyFileList:this.myRef_toInput.current.files})
@@ -339,7 +339,8 @@ class UploadBar extends Component {
 		if (this.role === Role.Commander){
 			menu_ = <CommanderMenu />
 			role_ = Role.Commander
-		}else if (this.role === Role.MyFiles){
+
+		} else if (this.role === Role.MyFiles){
 			menu_ = <SoldierInfo/>
 			role_ = Role.Soldier
 		}
@@ -349,7 +350,6 @@ class UploadBar extends Component {
 			content={
 				<div className={classes.root}>
 					
-					<h3> ROLE FOR WHOOOOOOOOO      {this.role}</h3>
 					<br/>
 
 					<Grid container item xs={12} justify="center" alignItems="center">
@@ -490,6 +490,7 @@ class UploadBar extends Component {
 
 					<Button
 					variant="contained" color="secondary"
+					className={classes.button}
 					onClick={() => this.cancelChoice()}
 						>
 						Cancel All Choices 
