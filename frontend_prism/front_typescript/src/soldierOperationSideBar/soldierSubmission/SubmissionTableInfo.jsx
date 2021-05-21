@@ -318,13 +318,22 @@ class SubmissionTableInfo extends React.Component {
                                             GO BACK
                                     </Button>
 
-
+                                    {this.role === Role.MyFiles &&
                                     <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
                                         <Button variant='contained' color="primary" className={classes.space} startIcon={<PublishIcon />}>
                                             Create new Submission
                                         </Button>
 
                                     </Link>
+                                    }
+                                    {this.role === Role.Commander &&
+                                    <Link>
+                                            <Button variant='contained' color="primary" className={classes.space} startIcon={<PublishIcon />}>
+                                            Create new Review
+                                        </Button>
+
+                                    </Link>
+                                    }
 
         
                                 </Box>
@@ -341,6 +350,7 @@ class SubmissionTableInfo extends React.Component {
                             module = {this.module}
                             subject = {this.subject}
                             soldierId = {this.soldierId}
+                            role = {this.role}
                             />
 
                         </Grid>

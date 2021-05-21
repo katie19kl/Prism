@@ -21,25 +21,33 @@ class SubmissionReview extends React.Component {
     constructor(props) {
         super(props)
 
+        this.nextClick = this.nextClick.bind(this)
+        this.prevClick = this.prevClick.bind(this) 
+
+        
+
         this.major = this.props.major
         this.module = this.props.module
         this.subject = this.props.subject
         this.soldierId = this.props.soldierId
+        this.role = this.props.role
+
 
         this.grade = undefined
         this.lastUpdate = undefined
         this.reviewer = undefined
         this.content = undefined
 
-        this.numberReview = 0
-
+        
 
 
 
 
         this.state =
         {
-            reviews: []
+            reviews: [],
+            amountRevs: -1,
+            currentNumberReview : 0,
         }
 
 
@@ -63,7 +71,7 @@ class SubmissionReview extends React.Component {
 
                 for (let rev of arrData) {
                     if (rev.showTo.indexOf(Role.Soldier) !== -1) {
-                        console.log("can show --=-=-")
+                        console.log("can show -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=-=-")
                         console.log(rev)
                         allowedReviews.push(rev)
 
@@ -88,7 +96,7 @@ class SubmissionReview extends React.Component {
             console.log("!--------------!")
             console.log(res)
             if (res !== undefined) {
-                this.setState({ reviews: res })
+                this.setState({ reviews: res, amountRevs: res.length })
             }
             console.log("!--------------!")
         })
@@ -105,8 +113,40 @@ class SubmissionReview extends React.Component {
         return newText;
     }
 
+    retrieveDataOfCurrentReview()
+    {
+        
+        let currentIndexReview = this.state.currentNumberReview
+        
+        let currReviewToDisplay = this.state.reviews[currentIndexReview]
+
+        if (currReviewToDisplay === undefined){
+            return undefined
+        }
+        return { comment : currReviewToDisplay.comment,
+                 grade : currReviewToDisplay.grade,
+                 checkerId : currReviewToDisplay.checkerId,
+                 checkerRole: currReviewToDisplay.checkerRole,
+                 date : currReviewToDisplay.submittedDate,
+                 time : currReviewToDisplay.submittedTime
+
+        }
 
 
+    
+    }
+    nextClick(){
+        console.log("NEXT")
+        let prevIndexRev = this.state.currentNumberReview
+        this.setState({currentNumberReview : prevIndexRev + 1})
+        
+    }
+    prevClick(){
+        console.log("PREV")
+        let prevIndexRev = this.state.currentNumberReview
+        this.setState({currentNumberReview : prevIndexRev - 1})
+        
+    }
 
 
     render() {
@@ -114,10 +154,39 @@ class SubmissionReview extends React.Component {
         let classes = this.props.classes
 
         console.log("&&&&&&&&&&&&&&&&&&&&&&&&")
-        console.log(this.state.reviews)
+        //console.log(this.state.reviews)
+        let currIndex = this.state.currentNumberReview
+        console.log(this.state.currentNumberReview)
+        
+        let dataReview = this.retrieveDataOfCurrentReview()
+        console.log(dataReview)
+
+        let comment
+        let grade
+        let checkerId
+        let checkerRole
+        let date
+        let time
+
+        if (dataReview !== undefined){
+            comment = dataReview.comment
+            grade = dataReview.grade
+            checkerId = dataReview.checkerId
+            checkerRole = dataReview.checkerRole
+            time = dataReview.time
+            date = dataReview.date
+
+            console.log(comment)
+            console.log(grade)
+            console.log(checkerId)
+            console.log(checkerRole)
+            console.log(time)
+        }
+
         console.log("&&&&&&&&&&&&&&&&&&&&&&&&")
 
-        let reviewContent = this.convertNewLineToNewParagraph("1- good\n2-fifty-fifty\n3-bad")
+        //let reviewContent = this.convertNewLineToNewParagraph("1- good\n2-fifty-fifty\n3-Xuinia")
+        
         return (
             <div style={{ height: 400, width: '80%'}} >
                 <TableContainer component={Paper}>
@@ -128,8 +197,8 @@ class SubmissionReview extends React.Component {
                             {/* Row of update time */}
                             <TableRow>
 
-                                <TableCell >{"Time:12:23, Date: 31 of March"}</TableCell>
-                                <TableCell component="th" scope="row">   Last update        </TableCell>
+                                <TableCell >{date + " " + time }</TableCell>
+                                <TableCell component="th" scope="row">   Last Update        </TableCell>
 
                             </TableRow>
 
@@ -137,7 +206,7 @@ class SubmissionReview extends React.Component {
                             {/* Row of review content */}
                             <TableRow>
 
-                                <TableCell > {"almost well done "} </TableCell>
+                                <TableCell > {grade} </TableCell>
                                 <TableCell component="th" scope="row">   Grade       </TableCell>
 
                             </TableRow>
@@ -146,7 +215,7 @@ class SubmissionReview extends React.Component {
                             {/* Row of reviewer */}
                             <TableRow>
 
-                                <TableCell > {"123456789-Boris-Commander"} </TableCell>
+                                <TableCell > {checkerId + " |-| " + checkerRole} </TableCell>
                                 <TableCell component="th" scope="row">   Reviewer       </TableCell>
 
                             </TableRow>
@@ -154,8 +223,8 @@ class SubmissionReview extends React.Component {
                             {/*Content of review*/}
                             <TableRow>
 
-                                <TableCell > {reviewContent} </TableCell>
-                                <TableCell component="th" scope="row">   Content       </TableCell>
+                                <TableCell > {comment} </TableCell>
+                                <TableCell component="th" scope="row">   Comment       </TableCell>
 
                             </TableRow>
 
@@ -165,28 +234,26 @@ class SubmissionReview extends React.Component {
 
                 </TableContainer>
 
+
+
                 <div>
 
-                    <Paper square elevation={0}>
-                        <Typography>{"------------------------------------------1-2-3-...-10"}</Typography>
-                    </Paper>
-
-                    <br/>
 
                     <MobileStepper
-                        steps={10}
+                        steps={this.state.amountRevs}
                         position="static"
                         variant="text"
-                        activeStep={this.numberReview}
+                        activeStep={currIndex}
                         nextButton={
-                            <Button size="small">
+                            <Button size="small" onClick={this.nextClick} disabled={currIndex === this.state.amountRevs - 1}>
                                 Next
                               <KeyboardArrowRight />
 
                             </Button>
                         }
                         backButton={
-                            <Button size="small" >
+                            <Button size="small"  onClick={this.prevClick} disabled={currIndex === 0} >
+
                                 <KeyboardArrowLeft />
                                 Back
                             </Button>
