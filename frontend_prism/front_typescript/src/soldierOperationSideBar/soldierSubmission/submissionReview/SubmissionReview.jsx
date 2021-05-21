@@ -30,6 +30,8 @@ class SubmissionReview extends React.Component {
         this.module = this.props.module
         this.subject = this.props.subject
         this.soldierId = this.props.soldierId
+        this.role = this.props.role
+
 
         this.grade = undefined
         this.lastUpdate = undefined
@@ -69,7 +71,7 @@ class SubmissionReview extends React.Component {
 
                 for (let rev of arrData) {
                     if (rev.showTo.indexOf(Role.Soldier) !== -1) {
-                        console.log("can show --=-=-")
+                        console.log("can show -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==--=-=-")
                         console.log(rev)
                         allowedReviews.push(rev)
 
@@ -125,7 +127,8 @@ class SubmissionReview extends React.Component {
                  grade : currReviewToDisplay.grade,
                  checkerId : currReviewToDisplay.checkerId,
                  checkerRole: currReviewToDisplay.checkerRole,
-                 time : currReviewToDisplay.submittedTimeStamp
+                 date : currReviewToDisplay.submittedDate,
+                 time : currReviewToDisplay.submittedTime
 
         }
 
@@ -162,6 +165,7 @@ class SubmissionReview extends React.Component {
         let grade
         let checkerId
         let checkerRole
+        let date
         let time
 
         if (dataReview !== undefined){
@@ -170,6 +174,8 @@ class SubmissionReview extends React.Component {
             checkerId = dataReview.checkerId
             checkerRole = dataReview.checkerRole
             time = dataReview.time
+            date = dataReview.date
+
             console.log(comment)
             console.log(grade)
             console.log(checkerId)
@@ -191,8 +197,8 @@ class SubmissionReview extends React.Component {
                             {/* Row of update time */}
                             <TableRow>
 
-                                <TableCell >{time}</TableCell>
-                                <TableCell component="th" scope="row">   Last update        </TableCell>
+                                <TableCell >{date + " " + time }</TableCell>
+                                <TableCell component="th" scope="row">   Last Update        </TableCell>
 
                             </TableRow>
 
