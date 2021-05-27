@@ -314,7 +314,7 @@ class SubmissionTableInfo extends React.Component {
                                 <Box textAlign='center'>
 
                                     <Button variant='contained' color="primary" style={{backgroundColor: "red"}}
-                                    onClick={() => history.goBack}>
+                                    onClick={() => history.goBack()}>
                                             GO BACK
                                     </Button>
 

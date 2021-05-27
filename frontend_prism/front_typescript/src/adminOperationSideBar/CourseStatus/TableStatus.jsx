@@ -89,7 +89,10 @@ class TableStatus extends React.Component {
 
 	}
 
+	// extracts all soldiers of major defined in state
 	getAllSoldiersMajor() {
+
+		// function expects array of major
 		let major = []
 		major.push(this.props.selectedMajor)
 
@@ -99,7 +102,7 @@ class TableStatus extends React.Component {
 				if (response !== undefined) {
 
 					if (response.data !== undefined) {
-
+						// sets state soldier with id & first name only
 						this.processNewSoldiers(response.data)
 					}
 				}
@@ -107,7 +110,7 @@ class TableStatus extends React.Component {
 		}
 	}
 
-
+	// extracts all subject of selected major & module
 	getAllSubject() {
 		let major = this.props.selectedMajor
 		let module = this.props.selectedModule
@@ -123,47 +126,43 @@ class TableStatus extends React.Component {
 		})
 	}
 
-
-	processNewSoldiers(soldiersFromResponse){
+	// given array of soldiers & sets array of id & first names
+	processNewSoldiers(soldiersFromResponse) {
 
 		let allMySoldiers = soldiersFromResponse
 
 		let usersToTable = []
 		let term
+		// take neccessary fields only
 		for (let user of allMySoldiers) {
 			term = { personalId: user.personalId, firstName: user.firstName }
-			//console.log(term)
 			usersToTable.push(term)
 		}
-		// server answer id & personalId
-		// if different answer => update table
 
+		// server answer VS field value  by { id & personalId }
 		usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
 
 
 		let equal = (JSON.stringify(usersToTable) == JSON.stringify(this.state.soldiers))
-
+		// if different answer => update table
 		if (!equal) {
 
 			let newSoldiers = usersToTable
+			// new soldiers => new submissions have to be exctracted 
+			this.getSoldierSubmissions(newSoldiers).then((subData) => {
 
-			this.getSoldierSubmissions(newSoldiers).then((subData)=>{
-				
-				//console.log("---submission data---")
-				//console.log(subData)
-				//console.log("------===========-------------=========-----")
-				this.setState({ soldiers: usersToTable, submissionData:subData})
+				// set state with new-arrived soldiers & their submission data
+				this.setState({ soldiers: usersToTable, submissionData: subData })
 			})
 
 
 		}
 	}
 
-
+	// extract ONLY my soldiers in selected major
 	extractAllMySoldiers() {
 		let selectedMajor = this.props.selectedMajor
 
-		//console.log("Calling for students")
 		getAllMySoldiers(selectedMajor).then((response) => {
 			if (response !== undefined) {
 				if (response.data !== undefined) {
@@ -176,31 +175,23 @@ class TableStatus extends React.Component {
 
 	componentDidUpdate() {
 
-		console.log("in updating")
-
+		// if check box (MySoldiers) state was changed
 		if (this.props.mySoldiers !== this.state.mySoldiers) {
 
-			console.log("1")
-			//this.setState({mySoldiers:this.props.mySoldiers})
-			this.setState({ mySoldiers: this.props.mySoldiers }, function(){
+			this.setState({ mySoldiers: this.props.mySoldiers }, function () {
 				let mySoliders = this.props.mySoldiers
-				console.log("all my ? " + mySoliders)
 				if (mySoliders) {
 					this.extractAllMySoldiers()
 				} else {
 					this.getAllSoldiersMajor()
 				}
 			})
-
-	
-
 		}
 
 
-
+		// If another major was selected
 		if (this.props.selectedMajor !== this.state.selectedMajor) {
 
-			console.log("2")
 			this.setState({ selectedMajor: this.props.selectedMajor }, function () {
 				// if major was changed => retrieve another students
 				let mySoliders = this.props.mySoldiers
@@ -216,33 +207,19 @@ class TableStatus extends React.Component {
 
 		}
 
+		// if another module was selected
 		if (this.props.selectedModule !== this.state.selectedModule) {
 
-			console.log("3")
-			console.log(this.props.selectedModule)
-			console.log("//////.....///////")
-			
+
 			this.setState({ selectedModule: this.props.selectedModule }, function () {
-				console.log(this.state.soldiers)
-				console.log("+-+-+")
-				
-				this.getSoldierSubmissions(this.state.soldiers).then((subData)=>{
-					//console.log("--HERE--")
-					//console.log(subData)
-					
-					this.setState({submissionData:subData}, function(){
+				// extract all submissions of new extracted-module
+				this.getSoldierSubmissions(this.state.soldiers).then((subData) => {
+
+					this.setState({ submissionData: subData }, function () {
+						// extract all subjects of new selected-module
 						this.getAllSubject()
 					})
 				})
-				/*let mySoliders = this.props.mySoldiers
-				if (mySoliders) {
-					this.extractAllMySoldiers()
-				} else {
-					this.getAllSoldiersMajor()
-				}*/
-				
-				//this.getAllSubject()
-				
 			})
 
 
@@ -250,94 +227,83 @@ class TableStatus extends React.Component {
 		}
 	}
 
-
+	// extracts all submissions of specified soldiers
 	getSoldierSubmissions(newSoldiers) {
 		let major = this.props.selectedMajor
 		let module = this.props.selectedModule
-		//console.log("------------------module selected-------------------")
-		//console.log(module)
-		//console.log("-----------------------------------------------------")
-		//let soldiers = this.state.soldiers
 		let soldiers = newSoldiers
-		//console.log("sssssssssssssssssssssssss")
-		//console.log(soldiers)
-		//console.log("sssssssssssssssssssssssss")
+
 
 		if (soldiers !== []) {
 
-			return new Promise((resol,rej)=> 
-			{
+			return new Promise((resol, rej) => {
 				usersSubmissions(soldiers, major, module).then((res) => {
 					if (res !== undefined) {
 						if (res.data !== undefined) {
-							let submissionData = res.data
 
-							//console.log("-----------------------submission data-------------------------")
-							///console.log(submissionData)
-							//console.log("------===========-------------=========-----")
+							let submissionData = res.data
 							resol(submissionData)
-							//this.setState({ submissionData:res.data })
-	
+
 						}
 						else {
-							
+
 							rej(undefined)
 						}
-					}else {
+					} else {
 						rej(undefined)
 					}
 				})
 
 			});
-			
-			
 		}
 	}
 
 
 	componentDidMount() {
 
-		//console.log("In mounting")
 		let mySoliders = this.props.mySoldiers
 		// request for only my soldiers
 		if (mySoliders) {
 			this.extractAllMySoldiers()
-		} else {// request for all soldiers of major
+		} else {
+			// request for all soldiers of major
 			this.getAllSoldiersMajor()
 		}
 
 		this.getAllSubject()
 	}
 
-
+	// converts info from soldier-submissions to appropriate displaying
 	convertToColors(soldierSubmissionData) {
-
 
 
 		let idSubjectColors = {}
 
-
+		// key - soldier personalId
 		for (let key in soldierSubmissionData) {
-			//let subjectColor = {}
-			let foo = {}
 
+			// subject-sorted sequence of colors/state/subject-name
 			let subjectColor = []
 
+
 			let id = key
+			// submissions of soldier 
 			let submissions = soldierSubmissionData[key]
 
 
 			let allSubjects = this.state.subjects
 
+			// subjects are selected by sub-indexing (on the server side)
+			// iterating in same way on subjects as displaying will be done
 			for (let subject_ of allSubjects) {
 
 				let status = "non assigned"
 				let color = Status.Closed
 
-
 				// existing submission per subject
+				
 				for (let submission of submissions) {
-
+					// verifying status of submission
 					let checked = submission.checked
 					let subject = submission.subject
 
@@ -345,9 +311,10 @@ class TableStatus extends React.Component {
 						status = "assigned"
 						color = Status.SubmittedNotReviewed
 
+//////////////////////////////////////////////////////////MUST CHECK BY GRADE-STATUS OK or not OK//////////////////////////////////////
+
 						if (checked) {
 							status = "checked"
-
 							color = Status.SubmittedNotGoodEnough // Status.SubmittedGoodEnough
 						}
 					}
@@ -360,13 +327,12 @@ class TableStatus extends React.Component {
 				})
 			}
 
-
+			// soldier id is mapped to array of displaying info (color/subject name/status)
+			// actually only color will be enough, but rest is added to have more informative during debugging
 			idSubjectColors[id] = subjectColor
 
 		}
-		//console.log(idSubjectColors)
 		return idSubjectColors
-
 	}
 
 
@@ -375,7 +341,7 @@ class TableStatus extends React.Component {
 		let classes = this.props.classes
 		let soldierSubmissionData = this.state.submissionData
 
-		
+
 		let allSoldierDisplay = []
 		// prepare for displaying
 		for (let soldier of this.state.soldiers) {
@@ -388,16 +354,6 @@ class TableStatus extends React.Component {
 		if (allSoldierDisplay.length > 0 && soldierSubmissionData !== undefined) {
 
 			let personalIdColors = this.convertToColors(soldierSubmissionData)
-			
-			//console.log("============================")
-
-			//console.log(soldierSubmissionData)
-			//console.log(allSoldierDisplay)
-			//console.log(personalIdColors)
-			//console.log("==========================")
-
-			//console.log("------------------------")
-
 
 			return (
 
@@ -440,25 +396,18 @@ class TableStatus extends React.Component {
 									}
 								</TableCell>
 
-
-								{/************WAS ERROR HERE***********/}
 								{
-									personalIdColors[soldier.split("\n")[1]].map((term)=>(
-										
-												<TableCell  className={classes.tableCell} style={{backgroundColor:term.color}}> 
-												
-												
-												{term.subject} 
-												
-												</TableCell>
-								))
-								 
+									personalIdColors[soldier.split("\n")[1]].map((term) => (
+
+										<TableCell className={classes.tableCell} style={{ backgroundColor: term.color }}>
+
+
+											{term.subject}
+
+										</TableCell>
+									))
+
 								}
-
-
-
-
-
 							</TableRow>
 						))}
 					</TableBody>
