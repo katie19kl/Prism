@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import { Gender, genders } from '../../../HelperJS/Gender';
 import { Major, majors } from "../../../HelperJS/Major";
 import Role from "../../../Roles/Role";
+import { sendCreateUserRequest } from "../../../HelperJS/request_handler";
+import MuiAlert from '@material-ui/lab/Alert';
 import { 
     handleOptionalFields, 
     isNumeric, 
@@ -14,8 +16,6 @@ import {
     checkPassword,
     isValidName 
 } from '../../../HelperJS/validator';
-import { sendCreateUserRequest } from "../../../HelperJS/request_handler";
-import MuiAlert from '@material-ui/lab/Alert';
 
 
 const useStyles = (theme) => ({

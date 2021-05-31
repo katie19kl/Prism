@@ -2417,7 +2417,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/decorators/major-validation.decorator.ts": {
-        "version": "feda07f106eae823e63357c87aa243751d7101235c5e4b65ea29f3845b2c788d",
+        "version": "17cddbc47e3d9f2f92620395e03f05afbc33fed4cbf3cd0daf63ccf350e8649e",
         "signature": "25467a56e533d90c7d1bde319ffe50c61c9f8c5f19e253b4a3d687b788d96a17",
         "affectsGlobalScope": false
       },
@@ -2836,38 +2836,43 @@
         "signature": "d9da3ab662f29073b47b7b54388c6f829d08b14f5af5554b8781e42a42d40970",
         "affectsGlobalScope": false
       },
+      "./src/server/users/common/grade.enum.ts": {
+        "version": "c260fdc3e87a461800372bab32822dc53d5d2e7034a131ab55205dac5c6e1301",
+        "signature": "669d703306f15d36de5d66e8d128c36206e681d933ca2c2180e97f4dda401780",
+        "affectsGlobalScope": false
+      },
       "./src/server/users/decorators/single-major-validation.decorator.ts": {
         "version": "0057a8e068f0c53e351b904791f551c1e65244ce9d7ccc10a0cbce4111258b1d",
         "signature": "20a6c4eefa68d0ae7430d1ca7a68c0681051707b61c82c49ddbf87f423b0754c",
         "affectsGlobalScope": false
       },
       "./src/server/review/dto/create-review.dto.ts": {
-        "version": "06c1681ec0b4bfee83ad32d3f2fb43c64d88b4fa3f74463881374a26e3ef1a3f",
-        "signature": "8da96a07062ad8fa0cafe07e859185295215311e0fc8b95ee7341f5840d7eddf",
+        "version": "382b41fa6d19180010a92a29316cd78ca7f39751e1d73e086c627acbbdfc85bd",
+        "signature": "376b94cc8ed7f85e278f253c6fc209de7da50939d6d8f193aed835d201ea06ef",
         "affectsGlobalScope": false
       },
       "./src/server/review/dto/update-review.dto.ts": {
-        "version": "4fa853c1da4cf2f8bfe73e7bf916bdf890bb9ce902bd3e61ed4ac223483a3cc8",
-        "signature": "269c698fa21fe2f03d04f3c4a91de26f06895de2c00cc94acbb22595371c861e",
+        "version": "e642cd49ebc0e5848e990bfb493836c27d7096a25b62b7f1ff597483829784ea",
+        "signature": "5b48afac8170acdd228de7a5bb0b72b7dc11fa58902135a8b1201d3308d56798",
         "affectsGlobalScope": false
       },
       "./src/server/review/ireview.interface.ts": {
-        "version": "28d0df541851972faa11f42ac8159c475688114556d04edb5a3579296ede6649",
-        "signature": "6d88cc14071514c80a702a6da6c733ffe03552b2f0c8991d806d5bc009bbcc11",
+        "version": "ec1226af16ab65d6af83a927d61f45b110d0406a7504b4f6658f6b318f435e4e",
+        "signature": "94840825fd4bc546e922db8c7ea68ae68cee00fe9c6fd28b54d4e9208dea547f",
         "affectsGlobalScope": false
       },
       "./src/server/review/review.service.ts": {
-        "version": "44cb0c40079e37ca8317a982489b3971bf690d6abec9fcf84f6edd52b2c416c6",
-        "signature": "880b99f877dfc55e1dd19df40c558fc249f8b508b63714895670ee7bb1d49c68",
+        "version": "83e9ad6fd5df3980519ef3dc92d75c02817752f8073e2fd14348cde2130fed01",
+        "signature": "0424f78a055c2a6183b9500f97635d8147a5e92d0d880381f090f95011e91582",
         "affectsGlobalScope": false
       },
       "./src/server/review/review.controller.ts": {
-        "version": "dc98c109595769b047fe87b2b5f89ab3e82ee685aaef0a4eb8377b9c4ed5977f",
-        "signature": "b5d358bdc133574f9122698b6d3590479d55ab8b95dbe770506e2ee74ce508ad",
+        "version": "c3cc223b48ae67a2bad555ad654d48b7bd8c245e1bfb89fd7fe39980137cefeb",
+        "signature": "a4902b4f8a808daded73ca6b41b22091e871d0d99a3e660691b591a8241b638e",
         "affectsGlobalScope": false
       },
       "./src/server/review/review.schema.ts": {
-        "version": "aaefb2a84b402f7adaffe97a1c9c9fbde5ee605b6ecc665ec43bbed66c51b520",
+        "version": "e1501a7e1b24def4075c91820f3377118638bb7e3cf9d79cba782afb06262756",
         "signature": "b59a5815eaa35f64810a7870ea0e1cd0d5e1b1d24df760abae92a002d1ac04f8",
         "affectsGlobalScope": false
       },
@@ -5610,8 +5615,8 @@
       "./src/server/review/dto/create-review.dto.ts": [
         "./node_modules/class-validator/types/index.d.ts",
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts",
-        "./src/server/users/decorators/major-validation.decorator.ts",
         "./src/server/users/decorators/role-validation.decorator.ts",
         "./src/server/users/decorators/single-major-validation.decorator.ts"
       ],
@@ -5620,6 +5625,7 @@
         "./node_modules/class-validator/types/index.d.ts",
         "./src/server/review/dto/create-review.dto.ts",
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts",
         "./src/server/users/decorators/major-validation.decorator.ts",
         "./src/server/users/decorators/role-validation.decorator.ts",
@@ -5628,6 +5634,7 @@
       "./src/server/review/ireview.interface.ts": [
         "./node_modules/mongoose/index.d.ts",
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/review.controller.ts": [
@@ -5635,6 +5642,7 @@
         "./src/server/review/dto/create-review.dto.ts",
         "./src/server/review/dto/update-review.dto.ts",
         "./src/server/review/review.service.ts",
+        "./src/server/rolesactivity/role.enum.ts",
         "./src/server/users/common/major.enum.ts",
         "./src/server/usersubmission/user-submission.service.ts"
       ],
@@ -5649,6 +5657,7 @@
       "./src/server/review/review.schema.ts": [
         "./node_modules/mongoose/index.d.ts",
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/review.service.ts": [
@@ -5659,7 +5668,8 @@
         "./src/server/review/dto/update-review.dto.ts",
         "./src/server/review/ireview.interface.ts",
         "./src/server/rolesactivity/role.enum.ts",
-        "./src/server/users/common/major.enum.ts"
+        "./src/server/users/common/major.enum.ts",
+        "./src/server/usersubmission/user-submission.service.ts"
       ],
       "./src/server/rolesactivity/admin_roles.guard.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -8051,17 +8061,20 @@
       ],
       "./src/server/review/dto/create-review.dto.ts": [
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/dto/update-review.dto.ts": [
         "./node_modules/@nestjs/mapped-types/index.d.ts",
         "./src/server/review/dto/create-review.dto.ts",
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/ireview.interface.ts": [
         "./node_modules/mongoose/index.d.ts",
         "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/review.controller.ts": [
@@ -8069,6 +8082,7 @@
         "./src/server/review/dto/update-review.dto.ts",
         "./src/server/review/ireview.interface.ts",
         "./src/server/review/review.service.ts",
+        "./src/server/rolesactivity/role.enum.ts",
         "./src/server/users/common/major.enum.ts",
         "./src/server/usersubmission/user-submission.service.ts"
       ],
@@ -8080,7 +8094,9 @@
         "./src/server/review/dto/create-review.dto.ts",
         "./src/server/review/dto/update-review.dto.ts",
         "./src/server/review/ireview.interface.ts",
-        "./src/server/users/common/major.enum.ts"
+        "./src/server/rolesactivity/role.enum.ts",
+        "./src/server/users/common/major.enum.ts",
+        "./src/server/usersubmission/user-submission.service.ts"
       ],
       "./src/server/rolesactivity/admin_roles.guard.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -8810,6 +8826,7 @@
       "./src/server/rolesactivity/soldier_roles.guard.ts",
       "./src/server/users/common/bodyfieldsuser.ts",
       "./src/server/users/common/gender.enum.ts",
+      "./src/server/users/common/grade.enum.ts",
       "./src/server/users/common/major.enum.ts",
       "./src/server/users/decorators/gender-validation.decorator.ts",
       "./src/server/users/decorators/major-validation.decorator.ts",

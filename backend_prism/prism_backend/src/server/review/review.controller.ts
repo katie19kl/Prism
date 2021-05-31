@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Role } from '../RolesActivity/role.enum';
 import { Major } from '../users/common/major.enum';
 import { UserSubmissionService } from '../UserSubmission/user-submission.service';
 import { CreateReviewDto } from './dto/create-review.dto';
@@ -47,14 +48,12 @@ export class ReviewController {
     }
 
     
-    @Delete(':soldierId/:major/:module/:subject')
-    deleteReview(
-        @Param('soldierId') id: string,
-        @Param('major') major: Major,
-        @Param('module') module: string,
-        @Param('subject') subject: string) {
+    @Delete()
+    deleteReview(@Body() deleteReview: updateReviewDto) {
 
-        return this.reviewService.delete(id, major, module, subject);
+        console.log(deleteReview)
+
+        return this.reviewService.delete(deleteReview);
 
     }
 
@@ -77,6 +76,21 @@ export class ReviewController {
         @Param('subject') subject: string) {
 
         return this.reviewService.getAllReviewsToShowSoldier(id, major, module, subject);
+    }
+
+    // return reviews which are dedicated for the 'role' to see.
+    @Get('reviews-role/:soldierId/:major/:module/:subject/:role')
+    getReviewsByRole(
+        @Param('soldierId') id: string,
+        @Param('major') major: Major,
+        @Param('module') module: string,
+        @Param('subject') subject: string,
+        @Param('role') role: Role) {
+
+        console.log("in reviews by role");
+        console.log(id, major, module, subject, role);
+
+        return this.reviewService.getReviewsByRole(id, major, module, subject, role);
     }
 
     @Put()

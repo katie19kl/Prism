@@ -49,12 +49,14 @@ function CommanderMenu() {
                 <ListItemText primary="Course Status"/>
             </ListItem>
 
+            <Link to='/admin/table/soldier_status' style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItem button key="soldier status">
                 <ListItemIcon>
                     <AdjustRoundedIcon color="primary"/>
                 </ListItemIcon>
                 <ListItemText primary="Soldier Status"/>
             </ListItem>
+            </Link>
 
             <ListItem button key="posts">
                 <ListItemIcon>

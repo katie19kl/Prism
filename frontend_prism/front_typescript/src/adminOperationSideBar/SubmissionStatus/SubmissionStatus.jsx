@@ -1,11 +1,12 @@
 import { Breadcrumbs, Grid, Typography,withStyles } from "@material-ui/core"
 import React from "react"
-import { blue, purple } from "@material-ui/core/colors";
+import { purple, blue } from "@material-ui/core/colors";
 import MenuAppBar from "./../../GeneralComponent/main/MenuAppBar"
 import SoldierMenu from "./../../GeneralComponent/soldier/SoldierMenu"
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
-import SubmissionTableInfo from "./SubmissionTableInfo";
 import Role from "../../Roles/Role";
+import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+import SubmissionTableInfo from '../../soldierOperationSideBar/soldierSubmission/SubmissionTableInfo';
 
 
 const useStyles = (theme) => ({
@@ -34,48 +35,55 @@ const useStyles = (theme) => ({
 
 
 
-class UserSubmission extends React.Component {
+class SubmissionStatus extends React.Component {
 
 
-    render(){
-
+    render() {
+        let personalId = this.props.match.params.personalId;
         let major = this.props.match.params.major;
-        let moduleName = this.props.match.params.moduleName;
+        let moduleName = this.props.match.params.module;
         let subject = this.props.match.params.subject;
-
+        
         // classes - for styling
         const { classes } = this.props;
         const { history } = this.props;
-    
 
+        console.log("history is: ", history);
+
+        console.log("here in submission status!!!")
+    
         return (
  
             <MenuAppBar
-            role = "Soldier" 
+            role={Role.Commander}
             menu={
-                <SoldierMenu/>
+                <CommanderMenu/>
             }
             content={
-                
                 <div>
-                    
                     <br/>
-
+                    
                     <Grid item container xs={12} justify="center" alignItems="center">
                     
-                        <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb" className={classes.nav}>
+                        <Breadcrumbs 
+                        separator={<NavigateNextIcon fontSize="small" />} 
+                        aria-label="breadcrumb" 
+                        className={classes.nav}>
+
                             <Typography 
                             className={classes.myFont} 
                             variant="h5" 
                             color="primary">
                                 {major}
                             </Typography>
+
                             <Typography 
                             className={classes.myFont2} 
                             variant="h5" 
                             color="primary">
                                 {moduleName}
                             </Typography>
+
                             <Typography 
                             className={classes.myFont1} 
                             variant="h5" 
@@ -91,12 +99,11 @@ class UserSubmission extends React.Component {
                     <SubmissionTableInfo
 
                         browesHistory={history}
-                        role={Role.MyFiles}
+                        role={Role.Commander}
                         major={major}
                         module={moduleName}
                         subject={subject}
                         soldierId={"12345678"}
-
                     >
                     </SubmissionTableInfo>
                 </div>
@@ -108,4 +115,4 @@ class UserSubmission extends React.Component {
 
 }
 
-export default withStyles(useStyles, { withTheme: true })(UserSubmission);
+export default withStyles(useStyles, { withTheme: true })(SubmissionStatus);

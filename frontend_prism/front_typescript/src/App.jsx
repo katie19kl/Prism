@@ -17,6 +17,8 @@ import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/module/DisplayContentOfModule';
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
+import SubmissionStatus from './adminOperationSideBar/SubmissionStatus/SubmissionStatus';
+import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
 
 
 export default function App() {
@@ -72,6 +74,10 @@ export default function App() {
 
 
 			<Route path="/submission/info/:major/:moduleName/:subject" component={UserSubmission}></Route>
+
+
+			<Route path='/admin/table/soldier_status' component={SoldierStatus}></Route>
+			<Route path="/admin/soldier_status/:personalId/:major/:module/:subject" component={SubmissionStatus}></Route>
 			
 
 			<PrivateRoutingComponent path="/" component={MainView}/>

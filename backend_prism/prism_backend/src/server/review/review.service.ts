@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Role } from '../RolesActivity/role.enum';
 import { Major } from '../users/common/major.enum';
+import { UserSubmissionService } from '../UserSubmission/user-submission.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { updateReviewDto } from './dto/update-review.dto';
 import { IReview } from './ireview.interface';
@@ -10,7 +11,8 @@ import { IReview } from './ireview.interface';
 @Injectable()
 export class ReviewService {
 
-    constructor(@InjectModel('Reviews') private reviewsModel: Model<IReview>) {}
+    constructor(@InjectModel('Reviews') private reviewsModel: Model<IReview>,
+                private usersSubmissionService: UserSubmissionService) {}
 
     async create(createReviewDto: CreateReviewDto) {
 
@@ -20,16 +22,46 @@ export class ReviewService {
         return await this.reviewsModel.create(createReviewDto);
     }
 
-    async delete(id: string, major: Major, module: string, subject: string) {
+    async delete(deleteReview: updateReviewDto) {
 
         let filter = {
-            soldierId: id,
-            major: major,
-            module: module,
-            subject: subject
+            soldierId: deleteReview.soldierId,
+            major: deleteReview.major,
+            module: deleteReview.module,
+            subject: deleteReview.subject,
+            submittedDate: deleteReview.submittedDate,
+            submittedTime: deleteReview.submittedTime,
+            checkerId: deleteReview.checkerId,
+            checkerRole: deleteReview.checkerRole
         };
 
-        return await this.reviewsModel.deleteOne(filter);
+        // deleting the review.
+        let result = await this.reviewsModel.deleteOne(filter);
+
+        // retrieving all the reivews for the current soldier, major, module and subject.
+        let restReviews = await this.getAllReviewsPerAssignment(
+            deleteReview.soldierId, deleteReview.major,
+            deleteReview.module, deleteReview.subject);
+
+        // no reviews left.
+        if (restReviews.length === 0) {
+
+            // retrieve the existing userSubmission object.
+            let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
+                deleteReview.soldierId, deleteReview.major,
+                deleteReview.module, deleteReview.subject);
+
+            if (userSubmission) {
+                console.log("all good");
+
+                // update the userSubmission field of "isChecked" to false since
+                // there are no reviews.
+                userSubmission.isChecked = false;
+                await userSubmission.save();
+            }
+        }
+
+        return result;
     }
 
     async getAllReviewsPerAssignment(id: string, major: Major, module: string, subject: string) {
@@ -71,15 +103,32 @@ export class ReviewService {
             }
         }
 
-        
-        console.log(reviews)
-        console.log(result)
-
         result.sort((a, b) => (a.submittedDate > b.submittedDate)
             ? 1 : (a.submittedDate === b.submittedDate) 
                 ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
 
         return result;
+    }
+
+    async getReviewsByRole(id: string, major: Major, 
+        module: string, subject: string, role: Role) {
+
+        let allReviews = await this.getAllReviewsPerAssignment(id, major, module, subject);
+        let finalReviews = [];
+
+        // check for reviews that are to be shown to the role specified by the 'role'.
+        for (let review of allReviews) {
+
+            if (review.showTo.includes(role)) {
+                finalReviews.push(review);
+            }
+        }
+
+        finalReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
+            ? 1 : (a.submittedDate === b.submittedDate) 
+                ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
+
+        return finalReviews;
     }
 
     async updateReview(updateReviewDto: updateReviewDto) {
@@ -110,12 +159,12 @@ export class ReviewService {
             }
 
             if (updateReviewDto.showTo !== undefined) {
-                review.showTo !== updateReviewDto.showTo;
+                review.showTo = updateReviewDto.showTo;
             }
 
-            // update the date:
-            review.submittedTime = new Date().toLocaleTimeString();
-            review.submittedDate = new Date().toLocaleDateString();
+            if (updateReviewDto.gradeDescription !== undefined) {
+                review.gradeDescription = updateReviewDto.gradeDescription;
+            }
 
             return await review.save();
 
