@@ -4,16 +4,17 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { Table, withStyles } from "@material-ui/core"
+import { Table, Typography, withStyles } from "@material-ui/core"
 import { getModulesByMajor, getSubjectsByModule } from "../CourseFiles/files_request_handler"
 import { Major } from "../../HelperJS/Major"
 import { usersSubmissions } from "../CourseStatus/user_submissions"
-
+import CommentIcon from  "@material-ui/icons/Comment"
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
-
+import { Link } from "react-router-dom"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
+/*
 const useStyles = (theme) => ({
 
 	head: {
@@ -53,7 +54,58 @@ const useStyles = (theme) => ({
 	},
 
 });
+*/
+//	boxShadow: "5px 2px 5px grey" for row
+const useStyles = (theme) => ({
 
+	head: {
+		boxShadow: "1px 1px 1px 1px grey",
+		background: "white",
+		fontWeight: '300%',
+
+		borderTopStyle: "solid",
+		//borderTopColor: "#0096ff",
+		
+		borderTopColor: "black",
+
+	},
+
+	sticky: {
+		position: "sticky",
+		left: 0,
+		//background: "black",
+		background: "#3b3745",
+		//boxShadow: " 2px 5px #0096ff",
+
+		boxShadow: " 2px 5px black",
+
+		borderRightStyle: "solid",
+		borderRightColor: "black",
+		display: "tableRowGroup",
+		fontWeight: 'bold',
+		width: '50px',
+		borderBottom: 'solid 3px black',
+
+		//borderLeftStyle: "solid",
+		//borderLeftColor: "#0096ff",
+
+		
+	},
+
+	tableCell: {
+		borderRightStyle: "solid",
+		//borderRightStyle: "dotted",
+		display: "tableRowGroup",
+		//borderRightColor: "#0096ff",//
+		borderRightColor: "black",
+		//borderBottom: 'dotted 3px #0096ff',
+		borderBottom: 'solid 3px black',
+	},
+	table: {
+		height: "89vh"
+	},
+
+});
 
 
 
@@ -69,15 +121,11 @@ class SoldierSubmissions extends React.Component {
 		this.modules_subjects = {}
 
 
-		this.XUI = []
-		this.mod = []
-
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
 			selectedSoldier: this.props.selectedModule,
 			
 			submissionData: undefined,
-
 			module_submissions: undefined
 
 		}
@@ -135,20 +183,14 @@ class SoldierSubmissions extends React.Component {
 	getModulesOfMajor(){
 		// then () -> getSubjects
 		// then () -> submissions
-		console.log("1")
-		//let selectedMajor = this.state.selectedMajor
 		let selectedMajor = this.props.selectedMajor
-		//console.log("Selected major is " + selectedMajor)
 
 		getModulesByMajor(selectedMajor).then((response) => {
 			if (response !== undefined) {
 		  		let modules_ = response.data
-				console.log("2")
-				//console.log("Arrived modules" )
-				//console.log(modules_)
 				this.modules = modules_
-				//console.log("Starting extract subjects of arrived modules.....")
 				
+				//Starting extract subjects of arrived modules
 				this.getSubjectsOfModules(modules_, selectedMajor).then((modules_subjects)=>{
 
 					let mod_sub = {}
@@ -156,15 +198,16 @@ class SoldierSubmissions extends React.Component {
 
 						for (const [key, value] of Object.entries(dict_mod_sub)) {
 							mod_sub[key] = value
+							
 						  } 
 					}
 
 					this.modules_subjects = mod_sub
 
-					//console.log(modules_subjects)
-					console.log("5")
-					//console.log("END extract subjects of arrived modules.....?")
 					
+					//END extract subjects of arrived modules
+					
+					// Given subject & modules -> extract all submission of choosen user
 					this.getAllUserSubmissions(modules_subjects)
 					
 				})
@@ -175,42 +218,32 @@ class SoldierSubmissions extends React.Component {
 	}
 
 	getAllUserSubmissions(modules_subjects){
-		console.log("6")
-		let soldiers = []
+		
 		let currentSoldier = this.props.selectedSoldier
 		let selectedMajor = this.props.selectedMajor
-		soldiers.push({personalId:currentSoldier})
-		console.log("Ask about soldier :: " + soldiers[0].personalId)
 
-		//console.log(modules_subjects)
+		// function expects to recieve array of soldiers id
+		let soldiers = []
+		soldiers.push({personalId:currentSoldier})
 
 		let arrPromises = []
 		let modules_submissions_ = {}
 
-		let x = []
-
+		// take element from key afterward
 		for (const module_sub_map of modules_subjects){
 			
+			// user submission of each module
 			for (const module in module_sub_map){
 				
 
+			//Each promise extracts user submission of specific module
 			let promise_submission = new Promise((resolv, rej)=>{
-				
 				
 				usersSubmissions(soldiers,selectedMajor,module).then((res)=>{
 					if (res !== undefined){
 						if (res.data !== undefined){
 							
-							let s = this.props.selectedSoldier
-							//console.log(s)
-							//console.log(res.data[s])
-
 							modules_submissions_[module] = res.data
-							//modules_submissions_[module] = res.data[s]
-
-							x.push(res.data[s])
-
-
 							resolv(modules_submissions_)
 						}
 						else {
@@ -223,19 +256,17 @@ class SoldierSubmissions extends React.Component {
 				})
 			}) 
 			
+			// list of promises. 
 			arrPromises.push(promise_submission)	
 	
 			}
 			
 		}
-		console.log("7 waiting ...")
-
+		// wait for all responces to be resolved
 		Promise.all(arrPromises).then(()=>{
-			//this.setState({module_submissions: x})
 			this.setState({module_submissions: modules_submissions_})
 		})
-		
-		//this.setState({module_submissions: x})
+
 	}
 
 
@@ -244,25 +275,28 @@ class SoldierSubmissions extends React.Component {
 
 
 	componentDidUpdate() {
-		console.log("in updating ")
-		// if new soldier was selected
+		
+		// if new major was selected		
 		if (this.state.selectedMajor !== this.props.selectedMajor){
 			this.setState({selectedMajor : this.props.selectedMajor})
 		}
 
+		// if new soldier was selected
 		if (this.state.selectedSoldier !== this.props.selectedSoldier){
-			console.log("New soldier was chosen -- " + this.props.selectedSoldier)
 			
+			// Re-render & extract info of new soldier 
 			this.setState({selectedSoldier : this.props.selectedSoldier}, function() {
 				this.extractAllNeededData()
 			})
-			
 		}
         
-        // if new major was selected
 	}
 
-
+	/* starts extracting process as sequence of <callbacks
+	1- Module of major
+	2- Subjects of modules
+	3- Submissions of modules
+	*/
 	extractAllNeededData(){
 		this.getModulesOfMajor()
 	}
@@ -273,24 +307,21 @@ class SoldierSubmissions extends React.Component {
 		
 	}
 
+	// Converts info of submission to corresponding color to display in table
 	convertToColors(){
 		let submissions_ = this.state.module_submissions
 		let selectedSoldier = this.props.selectedSoldier
 
 		let mod_subject_colors = {}		
 		
-
-		//console.log("--------------------------")
 		
-		//console.log(submissions_)
 		for (let module_ in submissions_){
-			//console.log("1")
+			// iterate over all module names	
 			let module = submissions_[module_]
-			
-			let soldier_submissions = module[selectedSoldier]
-			//console.log(soldier_submissions)
-			//console.log("2")
 
+			// submission of user from server
+			let soldier_submissions = module[selectedSoldier]
+			
 			let subjects = {}
 			if (soldier_submissions == undefined){
 				continue
@@ -298,19 +329,18 @@ class SoldierSubmissions extends React.Component {
 			for (let submission of soldier_submissions){
 				let subject = submission.subject
 				let grade =  submission.grade
+				// color to display in table
 				let color = Status.Closed
 				if (submission.checked){
 					color = Status.SubmittedGoodEnough
 				}
-				//subjects.push({color:color, grade:grade, subject:subject})
-				subjects[subject] = {color:color, grade:grade}
+				// subject -> its submission info for displaying
+				subjects[subject] = {color:color, grade:grade, hasReview:submission.checked}
 			}
 			mod_subject_colors[module_] = subjects
 
 		}
-		
-		//console.log(mod_subject_colors)
-		//console.log("-----------???-----------")
+		// Module -> {subect -> submission}
 		return mod_subject_colors
 	}
 
@@ -318,52 +348,18 @@ class SoldierSubmissions extends React.Component {
 
 	render() {
         
-        //console.log("------in displaying submissions------")
-        //console.log(this.props.selectedSoldier)
-        //console.log(this.props.selectedMajor)
 		
         let classes = this.props.classes
 
-        let allSoldierDisplay = []
-
+        // all steps of extracting data were finished
         let displayTable = (this.state.module_submissions !== undefined)
 
-		//console.log(displayTable)
-
+		
 		if (displayTable) {
 
 			let mod_subject_colors = this.convertToColors()
-			console.log("========================================")
-			
-			console.log(mod_subject_colors)
-
-			let module = this.modules[0]
-
-			
-			console.log(module)
-			
-			console.log(mod_subject_colors[module])
-			//console.log(mod_subject_colors["1- Module_first"])
-			
-			//console.log(mod_subject_colors["1- Module_first"]["1.1- subject_a"])
-			
-			
-			console.log("========================================")//console.log(this.modules)
-			//console.log("^^^^^^^^^^^22^^^^^^^^^^^^")
-			//console.log(this.modules_subjects)
-
-			//console.log(this.modules[0])
-			//console.log(this.modules_subjects[this.modules[0]])
-			//console.log("^^^^^^^^^^^33^^^^^^^^^^^^")
-			//console.log(this.state.module_submissions)
-			//console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-			//console.log("^^^^^^^^^^^^^^^^^^^^^^^")
-			
-
-
+		
 			return (
-
-
 
 						// stickyHeader
 						<Table className={classes.table} aria-label="simple table" >
@@ -371,7 +367,7 @@ class SoldierSubmissions extends React.Component {
 						<TableBody>
 
 
-							{/*Vertical frozen bar of all soldiers*/}
+							{/*All rows. Module -> subject & submission*/}
 							{this.modules.map((module, index) => (
 								<TableRow key={module}>
 									<TableCell
@@ -380,11 +376,13 @@ class SoldierSubmissions extends React.Component {
 										component="th"
 										scope="row"
 									>
-										{
-											//this.modules_subjects[module]
-											module
-										}
+		
+									{/*Vertical frozen bar of all modules*/}
+									<Typography style={{color:"white", fontFamily: 'monospace'}}>
+										{module}					
+                                    </Typography>
 										
+
 									</TableCell>
 
 									{
@@ -392,25 +390,42 @@ class SoldierSubmissions extends React.Component {
 
 
 
-											
+											// verify existence of all needed data 
 												
 												mod_subject_colors[module] !== undefined 
 												&&
 												mod_subject_colors[module][subject_name] !== undefined
 												
-												?
+												? // If module & subject exist & submission
 												<TableCell className={classes.sticky} style={{ backgroundColor: mod_subject_colors[module][subject_name].color}}>
-													{
-													mod_subject_colors[module][subject_name].color + "-" + subject_name
+													{// display navigation icon iff review exist
+													mod_subject_colors[module][subject_name].hasReview &&
+														<Link to = {"/noPermissions"} disabled >
+														
+															<CommentIcon disabled  style={{color:"black", fontSize:15}}>
+				
+															</CommentIcon>	
+														
+														</Link>
 													}
+													
+													<Typography style={{ fontFamily: 'monospace'}}>
+																	
+														{
+															/*mod_subject_colors[module][subject_name].color + "-"+*/ subject_name.split(" ")[1]
+														}
+		
+												 	</Typography>
+												
 												</TableCell>
-												: 
+												: // lack of data (or not submitted)
 												<TableCell className={classes.sticky} style={{ backgroundColor: "orange" }}>
 												{
-													"XUI--" + subject_name
+													subject_name.split(" ")[1] + " not submitted "
 												}
 												</TableCell>
 												
+
 												
 
 											
@@ -432,7 +447,7 @@ class SoldierSubmissions extends React.Component {
 			)
 		}
 		else {
-			return <h2> ssssssssssssssssssssssss</h2>
+			return <h2> TAKE CARE OF COLORS </h2>
 		}
 
 	}
