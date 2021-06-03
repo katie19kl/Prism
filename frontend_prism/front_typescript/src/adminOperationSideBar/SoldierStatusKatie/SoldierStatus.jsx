@@ -32,7 +32,7 @@ const useStyles = (theme) => ({
 });
 
 
-class SoldierStatus extends React.Component {
+class SoldierStatusKatie extends React.Component {
 
     constructor(props) {
         super(props);
@@ -73,4 +73,4 @@ class SoldierStatus extends React.Component {
 
 }
 
-export default withStyles(useStyles, { withTheme: true })(SoldierStatus);
+export default withStyles(useStyles, { withTheme: true })(SoldierStatusKatie);

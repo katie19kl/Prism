@@ -17,7 +17,7 @@ import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/module/DisplayContentOfModule';
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
-import SubmissionStatus from './adminOperationSideBar/SubmissionStatus/SubmissionStatus';
+import SubmissionStatusKatie from './adminOperationSideBar/SubmissionStatusKatie/SubmissionStatus';
 import SoldierStatusKatie from './adminOperationSideBar/SoldierStatusKatie/SoldierStatus';
 import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
 import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
@@ -64,7 +64,7 @@ export default function App() {
 			<Route path="/admin/course_status" component={SubmissionStatus} />
 
 
-			<Route path="/admin/soldier_status" component={SoldierStatus}/>
+			<Route path="/admin/blaaaaaa/soldier_status" component={SoldierStatus}/>
 
 			
 			
@@ -89,7 +89,7 @@ export default function App() {
 
 
 			<Route path='/admin/table/soldier_status' component={SoldierStatusKatie}></Route>
-			<Route path="/admin/soldier_status/:personalId/:major/:module/:subject" component={SubmissionStatus}></Route>
+			<Route path="/admin/soldier_status/:personalId/:major/:module/:subject" component={SubmissionStatusKatie}></Route>
 			
 
 			<PrivateRoutingComponent path="/" component={MainView}/>
