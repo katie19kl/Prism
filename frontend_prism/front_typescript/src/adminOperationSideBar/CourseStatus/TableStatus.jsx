@@ -4,11 +4,13 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { Table, withStyles } from "@material-ui/core"
+import { Button, Table, Typography, withStyles } from "@material-ui/core"
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import { getSoldiersByMajors, getAllMySoldiers } from "../../HelperJS/extract_info"
 import { getSubjectsByModule } from "../CourseFiles/files_request_handler"
 import { usersSubmissions } from "./user_submissions"
+import { Link } from "react-router-dom"
+import CommentIcon from  "@material-ui/icons/Comment"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -20,40 +22,42 @@ const useStyles = (theme) => ({
 		fontWeight: '300%',
 
 		borderTopStyle: "solid",
-		borderTopColor: "#0096ff",
-
+		//borderTopColor: "#0096ff",
+		
+		borderTopColor: "black",
 
 	},
 
 	sticky: {
 		position: "sticky",
 		left: 0,
-		background: "white",
-		boxShadow: " 2px 5px #0096ff",
+		//background: "black",
+		background: "#3b3745",
+		//boxShadow: " 2px 5px #0096ff",
+
+		boxShadow: " 2px 5px black",
 
 		borderRightStyle: "solid",
-		borderRightColor: "#0096ff",
+		borderRightColor: "black",
 		display: "tableRowGroup",
 		fontWeight: 'bold',
-		width: '50px'
+		width: '50px',
+		borderBottom: 'solid 3px black',
 
 		//borderLeftStyle: "solid",
 		//borderLeftColor: "#0096ff",
 
+		
 	},
 
 	tableCell: {
-		//borderRightStyle: "solid",
-		borderRightStyle: "dotted",
+		borderRightStyle: "solid",
+		//borderRightStyle: "dotted",
 		display: "tableRowGroup",
-		borderRightColor: "#0096ff",//
-		borderBottom: 'dotted 3px #0096ff',
-
-
-
-
-
-
+		//borderRightColor: "#0096ff",//
+		borderRightColor: "black",
+		//borderBottom: 'dotted 3px #0096ff',
+		borderBottom: 'solid 3px black',
 	},
 	table: {
 		height: "89vh"
@@ -322,7 +326,7 @@ class TableStatus extends React.Component {
 
 				subjectColor.push({
 					status: status,
-					subject: subject_,
+					subject: subject_.split(" ")[1],
 					color: color
 				})
 			}
@@ -365,12 +369,23 @@ class TableStatus extends React.Component {
 						<TableRow className={classes.head}>
 
 							<TableCell className={classes.sticky}>
-								Student
+									<Typography style={{color:"white", fontFamily: 'monospace'}}>
+										Student
+                                    </Typography>
+
+
 								</TableCell>
 
 							{this.state.subjects.map((subject, index) => (
 
-								<TableCell key={subject} className={classes.tableCell} align="left">{subject}</TableCell>
+								<TableCell
+									key={subject} className={classes.tableCell} align="left" style={{ background: '#3b3745'}}>
+										
+										<Typography style={{color: 'white', fontFamily: 'monospace'}}>
+											{subject }
+										</Typography>
+								
+								</TableCell>
 
 							))}
 						</TableRow>
@@ -391,18 +406,36 @@ class TableStatus extends React.Component {
 									component="th"
 									scope="row"
 								>
-									{
-										soldier
-									}
+                                    <Typography style={{color:"white", fontFamily: 'monospace'}}>
+                                        	{soldier}
+                                    </Typography>
+
+
+
 								</TableCell>
 
 								{
 									personalIdColors[soldier.split("\n")[1]].map((term) => (
 
 										<TableCell className={classes.tableCell} style={{ backgroundColor: term.color }}>
+											
+											{term.color !== Status.Closed &&
+												<Link to = {"/noPermissions"} disabled >
+													
+													<CommentIcon disabled  style={{color:"black", fontSize:15}}>
 
+														<Typography style={{ fontFamily: 'monospace'}}>
+															{term.subject}
+														</Typography>
 
+														
+													</CommentIcon>	
+													
+												</Link>
+											}
+											
 											{term.subject}
+											
 
 										</TableCell>
 									))
