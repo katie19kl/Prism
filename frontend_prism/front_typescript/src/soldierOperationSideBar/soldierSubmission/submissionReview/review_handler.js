@@ -113,5 +113,90 @@ async function getReviews(soldierId, major, module, subject) {
     });
 }
 
+async function updateReview(soldierId, major, module, subject, date, time,
+    checkerId, grade, gradeDesc, comment, showTo) {
+    
+    let fields = checkFieldsToAdd(grade, gradeDesc, comment, showTo);
 
-export { getAllReviewsByRole, deleteReview, getReviews }
+    if (fields.length === 0) {
+        
+        return ''; // there's no update.
+
+    } else {
+
+        let token = LocalStorage.getItem(LocalStorage.token);
+    
+        if (token === null || token === 'undefined') {
+
+            return false;
+
+        } else {
+
+            let url = 'http://localhost:4000/review/'
+
+            let payload = {
+                soldierId: soldierId,
+                major: major,
+                module: module,
+                subject: subject,
+                submittedDate: date,
+                submittedTime: time,
+                checkerId: checkerId,
+            };
+
+            // add the updated value.
+            for (var key in fields) {
+                payload[key] = fields[key];
+            }
+
+            const req = await axios.create({
+                baseURL: url,
+                timeout: 1000,
+                headers: { 
+                    'Authorization': 'Bearer ' + token,
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            return await req.put(url, payload)
+            .then((response) => {
+                return response;
+
+            }, (error) => {
+                return undefined;
+            });
+        }
+    }
+}
+
+function checkFieldsToAdd(grade, gradeDesc, comment, showTo) {
+
+    let fieldsToAdd = {};
+
+    if (grade !== '' && grade !== undefined) {
+        fieldsToAdd.grade = grade;
+    }
+
+    if (gradeDesc !== undefined) {
+        fieldsToAdd.gradeDescription = gradeDesc;
+    }
+
+    if (comment !== '' && comment !== undefined) {
+        fieldsToAdd.comment = comment;
+    }
+
+    if (showTo !== undefined) {
+        fieldsToAdd.showTo = showTo;
+    }
+
+    return fieldsToAdd;
+}
+
+const Action = {
+	Delete: 'delete',
+	Create: 'create',
+	Update: 'update',
+}
+
+
+export { getAllReviewsByRole, deleteReview, getReviews, updateReview, Action }

@@ -18,7 +18,7 @@ import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/modul
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
 import SubmissionStatus from './adminOperationSideBar/SubmissionStatus/SubmissionStatus';
-import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
+import SoldierStatus from './adminOperationSideBar/SoldierStatusKatie/SoldierStatus';
 
 
 export default function App() {

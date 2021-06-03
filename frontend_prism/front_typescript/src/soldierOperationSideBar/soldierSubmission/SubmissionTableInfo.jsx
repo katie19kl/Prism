@@ -1,10 +1,8 @@
 import React from "react"
-import { getListSubmissionOfSubject, removeFileFromSubmission, sendCreateReviewRequest } from "./submission_handling"
-import { Box, Grid, Snackbar, TextareaAutosize, withStyles } from "@material-ui/core";
-import { purple } from "@material-ui/core/colors";
+import { getListSubmissionOfSubject, removeFileFromSubmission } from "./submission_handling"
+import { Grid, Snackbar, withStyles, Box } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import {useHistory} from "react-router-dom";
-import PublishIcon from '@material-ui/icons/Publish';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -15,12 +13,9 @@ import DisplayFiles from "./../../adminOperationSideBar/Courses/CourseDisplaying
 import Role from "../../Roles/Role";
 import ConfirmationDialog from "../../GeneralComponent/dialogs/ConfirmationDialog";
 import { Link } from "react-router-dom";
-import { createBrowserHistory } from 'history'
 import SubmissionReview from "./submissionReview/SubmissionReview";
-import ReviewCreationDialog from "../../GeneralComponent/dialogs/ReviewCreationDialog";
-import { isNumeric } from "../../HelperJS/validator";
 import MuiAlert from '@material-ui/lab/Alert';
-
+import PublishIcon from '@material-ui/icons/Publish';
 
 
 const useStyles = (theme) => ({
@@ -41,23 +36,12 @@ function Alert(props) {
 
 class SubmissionTableInfo extends React.Component {
 
-
     constructor(props) {
         super(props);
-
         this.deleteFileFromSubmissionHandler = this.deleteFileFromSubmissionHandler.bind(this);
         this.handleCloseConfirm = this.handleCloseConfirm.bind(this);
         this.handleCloseCancel = this.handleCloseCancel.bind(this);
-        this.createReview = this.createReview.bind(this);
-        this.handleCloseCreate = this.handleCloseCreate.bind(this);
-        this.handleCloseCancel = this.handleCloseCancel.bind(this);
-        this.commentOnChange = this.commentOnChange.bind(this);
-        this.gradeOnChange = this.gradeOnChange.bind(this);
-        this.handleChangeGradeDesc = this.handleChangeGradeDesc.bind(this);
-        this.setShowTo = this.setShowTo.bind(this);
         this.handleMsgClose = this.handleMsgClose.bind(this);
-        this.setErrorMsg = this.setErrorMsg.bind(this);
-        this.showReviews = this.showReviews.bind(this);
 
         this.major = this.props.major;
         this.module = this.props.module;
@@ -66,7 +50,6 @@ class SubmissionTableInfo extends React.Component {
         this.submissionInfo = undefined;
         this.chosenFileName = undefined;
         this.role = this.props.role;
-        this.showTo = undefined;
         this.message = undefined;
         this.severity = undefined;
 
@@ -78,18 +61,8 @@ class SubmissionTableInfo extends React.Component {
             existSubmission: false,
             confirmDialogOpen: false,
             showConfirmDialog: false,
-
-            reviewDialogOpen: false,
-            showReviewDialog: false,
-
-            gradeDesc: undefined,
-            reviewComment: "",
-            grade: '',
-
             showMsg: false,
             msgOpen: false,
-            showReviewsFlag: false,
-
 
         };
     }
@@ -214,97 +187,10 @@ class SubmissionTableInfo extends React.Component {
 
     }
 
-    createReview() {
-        this.setState({ 
-            showReviewDialog: true, 
-            reviewDialogOpen: true 
-        });
-    }
-
-    setShowTo(value) {
-        this.showTo = value;
-    }
-
     handleMsgClose() {
         this.message = undefined;
         this.severity = undefined;
         this.setState({ showMsg: false, msgOpen: false });
-    }
-
-    handleCloseCreate() {
-
-        // set the grade var before sending the req. to the server.
-        let finalGrade = '';
-        
-        if (!isNumeric(this.state.grade)) {
-            finalGrade = undefined;
-        } else {
-            finalGrade = this.state.grade;
-        }
-
-        // send post request to the server.
-        sendCreateReviewRequest(
-            this.soldierId, this.major, this.module,
-            this.subject, this.state.reviewComment, 
-            finalGrade, this.state.gradeDesc, this.showTo).then((response) => {
-
-            if (response === undefined) {
-
-                console.log("res is undefined");
-                this.setErrorMsg();
-
-            } else if (response.data !== undefined) {
-                console.log("response is defined! check status");
-                console.log(response.status);
-
-                if (response.status === 201) {
-                    this.message = "Review created successfully!";
-                    this.severity = "success";
-                } else {
-                    this.setErrorMsg();
-                }
-            } else {
-                console.log("res.data is undefined");
-                this.setErrorMsg();
-            }
-
-            this.setState({
-                showReviewDialog: false,
-                reviewDialogOpen: false,
-                showMsg: true,
-                msgOpen: true,
-            });
-        });
-    }
-
-    setErrorMsg() {
-        this.message = "Failed to create the review";
-        this.severity = "error";
-    }
-
-    handleCloseCancel() {
-        this.setState({
-            showReviewDialog: false,
-            reviewDialogOpen: false
-        });
-    }
-
-    commentOnChange(event) {
-        this.setState({ reviewComment: event.target.value });
-    }
-
-    gradeOnChange(value) {
-        this.setState({ grade: value });
-    }
-
-    handleChangeGradeDesc(event) {
-        let value = event.target.value;
-
-        this.setState({ gradeDesc: value });
-    }
-
-    showReviews(value) {
-        this.setState({ showReviewsFlag: value });
     }
 
     render() {
@@ -314,10 +200,8 @@ class SubmissionTableInfo extends React.Component {
         let reviewContent = this.setReviewContent();
         let submissionExist = this.state.existSubmission;
         let colorSubmissionStatus = this.setSubmissionColor();
-        
         let urlPostfix = this.major + "/" +  this.module + "/" + this.subject + "/" + Role.MyFiles;
         let url = "/file_uploading/" + urlPostfix;
-        
         let history = this.props.browesHistory;
 
         if (submissionExist) {
@@ -348,20 +232,6 @@ class SubmissionTableInfo extends React.Component {
                         handleClose={this.handleCloseCancel}
                         dialogGoal="File Deletion"
                         /> : ''}
-
-                    {(this.state.showReviewDialog === true) ? 
-                    <ReviewCreationDialog 
-                    reviewDialogOpen={this.state.reviewDialogOpen}
-                    handleCloseCreate={this.handleCloseCreate}
-                    handleCloseCancel={this.handleCloseCancel}
-                    handleClose={this.handleCloseCancel}
-                    commentOnChange={this.commentOnChange}
-                    gradeOnChange={this.gradeOnChange}
-                    handleChangeGradeDesc={this.handleChangeGradeDesc}
-                    gradeDesc={this.state.gradeDesc}
-                    reviewComment={this.state.reviewComment}
-                    setShowTo={this.setShowTo}
-                    /> : ''}
 
 
                     <div style={{ height: 400, width: '80%'}} >
@@ -408,8 +278,6 @@ class SubmissionTableInfo extends React.Component {
 
                                     </TableRow>
 
-
-
                                     {/* Row of submitted files */}
                                     <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
 
@@ -436,47 +304,28 @@ class SubmissionTableInfo extends React.Component {
                             </Table>
 
                         </TableContainer>
-                      
-                        {(this.role === Role.MyFiles || this.role === Role.Commander) ? 
+
+                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role == Role.Tester) ? 
                             <div>
 
-                                <br/>
                                 <br/>
                                 
                                 <Box textAlign='center'>
 
-                                    <Button variant='contained' color="primary" style={{backgroundColor: "red"}}
-                                    onClick={() => history.goBack()}>
-                                            GO BACK
-                                    </Button>
-
                                     {this.role === Role.MyFiles &&
                                     <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
-                                        <Button variant='contained' color="primary" className={classes.space} startIcon={<PublishIcon />}>
+                                        <Button variant='contained' color="primary" className={classes.padding} startIcon={<PublishIcon />}>
                                             Create new Submission
                                         </Button>
 
                                     </Link>
                                     }
-                                    {this.role === Role.Commander &&
-                                        <Button 
-                                        variant='contained' 
-                                        color="primary" 
-                                        className={classes.space} 
-                                        startIcon={<PublishIcon />}
-                                        onClick={this.createReview}>
-                                            Create new Review
-                                        </Button>
-                                    }
                                 </Box>
                             </div>
                         : " "
                         }
-
-                        <br/>
-                        <br/>
-
-                        {(this.state.isChecked === true) ? 
+                      
+                        {/*(this.state.isChecked === true) ?*/ 
                             <Grid item container xs={12} justify='center' alignItems='center'>
                                 <SubmissionReview
                                 major = {this.major}
@@ -485,10 +334,11 @@ class SubmissionTableInfo extends React.Component {
                                 soldierId = {this.soldierId}
                                 role = {this.role}
                                 showReviews={this.showReviews}
+                                history={history}
                                 />
 
                             </Grid>
-                        : ''}
+                        /*: ''}*/}
                     </div>
 
                 </div>

@@ -287,7 +287,7 @@ class FileSystemDisplay extends React.Component {
     handleDeletionResponse(response, objToDelete) {
         if (response !== undefined) {
 
-            if (response.status === 200) {
+            if (response.status !== undefined && response.status === 200) {
                 console.log('success');
                 this.msg = objToDelete + " deleted successfully";
                 this.severity = "success";
@@ -406,24 +406,21 @@ class FileSystemDisplay extends React.Component {
 
         if (response !== undefined) {
 
-            if (response.status === 201) {
-                console.log('success');
+            if (response.status !== undefined && response.status === 201) {
                 this.msg = objToInsert + " created successfully";
                 this.severity = "success";
                 this.setState({ showMsg: true, msgOpen: true});
 
             } else if (response.response !== undefined) {
 
-                if (response.response.status === 409) {
+                if (response.respone.status !== undefined && response.response.status === 409) {
                     
-                    console.log("I am here!!!!!!")
                     this.msg = "The name already exists! Try a different one";
                     this.severity = "error";
                     this.setState({ showMsg: true, msgOpen: true});
                 }
 
             } else {
-                console.log("error");
                 this.msg = "Failed to create the " + objToInsert;
                 this.severity = "error";
                 this.setState({ showMsg: true, msgOpen: true});
@@ -570,7 +567,7 @@ class FileSystemDisplay extends React.Component {
 
         if (response !== undefined) {
 
-            if (response.status === 200) {
+            if (response.status !== undefined && response.status === 200) {
                 console.log('success');
                 this.msg = objToRename + " renamed successfully";
                 this.severity = "success";

@@ -16,10 +16,39 @@ export class ReviewService {
 
     async create(createReviewDto: CreateReviewDto) {
 
-        createReviewDto.submittedTime = new Date().toLocaleTimeString();
-        createReviewDto.submittedDate = new Date().toLocaleDateString();
+        // first check there is a user submission object.
+        let soldierId = createReviewDto.soldierId;
+        let major = createReviewDto.major;
+        let module = createReviewDto.module;
+        let subject = createReviewDto.subject;
 
-        return await this.reviewsModel.create(createReviewDto);
+        try {
+
+            let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
+                soldierId, major, module, subject);
+
+            if (userSubmission) {
+                console.log("all good");
+
+                // update the userSubmission field of "isChecked" to true since a review was given.
+                userSubmission.isChecked = true;
+                await userSubmission.save();
+
+                // create the review.
+                createReviewDto.submittedTime = new Date().toLocaleTimeString();
+                createReviewDto.submittedDate = new Date().toLocaleDateString();
+
+                return await this.reviewsModel.create(createReviewDto);
+
+
+            } else {
+                throw new HttpException("No submission has been made by the soldier",
+                    HttpStatus.NOT_FOUND);
+            }
+
+        } catch (error) {
+            throw error;
+        }
     }
 
     async delete(deleteReview: updateReviewDto) {
@@ -139,7 +168,6 @@ export class ReviewService {
             major: updateReviewDto.major,
             module: updateReviewDto.module,
             subject: updateReviewDto.subject,
-
             checkerId: updateReviewDto.checkerId,
             submittedTime: updateReviewDto.submittedTime,
             submittedDate: updateReviewDto.submittedDate

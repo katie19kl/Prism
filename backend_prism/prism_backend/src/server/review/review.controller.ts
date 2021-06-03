@@ -9,49 +9,24 @@ import { ReviewService } from './review.service';
 @Controller('review')
 export class ReviewController {
 
-    constructor(private reviewService: ReviewService,
-        private usersSubmissionService: UserSubmissionService) {}
+    constructor(private reviewService: ReviewService) {}
 
 
     @Post()
     async create(@Body() createReviewDto: CreateReviewDto) {
 
-        // first check there is a user submission object.
-
-        let soldierId = createReviewDto.soldierId;
-        let major = createReviewDto.major;
-        let module = createReviewDto.module;
-        let subject = createReviewDto.subject;
-
         try {
 
-            let userSubmission = await 
-                this.usersSubmissionService.getUserSubmissionByKey(soldierId, major, module, subject);
+            this.reviewService.create(createReviewDto);
 
-            if (userSubmission) {
-                console.log("all good");
-
-                // update the userSubmission field of "isChecked" to true since a review was given.
-                userSubmission.isChecked = true;
-                await userSubmission.save();
-
-                return this.reviewService.create(createReviewDto);
-
-            } else {
-                console.log("might be an error");
-            }
-
-        } catch (error) {
+        } catch(error) {
             throw error;
         }
     
     }
 
-    
     @Delete()
     deleteReview(@Body() deleteReview: updateReviewDto) {
-
-        console.log(deleteReview)
 
         return this.reviewService.delete(deleteReview);
 
@@ -87,19 +62,12 @@ export class ReviewController {
         @Param('subject') subject: string,
         @Param('role') role: Role) {
 
-        console.log("in reviews by role");
-        console.log(id, major, module, subject, role);
-
         return this.reviewService.getReviewsByRole(id, major, module, subject, role);
     }
 
     @Put()
     updateReview(@Body() updateReviewDto: updateReviewDto) {
 
-        // enable the commander/tester to update the following fields:
-        // 1. comment- the review itself
-        // 2. grade
-        // 3. showTo
         try {
             let updated = this.reviewService.updateReview(updateReviewDto);
             return updated;
