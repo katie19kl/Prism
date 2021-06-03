@@ -51,7 +51,7 @@ function CommanderMenu() {
             </ListItem>
             </Link>
 
-            <Link to="/admin/soldier_status" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link to="/admin/soldier/soldier_status" style={{ textDecoration: 'none', color: 'inherit' }}>
             <ListItem button key="soldier status">
                 <ListItemIcon>
                     <AdjustRoundedIcon color="primary"/>

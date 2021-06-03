@@ -64,11 +64,7 @@ export default function App() {
 			<Route path="/admin/course_status" component={SubmissionStatus} />
 
 
-			<Route path="/admin/blaaaaaa/soldier_status" component={SoldierStatus}/>
-
-			
-			
-			
+			<Route path="/admin/soldier/soldier_status" component={SoldierStatus}/>
 			
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>

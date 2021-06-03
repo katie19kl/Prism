@@ -19,9 +19,9 @@ import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { blue, purple } from "@material-ui/core/colors";
 import Role from "../../../Roles/Role";
-
 import {uploadSingleSubmission} from "./../../../soldierOperationSideBar/soldierSubmission/submission_handling"
 import SoldierInfo from "../../../soldierOperationSideBar/soldierProfile/SoldierInfo";
+
 
 const useStyles = (theme) => ({
 	root: {
