@@ -5,7 +5,7 @@ import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import { Table, withStyles } from "@material-ui/core"
-import { Status } from "../../GeneralComponent/SubmissionStatus/SoldierSubmissionStatus"
+import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import { getSoldiersByMajors, getAllMySoldiers } from "../../HelperJS/extract_info"
 import { getSubjectsByModule } from "../CourseFiles/files_request_handler"
 import { usersSubmissions } from "./user_submissions"

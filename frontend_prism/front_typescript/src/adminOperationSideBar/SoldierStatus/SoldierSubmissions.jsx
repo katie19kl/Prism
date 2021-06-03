@@ -9,7 +9,7 @@ import { getModulesByMajor, getSubjectsByModule } from "../CourseFiles/files_req
 import { Major } from "../../HelperJS/Major"
 import { usersSubmissions } from "../CourseStatus/user_submissions"
 
-import { Status } from "../../GeneralComponent/SubmissionStatus/SoldierSubmissionStatus"
+import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 
 
 
