@@ -44,6 +44,7 @@ export class UserSubmissionService {
         return personalId;
     }
 
+
     async getUserSubmissionByKey(id: string, major: Major, module: string, subject: string) {
         
         
@@ -197,6 +198,21 @@ export class UserSubmissionService {
             createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
             return await this.userSubmissionModel.create(createUserSubmissionDto)
         }
+    }
+
+
+    async getAllSoldierSubmissions(personalId:string, major_:Major, module_:string){
+                //////////////// SUKA WHY MAJOR ARRAY ???? ////////////////
+        
+            const filter = { 
+                    soldierId: personalId,
+                    major: major_,
+                    module: module_,
+            };
+            //console.log("2")
+            let result = await this.userSubmissionModel.find(filter);
+            return result;
+
     }
 
 }

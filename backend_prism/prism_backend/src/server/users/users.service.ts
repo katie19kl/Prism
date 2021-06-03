@@ -7,12 +7,28 @@ import { Role } from '../RolesActivity/role.enum';
 import { Major } from './common/major.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { jwtConstants } from '../RolesActivity/constants';
+import { UserSubmissionService } from '../UserSubmission/user-submission.service';
+import { IUserSubmission } from '../UserSubmission/iuser-submission.interface';
+import { ReviewService } from '../review/review.service';
+import { IReview } from '../review/ireview.interface';
 
 @Injectable()
 export class UsersService {
 
-	constructor(@InjectModel('User') private userModel: Model<IUser>) {}
+	userSubmissionHandler: UserSubmissionService;
+	reviewHandler: ReviewService;
+
+	constructor(@InjectModel('User') private userModel: Model<IUser>,
+				@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
+				@InjectModel('Reviews') private reviewsModel: Model<IReview>
+				) {
+		
+		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel)
+		this.reviewHandler = new ReviewService(reviewsModel)
+	}
 	
+
+
 	// add new user
 	async create(createUserDto: CreateUserDto) {
 
@@ -52,15 +68,15 @@ export class UsersService {
 		
 		// decode JWT & retrieve username
 		const decoded = jwt.verify(token[1], jwtConstants.secret);
-		console.log(decoded);
+		//console.log(decoded);
 		let personalId = decoded['personalId'];
-		console.log(personalId)
+		//console.log(personalId)
 
 		// obtain user by his username  & return it outside
 		let user = await this.findOneByPersonalId(personalId)
 		// return outside without password ( password is hashed )
 		user.password = "";
-		console.log(user);
+		//console.log(user);
 
 
 		return user;
@@ -70,7 +86,7 @@ export class UsersService {
 	async findOneByPersonalId(personalId: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"personalId": personalId});
-		console.log(user)
+		//console.log(user)
 		return user;
 	}
 
@@ -138,7 +154,7 @@ export class UsersService {
 		let soldiersInMajors = [];
 		let soldierData;
 
-		console.log(majors);
+		//console.log(majors);
 		
 		users.forEach(user => {
 
@@ -239,4 +255,118 @@ export class UsersService {
 
 		}
 	}
+
+	// retrieves first prop of json object
+	getFirstProp(jsonObj){
+		let firstProp;
+        for(var key in jsonObj) {
+            if(jsonObj.hasOwnProperty(key)) {
+                firstProp = jsonObj[key];
+                break;
+            }
+        }
+		return firstProp
+	}
+
+
+	async retrieveSubmissions(soldiersJson, major:Major, module:string){
+
+        let soldiers = this.getFirstProp(soldiersJson)
+		
+		console.log("============s===")
+		//console.log(soldiers)
+		console.log(major)
+		console.log(module)
+		console.log("=====")
+		
+		let allSubmissions = []
+
+		let sendSubmission = {}
+		for (let soldier of soldiers)
+		{
+			
+			
+			sendSubmission[soldier.personalId] = []
+			let submissions = await this.userSubmissionHandler.getAllSoldierSubmissions(soldier.personalId,major,module)
+
+			//let sendSubmission = {}
+			for (let submission of submissions){
+				
+			
+				
+			
+				let grade_ = undefined
+				// there is review => retrieve grade from review
+				if (submission.isChecked){
+					let id = submission.soldierId
+					let major = submission.major
+					let module = submission.module
+					let subject = submission.subject
+					let reviews = await this.reviewHandler.getAllReviewsPerAssignment(id, major, module, subject)
+					
+					for (let review of reviews){
+						grade_ = review.grade
+					}
+				}
+
+				// compose neccessary data for displpaying in commander table
+				sendSubmission[submission.soldierId].push( 
+								
+								{
+									
+									//firstName :soldier.firstName,  	
+									checked:submission.isChecked,
+									subject:submission.subject,
+									grade:grade_
+									
+								}
+				)
+							
+								
+								
+							
+
+			}
+			//allSubmissions.push(sendSubmission)
+		}
+		console.log("<<<<<<<<<<<<<<<<<<<")		
+		console.log(sendSubmission)
+		console.log(">>>>>>>>>>>>>>>>>>")
+		return sendSubmission
+		//return allSubmissions
+	}
+
+	async getSoldiersByCommanderId(commanderId:string, majorSelected:Major){
+
+		//console.log(commanderId)
+		//console.log(majorSelected)
+		let commanderSoldiers = await this.userModel.find({major:majorSelected,commander:commanderId, role:Role.Soldier})
+		//console.log("------------------------------------------")
+		//console.log(commanderSoldiers)
+		//console.log("------------------------------------------")
+		return commanderSoldiers
+	}
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

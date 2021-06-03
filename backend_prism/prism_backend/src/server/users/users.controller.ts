@@ -15,6 +15,9 @@ export class UsersController {
     constructor(private usersService: UsersService) { }
 
 
+
+
+
     @Get("role_by_JWT")
     @UseGuards(JwtAuthGuard)
     async extractUserRole(@Req() req) {
@@ -58,6 +61,25 @@ export class UsersController {
 
     }
 
+    @Post('submissions/:major/:module')
+    async getUsersSubmissions(@Body() soldiers,@Param('major') major: Major,
+                              @Param('module') module: string){
+        
+       return await this.usersService.retrieveSubmissions(soldiers,major,module)
+        
+    }
+
+
+
+
+    @Get(':id')
+    async getSoldierById(@Param('id') personalId: string){
+
+
+        return await this.usersService.findOneByPersonalId(personalId)
+        
+    }
+
     /*// ADMIN/COMMANDERS.
     @Get('soldiers/:major')
     async getSoldiersByMajor(@Param('major') major: Major) {
@@ -74,13 +96,7 @@ export class UsersController {
         return await this.usersService.findSoldiersInAllMajors(majors);
     }
 
-    @Get(':id')
-    async getSoldierById(@Param('id') personalId: string){
 
-        console.log(personalId)
-        return await this.usersService.findOneByPersonalId(personalId)
-        
-    }
 
     // ADMIN/COMMANDER
     @Put(':username')
@@ -113,4 +129,44 @@ export class UsersController {
         }
     }
 
+
+	// 1 - Get user by commander Id & Major
+    @Get('my_soldiers/:major')
+    async getSoldierByMajorAndCommanderId(@Param('major') major: Major,@Req() req){
+
+
+
+        const usertoken = req.headers.authorization;
+        let commander = await this.usersService.getUserByJWT(usertoken);
+        let commanderId = commander.personalId;
+        //console.log(commanderId)
+
+        
+        return await this.usersService.getSoldiersByCommanderId(commanderId, major)
+        
+        //return await this.usersService.findOneByPersonalId(personalId)
+        
+    }
+
+
+
+
+
+
+
+	// 2 - Given array of users - arrUser --> returns corresponding array of all 
+	//                                        their submision & reviews  
+
+
+
+
+
+
+
+
+
+}
+
+function FormDataRequest() {
+    throw new Error('Function not implemented.');
 }

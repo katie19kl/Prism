@@ -104,7 +104,7 @@ export class ReviewService {
 
         let allReviews =  await this.reviewsModel.find(filter);
     
-        console.log(allReviews);
+        //console.log(allReviews);
 
         allReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
             ? 1 : (a.submittedDate === b.submittedDate) 

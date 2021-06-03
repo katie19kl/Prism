@@ -18,14 +18,14 @@ export class FileHandlingController {
 		// put admin permission only
 		@Post("major/:dirMajorName")
 		async createNewMajorDir(@Param('dirMajorName') dirMajorName: String){
-			console.log("----")
+			//console.log("----")
 			return await this.fileHandlingService.createNewMajorDir(dirMajorName)
 		}
 	
 		// put admin permission only
 		@Delete("major/:dirMajorName")
 		async deleteMajorDir(@Param('dirMajorName') dirMajorName: Major){
-			console.log("----")
+			//console.log("----")
 			return await this.fileHandlingService.deleteMajorDir(dirMajorName)
 		}
 	
@@ -39,7 +39,7 @@ export class FileHandlingController {
 		@Get('major/modules/:major')
 		async getAllModulesByMajor(@Param('major') major: Major) {
 			let result = await this.fileHandlingService.getAllDirOfMajor(major);
-			console.log(result);
+			//console.log(result);
 	
 			return result;
 		}
@@ -64,8 +64,8 @@ export class FileHandlingController {
 						@Param('currentModuleName') currentModuleName:string,
 						@Param('newModuleName') newModuleName:string)
 	{
-		console.log("rename module")
-		console.log(major, currentModuleName, newModuleName)
+		//console.log("rename module")
+		//console.log(major, currentModuleName, newModuleName)
 		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName)
 	}
 
@@ -75,7 +75,6 @@ export class FileHandlingController {
 		
 
 
-		console.log(" +++++++++++++++++++------------------+++++++++++++++++++++++++++++++")
 		return this.fileHandlingService.removeModuleDirInMajor(module_to_del,major)
 
 	}
@@ -89,8 +88,8 @@ export class FileHandlingController {
 	async getAllSubjectInModule(@Param('major') major: Major, @Param('module') module: string) {
 		let result = await this.fileHandlingService.getAllDirOfModule(major, module);
 
-		console.log(result);
-		console.log("!!___!!")
+		//console.log(result);
+		//console.log("!!___!!")
 		return result;
 	}
 
@@ -111,7 +110,7 @@ export class FileHandlingController {
 	async deleteSubject(@Param('major') major: Major,
 						   @Param('module') module: string, @Param('subjectToDelete') subjectToDelete :string)
 	{
-		console.log("deleting subject!");
+		//console.log("deleting subject!");
 		return  this.fileHandlingService.removeSubject(major,module,subjectToDelete)
 
 	}
@@ -134,8 +133,8 @@ export class FileHandlingController {
 					@Param('subject') subject: string) {
 		
 			
-		console.log("2-2-2-2-")
-		console.log(subject)
+		//console.log("2-2-2-2-")
+		//console.log(subject)
 		
 		return await this.fileHandlingService.getAllFilesOfPath(major,module,subject);
 
