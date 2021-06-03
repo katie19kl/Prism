@@ -3,16 +3,6 @@ import LocalStorage from "../../HelperJS/LocalStorage";
 
 export async function usersSubmissions(soldiers,major,module) {
 
-    /*
-    console.log("-+++++-+-+-+-+-+-+-+-+-+-+-+-")
-
-    console.log(soldiers)    
-    console.log(major)
-    console.log(module)
-    
-    console.log("-+++++-+-+-+-+-+-+-+-+-+-+-+-")*/
-
-
 	let token = LocalStorage.getItem(LocalStorage.token);
     
     // can be changed -- it should be one only

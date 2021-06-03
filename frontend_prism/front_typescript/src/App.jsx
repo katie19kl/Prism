@@ -17,6 +17,8 @@ import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/module/DisplayContentOfModule';
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
+import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
+import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
 
 
 export default function App() {
@@ -56,6 +58,16 @@ export default function App() {
 
 			<Route path="/admin/update_user" component={UpdateUsers} />
 
+			
+			<Route path="/admin/course_status" component={SubmissionStatus} />
+
+
+			<Route path="/admin/soldier_status" component={SoldierStatus}/>
+
+			
+			
+			
+			
 			<Route path="/noPermissions" component={NoPermissions}>
 			</Route>
 
@@ -72,6 +84,8 @@ export default function App() {
 
 
 			<Route path="/submission/info/:major/:moduleName/:subject" component={UserSubmission}></Route>
+
+
 			
 
 			<PrivateRoutingComponent path="/" component={MainView}/>

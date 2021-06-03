@@ -16,10 +16,10 @@ export class ModuleManager {
    
         //let dir = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_to_del
         let dir = this.createPathMajorModuleGivenIndexing(major, module_to_del)
-        console.log(dir)
+        //console.log(dir)
         const fs = require("fs")
 
-        console.log(" before rem")
+       // console.log(" before rem")
         return await new Promise((resolve,reject) =>{
             
             console.log(fs.existsSync(dir))
@@ -27,7 +27,7 @@ export class ModuleManager {
             if (fs.existsSync(dir)){
 
                 fs.rmdir(dir, { recursive: true }, async (err) => {
-                    console.log(err)
+                    //console.log(err)
                     if (err) {
         
                         reject(new NotFoundException("Deleting problem"))
@@ -35,11 +35,11 @@ export class ModuleManager {
                     else {
                         
         
-                        console.log(`${dir} is deleted!`);
+                        //console.log(`${dir} is deleted!`);
             
-                        console.log(" after rem")
-                        let removedIndex = module_to_del[0]
-                
+                        //console.log(" after rem")
+                        //let removedIndex = module_to_del[0]
+                        let removedIndex = this.getModuleIndexFromModule(module_to_del)
                             
                         let renaming = await this.decreaseIndexesModulesAfterRemoved(removedIndex, major)
                         if (renaming == -1){
@@ -71,7 +71,32 @@ export class ModuleManager {
     async getAllDirOfModule(major: Major, module: string) {
         let fullPath = this.createPathMajorModuleGivenIndexing(major, module);
 
-        return FileHandlingService.getDirList(fullPath);
+        
+        let allSubjects = FileHandlingService.getDirList(fullPath);
+        
+        
+        console.log("============================")
+
+        const transform = k => {
+
+            return parseInt(k.split(IndexingFormat.SubjectSeparator)[0].split(IndexingFormat.SubjectSubIndexing)[1])
+        }
+        // sort by subindexing
+        allSubjects.sort(function (a,b){
+           
+            return transform(a) - transform(b);
+        });
+        //console.log(allSubjects)
+        
+        //console.log("============================")
+        
+        return allSubjects
+    }
+
+    getModuleIndexFromModule(moduleName){
+        //console.log("module name", moduleName)
+        //console.log("estracted index ", moduleName.split(IndexingFormat.ModuleSeparator)[0])
+        return moduleName.split(IndexingFormat.ModuleSeparator)[0]
     }
 
 
@@ -81,24 +106,39 @@ export class ModuleManager {
         //let path = FileHandlingService.pathRootDirectory + "/" + major
         let path = this.createPathMajor(major)
         let all_dirs = FileHandlingService.getDirList(path)
-        console.log(all_dirs)
+        //console.log(all_dirs)
 
         return await new Promise( async (res, rej) => {
 
-            for await (const dir of all_dirs) {
+            for await (const dir_module of all_dirs) {
 
-                let index_dir = parseInt(dir[0])
+                let dirIndex = this.getModuleIndexFromModule(dir_module)
+
+
+                //let index_dir = parseInt(dir[0])
+                let index_dir = parseInt(dirIndex)
                 if (index_dir > removedIndex) {
-                    console.log(dir)
+                    //console.log(dir)
     
-                    let currentPath = path + "/" + dir;
-                    let index_new = parseInt(dir[0]) - 1
-                    let dirNew = dir.replace(dir[0], index_new.toString());
+                    let currentPath = path + "/" + dir_module;
+                    //let index_new = parseInt(dir[0]) - 1
+                    //let dirNew = dir.replace(dir[0], index_new.toString());
+                    let index_new = parseInt(dirIndex) - 1
+                    
+                    
+                    //let dirNew = dir.replace(dirIndex, index_new.toString());
+                    
+                    let leftPart = dir_module.split(IndexingFormat.ModuleSeparator)[0]
+                    let rightPart = dir_module.split(IndexingFormat.ModuleSeparator)[1]
+                    let newLeftPart = leftPart.replace(index_dir,index_new.toString())
+                    let dirNew = newLeftPart + IndexingFormat.ModuleSeparator + rightPart 
+
+
                     let newPath = path + "/" + dirNew
     
-                    console.log(newPath);
-                    console.log(currentPath);
-                    console.log("=========");
+                    //console.log(newPath);
+                    //console.log(currentPath);
+                    //console.log("=========");
     
                     fs.rename(currentPath, newPath, function (err) {
                         if (err) {
@@ -212,9 +252,8 @@ export class ModuleManager {
     createPathMajorModule(module_index: string, pathMajor, new_module: string) {
 
 
-        let dirsInMajor = FileHandlingService.getDirList(pathMajor)
-       
-        let nameOfIndexedDir = this.getNameOfIndexedDirModule(dirsInMajor, module_index);
+        //let dirsInMajor = FileHandlingService.getDirList(pathMajor)
+        //let nameOfIndexedDir = this.getNameOfIndexedDirModule(dirsInMajor, module_index);
       
 
 
@@ -234,8 +273,10 @@ export class ModuleManager {
             let tokenedDir = dir.split(IndexingFormat.ModuleSeparator)
             // parse dir index & name
             if (tokenedDir.length == 2) {
+                
                 index = tokenedDir[0]
                 nameOfIndex = tokenedDir[1]
+
             }
             // desired index was found
             if (index === module_index) {
@@ -249,12 +290,14 @@ export class ModuleManager {
     }
 
     getIndexFromName(moduleName:string){
-        let index_prefix = moduleName[0] + IndexingFormat.ModuleSeparator
+        //let index_prefix = moduleName[0] + IndexingFormat.ModuleSeparator
+        let index_prefix = this.getModuleIndexFromModule(moduleName) + IndexingFormat.ModuleSeparator
+
         return index_prefix
     }
 
     async renameModule(major: Major, currentModuleName:string, newModuleName:string){
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         let currPath = this.createPathMajorModuleGivenIndexing(major, currentModuleName)
         
 
@@ -273,8 +316,8 @@ export class ModuleManager {
         }
 
 
-        console.log(currPath)
-        console.log(newPath)
+       // console.log(currPath)
+        //console.log(newPath)
 
         
 

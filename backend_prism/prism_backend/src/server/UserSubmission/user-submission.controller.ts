@@ -33,6 +33,7 @@ export class UserSubmissionController {
     }
 
 
+
     @Get(':soldierId/:major/:module/:subject')
     async getUserSubmissionByKey(
         @Param('soldierId') id: string,
@@ -40,9 +41,6 @@ export class UserSubmissionController {
         @Param('module') module: string,
         @Param('subject') subject: string) {
 
-            console.log("I am here!!!!!!!!!!!!!!!!!!!!!!!!!!!s");
-
-        console.log("------------------------------------------------")
         try {
             let submissionInfo = await this.usersService.getUserSubmissionByKey(id, major, module, subject);
             console.log("------------------------------------------------")

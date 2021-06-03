@@ -1,4 +1,5 @@
 import { Major } from "src/server/users/common/major.enum";
+import { IndexingFormat } from "../common/IndexingFormat";
 import { FileHandlingService } from "../file-handling.service";
 
 export class MajorManager {
@@ -35,7 +36,19 @@ export class MajorManager {
 
     async getAllDirOfMajor(major:Major) {
         let fullPath = this.createPathMajor(major);
-        return FileHandlingService.getDirList(fullPath);
+        let allModules =  FileHandlingService.getDirList(fullPath);
+        
+        const transform = k => {
+
+            return parseInt(k.split(IndexingFormat.ModuleSeparator)[0])
+        }
+        // sort by subindexing
+        allModules.sort(function (a,b){
+           
+            return transform(a) - transform(b);
+        });
+        
+        return allModules
     }
 
     // creates directory on major level

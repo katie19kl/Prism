@@ -9,6 +9,8 @@ import { getModulesByMajor, getSubjectsByModule } from "../CourseFiles/files_req
 import { Major } from "../../HelperJS/Major"
 import { usersSubmissions } from "../CourseStatus/user_submissions"
 
+import { Status } from "../../GeneralComponent/SubmissionStatus/SoldierSubmissionStatus"
+
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -65,6 +67,10 @@ class SoldierSubmissions extends React.Component {
 
 		this.modules = []
 		this.modules_subjects = {}
+
+
+		this.XUI = []
+		this.mod = []
 
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
@@ -181,6 +187,8 @@ class SoldierSubmissions extends React.Component {
 		let arrPromises = []
 		let modules_submissions_ = {}
 
+		let x = []
+
 		for (const module_sub_map of modules_subjects){
 			
 			for (const module in module_sub_map){
@@ -192,8 +200,17 @@ class SoldierSubmissions extends React.Component {
 				usersSubmissions(soldiers,selectedMajor,module).then((res)=>{
 					if (res !== undefined){
 						if (res.data !== undefined){
+							
+							let s = this.props.selectedSoldier
+							//console.log(s)
+							//console.log(res.data[s])
 
 							modules_submissions_[module] = res.data
+							//modules_submissions_[module] = res.data[s]
+
+							x.push(res.data[s])
+
+
 							resolv(modules_submissions_)
 						}
 						else {
@@ -212,11 +229,13 @@ class SoldierSubmissions extends React.Component {
 			
 		}
 		console.log("7 waiting ...")
-		//console.log(modules_submissions_)
-		Promise.all(arrPromises)
-		//console.log("all pormises are resolved")
-		//console.log(modules_submissions_)
-		this.setState({module_submissions: modules_submissions_})
+
+		Promise.all(arrPromises).then(()=>{
+			//this.setState({module_submissions: x})
+			this.setState({module_submissions: modules_submissions_})
+		})
+		
+		//this.setState({module_submissions: x})
 	}
 
 
@@ -254,6 +273,47 @@ class SoldierSubmissions extends React.Component {
 		
 	}
 
+	convertToColors(){
+		let submissions_ = this.state.module_submissions
+		let selectedSoldier = this.props.selectedSoldier
+
+		let mod_subject_colors = {}		
+		
+
+		//console.log("--------------------------")
+		
+		//console.log(submissions_)
+		for (let module_ in submissions_){
+			//console.log("1")
+			let module = submissions_[module_]
+			
+			let soldier_submissions = module[selectedSoldier]
+			//console.log(soldier_submissions)
+			//console.log("2")
+
+			let subjects = {}
+			if (soldier_submissions == undefined){
+				continue
+			}
+			for (let submission of soldier_submissions){
+				let subject = submission.subject
+				let grade =  submission.grade
+				let color = Status.Closed
+				if (submission.checked){
+					color = Status.SubmittedGoodEnough
+				}
+				//subjects.push({color:color, grade:grade, subject:subject})
+				subjects[subject] = {color:color, grade:grade}
+			}
+			mod_subject_colors[module_] = subjects
+
+		}
+		
+		//console.log(mod_subject_colors)
+		//console.log("-----------???-----------")
+		return mod_subject_colors
+	}
+
 
 
 	render() {
@@ -268,19 +328,34 @@ class SoldierSubmissions extends React.Component {
 
         let displayTable = (this.state.module_submissions !== undefined)
 
+		//console.log(displayTable)
+
 		if (displayTable) {
 
-			//let personalIdColors = this.convertToColors(soldierSubmissionData)
+			let mod_subject_colors = this.convertToColors()
+			console.log("========================================")
 			
-			//console.log("^^^^^^^^^11^^^^^^^^^^^^^^")
-			//console.log(this.modules)
+			console.log(mod_subject_colors)
+
+			let module = this.modules[0]
+
+			
+			console.log(module)
+			
+			console.log(mod_subject_colors[module])
+			//console.log(mod_subject_colors["1- Module_first"])
+			
+			//console.log(mod_subject_colors["1- Module_first"]["1.1- subject_a"])
+			
+			
+			console.log("========================================")//console.log(this.modules)
 			//console.log("^^^^^^^^^^^22^^^^^^^^^^^^")
 			//console.log(this.modules_subjects)
 
 			//console.log(this.modules[0])
 			//console.log(this.modules_subjects[this.modules[0]])
 			//console.log("^^^^^^^^^^^33^^^^^^^^^^^^")
-			console.log(this.state.module_submissions)
+			//console.log(this.state.module_submissions)
 			//console.log("^^^^^^^^^^^^^^^^^^^^^^^")
 			//console.log("^^^^^^^^^^^^^^^^^^^^^^^")
 			
@@ -313,14 +388,36 @@ class SoldierSubmissions extends React.Component {
 									</TableCell>
 
 									{
-										this.modules_subjects[module].map((term) => (
+										this.modules_subjects[module].map((subject_name) => (
 
-											<TableCell className={classes.tableCell}>
 
-												{term}
+
+											
+												
+												mod_subject_colors[module] !== undefined 
+												&&
+												mod_subject_colors[module][subject_name] !== undefined
+												
+												?
+												<TableCell className={classes.sticky} style={{ backgroundColor: mod_subject_colors[module][subject_name].color}}>
+													{
+													mod_subject_colors[module][subject_name].color + "-" + subject_name
+													}
+												</TableCell>
+												: 
+												<TableCell className={classes.sticky} style={{ backgroundColor: "orange" }}>
+												{
+													"XUI--" + subject_name
+												}
+												</TableCell>
+												
 												
 
-											</TableCell>
+											
+
+
+											
+											
 										))
 
 									}
