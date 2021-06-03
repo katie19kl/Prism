@@ -2862,13 +2862,13 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/review.service.ts": {
-        "version": "83e9ad6fd5df3980519ef3dc92d75c02817752f8073e2fd14348cde2130fed01",
+        "version": "113b4946209241a3dd452fc1ae4f482a178f7d0e8b94f9256fb3740d0e582b8a",
         "signature": "0424f78a055c2a6183b9500f97635d8147a5e92d0d880381f090f95011e91582",
         "affectsGlobalScope": false
       },
       "./src/server/review/review.controller.ts": {
-        "version": "c3cc223b48ae67a2bad555ad654d48b7bd8c245e1bfb89fd7fe39980137cefeb",
-        "signature": "a4902b4f8a808daded73ca6b41b22091e871d0d99a3e660691b591a8241b638e",
+        "version": "04f2e55962a4babe22351afa7ba36898976b07d8fe2ff52f1b4462c3e5b62986",
+        "signature": "a1d34cacd278251eea6b6d09269c10440b01e60d8172ded6d5c4539eae9a1246",
         "affectsGlobalScope": false
       },
       "./src/server/review/review.schema.ts": {
@@ -8083,8 +8083,7 @@
         "./src/server/review/ireview.interface.ts",
         "./src/server/review/review.service.ts",
         "./src/server/rolesactivity/role.enum.ts",
-        "./src/server/users/common/major.enum.ts",
-        "./src/server/usersubmission/user-submission.service.ts"
+        "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/review.schema.ts": [
         "./node_modules/mongoose/index.d.ts"
