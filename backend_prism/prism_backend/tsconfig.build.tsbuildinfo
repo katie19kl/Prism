@@ -1762,7 +1762,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/file-handling/managers/subjectmanager.ts": {
-        "version": "789100edb287ca7caf7b53545e3475e14adc5c3973231ab060fd56313e09d1c0",
+        "version": "b999fca63d5ba38802eced1cd1e0b69c8b8bd717e3d5cec5b7526deafee9e642",
         "signature": "bfa4863d37c98a3bbecb34b0e09194b024cd4ee5f736d179f74ee7e8783e742e",
         "affectsGlobalScope": false
       },

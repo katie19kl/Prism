@@ -163,7 +163,7 @@ export class SubjectManager{
                     console.log(newPath + "--- new path after decreasing index")
                     fs.rename(currentPath, newPath, function (err) {
                         if (err) {
-                            reject(-1)
+                            reject(-1) 	          
                         } 
                     })
                 }
