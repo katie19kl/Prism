@@ -122,5 +122,4 @@ function currentUserUsername() {
 }
 
 
-
 export { validateTokenFunc, currentUserRole, validateRoleByToken,currentUserUsername }

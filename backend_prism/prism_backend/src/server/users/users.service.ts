@@ -20,11 +20,12 @@ export class UsersService {
 
 	constructor(@InjectModel('User') private userModel: Model<IUser>,
 				@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
-				@InjectModel('Reviews') private reviewsModel: Model<IReview>
+				@InjectModel('Reviews') private reviewsModel: Model<IReview>,
+				private userSubmissionService: UserSubmissionService
 				) {
 		
 		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel)
-		this.reviewHandler = new ReviewService(reviewsModel)
+		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionService);
 	}
 	
 

@@ -1,4 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Role } from '../RolesActivity/role.enum';
 import { Major } from '../users/common/major.enum';
 import { UserSubmissionService } from '../UserSubmission/user-submission.service';
 import { CreateReviewDto } from './dto/create-review.dto';
@@ -8,53 +9,26 @@ import { ReviewService } from './review.service';
 @Controller('review')
 export class ReviewController {
 
-    constructor(private reviewService: ReviewService,
-        private usersSubmissionService: UserSubmissionService) {}
+    constructor(private reviewService: ReviewService) {}
 
 
     @Post()
     async create(@Body() createReviewDto: CreateReviewDto) {
 
-        // first check there is a user submission object.
-
-        let soldierId = createReviewDto.soldierId;
-        let major = createReviewDto.major;
-        let module = createReviewDto.module;
-        let subject = createReviewDto.subject;
-
         try {
 
-            let userSubmission = await 
-                this.usersSubmissionService.getUserSubmissionByKey(soldierId, major, module, subject);
+            this.reviewService.create(createReviewDto);
 
-            if (userSubmission) {
-                console.log("all good");
-
-                // update the userSubmission field of "isChecked" to true since a review was given.
-                userSubmission.isChecked = true;
-                await userSubmission.save();
-
-                return this.reviewService.create(createReviewDto);
-
-            } else {
-                console.log("might be an error");
-            }
-
-        } catch (error) {
+        } catch(error) {
             throw error;
         }
     
     }
 
-    
-    @Delete(':soldierId/:major/:module/:subject')
-    deleteReview(
-        @Param('soldierId') id: string,
-        @Param('major') major: Major,
-        @Param('module') module: string,
-        @Param('subject') subject: string) {
+    @Delete()
+    deleteReview(@Body() deleteReview: updateReviewDto) {
 
-        return this.reviewService.delete(id, major, module, subject);
+        return this.reviewService.delete(deleteReview);
 
     }
 
@@ -79,13 +53,21 @@ export class ReviewController {
         return this.reviewService.getAllReviewsToShowSoldier(id, major, module, subject);
     }
 
+    // return reviews which are dedicated for the 'role' to see.
+    @Get('reviews-role/:soldierId/:major/:module/:subject/:role')
+    getReviewsByRole(
+        @Param('soldierId') id: string,
+        @Param('major') major: Major,
+        @Param('module') module: string,
+        @Param('subject') subject: string,
+        @Param('role') role: Role) {
+
+        return this.reviewService.getReviewsByRole(id, major, module, subject, role);
+    }
+
     @Put()
     updateReview(@Body() updateReviewDto: updateReviewDto) {
 
-        // enable the commander/tester to update the following fields:
-        // 1. comment- the review itself
-        // 2. grade
-        // 3. showTo
         try {
             let updated = this.reviewService.updateReview(updateReviewDto);
             return updated;

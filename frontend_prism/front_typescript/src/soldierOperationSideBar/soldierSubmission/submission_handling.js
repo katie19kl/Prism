@@ -1,6 +1,7 @@
 //('user-submission'):soldierId/:major/:module/:subject
 import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
+import { getUserInfoByJWT } from '../../HelperJS/extract_info';
 
 // module & major & subject
 async function getListSubmissionOfSubject(major, module, subject, studentId) {
@@ -50,7 +51,6 @@ async function getListSubmissionOfSubject(major, module, subject, studentId) {
     }
 }
 
-
 async function removeFileFromSubmission(major_, module_, subject_, file_name){
     console.log(major_)
     
@@ -70,7 +70,6 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 
 	} else {
 
-        
         let userSubmissionDTO = {
             major: major_,
             module: module_,
@@ -83,9 +82,6 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
             subject: subject_,
         }
 
-
-
-
         const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,
@@ -93,25 +89,20 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 				'Authorization': 'Bearer ' + token,
 				'Content-Type': 'application/json'
 			},
-
 		});
-
  
-        return await req.delete(url, { data:  userSubmissionDTO     })
+        return await req.delete(url, { data: userSubmissionDTO })
+        .then((response) => {
+            console.log(response)
+            return response
 
-            .then((response) => {
-                console.log(response)
-                return response
-
-            }, (error) => {
-                return undefined
-            });
-
+        }, (error) => {
+            return undefined
+        });
     }
-
 }
 
-async function uploadSingleSubmission(file, onUploadProgress, major, module, subject){
+async function uploadSingleSubmission(file, onUploadProgress, major, module, subject) {
 
     let token = LocalStorage.getItem(LocalStorage.token);
     let url  = "http://localhost:4000/user-submission"
@@ -145,8 +136,65 @@ async function uploadSingleSubmission(file, onUploadProgress, major, module, sub
     })
 }
 
+async function sendCreateReviewRequest(personalId,
+    major, module, subject, reviewContent, grade, gradeDesc, rolesArr) {
+
+    let token = LocalStorage.getItem(LocalStorage.token);
+    
+    if (token === null || token === 'undefined') {
+
+		return false;
+
+	} else {
+
+        let url  = "http://localhost:4000/review";
+
+        return await getUserInfoByJWT().then(async (user) => {
+            
+            if (user === undefined) {
+                return undefined;
+            } else if (user.data === undefined || user.data === "") {
+                return undefined;
+            } else {
+                user = user.data;
+
+                let reviewDto = {
+                    soldierId: personalId,
+                    major: major,
+                    module: module,
+                    subject: subject,
+                    gradeDescription: gradeDesc,
+                    checkerRole: user.role,
+                    checkerId: user.personalId,
+                    comment: reviewContent,
+                    showTo: rolesArr,
+                    grade: grade
+                };
+        
+                const req = await axios.create({
+                    baseURL: url,
+                    timeout: 1000,
+                    headers: { 
+                        'Authorization': 'Bearer ' + token,
+                        'Content-Type': 'application/json'
+                    },            
+                });
+        
+                return await req.post(url, reviewDto).then((response) => {
+                    return response;
+        
+                }, (error) => {
+                    return undefined;
+                });
+            }
+        });
+    }
+}
 
 
-
-
-export { getListSubmissionOfSubject, removeFileFromSubmission,uploadSingleSubmission}
+export { 
+    getListSubmissionOfSubject,
+    removeFileFromSubmission,
+    uploadSingleSubmission, 
+    sendCreateReviewRequest
+}

@@ -147,7 +147,7 @@ class UpdateUsers extends React.Component {
                 
                 this.form = <DisplayUserData title={
                     <Grid justify='center' alignItems='center' container item xs={12}>
-                        <h4 className={classes.myFont}>Your Current Info</h4>
+                        <h4 className={classes.myFont}>Current Info</h4>
                     </Grid>
                 }
                 major = {major} 

@@ -34,87 +34,87 @@ class DisplayUserData extends React.Component {
         return (
             <div className={classes.root}>
                 <Grid container justify='center' alignItems='center'>
-                {this.props.title}
+                    {this.props.title}
 
-                <Grid container item justify='center' alignItems='center'>
-                <TextField
-                    disabled id="standard-disabled_" 
-                    variant="filled"
-                    label="username" 
-                    defaultValue= {this.props.username}>
+                    <Grid container item justify='center' alignItems='center'>
+                        <TextField
+                            disabled id="standard-disabled_" 
+                            variant="filled"
+                            label="username" 
+                            defaultValue= {this.props.username}>
 
-                </TextField>
+                        </TextField>
                 
-                <TextField
-                    disabled id="standard-disabled=" 
-                    variant="filled"
-                    label="password" 
-                    defaultValue="******" >
+                        <TextField
+                            disabled id="standard-disabled=" 
+                            variant="filled"
+                            label="password" 
+                            defaultValue="******" >
 
-                </TextField>
-                </Grid>
+                        </TextField>
+                    </Grid>
 
-                <dd></dd>
-                <br></br>
+                    <dd></dd>
+                    <br></br>
                 
-                <Grid container item justify='center' alignItems='center'>
-                <TextField	
-                    disabled id="standard-disabled!" 	
-                    variant="filled"
-                    label="majors"
-                    defaultValue={this.props.major} >
-                </TextField>
+                    <Grid container item justify='center' alignItems='center'>
+                        <TextField	
+                            disabled id="standard-disabled!" 	
+                            variant="filled"
+                            label="majors"
+                            defaultValue={this.props.major} >
+                        </TextField>
 
-                
-                <TextField	
-                    disabled id="standard-disabled__" 	
-                    variant="filled"
-                    label="Gender"
-                    defaultValue={this.props.gender} >
-                </TextField>
-                </Grid>
+                        
+                        <TextField	
+                            disabled id="standard-disabled__" 	
+                            variant="filled"
+                            label="Gender"
+                            defaultValue={this.props.gender} >
+                        </TextField>
+                    </Grid>
 
-                <dd></dd>
-                <br></br>
+                    <dd></dd>
+                    <br></br>
 
-                <Grid container item justify='center' alignItems='center'>
-                <TextField 
-                    disabled id="standard-disabled=_"
-                    variant="filled"
-                    label="First Name" 
-                    defaultValue={this.props.firstName}>
+                    <Grid container item justify='center' alignItems='center'>
+                        <TextField 
+                            disabled id="standard-disabled=_"
+                            variant="filled"
+                            label="First Name" 
+                            defaultValue={this.props.firstName}>
 
-                </TextField>
+                        </TextField>
 
 
-                <TextField 
-                    disabled id="standard-disabled=_="
-                    variant="filled"
-                    label="Last Name" 
-                    defaultValue={this.props.lastName}>
+                        <TextField 
+                            disabled id="standard-disabled=_="
+                            variant="filled"
+                            label="Last Name" 
+                            defaultValue={this.props.lastName}>
 
-                </TextField>
-                </Grid>
+                        </TextField>
+                    </Grid>
 
-                <dd></dd>
-                <br></br>
+                    <dd></dd>
+                    <br></br>
 
-                <Grid container item justify='center' alignItems='center'>
-                <TextField	
-                    disabled id="standard-disabled=_=_" 	
-                    variant="filled"
-                    label="Role"
-                    defaultValue={this.props.role} >
-                </TextField>
+                    <Grid container item justify='center' alignItems='center'>
+                        <TextField	
+                            disabled id="standard-disabled=_=_" 	
+                            variant="filled"
+                            label="Role"
+                            defaultValue={this.props.role} >
+                        </TextField>
 
-                <TextField 
-                    disabled id="standard-disabled_=__" 
-                    variant="filled"
-                    label="Phone number" 
-                    defaultValue={this.props.phone_number}>
+                        <TextField 
+                            disabled id="standard-disabled_=__" 
+                            variant="filled"
+                            label="Phone number" 
+                            defaultValue={this.props.phone_number}>
 
-                </TextField>
-                </Grid>
+                        </TextField>
+                    </Grid>
                 </Grid>
             </div>
         );

@@ -7,26 +7,20 @@ import {getUserInfoByJWT } from '../../HelperJS/extract_info'
 
 import { updateUser } from '../../HelperJS/update_user'
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
-import { withStyles } from "@material-ui/core";
+import { Grid, withStyles } from "@material-ui/core";
 
 
 const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
         '& .MuiTextField-root': {
-            margin: theme.spacing(1),
+            margin: theme.spacing(2),
             width: '25ch',
         },
-        marginTop: theme.spacing(3),
-        marginLeft: theme.spacing(30),
-    },
-    button: {
-        marginLeft: theme.spacing(13),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
-        marginLeft: theme.spacing(5),
-    }
+    },
 });
 
 
@@ -38,20 +32,11 @@ class ChangeAdminSettings extends React.Component {
 		this.handleTextFieldChangeFirstName = this.handleTextFieldChangeFirstName.bind(this)
 		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this)
 		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this)
-
-
-				
 		this._username =  undefined
 		this._firstName = undefined
 		this._lastName = undefined
 		this._phone_number = undefined
-
-		
 		this.updateMyInfo = this.updateMyInfo.bind(this)
-
-
-
-		
 		this.state = {
 			prev_username: undefined,
 			prev_firstName: undefined,
@@ -103,7 +88,6 @@ class ChangeAdminSettings extends React.Component {
 		)
 	}
 
-
 	render() {
 		const { classes } = this.props;
 
@@ -137,11 +121,11 @@ class ChangeAdminSettings extends React.Component {
 		
 		if (this.state.prev_username === undefined) {
 			return (
-					<MenuAppBar  role = {"Commander"} menu={
-						<CommanderMenu/>
-					}></MenuAppBar>
-
+				<MenuAppBar role = {"Commander"} menu={
+					<CommanderMenu/>
+				}></MenuAppBar>
 			);
+
 		} else {
 			return (
 				<MenuAppBar menu={
@@ -150,96 +134,105 @@ class ChangeAdminSettings extends React.Component {
 				role = "Commander" 
 				content={
 					<div className={classes.root}>
+
+						<br/>
+
+						<Grid container justify='center' alignItems='center'>
 						
-						<h3 className={classes.myFont}>
-							Enter the fields you would like to update
-						</h3>
+							<Grid container item justify='center' alignItems='center'>
+								<h3 className={classes.myFont}>
+									Enter the fields you would like to update
+								</h3>
+							</Grid>
 
-						<TextField onChange={this.handleTextFieldChangeUsername}
+							<br/>
+
+							<Grid container item justify='center' alignItems='center'>
+
+								<TextField onChange={this.handleTextFieldChangeUsername}
+								variant="filled"
+								label="Username">
+								</TextField>
+
+								<TextField
+								disabled id="standard-disabled" 
+								variant="filled"
+								label="Username" 
+								defaultValue= {this.state.prev_username}>
+								</TextField>
+								
+							</Grid>
+
+							<br></br>
+							<br></br>
+					
+							<Grid container item justify='center' alignItems='center'>
+
+								<TextField onChange={this.handleTextFieldChangeFirstName}								
+								variant="filled"
+								label="First Name">
+								</TextField>
+
+								<TextField 
+								disabled id="standard-disabled"
+								variant="filled"
+								label="First Name" 
+								defaultValue={this.state.prev_firstName}>
+								</TextField>
+								
+							</Grid>
+
+							<br></br>
+							<br></br>
+
+							<Grid container item justify='center' alignItems='center'>
+
+								<TextField onChange={this.handleTextFieldChangeLastName}
+								variant="filled"
+								label="Last Name">
+								</TextField>
+
+								<TextField 
+								disabled id="standard-disabled"
+								variant="filled"
+								label="Last Name" 
+								defaultValue={this.state.prev_lastName}>
+								</TextField>
+
+							</Grid>
+
+							<br></br>
+							<br></br>
+					
+							<Grid container item justify='center' alignItems='center'>
+
+								<TextField onChange={this.handleTextFieldChangePhoneNum}
+								variant="filled"
+								label="Phone Number" >
+								</TextField>
+
+								<TextField 
+								disabled id="standard-disabled" 
+								variant="filled"
+								label="Phone Number" 
+								defaultValue={this.state.prev_phone_number}>
+								</TextField>
+
+							</Grid>
+
+							<Grid container item justify='center' alignItems='center'>
+
+								<Button
+								onClick={this.updateMyInfo}
+								variant="contained"
+								color="primary"
+								size="large"
+								startIcon={<SaveIcon />}>
+									Update new info	
+								</Button>	
 							
-							variant="filled"
-							label="Username"
-							>
-						</TextField>
-
-
-						<TextField
-							disabled id="standard-disabled" 
-							variant="filled"
-							label="Username" 
-							defaultValue= {this.state.prev_username}>
-
-						</TextField>
-						<br></br>
-						<br></br>
-				
-						<TextField onChange={this.handleTextFieldChangeFirstName}
-							
-							variant="filled"
-							label="First Name" 
-							>
-
-						</TextField>
-
-				
-						<TextField 
-							disabled id="standard-disabled"
-							variant="filled"
-							label="First Name" 
-							defaultValue={this.state.prev_firstName}>
-
-						</TextField>
-
-						<br></br>
-						<br></br>
-
-						<TextField onChange={this.handleTextFieldChangeLastName}
-							
-							variant="filled"
-							label="Last Name" 
-							>
-
-						</TextField>
-
-						<TextField 
-							disabled id="standard-disabled"
-							variant="filled"
-							label="Last Name" 
-							defaultValue={this.state.prev_lastName}>
-
-						</TextField>
-
-						<br></br>
-						<br></br>
-				
-						<TextField onChange={this.handleTextFieldChangePhoneNum}
-							
-							variant="filled"
-							label="Phone Number" >
-
-						</TextField>
-
-						<TextField 
-
-							disabled id="standard-disabled" 
-							variant="filled"
-							label="Phone Number" 
-							defaultValue={this.state.prev_phone_number}>
-
-						</TextField>
-
-						<br></br>
-						<br></br>
-
-						<Button
-							onClick={this.updateMyInfo}
-							variant="contained"
-							color="primary"
-							size="large"
-							className={classes.button}
-							startIcon={<SaveIcon />}>
-							Update new info	
-						</Button>
+							</Grid>
+						</Grid>
 					</div>
 				}>
 				</MenuAppBar>

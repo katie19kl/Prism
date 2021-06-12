@@ -57,13 +57,13 @@ async function getUserInfoById(personalId) {
 
 		return await req.get(url, {
 		})
-			.then((response) => {
+		.then((response) => {
 
-				return response;
+			return response;
 
-			}, (error) => {
-				return undefined
-			});
+		}, (error) => {
+			return undefined;
+		});
 	}
 }
 

@@ -1,5 +1,6 @@
 import * as mongoose from 'mongoose';
 import { Role } from '../RolesActivity/role.enum';
+import { Grade } from '../users/common/grade.enum';
 import { Major } from '../users/common/major.enum';
 
 // how it looks like in db
@@ -26,7 +27,12 @@ export const ReviewSchema = new mongoose.Schema({
     },
 
     grade: {
-        type: String
+        type: Number
+    },
+
+    gradeDescription: {
+        type: Grade,
+        required: true
     },
 
     submittedDate: {

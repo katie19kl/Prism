@@ -1,5 +1,6 @@
 import { Document } from 'mongoose'
 import { Role } from '../RolesActivity/role.enum';
+import { Grade } from '../users/common/grade.enum';
 import { Major } from '../users/common/major.enum';
 
 
@@ -12,7 +13,9 @@ export interface IReview extends Document {
     subject: string;
 
     // grading. Might change to an enum {checked-is good, checked-to be fixed}.
-    grade: string;
+    grade: number;
+
+    gradeDescription: Grade;
 
     // time of the review submitting.
     submittedDate: string;

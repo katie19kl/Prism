@@ -1,6 +1,7 @@
 import { PartialType } from "@nestjs/mapped-types";
 import { IsAlpha, IsDate, IsNotEmpty, IsNumberString, IsOptional } from "class-validator";
 import { Role } from "src/server/RolesActivity/role.enum";
+import { Grade } from "src/server/users/common/grade.enum";
 import { IsMajor } from "src/server/users/decorators/major-validation.decorator";
 import { IsRole } from "src/server/users/decorators/role-validation.decorator";
 import { IsSingleMajor } from "src/server/users/decorators/single-major-validation.decorator";
@@ -28,7 +29,12 @@ export class updateReviewDto extends PartialType(CreateReviewDto) {
     // grading. Might change to an enum {checked-is good, checked-to be fixed}.
     // one of the variables that could be updated.
     @IsOptional()
-    grade: string;
+    @IsNumberString()
+    grade: number;
+
+    @IsOptional()
+    gradeDescription: Grade;
+
 
     // time of the review submitting.
     @IsNotEmpty()

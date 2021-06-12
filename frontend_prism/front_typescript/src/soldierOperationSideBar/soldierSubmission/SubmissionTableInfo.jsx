@@ -1,25 +1,21 @@
 import React from "react"
 import { getListSubmissionOfSubject, removeFileFromSubmission } from "./submission_handling"
-import { Box, Grid, TextareaAutosize, withStyles } from "@material-ui/core";
-import { purple } from "@material-ui/core/colors";
+import { Grid, Snackbar, withStyles, Box } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
 import {useHistory} from "react-router-dom";
-import PublishIcon from '@material-ui/icons/Publish';
-
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-
 import DisplayFiles from "./../../adminOperationSideBar/Courses/CourseDisplaying/DisplayFiles"
 import Role from "../../Roles/Role";
 import ConfirmationDialog from "../../GeneralComponent/dialogs/ConfirmationDialog";
 import { Link } from "react-router-dom";
-
-import { createBrowserHistory } from 'history'
 import SubmissionReview from "./submissionReview/SubmissionReview";
+import MuiAlert from '@material-ui/lab/Alert';
+import PublishIcon from '@material-ui/icons/Publish';
 
 
 const useStyles = (theme) => ({
@@ -32,30 +28,32 @@ const useStyles = (theme) => ({
     }
 });
 
+/* shows the alert msg when creation attempt is done. */
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 
 class SubmissionTableInfo extends React.Component {
 
-
     constructor(props) {
-        super(props)
-
+        super(props);
         this.deleteFileFromSubmissionHandler = this.deleteFileFromSubmissionHandler.bind(this);
         this.handleCloseConfirm = this.handleCloseConfirm.bind(this);
         this.handleCloseCancel = this.handleCloseCancel.bind(this);
+        this.handleMsgClose = this.handleMsgClose.bind(this);
 
-        this.major = this.props.major
-        this.module = this.props.module
-        this.subject = this.props.subject
-        this.soldierId = this.props.soldierId
-
-        this.submissionInfo = undefined
+        this.major = this.props.major;
+        this.module = this.props.module;
+        this.subject = this.props.subject;
+        this.soldierId = this.props.soldierId;
+        this.submissionInfo = undefined;
         this.chosenFileName = undefined;
+        this.role = this.props.role;
+        this.message = undefined;
+        this.severity = undefined;
 
-        this.role = this.props.role
-
-        this.state =
-        {
+        this.state = {
             submittedFiles: [],
             isChecked: false,
             submittedTime: undefined,
@@ -63,61 +61,62 @@ class SubmissionTableInfo extends React.Component {
             existSubmission: false,
             confirmDialogOpen: false,
             showConfirmDialog: false,
-        }
+            showMsg: false,
+            msgOpen: false,
 
-
-
+        };
     }
 
     componentDidMount() {
         getListSubmissionOfSubject(this.major, this.module, this.subject, this.soldierId)
-            .then((result) => {
+        .then((result) => {
 
 
-                if (result === undefined) {
-                    // no submission yet
-                } else {
-                    this.submissionInfo = result.data
-                    this.setState({
-                        submittedFiles: this.submissionInfo.submittedFiles,
-                        isChecked: this.submissionInfo.isChecked,
-                        submittedTime: this.submissionInfo.submittedTime,
-                        submittedDate: this.submissionInfo.submittedDate,
-                        existSubmission: true
-                    })
-                }
+            if (result === undefined) {
+                // no submission yet
 
-            })
+            } else {
+                this.submissionInfo = result.data;
+                this.setState({
+                    submittedFiles: this.submissionInfo.submittedFiles,
+                    isChecked: this.submissionInfo.isChecked,
+                    submittedTime: this.submissionInfo.submittedTime,
+                    submittedDate: this.submissionInfo.submittedDate,
+                    existSubmission: true
+                });
+            }
+        });
     }
-
 
     setSubmissionStatus() {
 
-        let checked = this.state.isChecked
-        let submitted = this.state.existSubmission
-
+        let checked = this.state.isChecked;
+        let submitted = this.state.existSubmission;
 
         if (checked && submitted) {
-            return "Submitted & Reviewed"
+            return "Submitted & Reviewed";
+
         } else if (!checked && submitted) {
-            return "Submitted & Waiting for review"
+            return "Submitted & Waiting for review";
+
         } else {
-            return "There was no submission yet"
+            return "There was no submission yet";
         }
     }
 
-    setSubmissionColor(){
-        let checked = this.state.isChecked
-        let submitted = this.state.existSubmission
+    setSubmissionColor() {
+        let checked = this.state.isChecked;
+        let submitted = this.state.existSubmission;
 
 
         if (checked && submitted) {
-            return "#80F456"
+            return "#80F456";
 
         } else if (!checked && submitted) {
-            return "#FFC200"
+            return "#FFC200";
+
         } else {
-            return ""
+            return "";
         }
     }
 
@@ -132,22 +131,25 @@ class SubmissionTableInfo extends React.Component {
 
     handleCloseConfirm() {
 
-        removeFileFromSubmission(this.major, this.module, this.subject, this.chosenFileName).then((res)=>{
+        removeFileFromSubmission(this.major, this.module, this.subject, this.chosenFileName)
+        .then((res) => {
+
             if (res !== undefined) {
-                res = res.data
-                this.setState({
-                    submittedDate: res.submittedDate,
-                    submittedTime: res.submittedTime,
-                    submittedFiles: res.submittedFiles,
-                    showConfirmDialog: false,
-                    confirmDialogOpen: false
-                })
+                if (res.data !== undefined){
+                    res = res.data;
+                    this.setState({
+                        submittedDate: res.submittedDate,
+                        submittedTime: res.submittedTime,
+                        submittedFiles: res.submittedFiles,
+                        showConfirmDialog: false,
+                        confirmDialogOpen: false
+                    });
+                }
             }
         });
 
         this.chosenFileName = undefined;
     }
-
 
     deleteFileFromSubmissionHandler(event, file_name) {
         event.stopPropagation();
@@ -173,52 +175,54 @@ class SubmissionTableInfo extends React.Component {
     }
 
     setReviewContent() {
-        // if review doesnt exist
-        let reviewContent = "There is no review so far"
 
-        if (this.state.isChecked){
-            reviewContent = "You have available review"
+        // if review doesnt exist
+        let reviewContent = "There is no review so far";
+
+        if (this.state.isChecked) {
+            reviewContent = "You have available review";
         }
 
-        return reviewContent
+        return reviewContent;
 
+    }
+
+    handleMsgClose() {
+        this.message = undefined;
+        this.severity = undefined;
+        this.setState({ showMsg: false, msgOpen: false });
     }
 
     render() {
 
         let classes = this.props.classes;
-
-        let submissionStatus = this.setSubmissionStatus()
-
-
-        let reviewContent = this.setReviewContent()
-
-
-        let submissionExist = this.state.existSubmission
-
-        let colorSubmissionStatus = this.setSubmissionColor()
-        
-
-
+        let submissionStatus = this.setSubmissionStatus();
+        let reviewContent = this.setReviewContent();
+        let submissionExist = this.state.existSubmission;
+        let colorSubmissionStatus = this.setSubmissionColor();
         let urlPostfix = this.major + "/" +  this.module + "/" + this.subject + "/" + Role.MyFiles;
         let url = "/file_uploading/" + urlPostfix;
-        
-        console.log("!!!!!!!!!!!!!!!!!")
-        let  history  = this.props.browesHistory;
-        console.log(history)
-        console.log("!!!!!!!!!!!!!!!!!")
+        let history = this.props.browesHistory;
 
-    
         if (submissionExist) {
-
 
             return (
                 <div         
-                    style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}>
+                style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+                }}>
+
+                {(this.state.showMsg === true) ? 
+                    <Snackbar open={this.state.msgOpen} 
+                    autoHideDuration={3000}
+                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                    onClose={this.handleMsgClose}>
+                        <Alert onClose={this.handleMsgClose} severity={this.severity}>
+                            {this.message}
+                        </Alert>
+                    </Snackbar> : ""}
 
                     {(this.state.showConfirmDialog === true) ?
                         <ConfirmationDialog
@@ -274,8 +278,6 @@ class SubmissionTableInfo extends React.Component {
 
                                     </TableRow>
 
-
-
                                     {/* Row of submitted files */}
                                     <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
 
@@ -302,59 +304,41 @@ class SubmissionTableInfo extends React.Component {
                             </Table>
 
                         </TableContainer>
-                      
-                        {this.role === Role.MyFiles ? 
 
-                            
+                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role == Role.Tester) ? 
                             <div>
 
-                                <br/>
                                 <br/>
                                 
                                 <Box textAlign='center'>
 
-                                    <Button variant='contained' color="primary" style={{backgroundColor: "red"}}
-                                    onClick={() => history.goBack()}>
-                                            GO BACK
-                                    </Button>
-
                                     {this.role === Role.MyFiles &&
                                     <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
-                                        <Button variant='contained' color="primary" className={classes.space} startIcon={<PublishIcon />}>
+                                        <Button variant='contained' color="primary" className={classes.padding} startIcon={<PublishIcon />}>
                                             Create new Submission
                                         </Button>
 
                                     </Link>
                                     }
-                                    {this.role === Role.Commander &&
-                                    <Link>
-                                            <Button variant='contained' color="primary" className={classes.space} startIcon={<PublishIcon />}>
-                                            Create new Review
-                                        </Button>
-
-                                    </Link>
-                                    }
-
-        
                                 </Box>
                             </div>
                         : " "
                         }
+                      
+                        {/*(this.state.isChecked === true) ?*/ 
+                            <Grid item container xs={12} justify='center' alignItems='center'>
+                                <SubmissionReview
+                                major = {this.major}
+                                module = {this.module}
+                                subject = {this.subject}
+                                soldierId = {this.soldierId}
+                                role = {this.role}
+                                showReviews={this.showReviews}
+                                history={history}
+                                />
 
-                        <br/>
-                        <br/>
-
-                        <Grid item container xs={12} justify='center' alignItems='center'>
-                            <SubmissionReview
-                            major = {this.major}
-                            module = {this.module}
-                            subject = {this.subject}
-                            soldierId = {this.soldierId}
-                            role = {this.role}
-                            />
-
-                        </Grid>
-                    
+                            </Grid>
+                        /*: ''}*/}
                     </div>
 
                 </div>
@@ -365,10 +349,7 @@ class SubmissionTableInfo extends React.Component {
                 <h2> NO submission was made by u </h2>
             );
         }
-
-
     }
-
 }
 
 
