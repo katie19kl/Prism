@@ -97,12 +97,15 @@ class CourseFilesMainView extends React.Component {
 
             if (user !== undefined) {
                 
-                // Retrieve the user info.
-                user = user.data;
-                this.majors = user["major"];
-                this.setState({
-                    updated: true
-                });
+                if (user.data !== undefined){
+                        
+                    // Retrieve the user info.
+                    user = user.data;
+                    this.majors = user["major"];
+                    this.setState({
+                        updated: true
+                    });
+                }
             }
         });
     }
