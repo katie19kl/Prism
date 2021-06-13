@@ -56,6 +56,10 @@ export class FileHandlingService {
         } catch(err) {
             if (err.code === "ENOENT") {
                 console.log("Major not found")
+                
+                ///////////////
+                let empty = []
+                return empty
             }
         }
     }
