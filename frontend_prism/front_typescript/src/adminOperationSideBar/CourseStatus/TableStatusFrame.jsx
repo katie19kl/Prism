@@ -52,7 +52,8 @@ class TableStatusFrame extends React.Component {
 
         this.state = {
             majors: [],
-            modules: [],
+            //modules: [],
+            modules: undefined,
             displayTable: false,
             checkBoxClicked: false
             
@@ -74,7 +75,6 @@ class TableStatusFrame extends React.Component {
 
             getModulesByMajor(this.selectedMajor).then((response) => {
                 if (response !== undefined) {
-              //      console.log(response.data)
                     let modules_ = response.data
                     this.setState({ modules: modules_ })
                 }
@@ -82,7 +82,7 @@ class TableStatusFrame extends React.Component {
 
         }
         // remove selection from module
-        this.setState({modules: [],displayTable: false,checkBoxClicked:false} )
+        this.setState({modules: undefined ,displayTable: false,checkBoxClicked:false} )
     }
 
     moduleSelector(event) {
@@ -124,6 +124,13 @@ class TableStatusFrame extends React.Component {
         //console.log("OUT")
         let modules = this.state.modules
         let classes = this.props.classes
+
+
+        
+        console.log("----Modules-----")
+        console.log(modules)
+    
+        console.log("---------")
 
         //console.log(this.state.displayTable)
         //console.log(this.selectedMajor)
@@ -213,7 +220,7 @@ class TableStatusFrame extends React.Component {
                                             onChange={this.moduleSelector}
                                         >
                                             <option aria-label="None" value="None" />
-                                            {modules.map((module_, index) => (
+                                            {modules !== undefined && modules.map((module_, index) => (
 
                                                 <option key={index} value={module_}>{module_}</option>
 
