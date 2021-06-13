@@ -4,7 +4,7 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { Button, Table, Typography, withStyles } from "@material-ui/core"
+import { Table, Typography, withStyles } from "@material-ui/core"
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import { getSoldiersByMajors, getAllMySoldiers } from "../../HelperJS/extract_info"
 import { getSubjectsByModule } from "../CourseFiles/files_request_handler"
@@ -75,22 +75,15 @@ class TableStatus extends React.Component {
 	constructor(props) {
 		super(props);
 
-
-
-
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
 			selectedModule: this.props.selectedModule,
 			mySoldiers: this.props.mySoldiers,
 			soldiers: [],
 			subjects: [],
-
-			submissionData: undefined
+			submissionData: undefined,
 
 		}
-
-
-
 	}
 
 	// extracts all soldiers of major defined in state
@@ -120,8 +113,8 @@ class TableStatus extends React.Component {
 		let module = this.props.selectedModule
 
 		getSubjectsByModule(major, module).then((res) => {
-			if (res != undefined) {
-				if (res.data != undefined) {
+			if (res !== undefined) {
+				if (res.data !== undefined) {
 
 					this.setState({ subjects: res.data })
 
@@ -147,7 +140,7 @@ class TableStatus extends React.Component {
 		usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
 
 
-		let equal = (JSON.stringify(usersToTable) == JSON.stringify(this.state.soldiers))
+		let equal = (JSON.stringify(usersToTable) === JSON.stringify(this.state.soldiers))
 		// if different answer => update table
 		if (!equal) {
 
@@ -326,7 +319,9 @@ class TableStatus extends React.Component {
 
 				subjectColor.push({
 					status: status,
-					subject: subject_.split(" ")[1],
+					//subject: subject_.split(" ")[1],
+					subject: subject_,
+					
 					color: color
 				})
 			}
@@ -342,30 +337,27 @@ class TableStatus extends React.Component {
 
 	render() {
 
-		let classes = this.props.classes
-		let soldierSubmissionData = this.state.submissionData
+		let classes = this.props.classes;
+		let soldierSubmissionData = this.state.submissionData;
 
 
-		let allSoldierDisplay = []
+		let allSoldierDisplay = [];
 		// prepare for displaying
 		for (let soldier of this.state.soldiers) {
-			let add = soldier.firstName + "\n" + soldier.personalId
-			allSoldierDisplay.push(add)
+			let add = soldier.firstName + "\n" + soldier.personalId;
+			allSoldierDisplay.push(add);
 		}
-
-
 
 		if (allSoldierDisplay.length > 0 && soldierSubmissionData !== undefined) {
 
-			let personalIdColors = this.convertToColors(soldierSubmissionData)
+			let personalIdColors = this.convertToColors(soldierSubmissionData);
 
 			return (
 
-
 				// stickyHeader
-				<Table className={classes.table} aria-label="simple table" >
+				<Table className={classes.table} aria-label="simple table">
 					{/*horizontal subject displaying*/}
-					<TableHead >
+					<TableHead>
 						<TableRow className={classes.head}>
 
 							<TableCell className={classes.sticky}>
@@ -392,10 +384,7 @@ class TableStatus extends React.Component {
 
 					</TableHead>
 
-
 					<TableBody>
-
-
 
 						{/*Vertical frozen bar of all soldiers*/}
 						{allSoldierDisplay.map((soldier, index) => (
@@ -410,22 +399,21 @@ class TableStatus extends React.Component {
                                         	{soldier}
                                     </Typography>
 
-
-
 								</TableCell>
-
 								{
 									personalIdColors[soldier.split("\n")[1]].map((term) => (
 
 										<TableCell className={classes.tableCell} style={{ backgroundColor: term.color }}>
 											
 											{term.color !== Status.Closed &&
-												<Link to = {"/noPermissions"} disabled >
+												<Link 
+												to = {"/admin/soldier_status/" + soldier.split("\n")[1] + "/" + this.state.selectedMajor 
+													+ "/" + this.state.selectedModule + "/" + term.subject} /*disabled*/>
 													
-													<CommentIcon disabled  style={{color:"black", fontSize:15}}>
+													<CommentIcon /*disabled*/ style={{color:"black", fontSize:15}}>
 
 														<Typography style={{ fontFamily: 'monospace'}}>
-															{term.subject}
+															{term.subject.split(" ")[1]}
 														</Typography>
 
 														
@@ -434,12 +422,10 @@ class TableStatus extends React.Component {
 												</Link>
 											}
 											
-											{term.subject}
-											
+											{term.subject.split(" ")[1]}
 
 										</TableCell>
 									))
-
 								}
 							</TableRow>
 						))}
@@ -447,16 +433,11 @@ class TableStatus extends React.Component {
 
 				</Table>
 
-
-
-
 			)
 		}
 		else {
 			return <h2> ssssssssssssssssssssssss</h2>
 		}
-
 	}
-
 }
 export default withStyles(useStyles, { withTheme: true })(TableStatus)

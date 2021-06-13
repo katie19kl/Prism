@@ -35,7 +35,7 @@ const useStyles = (theme) => ({
 
 
 
-class SubmissionStatusKatie extends React.Component {
+class SubmissionStatusObject extends React.Component {
 
 
     render() {
@@ -103,7 +103,7 @@ class SubmissionStatusKatie extends React.Component {
                         major={major}
                         module={moduleName}
                         subject={subject}
-                        soldierId={"12345678"}
+                        soldierId={personalId}
                     >
                     </SubmissionTableInfo>
                 </div>
@@ -115,4 +115,4 @@ class SubmissionStatusKatie extends React.Component {
 
 }
 
-export default withStyles(useStyles, { withTheme: true })(SubmissionStatusKatie);
+export default withStyles(useStyles, { withTheme: true })(SubmissionStatusObject);

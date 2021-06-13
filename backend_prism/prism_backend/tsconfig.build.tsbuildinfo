@@ -1626,14 +1626,19 @@
         "signature": "cb707471dd6b1b1c93fed0dfe882cb82ec1dd368c9ba13277b8afed3e6283421",
         "affectsGlobalScope": false
       },
+      "./src/server/users/common/grade.enum.ts": {
+        "version": "c260fdc3e87a461800372bab32822dc53d5d2e7034a131ab55205dac5c6e1301",
+        "signature": "669d703306f15d36de5d66e8d128c36206e681d933ca2c2180e97f4dda401780",
+        "affectsGlobalScope": false
+      },
       "./src/server/users/common/major.enum.ts": {
         "version": "74cb121ef37425791534e75f90afab00e0f17aa2864e280c6b5a5ed3954ce73e",
         "signature": "ed4f5ef647c7e1f452ab71eb7f2dfb74b0e6421bd9ad2592e6c361fa027b8337",
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/iuser-submission.interface.ts": {
-        "version": "ff668c0fdc5342b5f0c3d0bc1072fd617f8310fae6744b5872db8deb4d378ab2",
-        "signature": "3a5a97fffa96f973699292ec01b8ea5ec4bd96432320218032ad9ee083aa6ee6",
+        "version": "d0b3ee33b9cf88ac23c8c4295f2bda5a444c5d8b70556831401d28a20d9bfb90",
+        "signature": "6d56ef0a1ad5b9672304c9f4c591f41941d484a72f9ef594988772a28e9b9c29",
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/dto/user-submission.dto.ts": {
@@ -1742,7 +1747,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/usersubmission.schema.ts": {
-        "version": "2cb0180609ef8a847bb64e38c11b1a0da98ce65d850f9c92837fabb4e9e65151",
+        "version": "695ba9a17acebb0734a05d9f8c863c064c19a630012dea280def7f698ba277a5",
         "signature": "8c8ccaadad950a05230217e66252c3bb5fbb12b37d7647511f2401ceb02e09ba",
         "affectsGlobalScope": false
       },
@@ -2481,11 +2486,6 @@
         "signature": "975cd1ef5e183c241bf2e072dc535961d9a81317bf808238f446e27b2d2211f5",
         "affectsGlobalScope": false
       },
-      "./src/server/users/common/grade.enum.ts": {
-        "version": "c260fdc3e87a461800372bab32822dc53d5d2e7034a131ab55205dac5c6e1301",
-        "signature": "669d703306f15d36de5d66e8d128c36206e681d933ca2c2180e97f4dda401780",
-        "affectsGlobalScope": false
-      },
       "./src/server/users/decorators/single-major-validation.decorator.ts": {
         "version": "0057a8e068f0c53e351b904791f551c1e65244ce9d7ccc10a0cbce4111258b1d",
         "signature": "20a6c4eefa68d0ae7430d1ca7a68c0681051707b61c82c49ddbf87f423b0754c",
@@ -2507,7 +2507,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/review.service.ts": {
-        "version": "c81523374073125d71575dc2692362d2ee391bbf087229d101d9de44a9cb52e6",
+        "version": "20a0397c9dcec2d689726eb390900365f0df0ea326514a2f35eb80872c33f186",
         "signature": "0424f78a055c2a6183b9500f97635d8147a5e92d0d880381f090f95011e91582",
         "affectsGlobalScope": false
       },
@@ -2572,7 +2572,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.service.ts": {
-        "version": "70f6b7cb4a2c92137a241713f989ba87484d399a2bf525995b7df37c6449d037",
+        "version": "7ea9a8953b00c0eb03e15d0a5de61bde2a30b78c9915e78b6547f1ca2e6a477b",
         "signature": "4789ea6ca465dc7e9872a323a7c71498b3724439ba1f6fd99e00eeddb1bff1ad",
         "affectsGlobalScope": false
       },
@@ -2657,7 +2657,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.controller.ts": {
-        "version": "4acaed3a1901c93ff930f4f8857885751136bbca904e3002bf86e92c9ad3c909",
+        "version": "c455d605386828b0bd0e65dc533d0e37effaf4d38800a5bb782920d845c2ce73",
         "signature": "53efd614b9dbe505dd3131d48442feeecdbb7c8b04eb16581063228ee4a96a88",
         "affectsGlobalScope": false
       },
@@ -2877,7 +2877,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/review.controller.ts": {
-        "version": "04f2e55962a4babe22351afa7ba36898976b07d8fe2ff52f1b4462c3e5b62986",
+        "version": "40d3f93bf87e1f41e4927330dc328ec809edf1bdf65f4b7220282484eb288c89",
         "signature": "a1d34cacd278251eea6b6d09269c10440b01e60d8172ded6d5c4539eae9a1246",
         "affectsGlobalScope": false
       },
@@ -5595,8 +5595,7 @@
         "./src/server/review/dto/update-review.dto.ts",
         "./src/server/review/review.service.ts",
         "./src/server/rolesactivity/role.enum.ts",
-        "./src/server/users/common/major.enum.ts",
-        "./src/server/usersubmission/user-submission.service.ts"
+        "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/review/review.module.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
@@ -5734,13 +5733,12 @@
       ],
       "./src/server/usersubmission/iuser-submission.interface.ts": [
         "./node_modules/mongoose/index.d.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/usersubmission/user-submission.controller.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/platform-express/index.d.ts",
-        "./src/server/auth/auth.service.ts",
-        "./src/server/rolesactivity/constants.ts",
         "./src/server/users/common/major.enum.ts",
         "./src/server/usersubmission/dto/user-submission.dto.ts",
         "./src/server/usersubmission/user-submission.service.ts"
@@ -5782,6 +5780,7 @@
       ],
       "./src/server/usersubmission/usersubmission.schema.ts": [
         "./node_modules/mongoose/index.d.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ]
     },
@@ -8093,6 +8092,7 @@
       ],
       "./src/server/usersubmission/iuser-submission.interface.ts": [
         "./node_modules/mongoose/index.d.ts",
+        "./src/server/users/common/grade.enum.ts",
         "./src/server/users/common/major.enum.ts"
       ],
       "./src/server/usersubmission/user-submission.controller.ts": [

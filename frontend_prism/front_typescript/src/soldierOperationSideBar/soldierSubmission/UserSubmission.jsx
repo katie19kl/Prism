@@ -33,20 +33,19 @@ const useStyles = (theme) => ({
 });
 
 
-
 class UserSubmission extends React.Component {
 
 
-    render(){
+    render() {
 
         let major = this.props.match.params.major;
         let moduleName = this.props.match.params.moduleName;
         let subject = this.props.match.params.subject;
+        let personalId = this.props.match.params.personalId;
 
         // classes - for styling
         const { classes } = this.props;
         const { history } = this.props;
-    
 
         return (
  
@@ -95,7 +94,7 @@ class UserSubmission extends React.Component {
                         major={major}
                         module={moduleName}
                         subject={subject}
-                        soldierId={"12345678"}
+                        soldierId={personalId}
 
                     >
                     </SubmissionTableInfo>

@@ -16,7 +16,7 @@ export default class SoldierTasks extends React.Component {
     }
 
 
-    componentDidMount(){
+    componentDidMount() {
         console.log("000")
         if (this.state.user === undefined){
             

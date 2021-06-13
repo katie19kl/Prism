@@ -17,7 +17,7 @@ import SoldierTasks from './soldierOperationSideBar/soldierTasks/SoldierTasks';
 import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/module/DisplayContentOfModule';
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
-import SubmissionStatusKatie from './adminOperationSideBar/SubmissionStatusKatie/SubmissionStatus';
+import SubmissionStatusObject from './adminOperationSideBar/SubmissionStatusObject/SubmissionStatusObject';
 import SoldierStatusKatie from './adminOperationSideBar/SoldierStatusKatie/SoldierStatus';
 import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
 import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
@@ -30,10 +30,10 @@ export default function App() {
 
 		  <Switch>
 				
-				<PrivateRoutingComponent path="/mainPage" component={MainView} />
+			<PrivateRoutingComponent path="/mainPage" component={MainView} />
 
-				<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin]} component={CommanderMainPage}>
-				</PrivateRoutingComponent>
+			<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin]} component={CommanderMainPage}>
+			</PrivateRoutingComponent>
 			
 			<Route path="/login" component={LogINComp}>
 			</Route>
@@ -45,12 +45,10 @@ export default function App() {
 			<Route path="/admin/info_change" component={ChangeAdminSettings}>
 			</Route>
 
-
 			<Route path="/about" component={About}>
 			</Route>
 
 			<Route path="/admin/course_files" component={CourseFilesMainView} />
-
 			
 			<Route path="/file_uploading/:major/:module/:subject/:role" component={UploadBar} />
 
@@ -59,10 +57,8 @@ export default function App() {
 			<Route path="/admin/create_user" component={CreateUser} />
 
 			<Route path="/admin/update_user" component={UpdateUsers} />
-
 			
 			<Route path="/admin/course_status" component={SubmissionStatus} />
-
 
 			<Route path="/admin/soldier/soldier_status" component={SoldierStatus}/>
 			
@@ -71,23 +67,32 @@ export default function App() {
 
 			<Route path="/soldier_info" component={SoldierInfo}>
 			</Route>
-
 			
 			<Route path="/soldier_tasks" component={SoldierTasks}>
 			</Route>
 
-
-			<Route path="/module_content/:moduleName/:major" component={DisplayContentOfModule}>
+			<Route path="/module_content/:moduleName/:major/:personalId" component={DisplayContentOfModule}>
 			</Route>
 
+			{/*
+			  * role: everyone which is logged in.
+			  * Soldiers can see their user-submission object of a specific:
+			  * major
+			  * module
+			  * subject
+			  * personalId
+			  * 
+			  * Admin/Commanders/testers can check the submission of a soldier by choice.
+			  */}
+			<Route path="/submission/info/:major/:moduleName/:subject/:personalId" component={UserSubmission}></Route>
 
-			<Route path="/submission/info/:major/:moduleName/:subject" component={UserSubmission}></Route>
 
-
-			<Route path='/admin/table/soldier_status' component={SoldierStatusKatie}></Route>
-			<Route path="/admin/soldier_status/:personalId/:major/:module/:subject" component={SubmissionStatusKatie}></Route>
+			{/*<Route path='/admin/table/soldier_status' component={SoldierStatusKatie}></Route> */}
+			<Route 
+			path="/admin/soldier_status/:personalId/:major/:module/:subject"
+			component={SubmissionStatusObject}>
+			</Route>
 			
-
 			<PrivateRoutingComponent path="/" component={MainView}/>
 			</Switch>
 		</div>

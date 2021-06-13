@@ -42,6 +42,8 @@ class SubmissionTableInfo extends React.Component {
         this.handleCloseConfirm = this.handleCloseConfirm.bind(this);
         this.handleCloseCancel = this.handleCloseCancel.bind(this);
         this.handleMsgClose = this.handleMsgClose.bind(this);
+        
+        this.getSubmissionInfo = this.getSubmissionInfo.bind(this);
 
         this.major = this.props.major;
         this.module = this.props.module;
@@ -58,6 +60,7 @@ class SubmissionTableInfo extends React.Component {
             isChecked: false,
             submittedTime: undefined,
             submittedDate: undefined,
+            gradeDescription: undefined,
             existSubmission: false,
             confirmDialogOpen: false,
             showConfirmDialog: false,
@@ -68,6 +71,10 @@ class SubmissionTableInfo extends React.Component {
     }
 
     componentDidMount() {
+        this.getSubmissionInfo();
+    }
+
+    getSubmissionInfo() {
         getListSubmissionOfSubject(this.major, this.module, this.subject, this.soldierId)
         .then((result) => {
 
@@ -77,12 +84,15 @@ class SubmissionTableInfo extends React.Component {
 
             } else {
                 this.submissionInfo = result.data;
+
+                console.log(this.submissionInfo);
                 this.setState({
                     submittedFiles: this.submissionInfo.submittedFiles,
                     isChecked: this.submissionInfo.isChecked,
                     submittedTime: this.submissionInfo.submittedTime,
                     submittedDate: this.submissionInfo.submittedDate,
-                    existSubmission: true
+                    existSubmission: true,
+                    gradeDescription: this.submissionInfo.gradeDescription
                 });
             }
         });
@@ -204,6 +214,13 @@ class SubmissionTableInfo extends React.Component {
         let url = "/file_uploading/" + urlPostfix;
         let history = this.props.browesHistory;
 
+        let gradeDesc = "No grade given yet";
+        console.log(this.submissionInfo);
+
+        if (this.state.gradeDescription !== undefined) {
+            gradeDesc = this.state.gradeDescription;
+        }
+
         if (submissionExist) {
 
             return (
@@ -278,6 +295,14 @@ class SubmissionTableInfo extends React.Component {
 
                                     </TableRow>
 
+                                    {/* Row of grade description */}
+                                    <TableRow>
+
+                                        <TableCell > {gradeDesc} </TableCell>
+                                        <TableCell component="th" scope="row">   Grade Description       </TableCell>
+
+                                    </TableRow>
+
                                     {/* Row of submitted files */}
                                     <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
 
@@ -335,6 +360,7 @@ class SubmissionTableInfo extends React.Component {
                                 role = {this.role}
                                 showReviews={this.showReviews}
                                 history={history}
+                                updateSubmissionInfo={this.getSubmissionInfo}
                                 />
 
                             </Grid>

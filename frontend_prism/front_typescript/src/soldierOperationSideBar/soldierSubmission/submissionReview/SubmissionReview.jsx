@@ -52,6 +52,7 @@ class SubmissionReview extends React.Component {
         this.updateViewAfterAction = this.updateViewAfterAction.bind(this);
         this.handleCloseUpdate = this.handleCloseUpdate.bind(this);
         this.handleCloseCancelUpdate = this.handleCloseCancelUpdate.bind(this);
+        this.updateSubmissionInfo = this.props.updateSubmissionInfo;
 
         this.major = this.props.major;
         this.module = this.props.module;
@@ -207,6 +208,7 @@ class SubmissionReview extends React.Component {
 
                 // update the view after deletion.
                 this.updateViewAfterAction(Action.Delete);
+                this.updateSubmissionInfo();
 
                 this.setState({ msgOpen: true, showMsg: true });
             });
@@ -239,6 +241,7 @@ class SubmissionReview extends React.Component {
 
                         // update the view after finishing.
                         this.updateViewAfterAction(Action.Update);
+                        this.updateSubmissionInfo();
                     } else {
                         this.setErrorMsg(Action.Update);
                     }
@@ -312,6 +315,7 @@ class SubmissionReview extends React.Component {
 
                     // update the view to see the new review.
                     this.updateViewAfterAction(Action.Create);
+                    this.updateSubmissionInfo();
                     
                 } else {
                     this.setErrorMsg(Action.Create);

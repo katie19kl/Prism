@@ -734,20 +734,7 @@ class FileSystemDisplay extends React.Component {
             {
             (this.state.chosenMajor !== undefined) ? 
             <div>
-                {
-                (this.state.moduleData === undefined) ? <div>
-                    <h4 className={classes.myFont}>
-                        No modules under the major {this.state.chosenMajor}
-                    </h4>
-                    <ListItem button onClick={this.handleInsertModule}>
-                        <ListItemIcon style={{flexBasis: "5.00%"}}>
-                            <AddCircleOutlineOutlinedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Create new Module"/>
-                    </ListItem>
-                </div> : 
-                <List>
-                
+
                 <DialogsManager
                 handleCloseInsertModule={this.handleCloseInsertModule}
                 handleCloseCancelInsertion={this.handleCloseCancelInsertion}
@@ -777,6 +764,20 @@ class FileSystemDisplay extends React.Component {
                 moduleRenameDialogOpen={this.state.moduleRenameDialogOpen}
                 subjectRenameDialogOpen={this.state.subjectRenameDialogOpen}
                 />
+
+                {
+                (this.state.moduleData === undefined) ? <div>
+                    <h4 className={classes.myFont}>
+                        No modules under the major {this.state.chosenMajor}
+                    </h4>
+                    <ListItem button onClick={this.handleInsertModule}>
+                        <ListItemIcon style={{flexBasis: "5.00%"}}>
+                            <AddCircleOutlineOutlinedIcon color="primary"/>
+                        </ListItemIcon>
+                        <ListItemText primary="Create new Module"/>
+                    </ListItem>
+                </div> : 
+                <List>
                 
                 { /* used to show informative msg regarding the deletion */
                 (this.state.showMsg === true) ? <Snackbar open={this.state.msgOpen} 
