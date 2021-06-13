@@ -115,23 +115,18 @@ class SoldierSubmissions extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-
 		this.modules = []
 		this.modules_subjects = {}
 
-
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
-			selectedSoldier: this.props.selectedModule,
+			///selectedSoldier: this.props.selectedModule,
+			selectedSoldier: this.props.selectedSoldier,
 			
 			submissionData: undefined,
 			module_submissions: undefined
 
 		}
-
-
-
 	}
 
 
@@ -145,7 +140,7 @@ class SoldierSubmissions extends React.Component {
 
 			arrPromises.push(getSubjectsByModule(selectedMajor, module).then((res) => {
 
-				return new Promise ((resol, rej)=>{
+				return new Promise ((resol, rej) => {
 					if (res != undefined) {
 						if (res.data != undefined) {
 		
@@ -268,11 +263,6 @@ class SoldierSubmissions extends React.Component {
 		})
 
 	}
-
-
-
-
-
 
 	componentDidUpdate() {
 		
@@ -400,9 +390,11 @@ class SoldierSubmissions extends React.Component {
 												<TableCell className={classes.sticky} style={{ backgroundColor: mod_subject_colors[module][subject_name].color}}>
 													{// display navigation icon iff review exist
 													mod_subject_colors[module][subject_name].hasReview &&
-														<Link to = {"/noPermissions"} disabled >
+														<Link to = {"/admin/soldier_status/" + this.state.selectedSoldier + "/" + 
+															this.state.selectedMajor + "/" + module + "/"
+															+ subject_name }>
 														
-															<CommentIcon disabled  style={{color:"black", fontSize:15}}>
+															<CommentIcon style={{color:"black", fontSize:15}}>
 				
 															</CommentIcon>	
 														
@@ -424,17 +416,7 @@ class SoldierSubmissions extends React.Component {
 													subject_name.split(" ")[1] + " not submitted "
 												}
 												</TableCell>
-												
-
-												
-
-											
-
-
-											
-											
 										))
-
 									}
 								</TableRow>
 							))}
