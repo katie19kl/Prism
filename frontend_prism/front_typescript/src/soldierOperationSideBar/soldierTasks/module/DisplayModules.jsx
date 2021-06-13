@@ -52,6 +52,9 @@ class DisplayModules extends React.Component {
         let user = this.props.user;
         let major = user["major"];
         let modulesOfMajor = this.state.modules;
+        let personalId = user["personalId"];
+
+        console.log("personalId: ", personalId);
         
         return (
             <div>
@@ -63,29 +66,19 @@ class DisplayModules extends React.Component {
 
                 <ul className="list-group list-group-flush">
             
-                {modulesOfMajor !== undefined && modulesOfMajor.map( (module,index)=>(
+                {modulesOfMajor !== undefined && modulesOfMajor.map((module,index)=>(
 
                 
                     <li className="list-group-item" key={index}  >
-                            <IoSchool className={classes.padding}/>
+                        <IoSchool className={classes.padding}/>
                     
+                        <a href={"./module_content/" + module + "/" + major + "/" + personalId }
 
-
-                        <a href={"./module_content/"+module+"/"+major}
-
-                                    style={{color: '#5E1363', ':visited': {color: 'pink'}}}>
-                        
-         
-                            
-                            
+                            style={{color: '#5E1363', ':visited': {color: 'pink'}}}>
+                                 
                             {module}
 
-
-                                            
-                        
-                        
                         </a>
-
                         
                     </li>
                     

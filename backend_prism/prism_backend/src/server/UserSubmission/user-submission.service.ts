@@ -46,29 +46,19 @@ export class UserSubmissionService {
 
 
     async getUserSubmissionByKey(id: string, major: Major, module: string, subject: string) {
-        
-        
-        //////////////// SUKA WHY MAJOR ARRAY ???? ////////////////
-        
-        console.log("1")
+                
         const filter = { 
             soldierId: id,
             major: major,
             module: module,
             subject: subject
         };
-        console.log("2")
         let result = await this.userSubmissionModel.findOne(filter);
-        console.log(result)
 
-        console.log(filter)
-        console.log("3")
         if (result) {
-            console.log("4")
             return result;
         
         } else {
-            console.log("5")
             throw new HttpException("No submission has been made by the soldier", HttpStatus.NOT_FOUND);
         } 
     }

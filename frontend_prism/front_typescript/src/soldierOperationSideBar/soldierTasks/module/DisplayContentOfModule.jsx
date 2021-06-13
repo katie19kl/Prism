@@ -9,16 +9,16 @@ import ContentOfModule from "./ContentOfModule"
 
 export default class DisaplayContentOfModule extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state  = { subjects:undefined, dirSubjectFiles:undefined}
+        this.state  = { subjects:undefined, dirSubjectFiles:undefined }
         this.numberSubjects = -1
     }
 
-    componentDidMount(){
+    componentDidMount() {
 
-        let moduleName = this.props.match.params.moduleName
-        let major = this.props.match.params.major
+        let moduleName = this.props.match.params.moduleName;
+        let major = this.props.match.params.major;
 
         getSubjectsByModule(major, moduleName).then( (res)=>{
             
@@ -30,7 +30,7 @@ export default class DisaplayContentOfModule extends React.Component {
                 this.numberSubjects = res.data.length
 
                 let dir = {}
-                for (const subject of res.data){
+                for (const subject of res.data) {
                    
                 
                     console.log(subject)
@@ -56,15 +56,14 @@ export default class DisaplayContentOfModule extends React.Component {
         })
     }
 
-    render(){
+    render() {
         console.log(" content of module")
         console.log(this.numberSubjects)
-        let moduleName = this.props.match.params.moduleName
-        let major = this.props.match.params.major
+        let moduleName = this.props.match.params.moduleName;
+        let major = this.props.match.params.major;
+        let personalId = this.props.match.params.personalId;
+        let subjects = this.state.subjects;
         
-        let subjects = this.state.subjects
-        
-
 
         if (this.state.dirSubjectFiles !== undefined && subjects !== undefined){
             
@@ -94,7 +93,7 @@ export default class DisaplayContentOfModule extends React.Component {
                                 major = {major}
                                 subjects = {subjects}
                                 dictSubjectFiles = {dict}
-                                
+                                personalId={personalId}
                                 >
 
                                 </ContentOfModule>

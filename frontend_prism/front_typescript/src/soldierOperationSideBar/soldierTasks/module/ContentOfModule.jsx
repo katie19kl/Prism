@@ -4,7 +4,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import DisplaySubjectContent from "../../soldierTasks/subject/DisplaySubjectContent";
 import { purple } from "@material-ui/core/colors";
 import { Link } from "react-router-dom";
-import ConfirmationDialog from "../../../GeneralComponent/dialogs/ConfirmationDialog";
 
 
 const useStyles = (theme) => ({
@@ -38,9 +37,12 @@ class ContentOfModule extends React.Component {
         let moduleName = this.props.moduleName;
         let major = this.props.major;
         let subjects = this.props.subjects;
+        let personalId = this.props.personalId;
 
         let dictSubjectFiles = this.props.dictSubjectFiles
         console.log(Object.keys(dictSubjectFiles))
+
+        console.log("personal id: ", personalId, "-------------------------------------------!!!!")
 
 
         let postfix_param = major + "/" + moduleName + "/"
@@ -82,7 +84,7 @@ class ContentOfModule extends React.Component {
 
                         <br/>
 
-                        <Link to={"/submission/info/" + postfix_param + subject}>
+                        <Link to={"/submission/info/" + postfix_param + subject + "/" + personalId }>
                             <Button variant="contained" color="primary" size="medium" >
                                 Submission Info
                             </Button>

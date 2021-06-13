@@ -1,4 +1,3 @@
-
 import React from "react"
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu"
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar"
@@ -6,15 +5,10 @@ import Role from "../../Roles/Role"
 import TableStatusFrame from "./TableStatusFrame"
 
 
-
-
 export default class SubmissionStatus extends React.Component {
 
 
-    render(){
-
-
-
+    render() {
         return ( 
             <MenuAppBar 
             menu={
@@ -24,16 +18,10 @@ export default class SubmissionStatus extends React.Component {
             role={Role.Commander}
 			content={
                
-                <TableStatusFrame/>
-         
-                
-                
+                <TableStatusFrame/>   
             }>
 
             </MenuAppBar>
-        )
- 
-   
+        );
     }
-
 }

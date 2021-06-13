@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import { Grade } from '../users/common/grade.enum';
 import { Major } from '../users/common/major.enum';
 
 // how it looks like in db
@@ -12,40 +13,30 @@ export const UserSubmissionSchema = new mongoose.Schema({
         type: Major,
         required: true
     },
-
     module: {
         type: String,
         required: true
     },
-
     subject: {
         type: String,
         required: true
     },
-
     isChecked: {
         type: Boolean,
         required: true
     },
+
     // will be taken by scanning dir
     submittedFiles: {
         type: Array
     },
-
-    grade: {
-        type: Number
+    gradeDescription: {
+        type: Grade
     },
-    
-    
     submittedTime: {
         type:String
     },
-    
     submittedDate: {
         type:String
     },
-
-
-    
-
 });

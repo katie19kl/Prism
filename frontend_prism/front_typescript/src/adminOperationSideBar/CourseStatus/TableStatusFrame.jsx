@@ -1,5 +1,5 @@
 
-import { Checkbox, FormControl, FormControlLabel, InputLabel, MenuItem, Select, TableCell, TableHead, TableRow, Typography } from "@material-ui/core"
+import { Checkbox, FormControl, FormControlLabel, Select, TableCell, TableHead, TableRow, Typography } from "@material-ui/core"
 import React from "react"
 import TableStatus from "./TableStatus"
 import { Paper, Table, TableContainer, withStyles } from "@material-ui/core"
@@ -18,21 +18,16 @@ const useStyles = (theme) => ({
 
     container: {
         overflowX: "scroll",
-        
         height: "89vh",
         //height:"100%",
- 
         borderStyle: "solid"
         },
-
     padding: {
         marginLeft: theme.spacing(30),
-        marginBottom: theme.spacing(3)
-
+        marginBottom: theme.spacing(3),
     }
-
-
 });
+
 
 class TableStatusFrame extends React.Component {
 
@@ -48,14 +43,11 @@ class TableStatusFrame extends React.Component {
         this.selectedModule = undefined
         
         //this.checkBoxClicked = false
-
-
         this.state = {
             majors: [],
             modules: [],
             displayTable: false,
             checkBoxClicked: false
-            
         }
     }
 
@@ -68,7 +60,7 @@ class TableStatusFrame extends React.Component {
     majorSelector(event) {
         this.selectedMajor = event.target.value
 
-        if (this.selectedMajor != "None") {
+        if (this.selectedMajor !== "None") {
 
             //console.log(this.selectedMajor)
 
@@ -88,7 +80,7 @@ class TableStatusFrame extends React.Component {
     moduleSelector(event) {
         this.selectedModule = event.target.value
 
-        if (this.selectedModule != "None") {
+        if (this.selectedModule !== "None") {
             //console.log(this.selectedModule + " -- selected module")
             this.setState({ displayTable: true })
         }
@@ -121,14 +113,8 @@ class TableStatusFrame extends React.Component {
 
 
     render() {
-        //console.log("OUT")
         let modules = this.state.modules
         let classes = this.props.classes
-
-        //console.log(this.state.displayTable)
-        //console.log(this.selectedMajor)
-        //console.log(this.selectedModule)
-
 
         return (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -139,9 +125,7 @@ class TableStatusFrame extends React.Component {
                         justifyContent: "center",
                         alignItems: "center",
                         width: '95%'
-                    }}
-                >
-
+                    }}>
 
                     <Table>
                         <TableHead>
@@ -173,8 +157,6 @@ class TableStatusFrame extends React.Component {
                                                 <option value={Major.Validation}>Validation</option> : ''
                                             }
 
-
-
                                         </Select>
                                     </FormControl>
 
@@ -199,19 +181,17 @@ class TableStatusFrame extends React.Component {
 
                                 <TableCell>
 
-
                                     <Typography>
                                         Select module
-                                                    </Typography>
-
+                                    </Typography>
 
                                     <FormControl style={{ minWidth: 200 }}>
                                         <Select
-                                            native
-                                            disabled={this.selectedMajor === undefined || this.selectedMajor === "None"}
-                                            value={undefined}
-                                            onChange={this.moduleSelector}
-                                        >
+                                        native
+                                        disabled={this.selectedMajor === undefined || this.selectedMajor === "None"}
+                                        value={undefined}
+                                        onChange={this.moduleSelector}>
+                                                
                                             <option aria-label="None" value="None" />
                                             {modules.map((module_, index) => (
 
@@ -219,46 +199,29 @@ class TableStatusFrame extends React.Component {
 
                                             ))}
 
-
-
-
-
                                         </Select>
                                     </FormControl>
 
-
-
                                 </TableCell>
-
 
                             </TableRow>
                         </TableHead>
                     </Table>
 
-
                     {this.state.displayTable &&
                         <TableStatus
-                            selectedMajor={this.selectedMajor}
-                            selectedModule={this.selectedModule}
-                            mySoldiers={this.state.checkBoxClicked}
-                        >
-
+                        selectedMajor={this.selectedMajor}
+                        selectedModule={this.selectedModule}
+                        mySoldiers={this.state.checkBoxClicked}>
                         </TableStatus>
                     }
 
-
                 </TableContainer>
-
-
 
             </div>
 
-
-        )
-
-
+        );
     }
-
 }
 
 export default withStyles(useStyles, { withTheme: true })(TableStatusFrame)

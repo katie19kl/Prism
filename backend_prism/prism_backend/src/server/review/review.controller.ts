@@ -1,7 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { Role } from '../RolesActivity/role.enum';
 import { Major } from '../users/common/major.enum';
-import { UserSubmissionService } from '../UserSubmission/user-submission.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { updateReviewDto } from './dto/update-review.dto';
 import { ReviewService } from './review.service';
