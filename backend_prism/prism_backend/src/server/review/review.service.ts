@@ -86,8 +86,9 @@ export class ReviewService {
                 console.log("all good");
 
                 // update the userSubmission field of "isChecked" to false since
-                // there are no reviews.
+                // there are no reviews. Moreover, update the gradeDesc to undefined.
                 userSubmission.isChecked = false;
+                userSubmission.gradeDescription = undefined;
                 await userSubmission.save();
             }
         }

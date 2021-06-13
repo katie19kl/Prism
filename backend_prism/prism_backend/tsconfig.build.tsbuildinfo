@@ -2507,7 +2507,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/review.service.ts": {
-        "version": "5211fed14a3667036bb465995d7756f854acb3bf2bf5c540c196d0b7755a4639",
+        "version": "20a0397c9dcec2d689726eb390900365f0df0ea326514a2f35eb80872c33f186",
         "signature": "0424f78a055c2a6183b9500f97635d8147a5e92d0d880381f090f95011e91582",
         "affectsGlobalScope": false
       },
@@ -2657,7 +2657,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/user-submission.controller.ts": {
-        "version": "4acaed3a1901c93ff930f4f8857885751136bbca904e3002bf86e92c9ad3c909",
+        "version": "c455d605386828b0bd0e65dc533d0e37effaf4d38800a5bb782920d845c2ce73",
         "signature": "53efd614b9dbe505dd3131d48442feeecdbb7c8b04eb16581063228ee4a96a88",
         "affectsGlobalScope": false
       },
@@ -5782,8 +5782,6 @@
       "./src/server/usersubmission/user-submission.controller.ts": [
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/platform-express/index.d.ts",
-        "./src/server/auth/auth.service.ts",
-        "./src/server/rolesactivity/constants.ts",
         "./src/server/users/common/major.enum.ts",
         "./src/server/usersubmission/dto/user-submission.dto.ts",
         "./src/server/usersubmission/user-submission.service.ts"
