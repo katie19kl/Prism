@@ -221,7 +221,7 @@ class SubmissionTableInfo extends React.Component {
             gradeDesc = this.state.gradeDescription;
         }
 
-        if (submissionExist) {
+        if (submissionExist || 1==1) {
 
             return (
                 <div         
