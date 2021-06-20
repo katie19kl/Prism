@@ -27,14 +27,18 @@ export class ReviewService {
             let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
                 soldierId, major, module, subject);
 
-            if (userSubmission) {
-                console.log("all good");
 
+            if (userSubmission) {
+               
+  
                 // update the userSubmission field of "isChecked" to true since a review was given.
                 // also add the grade description to the userSubmission object.
                 userSubmission.isChecked = true;
                 userSubmission.gradeDescription = createReviewDto.gradeDescription;
+                  
                 await userSubmission.save();
+
+
 
                 // create the review.
                 createReviewDto.submittedTime = new Date().toLocaleTimeString();

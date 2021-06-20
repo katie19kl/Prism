@@ -13,7 +13,7 @@ export interface IUserSubmission extends Document {
     submittedTime: string;
     submittedDate: string;
 
-    // If reaview exist.
+    // If review exist.
     isChecked: boolean;
-    gradeDescription: Grade;
+    gradeDescription: String;//Grade;
 }

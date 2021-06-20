@@ -11,6 +11,10 @@ import { UserSubmissionService } from '../UserSubmission/user-submission.service
 import { IUserSubmission } from '../UserSubmission/iuser-submission.interface';
 import { ReviewService } from '../review/review.service';
 import { IReview } from '../review/ireview.interface';
+import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
+import { FileHandlingService } from '../file-handling/file-handling.service';
+import { SubjectManager } from '../file-handling/managers/SubjectManager';
+import { ModuleManager } from '../file-handling/managers/ModuleManager';
 
 @Injectable()
 export class UsersService {
@@ -18,20 +22,36 @@ export class UsersService {
 	userSubmissionHandler: UserSubmissionService;
 	reviewHandler: ReviewService;
 
+
+
+
+
 	constructor(@InjectModel('User') private userModel: Model<IUser>,
 				@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
 				@InjectModel('Reviews') private reviewsModel: Model<IReview>,
-				private userSubmissionService: UserSubmissionService
+				userSubmissionService: UserSubmissionService
 				) {
 		
 		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel)
 		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionService);
+
+
+
+
+		
 	}
-	
+
+
+	async closeAllToNewSoldier(soldierId,majors:Major[],subjectOnDemandService: SubjectsOnDemandService){
+
+
+		await subjectOnDemandService.closeAllSubjectToNewSoldier(majors, soldierId)
+
+	}
 
 
 	// add new user
-	async create(createUserDto: CreateUserDto) {
+	async create(createUserDto: CreateUserDto,subjectOnDemandService: SubjectsOnDemandService) {
 
 		// check if the user already exists.
 		const isExistingUser = await this.findOneByUsername(createUserDto.username);
@@ -47,10 +67,218 @@ export class UsersService {
 			throw new HttpException("Personal ID already exists", HttpStatus.BAD_REQUEST);
 		}
 
+		await this.closeAllToNewSoldier(createUserDto.personalId, createUserDto.major, subjectOnDemandService)
+
 		let createdUser = new this.userModel(createUserDto);
 		return await createdUser.save();
 
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 	// get role of given token
 	async getRoleByJWT(usertoken){
@@ -297,6 +525,7 @@ export class UsersService {
 				
 			
 				let grade_ = undefined
+				let gradeDescription_ = undefined
 				// there is review => retrieve grade from review
 				if (submission.isChecked){
 					let id = submission.soldierId
@@ -307,6 +536,7 @@ export class UsersService {
 					
 					for (let review of reviews){
 						grade_ = review.grade
+						gradeDescription_ = review.gradeDescription
 					}
 				}
 
@@ -318,7 +548,8 @@ export class UsersService {
 									//firstName :soldier.firstName,  	
 									checked:submission.isChecked,
 									subject:submission.subject,
-									grade:grade_
+									grade:grade_,
+									gradeDescription:gradeDescription_
 									
 								}
 				)
@@ -339,12 +570,8 @@ export class UsersService {
 
 	async getSoldiersByCommanderId(commanderId:string, majorSelected:Major){
 
-		//console.log(commanderId)
-		//console.log(majorSelected)
 		let commanderSoldiers = await this.userModel.find({major:majorSelected,commander:commanderId, role:Role.Soldier})
-		//console.log("------------------------------------------")
-		//console.log(commanderSoldiers)
-		//console.log("------------------------------------------")
+
 		return commanderSoldiers
 	}
 

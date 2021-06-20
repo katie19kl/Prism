@@ -1,5 +1,5 @@
 export enum Grade {
 
-	OK = "ok",
-    NOT_OK = "not ok",
+	OK = "OK",
+    NOT_OK = "NOT_OK",
 }

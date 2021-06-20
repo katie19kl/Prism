@@ -7,12 +7,15 @@ import { Major } from '../users/common/major.enum';
 import { Delete } from '@nestjs/common';
 import { HttpCode } from '@nestjs/common';
 import { Put } from '@nestjs/common';
+import { UsersService } from '../users/users.service';
+import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
 
 
 @Controller('file-handling')
 export class FileHandlingController {
 
-	constructor(private readonly fileHandlingService: FileHandlingService) {}
+	constructor(private readonly fileHandlingService: FileHandlingService,
+		 private subjectOnDemandService: SubjectsOnDemandService,private userService: UsersService) {}
 
 
 		// put admin permission only
@@ -100,7 +103,7 @@ export class FileHandlingController {
 						   @Param('module') module: string, @Param('newNameSubject') newNameSubject :string)
 		{
 
-			return  this.fileHandlingService.createNewSubject(major,module,newNameSubject)
+			return  this.fileHandlingService.createNewSubject(major,module,newNameSubject,this.userService, this.subjectOnDemandService)
 
 		}
 
