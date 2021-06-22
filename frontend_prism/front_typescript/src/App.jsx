@@ -21,6 +21,7 @@ import SubmissionStatusObject from './adminOperationSideBar/SubmissionStatusObje
 import SoldierStatusKatie from './adminOperationSideBar/SoldierStatusKatie/SoldierStatus';
 import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
 import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
+import General from './GENERAL';
 
 
 export default function App() {
@@ -35,6 +36,20 @@ export default function App() {
 			<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin]} component={CommanderMainPage}>
 			</PrivateRoutingComponent>
 			
+
+
+
+
+
+			<Route path="/general" component={General}>
+			</Route>
+
+
+
+
+
+
+
 			<Route path="/login" component={LogINComp}>
 			</Route>
 

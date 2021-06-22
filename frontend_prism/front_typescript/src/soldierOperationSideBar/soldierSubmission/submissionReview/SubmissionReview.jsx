@@ -88,7 +88,7 @@ class SubmissionReview extends React.Component {
 
             // the response is either undefined or the list of
             // reviews according to the current user's role.
-            if (res == undefined) {
+            if (res === undefined) {
                 return undefined;
             
             } else {
@@ -445,7 +445,7 @@ class SubmissionReview extends React.Component {
                 showTo={showToArray}
                 /> : ''}
 
-                {(this.role === Role.MyFiles || this.role === Role.Commander || this.role == Role.Tester) ? 
+                {(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester) ? 
                     <div>
                         <br/>
 

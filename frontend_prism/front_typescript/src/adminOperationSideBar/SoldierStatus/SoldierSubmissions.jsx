@@ -2,15 +2,15 @@
 import React from "react"
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
-import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import { Table, Typography, withStyles } from "@material-ui/core"
 import { getModulesByMajor, getSubjectsByModule } from "../CourseFiles/files_request_handler"
-import { Major } from "../../HelperJS/Major"
 import { usersSubmissions } from "../CourseStatus/user_submissions"
 import CommentIcon from  "@material-ui/icons/Comment"
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import { Link } from "react-router-dom"
+import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -141,8 +141,8 @@ class SoldierSubmissions extends React.Component {
 			arrPromises.push(getSubjectsByModule(selectedMajor, module).then((res) => {
 
 				return new Promise ((resol, rej) => {
-					if (res != undefined) {
-						if (res.data != undefined) {
+					if (res !== undefined) {
+						if (res.data !== undefined) {
 		
 							let modul_subject = {}
 							modul_subject[module] = res.data
@@ -313,7 +313,7 @@ class SoldierSubmissions extends React.Component {
 			let soldier_submissions = module[selectedSoldier]
 			
 			let subjects = {}
-			if (soldier_submissions == undefined){
+			if (soldier_submissions === undefined){
 				continue
 			}
 			for (let submission of soldier_submissions){
@@ -321,11 +321,20 @@ class SoldierSubmissions extends React.Component {
 				let grade =  submission.grade
 				// color to display in table
 				let color = Status.Closed
-				if (submission.checked){
+
+				let gradeDescription = submission.gradeDescription
+
+
+				if (submission.checked && gradeDescription===OK_Status.OK_Status.OK){
 					color = Status.SubmittedGoodEnough
 				}
+				else if(submission.checked && gradeDescription===OK_Status.OK_Status.NOT_OK){
+					color = Status.SubmittedNotGoodEnough
+				}else if (!submission.checked){
+					color = Status.SubmittedNotReviewed
+				}
 				// subject -> its submission info for displaying
-				subjects[subject] = {color:color, grade:grade, hasReview:submission.checked}
+				subjects[subject] = {color:color, grade:grade, hasReview:submission.checked, ok_not_ok:gradeDescription}
 			}
 			mod_subject_colors[module_] = subjects
 
@@ -345,7 +354,7 @@ class SoldierSubmissions extends React.Component {
         let displayTable = (this.state.module_submissions !== undefined)
 
 		
-		if (displayTable) {
+		if (displayTable && 1) {
 
 			let mod_subject_colors = this.convertToColors()
 		
@@ -376,7 +385,26 @@ class SoldierSubmissions extends React.Component {
 									</TableCell>
 
 									{
+
+									this.modules_subjects[module].length === 0 &&
+
+										<Typography>
+										No subjects so far 
+										</Typography>
+									}
+									
+									
+
+									
+									
+									
+									{
+								
+										
+
 										this.modules_subjects[module].map((subject_name) => (
+
+
 
 
 
@@ -389,7 +417,8 @@ class SoldierSubmissions extends React.Component {
 												? // If module & subject exist & submission
 												<TableCell className={classes.sticky} style={{ backgroundColor: mod_subject_colors[module][subject_name].color}}>
 													{// display navigation icon iff review exist
-													mod_subject_colors[module][subject_name].hasReview &&
+													//mod_subject_colors[module][subject_name].hasReview
+													// &&
 														<Link to = {"/admin/soldier_status/" + this.state.selectedSoldier + "/" + 
 															this.state.selectedMajor + "/" + module + "/"
 															+ subject_name }>
@@ -404,16 +433,17 @@ class SoldierSubmissions extends React.Component {
 													<Typography style={{ fontFamily: 'monospace'}}>
 																	
 														{
-															/*mod_subject_colors[module][subject_name].color + "-"+*/ subject_name.split(" ")[1]
+															/*mod_subject_colors[module][subject_name].color + "-"+*/ 
+															subject_name.split(" ")[1]
 														}
 		
 												 	</Typography>
 												
 												</TableCell>
 												: // lack of data (or not submitted)
-												<TableCell className={classes.sticky} style={{ backgroundColor: "orange" }}>
+												<TableCell className={classes.sticky} style={{ backgroundColor: Status.Closed/*"orange"*/ }}>
 												{
-													subject_name.split(" ")[1] + " not submitted "
+													subject_name.split(" ")[1] //+ " not submitted "
 												}
 												</TableCell>
 										))
@@ -429,7 +459,7 @@ class SoldierSubmissions extends React.Component {
 			)
 		}
 		else {
-			return <h2> TAKE CARE OF COLORS </h2>
+			return <WaiterLoading/>
 		}
 
 	}

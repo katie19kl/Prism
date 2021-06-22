@@ -408,6 +408,10 @@ class FileSystemDisplay extends React.Component {
     /* activates the informative msg depending on the server's response. */
     handleInsertionResponse(response, objToInsert) {
 
+        console.log("-----------")
+        console.log(response)
+        console.log("-----------")
+        
         if (response !== undefined) {
 
             if (response.status !== undefined && response.status === 201) {
@@ -416,8 +420,15 @@ class FileSystemDisplay extends React.Component {
                 this.setState({ showMsg: true, msgOpen: true});
 
             } else if (response.response !== undefined) {
-
-                if (response.respone.status !== undefined && response.response.status === 409) {
+                /*console.log("--------424 Erroring--------")
+                console.log(response)
+                console.log("-----------")
+                console.log(response.response)
+                console.log("-----------")
+                console.log(response.response.status)
+                console.log("-----------------------------")
+                */
+                if (response.response.status !== undefined && response.response.status === 409) {
                     
                     this.msg = "The name already exists! Try a different one";
                     this.severity = "error";

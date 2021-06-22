@@ -16,12 +16,16 @@ function CommanderMenu() {
 
     return(
         <List>
-            <ListItem button key="General">
-                <ListItemIcon>
-                    <AccountBalanceIcon color="primary"/>
-                </ListItemIcon>
-                <ListItemText primary="General"/>
-            </ListItem>
+
+            
+            <Link to="/general" style={{ textDecoration: 'none', color:"black" }}> 
+                <ListItem button key="General">
+                    <ListItemIcon>
+                        <AccountBalanceIcon color="primary"/>
+                    </ListItemIcon>
+                    <ListItemText primary="General"/>
+                </ListItem>
+            </Link>
 
 
             <Link to="/admin/course_files" style={{ textDecoration: 'none', color:"black" }}>
@@ -77,6 +81,11 @@ function CommanderMenu() {
                     />
                 </ListItem>
             </Link>
+
+
+
+
+
         </List>
     );
 }

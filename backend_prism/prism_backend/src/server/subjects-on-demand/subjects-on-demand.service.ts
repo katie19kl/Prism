@@ -159,23 +159,149 @@ export class SubjectsOnDemandService {
 
 
 
+    arrayRemove(arr, value) { 
+    
+        return arr.filter(function(ele){ 
+            return ele != value; 
+        });
+    }
+
+
+
     async openNewSubjectToSoldier(major:Major, module:string, subject:string, personalId:string){
 
         const filter_ = {soldierId : personalId, major: major}
 
 
+
+
         let foundObject = await this.userSubmissionModel.findOne(filter_)
+
+       // console.log(foundObject)
         
-        foundObject.moduleToOpenedSubjects[module].push(subject)
+        let openedSubjects = foundObject.moduleToOpenedSubjects.get(module) 
+        openedSubjects.push(subject)        
+        let updatedOpenedSubjects = openedSubjects
+        
+        let closedSubjects = foundObject.moduleToClosedSubjects.get(module)
+        let updatedClosedSubjects = this.arrayRemove(closedSubjects, subject)
 
 
-       // console.log("-----------OPENED----------")
-       // console.log(foundObject.moduleToOpenedSubjects)
-       // console.log("-----------------------------")
+        
+
+
+        let updateOpenedMap = foundObject.moduleToOpenedSubjects
+        updateOpenedMap.set(module, updatedOpenedSubjects)
+
+
+        let updatedClosedMap = foundObject.moduleToClosedSubjects
+        updatedClosedMap.set(module,updatedClosedSubjects)
+
+
+        return await this.userSubmissionModel.updateOne(filter_,
+            {
+                moduleToOpenedSubjects: updateOpenedMap,
+                moduleToClosedSubjects: updatedClosedMap,
+
+            })
 
     }
+
+
+    async closeSubjectToSoldier(major:Major, module:string, subject:string, personalId:string){
+
+
+        console.log("------here--")
+
+        const filter_ = {soldierId : personalId, major: major}
+
+
+
+
+        let foundObject = await this.userSubmissionModel.findOne(filter_)
+
+
+        let closedMap = foundObject.moduleToClosedSubjects
+        let closedModule = closedMap.get(module)
+        closedModule.push(subject)
+        closedMap.set(module, closedModule)
+        
+        let updatedClosedMap = closedMap
+
+
+        let openedMap = foundObject.moduleToOpenedSubjects
+        let openedModule = openedMap.get(module)
+        let updatedModule = this.arrayRemove(openedModule, subject)
+        openedMap.set(module, updatedModule)
+
+        let updatedOpenedMap = openedMap
+
+        console.log(updatedOpenedMap)
+        console.log(updatedClosedMap)
+
+
+
+        return await this.userSubmissionModel.updateOne(filter_,
+            {
+                moduleToOpenedSubjects: updatedOpenedMap,
+                moduleToClosedSubjects: updatedClosedMap,
+
+            })
+
+
+    }
+
+
+
     
 
 
+    getFirstProp(jsonObj){
+		let firstProp;
+        for(var key in jsonObj) {
+            if(jsonObj.hasOwnProperty(key)) {
+                firstProp = jsonObj[key];
+                break;
+            }
+        }
+		return firstProp
+	}
+
+
+    async getSoldiersClosedSubjects(major:Major, module:string, soldiers_){
+        let soldiers = this.getFirstProp(soldiers_)
+        let soldiersClosed = {}
+        for (const soldier of soldiers){
+            let closedSubjects = await this.getSoldierClosedSubjects(major, module, soldier.personalId)
+            soldiersClosed[soldier.personalId] = closedSubjects
+        }
+        console.log("||||||||||||||||||||||||||||||")
+        console.log(soldiersClosed)
+        
+        console.log("||||||||||||||||||||||||||||||")
+        return soldiersClosed
+    }
+
+
+    async getSoldierClosedSubjects(major:Major, module:string, personalId:string){
+        
+        const filter_ = {soldierId : personalId, major: major}
+
+        return  (await this.userSubmissionModel.findOne(filter_)).moduleToClosedSubjects.get(module)
+    }
+
+
+
+    async getSoldierOpenedSubjects(major:Major, module_:string, personalId:string){
+        console.log("heresssss")
+        const filter_ = {soldierId : personalId, major: major}
+
+        console.log(filter_)
+        console.log(module_)
+
+        //console.log((await this.userSubmissionModel.findOne(filter_)).moduleToOpenedSubjects.get(module_))
+
+        return  (await this.userSubmissionModel.findOne(filter_)).moduleToOpenedSubjects.get(module_)
+    }
     
 }

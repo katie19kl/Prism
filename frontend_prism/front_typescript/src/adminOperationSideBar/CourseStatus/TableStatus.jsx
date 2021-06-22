@@ -4,13 +4,16 @@ import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
 import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
-import { Table, Typography, withStyles } from "@material-ui/core"
+import { Checkbox, FormControlLabel, Table, Typography, withStyles } from "@material-ui/core"
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import { getSoldiersByMajors, getAllMySoldiers } from "../../HelperJS/extract_info"
 import { getSubjectsByModule } from "../CourseFiles/files_request_handler"
 import { usersSubmissions } from "./user_submissions"
 import { Link } from "react-router-dom"
 import CommentIcon from  "@material-ui/icons/Comment"
+import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import {openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier} from "./subject_on_demand"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -58,6 +61,11 @@ const useStyles = (theme) => ({
 		borderRightColor: "black",
 		//borderBottom: 'dotted 3px #0096ff',
 		borderBottom: 'solid 3px black',
+
+
+
+		// new by 18.06.21
+		borderTopStyle: "solid"
 	},
 	table: {
 		height: "89vh"
@@ -67,13 +75,18 @@ const useStyles = (theme) => ({
 
 
 
-
-
 class TableStatus extends React.Component {
 
 
 	constructor(props) {
 		super(props);
+
+		this.handleOpenningToUser = this.handleOpenningToUser.bind(this)
+		this.handleClosingToUser = this.handleClosingToUser.bind(this)
+
+		this.soldierClosed = {}
+		
+		
 
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
@@ -83,8 +96,92 @@ class TableStatus extends React.Component {
 			subjects: [],
 			submissionData: undefined,
 
+
+			FOO:0
+
+
 		}
 	}
+
+
+	handleClosingToUser(soldierId,subject){
+
+		let module =  this.props.selectedModule
+		let major = this.props.selectedMajor
+
+		closeSubjectToSoldier(soldierId,major,module,subject).then((responce)=>{
+			
+
+
+
+			if (responce !== undefined){
+				if (responce.status === 201){
+					let soldierClosed = this.soldierClosed[soldierId]
+					
+					let updatedArr = []
+					for (const closed of soldierClosed){
+						if (closed !== subject){
+							updatedArr.push(closed)
+						}
+					}
+					
+					this.soldierClosed[soldierId].push(subject) 		
+					
+					
+
+
+					this.setState({FOO: this.state.FOO + 1})
+				}
+			}
+		})
+
+	}
+
+
+	/*
+	 I take care of openning task, also should be taken care of closing task to soldier
+
+	
+	*/
+
+	handleOpenningToUser(soldierId, subject){
+		
+
+	
+		let module =  this.props.selectedModule
+		let major = this.props.selectedMajor
+
+		openSubjectToSoldier(soldierId,major,module,subject).then((responce)=>{
+			
+
+
+
+			if (responce !== undefined){
+				if (responce.status === 201){
+					let soldierClosed = this.soldierClosed[soldierId]
+					
+					let updatedArr = []
+					for (const closed of soldierClosed){
+						if (closed !== subject){
+							updatedArr.push(closed)
+						}
+					}
+					this.soldierClosed[soldierId] = updatedArr
+
+	
+
+					this.setState({FOO: this.state.FOO + 1})
+				}
+			}
+		})
+		
+
+
+		
+		
+	}
+
+
 
 	// extracts all soldiers of major defined in state
 	getAllSoldiersMajor() {
@@ -144,13 +241,39 @@ class TableStatus extends React.Component {
 		// if different answer => update table
 		if (!equal) {
 
-			let newSoldiers = usersToTable
-			// new soldiers => new submissions have to be exctracted 
-			this.getSoldierSubmissions(newSoldiers).then((subData) => {
 
-				// set state with new-arrived soldiers & their submission data
-				this.setState({ soldiers: usersToTable, submissionData: subData })
+			//
+			// get personalId-->closed .then ()
+			let major = this.props.selectedMajor
+			let module = this.props.selectedModule
+
+			getSoldierClosedSubjects(major,module,usersToTable).then((responce) => {
+
+				if (responce !== undefined)
+				{
+					if (responce.data !== undefined){				
+						this.soldierClosed = responce.data
+
+					}
+				}
+				
+
+				let newSoldiers = usersToTable
+				// new soldiers => new submissions have to be exctracted 
+				this.getSoldierSubmissions(newSoldiers).then((subData) => {
+					
+					
+					// set state with new-arrived soldiers & their submission data
+					
+
+					this.setState({ soldiers: usersToTable, submissionData: subData	})
+				})
+
 			})
+			//
+
+
+
 
 
 		}
@@ -279,6 +402,10 @@ class TableStatus extends React.Component {
 		// key - soldier personalId
 		for (let key in soldierSubmissionData) {
 
+			let closedUserSubjects = this.soldierClosed[key]
+
+
+
 			// subject-sorted sequence of colors/state/subject-name
 			let subjectColor = []
 
@@ -288,31 +415,67 @@ class TableStatus extends React.Component {
 			let submissions = soldierSubmissionData[key]
 
 
+
+
 			let allSubjects = this.state.subjects
 
 			// subjects are selected by sub-indexing (on the server side)
 			// iterating in same way on subjects as displaying will be done
 			for (let subject_ of allSubjects) {
 
+				let closedSubject = true
+				if (closedUserSubjects !== undefined){
+					
+					closedSubject = closedUserSubjects.includes(subject_)
+				
+				}
+				// or not assigned
+				let color = Status.OpenNotSubmitted
 				let status = "non assigned"
-				let color = Status.Closed
+
+
+				if (closedSubject){
+					color = Status.Closed
+					status = "closed"
+				}
+
 
 				// existing submission per subject
-				
 				for (let submission of submissions) {
+				
+					
+					let gradeDescription = submission.gradeDescription
+					
 					// verifying status of submission
 					let checked = submission.checked
 					let subject = submission.subject
 
 					if (subject === subject_) {
+						
+		
 						status = "assigned"
 						color = Status.SubmittedNotReviewed
 
-//////////////////////////////////////////////////////////MUST CHECK BY GRADE-STATUS OK or not OK//////////////////////////////////////
 
-						if (checked) {
-							status = "checked"
-							color = Status.SubmittedNotGoodEnough // Status.SubmittedGoodEnough
+		
+						if (checked && gradeDescription===OK_Status.OK_Status.OK) {
+
+
+
+					
+							
+							status = "checked & good"
+							color = Status.SubmittedGoodEnough
+
+
+						}else if (checked && gradeDescription===OK_Status.OK_Status.NOT_OK){
+
+
+							
+					
+							
+							status = "checked & NOT good"
+							color = Status.SubmittedNotGoodEnough 
 						}
 					}
 				}
@@ -331,11 +494,22 @@ class TableStatus extends React.Component {
 			idSubjectColors[id] = subjectColor
 
 		}
+
+		
 		return idSubjectColors
 	}
 
 
 	render() {
+
+
+		console.log("....................Soldier Closed.............")
+		console.log(this.soldierClosed)
+		console.log(".................................")
+		
+		let isEditMode = this.props.editMode
+		
+		
 
 		let classes = this.props.classes;
 		let soldierSubmissionData = this.state.submissionData;
@@ -351,6 +525,7 @@ class TableStatus extends React.Component {
 		if (allSoldierDisplay.length > 0 && soldierSubmissionData !== undefined) {
 
 			let personalIdColors = this.convertToColors(soldierSubmissionData);
+			
 
 			return (
 
@@ -400,12 +575,69 @@ class TableStatus extends React.Component {
                                     </Typography>
 
 								</TableCell>
+
+
+								{ personalIdColors[soldier.split("\n")[1]].length === 0 
+									&&
+									<TableCell className={classes.tableCell} style={{ backgroundColor: "white" }}>
+										No subjects so far
+									</TableCell>
+
+								}
+
 								{
 									personalIdColors[soldier.split("\n")[1]].map((term) => (
 
 										<TableCell className={classes.tableCell} style={{ backgroundColor: term.color }}>
 											
-											{term.color !== Status.Closed &&
+											{isEditMode && term.color === Status.Closed &&
+
+													<div>
+
+														{
+													<FormControlLabel
+														control={
+															<Checkbox
+																onChange={() => {this.handleOpenningToUser(soldier.split("\n")[1], term.subject)}}
+																name="checkedB"
+																color="primary"
+															/>
+														}
+														label="Open"
+													
+													/>
+													}
+
+													</div>
+
+											}
+
+											{isEditMode && term.color === Status.OpenNotSubmitted &&
+
+														<div>
+
+															{
+														<FormControlLabel
+															control={
+																<Checkbox
+																	onChange={() => {this.handleClosingToUser(soldier.split("\n")[1], term.subject)}}
+																	name="checkedB"
+																	color="primary"
+																/>
+															}
+															label="Close"
+
+														/>
+														}
+
+														</div>
+
+}
+
+
+
+											{ (term.color !== Status.Closed) && (term.color !== Status.OpenNotSubmitted)
+											 &&
 												<Link 
 												to = {"/admin/soldier_status/" + soldier.split("\n")[1] + "/" + this.state.selectedMajor 
 													+ "/" + this.state.selectedModule + "/" + term.subject} /*disabled*/>
@@ -436,7 +668,7 @@ class TableStatus extends React.Component {
 			)
 		}
 		else {
-			return <h2> ssssssssssssssssssssssss</h2>
+			return <WaiterLoading/>
 		}
 	}
 }

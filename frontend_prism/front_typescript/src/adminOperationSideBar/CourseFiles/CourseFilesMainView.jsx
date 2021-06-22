@@ -77,17 +77,19 @@ class CourseFilesMainView extends React.Component {
     sendGetModulesRequest(currMajor) {
         if (currMajor !== undefined) {
 
-            getModulesByMajor(currMajor).then(({data}) => {
-                
-                if (data === undefined || data === 'None' || data === null || data.length === 0) {
-                    data = undefined;
-                }
+            getModulesByMajor(currMajor).then( (res) => {
+                if (res !== undefined){
+                    let data = res.data
+                    if (data === undefined || data === 'None' || data === null || data.length === 0) {
+                        data = undefined;
+                    }
 
-                // the list of modules we received from the server.
-                this.moduleData = data;
-                this.setState({
-                    chosenMajor: currMajor
-                });
+                    // the list of modules we received from the server.
+                    this.moduleData = data;
+                    this.setState({
+                        chosenMajor: currMajor
+                    });
+                }
             });
         }
     }

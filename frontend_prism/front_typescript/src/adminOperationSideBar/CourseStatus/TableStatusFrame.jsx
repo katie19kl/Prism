@@ -38,6 +38,7 @@ class TableStatusFrame extends React.Component {
         this.majorSelector = this.majorSelector.bind(this)
         this.moduleSelector = this.moduleSelector.bind(this)
         this.handleMySoldiers = this.handleMySoldiers.bind(this)
+        this.handleEdittingMode = this.handleEdittingMode.bind(this)
 
         this.selectedMajor = undefined
         this.selectedModule = undefined
@@ -48,8 +49,14 @@ class TableStatusFrame extends React.Component {
             //modules: [],
             modules: undefined,
             displayTable: false,
-            checkBoxClicked: false
+            checkBoxClicked: false,
+            displayEditMode: false
         }
+    }
+
+    handleEdittingMode(event){
+        
+        this.setState({displayEditMode:event.target.checked})
     }
 
     handleMySoldiers(event){
@@ -115,6 +122,8 @@ class TableStatusFrame extends React.Component {
     render() {
         let modules = this.state.modules
         let classes = this.props.classes
+
+        //console.log(this.selectedModule)
 
         return (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -204,6 +213,30 @@ class TableStatusFrame extends React.Component {
 
                                 </TableCell>
 
+
+
+
+
+
+                                <TableCell>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={this.state.displayEditMode}
+                                                onChange={this.handleEdittingMode}
+                                                name="checkedB"
+                                                color="primary"
+                                                disabled={
+                                                    (this.selectedMajor === undefined || this.selectedMajor === "None")
+                                                    || (this.selectedModule === undefined || this.selectedModule === "None")
+                                                }
+                                            
+                                            />
+                                        }
+                                        label="Edit Mode"
+                                    />
+                                </TableCell>
+
                             </TableRow>
                         </TableHead>
                     </Table>
@@ -212,7 +245,9 @@ class TableStatusFrame extends React.Component {
                         <TableStatus
                         selectedMajor={this.selectedMajor}
                         selectedModule={this.selectedModule}
-                        mySoldiers={this.state.checkBoxClicked}>
+                        mySoldiers={this.state.checkBoxClicked}
+                        editMode={this.state.displayEditMode}
+                        >
                         </TableStatus>
                     }
 

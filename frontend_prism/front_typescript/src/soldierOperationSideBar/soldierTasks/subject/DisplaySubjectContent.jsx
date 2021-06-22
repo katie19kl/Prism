@@ -5,6 +5,31 @@ import Role from "../../../Roles/Role";
 export default class DisplaySubjectContent extends React.Component {
 
 
+
+    removeOtherSoldierFiles(arrFiles,personalId){
+
+        let filteredArr = []
+        for (let file of arrFiles){
+            let idFile = file.file_name.split("_")[0]
+            let isAnotherSolution = (file.file_name.split("_")[1] === "solution")
+            console.log(idFile)
+
+
+            if (!(idFile === personalId) && isAnotherSolution){
+                console.log("not mine sol id")
+                console.log(idFile)    
+                console.log("--------------------")
+            }else {
+                filteredArr.push(file)
+            }
+            
+        }
+        return filteredArr
+
+    }
+
+
+
     render(){
         console.log("============= content of subject ===============")
         
@@ -16,19 +41,22 @@ export default class DisplaySubjectContent extends React.Component {
 
         let arrFiles = dictSubjectFiles[subject]
         
+        let personalId = this.props.personalId
 
-
+        let filteredArrFiles = []
         // if there is no files yet 
         if (arrFiles.length === 0){
-            arrFiles = [{file_name:"ss"}]
-            arrFiles[0].file_name = "EMPTY"
+            filteredArrFiles = [{file_name:"ss"}]
+            filteredArrFiles[0].file_name = "XUIIII EMPTY"
+        }else {
+            filteredArrFiles = this.removeOtherSoldierFiles(arrFiles, personalId)
         }
         
  
         return (
 
             <div>
-                <DisplayFiles files={arrFiles} role={Role.Soldier}/>
+                <DisplayFiles files={filteredArrFiles} role={Role.Soldier}/>
         
             </div>
 
