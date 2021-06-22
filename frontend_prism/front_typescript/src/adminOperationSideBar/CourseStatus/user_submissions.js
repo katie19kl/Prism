@@ -32,6 +32,7 @@ export async function usersSubmissions(soldiers,major,module) {
 		})
 		.then((response) => {
 
+			
 			return response;
 
 		}, (error) => {

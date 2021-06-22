@@ -1,3 +1,4 @@
+import { Grade } from "src/server/users/common/grade.enum";
 import { Major } from "../../users/common/major.enum";
 
 export class UserSubmissionDTO {
@@ -17,6 +18,8 @@ export class UserSubmissionDTO {
     submittedTime: string;
 
     submittedDate: string;
+
+    gradeDescription: string;
 
 
 }

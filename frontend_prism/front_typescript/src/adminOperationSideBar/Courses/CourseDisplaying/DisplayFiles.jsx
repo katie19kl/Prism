@@ -73,7 +73,7 @@ class DisplayFiles extends React.Component {
 
         if (this.state.fileInfos === undefined) {
             this.state.fileInfos = [];
-        }
+        }// if -> not render
 
         return (
             <div>

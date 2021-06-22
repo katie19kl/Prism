@@ -146,6 +146,9 @@ export class UserSubmissionService {
     /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
         
+        createUserSubmissionDto.gradeDescription = "xui"
+
+
         createUserSubmissionDto.isChecked = false
 
 

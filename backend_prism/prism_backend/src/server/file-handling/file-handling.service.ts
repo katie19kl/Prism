@@ -7,6 +7,8 @@ import { ModuleManager } from './managers/ModuleManager';
 import { SubjectManager } from './managers/SubjectManager';
 import { FileManager } from './managers/FileManager';
 import { NotFoundException } from '@nestjs/common';
+import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
+import { UsersService } from '../users/users.service';
 
 
 const pathRootDirectory_ = './../root'
@@ -56,6 +58,10 @@ export class FileHandlingService {
         } catch(err) {
             if (err.code === "ENOENT") {
                 console.log("Major not found")
+                
+                ///////////////
+                let empty = []
+                return empty
             }
         }
     }
@@ -142,9 +148,10 @@ export class FileHandlingService {
 //////////////////////////////////////////SUBJECTS////////////////////////////////////////////////////
 
 
-    async createNewSubject(major:Major,module: string,newNameSubject: string) {
+    async createNewSubject(major:Major,module: string,newNameSubject: string, 
+                            userService: UsersService,subjectOnDemandService:SubjectsOnDemandService) {
        
-        return await this.subjectManager.createNewSubject(major,module,newNameSubject)
+        return await this.subjectManager.createNewSubject(major,module,newNameSubject,userService,subjectOnDemandService)
         
     }
 

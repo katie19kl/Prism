@@ -2,7 +2,6 @@ import React from "react"
 import { getListSubmissionOfSubject, removeFileFromSubmission } from "./submission_handling"
 import { Grid, Snackbar, withStyles, Box } from "@material-ui/core";
 import Button from '@material-ui/core/Button';
-import {useHistory} from "react-router-dom";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -16,6 +15,9 @@ import { Link } from "react-router-dom";
 import SubmissionReview from "./submissionReview/SubmissionReview";
 import MuiAlert from '@material-ui/lab/Alert';
 import PublishIcon from '@material-ui/icons/Publish';
+import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
+import OK_Status from "../soldierSubmission/OK_Status"
+
 
 
 const useStyles = (theme) => ({
@@ -115,17 +117,35 @@ class SubmissionTableInfo extends React.Component {
     }
 
     setSubmissionColor() {
+        let grade = this.state.gradeDescription;
         let checked = this.state.isChecked;
         let submitted = this.state.existSubmission;
 
+        // TO DO
+        // ADD WITH OPEN OR NOT OPEN 
+
 
         if (checked && submitted) {
-            return "#80F456";
+            
+            if (grade === OK_Status.OK_Status.OK) {
+                
+                // green
+                return Status.SubmittedGoodEnough
+            }
+            else if (grade === OK_Status.OK_Status.NOT_OK){
+                
+                //Yellow
+                return Status.SubmittedNotGoodEnough
+            }
 
-        } else if (!checked && submitted) {
-            return "#FFC200";
 
-        } else {
+        } 
+        else if (!checked && submitted) {
+            // BLUE 
+            return Status.SubmittedNotReviewed;
+
+        }
+        else {
             return "";
         }
     }
@@ -221,7 +241,9 @@ class SubmissionTableInfo extends React.Component {
             gradeDesc = this.state.gradeDescription;
         }
 
-        if (submissionExist || 1==1) {
+        let x = 1
+
+        if (submissionExist || x) {
 
             return (
                 <div         
@@ -330,7 +352,7 @@ class SubmissionTableInfo extends React.Component {
 
                         </TableContainer>
 
-                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role == Role.Tester) ? 
+                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester) ? 
                             <div>
 
                                 <br/>

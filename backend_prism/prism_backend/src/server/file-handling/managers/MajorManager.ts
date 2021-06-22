@@ -43,10 +43,14 @@ export class MajorManager {
             return parseInt(k.split(IndexingFormat.ModuleSeparator)[0])
         }
         // sort by subindexing
-        allModules.sort(function (a,b){
-           
-            return transform(a) - transform(b);
-        });
+        if (allModules !== undefined){
+            
+            allModules.sort(function (a,b){
+            
+                return transform(a) - transform(b);
+            });
+        }
+
         
         return allModules
     }

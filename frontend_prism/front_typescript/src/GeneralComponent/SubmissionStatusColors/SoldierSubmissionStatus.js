@@ -1,7 +1,16 @@
 export const Status = {
+	// grey
 	Closed: "#a1b0a8",
+	
+	// red
 	OpenNotSubmitted: "#ff1313",
-	SubmittedNotGoodEnough: "#f9ff00",
-	SubmittedGoodEnough: "#00ff33",
-    SubmittedNotReviewed: "#00cbff",
+	
+	// yellow
+	SubmittedNotGoodEnough: "#EEEB1E",
+	
+	// green
+	SubmittedGoodEnough: "#2EDF86",
+    
+	// blue
+	SubmittedNotReviewed: "#339EFD",
 }

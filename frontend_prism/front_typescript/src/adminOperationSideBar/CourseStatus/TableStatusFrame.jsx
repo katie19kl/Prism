@@ -38,6 +38,7 @@ class TableStatusFrame extends React.Component {
         this.majorSelector = this.majorSelector.bind(this)
         this.moduleSelector = this.moduleSelector.bind(this)
         this.handleMySoldiers = this.handleMySoldiers.bind(this)
+        this.handleEdittingMode = this.handleEdittingMode.bind(this)
 
         this.selectedMajor = undefined
         this.selectedModule = undefined
@@ -45,10 +46,17 @@ class TableStatusFrame extends React.Component {
         //this.checkBoxClicked = false
         this.state = {
             majors: [],
-            modules: [],
+            //modules: [],
+            modules: undefined,
             displayTable: false,
-            checkBoxClicked: false
+            checkBoxClicked: false,
+            displayEditMode: false
         }
+    }
+
+    handleEdittingMode(event){
+        
+        this.setState({displayEditMode:event.target.checked})
     }
 
     handleMySoldiers(event){
@@ -66,7 +74,6 @@ class TableStatusFrame extends React.Component {
 
             getModulesByMajor(this.selectedMajor).then((response) => {
                 if (response !== undefined) {
-              //      console.log(response.data)
                     let modules_ = response.data
                     this.setState({ modules: modules_ })
                 }
@@ -74,7 +81,7 @@ class TableStatusFrame extends React.Component {
 
         }
         // remove selection from module
-        this.setState({modules: [],displayTable: false,checkBoxClicked:false} )
+        this.setState({modules: undefined ,displayTable: false,checkBoxClicked:false} )
     }
 
     moduleSelector(event) {
@@ -115,6 +122,8 @@ class TableStatusFrame extends React.Component {
     render() {
         let modules = this.state.modules
         let classes = this.props.classes
+
+        //console.log(this.selectedModule)
 
         return (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -193,7 +202,7 @@ class TableStatusFrame extends React.Component {
                                         onChange={this.moduleSelector}>
                                                 
                                             <option aria-label="None" value="None" />
-                                            {modules.map((module_, index) => (
+                                            {modules !== undefined && modules.map((module_, index) => (
 
                                                 <option key={index} value={module_}>{module_}</option>
 
@@ -204,6 +213,30 @@ class TableStatusFrame extends React.Component {
 
                                 </TableCell>
 
+
+
+
+
+
+                                <TableCell>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                checked={this.state.displayEditMode}
+                                                onChange={this.handleEdittingMode}
+                                                name="checkedB"
+                                                color="primary"
+                                                disabled={
+                                                    (this.selectedMajor === undefined || this.selectedMajor === "None")
+                                                    || (this.selectedModule === undefined || this.selectedModule === "None")
+                                                }
+                                            
+                                            />
+                                        }
+                                        label="Edit Mode"
+                                    />
+                                </TableCell>
+
                             </TableRow>
                         </TableHead>
                     </Table>
@@ -212,7 +245,9 @@ class TableStatusFrame extends React.Component {
                         <TableStatus
                         selectedMajor={this.selectedMajor}
                         selectedModule={this.selectedModule}
-                        mySoldiers={this.state.checkBoxClicked}>
+                        mySoldiers={this.state.checkBoxClicked}
+                        editMode={this.state.displayEditMode}
+                        >
                         </TableStatus>
                     }
 

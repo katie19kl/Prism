@@ -2,7 +2,6 @@ import { Breadcrumbs, Grid, Typography,withStyles } from "@material-ui/core"
 import React from "react"
 import { purple, blue } from "@material-ui/core/colors";
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar"
-import SoldierMenu from "../../GeneralComponent/soldier/SoldierMenu"
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Role from "../../Roles/Role";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";

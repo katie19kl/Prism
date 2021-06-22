@@ -1,10 +1,15 @@
 import { ConflictException } from "@nestjs/common";
 import { NotFoundException } from "@nestjs/common";
+import { SubjectsOnDemandService } from "src/server/subjects-on-demand/subjects-on-demand.service";
 import { Major } from "src/server/users/common/major.enum";
+import { UsersService } from "src/server/users/users.service";
 import { IndexingFormat } from "../common/IndexingFormat";
 import { FileHandlingService } from "../file-handling.service";
 
 export class SubjectManager{
+
+
+    constructor(){}
 
 
     createPathToModule(major,module){
@@ -83,7 +88,36 @@ export class SubjectManager{
         return false
     }
 
-    async createNewSubject(major:Major,module: string,newNameSubject: string)
+
+    async closeSubjectToEveryone(major:Major,module: string,subject: string,userService:UsersService,  subjectOnDemandService:SubjectsOnDemandService){
+
+        // 1 - get all users of this major
+        // 2 - close to everyone this subject
+       
+
+        let allSoldiers = await userService.findAllSoldiersInMajor(major)
+        console.log("---------------")
+        //console.log(allSoldiers)
+        for (const soldier of allSoldiers){
+            
+            let soldierId = soldier["personalId"]
+            console.log(soldier)
+            console.log("============")
+                
+            await subjectOnDemandService.closeNewSubjectToSoldier(major,module,subject,soldierId) 
+
+        } 
+                  
+
+        //await subjectOnDemandService.closeNewSubjectToAllSoldier(major,module,subject)
+    }
+
+
+    /*
+    Creates subject & make it closed to all soldiers
+    */
+    async createNewSubject(major:Major,module: string,newNameSubject: string, userService:UsersService,
+        subjectOnDemandService:SubjectsOnDemandService)
     {   
         
         let pathToModule = this.createPathToModule(major,module)
@@ -96,14 +130,35 @@ export class SubjectManager{
         
         let existAlready = this.subjectNameExist(major,module,newNameSubject,parseInt(newIndex))
 
+        console.log(newNameSubject)
+        console.log(newNameSubject)
+        console.log(newIndex +  + newNameSubject)
+        
+
         if (existAlready){
             console.log("TAFUS NAHUI")
             dirPath = "undefined"
+            return 
         }
-
+        // it will be created =>
+        // create it closed  to everyone
+        else {
+         
+           
+            let newSubject = this.createNewFinalSubjectName(module, newIndex, newNameSubject)
+            await this.closeSubjectToEveryone(major,module ,newSubject,userService, subjectOnDemandService)
+        }
 
         return  await FileHandlingService.createNewDir(dirPath)
         
+    
+    }
+
+
+    createNewFinalSubjectName(moduleName, newIndex, subjectName){
+        let indexModule = moduleName.split(IndexingFormat.ModuleSeparator)[0]
+        let newSubjectName = indexModule + IndexingFormat.SubjectSubIndexing + newIndex + IndexingFormat.SubjectSeparator + subjectName
+        return newSubjectName
     }
 
 

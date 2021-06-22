@@ -40,13 +40,14 @@ class ContentOfModule extends React.Component {
         let personalId = this.props.personalId;
 
         let dictSubjectFiles = this.props.dictSubjectFiles
-        console.log(Object.keys(dictSubjectFiles))
+        
+        //console.log(Object.keys(dictSubjectFiles))
 
         console.log("personal id: ", personalId, "-------------------------------------------!!!!")
-
+ 
 
         let postfix_param = major + "/" + moduleName + "/"
-        console.log(postfix_param)
+        //console.log(postfix_param)
 
         return (
  
@@ -74,6 +75,7 @@ class ContentOfModule extends React.Component {
                                 dictSubjectFiles = {dictSubjectFiles}
                                 major = {major}
                                 moduleName={moduleName}
+                                personalId={personalId}
                                 >
                                 </DisplaySubjectContent>
 

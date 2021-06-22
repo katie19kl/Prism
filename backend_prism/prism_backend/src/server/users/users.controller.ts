@@ -7,12 +7,14 @@ import { Major } from './common/major.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
 import { jwtConstants } from '../RolesActivity/constants';
+import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
+
 
 
 @Controller('users')
 export class UsersController {
 
-    constructor(private usersService: UsersService) { }
+    constructor(private usersService: UsersService, private subjectOnDemandService: SubjectsOnDemandService) { }
 
 
 
@@ -44,7 +46,7 @@ export class UsersController {
 
         console.log(createUserDto);
 
-        let result = await this.usersService.create(createUserDto);
+        let result = await this.usersService.create(createUserDto,this.subjectOnDemandService);
         console.log(result);
         return result;
     }

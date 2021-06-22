@@ -43,17 +43,17 @@ class UpdateUsers extends React.Component {
                 firstName: ' None',
                 lastName: ' ',
                 personalId: ' ' 
-            },
+            }/*,
             {
-                firstName: 'DUMMY_1',
-                lastName: 'DUMMY_1',
+                firstName: 'XUI NOT EXIST',
+                lastName: 'XUI NOT EXIST',
                 personalId: "0123456789"
             },
             {
-                firstName: 'DUMMY_2',
-                lastName: 'DUMMY_2',
+                firstName: 'XUI NOT EXIST',
+                lastName: 'XUI NOT EXIST',
                 personalId: "0123446789"
-            }
+            }*/
         ];
     }
 

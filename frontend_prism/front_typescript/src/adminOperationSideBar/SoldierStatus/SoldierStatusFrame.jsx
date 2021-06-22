@@ -6,7 +6,6 @@ import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 import { getSoldiersByMajors } from "../../HelperJS/extract_info"
 import SoldierSubmissions from "./SoldierSubmissions";
 
-import {usersSubmissions} from "../CourseStatus/user_submissions"
 
 //	boxShadow: "5px 2px 5px grey" for row
 const useStyles = (theme) => ({
@@ -100,9 +99,7 @@ class SoldierStatusFrame extends React.Component {
 
         this.selectedMajor = event.target.value
 
-        if (this.selectedMajor != "None") {
-
-
+        if (this.selectedMajor !== "None") {
 
             this.getAllSoldiersMajor(this.selectedMajor)
 
@@ -227,6 +224,17 @@ class SoldierStatusFrame extends React.Component {
 
 
                                 </TableCell>
+
+
+                                                               <TableCell>
+
+  
+
+                                </TableCell>
+
+
+
+                    
 
 
 
