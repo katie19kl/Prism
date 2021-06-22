@@ -254,6 +254,10 @@ class TableStatus extends React.Component {
 					if (responce.data !== undefined){				
 						this.soldierClosed = responce.data
 
+						console.log(" MODULE TO GET CLOSED :::" + " " + module)
+						console.log(" MODULE TO GET CLOSED :::" + " " + this.props.selectedModule)
+						console.log(" MODULE TO GET CLOSED :::" + " " + this.state.selectedModule)
+						
 					}
 				}
 				
@@ -357,6 +361,7 @@ class TableStatus extends React.Component {
 		if (soldiers !== []) {
 
 			return new Promise((resol, rej) => {
+
 				usersSubmissions(soldiers, major, module).then((res) => {
 					if (res !== undefined) {
 						if (res.data !== undefined) {
@@ -456,19 +461,15 @@ class TableStatus extends React.Component {
 						status = "assigned"
 						color = Status.SubmittedNotReviewed
 
-
+						console.log(OK_Status.OK)
 		
-						if (checked && gradeDescription===OK_Status.OK_Status.OK) {
+						if (checked && gradeDescription === OK_Status.OK) {
 
-
-
-					
-							
 							status = "checked & good"
 							color = Status.SubmittedGoodEnough
 
 
-						}else if (checked && gradeDescription===OK_Status.OK_Status.NOT_OK){
+						} else if (checked && gradeDescription === OK_Status.NOT_OK){
 
 
 							
