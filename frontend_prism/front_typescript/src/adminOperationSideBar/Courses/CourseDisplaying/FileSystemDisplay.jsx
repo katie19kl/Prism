@@ -417,7 +417,7 @@ class FileSystemDisplay extends React.Component {
 
             } else if (response.response !== undefined) {
 
-                if (response.respone.status !== undefined && response.response.status === 409) {
+                if (response.response.status !== undefined && response.response.status === 409) {
                     
                     this.msg = "The name already exists! Try a different one";
                     this.severity = "error";
@@ -427,7 +427,7 @@ class FileSystemDisplay extends React.Component {
             } else {
                 this.msg = "Failed to create the " + objToInsert;
                 this.severity = "error";
-                this.setState({ showMsg: true, msgOpen: true});
+                this.setState({ showMsg: true, msgOpen: true });
             }
 
         } else {

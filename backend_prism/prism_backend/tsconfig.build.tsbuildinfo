@@ -2881,8 +2881,28 @@
         "signature": "7d5324cde1bf52bf70e4f67146365ef529908e56ad918c3edfe33336eff86eca",
         "affectsGlobalScope": false
       },
+      "./src/server/subjects-on-demand/subjects-on-demand.schema.ts": {
+        "version": "2d82bba79e660ed57d413c5aaf3f84cebe482b3222e0936abd9e6b1452c55e4f",
+        "signature": "10a10cf63c930e93697563b9dda38794d4e792c50c29a61b0e5010341f675bb4",
+        "affectsGlobalScope": false
+      },
+      "./src/server/subjects-on-demand/subjects-on-demand.controller.ts": {
+        "version": "89406a53d6b3c97cf6909e119e74f5a0e91820ba1f460470a13269a45c20f906",
+        "signature": "0df2854fa5d6acad0f4477a3e71bfa5148f0f59592f164243660a4ccfbf7bb44",
+        "affectsGlobalScope": false
+      },
+      "./src/server/subjects-on-demand/subjects-on-demand.service.ts": {
+        "version": "1b6a20ef166ecbf5bc30bd09141a4ae8b828b3424414349d4edc7983581d9c7c",
+        "signature": "4ec1f2ef9344baabdc4709795f856c844794af5e66a92c9625771d56a0df9c30",
+        "affectsGlobalScope": false
+      },
+      "./src/server/subjects-on-demand/subjects-on-demand.module.ts": {
+        "version": "9984a5470785db9ad081caf5675bbd4d325a330d519b90065596bad68fa229df",
+        "signature": "5aa61fb97b4aa71bd95304e3ae5bfc3410f9ffe304c26937670c4dfc0c909859",
+        "affectsGlobalScope": false
+      },
       "./src/server/app/app.module.ts": {
-        "version": "8e5946fe0b3ce3f894c57ea6d1f0b114a6367c47202c852d32825c80caffa562",
+        "version": "80bc360236223f402eb59e4e6b160270c56b85d0195bf94952482ef4d4e3b4a1",
         "signature": "9fc7f7b6ad854404973b8cba8e6d883f758237991968e9a3965d716d46f1da88",
         "affectsGlobalScope": false
       },
@@ -2899,6 +2919,11 @@
       "./src/server/interfaces/jwt-payload.interface.ts": {
         "version": "9d9c65e1b4b9bfa80c38cc46554bfad00b4854f5f6eca16d6dc001b86eb4aaf5",
         "signature": "f9ef503c7990e6c8ccff1e8c26b5461244194fec81811348fddc3865bf0f046c",
+        "affectsGlobalScope": false
+      },
+      "./src/server/subjects-on-demand/subjects-on-demand.interface.ts": {
+        "version": "89a42f3b460023f1fa0add88d7977f487326d1112e30c4075dad94429a138101",
+        "signature": "11f339ae278c2399c3b73be568d0c3e11d08f93ed34a56188d68dd9138ddde40",
         "affectsGlobalScope": false
       },
       "./src/server/users/common/bodyfieldsuser.ts": {
@@ -5479,6 +5504,7 @@
         "./src/server/file-handling/file-handling.module.ts",
         "./src/server/review/review.module.ts",
         "./src/server/rolesactivity/admin_roles.guard.ts",
+        "./src/server/subjects-on-demand/subjects-on-demand.module.ts",
         "./src/server/users/users.module.ts",
         "./src/server/usersubmission/user-submission.module.ts"
       ],
@@ -5675,6 +5701,26 @@
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/core/index.d.ts",
         "./src/server/rolesactivity/role.enum.ts"
+      ],
+      "./src/server/subjects-on-demand/subjects-on-demand.controller.ts": [
+        "./node_modules/@nestjs/common/index.d.ts"
+      ],
+      "./src/server/subjects-on-demand/subjects-on-demand.interface.ts": [
+        "./node_modules/mongoose/index.d.ts",
+        "./src/server/users/common/major.enum.ts"
+      ],
+      "./src/server/subjects-on-demand/subjects-on-demand.module.ts": [
+        "./node_modules/@nestjs/common/index.d.ts",
+        "./node_modules/@nestjs/mongoose/index.d.ts",
+        "./src/server/subjects-on-demand/subjects-on-demand.controller.ts",
+        "./src/server/subjects-on-demand/subjects-on-demand.schema.ts",
+        "./src/server/subjects-on-demand/subjects-on-demand.service.ts"
+      ],
+      "./src/server/subjects-on-demand/subjects-on-demand.schema.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
+      "./src/server/subjects-on-demand/subjects-on-demand.service.ts": [
+        "./node_modules/@nestjs/common/index.d.ts"
       ],
       "./src/server/users/decorators/gender-validation.decorator.ts": [
         "./node_modules/class-validator/types/index.d.ts",
@@ -8105,6 +8151,13 @@
         "./node_modules/@nestjs/common/index.d.ts",
         "./node_modules/@nestjs/core/index.d.ts"
       ],
+      "./src/server/subjects-on-demand/subjects-on-demand.interface.ts": [
+        "./node_modules/mongoose/index.d.ts",
+        "./src/server/users/common/major.enum.ts"
+      ],
+      "./src/server/subjects-on-demand/subjects-on-demand.schema.ts": [
+        "./node_modules/mongoose/index.d.ts"
+      ],
       "./src/server/users/decorators/gender-validation.decorator.ts": [
         "./node_modules/class-validator/types/index.d.ts"
       ],
@@ -8825,6 +8878,11 @@
       "./src/server/rolesactivity/constants.ts",
       "./src/server/rolesactivity/role.enum.ts",
       "./src/server/rolesactivity/soldier_roles.guard.ts",
+      "./src/server/subjects-on-demand/subjects-on-demand.controller.ts",
+      "./src/server/subjects-on-demand/subjects-on-demand.interface.ts",
+      "./src/server/subjects-on-demand/subjects-on-demand.module.ts",
+      "./src/server/subjects-on-demand/subjects-on-demand.schema.ts",
+      "./src/server/subjects-on-demand/subjects-on-demand.service.ts",
       "./src/server/users/common/bodyfieldsuser.ts",
       "./src/server/users/common/gender.enum.ts",
       "./src/server/users/common/grade.enum.ts",

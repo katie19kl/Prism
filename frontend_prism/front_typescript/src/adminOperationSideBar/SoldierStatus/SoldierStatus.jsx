@@ -24,7 +24,6 @@ export default class SoldierStatus extends React.Component {
             role={Role.Commander}
 			content={
                
-                //<SoldierStatusFrame/>
                 <SoldierStatusFrame>
 
                 </SoldierStatusFrame>
