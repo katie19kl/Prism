@@ -224,6 +224,8 @@ class TableStatus extends React.Component {
 	processNewSoldiers(soldiersFromResponse) {
 
 		let allMySoldiers = soldiersFromResponse
+		
+
 
 		let usersToTable = []
 		let term
@@ -235,7 +237,7 @@ class TableStatus extends React.Component {
 
 		// server answer VS field value  by { id & personalId }
 		usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
-
+		this.XUIusers = usersToTable
 
 		let equal = (JSON.stringify(usersToTable) === JSON.stringify(this.state.soldiers))
 		// if different answer => update table
@@ -334,18 +336,33 @@ class TableStatus extends React.Component {
 		// if another module was selected
 		if (this.props.selectedModule !== this.state.selectedModule) {
 
+			/////////////
 
-			this.setState({ selectedModule: this.props.selectedModule }, function () {
-				// extract all submissions of new extracted-module
-				this.getSoldierSubmissions(this.state.soldiers).then((subData) => {
+			getSoldierClosedSubjects(this.props.selectedMajor,this.props.selectedModule,this.XUIusers).then((responce) => {
 
-					this.setState({ submissionData: subData }, function () {
-						// extract all subjects of new selected-module
-						this.getAllSubject()
+				if (responce !== undefined)
+				{
+					if (responce.data !== undefined){				
+						this.soldierClosed = responce.data
+
+					}
+				}
+				
+
+				this.setState({ selectedModule: this.props.selectedModule }, function () {
+					// extract all submissions of new extracted-module
+					this.getSoldierSubmissions(this.state.soldiers).then((subData) => {
+	
+						this.setState({ submissionData: subData }, function () {
+							// extract all subjects of new selected-module
+							this.getAllSubject()
+						})
 					})
 				})
-			})
+	
+	
 
+			})
 
 
 		}
