@@ -14,6 +14,7 @@ import CommentIcon from  "@material-ui/icons/Comment"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
 import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
 import {openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier} from "./subject_on_demand"
+import { CgArrowsMergeAltH } from "react-icons/cg"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -86,6 +87,8 @@ class TableStatus extends React.Component {
 
 		this.soldierClosed = {}
 		
+
+		this.last = false
 		
 
 		this.state = {
@@ -129,7 +132,7 @@ class TableStatus extends React.Component {
 					
 					
 
-
+					this.last = true
 					this.setState({FOO: this.state.FOO + 1})
 				}
 			}
@@ -169,7 +172,7 @@ class TableStatus extends React.Component {
 					this.soldierClosed[soldierId] = updatedArr
 
 	
-
+					this.last = true
 					this.setState({FOO: this.state.FOO + 1})
 				}
 			}
@@ -213,6 +216,8 @@ class TableStatus extends React.Component {
 			if (res !== undefined) {
 				if (res.data !== undefined) {
 
+
+					this.last = true
 					this.setState({ subjects: res.data })
 
 				}
@@ -240,6 +245,9 @@ class TableStatus extends React.Component {
 		this.XUIusers = usersToTable
 
 		let equal = (JSON.stringify(usersToTable) === JSON.stringify(this.state.soldiers))
+		
+		
+
 		// if different answer => update table
 		if (!equal) {
 
@@ -264,10 +272,13 @@ class TableStatus extends React.Component {
 				// new soldiers => new submissions have to be exctracted 
 				this.getSoldierSubmissions(newSoldiers).then((subData) => {
 					
-					
+					console.log("ZZZZZZZZZZZZZZZZZZZZZZZ")
+					console.log(subData)
+					console.log(usersToTable)
+					console.log("ZZZZZZZZZZZZZZZZZZZZZZZ")
 					// set state with new-arrived soldiers & their submission data
 					
-
+					this.last = true
 					this.setState({ soldiers: usersToTable, submissionData: subData	})
 				})
 
@@ -283,6 +294,8 @@ class TableStatus extends React.Component {
 
 	// extract ONLY my soldiers in selected major
 	extractAllMySoldiers() {
+
+		
 		let selectedMajor = this.props.selectedMajor
 
 		getAllMySoldiers(selectedMajor).then((response) => {
@@ -296,12 +309,14 @@ class TableStatus extends React.Component {
 
 
 	componentDidUpdate() {
+		this.last = false
 
 		// if check box (MySoldiers) state was changed
 		if (this.props.mySoldiers !== this.state.mySoldiers) {
-
+		
 			this.setState({ mySoldiers: this.props.mySoldiers }, function () {
 				let mySoliders = this.props.mySoldiers
+			
 				if (mySoliders) {
 					this.extractAllMySoldiers()
 				} else {
@@ -344,6 +359,8 @@ class TableStatus extends React.Component {
 					}
 				}
 				
+
+
 
 				this.setState({ selectedModule: this.props.selectedModule }, function () {
 					// extract all submissions of new extracted-module
@@ -475,9 +492,9 @@ class TableStatus extends React.Component {
 
 
 		
-						if (checked && gradeDescription===OK_Status.OK_Status.OK) {
+						if (checked && gradeDescription===OK_Status.OK) {
 
-
+							
 
 					
 							
@@ -485,7 +502,7 @@ class TableStatus extends React.Component {
 							color = Status.SubmittedGoodEnough
 
 
-						}else if (checked && gradeDescription===OK_Status.OK_Status.NOT_OK){
+						}else if (checked && gradeDescription===OK_Status.NOT_OK){
 
 
 							
@@ -520,9 +537,56 @@ class TableStatus extends React.Component {
 	render() {
 
 
-		console.log("....................Soldier Closed.............")
+
+		if (this.edit !== undefined &&  this.props.editMode !== this.edit){
+		
+			console.log("00")
+			this.last = true
+		}
+		
+
+		this.edit  = this.props.editMode
+
+		if (!this.last){
+			console.log("11")
+			return <WaiterLoading/>
+		}
+
+
+		console.log("...........Soldier Closed........")
 		console.log(this.soldierClosed)
-		console.log(".................................")
+		let dictValues = Object.values(this.soldierClosed)
+		if (dictValues.length > 0){
+
+			console.log(dictValues)
+			
+			let closed = "x.x"
+			for (const arrNames of dictValues){
+		
+				if (arrNames.length > 0){
+					closed = arrNames[0]
+
+				}
+			}
+			
+			console.log(closed)
+			let numClosed = closed.split(".")[0]
+
+			console.log(numClosed)
+			
+
+			let moduleNum = this.props.selectedModule.split("-")[0] 
+			console.log(moduleNum)
+			if (moduleNum !== numClosed){
+				
+				console.log("22")
+				return <WaiterLoading/>
+			}
+		}
+
+
+
+		console.log("..................................")
 		
 		let isEditMode = this.props.editMode
 		
@@ -539,10 +603,13 @@ class TableStatus extends React.Component {
 			allSoldierDisplay.push(add);
 		}
 
+
 		if (allSoldierDisplay.length > 0 && soldierSubmissionData !== undefined) {
 
 			let personalIdColors = this.convertToColors(soldierSubmissionData);
 			
+			console.log(this.last)
+			console.log("33")			
 
 			return (
 
@@ -685,6 +752,8 @@ class TableStatus extends React.Component {
 			)
 		}
 		else {
+			
+			console.log("44")
 			return <WaiterLoading/>
 		}
 	}

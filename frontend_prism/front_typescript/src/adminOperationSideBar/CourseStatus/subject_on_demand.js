@@ -1,5 +1,7 @@
 import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
+import {prefix_server_url} from "./../../HelperJS/url_helper"
+
 
 async function openSubjectToSoldier(soldierId, major, module, subjectToOpen) {
 
@@ -121,7 +123,9 @@ async function getAllowedSubjectsOfUser(major, module, peronalId){
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/subjects-on-demand/user_opened/" + major + "/" + module + "/" + peronalId;
+		//let url = "http://localhost:4000/subjects-on-demand/user_opened/" + major + "/" + module + "/" + peronalId;
+		let url = prefix_server_url + "subjects-on-demand/user_opened/" + major + "/" + module + "/" + peronalId;
+
 
 		const req = await axios.create({
 			baseURL: url,

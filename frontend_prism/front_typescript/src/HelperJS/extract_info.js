@@ -25,7 +25,6 @@ async function getUserInfoByJWT() {
 		return await req.get(url, {
 		})
 			.then((response) => {
-
 				return response;
 
 			}, (error) => {

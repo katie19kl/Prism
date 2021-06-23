@@ -2,6 +2,9 @@ import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
 
 
+
+
+
 async function getModulesByMajor(major) {
 
 	let urlPostFix = "major/modules/" + major;

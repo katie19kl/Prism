@@ -305,7 +305,10 @@ export class UsersService {
 		let user = await this.findOneByPersonalId(personalId)
 		// return outside without password ( password is hashed )
 		user.password = "";
-		//console.log(user);
+
+
+		console.log("HHHHHEEEEEEEERRRRRRRRRRRRRRREEEEEEEEEEEE");
+		console.log(user);
 
 
 		return user;

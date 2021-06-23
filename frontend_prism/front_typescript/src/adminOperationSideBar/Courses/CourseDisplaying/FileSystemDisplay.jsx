@@ -159,7 +159,7 @@ class FileSystemDisplay extends React.Component {
     the getSubjectsByModule function and re-renders view.
      */
     handleGetSubjectRequest(moduleName) {
-        //getSubjectsByModule(this.state.chosenMajor, moduleName).then(({data}) => {
+        
             getSubjectsByModule(this.state.chosenMajor, moduleName).then((data) => {
             if (data !== undefined){
                 data = data.data

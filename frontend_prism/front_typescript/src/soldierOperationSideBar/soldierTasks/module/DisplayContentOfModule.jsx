@@ -39,7 +39,7 @@ export default class DisaplayContentOfModule extends React.Component {
 				
 
                 //getSubjectsByModule(major, moduleName).then( (res)=>{
-                getAllowedSubjectsOfUser(major, moduleName, personalId).then( (res)=>{
+                getAllowedSubjectsOfUser(major, moduleName, personalId).then((res)=>{
                     
                     this.nothingHere = false
                         

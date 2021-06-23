@@ -37,7 +37,9 @@ export default function App() {
 			</PrivateRoutingComponent>
 			
 
+			<PrivateRoutingComponent path="/10- XUI/10.5- SUB XUI/123456789" component={General} />
 
+			<PrivateRoutingComponent path="/10- XUI/10.5- SUB XUI/987654321" component={General} />
 
 
 

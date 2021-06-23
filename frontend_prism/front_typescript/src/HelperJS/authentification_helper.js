@@ -26,8 +26,8 @@ async function validateTokenFunc()  {
     	return await req.get(url, {
     	})
 		.then((response) => {
-			console.log(" ======== in auth helper ======")
-			console.log(response);
+			//console.log(" ======== in auth helper ======")
+			//console.log(response);
 
 			// response is ok.
 			if (response.data.isValid) {
