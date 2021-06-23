@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
+import { prefix_server_url } from "../../HelperJS/url_helper";
 
 
 
@@ -80,8 +81,9 @@ async function sendGetRequest(urlPostFix) {
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/file-handling/" + urlPostFix;
-
+		//let url = "http://localhost:4000/file-handling/" + urlPostFix;
+		let url = prefix_server_url + "file-handling/" + urlPostFix;
+		
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,
@@ -112,8 +114,11 @@ async function sendDeleteRequest(urlPostFix) {
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/file-handling/" + urlPostFix;
-
+		//let url = "http://localhost:4000/file-handling/" + urlPostFix;
+		let url = prefix_server_url + "file-handling/" + urlPostFix;
+		
+		
+		
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,
@@ -172,7 +177,10 @@ async function sendPostRequest(urlPostFix) {
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/file-handling/" + urlPostFix;
+		//let url = "http://localhost:4000/file-handling/" + urlPostFix;
+		let url = prefix_server_url + "file-handling/" + urlPostFix;
+
+
 
 		const req = await axios.create({
 			baseURL: url,
@@ -204,7 +212,10 @@ async function sendPutRequest(urlPostFix) {
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/file-handling/" + urlPostFix;
+		//let url = "http://localhost:4000/file-handling/" + urlPostFix;
+		let url = prefix_server_url + "file-handling/" + urlPostFix;
+		
+
 
 		const req = await axios.create({
 			baseURL: url,

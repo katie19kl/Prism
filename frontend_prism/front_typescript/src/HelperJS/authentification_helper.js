@@ -1,6 +1,7 @@
 import axios from "axios";
 import Token from "./Token"
 import LocalStorage from "./LocalStorage";
+import { prefix_server_url } from "./url_helper";
 
 
 async function validateTokenFunc()  {
@@ -15,7 +16,10 @@ async function validateTokenFunc()  {
 	} else {
     
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/auth/validate"; 
+		//let url = "http://localhost:4000/auth/validate"; 
+		let url = prefix_server_url + "auth/validate";
+		
+
 
 		const req = await axios.create({
 			baseURL: url,
@@ -63,7 +67,9 @@ async function validateRoleByToken(rolesRequired){
 
 	} else {
 	
-		let url = "http://localhost:4000/users/role_by_JWT"
+		//let url = "http://localhost:4000/users/role_by_JWT"
+		let url = prefix_server_url + "users/role_by_JWT"
+		
 
 		const req = await axios.create({
 			baseURL: url,

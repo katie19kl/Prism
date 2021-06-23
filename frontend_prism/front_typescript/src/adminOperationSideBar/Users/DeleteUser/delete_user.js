@@ -1,5 +1,6 @@
 import LocalStorage from "../../../HelperJS/LocalStorage";
 import axios from 'axios';
+import { prefix_server_url } from "../../../HelperJS/url_helper";
 
 async function deleteUserByPersonalId(personalId) {
 	let token = LocalStorage.getItem(LocalStorage.token);
@@ -11,7 +12,10 @@ async function deleteUserByPersonalId(personalId) {
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/users/" + personalId;
+		//let url = "http://localhost:4000/users/" + personalId;
+		let url = prefix_server_url	+ "users/" + personalId;
+
+
 
 		const req = await axios.create({
 			baseURL: url,
