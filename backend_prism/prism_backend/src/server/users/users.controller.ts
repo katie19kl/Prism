@@ -42,12 +42,14 @@ export class UsersController {
     @UseGuards(IsEmptyGuard)
     // ADMIN/COMMANDER
     async create(@Body() createUserDto: CreateUserDto) {
-        console.log("add new user/admin ");
-
-        console.log(createUserDto);
+      
+        
+    
+        
 
         let result = await this.usersService.create(createUserDto,this.subjectOnDemandService);
-        console.log(result);
+   
+        
         return result;
     }
 
@@ -58,7 +60,7 @@ export class UsersController {
     @Get('soldiers')
     async getAllSoldiers() {
 
-        console.log("returning list of soldier usernames(to be changed to full names)");
+       
         return await this.usersService.findAllSoldiers();
 
     }
@@ -93,7 +95,8 @@ export class UsersController {
 
     @Post('soldiers/majors')
     async getAllSoldiersInMajors(@Body() majors: Major[]) {
-        console.log(majors);
+    
+        
         
         return await this.usersService.findSoldiersInAllMajors(majors);
     }
@@ -104,8 +107,10 @@ export class UsersController {
     @Put(':username')
     async updateUser(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
 
-        console.log("updating user info");
-        console.log(updateUserDto);
+      
+        
+       
+        
 
         return await this.usersService.updateUserInfo(username, updateUserDto);
 
@@ -116,7 +121,8 @@ export class UsersController {
     @Delete(':id')
     async deleteUser(@Param('id') personalId: string) {
 
-        console.log('deleting user with the username: ' + personalId);
+     
+        
         return await this.usersService.deleteUser(personalId);
 
     }
@@ -141,7 +147,8 @@ export class UsersController {
         const usertoken = req.headers.authorization;
         let commander = await this.usersService.getUserByJWT(usertoken);
         let commanderId = commander.personalId;
-        //console.log(commanderId)
+      
+        
 
         
         return await this.usersService.getSoldiersByCommanderId(commanderId, major)

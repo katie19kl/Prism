@@ -33,14 +33,11 @@ export class UserSubmissionService {
 	
 		const token = usertoken.split(' ');
 		
-		// decode JWT & retrieve personalID
-        console.log(" -------------------------------");
-
+		
 		const decoded = jwt.verify(token[1], jwtConstants.secret);
 		let personalId = decoded['personalId'];
 
-        console.log(personalId);
-
+        
         return personalId;
     }
 
@@ -129,7 +126,10 @@ export class UserSubmissionService {
         
         };
         
-        let docExist =  this.userSubmissionModel.exists(filter);
+        let docExist =  await this.userSubmissionModel.exists(filter);
+        console.log("Doc already exist  ")
+        console.log(docExist)
+        console.log("--------------------")
         return docExist
     }
 
@@ -146,9 +146,9 @@ export class UserSubmissionService {
     /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
         
+        console.log("----Create new submission----")
+
         createUserSubmissionDto.gradeDescription = "xui"
-
-
         createUserSubmissionDto.isChecked = false
 
 
@@ -159,7 +159,7 @@ export class UserSubmissionService {
         // dir with user solutions
         let pathSolutionDir = this.userSubmissionFileHandler.createPathSolution(createUserSubmissionDto);
         
-        // if checks if above dir exist
+        // if checks if above dir exist (sync)
         let dirExist = this.userSubmissionFileHandler.checkDirExist(pathSolutionDir);
         if (!dirExist) {
 
@@ -202,7 +202,6 @@ export class UserSubmissionService {
                     major: major_,
                     module: module_,
             };
-            //console.log("2")
             let result = await this.userSubmissionModel.find(filter);
             return result;
 

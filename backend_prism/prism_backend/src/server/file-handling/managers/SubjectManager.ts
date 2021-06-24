@@ -71,15 +71,10 @@ export class SubjectManager{
 
             let dirPath = this.createSubjectPathDir(major,module,newNameSubject,i.toString())
             
-            //console.log("----")
-            //console.log(dirPath)
-            //console.log("----")
+  
 
             if (fs.existsSync(dirPath)) {
-              //  console.log("----")
-               // console.log("EXIST ALREADY") 
-               // console.log(dirPath)
-                //console.log("----")
+  
                 return true;        
             }
         }
@@ -96,13 +91,12 @@ export class SubjectManager{
        
 
         let allSoldiers = await userService.findAllSoldiersInMajor(major)
-        console.log("---------------")
-        //console.log(allSoldiers)
+
+
         for (const soldier of allSoldiers){
             
             let soldierId = soldier["personalId"]
-            console.log(soldier)
-            console.log("============")
+
                 
             await subjectOnDemandService.closeNewSubjectToSoldier(major,module,subject,soldierId) 
 
@@ -130,9 +124,8 @@ export class SubjectManager{
         
         let existAlready = this.subjectNameExist(major,module,newNameSubject,parseInt(newIndex))
 
-        console.log(newNameSubject)
-        console.log(newNameSubject)
-        console.log(newIndex +  + newNameSubject)
+
+        
         
 
         if (existAlready){
@@ -187,7 +180,8 @@ export class SubjectManager{
         let path = FileHandlingService.pathRootDirectory + "/" + major + "/" + module
         
         let all_dirs = FileHandlingService.getDirList(path)
-        //console.log(all_dirs)
+      
+        
 
 
         
@@ -198,7 +192,8 @@ export class SubjectManager{
        
                 if (parseInt(index_dir) > parseInt(removedIndex)) {
     
-                    //console.log(dir)
+                  
+                    
     
                     let currentPath = path + "/" + dir_subject;
                     //let index_new = parseInt(dir[2]) - 1
@@ -215,7 +210,8 @@ export class SubjectManager{
                     
                     let newPath = path + "/" + dirNew
     
-                    console.log(newPath + "--- new path after decreasing index")
+                
+                    
                     fs.rename(currentPath, newPath, function (err) {
                         if (err) {
                             reject(-1) 	          
@@ -239,31 +235,28 @@ export class SubjectManager{
 
         //let dir = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_to_del
         let dir = this.concateSubjectPath(major, module, subjectToDelete)
-        console.log(dir)
+      
         const fs = require("fs")
 
         let indexToRemove = this.extractIndexOfSubject(subjectToDelete)
         
-        console.log(indexToRemove + " index subject to remove ")
+       
 
-        //console.log(" before rem")
         return await new Promise((resolve,reject) =>{
             
-           // console.log(fs.existsSync(dir))
+          
 
             if (fs.existsSync(dir)){
                 
                 fs.rmdir(dir, { recursive: true }, async (err) => {
-            //    console.log(dir)
+        
                 if (err) {
         
                     reject(new NotFoundException("Deleting problem"))
                 }
                 else {
 
-                   // console.log(`${dir} is deleted!`);
-
-                   // console.log(" after rem")
+           
 
 
                     let renaming =  await this.decreaseIndexesSubjectAfterRemoved(indexToRemove, major, module)
@@ -288,15 +281,14 @@ export class SubjectManager{
     getCurrIndexing(subjectToRename:string){
         let indexNum = subjectToRename.split(IndexingFormat.ModuleSeparator)[0]
         //let indexNum = this.extractIndexOfSubject(subjectToRename)
-        //console.log(indexNum + IndexingFormat.SubjectSeparator)
+       
         return indexNum + IndexingFormat.SubjectSeparator
     }
 
 
 
     async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string){
-        console.log("sssssssssssssssssssssssss")
-        console.log(module)
+
         let pathToModule = this.createPathToModule(major,module)
 
         let lastSubjectIndex = await this.getLastIndexOfSubject(pathToModule)
@@ -310,15 +302,13 @@ export class SubjectManager{
         let indexing = this.getCurrIndexing(subjectToRename)
 
         let newPath = this.concateSubjectPath(major, module, indexing+newNameForSubject)
-        console.log(currPath)
-        console.log(newPath)
-        console.log("-----------------------------REN----------------")
+
 
         
 
         let alreadyExist = this.subjectNameExist(major,module,newNameForSubject,parseInt(lastIndex)) 
         if (alreadyExist){
-            console.log("XUI UGE TUT")
+          
             newPath = "undefined"
         }
 

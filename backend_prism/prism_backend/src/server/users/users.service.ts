@@ -289,9 +289,11 @@ export class UsersService {
 		
 		// decode JWT & retrieve username
 		const decoded = jwt.verify(token[1], jwtConstants.secret);
-		//console.log(decoded);
+		
+		
 		let personalId = decoded['personalId'];
-		//console.log(personalId)
+	
+		
 
 		// obtain user by his username  & return it outside
 		let user = await this.findOneByPersonalId(personalId)
@@ -299,10 +301,7 @@ export class UsersService {
 		user.password = "";
 
 
-		console.log("HHHHHEEEEEEEERRRRRRRRRRRRRRREEEEEEEEEEEE");
-		console.log(user);
-
-
+		
 		return user;
 	}
 
@@ -310,7 +309,8 @@ export class UsersService {
 	async findOneByPersonalId(personalId: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"personalId": personalId});
-		//console.log(user)
+	
+		
 		return user;
 	}
 
@@ -378,7 +378,8 @@ export class UsersService {
 		let soldiersInMajors = [];
 		let soldierData;
 
-		//console.log(majors);
+		
+		
 		
 		users.forEach(user => {
 
@@ -497,11 +498,8 @@ export class UsersService {
 
         let soldiers = this.getFirstProp(soldiersJson)
 		
-		console.log("============s===")
-		//console.log(soldiers)
-		console.log(major)
-		console.log(module)
-		console.log("=====")
+
+		
 		
 		let allSubmissions = []
 
@@ -556,9 +554,8 @@ export class UsersService {
 			}
 			//allSubmissions.push(sendSubmission)
 		}
-		console.log("<<<<<<<<<<<<<<<<<<<")		
-		console.log(sendSubmission)
-		console.log(">>>>>>>>>>>>>>>>>>")
+
+		
 		return sendSubmission
 		//return allSubmissions
 	}

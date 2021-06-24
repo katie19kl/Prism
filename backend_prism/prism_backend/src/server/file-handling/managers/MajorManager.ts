@@ -16,11 +16,10 @@ export class MajorManager {
         
                 fs.rmdir(deleteMajorDir, {recursive:true}, function(err) {
                 if (err) { 
-                    console.log("here");
-                    console.log(err);
+
                     reject(err);
                 } else {
-                    console.log("Directory " + deleteMajorDir + " was deleted");
+          
                     resolve(deleteMajorDir);
                 }
             });
@@ -67,14 +66,12 @@ export class MajorManager {
     
                 fs.mkdir(newMajorDir, function(err) {
                     if (err) {
-                        console.log("here");
-                        console.log(err);
+
                         reject(err);
                         
     
                     } else {
     
-                        console.log("New directory " +  newMajorDir + " successfully created.");
                         resolve(newMajorDir);
                     }
                 });

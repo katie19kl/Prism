@@ -93,7 +93,8 @@ export class ReviewService {
                 deleteReview.module, deleteReview.subject);
 
             if (userSubmission) {
-                console.log("all good");
+             
+                
 
                 let filterUserSub = {
                     soldierId: deleteReview.soldierId,
@@ -126,8 +127,8 @@ export class ReviewService {
 
         let allReviews =  await this.reviewsModel.find(filter);
     
-        //console.log(allReviews);
-
+      
+        
         allReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
             ? 1 : (a.submittedDate === b.submittedDate) 
                 ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);

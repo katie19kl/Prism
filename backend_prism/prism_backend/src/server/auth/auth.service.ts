@@ -64,14 +64,15 @@ export class AuthService {
     }
 
     async createJwtPayload(user) {
-        console.log(user + " in creating JWT payload")
+      
+        
         //let userObj = await this.usersService.findOneByUsername(user.username);
         
         
         // Generates rand||CurrentTime
         // new string per server activating
         let randStr = jwtStaticRandomSTR.stringRandomTime
-        console.log(randStr + '\\n-------')
+        //console.log(randStr + '\\n-------')
 
 
         let data: JwtPayload = {
