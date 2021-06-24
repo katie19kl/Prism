@@ -7,4 +7,4 @@ const OK_Status = {
 
 };
 
-export default OK_Status
+export default OK_Status;

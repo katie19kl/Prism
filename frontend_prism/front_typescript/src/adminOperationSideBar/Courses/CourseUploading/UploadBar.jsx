@@ -62,32 +62,30 @@ function Alert(props) {
 
 class UploadBar extends Component {
 	constructor(props) {
-		super(props)
-
+		super(props);
 		this.selectFile = this.selectFile.bind(this);
 		this.upload = this.upload.bind(this);
 		this.uploadFilesEvent = this.uploadFilesEvent.bind(this);
-		this.regrettOnFile = this.regrettOnFile.bind(this)
+		this.regrettOnFile = this.regrettOnFile.bind(this);
 		this.myRef_toInput = React.createRef();
 		this.filesSelected = undefined;
 		this.listSameFiles = [];
-
 		this.module = this.props.match.params.module;
     	this.major = this.props.match.params.major;
 		this.subject = this.props.match.params.subject;
 
 		// to use right uploader
 		this.role = this.props.match.params.role;
-		this.funcUploader = undefined
-		if (this.role === Role.Commander){
-			this.funcUploader =  uploadSingleFiles
+		this.funcUploader = undefined;
+
+		if (this.role === Role.Commander) {
+			this.funcUploader =  uploadSingleFiles;
 		}
-		else if (this.role === Role.MyFiles){
-			this.funcUploader = uploadSingleSubmission
+		else if (this.role === Role.MyFiles) {
+			this.funcUploader = uploadSingleSubmission;
 		}
 
-
-		this.uploadedFile = []
+		this.uploadedFile = [];
 
 		this.state = {
 	
@@ -118,8 +116,6 @@ class UploadBar extends Component {
 	upload(idx, file) {
 		let _progressInfos = [...this.state.progressInfos];
 		
-		
-		//uploadSingleFiles(file, (event) => {
 		this.funcUploader(file, (event) => {
 		_progressInfos[idx].percentage = Math.round((100 * event.loaded) / event.total);
 				this.setState({
@@ -141,25 +137,22 @@ class UploadBar extends Component {
 							 "Uploaded the file successfully: " + file.name];
 						
 						
-						if (!this.uploadedFile.includes(file.name))
-						{
-							this.uploadedFile.push(file.name)
+						if (!this.uploadedFile.includes(file.name)) {
+							this.uploadedFile.push(file.name);
 						}
 
 
 						const dataAlready = new DataTransfer();
 					
 						// store already attached files
-						if (this.filesSelected !== undefined){
-							for (const file_ of this.filesSelected){
-								if (file_.name !== file.name){
+						if (this.filesSelected !== undefined) {
+							for (const file_ of this.filesSelected) {
+								if (file_.name !== file.name) {
 									dataAlready.items.add(file_);
 								}
-								
 							}
 						}
 
-						//this.cancellChoice()
 						this.filesSelected = dataAlready.files
 
 						return {
@@ -172,10 +165,10 @@ class UploadBar extends Component {
 					_progressInfos[idx].percentage = 0;
 					this.setState((prev) => {
 						let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
-						  return {
-							  progressInfos: _progressInfos,
-							  message: nextMessage
-						  };
+						return {
+							progressInfos: _progressInfos,
+							message: nextMessage
+						};
 					});
 				}
 			}
@@ -186,10 +179,10 @@ class UploadBar extends Component {
 			_progressInfos[idx].percentage = 0;
 			this.setState((prev) => {
 				let nextMessage = [...prev.message, "Could not upload the file: " + file.name];
-					return {
-						progressInfos: _progressInfos,
-						message: nextMessage
-					};
+				return {
+					progressInfos: _progressInfos,
+					message: nextMessage
+				};
 			});
 		});
 	}
@@ -203,11 +196,9 @@ class UploadBar extends Component {
 		for (let i = 0; i < selectedFiles.length; i++) {
 			_progressInfos.push({ percentage: 0, fileName: selectedFiles[i].name });
 		}
-		this.setState(
-			{
-			  progressInfos: _progressInfos,
-			  message: [],
-			}, () => {
+		this.setState({
+			progressInfos: _progressInfos, message: [],},
+			() => {
 				for (let i = 0; i < selectedFiles.length; i++) {
 					this.upload(i, selectedFiles[i]);
 				}
@@ -220,8 +211,8 @@ class UploadBar extends Component {
 
 		const dataAlready = new DataTransfer();
 		// store already attached files
-		if (this.filesSelected !== undefined){
-			for (const file of this.filesSelected){
+		if (this.filesSelected !== undefined) {
+			for (const file of this.filesSelected) {
 				dataAlready.items.add(file);
 			}
 		}
@@ -230,8 +221,8 @@ class UploadBar extends Component {
 
 		// store already new selected files
 		let lenFilesSelected = this.myRef_toInput.current.files.length
-		for(let i = 0; i<lenFilesSelected; i = i + 1){
-			let file = this.myRef_toInput.current.files[i]
+		for(let i = 0; i<lenFilesSelected; i = i + 1) {
+			let file = this.myRef_toInput.current.files[i];
 			
 			dataNew.items.add(file);
 		}
@@ -239,31 +230,31 @@ class UploadBar extends Component {
 		const dataNewMerged = new DataTransfer();
 
 		// Team up two above files storages
-		for (const file of dataAlready.files){
+		for (const file of dataAlready.files) {
 			dataNewMerged.items.add(file);
 		}
-		for (const file of dataNew.files){
-			let existAlready = 0
-			for (const fileInData of dataNewMerged.files){
-				if (fileInData.name === file.name){
-					existAlready = 1
-					this.setState({sameFileWasAdded:true})
-					
-					
-					this.listSameFiles.push(file.name)
+
+		for (const file of dataNew.files) {
+			let existAlready = 0;
+
+			for (const fileInData of dataNewMerged.files) {
+				if (fileInData.name === file.name) {
+
+					existAlready = 1;
+					this.setState({sameFileWasAdded:true});
+					this.listSameFiles.push(file.name);
 				}
 			}
-			if (existAlready === 0){
+			if (existAlready === 0) {
 				dataNewMerged.items.add(file);
 			}
 		}
 
 		// update to be unioned files
-		this.filesSelected = dataNewMerged.files
+		this.filesSelected = dataNewMerged.files;
 
 		this.setState({
 			progressInfos: [],
-			//selectedFiles: event.target.files,
 			selectedFiles : dataNewMerged.files,
 			doesSelected: true
 		});
@@ -279,15 +270,15 @@ class UploadBar extends Component {
 			}
 		}
 
-		let newFileList = data.files
-		this.filesSelected = newFileList
+		let newFileList = data.files;
+		this.filesSelected = newFileList;
 
-		this.myRef_toInput.current.files = newFileList
+		this.myRef_toInput.current.files = newFileList;
 
-		this.setState({selectedFiles:newFileList})
+		this.setState({selectedFiles:newFileList});
 
 		if(newFileList.length === 0) {
-			this.cancelChoice()
+			this.cancelChoice();
 		}
 	}
 
@@ -307,9 +298,9 @@ class UploadBar extends Component {
 		});
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 	
-		this.setState({emptyFileList:this.myRef_toInput.current.files})
+		this.setState({emptyFileList:this.myRef_toInput.current.files});
 	}
 
 	render() {
@@ -333,16 +324,16 @@ class UploadBar extends Component {
 
 		let uploadedToServer = this.uploadedFile;
 
-		let menu_  = ""
-		let role_ = ""
+		let menu_  = "";
+		let role_ = "";
 
-		if (this.role === Role.Commander){
-			menu_ = <CommanderMenu />
-			role_ = Role.Commander
+		if (this.role === Role.Commander) {
+			menu_ = <CommanderMenu />;
+			role_ = Role.Commander;
 
-		} else if (this.role === Role.MyFiles){
-			menu_ = <SoldierInfo/>
-			role_ = Role.Soldier
+		} else if (this.role === Role.MyFiles) {
+			menu_ = <SoldierInfo />;
+			role_ = Role.Soldier;
 		}
 	
 		return (

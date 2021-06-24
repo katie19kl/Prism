@@ -15,7 +15,7 @@ export function IsSingleMajor(validationOptions?: ValidationOptions) {
                 
                     // you can return a Promise<boolean> here as well, if you want to make async validation
                     return (typeof value === 'string') && ((value == Major.Firmware) 
-                        || (value == Major.Network) || (value == Major.Research) 
+                        || (value == Major.Research) 
                         || (value == Major.Software)
                         || (value == Major.Validation));
                 },

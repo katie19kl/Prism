@@ -39,38 +39,35 @@ class SoldierStatusFrame extends React.Component {
     constructor(props) {
         super(props);
 
-        this.majorSelector = this.majorSelector.bind(this)
-        this.soldierSelector = this.soldierSelector.bind(this)
-
-
-        this.selectedMajor = undefined
+        this.majorSelector = this.majorSelector.bind(this);
+        this.soldierSelector = this.soldierSelector.bind(this);
+        this.selectedMajor = undefined;
       
-
         this.state = {
             majors :[],
             soldiers: [],
             displayTable: false,
             selectedSoldier: undefined
-
-        }
+        };
     }
 
     // given array of soldiers & sets array of id & first names
     processNewSoldiers(soldiersFromResponse) {
 
-        let allMySoldiers = soldiersFromResponse
+        let allMySoldiers = soldiersFromResponse;
 
-        let usersToTable = []
-        let term
+        let usersToTable = [];
+        let term;
+
         // take neccessary fields only
         for (let user of allMySoldiers) {
-            term = { personalId: user.personalId, firstName: user.firstName, lastName: user.lastName }
-            usersToTable.push(term)
+            term = { personalId: user.personalId, firstName: user.firstName, lastName: user.lastName };
+            usersToTable.push(term);
         }
 
         // server answer VS field value  by { id & personalId }
         usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
-        this.setState({ soldiers: usersToTable })
+        this.setState({ soldiers: usersToTable });
 
 
     }
@@ -79,15 +76,15 @@ class SoldierStatusFrame extends React.Component {
     getAllSoldiersMajor(selectedMajor) {
 
         // function expects array of major
-        let major = []
-        major.push(selectedMajor)
+        let major = [];
+        major.push(selectedMajor);
         
         getSoldiersByMajors(major).then((response) => {
             if (response !== undefined) {
 
                 if (response.data !== undefined) {
                     // sets state soldier with id & first name only
-                    this.processNewSoldiers(response.data)
+                    this.processNewSoldiers(response.data);
                 }
             }
         })
@@ -97,21 +94,21 @@ class SoldierStatusFrame extends React.Component {
 
     majorSelector(event) {
 
-        this.selectedMajor = event.target.value
+        this.selectedMajor = event.target.value;
 
         if (this.selectedMajor !== "None") {
 
-            this.getAllSoldiersMajor(this.selectedMajor)
+            this.getAllSoldiersMajor(this.selectedMajor);
 
         }
         // remove selection from module
-        this.setState({ soldier: undefined, soldiers:[]})
+        this.setState({ soldier: undefined, soldiers:[]});
 
     }
 
     soldierSelector(event) {
-        let selected = event.target.value
-        this.setState({soldier:selected})
+        let selected = event.target.value;
+        this.setState({soldier:selected});
 
     }
 
@@ -138,7 +135,7 @@ class SoldierStatusFrame extends React.Component {
 
     render() {
 
-        let classes = this.props.classes
+        let classes = this.props.classes;
 
         return (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -182,23 +179,16 @@ class SoldierStatusFrame extends React.Component {
                                             {(this.state.majors.includes(Major.Validation)) ?
                                                 <option value={Major.Validation}>Validation</option> : ''
                                             }
-
-
-
                                         </Select>
                                     </FormControl>
 
                                 </TableCell>
 
-
-
-
                                 <TableCell>
-
 
                                     <Typography>
                                         Select Student
-                                                    </Typography>
+                                    </Typography>
 
 
                                     <FormControl style={{ minWidth: 200 }}>
@@ -210,67 +200,39 @@ class SoldierStatusFrame extends React.Component {
                                         >
                                         <option aria-label="None" value="None" />
                                         {this.state.soldiers.map((soldier, index)=>{
-                                              return <option key={index} value={soldier.personalId}>{soldier.firstName + "-" + soldier.personalId + "-" + soldier.lastName}</option>
+                                            return <option 
+                                            key={index} 
+                                            value={soldier.personalId}>
+                                                  {soldier.firstName + "-" + soldier.personalId 
+                                                  + "-" + soldier.lastName}
+                                            </option>
                                         })
                                         }
-
-
-
-
-
                                         </Select>
                                     </FormControl>
-
-
-
                                 </TableCell>
 
 
-                                                               <TableCell>
-
-  
+                                <TableCell>
 
                                 </TableCell>
-
-
-
-                    
-
-
-
-
 
                             </TableRow>
                         </TableHead>
                     </Table>
 
-
-
                     {this.state.soldier !== undefined && this.state.soldier !== "None" &&
                         <SoldierSubmissions
                             selectedMajor={this.selectedMajor}
-                            selectedSoldier={this.state.soldier}
-                            
-                        >
+                            selectedSoldier={this.state.soldier}>
 
                         </SoldierSubmissions>
                     }
 
                 </TableContainer>
-
-
-           
-
-
-
             </div>
-
-
-        )
-
-
+        );
     }
-
 }
 
 export default withStyles(useStyles, { withTheme: true })(SoldierStatusFrame)

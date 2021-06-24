@@ -21,8 +21,7 @@ export function IsMajor(validationOptions?: ValidationOptions) {
                         for (let i = 0; i < value.length; i++) {
                       
                             if ((value[i] !== Major.Firmware) && (value[i] !== Major.Research) 
-                                && (value[i] !== Major.Software) && (value[i] !== Major.Validation)
-                                && (value[i] !== Major.Network)) {
+                                && (value[i] !== Major.Software) && (value[i] !== Major.Validation)) {
 
                                 // Contains invalid major.
                                 return false;

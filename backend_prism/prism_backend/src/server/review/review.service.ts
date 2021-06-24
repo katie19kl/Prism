@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Role } from '../RolesActivity/role.enum';
 import { Major } from '../users/common/major.enum';
+import { IUserSubmission } from '../UserSubmission/iuser-submission.interface';
 import { UserSubmissionService } from '../UserSubmission/user-submission.service';
 import { CreateReviewDto } from './dto/create-review.dto';
 import { updateReviewDto } from './dto/update-review.dto';
@@ -12,6 +13,7 @@ import { IReview } from './ireview.interface';
 export class ReviewService {
 
     constructor(@InjectModel('Reviews') private reviewsModel: Model<IReview>,
+                @InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
                 private usersSubmissionService: UserSubmissionService) {}
 
     async create(createReviewDto: CreateReviewDto) {
@@ -29,16 +31,20 @@ export class ReviewService {
 
 
             if (userSubmission) {
-               
-  
+
+                let filter = {
+                    soldierId: soldierId,
+                    major: major,
+                    module: module,
+                    subject: subject
+                };
+                
                 // update the userSubmission field of "isChecked" to true since a review was given.
                 // also add the grade description to the userSubmission object.
-                userSubmission.isChecked = true;
-                userSubmission.gradeDescription = createReviewDto.gradeDescription;
-                  
-                await userSubmission.save();
-
-
+                await this.userSubmissionModel.updateOne(filter, {
+                    isChecked: true,
+                    gradeDescription: createReviewDto.gradeDescription
+                });
 
                 // create the review.
                 createReviewDto.submittedTime = new Date().toLocaleTimeString();
@@ -80,26 +86,29 @@ export class ReviewService {
 
         // no reviews left.
         if (restReviews.length === 0) {
-            // NEW 
-            /////////
-            try {
-                // retrieve the existing userSubmission object.
-                let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
-                    deleteReview.soldierId, deleteReview.major,
-                    deleteReview.module, deleteReview.subject);
 
-                if (userSubmission) {
-                    console.log("all good");
+            // retrieve the existing userSubmission object.
+            let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
+                deleteReview.soldierId, deleteReview.major,
+                deleteReview.module, deleteReview.subject);
 
-                    // update the userSubmission field of "isChecked" to false since
-                    // there are no reviews. Moreover, update the gradeDesc to undefined.
-                    userSubmission.isChecked = false;
-                    userSubmission.gradeDescription = undefined;
-                    await userSubmission.save();
-                }
-            }
-            catch (error) {
-                throw error;
+            if (userSubmission) {
+                console.log("all good");
+
+                let filterUserSub = {
+                    soldierId: deleteReview.soldierId,
+                    major: deleteReview.major,
+                    module: deleteReview.module,
+                    subject: deleteReview.subject
+                };
+
+
+                // update the userSubmission field of "isChecked" to false since
+                // there are no reviews. Moreover, update the gradeDesc to undefined.
+                await this.userSubmissionModel.updateOne(filterUserSub, {
+                    isChecked: false,
+                    gradeDescription: undefined
+                });
             }
         }
 

@@ -3,7 +3,7 @@ import React from "react";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
-import { getModulesByMajor } from "./files_request_handler";
+import { getModulesByMajor, getSubjectsByModule, getFilesBySubject } from "./files_request_handler";
 import MajorSelect from "../Courses/CourseDisplaying/MajorSelect";
 import FileSystemDisplay from "../Courses/CourseDisplaying/FileSystemDisplay";
 
@@ -31,18 +31,28 @@ const useStyles = (theme) => ({
     }
 });
 
+
 class CourseFilesMainView extends React.Component {
 
     constructor(props) {
         super(props);
         this.handleMajorChange = this.handleMajorChange.bind(this);
         this.sendGetModulesRequest = this.sendGetModulesRequest.bind(this);
+        this.getSubjectsOfModules = this.getSubjectsOfModules.bind(this);
+        this.getFilesOfSubjects = this.getFilesOfSubjects.bind(this);
         this.majors = undefined;
         this.moduleData = undefined;
+        this.modules_subjects = undefined;
 
         this.state = {
             updated: false,
             chosenMajor: undefined,
+
+            finalMajor: undefined,
+            modules: undefined,
+            modulesToSubjects: undefined,
+            subjectsToFiles: undefined,
+            modulesToDictSubsToFiles: undefined,
         };
     }
 
@@ -51,19 +61,6 @@ class CourseFilesMainView extends React.Component {
 
         if (eventValue !== "None") {
             this.sendGetModulesRequest(eventValue);
-
-            /*getModulesByMajor(eventValue).then(({data}) => {
-                
-                if (data === undefined || data === 'None' || data === null || data.length === 0) {
-                    data = undefined;
-                }
-
-                // the list of modules we received from the server.
-                this.moduleData = data;
-                this.setState({
-                    chosenMajor: eventValue
-                });
-            });*/
 
         // The user pressed the default empty option.
         } else {
@@ -77,22 +74,149 @@ class CourseFilesMainView extends React.Component {
     sendGetModulesRequest(currMajor) {
         if (currMajor !== undefined) {
 
-            getModulesByMajor(currMajor).then( (res) => {
-                if (res !== undefined){
-                    let data = res.data
-                    if (data === undefined || data === 'None' || data === null || data.length === 0) {
+            getModulesByMajor(currMajor).then((res) => {
+                if (res !== undefined) {
+
+                    let data = res.data;
+                    if (data === undefined || data === 'None' || data === null 
+                        || data.length === 0) {
                         data = undefined;
                     }
 
                     // the list of modules we received from the server.
                     this.moduleData = data;
-                    this.setState({
-                        chosenMajor: currMajor
+
+                    // for each module, retrieve the subjects
+                    this.getSubjectsOfModules(this.moduleData, currMajor)
+                    .then((modules_subjects) => {
+
+                        let mod_sub = {};
+                        for (const dict_mod_sub of modules_subjects) {
+    
+                            for (const [key, value] of Object.entries(dict_mod_sub)) {
+                                mod_sub[key] = value;
+                                
+                            } 
+                        }
+                        
+                        // module to subjects dict.
+                        this.modules_subjects = mod_sub;
+                        				
+                        // Given subjects & modules -> extract all files.
+                        this.getFilesOfSubjects(this.modules_subjects, currMajor)
+                        .then((subToFiles) => {
+
+                            let sub_files = {};
+                            for (const dict_sub_to_file of subToFiles) {
+        
+                                for (const [key, value] of Object.entries(dict_sub_to_file)) {
+                                    sub_files[key] = value;
+                                    
+                                } 
+                            }
+
+                            let modulesToDictSubsToFiles = {};
+                            for (const module in this.modules_subjects) {
+                                let currModuleToDict = {};
+
+                                for (const subject of this.modules_subjects[module]) {
+                                    currModuleToDict[subject] = sub_files[subject];
+                                }
+
+                                modulesToDictSubsToFiles[module] = currModuleToDict;
+                            }
+
+                            console.log("in parent!!!!!!!!!!!!!!!!")
+                            console.log(modulesToDictSubsToFiles)
+
+                            const listModules = Object.keys(modulesToDictSubsToFiles);
+
+                            this.setState({
+                                chosenMajor: currMajor,
+                                modules: listModules,
+                                modulesToSubjects: modules_subjects,
+                                subjectsToFiles: sub_files,
+                                modulesToDictSubsToFiles: modulesToDictSubsToFiles
+                            });
+                        });
                     });
+                    //this.setState({ chosenMajor: currMajor });
                 }
             });
         }
     }
+
+    getSubjectsOfModules(modules, selectedMajor) {
+
+		let arrPromises = [];
+
+        if (modules === undefined) {
+            modules = [];
+        }
+
+		for (const module of modules) {
+
+			arrPromises.push(getSubjectsByModule(selectedMajor, module)
+            .then((res) => {
+
+				return new Promise ((resol, rej) => {
+					if (res !== undefined) {
+						if (res.data !== undefined) {
+		
+							let modul_subject = {};
+							modul_subject[module] = res.data;
+							resol(modul_subject);
+		
+						} else {
+							rej(undefined);
+						}
+					} else {
+						rej(undefined);
+					}
+				});
+			}));
+		}
+
+		let resolvedPromises = Promise.all(arrPromises) 
+		
+		return resolvedPromises;
+	}
+
+    getFilesOfSubjects(modules_to_subs, selectedMajor) {
+
+		let arrPromises = [];
+
+        // go over the keys in the dict(modules)
+		for (const module in modules_to_subs) {
+
+            for (const subject of modules_to_subs[module]) {
+                
+                arrPromises.push(getFilesBySubject(selectedMajor, module, subject)
+                .then((res) => {
+
+                    return new Promise ((resol, rej) => {
+                        if (res !== undefined) {
+                            if (res.data !== undefined) {
+            
+                                let files_of_sub = {};
+                                files_of_sub[subject] = res.data;
+                                resol(files_of_sub);
+            
+                            } else {
+                                rej(undefined);
+                            }
+                        } else {
+                            rej(undefined);
+                        }
+                    });
+                }));
+            }
+		}
+
+		let resolvedPromises = Promise.all(arrPromises) 
+		
+		return resolvedPromises;
+	}
 
     componentDidMount() {
         getUserInfoByJWT().then((user) => {
@@ -138,8 +262,12 @@ class CourseFilesMainView extends React.Component {
 
                             <FileSystemDisplay 
                             chosenMajor={this.state.chosenMajor} 
-                            moduleData={this.moduleData}
-                            sendGetModulesRequest={this.sendGetModulesRequest} />
+                            modules={this.state.modules}
+                            modulesToSubjects={this.state.modulesToSubjects}
+                            subjectsToFiles={this.state.subjectsToFiles}
+                            sendGetModulesRequest={this.sendGetModulesRequest} 
+                            modulesToDictSubsToFiles={this.state.modulesToDictSubsToFiles}
+                            />
                             
                         </Grid>
                     }>

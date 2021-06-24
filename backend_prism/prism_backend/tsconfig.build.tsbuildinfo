@@ -1632,8 +1632,8 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/common/major.enum.ts": {
-        "version": "74cb121ef37425791534e75f90afab00e0f17aa2864e280c6b5a5ed3954ce73e",
-        "signature": "ed4f5ef647c7e1f452ab71eb7f2dfb74b0e6421bd9ad2592e6c361fa027b8337",
+        "version": "c59fb6c073112d754f309201aecbbfbaf41fd4744a1315fe6d1384ecda70f6f9",
+        "signature": "4507740a5d8e3a36724ca37a7d2c6124de6c1166efc015450560cf55231f7431",
         "affectsGlobalScope": false
       },
       "./src/server/usersubmission/iuser-submission.interface.ts": {
@@ -2407,7 +2407,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/decorators/major-validation.decorator.ts": {
-        "version": "17cddbc47e3d9f2f92620395e03f05afbc33fed4cbf3cd0daf63ccf350e8649e",
+        "version": "be498e3b74050958ea8dd324f7a99befcf34b59823f09402f965235f0509e666",
         "signature": "25467a56e533d90c7d1bde319ffe50c61c9f8c5f19e253b4a3d687b788d96a17",
         "affectsGlobalScope": false
       },
@@ -2472,7 +2472,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/users/decorators/single-major-validation.decorator.ts": {
-        "version": "0057a8e068f0c53e351b904791f551c1e65244ce9d7ccc10a0cbce4111258b1d",
+        "version": "c07f8adcffe3c353f49d15d3c266fd1f433eef06a9d0310be158edd7ac2c3b17",
         "signature": "20a6c4eefa68d0ae7430d1ca7a68c0681051707b61c82c49ddbf87f423b0754c",
         "affectsGlobalScope": false
       },
@@ -2492,12 +2492,12 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/review.service.ts": {
-        "version": "e7977a6cfdccc080bc4b4cfbc39565fb4a28e102f88bef6484601e66b13cb9ee",
-        "signature": "0424f78a055c2a6183b9500f97635d8147a5e92d0d880381f090f95011e91582",
+        "version": "d4ba3afea02f4ae27dfb1b1d86a8894887ce83692ba860b1a6995bbdc4d91b35",
+        "signature": "f3a9dcd9479e7bae2914050a6b847bfa5800d221376ca784c24829616d068062",
         "affectsGlobalScope": false
       },
       "./src/server/users/users.service.ts": {
-        "version": "d0eaa41dc415df6c5d117486a43ccf731182a0e1ae71aeee50dd0775ac15f0cd",
+        "version": "dc1313eb77b0f36bb09ee3396e25ee08d445202bdbe315b0e3b2cb36b3940051",
         "signature": "03398b01c5029b8cb8d14025e0c9eaf220a8df9e23f9791d1eebe027eed56af0",
         "affectsGlobalScope": false
       },
@@ -2512,7 +2512,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/subjects-on-demand/subjects-on-demand.service.ts": {
-        "version": "4faa02098e2b49c844491a91533c684f220773658e1179d9c01a389e7ea2c361",
+        "version": "715c49bc9aa7540e2eab94bb54bca0e543cdc0b4eb92ca1f125c9105db142758",
         "signature": "38567a900e435e3d5009d2a0ab10d5c5b147b3a6669d1715c46368537ada7765",
         "affectsGlobalScope": false
       },
@@ -2912,7 +2912,7 @@
         "affectsGlobalScope": false
       },
       "./src/server/review/review.module.ts": {
-        "version": "8070e37552c581715b6c3f2f0df1b96fc3b4e727055d06374ff0df5148f79a97",
+        "version": "953a1db7e5258fddd5f87ccd2fc57d4f6fd4b385cebb0916497c287323ec60c7",
         "signature": "7d5324cde1bf52bf70e4f67146365ef529908e56ad918c3edfe33336eff86eca",
         "affectsGlobalScope": false
       },
@@ -5642,7 +5642,8 @@
         "./src/server/review/review.controller.ts",
         "./src/server/review/review.schema.ts",
         "./src/server/review/review.service.ts",
-        "./src/server/usersubmission/user-submission.module.ts"
+        "./src/server/usersubmission/user-submission.module.ts",
+        "./src/server/usersubmission/usersubmission.schema.ts"
       ],
       "./src/server/review/review.schema.ts": [
         "./node_modules/mongoose/index.d.ts",
@@ -5659,6 +5660,7 @@
         "./src/server/review/ireview.interface.ts",
         "./src/server/rolesactivity/role.enum.ts",
         "./src/server/users/common/major.enum.ts",
+        "./src/server/usersubmission/iuser-submission.interface.ts",
         "./src/server/usersubmission/user-submission.service.ts"
       ],
       "./src/server/rolesactivity/admin_roles.guard.ts": [
@@ -8110,6 +8112,7 @@
         "./src/server/review/ireview.interface.ts",
         "./src/server/rolesactivity/role.enum.ts",
         "./src/server/users/common/major.enum.ts",
+        "./src/server/usersubmission/iuser-submission.interface.ts",
         "./src/server/usersubmission/user-submission.service.ts"
       ],
       "./src/server/rolesactivity/admin_roles.guard.ts": [

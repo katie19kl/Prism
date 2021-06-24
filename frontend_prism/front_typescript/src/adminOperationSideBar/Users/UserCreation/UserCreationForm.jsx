@@ -91,7 +91,6 @@ class UserCreationForm extends React.Component {
             research: false,
             firmware: false,
             validation: false,
-            network: false, // to be deleted!
 
             personalIdErr: "",
             usernameErr: "",
@@ -289,7 +288,6 @@ class UserCreationForm extends React.Component {
                 "research": this.state.research,
                 "firmware": this.state.firmware,
                 "validation": this.state.validation,
-                "network": this.state.network 
             },
             commander: this.commander
         };
@@ -371,7 +369,7 @@ class UserCreationForm extends React.Component {
     
     render() {
         const { classes } = this.props;
-        const { software, research, firmware, validation, network } = this.state;
+        const { software, research, firmware, validation } = this.state;
 
 
         let buttonEnable = false;
@@ -535,14 +533,6 @@ class UserCreationForm extends React.Component {
                                         name="validation" />
                                     }
                                     label="Validation"
-                                />
-                                <FormControlLabel
-                                    control={<Checkbox 
-                                        checked={network} 
-                                        onChange={this.handleChangeCommanderMajor} 
-                                        name="network" />
-                                    }
-                                    label="Network"
                                 />
                             </FormGroup>
                             <FormHelperText>You may choose more than one</FormHelperText>

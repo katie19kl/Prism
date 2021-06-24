@@ -30,20 +30,19 @@ class DisplayCoursesUploadBar extends React.Component {
 
     constructor(props) {
         super(props);
-
-        this.file = this.props.file
+        this.file = this.props.file;
     }
 
 	render() {
   
         const { classes } = this.props;
 
-		let word = <FaFileWord className={classes.padding}/>
-		let py  = <FaPython className={classes.padding}/>
-		let archieve = <FaFileArchive className={classes.padding}/>
-		let pdf = <FaFilePdf className={classes.padding}/>
-		let txt = <GrDocumentTxt className={classes.padding}/>
-        let file = this.file
+		let word = <FaFileWord className={classes.padding}/>;
+		let py  = <FaPython className={classes.padding}/>;
+		let archieve = <FaFileArchive className={classes.padding}/>;
+		let pdf = <FaFilePdf className={classes.padding}/>;
+		let txt = <GrDocumentTxt className={classes.padding}/>;
+        let file = this.file;
 
         return (
             <div>

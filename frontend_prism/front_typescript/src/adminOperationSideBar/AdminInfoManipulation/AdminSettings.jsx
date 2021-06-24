@@ -53,25 +53,20 @@ class AdminSettings extends React.Component {
 			if (user === undefined || user.data === undefined){	
 			} else {
 
-				console.log("here user was given")
-				user = user.data
-				console.log(user)
-				
-				console.log(user["major"])
-
-				let username_ = user["username"]
-				let majors_ = user["major"]
-				let role_ = user["role"]
-				let firstName_ = user["firstName"]
-				let lastName_ = user["lastName"]
-				let phoneNum = user["phoneNumber"]
-				let gender_ = user["gender"]
+				user = user.data;
+				let username_ = user["username"];
+				let majors_ = user["major"];
+				let role_ = user["role"];
+				let firstName_ = user["firstName"];
+				let lastName_ = user["lastName"];
+				let phoneNum = user["phoneNumber"];
+				let gender_ = user["gender"];
 				
 				// server answer differs from out current
-				let wasChanges = (username_ !== this.state.username) 
-				if (wasChanges){
+				let wasChanges = (username_ !== this.state.username);
+				if (wasChanges) {
+
 					// it causes new rendering
-					
 					this.setState( {
 						username : username_,
 						major: majors_,
@@ -80,15 +75,14 @@ class AdminSettings extends React.Component {
 						lastName: lastName_,
 						phone_number: phoneNum,
 						gender: gender_,
-					
-					})
+					});
 				}
 			}
 		});
 		
 		if (this.state.username === undefined) {
 			return (
-				<MenuAppBar role = "Commander"  menu={
+				<MenuAppBar role = "Commander" menu={
 					<CommanderMenu/>
 				}></MenuAppBar>
 			);

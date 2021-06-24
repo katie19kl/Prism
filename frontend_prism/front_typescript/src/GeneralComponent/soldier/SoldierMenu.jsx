@@ -7,13 +7,12 @@ import { Link } from 'react-router-dom';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 
-
 function SoldierMenu() {
 
     return(
         <div>
 
-<           Link to='/soldier_tasks' style={{ textDecoration: 'none', color:"black" }}> 
+            <Link to='/soldier_tasks' style={{ textDecoration: 'none', color:"black" }}> 
                 <ListItem button key="Tasks">
                     <ListItemIcon>
                         <AssignmentIcon color="primary"/>
@@ -22,9 +21,6 @@ function SoldierMenu() {
                     />
                 </ListItem>
             </Link>
-
-
-
 
             <ListItem button key="posts">
                 <ListItemIcon>
@@ -51,20 +47,3 @@ function SoldierMenu() {
 }
 
 export default SoldierMenu;
-
-
-/*
-
-            <DisplayUserData
-							
-							phone_number = {this.state.phone_number} 
-							role = {this.state.role}
-							lastName = {this.state.lastName}
-							firstName = {this.state.firstName}
-							gender = {this.state.gender}
-							major = {this.state.major}
-							username = {this.state.username}
-							>
-
-						</DisplayUserData>
-*/

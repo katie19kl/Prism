@@ -10,7 +10,6 @@ class CourseUploading extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleGetFilesRequest = this.props.handleGetFilesRequest;
 
         this.state = {
             chosenMajor: this.props.chosenMajor,
@@ -55,12 +54,6 @@ class CourseUploading extends React.Component {
                     Upload
                 </Button>
                 </Link>
-
-                {/* <UploadBar 
-                chosenMajor={this.state.chosenMajor}
-                chosenModule={this.state.chosenModule}
-                chosenSubject={this.state.chosenSubject}
-                handleGetFilesRequest={this.handleGetFilesRequest}/>*/}
             </div>
         );
     }

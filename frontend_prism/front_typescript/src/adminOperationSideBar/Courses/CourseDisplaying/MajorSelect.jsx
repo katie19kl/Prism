@@ -66,9 +66,6 @@ class MajorSelect extends React.Component {
                         {(this.state.majors.includes(Major.Validation)) ? 
                             <option value={Major.Validation}>Validation</option> : ''
                         }
-                        {(this.state.majors.includes(Major.Network)) ? 
-                            <option value={Major.Network}>Network</option> : ''
-                        }
                         </Select>
                     </FormControl>
                 </Grid>     

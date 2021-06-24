@@ -3,14 +3,11 @@ import LocalStorage from "../../../HelperJS/LocalStorage";
 import { prefix_server_url } from "../../../HelperJS/url_helper";
 
 
-
 // module & major & subject
 async function getListOfAllFiles(major, module, subject) {
 
 
     console.log("ASK A LIST OF FILE ASK A LIST OF FILE ASK A LIST OF FILE ASK A LIST OF FILE ")
-    console.log(subject)
-
 
     let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/file-handling/files_in_subject";
@@ -31,19 +28,15 @@ async function getListOfAllFiles(major, module, subject) {
 				'Authorization': 'Bearer ' + token,
 				'Content-Type': 'application/json'
 			},
-			
 		});
 
         return await req.get(url)
+        .then((response) => {
+            return response
 
-            .then((response) => {
-                console.log(response)
-                console.log("-!!!!!-!!!!!-!!!!!-")
-                return response
-
-            }, (error) => {
-                return undefined
-            });
+        }, (error) => {
+            return undefined
+        });
 
     }
 }
