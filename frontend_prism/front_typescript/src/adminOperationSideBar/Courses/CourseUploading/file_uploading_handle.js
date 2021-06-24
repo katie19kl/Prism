@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorage from "../../../HelperJS/LocalStorage";
+import { prefix_server_url } from "../../../HelperJS/url_helper";
 
 
 // module & major & subject
@@ -9,7 +10,9 @@ async function getListOfAllFiles(major, module, subject) {
     console.log("ASK A LIST OF FILE ASK A LIST OF FILE ASK A LIST OF FILE ASK A LIST OF FILE ")
 
     let token = LocalStorage.getItem(LocalStorage.token);
-    let url  = "http://localhost:4000/file-handling/files_in_subject";
+    //let url  = "http://localhost:4000/file-handling/files_in_subject";
+    let url  = prefix_server_url + "file-handling/files_in_subject";
+    
     let postfix = "/" + major + "/" + module + "/" + subject;
     url = url + postfix;
 
@@ -40,9 +43,12 @@ async function getListOfAllFiles(major, module, subject) {
 
 
 
-async function uploadSingleFiles(file, onUploadProgress, major, module, subject){  
-    let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
+async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
+  
+    //let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
+    let url  = prefix_server_url + "file-handling/files/" + major + "/" + module + "/" + subject;
+    
     let formData = new FormData();
 
     //for (const file of  FileList)

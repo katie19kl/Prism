@@ -11,7 +11,7 @@ export default class Token  {
 			return null
 		}
 	
-		console.log(token);
+		//console.log(token);
 		return token;
   
   	}

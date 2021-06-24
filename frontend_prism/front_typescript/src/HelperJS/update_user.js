@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorage from "./LocalStorage";
+import { prefix_server_url } from "./url_helper";
 
 
 function update_fields(newUserName, newFirstName,newLastName, newPhoneNum){
@@ -38,7 +39,10 @@ async function updateUser(username, newUserName, newFirstName,newLastName, newPh
 
 	
 	// current username ( before changing )
-	let url = "http://localhost:4000/users/" + username   
+	//let url = "http://localhost:4000/users/" + username   
+	let url = prefix_server_url + "users/" + username 
+	
+
 
 	// User has no token
 	if (token === null || token === 'undefined') {

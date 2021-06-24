@@ -1,17 +1,21 @@
 import axios from "axios";
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
 import LocalStorage from "../../../HelperJS/LocalStorage";
+import { prefix_server_url } from "../../../HelperJS/url_helper";
 
 
 // module & major & subject
 async function getAllReviewsByRole(major, module, subject, studentId, role) {
 
     let token = LocalStorage.getItem(LocalStorage.token);
-    let url  = "http://localhost:4000/review/reviews-role/";
+    //let url  = "http://localhost:4000/review/reviews-role/";
+    let url  = prefix_server_url + "review/reviews-role/";
+    
+    
+    
     let postfix = studentId + "/" + major + "/" + module + "/" + subject + "/" + role;
     url = url + postfix;
 
-    console.log(url + "    is provided URL ")
 
     if (token === null || token === 'undefined') {
 
@@ -48,7 +52,11 @@ async function deleteReview(soldierId, major, module, subject, date, time, check
 
 	} else {
 
-        let url = 'http://localhost:4000/review/'
+        //let url = 'http://localhost:4000/review/'
+        let url = prefix_server_url + "review/"
+        
+        
+
 
         let payload = {
             soldierId: soldierId,
@@ -132,7 +140,8 @@ async function updateReview(soldierId, major, module, subject, date, time,
 
         } else {
 
-            let url = 'http://localhost:4000/review/'
+            //let url = 'http://localhost:4000/review/'
+            let url = prefix_server_url + "/review/"
 
             let payload = {
                 soldierId: soldierId,

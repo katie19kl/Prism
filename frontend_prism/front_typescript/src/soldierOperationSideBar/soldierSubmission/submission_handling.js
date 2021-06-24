@@ -2,6 +2,7 @@
 import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
 import { getUserInfoByJWT } from '../../HelperJS/extract_info';
+import { prefix_server_url } from "../../HelperJS/url_helper";
 
 // module & major & subject
 async function getListSubmissionOfSubject(major, module, subject, studentId) {
@@ -14,9 +15,10 @@ async function getListSubmissionOfSubject(major, module, subject, studentId) {
 
 
     let token = LocalStorage.getItem(LocalStorage.token);
-    let url  = "http://localhost:4000/user-submission/";
+    //let url  = "http://localhost:4000/user-submission/";
+    let url  = prefix_server_url+ "user-submission/";
     
-
+    
     
     let postfix = studentId + "/" + major + "/" + module + "/" + subject;
     url = url + postfix;
@@ -60,8 +62,13 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 
 
     let token = LocalStorage.getItem(LocalStorage.token);
-    let url  = "http://localhost:4000/user-submission/" + file_name;
+//    let url  = "http://localhost:4000/user-submission/" + file_name;
+    let url  = prefix_server_url + "user-submission/" + file_name;
+
     
+
+    
+
     console.log(url + "    is provided URL ")
 
     if (token === null || token === 'undefined') {
@@ -105,15 +112,10 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 async function uploadSingleSubmission(file, onUploadProgress, major, module, subject) {
 
     let token = LocalStorage.getItem(LocalStorage.token);
-    let url  = "http://localhost:4000/user-submission"
+    //let url  = "http://localhost:4000/user-submission"
+    let url  = prefix_server_url + "user-submission"
+    
 
-    
-    console.log("---------------------------------------")
-    console.log(file)
-    console.log("---------------------------------------")
-    
-    
-    console.log("=======================================")
     let formData = new FormData();
 
     formData.append("file",file);
@@ -147,7 +149,10 @@ async function sendCreateReviewRequest(personalId,
 
 	} else {
 
-        let url  = "http://localhost:4000/review";
+        //let url  = "http://localhost:4000/review";
+        let url  = prefix_server_url + "review";
+        
+
 
         return await getUserInfoByJWT().then(async (user) => {
             

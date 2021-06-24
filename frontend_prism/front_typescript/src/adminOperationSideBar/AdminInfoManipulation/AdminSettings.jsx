@@ -49,8 +49,8 @@ class AdminSettings extends React.Component {
 		// retrieve user info from server
 		getUserInfoByJWT().then((user) => {
 
-			if (user === undefined){
-				
+			//if (user === undefined){
+			if (user === undefined || user.data === undefined){	
 			} else {
 
 				user = user.data;

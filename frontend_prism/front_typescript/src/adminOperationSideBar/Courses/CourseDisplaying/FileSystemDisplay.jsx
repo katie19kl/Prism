@@ -173,8 +173,32 @@ class FileSystemDisplay extends React.Component {
             });
         }
 
-        /////////////////////////////////////let moduleName = panel;
+        /*let moduleName = panel;*/
     }
+
+    /* 
+    helper function for handleAccordionChange- calls 
+    the getSubjectsByModule function and re-renders view.
+     */
+    /*handleGetSubjectRequest(moduleName) {
+        
+            getSubjectsByModule(this.state.chosenMajor, moduleName).then((data) => {
+            if (data !== undefined){
+                data = data.data
+            }
+            
+            if (data === undefined || data === 'None' || data === null || data.length === 0) {
+                data = undefined;
+            }
+
+            this.subjectsData = data;
+
+            this.setState({
+                moduleUpdate: true,
+                chosenModule: moduleName,
+            });
+        });
+    }*/
 
     /* handles opening of a subject accordion. */
     handleSubjectChange = (panel) => (_event, isExpanded) => {

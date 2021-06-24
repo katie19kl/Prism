@@ -1,6 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import { model, Model } from 'mongoose';
 import { UserSubmissionSchema } from './userSubmission.schema';
 import { UserSubmissionDTO } from './dto/user-submission.dto';
 import { IUserSubmission } from './iuser-submission.interface';
@@ -206,6 +206,12 @@ export class UserSubmissionService {
             let result = await this.userSubmissionModel.find(filter);
             return result;
 
+    }
+
+    async getAllSubmissionsByMajor(major_:Major){
+        const filter = {major:major_}
+
+        return await this.userSubmissionModel.find(filter)
     }
 
 }

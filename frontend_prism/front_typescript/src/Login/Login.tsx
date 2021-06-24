@@ -8,6 +8,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import { useHistory } from 'react-router-dom';
 import LocalStorage from '../HelperJS/LocalStorage';
+import { prefix_server_url } from '../HelperJS/url_helper';
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -145,7 +146,10 @@ const Login = () => {
 
 
 
-		url = "http://localhost:4000/auth/user";
+		//url = "http://localhost:4000/auth/user";
+		url = prefix_server_url + "auth/user";
+		
+		
 
 		let data = {
 			username: state.username,

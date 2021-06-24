@@ -1,5 +1,6 @@
 import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
+import { prefix_server_url } from "../../HelperJS/url_helper";
 
 export async function usersSubmissions(soldiers,major,module) {
 
@@ -18,7 +19,9 @@ export async function usersSubmissions(soldiers,major,module) {
 	} else {
 
 		// send the token to the server and check its response.
-		let url = "http://localhost:4000/users/submissions/" + major + "/" + module ;
+		//let url = "http://localhost:4000/users/submissions/" + major + "/" + module ;
+		let url = prefix_server_url	+ "users/submissions/" + major + "/" + module ;
+
 
 		const req = await axios.create({
 			baseURL: url,

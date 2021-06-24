@@ -1,12 +1,16 @@
 import LocalStorage from "./LocalStorage";
 import axios from "axios";
+import { prefix_server_url } from "./url_helper";
 
 
 async function sendCreateUserRequest(data) {
 
     console.log("here i am");
 
-    let url = "http://localhost:4000/users";
+    //let url = "http://localhost:4000/users";
+    let url = prefix_server_url + "users";
+    
+    
 
     let token = LocalStorage.getItem(LocalStorage.token);
     
