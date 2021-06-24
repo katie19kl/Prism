@@ -80,20 +80,26 @@ export class ReviewService {
 
         // no reviews left.
         if (restReviews.length === 0) {
+            // NEW 
+            /////////
+            try {
+                // retrieve the existing userSubmission object.
+                let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
+                    deleteReview.soldierId, deleteReview.major,
+                    deleteReview.module, deleteReview.subject);
 
-            // retrieve the existing userSubmission object.
-            let userSubmission = await this.usersSubmissionService.getUserSubmissionByKey(
-                deleteReview.soldierId, deleteReview.major,
-                deleteReview.module, deleteReview.subject);
+                if (userSubmission) {
+                    console.log("all good");
 
-            if (userSubmission) {
-                console.log("all good");
-
-                // update the userSubmission field of "isChecked" to false since
-                // there are no reviews. Moreover, update the gradeDesc to undefined.
-                userSubmission.isChecked = false;
-                userSubmission.gradeDescription = undefined;
-                await userSubmission.save();
+                    // update the userSubmission field of "isChecked" to false since
+                    // there are no reviews. Moreover, update the gradeDesc to undefined.
+                    userSubmission.isChecked = false;
+                    userSubmission.gradeDescription = undefined;
+                    await userSubmission.save();
+                }
+            }
+            catch (error) {
+                throw error;
             }
         }
 

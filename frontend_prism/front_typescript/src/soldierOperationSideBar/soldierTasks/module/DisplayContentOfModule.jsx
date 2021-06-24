@@ -147,7 +147,11 @@ export default class DisaplayContentOfModule extends React.Component {
         let subjects = this.state.subjects;
 
         console.log("---------")
-        console.log(subjects)
+        if (subjects !== undefined){
+            subjects.sort()
+            console.log(subjects)
+            
+        }
         console.log("---------")
 
         if (this.nothingHere){
@@ -159,7 +163,7 @@ export default class DisaplayContentOfModule extends React.Component {
                     }
                     content={
                         //<WaiterLoading />
-                        <h2>NOTHING </h2>
+                        <h2>NOTHING ALLOWED ( ALL IS CLOSED) </h2>
                     }>
 
                     </MenuAppBar>

@@ -30,15 +30,7 @@ export default class SoldierTasks extends React.Component {
                     user_ = user_.data
                     
                     console.log(user_)
-                    /*
-                    let username_ = user["username"]
-                    let majors_ = user["major"]
-                    let role_ = user["role"]
-                    let firstName_ = user["firstName"]
-                    let lastName_ = user["lastName"]
-                    let phoneNum = user["phoneNumber"]
-                    let gender_ = user["gender"]
-                    */
+ 
 
                     this.setState({
                                         

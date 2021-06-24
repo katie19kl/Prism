@@ -39,8 +39,7 @@ class DisplayModules extends React.Component {
         getModulesByMajor(major).then((res)=>{
             if (res !== undefined){
                 
-                console.log(res)
-                console.log("----------------------")
+
                 this.setState({modules: res.data})
             }
         })

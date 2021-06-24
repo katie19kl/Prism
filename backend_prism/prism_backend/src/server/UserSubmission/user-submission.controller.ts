@@ -65,6 +65,22 @@ export class UserSubmissionController {
         console.log(x)
         return x
     }
-    ///////// Allow delete single file from submission
+
+    @Get('/:major')
+    async getAllSubmissionsByMajor(@Param('major') major: Major) 
+        
+    {
+
+        try {
+            let submissionInfo = await this.usersService.getAllSubmissionsByMajor(major);
+            return submissionInfo;
+    
+        }
+        catch (error) {
+            console.log(error);
+            
+            throw error;
+        }
+    }    
 
 }

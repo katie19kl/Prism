@@ -175,5 +175,39 @@ async function getAllMySoldiers(major_selected){
 
 }
 
+async function getAllSubmissionsInMajor(major_selected){
 
-export  { getUserInfoByJWT, getUserInfoById, /*getSoldiersByMajor,*/ getSoldiersByMajors, getAllMySoldiers }
+	
+	let token = LocalStorage.getItem(LocalStorage.token);
+	// User has no token
+	if (token === null || token === 'undefined') {
+
+		return false;
+
+	} else {
+		// send the token to the server and check its response.
+		//let url = "http://localhost:4000/users/my_soldiers/" + major_selected;
+		let url = prefix_server_url + "user-submission/" + major_selected;
+
+		const req = await axios.create({
+			baseURL: url,
+			timeout: 1000,
+			//data: majors,
+			headers: { 'Authorization': 'Bearer ' + token }
+		});
+
+		return await req.get(url, {
+		})
+		.then((response) => {
+
+			return response;
+
+		}, (error) => {
+			return undefined
+		});
+	}
+
+}
+
+
+export  { getUserInfoByJWT, getUserInfoById, /*getSoldiersByMajor,*/ getSoldiersByMajors, getAllMySoldiers,getAllSubmissionsInMajor }

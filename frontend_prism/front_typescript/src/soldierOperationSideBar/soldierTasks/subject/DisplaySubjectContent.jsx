@@ -31,11 +31,7 @@ export default class DisplaySubjectContent extends React.Component {
 
 
     render(){
-        console.log("============= content of subject ===============")
-        
 
-        //let moduleName = this.props.moduleName
-        //let major = this.props.major
         let subject = this.props.subject
         let dictSubjectFiles = this.props.dictSubjectFiles
 
