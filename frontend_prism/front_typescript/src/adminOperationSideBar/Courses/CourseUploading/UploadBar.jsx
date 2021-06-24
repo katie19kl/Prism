@@ -198,12 +198,20 @@ class UploadBar extends Component {
 		}
 		this.setState({
 			progressInfos: _progressInfos, message: [],},
-			() => {
+			async () => {
 				for (let i = 0; i < selectedFiles.length; i++) {
-					this.upload(i, selectedFiles[i]);
+					await this.upload(i, selectedFiles[i]);
+				}
+				
+			}
+			/*
+						async () => {
+				for (let i = 0; i < selectedFiles.length; i++) {
+					await this.upload(i, selectedFiles[i]);
 				}
 				
 			} 
+			*/ 
 		);
 	}
 
