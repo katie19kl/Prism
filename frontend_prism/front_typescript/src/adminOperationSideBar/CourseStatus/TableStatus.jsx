@@ -341,7 +341,6 @@ class TableStatus extends React.Component {
 				this.getAllSubject()
 			})
 
-
 		}
 
 		// if another module was selected
