@@ -251,9 +251,16 @@ export class SubjectsOnDemandService {
 
     async getSoldiersClosedSubjects(major:Major, module:string, soldiers_) {
         let soldiers = this.getFirstProp(soldiers_);
+
+        console.log(soldiers)
         let soldiersClosed = {};
         for (const soldier of soldiers) {
+            
+  
+            
             let closedSubjects = await this.getSoldierClosedSubjects(major, module, soldier.personalId);
+            
+            
             soldiersClosed[soldier.personalId] = closedSubjects;
         }
 
