@@ -146,7 +146,7 @@ export class UserSubmissionService {
     /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
         
-        console.log("----Create new submission----")
+        console.log("----------------Create new submission----------------------")
 
         createUserSubmissionDto.gradeDescription = "xui"
         createUserSubmissionDto.isChecked = false
@@ -175,10 +175,13 @@ export class UserSubmissionService {
         
 
         
-        let docExist = await this.checkDocExist(createUserSubmissionDto, idFromJWT)
+        //let docExist = await this.checkDocExist(createUserSubmissionDto, idFromJWT)
+        let docExist = dirExist
 
+        
+        console.log("Document exist ? ::        " + docExist.toString())
         if (docExist){
-  
+            
             let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)
 
             return await updatedSubmissionOfUser
