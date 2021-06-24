@@ -284,16 +284,7 @@ class TableStatus extends React.Component {
 			// if check box (MySoldiers) state was changed
 			if (this.props.mySoldiers !== this.state.mySoldiers) {
 
-				this.setState({ mySoldiers: this.props.mySoldiers }, function () {
-					let mySoliders = this.props.mySoldiers
-					if (mySoliders) {
-						this.extractAllMySoldiers()
-					} else {
-						this.getAllSoldiersMajor()
-					}
-				});
-			}
-
+		}
 
 			// If another major was selected
 			if (this.props.selectedMajor !== this.state.selectedMajor) {
@@ -337,7 +328,7 @@ class TableStatus extends React.Component {
 					});
 				});
 			}
-		});
+		/*});*/
 	}
 
 	// extracts all submissions of specified soldiers
