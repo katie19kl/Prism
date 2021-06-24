@@ -1,4 +1,3 @@
-
 import { Checkbox, FormControl, FormControlLabel, Select, TableCell, TableHead, TableRow, Typography } from "@material-ui/core"
 import React from "react"
 import TableStatus from "./TableStatus"
@@ -35,13 +34,13 @@ class TableStatusFrame extends React.Component {
     constructor(props) {
         super(props);
 
-        this.majorSelector = this.majorSelector.bind(this)
-        this.moduleSelector = this.moduleSelector.bind(this)
-        this.handleMySoldiers = this.handleMySoldiers.bind(this)
-        this.handleEdittingMode = this.handleEdittingMode.bind(this)
+        this.majorSelector = this.majorSelector.bind(this);
+        this.moduleSelector = this.moduleSelector.bind(this);
+        this.handleMySoldiers = this.handleMySoldiers.bind(this);
+        this.handleEdittingMode = this.handleEdittingMode.bind(this);
 
-        this.selectedMajor = undefined
-        this.selectedModule = undefined
+        this.selectedMajor = undefined;
+        this.selectedModule = undefined;
         
         //this.checkBoxClicked = false
         this.state = {
@@ -51,18 +50,18 @@ class TableStatusFrame extends React.Component {
             displayTable: false,
             checkBoxClicked: false,
             displayEditMode: false
-        }
+        };
     }
 
     handleEdittingMode(event){
         
-        this.setState({displayEditMode:event.target.checked})
+        this.setState({displayEditMode:event.target.checked});
     }
 
     handleMySoldiers(event){
         //console.log(event.target.checked)
         //this.checkBoxClicked = event.target.checked
-        this.setState({checkBoxClicked:event.target.checked})
+        this.setState({checkBoxClicked:event.target.checked});
     }
 
     majorSelector(event) {
@@ -74,26 +73,26 @@ class TableStatusFrame extends React.Component {
 
             getModulesByMajor(this.selectedMajor).then((response) => {
                 if (response !== undefined) {
-                    let modules_ = response.data
-                    this.setState({ modules: modules_ })
+                    let modules_ = response.data;
+                    this.setState({ modules: modules_ });
                 }
-            })
+            });
 
         }
         // remove selection from module
-        this.setState({modules: undefined ,displayTable: false,checkBoxClicked:false} )
+        this.setState({modules: undefined ,displayTable: false,checkBoxClicked:false});
     }
 
     moduleSelector(event) {
-        this.selectedModule = event.target.value
+        this.selectedModule = event.target.value;
 
         if (this.selectedModule !== "None") {
             //console.log(this.selectedModule + " -- selected module")
-            this.setState({ displayTable: true })
+            this.setState({ displayTable: true });
         }
 
         else {
-            this.setState({ displayTable: false })
+            this.setState({ displayTable: false });
         }
     }
 
@@ -120,8 +119,8 @@ class TableStatusFrame extends React.Component {
 
 
     render() {
-        let modules = this.state.modules
-        let classes = this.props.classes
+        let modules = this.state.modules;
+        let classes = this.props.classes;
 
         //console.log(this.selectedModule)
 
@@ -212,11 +211,6 @@ class TableStatusFrame extends React.Component {
                                     </FormControl>
 
                                 </TableCell>
-
-
-
-
-
 
                                 <TableCell>
                                     <FormControlLabel

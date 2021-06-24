@@ -13,9 +13,9 @@ export default class DisaplayContentOfModule extends React.Component {
 
     constructor(props) {
         super(props)
-        this.state  = { subjects:undefined, dirSubjectFiles:undefined }
-        this.numberSubjects = -1
-        this.nothingHere = false
+        this.state  = { subjects:undefined, dirSubjectFiles:undefined };
+        this.numberSubjects = -1;
+        this.nothingHere = false;
     }
 
     componentDidMount() {
@@ -27,7 +27,7 @@ export default class DisaplayContentOfModule extends React.Component {
 
         getUserInfoByJWT().then((user) => {
 
-			if (user === undefined || user.data === undefined){
+			if (user === undefined || user.data === undefined) {
 				
 			} else {
 
@@ -39,7 +39,7 @@ export default class DisaplayContentOfModule extends React.Component {
 				
 
                 //getSubjectsByModule(major, moduleName).then( (res)=>{
-                getAllowedSubjectsOfUser(major, moduleName, personalId).then( (res)=>{
+                getAllowedSubjectsOfUser(major, moduleName, personalId).then((res)=>{
                     
                     this.nothingHere = false
                         

@@ -5,6 +5,7 @@ import SoldierMenu from "../../GeneralComponent/soldier/SoldierMenu";
 import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import { withStyles, Grid } from "@material-ui/core";
 
+
 const useStyles = (theme) => ({
     root: {
         flexGrow: 1,
@@ -48,32 +49,25 @@ class SoldierInfo extends React.Component {
 
         getUserInfoByJWT().then((user) => {
     
-            if (user === undefined){
+            if (user === undefined) {
                 
             } else {
 
-                console.log("here user was given")
-                user = user.data
-                console.log(user)
-                
-                console.log(user["major"])
-
-                let username_ = user["username"]
-                let majors_ = user["major"]
-                let role_ = user["role"]
-                let firstName_ = user["firstName"]
-                let lastName_ = user["lastName"]
-                let phoneNum = user["phoneNumber"]
-                let gender_ = user["gender"]
+                user = user.data;
+                let username_ = user["username"];
+                let majors_ = user["major"];
+                let role_ = user["role"];
+                let firstName_ = user["firstName"];
+                let lastName_ = user["lastName"];
+                let phoneNum = user["phoneNumber"];
+                let gender_ = user["gender"];
 
                 // server answer differs from out current
-                
-                let wasChanged = (username_ !== this.state.username) 
-                if (wasChanged){
+                let wasChanged = (username_ !== this.state.username);
+                if (wasChanged) {
                     // it causes new rendering
 
                     this.setState({
-                                    
                         username : username_,
                         major: majors_,
                         role: role_,
@@ -81,12 +75,10 @@ class SoldierInfo extends React.Component {
                         lastName: lastName_,
                         phone_number: phoneNum,            
                         gender: gender_,
-                        
-                    })
+                    });
                 }
-
             }
-        })
+        });
 
         if (this.state.username === undefined) {
 

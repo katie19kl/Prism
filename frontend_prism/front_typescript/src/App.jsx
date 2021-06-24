@@ -18,7 +18,6 @@ import DisplayContentOfModule from './soldierOperationSideBar/soldierTasks/modul
 import UploadBar from './adminOperationSideBar/Courses/CourseUploading/UploadBar';
 import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubmission"
 import SubmissionStatusObject from './adminOperationSideBar/SubmissionStatusObject/SubmissionStatusObject';
-import SoldierStatusKatie from './adminOperationSideBar/SoldierStatusKatie/SoldierStatus';
 import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
 import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
 import General from './GENERAL';
@@ -37,18 +36,8 @@ export default function App() {
 			</PrivateRoutingComponent>
 			
 
-
-
-
-
 			<Route path="/general" component={General}>
 			</Route>
-
-
-
-
-
-
 
 			<Route path="/login" component={LogINComp}>
 			</Route>

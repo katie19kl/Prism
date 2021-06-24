@@ -44,9 +44,7 @@ class SubmissionTableInfo extends React.Component {
         this.handleCloseConfirm = this.handleCloseConfirm.bind(this);
         this.handleCloseCancel = this.handleCloseCancel.bind(this);
         this.handleMsgClose = this.handleMsgClose.bind(this);
-        
         this.getSubmissionInfo = this.getSubmissionInfo.bind(this);
-
         this.major = this.props.major;
         this.module = this.props.module;
         this.subject = this.props.subject;
@@ -127,12 +125,12 @@ class SubmissionTableInfo extends React.Component {
 
         if (checked && submitted) {
             
-            if (grade === OK_Status.OK_Status.OK) {
+            if (grade === OK_Status.OK) {
                 
                 // green
                 return Status.SubmittedGoodEnough
             }
-            else if (grade === OK_Status.OK_Status.NOT_OK){
+            else if (grade === OK_Status.NOT_OK){
                 
                 //Yellow
                 return Status.SubmittedNotGoodEnough
@@ -233,9 +231,7 @@ class SubmissionTableInfo extends React.Component {
         let urlPostfix = this.major + "/" +  this.module + "/" + this.subject + "/" + Role.MyFiles;
         let url = "/file_uploading/" + urlPostfix;
         let history = this.props.browesHistory;
-
         let gradeDesc = "No grade given yet";
-        console.log(this.submissionInfo);
 
         if (this.state.gradeDescription !== undefined) {
             gradeDesc = this.state.gradeDescription;

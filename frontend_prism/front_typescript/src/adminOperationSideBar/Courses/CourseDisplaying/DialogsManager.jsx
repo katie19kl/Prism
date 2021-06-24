@@ -129,8 +129,6 @@ class DialogsManager extends React.Component {
                     labelName="Module Name"
                     insertionOnChange={this.moduleInsertionOnChange}/> : ''}
 
-
-
                 { /* used when the user wants to insert new subject. */
                 (this.state.showSubjectInsertionDialog === true) ?
                     <InsertionDialog 

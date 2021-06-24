@@ -4,7 +4,6 @@ import SaveIcon from '@material-ui/icons/Save';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {getUserInfoByJWT } from '../../HelperJS/extract_info'
-
 import { updateUser } from '../../HelperJS/update_user'
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import { Grid, withStyles } from "@material-ui/core";
@@ -29,63 +28,62 @@ class ChangeAdminSettings extends React.Component {
 		super(props);
 
 		this.handleTextFieldChangeUsername = this.handleTextFieldChangeUsername.bind(this);
-		this.handleTextFieldChangeFirstName = this.handleTextFieldChangeFirstName.bind(this)
-		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this)
-		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this)
-		this._username =  undefined
-		this._firstName = undefined
-		this._lastName = undefined
-		this._phone_number = undefined
-		this.updateMyInfo = this.updateMyInfo.bind(this)
+		this.handleTextFieldChangeFirstName = this.handleTextFieldChangeFirstName.bind(this);
+		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this);
+		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this);
+		this._username =  undefined;
+		this._firstName = undefined;
+		this._lastName = undefined;
+		this._phone_number = undefined;
+		this.updateMyInfo = this.updateMyInfo.bind(this);
+
 		this.state = {
 			prev_username: undefined,
 			prev_firstName: undefined,
 			prev_lastName: undefined,
 			prev_phone_number:undefined
-		}
+		};
 	}
 
 	handleTextFieldChangeUsername(event) {
-		let input =  event.target.value
-		this._username = input
+		let input =  event.target.value;
+		this._username = input;
 	}
 
 	handleTextFieldChangeFirstName(event) {
-		let input =  event.target.value
-		this._firstName = input
+		let input =  event.target.value;
+		this._firstName = input;
 	}
 
 	handleTextFieldChangeLastName(event) {
-		let input =  event.target.value
-		this._lastName = input
+		let input =  event.target.value;
+		this._lastName = input;
 	}
 
-	handleTextFieldChangePhoneNum(event){
-		let input =  event.target.value
-		this._phone_number = input	
+	handleTextFieldChangePhoneNum(event) {
+		let input =  event.target.value;
+		this._phone_number = input;
 	}
 
 	updateMyInfo() {
 		// potential changes
-		let newUserName = 	this._username
-		let newPhoneNum = this._phone_number
-		let newLastName = this._lastName
-		let newFirstName = this._firstName
+		let newUserName = 	this._username;
+		let newPhoneNum = this._phone_number;
+		let newLastName = this._lastName;
+		let newFirstName = this._firstName;
 
 		// current user username
-		let username = this.state.prev_username
+		let username = this.state.prev_username;
 
 		/////////////////////////////// updating user info in server
-		updateUser(username,newUserName, newFirstName,newLastName, newPhoneNum,true).then(
-			(res) => {
+		updateUser(username, newUserName, newFirstName, newLastName, newPhoneNum, true)
+		.then((res) => {
 				if (res !== undefined) {
 					
 					console.log(res)
 					window.location.reload(false)
 				}
-			}
-			
-		)
+		});
 	}
 
 	render() {
@@ -93,20 +91,17 @@ class ChangeAdminSettings extends React.Component {
 
 		getUserInfoByJWT().then((user) => {
 
-			if (user === undefined){
+			if (user === undefined) {
 				
 			} else {
 
-				console.log("here user was given")
-				user = user.data
-				console.log(user)
-				
-				let username_ = user["username"]
-				let firstName_ = user["firstName"]
-				let lastName_ = user["lastName"]
-				let phoneNum = user["phoneNumber"]
+				user = user.data;				
+				let username_ = user["username"];
+				let firstName_ = user["firstName"];
+				let lastName_ = user["lastName"];
+				let phoneNum = user["phoneNumber"];
 
-				let wasChanges = (username_ !== this.state.prev_username) 
+				let wasChanges = (username_ !== this.state.prev_username) ;
 				if (wasChanges) {
 					
 					this.setState({

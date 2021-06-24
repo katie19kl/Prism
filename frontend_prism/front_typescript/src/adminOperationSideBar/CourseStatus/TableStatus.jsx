@@ -1,4 +1,3 @@
-
 import React from "react"
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -18,7 +17,6 @@ import {openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier} f
 
 //	boxShadow: "5px 2px 5px grey" for row
 const useStyles = (theme) => ({
-
 	head: {
 		boxShadow: "1px 1px 1px 1px grey",
 		background: "white",
@@ -30,39 +28,23 @@ const useStyles = (theme) => ({
 		borderTopColor: "black",
 
 	},
-
 	sticky: {
 		position: "sticky",
 		left: 0,
-		//background: "black",
 		background: "#3b3745",
-		//boxShadow: " 2px 5px #0096ff",
-
 		boxShadow: " 2px 5px black",
-
 		borderRightStyle: "solid",
 		borderRightColor: "black",
 		display: "tableRowGroup",
 		fontWeight: 'bold',
 		width: '50px',
 		borderBottom: 'solid 3px black',
-
-		//borderLeftStyle: "solid",
-		//borderLeftColor: "#0096ff",
-
-		
 	},
-
 	tableCell: {
 		borderRightStyle: "solid",
-		//borderRightStyle: "dotted",
 		display: "tableRowGroup",
-		//borderRightColor: "#0096ff",//
 		borderRightColor: "black",
-		//borderBottom: 'dotted 3px #0096ff',
 		borderBottom: 'solid 3px black',
-
-
 
 		// new by 18.06.21
 		borderTopStyle: "solid"
@@ -70,7 +52,6 @@ const useStyles = (theme) => ({
 	table: {
 		height: "89vh"
 	},
-
 });
 
 
@@ -80,14 +61,10 @@ class TableStatus extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.handleOpenningToUser = this.handleOpenningToUser.bind(this)
-		this.handleClosingToUser = this.handleClosingToUser.bind(this)
-
-		this.soldierClosed = {}
+		this.handleOpenningToUser = this.handleOpenningToUser.bind(this);
+		this.handleClosingToUser = this.handleClosingToUser.bind(this);
+		this.soldierClosed = {};
 		
-		
-
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
 			selectedModule: this.props.selectedModule,
@@ -95,12 +72,8 @@ class TableStatus extends React.Component {
 			soldiers: [],
 			subjects: [],
 			submissionData: undefined,
-
-
 			FOO:0
-
-
-		}
+		};
 	}
 
 
@@ -109,28 +82,21 @@ class TableStatus extends React.Component {
 		let module =  this.props.selectedModule
 		let major = this.props.selectedMajor
 
-		closeSubjectToSoldier(soldierId,major,module,subject).then((responce)=>{
+		closeSubjectToSoldier(soldierId,major,module,subject).then((responce) => {
 			
-
-
-
-			if (responce !== undefined){
-				if (responce.status === 201){
-					let soldierClosed = this.soldierClosed[soldierId]
+			if (responce !== undefined) {
+				if (responce.status === 201) {
+					let soldierClosed = this.soldierClosed[soldierId];
 					
-					let updatedArr = []
-					for (const closed of soldierClosed){
-						if (closed !== subject){
-							updatedArr.push(closed)
+					let updatedArr = [];
+					for (const closed of soldierClosed) {
+						if (closed !== subject) {
+							updatedArr.push(closed);
 						}
 					}
 					
-					this.soldierClosed[soldierId].push(subject) 		
-					
-					
-
-
-					this.setState({FOO: this.state.FOO + 1})
+					this.soldierClosed[soldierId].push(subject);
+					this.setState({FOO: this.state.FOO + 1});
 				}
 			}
 		})
@@ -139,81 +105,64 @@ class TableStatus extends React.Component {
 
 
 	/*
-	 I take care of openning task, also should be taken care of closing task to soldier
-
-	
+	 I take care of openning task, also should be taken care of closing task to soldier	
 	*/
+	handleOpenningToUser(soldierId, subject) {	
+		let module =  this.props.selectedModule;
+		let major = this.props.selectedMajor;
 
-	handleOpenningToUser(soldierId, subject){
-		
-
-	
-		let module =  this.props.selectedModule
-		let major = this.props.selectedMajor
-
-		openSubjectToSoldier(soldierId,major,module,subject).then((responce)=>{
+		openSubjectToSoldier(soldierId,major,module,subject).then((responce)=> {
 			
-
-
-
-			if (responce !== undefined){
-				if (responce.status === 201){
-					let soldierClosed = this.soldierClosed[soldierId]
+			if (responce !== undefined) {
+				if (responce.status === 201) {
+					let soldierClosed = this.soldierClosed[soldierId];
 					
-					let updatedArr = []
-					for (const closed of soldierClosed){
-						if (closed !== subject){
-							updatedArr.push(closed)
+					let updatedArr = [];
+					for (const closed of soldierClosed) {
+						if (closed !== subject) {
+							updatedArr.push(closed);
 						}
 					}
-					this.soldierClosed[soldierId] = updatedArr
 
-	
-
-					this.setState({FOO: this.state.FOO + 1})
+					this.soldierClosed[soldierId] = updatedArr;
+					this.setState({FOO: this.state.FOO + 1});
 				}
 			}
-		})
-		
-
-
-		
-		
+		});
 	}
-
-
 
 	// extracts all soldiers of major defined in state
 	getAllSoldiersMajor() {
 
 		// function expects array of major
-		let major = []
-		major.push(this.props.selectedMajor)
+		let major = [];
+		major.push(this.props.selectedMajor);
 
 		if (this.props.mySoldiers === false) {
+
 			// all students
 			getSoldiersByMajors(major).then((response) => {
 				if (response !== undefined) {
 
 					if (response.data !== undefined) {
 						// sets state soldier with id & first name only
-						this.processNewSoldiers(response.data)
+						this.processNewSoldiers(response.data);
 					}
 				}
-			})
+			});
 		}
 	}
 
 	// extracts all subject of selected major & module
 	getAllSubject() {
-		let major = this.props.selectedMajor
-		let module = this.props.selectedModule
+		let major = this.props.selectedMajor;
+		let module = this.props.selectedModule;
 
 		getSubjectsByModule(major, module).then((res) => {
 			if (res !== undefined) {
 				if (res.data !== undefined) {
 
-					this.setState({ subjects: res.data })
+					this.setState({ subjects: res.data });
 
 				}
 			}
@@ -223,76 +172,59 @@ class TableStatus extends React.Component {
 	// given array of soldiers & sets array of id & first names
 	processNewSoldiers(soldiersFromResponse) {
 
-		let allMySoldiers = soldiersFromResponse
-		
+		let allMySoldiers = soldiersFromResponse;
+		let usersToTable = [];
+		let term;
 
-
-		let usersToTable = []
-		let term
 		// take neccessary fields only
 		for (let user of allMySoldiers) {
-			term = { personalId: user.personalId, firstName: user.firstName }
-			usersToTable.push(term)
+			term = { personalId: user.personalId, firstName: user.firstName };
+			usersToTable.push(term);
 		}
 
 		// server answer VS field value  by { id & personalId }
 		usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
-		this.XUIusers = usersToTable
+		this.XUIusers = usersToTable;
 
-		let equal = (JSON.stringify(usersToTable) === JSON.stringify(this.state.soldiers))
+		let equal = (JSON.stringify(usersToTable) === JSON.stringify(this.state.soldiers));
+
 		// if different answer => update table
 		if (!equal) {
 
-
-			//
 			// get personalId-->closed .then ()
-			let major = this.props.selectedMajor
-			let module = this.props.selectedModule
+			let major = this.props.selectedMajor;
+			let module = this.props.selectedModule;
 
 			getSoldierClosedSubjects(major,module,usersToTable).then((responce) => {
 
-				if (responce !== undefined)
-				{
-					if (responce.data !== undefined){				
+				if (responce !== undefined) {
+					if (responce.data !== undefined) {				
 						this.soldierClosed = responce.data
-
-						console.log(" MODULE TO GET CLOSED :::" + " " + module)
-						console.log(" MODULE TO GET CLOSED :::" + " " + this.props.selectedModule)
-						console.log(" MODULE TO GET CLOSED :::" + " " + this.state.selectedModule)
 						
 					}
 				}
 				
+				let newSoldiers = usersToTable;
 
-				let newSoldiers = usersToTable
 				// new soldiers => new submissions have to be exctracted 
 				this.getSoldierSubmissions(newSoldiers).then((subData) => {
 					
-					
 					// set state with new-arrived soldiers & their submission data
-					
-
-					this.setState({ soldiers: usersToTable, submissionData: subData	})
-				})
-
-			})
-			//
-
-
-
-
-
+					this.setState({ soldiers: usersToTable, submissionData: subData	});
+				});
+			});
 		}
 	}
 
 	// extract ONLY my soldiers in selected major
 	extractAllMySoldiers() {
-		let selectedMajor = this.props.selectedMajor
+		let selectedMajor = this.props.selectedMajor;
 
 		getAllMySoldiers(selectedMajor).then((response) => {
+
 			if (response !== undefined) {
 				if (response.data !== undefined) {
-					this.processNewSoldiers(response.data)
+					this.processNewSoldiers(response.data);
 				}
 			}
 		})
@@ -300,79 +232,72 @@ class TableStatus extends React.Component {
 
 
 	componentDidUpdate() {
-
-		// if check box (MySoldiers) state was changed
-		if (this.props.mySoldiers !== this.state.mySoldiers) {
-
-			this.setState({ mySoldiers: this.props.mySoldiers }, function () {
-				let mySoliders = this.props.mySoldiers
-				if (mySoliders) {
-					this.extractAllMySoldiers()
-				} else {
-					this.getAllSoldiersMajor()
-				}
-			})
-		}
+		getSoldierClosedSubjects(this.props.selectedMajor,
+			this.props.selectedModule,
+			this.XUIusers).then((responce) => {
 
 
-		// If another major was selected
-		if (this.props.selectedMajor !== this.state.selectedMajor) {
+			// if check box (MySoldiers) state was changed
+			if (this.props.mySoldiers !== this.state.mySoldiers) {
 
-			this.setState({ selectedMajor: this.props.selectedMajor }, function () {
-				// if major was changed => retrieve another students
-				let mySoliders = this.props.mySoldiers
-				if (mySoliders) {
-					this.extractAllMySoldiers()
-				} else {
-					this.getAllSoldiersMajor()
-				}
-
-				this.getAllSubject()
-			})
+				this.setState({ mySoldiers: this.props.mySoldiers }, function () {
+					let mySoliders = this.props.mySoldiers
+					if (mySoliders) {
+						this.extractAllMySoldiers()
+					} else {
+						this.getAllSoldiersMajor()
+					}
+				});
+			}
 
 
-		}
+			// If another major was selected
+			if (this.props.selectedMajor !== this.state.selectedMajor) {
 
-		// if another module was selected
-		if (this.props.selectedModule !== this.state.selectedModule) {
+				this.setState({ selectedMajor: this.props.selectedMajor }, function () {
+					// if major was changed => retrieve another students
+					let mySoliders = this.props.mySoldiers
+					if (mySoliders) {
+						this.extractAllMySoldiers()
+					} else {
+						this.getAllSoldiersMajor()
+					}
 
-			/////////////
+					this.getAllSubject()
+				});
+			}
 
-			getSoldierClosedSubjects(this.props.selectedMajor,this.props.selectedModule,this.XUIusers).then((responce) => {
-
-				if (responce !== undefined)
-				{
+			// if another module was selected
+			if (this.props.selectedModule !== this.state.selectedModule) {
+				
+				if (responce !== undefined) {
 					if (responce.data !== undefined){				
 						this.soldierClosed = responce.data
 
 					}
 				}
-				
-
+					
 				this.setState({ selectedModule: this.props.selectedModule }, function () {
+
 					// extract all submissions of new extracted-module
 					this.getSoldierSubmissions(this.state.soldiers).then((subData) => {
-	
+
 						this.setState({ submissionData: subData }, function () {
+
 							// extract all subjects of new selected-module
-							this.getAllSubject()
+							this.getAllSubject();
 						})
-					})
-				})
-	
-	
-
-			})
-
-
-		}
+					});
+				});
+			}
+		});
 	}
 
 	// extracts all submissions of specified soldiers
 	getSoldierSubmissions(newSoldiers) {
-		let major = this.props.selectedMajor
-		let module = this.props.selectedModule
-		let soldiers = newSoldiers
+		let major = this.props.selectedMajor;
+		let module = this.props.selectedModule;
+		let soldiers = newSoldiers;
 
 
 		if (soldiers !== []) {
@@ -383,19 +308,18 @@ class TableStatus extends React.Component {
 					if (res !== undefined) {
 						if (res.data !== undefined) {
 
-							let submissionData = res.data
-							resol(submissionData)
+							let submissionData = res.data;
+							resol(submissionData);
 
 						}
 						else {
 
-							rej(undefined)
+							rej(undefined);
 						}
 					} else {
-						rej(undefined)
+						rej(undefined);
 					}
 				})
-
 			});
 		}
 	}
@@ -403,97 +327,82 @@ class TableStatus extends React.Component {
 
 	componentDidMount() {
 
-		let mySoliders = this.props.mySoldiers
+		let mySoliders = this.props.mySoldiers;
+
 		// request for only my soldiers
 		if (mySoliders) {
-			this.extractAllMySoldiers()
+			this.extractAllMySoldiers();
 		} else {
+
 			// request for all soldiers of major
-			this.getAllSoldiersMajor()
+			this.getAllSoldiersMajor();
 		}
 
-		this.getAllSubject()
+		this.getAllSubject();
 	}
 
 	// converts info from soldier-submissions to appropriate displaying
 	convertToColors(soldierSubmissionData) {
-
-
-		let idSubjectColors = {}
+		let idSubjectColors = {};
 
 		// key - soldier personalId
 		for (let key in soldierSubmissionData) {
 
-			let closedUserSubjects = this.soldierClosed[key]
-
-
+			let closedUserSubjects = this.soldierClosed[key];
 
 			// subject-sorted sequence of colors/state/subject-name
-			let subjectColor = []
+			let subjectColor = [];
+			let id = key;
 
-
-			let id = key
 			// submissions of soldier 
-			let submissions = soldierSubmissionData[key]
-
-
-
-
-			let allSubjects = this.state.subjects
+			let submissions = soldierSubmissionData[key];
+			let allSubjects = this.state.subjects;
 
 			// subjects are selected by sub-indexing (on the server side)
 			// iterating in same way on subjects as displaying will be done
 			for (let subject_ of allSubjects) {
 
-				let closedSubject = true
-				if (closedUserSubjects !== undefined){
+				let closedSubject = true;
+				if (closedUserSubjects !== undefined) {
 					
-					closedSubject = closedUserSubjects.includes(subject_)
+					closedSubject = closedUserSubjects.includes(subject_);
 				
 				}
+
 				// or not assigned
-				let color = Status.OpenNotSubmitted
-				let status = "non assigned"
+				let color = Status.OpenNotSubmitted;
+				let status = "non assigned";
 
 
-				if (closedSubject){
-					color = Status.Closed
-					status = "closed"
+				if (closedSubject) {
+					color = Status.Closed;
+					status = "closed";
 				}
-
 
 				// existing submission per subject
 				for (let submission of submissions) {
 				
 					
-					let gradeDescription = submission.gradeDescription
+					let gradeDescription = submission.gradeDescription;
 					
 					// verifying status of submission
-					let checked = submission.checked
-					let subject = submission.subject
+					let checked = submission.checked;
+					let subject = submission.subject;
 
 					if (subject === subject_) {
-						
-		
-						status = "assigned"
-						color = Status.SubmittedNotReviewed
+						status = "assigned";
+						color = Status.SubmittedNotReviewed;
 
-						console.log(OK_Status.OK)
+						console.log(OK_Status.OK);
 		
 						if (checked && gradeDescription === OK_Status.OK) {
 
-							status = "checked & good"
-							color = Status.SubmittedGoodEnough
+							status = "checked & good";
+							color = Status.SubmittedGoodEnough;
 
-
-						} else if (checked && gradeDescription === OK_Status.NOT_OK){
-
-
-							
-					
-							
-							status = "checked & NOT good"
-							color = Status.SubmittedNotGoodEnough 
+						} else if (checked && gradeDescription === OK_Status.NOT_OK){		
+							status = "checked & NOT good";
+							color = Status.SubmittedNotGoodEnough; 
 						}
 					}
 				}
@@ -502,19 +411,17 @@ class TableStatus extends React.Component {
 					status: status,
 					//subject: subject_.split(" ")[1],
 					subject: subject_,
-					
 					color: color
-				})
+				});
 			}
 
 			// soldier id is mapped to array of displaying info (color/subject name/status)
 			// actually only color will be enough, but rest is added to have more informative during debugging
-			idSubjectColors[id] = subjectColor
+			idSubjectColors[id] = subjectColor;
 
 		}
-
 		
-		return idSubjectColors
+		return idSubjectColors;
 	}
 
 
@@ -525,15 +432,12 @@ class TableStatus extends React.Component {
 		console.log(this.soldierClosed)
 		console.log(".................................")
 		
-		let isEditMode = this.props.editMode
-		
-		
-
+		let isEditMode = this.props.editMode;
 		let classes = this.props.classes;
 		let soldierSubmissionData = this.state.submissionData;
 
-
 		let allSoldierDisplay = [];
+
 		// prepare for displaying
 		for (let soldier of this.state.soldiers) {
 			let add = soldier.firstName + "\n" + soldier.personalId;
@@ -541,10 +445,8 @@ class TableStatus extends React.Component {
 		}
 
 		if (allSoldierDisplay.length > 0 && soldierSubmissionData !== undefined) {
-
 			let personalIdColors = this.convertToColors(soldierSubmissionData);
 			
-
 			return (
 
 				// stickyHeader
@@ -651,8 +553,6 @@ class TableStatus extends React.Component {
 														</div>
 
 }
-
-
 
 											{ (term.color !== Status.Closed) && (term.color !== Status.OpenNotSubmitted)
 											 &&

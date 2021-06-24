@@ -8,7 +8,6 @@ import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
-
 import UserCreationForm from "./UserCreationForm";
 
 
@@ -25,11 +24,6 @@ const useStyles = (theme) => ({
     },
     radio: {
         flexGrow: 1,
-        /*position: 'absolute', 
-        left: '50%', 
-        top: '43%',
-        transform: 'translate(-50%, -50%)',
-        */
     },
     role: {
         flexGrow: 1,
@@ -69,8 +63,6 @@ class CreateUser extends React.Component {
 
 
     getForm(role) {
-
-        console.log("in get form");
 
         switch (role) {
             case "commander":

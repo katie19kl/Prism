@@ -51,33 +51,22 @@ export default class SoldierTasks extends React.Component {
         }
     }
 
-
-
 	render() {
-        console.log("====================================")
         let user = this.state.user;
-        console.log(user)
-        console.log("====================================")
         
-        if (user === undefined){
-            console.log("11")
-            return (
-                        <MenuAppBar
-                            role = "Soldier" 
-                            menu={
-                                <SoldierMenu/>
-                            }>
+        if (user === undefined) {
 
-                        </MenuAppBar>
-            )
+            return (
+                <MenuAppBar
+                    role = "Soldier" 
+                    menu={
+                        <SoldierMenu/>
+                    }>
+
+                </MenuAppBar>
+            );
         }
-        else {
-            console.log("22")
-            
-            console.log(user)
-            
-            console.log("22")
-            
+        else {            
             return (
                 <div>
                     <MenuAppBar
@@ -100,4 +89,3 @@ export default class SoldierTasks extends React.Component {
         }
 	}
 }
-

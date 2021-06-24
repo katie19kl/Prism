@@ -22,30 +22,20 @@ export class UsersService {
 	userSubmissionHandler: UserSubmissionService;
 	reviewHandler: ReviewService;
 
-
-
-
-
 	constructor(@InjectModel('User') private userModel: Model<IUser>,
 				@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
 				@InjectModel('Reviews') private reviewsModel: Model<IReview>,
-				userSubmissionService: UserSubmissionService
-				) {
+				userSubmissionService: UserSubmissionService) {
 		
-		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel)
-		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionService);
-
-
-
-
-		
+		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel);
+		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionModel, userSubmissionService);
 	}
 
 
 	async closeAllToNewSoldier(soldierId,majors:Major[],subjectOnDemandService: SubjectsOnDemandService){
 
 
-		await subjectOnDemandService.closeAllSubjectToNewSoldier(majors, soldierId)
+		await subjectOnDemandService.closeAllSubjectToNewSoldier(majors, soldierId);
 
 	}
 
@@ -67,7 +57,9 @@ export class UsersService {
 			throw new HttpException("Personal ID already exists", HttpStatus.BAD_REQUEST);
 		}
 
-		await this.closeAllToNewSoldier(createUserDto.personalId, createUserDto.major, subjectOnDemandService)
+		if (createUserDto.role === Role.Soldier) {
+			await this.closeAllToNewSoldier(createUserDto.personalId, createUserDto.major, subjectOnDemandService)
+		}
 
 		let createdUser = new this.userModel(createUserDto);
 		return await createdUser.save();

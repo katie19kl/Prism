@@ -30,24 +30,16 @@ class ContentOfModule extends React.Component {
 
     render() {
 
-        const { classes } = this.props;
-        console.log("-----content of module---------")
-        
+        const { classes } = this.props;        
 
         let moduleName = this.props.moduleName;
         let major = this.props.major;
         let subjects = this.props.subjects;
         let personalId = this.props.personalId;
 
-        let dictSubjectFiles = this.props.dictSubjectFiles
-        
-        //console.log(Object.keys(dictSubjectFiles))
+        let dictSubjectFiles = this.props.dictSubjectFiles;
 
-        console.log("personal id: ", personalId, "-------------------------------------------!!!!")
- 
-
-        let postfix_param = major + "/" + moduleName + "/"
-        //console.log(postfix_param)
+        let postfix_param = major + "/" + moduleName + "/";
 
         return (
  
@@ -60,12 +52,10 @@ class ContentOfModule extends React.Component {
                 </Grid>
                 <ul className="list-group list-group-flush">
         
-                {subjects !== undefined && subjects.map((subject,index)=>(
+                {subjects !== undefined && subjects.map((subject,index) => (
 
-            
                     <li className="list-group-item" key={index}  >
                         
-  
                         <h3 className={classes.title}><b>{subject} </b></h3>
 
                         <i className={classes}> 
@@ -78,8 +68,6 @@ class ContentOfModule extends React.Component {
                                 personalId={personalId}
                                 >
                                 </DisplaySubjectContent>
-
-                                
 
                             </div>  
                         </i>
@@ -96,8 +84,6 @@ class ContentOfModule extends React.Component {
                     ))
                 } 
                 </ul>
-
-
             </div>
         );
     }

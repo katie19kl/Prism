@@ -34,67 +34,56 @@ class ChangeUserData extends React.Component {
 
 	constructor(props) {
 		super(props);
-
 		this.handleTextFieldChangeUsername = this.handleTextFieldChangeUsername.bind(this);
-		this.handleTextFieldChangeFirstName = this.handleTextFieldChangeFirstName.bind(this)
-		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this)
-		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this)
-		this.updateUserInfo = this.updateUserInfo.bind(this)
-		this._username =  undefined
-		this._firstName = undefined
-		this._lastName = undefined
-		this._phone_number = undefined
+		this.handleTextFieldChangeFirstName = this.handleTextFieldChangeFirstName.bind(this);
+		this.handleTextFieldChangeLastName = this.handleTextFieldChangeLastName.bind(this);
+		this.handleTextFieldChangePhoneNum = this.handleTextFieldChangePhoneNum.bind(this);
+		this.updateUserInfo = this.updateUserInfo.bind(this);
+		this._username =  undefined;
+		this._firstName = undefined;
+		this._lastName = undefined;
+		this._phone_number = undefined;
     }
 
 	updateUserInfo(event) {
-		console.log("-----------------------")
-		console.log(event)
+        if (this.props.soldier_id_ !== undefined) {
 
-		console.log("---*-**-*-*-*---------")
-        if (this.props.soldier_id_ !== undefined){
+			let newUserName = this._username;
+			let newFirstName = this._firstName;
+			let newLastName = this._lastName;
+			let newPhoneNum = this._phone_number;
 
-			let newUserName = this._username
-			let newFirstName = this._firstName
-			let newLastName = this._lastName
-			let newPhoneNum = this._phone_number
-
-			let usernameToChange = this.props.toChangeByUserName
+			let usernameToChange = this.props.toChangeByUserName;
             
-			updateUser(usernameToChange,newUserName, newFirstName,newLastName, newPhoneNum, false).then(
-                (res) => {
-                    if (res !== undefined) {
-                        
-                        console.log(res)
-                        window.location.reload(false)
-                    }
-                }
-                
-            );
+			updateUser(usernameToChange,newUserName, newFirstName,newLastName, newPhoneNum, false)
+			.then((res) => {
+				if (res !== undefined) {
+					
+					console.log(res)
+					window.location.reload(false)
+				}
+            });
         }        
     }
 
     handleTextFieldChangeUsername(event) {
-		let input =  event.target.value
-		//this.state.username = input
-		this._username = input
+		let input =  event.target.value;
+		this._username = input;
 	}
 
 	handleTextFieldChangeFirstName(event) {
-		let input =  event.target.value
-		//this.state.firstName = input
-		this._firstName = input
+		let input =  event.target.value;
+		this._firstName = input;
 	}
 
 	handleTextFieldChangeLastName(event) {
-		let input =  event.target.value
-		//this.state.lastName = input
-		this._lastName = input
+		let input =  event.target.value;
+		this._lastName = input;
 	}
 
 	handleTextFieldChangePhoneNum(event) {
-		let input =  event.target.value
-		//this.state.phone_number = input
-		this._phone_number = input	
+		let input =  event.target.value;
+		this._phone_number = input;
 	}
 
 

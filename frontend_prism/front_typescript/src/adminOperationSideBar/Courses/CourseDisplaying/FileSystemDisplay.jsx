@@ -1,5 +1,5 @@
 import { List, Accordion, withStyles, Grid, Typography, Snackbar, IconButton,
-     ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+         ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -12,8 +12,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import { purple } from "@material-ui/core/colors";
 import CourseUploading from "../CourseUploading/CourseUploading";
 import DialogsManager from "./DialogsManager";
-import { getSubjectsByModule, getFilesBySubject,
-    deleteModuleByMajor, deleteSubjectByModule, 
+import { deleteModuleByMajor, deleteSubjectByModule, 
     deleteFileBySubject, createModuleByMajor, 
     createSubjectByModule, renameModule, 
     renameSubject } from "../../CourseFiles/files_request_handler";
@@ -30,6 +29,7 @@ const useStyles = (_theme) => ({
     }
 });
 
+
 /* shows the alert msg when editing is done. */
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -40,38 +40,37 @@ class FileSystemDisplay extends React.Component {
 
     constructor(props) {
         super(props);
-        this.handleAccordionChange = this.handleAccordionChange.bind(this);
-        this.handleSubjectChange = this.handleSubjectChange.bind(this);
+        this.sendGetModulesRequest = this.props.sendGetModulesRequest;
+        this.renameModuleOnClick = this.renameModuleOnClick.bind(this);
         this.moduleDeletionButtonHandler = this.moduleDeletionButtonHandler.bind(this);
+        this.handleInsertSubject = this.handleInsertSubject.bind(this);
+        this.handleSubjectChange = this.handleSubjectChange.bind(this);
+        this.renameSubjectOnClick = this.renameSubjectOnClick.bind(this);
         this.subjectDeletionButtonHandler = this.subjectDeletionButtonHandler.bind(this);
         this.FileDeletionButtonHandler = this.FileDeletionButtonHandler.bind(this);
-        this.handleCloseCancel = this.handleCloseCancel.bind(this);
-        this.handleCloseConfirmModule = this.handleCloseConfirmModule.bind(this);
-        this.handleCloseConfirmFile = this.handleCloseConfirmFile.bind(this);
+        this.handleInsertModule = this.handleInsertModule.bind(this);
         this.handleMsgClose = this.handleMsgClose.bind(this);
         this.objectDeletionHandling = this.objectDeletionHandling.bind(this);
         this.handleDeletionResponse = this.handleDeletionResponse.bind(this);
-        this.handleCloseConfirmSubject = this.handleCloseConfirmSubject.bind(this);
-        this.handleGetSubjectRequest = this.handleGetSubjectRequest.bind(this);
-        this.handleGetFilesRequest = this.handleGetFilesRequest.bind(this);
-        this.sendGetModulesRequest = this.props.sendGetModulesRequest;
-        this.handleInsertModule = this.handleInsertModule.bind(this);
-        this.handleInsertSubject = this.handleInsertSubject.bind(this);
-        this.handleCloseInsertModule = this.handleCloseInsertModule.bind(this);
-        this.handleCloseInsertSubject = this.handleCloseInsertSubject.bind(this);
-        this.handleCloseCancelInsertion = this.handleCloseCancelInsertion.bind(this);
-        this.moduleInsertionOnChange = this.moduleInsertionOnChange.bind(this);
-        this.subjectInsertionOnChange = this.subjectInsertionOnChange.bind(this);
-        this.handleInsertionResponse = this.handleInsertionResponse.bind(this);
+        this.handleRenamingResponse = this.handleRenamingResponse.bind(this);
         this.renameModuleOnClick = this.renameModuleOnClick.bind(this);
         this.renameSubjectOnClick = this.renameSubjectOnClick.bind(this);
-        this.handleCloseEditModule = this.handleCloseEditModule.bind(this);
-        this.handleCloseEditSubject = this.handleCloseEditSubject.bind(this);
-        this.handleCloseCancelEdit = this.handleCloseCancelEdit.bind(this);
-        this.handleRenamingResponse = this.handleRenamingResponse.bind(this);
 
-        this.subjectsData = undefined;
-        this.filesData = undefined;
+        // dialogs handlers:
+        this.handleCloseInsertModule = this.handleCloseInsertModule.bind(this);
+        this.handleInsertionResponse = this.handleInsertionResponse.bind(this);
+        this.handleCloseCancelInsertion = this.handleCloseCancelInsertion.bind(this);
+        this.moduleInsertionOnChange = this.moduleInsertionOnChange.bind(this);
+        this.handleCloseInsertSubject = this.handleCloseInsertSubject.bind(this);
+        this.subjectInsertionOnChange = this.subjectInsertionOnChange.bind(this);
+        this.handleCloseConfirmModule = this.handleCloseConfirmModule.bind(this);
+        this.handleCloseConfirmSubject = this.handleCloseConfirmSubject.bind(this);
+        this.handleCloseConfirmFile = this.handleCloseConfirmFile.bind(this);
+        this.handleCloseEditModule = this.handleCloseEditModule.bind(this);
+        this.handleCloseCancelEdit = this.handleCloseCancelEdit.bind(this);
+        this.handleCloseEditSubject = this.handleCloseEditSubject.bind(this);
+        this.handleCloseCancel = this.handleCloseCancel.bind(this);
+
 
         // used when sending the deletion req. to the server.
         this.moduleToDelete = undefined;
@@ -91,16 +90,23 @@ class FileSystemDisplay extends React.Component {
         this.oldSubjectName = undefined; 
 
         this.state = {
+
+            // new code from here
+            //modulesToSubjects: this.props.modulesToSubjects,
+            //subjectsToFiles: this.props.subjectsToFiles,
+            modulesToDictSubsToFiles: this.props.modulesToDictSubsToFiles,
+            // to here!!!!!!!!!!!!
+
+            /////////////////////// CHECK IF NEEDED
+            chosenModule: undefined,
+            chosenSubject: undefined,
+            //////////////////////
+
             expanded: false,
             expandedSubject: false,
 
             chosenMajor: this.props.chosenMajor,
-            chosenModule: undefined,
-            chosenSubject: undefined,
-
-            moduleUpdate: false,
-            filesUpdate: false,
-            moduleData: this.props.moduleData,
+            modules: this.props.modules,
 
             // deleting objects(module/subjects/files).
             showConfirmDialogModule: false,
@@ -130,6 +136,29 @@ class FileSystemDisplay extends React.Component {
         };
     }
 
+    componentDidUpdate() {
+
+        if (this.state.chosenMajor !== this.props.chosenMajor) {
+            this.setState({ chosenMajor: this.props.chosenMajor }, function() {
+				this.sendGetModulesRequest(this.props.chosenMajor)
+			});
+        }
+
+        if (this.state.modulesToDictSubsToFiles !== this.props.modulesToDictSubsToFiles) {
+            this.setState({ modulesToDictSubsToFiles: this.props.modulesToDictSubsToFiles });
+        }
+
+        if (this.state.modules !== this.props.modules) {
+            this.setState({ modules: this.props.modules });
+        }
+
+    }
+
+    /* closing of the informative msg. */
+    handleMsgClose() {
+        this.setState({ msgOpen: false });
+    }
+
     /* handles opening of a module accordion. */
     handleAccordionChange = (panel) => (_event, isExpanded) => {
 
@@ -144,38 +173,7 @@ class FileSystemDisplay extends React.Component {
             });
         }
 
-        let moduleName = panel;
-
-        console.log("major: " + this.state.chosenMajor + ", module: " + moduleName);
-
-        if (moduleName !== undefined && moduleName !== null && moduleName !== 'None') {
-
-            this.handleGetSubjectRequest(moduleName);
-        }
-    }
-
-    /* 
-    helper function for handleAccordionChange- calls 
-    the getSubjectsByModule function and re-renders view.
-     */
-    handleGetSubjectRequest(moduleName) {
-        //getSubjectsByModule(this.state.chosenMajor, moduleName).then(({data}) => {
-            getSubjectsByModule(this.state.chosenMajor, moduleName).then((data) => {
-            if (data !== undefined){
-                data = data.data
-            }
-            
-            if (data === undefined || data === 'None' || data === null || data.length === 0) {
-                data = undefined;
-            }
-
-            this.subjectsData = data;
-
-            this.setState({
-                moduleUpdate: true,
-                chosenModule: moduleName,
-            });
-        });
+        /////////////////////////////////////let moduleName = panel;
     }
 
     /* handles opening of a subject accordion. */
@@ -190,44 +188,207 @@ class FileSystemDisplay extends React.Component {
                 expandedSubject: false
             });
         }
-        let subjectName = panel;
-
-        if (subjectName !== undefined && subjectName !== null && subjectName !== 'None') {
-            this.handleGetFilesRequest(subjectName);
-        }
+        /////////////////////////////////////////////let subjectName = panel;
     }
 
-    /* 
-    helper function for handleSubjectChange- calls 
-    the getFilesBySubject function and re-renders view.
-     */
-    handleGetFilesRequest(subjectName) {
+    moduleDeletionButtonHandler(event, module) {
+        event.stopPropagation();
+        this.moduleToDelete = module;
 
-        getFilesBySubject(this.state.chosenMajor, this.state.chosenModule, subjectName)
-        .then(({data}) => {
-
-            if (data === undefined || data === 'None' || data === null || data.length === 0) {
-                data = undefined;
-            }
-
-            this.filesData = data;
-
-            this.setState({
-                filesUpdate: true,
-                chosenSubject: subjectName
-            });
+        // ask the user to confirm the deletion
+        this.setState({ 
+            showConfirmDialogModule: true,
+            confirmDialogOpenModule: true
         });
     }
 
-    /* check for changes in props(parent component). */
-    componentDidUpdate() {
-        if (this.props.chosenMajor !== this.state.chosenMajor) {
-            this.setState({ chosenMajor: this.props.chosenMajor });
+    handleInsertSubject() {
+
+        // show subject insertion dialog.
+        this.setState({ 
+            showSubjectInsertionDialog: true,
+            subjectInsertionDialogOpen: true,
+        });
+    }
+
+    /* onClick handler of the deletion button of a subject. */
+    subjectDeletionButtonHandler(event, subject) {
+        event.stopPropagation();
+        this.subjectToDelete = subject;
+
+        // ask the user to confirm the deletion
+        this.setState({ 
+            showConfirmDialogSubject: true,
+            confirmDialogOpenSubject: true
+        });
+    }
+
+    /* onClick handler of the deletion button of a file. */
+    FileDeletionButtonHandler(event, file) {
+        event.stopPropagation();
+        this.fileToDelete = file;
+
+        // ask the user to confirm the deletion
+        this.setState({ 
+            showConfirmDialogFile: true,
+            confirmDialogOpenFile: true
+        });
+    }
+
+    /* handler of inserting new module (button). */
+    handleInsertModule() {
+
+        // show module insertion dialog.
+        this.setState({ 
+            showModuleInsertionDialog: true,
+            moduleInsertionDialogOpen: true,
+        });
+    }
+
+    /* onChange of text field in the insertion dialog (module). */
+    moduleInsertionOnChange(event) {
+        this.newModuleName = event.target.value;
+    }
+
+    handleCloseInsertModule(event) {
+        event.stopPropagation();
+
+        // send req to server.
+        if (this.state.chosenMajor !== undefined && this.newModuleName !== undefined) {
+
+            if (this.newModuleName !== '' && this.newModuleName !== ' ') {
+
+                createModuleByMajor(this.state.chosenMajor, this.newModuleName)
+                .then((response) => {
+
+                    // show informative msg to the screen.
+                    this.handleInsertionResponse(response, 'module');
+
+                    if (response !== undefined) {
+                        if (response.status === 201) {
+                            
+                            console.log(this.newModuleName);
+
+                            // update the view to contain the new created module.
+                            this.sendGetModulesRequest(this.state.chosenMajor);
+                            
+                        }
+                    }
+                });
+            }
+
+        } else {
+
+            console.log("error");
+            this.msg = "You did not enter the new module name";
+            this.severity = "error";
+            this.setState({ showMsg: true, msgOpen: true});
         }
 
-        if (this.props.moduleData !== this.state.moduleData) {
-            this.setState({ moduleData: this.props.moduleData })
+        //this.newModuleName = undefined;
+
+        this.setState({ 
+            moduleInsertionDialogOpen: false
+        });
+    }
+
+    /* activates the informative msg depending on the server's response. */
+    handleInsertionResponse(response, objToInsert) {
+        if (response !== undefined) {
+
+            if (response.status !== undefined && response.status === 201) {
+                this.msg = objToInsert + " created successfully";
+                this.severity = "success";
+                this.setState({ showMsg: true, msgOpen: true});
+
+            } else if (response.response !== undefined) {
+
+                if (response.response.status !== undefined && response.response.status === 409) {
+                    
+                    this.msg = "The name already exists! Try a different one";
+                    this.severity = "error";
+                    this.setState({ showMsg: true, msgOpen: true});
+                }
+
+            } else {
+                this.msg = "Failed to create the " + objToInsert;
+                this.severity = "error";
+                this.setState({ showMsg: true, msgOpen: true});
+            }
+
+        } else {
+            console.log("error");
+            this.msg = "Failed to create the " + objToInsert;
+            this.severity = "error";
+            this.setState({ showMsg: true, msgOpen: true});
         }
+    }
+
+    /* the user regrets creating new module/subject. */
+    handleCloseCancelInsertion(event) {
+        event.stopPropagation();
+
+        if (this.state.moduleInsertionDialogOpen === true) {
+            this.setState({ moduleInsertionDialogOpen: false });
+        } 
+
+        else if(this.state.subjectInsertionDialogOpen === true) {
+            this.setState({ subjectInsertionDialogOpen: false });
+        }
+
+    }
+
+    /* sending to the server the create request (subject). */
+    handleCloseInsertSubject(event) {
+
+        event.stopPropagation();
+
+        // send req to server.
+        if (this.state.expanded !== undefined && this.state.expanded !== false && this.newSubjectName !== undefined) {
+
+            if (this.newSubjectName !== '' && this.newSubjectName !== ' ') {
+
+                createSubjectByModule(this.state.chosenMajor, this.state.expanded, this.newSubjectName)
+                .then((response) => {
+
+                    this.handleInsertionResponse(response, 'subject');
+
+                    if (response !== undefined) {
+                        if (response.status === 201) {
+                            
+                            // update the view to contain the new created subject.
+                            this.sendGetModulesRequest(this.state.chosenMajor);
+                        }
+                    }
+                });
+            }
+
+        } else {
+            this.msg = "You did not enter the new subject name";
+            this.severity = "error";
+            this.setState({ showMsg: true, msgOpen: true});
+        }
+
+        // change back to undefined
+        //this.newSubjectName = undefined;
+
+        this.setState({ subjectInsertionDialogOpen: false });
+    }
+
+    /* onChange of text field in the insertion dialog (subject). */
+    subjectInsertionOnChange(event) {
+        this.newSubjectName = event.target.value;
+    }
+
+    /* handling confirmation of module deletion. */
+    handleCloseConfirmModule(event) {
+        event.stopPropagation();
+
+        // send the deletion request to the server.
+        this.objectDeletionHandling(deleteModuleByMajor, 'module');
+        
+        // update the view to be without the deleted module.
+        this.setState({ confirmDialogOpenModule: false });
     }
 
     /* takes care of sending the deletion request of an obj to the server */
@@ -245,15 +406,15 @@ class FileSystemDisplay extends React.Component {
         } else if (objToDelete === 'subject') {
             if (this.subjectToDelete !== undefined) {
                 isValid = true;
-                listParams = [this.state.chosenMajor, this.state.chosenModule,
+                listParams = [this.state.chosenMajor, this.state.expanded,
                                 this.subjectToDelete];
             }
 
         } else if (objToDelete === 'file') {
             if (this.fileToDelete !== undefined) {
                 isValid = true;
-                listParams = [this.state.chosenMajor, this.state.chosenModule,
-                                this.state.chosenSubject, this.fileToDelete];
+                listParams = [this.state.chosenMajor, this.state.expanded,
+                                this.state.expandedSubject, this.fileToDelete];
             }
         } else {
             return undefined; // error.
@@ -263,20 +424,24 @@ class FileSystemDisplay extends React.Component {
             serverRequestFunc(listParams).then((response) => {
                 this.handleDeletionResponse(response, objToDelete);
 
-                // update the view to be without the deleted module.
-                this.sendGetModulesRequest(this.state.chosenMajor);
+                if (objToDelete === 'module') {
 
-                if (objToDelete === 'subject') {
+                    // update the view to be without the deleted module.
+                    this.sendGetModulesRequest(this.state.chosenMajor);
+                    
+
+                } else if (objToDelete === 'subject') {
 
                     // update the view to be without the deleted subject.
-                    if (this.state.chosenModule !== undefined) {
-                        this.handleGetSubjectRequest(this.state.chosenModule);
+                    if (this.state.expanded !== undefined && this.state.expanded !== false) {
+                        this.sendGetModulesRequest(this.state.chosenMajor);
+
                     }
 
                 } else if (objToDelete === 'file') {
                     
-                    if (this.state.chosenSubject !== undefined) {
-                        this.handleGetFilesRequest(this.state.chosenSubject);
+                    if (this.state.expandedSubject !== undefined && this.state.expandedSubject !== false) {
+                        this.sendGetModulesRequest(this.state.chosenMajor);
                     }
                 }
             });
@@ -312,53 +477,21 @@ class FileSystemDisplay extends React.Component {
         }
     }
 
-    /* onClick handler of the deletion button of a module. */
-    moduleDeletionButtonHandler(event, module) {
-        event.stopPropagation();
-        this.moduleToDelete = module;
-
-        // ask the user to confirm the deletion
-        this.setState({ 
-            showConfirmDialogModule: true,
-            confirmDialogOpenModule: true
-        });
-    }
-
-    /* onClick handler of the deletion button of a subject. */
-    subjectDeletionButtonHandler(event, subject) {
-        event.stopPropagation();
-        this.subjectToDelete = subject;
-
-        // ask the user to confirm the deletion
-        this.setState({ 
-            showConfirmDialogSubject: true,
-            confirmDialogOpenSubject: true
-        });
-    }
-
-    /* onClick handler of the deletion button of a file. */
-    FileDeletionButtonHandler(event, file) {
-        event.stopPropagation();
-        this.fileToDelete = file;
-
-        // ask the user to confirm the deletion
-        this.setState({ 
-            showConfirmDialogFile: true,
-            confirmDialogOpenFile: true
-        });
-    }
-
-    /* handling confirmation of module deletion. */
-    handleCloseConfirmModule(event) {
+    /* closing of the confirm deletion dialog - after pressing cancel. */
+    handleCloseCancel(event) {
         event.stopPropagation();
 
-        // send the deletion request to the server.
-        this.objectDeletionHandling(deleteModuleByMajor, 'module');
-        
-        console.log("closing the dialog");
+        if (this.state.confirmDialogOpenModule === true) {
+            this.setState({ confirmDialogOpenModule: false });
+        }
 
-        // update the view to be without the deleted module.
-        this.setState({ confirmDialogOpenModule: false });
+        else if (this.state.confirmDialogOpenSubject === true) {
+            this.setState({ confirmDialogOpenSubject: false});
+        }
+
+        else if (this.state.confirmDialogOpenFile === true) {
+            this.setState({ confirmDialogOpenFile: false });
+        }
     }
 
     /* handling confirmation of subject deletion. */
@@ -383,112 +516,24 @@ class FileSystemDisplay extends React.Component {
         this.setState({ confirmDialogOpenFile: false });
     }
 
-    /* closing of the confirm deletion dialog - after pressing cancel. */
-    handleCloseCancel(event) {
-        event.stopPropagation();
-
-        if (this.state.confirmDialogOpenModule === true) {
-            this.setState({ confirmDialogOpenModule: false });
-        }
-
-        else if (this.state.confirmDialogOpenSubject === true) {
-            this.setState({ confirmDialogOpenSubject: false});
-        }
-
-        else if (this.state.confirmDialogOpenFile === true) {
-            this.setState({ confirmDialogOpenFile: false });
-        }
-    }
-
-    /* closing of the informative msg. */
-    handleMsgClose() {
-        this.setState({ msgOpen: false });
-    }
-
-    /* activates the informative msg depending on the server's response. */
-    handleInsertionResponse(response, objToInsert) {
-
-        console.log("-----------")
-        console.log(response)
-        console.log("-----------")
-        
-        if (response !== undefined) {
-
-            if (response.status !== undefined && response.status === 201) {
-                this.msg = objToInsert + " created successfully";
-                this.severity = "success";
-                this.setState({ showMsg: true, msgOpen: true});
-
-            } else if (response.response !== undefined) {
-                
-                if (response.response.status !== undefined && response.response.status === 409) {
-                    
-                    this.msg = "The name already exists! Try a different one";
-                    this.severity = "error";
-                    this.setState({ showMsg: true, msgOpen: true});
-                }
-
-            } else {
-                this.msg = "Failed to create the " + objToInsert;
-                this.severity = "error";
-                this.setState({ showMsg: true, msgOpen: true });
-            }
-
-        } else {
-            console.log("error");
-            this.msg = "Failed to create the " + objToInsert;
-            this.severity = "error";
-            this.setState({ showMsg: true, msgOpen: true});
-        }
-    }
-
-    /* handler of inserting new module (button). */
-    handleInsertModule() {
-
-        // show module insertion dialog.
-        this.setState({ 
-            showModuleInsertionDialog: true,
-            moduleInsertionDialogOpen: true,
-        });
-    }
-
-    /* handler of inserting new subject (button). */
-    handleInsertSubject() {
-
-        // show subject insertion dialog.
-        this.setState({ 
-            showSubjectInsertionDialog: true,
-            subjectInsertionDialogOpen: true,
-        });
-    }
-
-    /* onChange of text field in the insertion dialog (module). */
-    moduleInsertionOnChange(event) {
-        this.newModuleName = event.target.value;
-    }
-
-    /* onChange of text field in the insertion dialog (subject). */
-    subjectInsertionOnChange(event) {
-        this.newSubjectName = event.target.value;
-    }
-
-    /* sending to the server the create request (module). */
-    handleCloseInsertModule(event) {
+    /* sending to the server the rename request (module). */
+    handleCloseEditModule(event) {
         event.stopPropagation();
 
         // send req to server.
-        if (this.state.chosenMajor !== undefined && this.newModuleName !== undefined) {
+        if (this.state.chosenMajor !== undefined && this.newModuleName !== undefined
+            && this.oldModuleName !== undefined) {
 
             if (this.newModuleName !== '' && this.newModuleName !== ' ') {
 
-                createModuleByMajor(this.state.chosenMajor, this.newModuleName)
+                renameModule(this.state.chosenMajor, this.oldModuleName, this.newModuleName)
                 .then((response) => {
 
-                    // show informative msg to the screen.
-                    this.handleInsertionResponse(response, 'module');
+                    this.handleRenamingResponse(response, 'module');
 
                     if (response !== undefined) {
-                        if (response.status === 201) {
+
+                        if (response.status === 200) {
 
                             // update the view to contain the new created module.
                             this.sendGetModulesRequest(this.state.chosenMajor);
@@ -505,78 +550,20 @@ class FileSystemDisplay extends React.Component {
             this.setState({ showMsg: true, msgOpen: true});
         }
 
-        // change back to undefined!!!!! important!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        this.newModuleName = undefined;
+        //this.newModuleName = undefined;
+        //this.oldModuleName = undefined;
 
         this.setState({ 
-            moduleInsertionDialogOpen: false
+            moduleRenameDialogOpen: false
         });
-    }
-
-    /* sending to the server the create request (subject). */
-    handleCloseInsertSubject(event) {
-
-        event.stopPropagation();
-
-        // send req to server.
-        if (this.state.chosenModule !== undefined && this.newSubjectName !== undefined) {
-
-            if (this.newSubjectName !== '' && this.newSubjectName !== ' ') {
-
-                createSubjectByModule(this.state.chosenMajor, this.state.chosenModule, this.newSubjectName)
-                .then((response) => {
-
-                    this.handleInsertionResponse(response, 'subject');
-
-                    if (response !== undefined) {
-                        if (response.status === 201) {
-
-                            // update the view to contain the new created subject.
-                            this.handleGetSubjectRequest(this.state.chosenModule);
-                        }
-                    }
-                });
-            }
-
-        } else {
-
-            console.log("error");
-            this.msg = "You did not enter the new subject name";
-            this.severity = "error";
-            this.setState({ showMsg: true, msgOpen: true});
-        }
-
-        // change back to undefined
-        this.newSubjectName = undefined;
-
-        this.setState({ subjectInsertionDialogOpen: false });
-    }
-
-    /* the user regrets creating new module/subject. */
-    handleCloseCancelInsertion(event) {
-        event.stopPropagation();
-
-        if (this.state.moduleInsertionDialogOpen === true) {
-            this.setState({ moduleInsertionDialogOpen: false });
-        } 
-
-        else if(this.state.subjectInsertionDialogOpen === true) {
-            this.setState({ subjectInsertionDialogOpen: false });
-        }
-
     }
 
     /* activates the informative msg depending on the server's response. */
     handleRenamingResponse(response, objToRename) {
 
-        console.log(response);
-        console.log("----------------------!!!")
-
-
         if (response !== undefined) {
 
             if (response.status !== undefined && response.status === 200) {
-                console.log('success');
                 this.msg = objToRename + " renamed successfully";
                 this.severity = "success";
                 this.setState({ showMsg: true, msgOpen: true});
@@ -585,21 +572,18 @@ class FileSystemDisplay extends React.Component {
 
                 if (response.response.status === 409) {
                     
-                    console.log("I am here!!!!!!")
                     this.msg = "The name already exists! Try a different one";
                     this.severity = "error";
                     this.setState({ showMsg: true, msgOpen: true});
                 }
 
             } else {
-                console.log("error");
                 this.msg = "Failed to rename the " + objToRename;
                 this.severity = "error";
                 this.setState({ showMsg: true, msgOpen: true});
             }
 
         } else {
-            console.log("error");
             this.msg = "Failed to rename the " + objToRename;
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});
@@ -630,48 +614,17 @@ class FileSystemDisplay extends React.Component {
         });
     }
 
-    /* sending to the server the rename request (module). */
-    handleCloseEditModule(event) {
+    /* the user regrets renaming the module/subject. */
+    handleCloseCancelEdit(event) {
         event.stopPropagation();
 
-        // send req to server.
-        if (this.state.chosenMajor !== undefined && this.newModuleName !== undefined
-            && this.oldModuleName !== undefined) {
-
-            if (this.newModuleName !== '' && this.newModuleName !== ' ') {
-
-                renameModule(this.state.chosenMajor, this.oldModuleName, this.newModuleName)
-                .then((response) => {
-
-                    this.handleRenamingResponse(response, 'module');
-
-                    if (response !== undefined) {
-
-                        console.log("status of put is: ", response.status);
-
-                        if (response.status === 200) {
-
-                            // update the view to contain the new created module.
-                            this.sendGetModulesRequest(this.state.chosenMajor);
-                        }
-                    }
-                });
-            }
-
-        } else {
-
-            console.log("error");
-            this.msg = "You did not enter the new module name";
-            this.severity = "error";
-            this.setState({ showMsg: true, msgOpen: true});
+        if (this.state.moduleRenameDialogOpen === true) {
+            this.setState({ moduleRenameDialogOpen: false });
         }
 
-        this.newModuleName = undefined;
-        this.oldModuleName = undefined;
-
-        this.setState({ 
-            moduleRenameDialogOpen: false
-        });
+        else if (this.state.subjectRenameDialogOpen === true) {
+            this.setState({ subjectRenameDialogOpen: false });
+        }
     }
 
     /* sending to the server the create request (subject). */
@@ -679,12 +632,12 @@ class FileSystemDisplay extends React.Component {
         event.stopPropagation();
 
          // send req to server.
-         if (this.state.chosenModule !== undefined && this.newSubjectName !== undefined
+         if (this.state.expanded !== undefined && this.newSubjectName !== undefined
             && this.oldSubjectName !== undefined) {
 
             if (this.newSubjectName !== '' && this.newSubjectName !== ' ') {
 
-                renameSubject(this.state.chosenMajor, this.state.chosenModule,
+                renameSubject(this.state.chosenMajor, this.state.expanded,
                     this.oldSubjectName, this.newSubjectName)
                 .then((response) => {
 
@@ -694,7 +647,7 @@ class FileSystemDisplay extends React.Component {
                         if (response.status === 200) {
 
                             // update the view to contain the new created subject.
-                            this.handleGetSubjectRequest(this.state.chosenModule);
+                            this.sendGetModulesRequest(this.state.chosenMajor);
                         }
                     }
                 });
@@ -709,23 +662,10 @@ class FileSystemDisplay extends React.Component {
         }
 
         // change back to undefined
-        this.newSubjectName = undefined;
-        this.oldSubjectName = undefined;
+        //this.newSubjectName = undefined;
+        //this.oldSubjectName = undefined;
 
         this.setState({ subjectRenameDialogOpen: false });
-    }
-
-    /* the user regrets renaming the module/subject. */
-    handleCloseCancelEdit(event) {
-        event.stopPropagation();
-
-        if (this.state.moduleRenameDialogOpen === true) {
-            this.setState({ moduleRenameDialogOpen: false });
-        }
-
-        else if (this.state.subjectRenameDialogOpen === true) {
-            this.setState({ subjectRenameDialogOpen: false });
-        }
     }
 
 	render() {
@@ -733,11 +673,24 @@ class FileSystemDisplay extends React.Component {
         // classes - for styling
         const { classes } = this.props;
 
+        console.log(this.props.modulesToDictSubsToFiles)
+        //console.log(this.state.modules)
+
         return (
             <Grid item xs={11}>             
             {
             (this.state.chosenMajor !== undefined) ? 
             <div>
+                
+                { /* used to show informative msg regarding the deletion */
+                (this.state.showMsg === true) ? <Snackbar open={this.state.msgOpen} 
+                autoHideDuration={3000}
+                onClose={this.handleMsgClose}>
+                    <Alert onClose={this.handleMsgClose} severity={this.severity}>
+                    {this.msg}
+                    </Alert>
+                </Snackbar> : '' }
+
 
                 <DialogsManager
                 handleCloseInsertModule={this.handleCloseInsertModule}
@@ -769,30 +722,10 @@ class FileSystemDisplay extends React.Component {
                 subjectRenameDialogOpen={this.state.subjectRenameDialogOpen}
                 />
 
-                {
-                (this.state.moduleData === undefined) ? <div>
-                    <h4 className={classes.myFont}>
-                        No modules under the major {this.state.chosenMajor}
-                    </h4>
-                    <ListItem button onClick={this.handleInsertModule}>
-                        <ListItemIcon style={{flexBasis: "5.00%"}}>
-                            <AddCircleOutlineOutlinedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Create new Module"/>
-                    </ListItem>
-                </div> : 
-                <List>
-                
-                { /* used to show informative msg regarding the deletion */
-                (this.state.showMsg === true) ? <Snackbar open={this.state.msgOpen} 
-                autoHideDuration={3000}
-                onClose={this.handleMsgClose}>
-                    <Alert onClose={this.handleMsgClose} severity={this.severity}>
-                    {this.msg}
-                    </Alert>
-                </Snackbar> : '' }
 
-                {this.state.moduleData.map((module) => (
+                <List>
+
+                {this.state.modules.map((module) => (
                     <Accordion
                     expanded={this.state.expanded === module}
                     onChange={this.handleAccordionChange(module)}
@@ -800,7 +733,7 @@ class FileSystemDisplay extends React.Component {
                         
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
-                        aria-controls="panel1a-content">
+                        aria-controls="modules">
                             
                             <Typography style={{flexBasis: "98.00%"}}>
                                     {module}
@@ -817,17 +750,16 @@ class FileSystemDisplay extends React.Component {
                             </IconButton>
                             
                         </AccordionSummary>
-                        
+
                         <AccordionDetails>
                             <Grid item xs={12}>
-                            <Typography component={'span'} className={classes.myFont}>
-                                {
-                                (this.state.moduleUpdate === true)
-                                ? <div>
-                                    {
-                                    (this.subjectsData === undefined) ? <div>
+
+                                <Typography component={'span'} className={classes.myFont}>
+                                    {<div>
+                                        { /* there are no subjects under the current module. */
+                                        (Object.keys(this.state.modulesToDictSubsToFiles[module]).length === 0) ? <div>
                                             <h4 className={classes.myFont}>
-                                                No subjects under the module {this.state.chosenModule}
+                                                No subjects under the module {module}
                                             </h4>
                                             <ListItem button onClick={this.handleInsertSubject}>
                                                 <ListItemIcon style={{flexBasis: "5.00%"}}>
@@ -836,99 +768,95 @@ class FileSystemDisplay extends React.Component {
                                                 <ListItemText primary="Create new Subject"/>
                                             </ListItem>
                                         </div> : 
-                                    <div className={classes.root}>
-                                        <List>
-                                            {this.subjectsData.map((subject) => (
+                                        <div className={classes.root}>
+                                            <List>
+                                                {Object.keys(this.state.modulesToDictSubsToFiles[module]).map((subject) => (
 
-                                                <Accordion 
-                                                expanded={this.state.expandedSubject === subject}
-                                                onChange={this.handleSubjectChange(subject)}                                                                key={subject}
-                                                labelname={subject}>
+                                                    <Accordion 
+                                                    expanded={this.state.expandedSubject === subject}
+                                                    onChange={this.handleSubjectChange(subject)}                                                                key={subject}
+                                                    labelname={subject}>
 
-                                                    <AccordionSummary
-                                                    expandIcon={<ExpandMoreIcon />}
-                                                    aria-controls="panel1a-content">
+                                                        <AccordionSummary
+                                                        expandIcon={<ExpandMoreIcon />}
+                                                        aria-controls="subjects">
 
-                                                        <Typography style={{flexBasis: "98.00%"}}>
-                                                            {subject}
-                                                        </Typography>
+                                                            <Typography style={{flexBasis: "98.00%"}}>
+                                                                {subject}
+                                                            </Typography>
 
-                                                        <IconButton aria-label="edit" 
-                                                        onClick={(event) => this.renameSubjectOnClick(event, subject)}>                        
-                                                            <CreateIcon style={{ color: purple[400]}}/>
-                                                        </IconButton>
+                                                            <IconButton aria-label="edit" 
+                                                            onClick={(event) => this.renameSubjectOnClick(event, subject)}>                        
+                                                                <CreateIcon style={{ color: purple[400]}}/>
+                                                            </IconButton>
 
-                                                        <IconButton aria-label="delete" 
-                                                        onClick={(event) => this.subjectDeletionButtonHandler(event, subject)}>                        
-                                                            <DeleteIcon style={{ color: purple[400]}}/>
-                                                        </IconButton>
+                                                            <IconButton aria-label="delete" 
+                                                            onClick={(event) => this.subjectDeletionButtonHandler(event, subject)}>                        
+                                                                <DeleteIcon style={{ color: purple[400]}}/>
+                                                            </IconButton>
 
-                                                    </AccordionSummary>
+                                                        </AccordionSummary>
 
-                                                    <AccordionDetails>
-                                                        <Grid item xs={12}>
-                                                        <Typography component={'span'} className={classes.myFont}>
-                                                            {
-                                                            /* insert the different files in the subject */
-                                                            (this.state.filesUpdate === true) ? <div>
-                                                                {
-                                                                (this.filesData === undefined) ? <div>
+                                                        <AccordionDetails>
+                                                            <Grid item xs={12}>
+                                                            <Typography component={'span'} className={classes.myFont}>
+                                                                {<div>{(this.state.modulesToDictSubsToFiles[module][subject].length === 0) 
+                                                                    ? <div>
                                                                     <h4 className={classes.myFont}>
-                                                                        No files under the subject {this.state.chosenSubject}
+                                                                        No files under the subject {subject}
                                                                     </h4>
                                                                     <CourseUploading 
                                                                     chosenMajor={this.state.chosenMajor}
-                                                                    chosenModule={this.state.chosenModule}
-                                                                    chosenSubject={this.state.chosenSubject}
-                                                                    handleGetFilesRequest={this.handleGetFilesRequest}
+                                                                    chosenModule={module}
+                                                                    chosenSubject={subject}
                                                                     />
-                                                                </div> :
-                                                                <div>
-                                                                    <DisplayFiles files={this.filesData}
-                                                                    FileDeletionButtonHandler={this.FileDeletionButtonHandler}
-                                                                    role={Role.Commander}/>
-                                                                    <CourseUploading 
-                                                                    chosenMajor={this.state.chosenMajor}
-                                                                    chosenModule={this.state.chosenModule}
-                                                                    chosenSubject={this.state.chosenSubject}
-                                                                    handleGetFilesRequest={this.handleGetFilesRequest}/>
-                                                                </div>
-                                                                }
-                                                            </div>
-                                                            : ''
-                                                            }
-                                                        </Typography>
-                                                        </Grid>
-                                                    </AccordionDetails>
-                                                </Accordion>
+                                                                    </div> 
+                                                                    : <div>
+                                                                        <DisplayFiles files={this.state.modulesToDictSubsToFiles[module][subject]}
+                                                                        FileDeletionButtonHandler={this.FileDeletionButtonHandler}
+                                                                        role={Role.Commander}/>
+                                                                        <CourseUploading 
+                                                                        chosenMajor={this.state.chosenMajor}
+                                                                        chosenModule={module}
+                                                                        chosenSubject={subject} />
+                                                                    </div>}
+                                                                </div>}
+                                                            </Typography>
+                                                            </Grid>
+                                                        </AccordionDetails>
+                                                    </Accordion>
 
-                                            ))}
-                                            <ListItem button onClick={this.handleInsertSubject}>
-                                                <ListItemIcon style={{flexBasis: "5.00%"}}>
-                                                    <AddCircleOutlineOutlinedIcon color="primary"/>
-                                                </ListItemIcon>
-                                                <ListItemText primary="Create new Subject"/>
-                                            </ListItem>
-                                        </List>
+                                                ))}
+                                                <ListItem button onClick={this.handleInsertSubject}>
+                                                    <ListItemIcon style={{flexBasis: "5.00%"}}>
+                                                        <AddCircleOutlineOutlinedIcon color="primary"/>
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Create new Subject"/>
+                                                </ListItem>
+                                            </List>
+                                        </div>
+                                        }
                                     </div>
+                                
                                     }
-                                </div>
-                                : ''
-                                }
-                            </Typography>
+                                </Typography>
+
                             </Grid>
                         </AccordionDetails>
-                    </Accordion> 
+
+                    </Accordion>
                 ))}
-                    <ListItem button onClick={this.handleInsertModule}>
-                        <ListItemIcon style={{flexBasis: "5.00%"}}>
-                            <AddCircleOutlineOutlinedIcon color="primary"/>
-                        </ListItemIcon>
-                        <ListItemText primary="Create new Module"/>
-                    </ListItem>
+                <ListItem button onClick={this.handleInsertModule}>
+                    <ListItemIcon style={{flexBasis: "5.00%"}}>
+                        <AddCircleOutlineOutlinedIcon color="primary"/>
+                    </ListItemIcon>
+                    <ListItemText primary="Create new Module"/>
+                </ListItem>
+
                 </List>
-                }
-            </div> : ''
+
+            </div> 
+            : ''
             }
             </Grid>
         );

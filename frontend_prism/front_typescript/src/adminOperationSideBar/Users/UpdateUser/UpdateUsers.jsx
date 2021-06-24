@@ -30,7 +30,6 @@ class UpdateUsers extends React.Component {
     constructor(props) {
         super(props);
         this.handleChangeSelectSoldier = this.handleChangeSelectSoldier.bind(this);
-       
         this.soldier_id = undefined;
         this.soldier_firstName = undefined;
         this.soldier_secondName = undefined;
@@ -43,17 +42,8 @@ class UpdateUsers extends React.Component {
                 firstName: ' None',
                 lastName: ' ',
                 personalId: ' ' 
-            }/*,
-            {
-                firstName: 'XUI NOT EXIST',
-                lastName: 'XUI NOT EXIST',
-                personalId: "0123456789"
-            },
-            {
-                firstName: 'XUI NOT EXIST',
-                lastName: 'XUI NOT EXIST',
-                personalId: "0123446789"
-            }*/
+            }
+ 
         ];
     }
 
@@ -71,33 +61,27 @@ class UpdateUsers extends React.Component {
                         this.setState({_users_retrieved: true});
                         
                     } else {
-                        
-                    console.log("(((((((((((((((");
-                    console.log(users);
 
-                    users = users.data;
-                    for (user of users) {
-                        console.log(user);
-                        let personalIdUser = user.personalId;
-                        let firstNameUser = user.firstName;
-                        let lastNameUser = user.lastName;
+                        users = users.data;
+                        for (user of users) {
+                            console.log(user);
+                            let personalIdUser = user.personalId;
+                            let firstNameUser = user.firstName;
+                            let lastNameUser = user.lastName;
 
-                        let line = {
-                                firstName: firstNameUser,
-                                lastName: lastNameUser,
-                                personalId: personalIdUser 
-                        }
+                            let line = {
+                                    firstName: firstNameUser,
+                                    lastName: lastNameUser,
+                                    personalId: personalIdUser 
+                            }
 
-                        this.soldierInCommanderMajor.push(line);
-                    };
-
-                        console.log(")))))))))))))))")
+                            this.soldierInCommanderMajor.push(line);
+                        };
                     }
-                    //////////////////////////////////////// put as async /////////////////////////////
+                    
                     this.soldierInCommanderMajor.sort((a,b) => a.personalId - b.personalId)
-
                     this.setState({_users_retrieved: true})
-                })
+                });
             }
         });
     }
@@ -106,8 +90,6 @@ class UpdateUsers extends React.Component {
     handleChangeSelectSoldier(event) {
 
         const { classes } = this.props;
-        
-        console.log(event.target.value + "  !!!!!!!!!!!!!!")
         this.soldier_id = event.target.value;
         
         // make default values to cause re-rendering when user was selected
@@ -117,21 +99,16 @@ class UpdateUsers extends React.Component {
 
             // none was chosen
             if (user === undefined){
-                console.log(user + " <--1")
                 this.form = <h2>problem with user loading </h2>
                 this.setState({_error: true})
             }
             // user doesnt exist
             else if (user.data === ""){
-                console.log(user + " <--1")
                 this.form = <h2>problem with user loading </h2>
-                this.setState({_error: true})
-            } else {
-                
+                this.setState({_error: true});
 
-                console.log(user + " <--2")
-                let data = user.data
-                
+            } else {
+                let data = user.data;
                 let phone_num = data.phoneNumber;
                 let userName = data.username;
                 let firstName = data.firstName;
@@ -162,19 +139,17 @@ class UpdateUsers extends React.Component {
                 </DisplayUserData>
 
 
-                this.setState({_selected: true})
+                this.setState({_selected: true});
                 }
-        }, (error)=>{
+        }, (error) => {
 
             this.form = <h2>problem with user loading </h2>
             this.setState({error: true})
-        })
+        });
     }
 
     render() {
         const { classes } = this.props;
-
-        console.log(" renders update")
             
         if (this.state._users_retrieved) {
             return (

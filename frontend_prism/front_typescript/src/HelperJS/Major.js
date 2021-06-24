@@ -4,7 +4,6 @@ const Major = {
     Reserach: "research",
     Firmware: "firmware",
     Validation: "validation",
-    Network: "network",
 };
 
 const majors = [
@@ -27,10 +26,6 @@ const majors = [
     {
         value: Major.Validation,
         label: 'Validation',
-    },
-    {
-        value: Major.Network,
-        label: 'Network',
     },
 ];
 

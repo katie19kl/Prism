@@ -4,5 +4,4 @@ export enum Major {
     Research = "research",
     Firmware = "firmware",
     Validation = "validation",
-    Network = "network",
 }

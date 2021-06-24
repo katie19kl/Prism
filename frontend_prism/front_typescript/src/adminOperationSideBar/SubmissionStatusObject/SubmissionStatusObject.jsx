@@ -46,10 +46,6 @@ class SubmissionStatusObject extends React.Component {
         // classes - for styling
         const { classes } = this.props;
         const { history } = this.props;
-
-        console.log("history is: ", history);
-
-        console.log("here in submission status!!!")
     
         return (
  

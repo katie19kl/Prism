@@ -20,12 +20,9 @@ class WaiterLoading extends React.Component {
         return (
             <div className={classes.root}>
 
-    
-
-
               <CircularProgress disableShrink size={100} />
             </div>
-          );
+        );
     }
 }
 

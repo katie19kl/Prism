@@ -1,4 +1,3 @@
-
 import React from "react"
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -134,7 +133,6 @@ class SoldierSubmissions extends React.Component {
 
 		let arrPromises = []
 		console.log("3")
-		//console.log("starting iterate module module & retrieve subjects of each module module")
 		for (const module of modules){
 			
 
@@ -144,35 +142,25 @@ class SoldierSubmissions extends React.Component {
 					if (res !== undefined) {
 						if (res.data !== undefined) {
 		
-							let modul_subject = {}
-							modul_subject[module] = res.data
-							resol(modul_subject)
+							let modul_subject = {};
+							modul_subject[module] = res.data;
+							resol(modul_subject);
 		
+						} else {
+							rej(undefined);
 						}
-						else {
-							rej(undefined)
-						}
-					}else {
-						rej(undefined)
+					} else {
+						rej(undefined);
 					}
-				})
-				
-			}))
+				});
+			}));
 		}
-		console.log("4")
 
 		let allRESOLVEV = Promise.all(arrPromises) 
 		console.log("all pormises are resolved")
 		
-
-		
 		console.log(allRESOLVEV)
-		return allRESOLVEV
-
-
-		
-		
-
+		return allRESOLVEV;
 	}
 
 	getModulesOfMajor(){
@@ -188,28 +176,24 @@ class SoldierSubmissions extends React.Component {
 				//Starting extract subjects of arrived modules
 				this.getSubjectsOfModules(modules_, selectedMajor).then((modules_subjects)=>{
 
-					let mod_sub = {}
+					let mod_sub = {};
 					for (const dict_mod_sub of modules_subjects){
 
 						for (const [key, value] of Object.entries(dict_mod_sub)) {
-							mod_sub[key] = value
+							mod_sub[key] = value;
 							
-						  } 
+						} 
 					}
 
-					this.modules_subjects = mod_sub
-
+					this.modules_subjects = mod_sub;
 					
-					//END extract subjects of arrived modules
-					
+					//END extract subjects of arrived modules					
 					// Given subject & modules -> extract all submission of choosen user
 					this.getAllUserSubmissions(modules_subjects)
 					
-				})
-				
+				});
 			}
-		})
-		
+		});
 	}
 
 	getAllUserSubmissions(modules_subjects){
@@ -325,12 +309,12 @@ class SoldierSubmissions extends React.Component {
 				let gradeDescription = submission.gradeDescription
 
 
-				if (submission.checked && gradeDescription===OK_Status.OK_Status.OK){
+				if (submission.checked && gradeDescription === OK_Status.OK) {
 					color = Status.SubmittedGoodEnough
 				}
-				else if(submission.checked && gradeDescription===OK_Status.OK_Status.NOT_OK){
+				else if (submission.checked && gradeDescription === OK_Status.NOT_OK) {
 					color = Status.SubmittedNotGoodEnough
-				}else if (!submission.checked){
+				} else if (!submission.checked){
 					color = Status.SubmittedNotReviewed
 				}
 				// subject -> its submission info for displaying
