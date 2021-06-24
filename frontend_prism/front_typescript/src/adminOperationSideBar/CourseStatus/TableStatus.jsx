@@ -264,6 +264,9 @@ class TableStatus extends React.Component {
 
 
 	componentDidUpdate() {
+		let x = 45;
+		x = 45 * 2
+
 		this.last = false
 
 		// if check box (MySoldiers) state was changed
