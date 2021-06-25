@@ -8,13 +8,15 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
 import { jwtConstants } from '../RolesActivity/constants';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
+import { Synchronizer } from '../synchronizer/Synchronizer';
 
 
 
 @Controller('users')
 export class UsersController {
 
-    constructor(private usersService: UsersService, private subjectOnDemandService: SubjectsOnDemandService) { }
+    constructor(private usersService: UsersService, private subjectOnDemandService: SubjectsOnDemandService,
+                                        private syncronizer:Synchronizer) { }
 
 
 
@@ -123,7 +125,7 @@ export class UsersController {
 
      
         
-        return await this.usersService.deleteUser(personalId);
+        return await this.usersService.deleteUser(personalId,this.syncronizer);
 
     }
 

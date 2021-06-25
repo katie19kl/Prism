@@ -404,6 +404,7 @@ class SoldierSubmissions extends React.Component {
         // all steps of extracting data were finished
         let displayTable = (this.state.module_submissions !== undefined && this.subjectClosed !== undefined)
 		
+		
 		// prevents case when soldier was changed 
 		// but updated response till arrived
 		if (this.soldierClosed !== undefined){

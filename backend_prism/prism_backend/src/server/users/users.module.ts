@@ -10,16 +10,21 @@ import { UserSubmissionModule } from '../UserSubmission/user-submission.module';
 import { UserSubmissionService } from '../UserSubmission/user-submission.service'
 import { SubjectsOnDemandModule } from '../subjects-on-demand/subjects-on-demand.module';
 import { FileHandlingModule } from '../file-handling/file-handling.module';
+import { Synchronizer } from '../synchronizer/Synchronizer';
+import { SynchronizerModule } from '../synchronizer/Synctonized.module';
 
 
 @Module({
   imports: [
+  
     SubjectsOnDemandModule,
+    SynchronizerModule,
     MongooseModule.forFeature([{name: 'Reviews', schema: ReviewSchema}]),
     MongooseModule.forFeature([{name: 'User', schema: UserSchema}]),
     MongooseModule.forFeature([{name: 'User-Submission', schema: UserSubmissionSchema}]),
     PassportModule.register({ defaultStrategy: 'jwt', session: false }),
   ],
+
   exports: [UsersService],
   controllers: [UsersController],
   providers: [UsersService, UserSubmissionService ]

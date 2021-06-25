@@ -15,12 +15,15 @@ import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-deman
 import { FileHandlingService } from '../file-handling/file-handling.service';
 import { SubjectManager } from '../file-handling/managers/SubjectManager';
 import { ModuleManager } from '../file-handling/managers/ModuleManager';
+import { Synchronizer } from '../synchronizer/Synchronizer';
 
 @Injectable()
 export class UsersService {
 
 	userSubmissionHandler: UserSubmissionService;
 	reviewHandler: ReviewService;
+
+	syncronizer:Synchronizer
 
 	constructor(@InjectModel('User') private userModel: Model<IUser>,
 				@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
@@ -29,6 +32,8 @@ export class UsersService {
 		
 		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel);
 		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionModel, userSubmissionService);
+	
+		
 	}
 
 
@@ -467,13 +472,19 @@ export class UsersService {
 	}
 
 	// delete user by its username
-	async deleteUser(personalId: string) {
+	async deleteUser(personalId: string, syncronizer: Synchronizer) {
 		let user = await this.userModel.findOne({"personalId": personalId});
 
 		if (user) {
 			
-			return await user.deleteOne();
-		
+			//return await user.deleteOne();
+			await user.deleteOne();
+
+
+			return await syncronizer.syncUserDeletion(user.personalId)
+			
+
+
 		} else {
 
 			throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
