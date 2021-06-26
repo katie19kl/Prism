@@ -25,6 +25,7 @@ const useStyles = (theme) => ({
   },
 });
 
+
 class ContentOfModule extends React.Component {
 
 
