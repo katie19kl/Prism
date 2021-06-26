@@ -41,7 +41,7 @@ export class FileManager{
 					}
                     else {
                         for await(const file of files){
-                            console.log(file)
+                           
 
                             const stat = await fs.promises.stat( directory + "/" + file);
         
@@ -71,9 +71,7 @@ export class FileManager{
 		}
 
 		await get_f()
-        //console.log("---->>>>>>>>")
-		//console.log(files_name)
-        //console.log("---->>>>>>>>")
+
 		return files_name
     }
 
@@ -118,7 +116,7 @@ export class FileManager{
                                 reject(new NotFoundException("Failed to close descriptor!"));
 
                             else {
-                                console.log("File descriptor was closed");
+                                //console.log("File descriptor was closed");
                                 resolve("File successfully added");
                             }
                             });
@@ -208,7 +206,6 @@ export class FileManager{
         })();
 
         if (isDeleted) {
-            console.log("file " , file_to_delete , " was deleted ");
             return "Deleted Successfully";
         }else {
 

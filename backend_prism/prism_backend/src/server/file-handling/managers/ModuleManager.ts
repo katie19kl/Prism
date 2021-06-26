@@ -258,10 +258,8 @@ export class ModuleManager {
 
             
             if (fs.existsSync(pathModuleNew)) {
-                console.log("----")
-                console.log("EXIST ALREADY") 
-                console.log(pathModuleNew)
-                console.log("----")
+ 
+
                 return true;        
             }
         }

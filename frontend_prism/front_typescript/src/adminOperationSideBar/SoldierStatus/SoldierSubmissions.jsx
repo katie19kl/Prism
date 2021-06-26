@@ -10,6 +10,7 @@ import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSub
 import { Link } from "react-router-dom"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
 import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import { getSoldierClosedSubjects } from "../CourseStatus/subject_on_demand"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -117,6 +118,8 @@ class SoldierSubmissions extends React.Component {
 		this.modules = []
 		this.modules_subjects = {}
 
+		this.subjectClosed = {}
+
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
 			///selectedSoldier: this.props.selectedModule,
@@ -132,7 +135,7 @@ class SoldierSubmissions extends React.Component {
 	getSubjectsOfModules(modules, selectedMajor){
 
 		let arrPromises = []
-		console.log("3")
+	
 		for (const module of modules){
 			
 
@@ -157,9 +160,9 @@ class SoldierSubmissions extends React.Component {
 		}
 
 		let allRESOLVEV = Promise.all(arrPromises) 
-		console.log("all pormises are resolved")
+		//console.log("all pormises are resolved")
+
 		
-		console.log(allRESOLVEV)
 		return allRESOLVEV;
 	}
 
@@ -173,25 +176,60 @@ class SoldierSubmissions extends React.Component {
 		  		let modules_ = response.data
 				this.modules = modules_
 				
-				//Starting extract subjects of arrived modules
-				this.getSubjectsOfModules(modules_, selectedMajor).then((modules_subjects)=>{
+				/////////////////////////////////////////////////////////////
+				let soldier = []
+				soldier.push({"personalId" : this.props.selectedSoldier})
 
-					let mod_sub = {};
-					for (const dict_mod_sub of modules_subjects){
-
-						for (const [key, value] of Object.entries(dict_mod_sub)) {
-							mod_sub[key] = value;
-							
-						} 
-					}
-
-					this.modules_subjects = mod_sub;
+				let promises = []
+				for (const module of modules_){
+					let newPromise =  new Promise((resolv, rej)=>{
 					
-					//END extract subjects of arrived modules					
-					// Given subject & modules -> extract all submission of choosen user
-					this.getAllUserSubmissions(modules_subjects)
+						
+						getSoldierClosedSubjects(this.props.selectedMajor,module,soldier).then((responce) => {
+			
+							if (responce !== undefined)
+							{
+								if (responce.data !== undefined){				
+									//this.soldierClosed = responce.data
+									this.subjectClosed[module] = responce.data
+									this.soldierClosed = Object.keys(responce.data)
+								}else {
+									this.subjectClosed[module] = []
+									this.soldierClosed = -1
+								}
+							}else {
+								this.subjectClosed[module] = []
+								this.soldierClosed = -1
+							}
+							resolv(responce.data)
+				
+						})
+					});
+					promises.push(newPromise)
+				}
+				Promise.all(promises).then(()=>{
+
+					//console.log("HERE ALL PROMISES MUST BE HERE")
 					
-				});
+					this.getSubjectsOfModules(modules_, selectedMajor).then((modules_subjects)=>{
+
+						let mod_sub = {};
+						for (const dict_mod_sub of modules_subjects){
+	
+							for (const [key, value] of Object.entries(dict_mod_sub)) {
+								mod_sub[key] = value;
+								
+							} 
+						}
+	
+						this.modules_subjects = mod_sub;
+						
+						//END extract subjects of arrived modules					
+						// Given subject & modules -> extract all submission of choosen user
+						this.getAllUserSubmissions(modules_subjects)
+						
+					});
+				})		
 			}
 		});
 	}
@@ -258,6 +296,7 @@ class SoldierSubmissions extends React.Component {
 		// if new soldier was selected
 		if (this.state.selectedSoldier !== this.props.selectedSoldier){
 			
+
 			// Re-render & extract info of new soldier 
 			this.setState({selectedSoldier : this.props.selectedSoldier}, function() {
 				this.extractAllNeededData()
@@ -272,6 +311,7 @@ class SoldierSubmissions extends React.Component {
 	3- Submissions of modules
 	*/
 	extractAllNeededData(){
+		
 		this.getModulesOfMajor()
 	}
 
@@ -288,10 +328,20 @@ class SoldierSubmissions extends React.Component {
 
 		let mod_subject_colors = {}		
 		
+
+
 		
 		for (let module_ in submissions_){
-			// iterate over all module names	
+
 			let module = submissions_[module_]
+			
+			
+			let subjectClosed = this.subjectClosed[module_][this.props.selectedSoldier]
+			if (subjectClosed === undefined){
+				subjectClosed = []
+			}
+	
+
 
 			// submission of user from server
 			let soldier_submissions = module[selectedSoldier]
@@ -301,10 +351,23 @@ class SoldierSubmissions extends React.Component {
 				continue
 			}
 			for (let submission of soldier_submissions){
+
+				
+
+
 				let subject = submission.subject
 				let grade =  submission.grade
 				// color to display in table
+				
 				let color = Status.Closed
+
+				
+	
+				if (subjectClosed.includes(subject)){
+
+					color = Status.OpenNotSubmitted
+				}
+
 
 				let gradeDescription = submission.gradeDescription
 
@@ -331,12 +394,21 @@ class SoldierSubmissions extends React.Component {
 
 	render() {
         
-		
+		console.log("Closed stuff of soldier is")
+		console.log(this.subjectClosed)
+		console.log(this.soldierClosed)
+		console.log("--------------------------")
+
         let classes = this.props.classes
 
         // all steps of extracting data were finished
-        let displayTable = (this.state.module_submissions !== undefined)
-
+        let displayTable = (this.state.module_submissions !== undefined && this.subjectClosed !== undefined)
+		
+		// prevents case when soldier was changed 
+		// but updated response till arrived
+		if (this.soldierClosed !== undefined){
+			displayTable = (this.props.selectedSoldier === this.soldierClosed[0])
+		}
 		
 		if (displayTable && 1) {
 
@@ -425,11 +497,30 @@ class SoldierSubmissions extends React.Component {
 												
 												</TableCell>
 												: // lack of data (or not submitted)
+												
+												
+												// Takes care of closed/opened subjects
+												(
+												this.subjectClosed[module][this.props.selectedSoldier].length > 0
+												&& 
+												this.subjectClosed[module][this.props.selectedSoldier].includes(subject_name))
+												?
 												<TableCell className={classes.sticky} style={{ backgroundColor: Status.Closed/*"orange"*/ }}>
 												{
 													subject_name.split(" ")[1] //+ " not submitted "
 												}
 												</TableCell>
+												:
+												<TableCell className={classes.sticky} style={{ backgroundColor: Status.OpenNotSubmitted/*"orange"*/ }}>
+												{
+													subject_name.split(" ")[1] //+ " not submitted "
+												}
+												</TableCell>
+
+
+								
+
+												
 										))
 									}
 								</TableRow>

@@ -20,7 +20,7 @@ export class UserSubmissionController {
                          @Body() userSubmissionDto: UserSubmissionDTO
                          ,@Req() req) {
         
-        console.log(userSubmissionDto)
+        //console.log(userSubmissionDto)
   
         const usertoken = req.headers.authorization;
         return this.usersService.addNewUserSubmission(userSubmissionDto, file, usertoken);
@@ -40,7 +40,6 @@ export class UserSubmissionController {
     
         }
         catch (error) {
-            console.log(error);
             
             throw error;
         }
@@ -52,17 +51,11 @@ export class UserSubmissionController {
                               @Req() req){
         
     
-        console.log("=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-")
-        console.log(file_name)
-        console.log(userSubmissionDto)
         
-        console.log(userSubmissionDto.major)
-
         const usertoken = req.headers.authorization;
 
 
         let x =  await this.usersService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
-        console.log(x)
         return x
     }
 
@@ -77,7 +70,6 @@ export class UserSubmissionController {
     
         }
         catch (error) {
-            console.log(error);
             
             throw error;
         }

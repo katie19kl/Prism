@@ -21,7 +21,7 @@ export class AuthController {
     @UseFilters(NoJWTFilter)
     async tokenValidator(@Res() res) {
 
-        console.log("in JWT");
+  
         return res.json({ isValid: true});
         
     }
@@ -32,8 +32,8 @@ export class AuthController {
     @UseFilters(new EmptyExceptionFilter())
     async login(@Body() loginUserDto: LoginUserDto): Promise<any> {
 
-        console.log("auth controller")
-        console.log(loginUserDto); // to be deleted!
+        
+   
 
         // JWT token
         const resultJWTtoken = await this.authService.validateUserByPassword(loginUserDto);
@@ -51,7 +51,7 @@ export class AuthController {
 
         } else {
 
-            console.log("Unauthorized an exception has occured");
+           
             throw new NotFoundException(UserNotFoundException.NotFound);
             
         }
