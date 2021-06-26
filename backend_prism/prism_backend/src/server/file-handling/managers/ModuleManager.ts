@@ -3,6 +3,7 @@ import { NotFoundException } from "@nestjs/common";
 import { HttpException } from "@nestjs/common";
 import { ConflictException } from "@nestjs/common";
 import { BadRequestException } from "@nestjs/common";
+import { Synchronizer } from "src/server/synchronizer/Synchronizer";
 
 
 import { Major } from "src/server/users/common/major.enum";
@@ -16,7 +17,7 @@ export class ModuleManager {
 
 
 
-    async removeModuleDirInMajor(module_to_del: string, major: Major) {
+    async removeModuleDirInMajor(module_to_del: string, major: Major,synchronizer:Synchronizer) {
    
       
         let dir = this.createPathMajorModuleGivenIndexing(major, module_to_del)
@@ -47,7 +48,8 @@ export class ModuleManager {
                         
                         let removedIndex = this.getModuleIndexFromModule(module_to_del)
                             
-                        let renaming = await this.decreaseIndexesModulesAfterRemoved(removedIndex, major)
+                        console.log("renaming other stuff")
+                        let renaming = await this.decreaseIndexesModulesAfterRemoved(removedIndex, major,synchronizer)
 
      
                         
@@ -57,7 +59,8 @@ export class ModuleManager {
                         }
                         else {
 
-                           
+                            console.log("Calling syncrnizer....")
+                            await synchronizer.syncModuleDeleting(major,module_to_del)
                             resolve("Deleting & renaming are done")
                         }
                     }
@@ -111,13 +114,9 @@ export class ModuleManager {
 
 
 
-    async decreaseModuleIndexInSubjects(major:Major, module, removedIndex){
-
-    }
 
 
-
-    async decreaseIndexesModulesAfterRemoved(removedIndex, major: Major) {
+    async decreaseIndexesModulesAfterRemoved(removedIndex, major: Major, synchronizer:Synchronizer) {
 
         const fs = require("fs")
     
@@ -129,7 +128,7 @@ export class ModuleManager {
 
         return await new Promise( async (res, rej) => {
 
-            for await (const dir_module of all_dirs) {
+            for (const dir_module of all_dirs) {
 
                 let dirIndex = this.getModuleIndexFromModule(dir_module)
 
@@ -159,42 +158,64 @@ export class ModuleManager {
 
 
                     // Here can rename all subjects inside module
-                    fs.rename(currentPath, newPath, function (err) {
-                        if (err) {
-                            rej(-1)
-                        }
+                    await new Promise((res,rej)=>{
+                        console.log("renaming" , currentPath, " to ", newPath)
+                        console.log(dirNew)
+                        console.log(dir_module)
 
-                       
-                        
-                        let all_dirs_subject = FileHandlingService.getDirList(newPath)
-
-                        for (const dir_subject of all_dirs_subject){
-
-
-                            let indexNew = (parseInt(dir_subject.split(IndexingFormat.SubjectSubIndexing)[0]) - 1).toString()
-                            let indexPrev = parseInt(dir_subject.split(IndexingFormat.SubjectSubIndexing)[0]).toString()
-                          
+                        fs.rename(currentPath, newPath, async function (err) {
+                            if (err) {
+                                rej(-1)
+                            }
+    
+                            await synchronizer.syncModuleRenaming(major,dir_module, dirNew)
                             
-                            let new_dir_subject = newPath + "/" + indexNew + dir_subject.substring(indexPrev.length)
-                            let prev_dir_subject = newPath + "/" +indexPrev +  dir_subject.substring(indexPrev.length)
+                            let all_dirs_subject = FileHandlingService.getDirList(newPath)
+    
+                            for (const dir_subject of all_dirs_subject){
+    
+    
+                                let indexNew = (parseInt(dir_subject.split(IndexingFormat.SubjectSubIndexing)[0]) - 1).toString()
+                                let indexPrev = parseInt(dir_subject.split(IndexingFormat.SubjectSubIndexing)[0]).toString()
+                              
+                                
+                                let new_dir_subject = newPath + "/" + indexNew + dir_subject.substring(indexPrev.length)
+                                let prev_dir_subject = newPath + "/" +indexPrev +  dir_subject.substring(indexPrev.length)
+    
+                                
+                                
+    
+                                await new Promise((resolve, reject)=>{
+                                    //console.log("renaming" , prev_dir_subject, " to ", new_dir_subject)
+                                    //console.log(indexNew + dir_subject.substring(indexPrev.length))
+                                    //console.log(indexPrev +  dir_subject.substring(indexPrev.length))
+                                    
+                                    let prevSubject = indexPrev +  dir_subject.substring(indexPrev.length)
+                                    let newSubject = indexNew + dir_subject.substring(indexPrev.length)
+                                    
+                                    fs.rename(prev_dir_subject, new_dir_subject, async function (err) {
+                                        if (err) {
+                                            reject(-1)
+                                        }
+                                        await synchronizer.syncSubjectRenaming(major,dirNew,prevSubject,newSubject)
+                                        resolve(1)
+                                    })
+                                })
 
-                  
-                            
-
-                            fs.rename(prev_dir_subject, new_dir_subject, function (err) {
-                                if (err) {
-                                    rej(-1)
-                                }
-                            })
-   
-                        }
-                    
+       
+                            }
+                            console.log("--------------------------------")
+                            res(1)
                         
+                            
+                        })
                     })
+
                 }
             }
 
-
+            console.log(all_dirs)
+            console.log(FileHandlingService.getDirList(path))
             res(all_dirs)
     
         })
@@ -353,7 +374,7 @@ export class ModuleManager {
 
 
 
-    async renameModule(major: Major, currentModuleName:string, newModuleName:string){
+    async renameModule(major: Major, currentModuleName:string, newModuleName:string,synchronizer:Synchronizer){
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         let currPath = this.createPathMajorModuleGivenIndexing(major, currentModuleName)
         
@@ -384,14 +405,15 @@ export class ModuleManager {
             }
             else {
                 
-                fs.rename(currPath, newPath, function (err) {
+                fs.rename(currPath, newPath,  async function (err) {
                     if (err) {
                         
                         reject(new NotFoundException("Provided directory was not found"))
                         
                     } else {
                         
-                      
+  
+                        await synchronizer.syncModuleRenaming(major,currentModuleName,  moduleIndex + newModuleName)
                         resolve("Successfully renamed the directory")
                         
                         

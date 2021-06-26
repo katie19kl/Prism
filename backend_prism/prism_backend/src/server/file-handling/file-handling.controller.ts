@@ -9,13 +9,15 @@ import { HttpCode } from '@nestjs/common';
 import { Put } from '@nestjs/common';
 import { UsersService } from '../users/users.service';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
+import { Synchronizer } from '../synchronizer/Synchronizer';
 
 
 @Controller('file-handling')
 export class FileHandlingController {
 
 	constructor(private readonly fileHandlingService: FileHandlingService,
-		 private subjectOnDemandService: SubjectsOnDemandService,private userService: UsersService) {}
+		 private subjectOnDemandService: SubjectsOnDemandService,private userService: UsersService,
+		 private synchronizer: Synchronizer) {}
 
 
 		// put admin permission only
@@ -72,7 +74,7 @@ export class FileHandlingController {
 	{
 	
 		
-		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName)
+		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName, this.synchronizer)
 	}
 
 
@@ -81,7 +83,7 @@ export class FileHandlingController {
 		
 
 
-		return this.fileHandlingService.removeModuleDirInMajor(module_to_del,major)
+		return this.fileHandlingService.removeModuleDirInMajor(module_to_del,major,this.synchronizer)
 
 	}
 
@@ -118,7 +120,7 @@ export class FileHandlingController {
 	{
 
 		
-		return  this.fileHandlingService.removeSubject(major,module,subjectToDelete)
+		return  this.fileHandlingService.removeSubject(major,module,subjectToDelete,this.synchronizer)
 
 	}
 
@@ -129,7 +131,7 @@ export class FileHandlingController {
 						 @Param('newSubjectName') newSubjectName :string)
 	{
 
-		return this.fileHandlingService.renameSubject(major, module, subjectToRename, newSubjectName);
+		return this.fileHandlingService.renameSubject(major, module, subjectToRename, newSubjectName, this.synchronizer);
 	}
 
 

@@ -478,9 +478,9 @@ export class UsersService {
 		if (user) {
 			
 			//return await user.deleteOne();
+			
+			
 			await user.deleteOne();
-
-
 			return await syncronizer.syncUserDeletion(user.personalId)
 			
 

@@ -9,6 +9,7 @@ import { FileManager } from './managers/FileManager';
 import { NotFoundException } from '@nestjs/common';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
 import { UsersService } from '../users/users.service';
+import { Synchronizer } from '../synchronizer/Synchronizer';
 
 
 const pathRootDirectory_ = './../root'
@@ -133,15 +134,15 @@ export class FileHandlingService {
         return await this.moduleManager.createNewModuleDirInMajor(new_directory_name, major)
 
     }
-    async removeModuleDirInMajor(module_to_del:string, major:Major) {
+    async removeModuleDirInMajor(module_to_del:string, major:Major, synchronizer:Synchronizer) {
    
-        return await this.moduleManager.removeModuleDirInMajor(module_to_del,major);
+        return await this.moduleManager.removeModuleDirInMajor(module_to_del,major,synchronizer);
     }
 
 
-    async renameModule(major: Major, currentModuleName:string, newModuleName:string) {
+    async renameModule(major: Major, currentModuleName:string, newModuleName:string,synchronizer:Synchronizer) {
         
-        return await this.moduleManager.renameModule(major, currentModuleName, newModuleName)  
+        return await this.moduleManager.renameModule(major, currentModuleName, newModuleName,synchronizer)  
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -156,9 +157,9 @@ export class FileHandlingService {
         
     }
 
-    async removeSubject(major:Major, module:string, subjectToDelete:string) {
+    async removeSubject(major:Major, module:string, subjectToDelete:string,synchronizer:Synchronizer) {
         
-        return await this.subjectManager.removeSubject(major, module, subjectToDelete)
+        return await this.subjectManager.removeSubject(major, module, subjectToDelete,synchronizer)
     }
 
 
@@ -167,8 +168,8 @@ export class FileHandlingService {
     }
 
 
-    async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string) {
-        return await this.subjectManager.renameSubject(major, module, subjectToRename, newNameForSubject)
+    async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string, synchronizer:Synchronizer) {
+        return await this.subjectManager.renameSubject(major, module, subjectToRename, newNameForSubject, synchronizer)
     }
 
     ///////////////////////////////////////FILE MANAGER/////////////////////////////////////////////
