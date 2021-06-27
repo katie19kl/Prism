@@ -59,8 +59,7 @@ class TableStatusFrame extends React.Component {
     }
 
     handleMySoldiers(event){
-        //console.log(event.target.checked)
-        //this.checkBoxClicked = event.target.checked
+       
         this.setState({checkBoxClicked:event.target.checked});
     }
 
@@ -69,7 +68,7 @@ class TableStatusFrame extends React.Component {
 
         if (this.selectedMajor !== "None") {
 
-            //console.log(this.selectedMajor)
+       
 
             getModulesByMajor(this.selectedMajor).then((response) => {
                 if (response !== undefined) {
@@ -87,7 +86,7 @@ class TableStatusFrame extends React.Component {
         this.selectedModule = event.target.value;
 
         if (this.selectedModule !== "None") {
-            //console.log(this.selectedModule + " -- selected module")
+            
             this.setState({ displayTable: true });
         }
 
@@ -122,7 +121,7 @@ class TableStatusFrame extends React.Component {
         let modules = this.state.modules;
         let classes = this.props.classes;
 
-        //console.log(this.selectedModule)
+       
 
         return (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>

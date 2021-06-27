@@ -100,8 +100,6 @@ class CreateUser extends React.Component {
 
         const { classes } = this.props;
         
-        console.log("in render")
-
         return (
             <MenuAppBar
 

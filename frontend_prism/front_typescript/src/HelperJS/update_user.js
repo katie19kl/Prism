@@ -22,8 +22,6 @@ function update_fields(newUserName, newFirstName,newLastName, newPhoneNum){
 		updatedUser["phoneNumber"] = newPhoneNum
 	}
 
-	console.log(updatedUser)
-	
 	return updatedUser
 }
 
@@ -67,16 +65,16 @@ async function updateUser(username, newUserName, newFirstName,newLastName, newPh
 		return await req.put(url, updated_user_json)
 			.then((response) => {
 				
-				console.log("update ------------------")
+		
 				if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined"){
-					console.log("update curr with" + newUserName)
+					
 					// if change my username => update local storage
 					if (me){
 	
 						LocalStorage.setItem(LocalStorage.username, newUserName)
 					}
 				}
-        		console.log(response + "--------------------------------------")
+        
 				return response;
 
 			}, (error) => {

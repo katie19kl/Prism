@@ -14,7 +14,7 @@ export class NoJWTFilter<T> implements ExceptionFilter {// Was received 401
 			? exception.getStatus()
 			: UserNotFoundException.NotFound;
 
-    	console.log("IN JWT FILTER");
+    	console.log("IN  NO JWT FILTER");
     ////////////////////////////////////
 
 	const ctx = host.switchToHttp();

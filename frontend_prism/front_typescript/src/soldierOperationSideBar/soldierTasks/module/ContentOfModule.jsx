@@ -39,7 +39,7 @@ class ContentOfModule extends React.Component {
         let dictSubjectFiles = this.props.dictSubjectFiles
  
         let postfix_param = major + "/" + moduleName + "/"
-        //console.log(postfix_param)
+
 
         return (
  

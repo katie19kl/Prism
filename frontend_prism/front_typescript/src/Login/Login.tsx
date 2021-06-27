@@ -166,7 +166,6 @@ const Login = () => {
 			.then((response) => response.json())
 			.then((response) => {
 
-				//console.log("the token received from server: " + response.tokenInfo.token);
 				const token = response.tokenInfo.token;
 
 
@@ -183,8 +182,7 @@ const Login = () => {
 
 			})
 			.catch((error) => {
-				console.log("an error has occured, trying to login: " + error);
-
+			
 				// Show informative msg to the user.
 				dispatch({ type: 'loginFailed', payload: 'Incorrect username or password' });
 

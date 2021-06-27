@@ -6,7 +6,6 @@ export default class LocalStorage  {
 
 	static setItem (itemName: string, value: string) {
 		
-		console.log("assigning " + value + " to " + itemName + " in local storage")
 		localStorage.setItem(itemName, value)
 
 	}

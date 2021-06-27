@@ -7,11 +7,6 @@ import { prefix_server_url } from "../../HelperJS/url_helper";
 // module & major & subject
 async function getListSubmissionOfSubject(major, module, subject, studentId) {
 
-    console.log(major)
-    
-    console.log(module)
-    
-    console.log(subject)
 
 
     let token = LocalStorage.getItem(LocalStorage.token);
@@ -23,7 +18,7 @@ async function getListSubmissionOfSubject(major, module, subject, studentId) {
     let postfix = studentId + "/" + major + "/" + module + "/" + subject;
     url = url + postfix;
 
-    console.log(url + "    is provided URL ")
+
 
     if (token === null || token === 'undefined') {
 
@@ -43,7 +38,7 @@ async function getListSubmissionOfSubject(major, module, subject, studentId) {
         return await req.get(url)
 
             .then((response) => {
-                console.log(response)
+               
                 return response
 
             }, (error) => {
@@ -54,11 +49,6 @@ async function getListSubmissionOfSubject(major, module, subject, studentId) {
 }
 
 async function removeFileFromSubmission(major_, module_, subject_, file_name){
-    console.log(major_)
-    
-    console.log(module_)
-    
-    console.log(subject_)
 
 
     let token = LocalStorage.getItem(LocalStorage.token);
@@ -69,7 +59,7 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 
     
 
-    console.log(url + "    is provided URL ")
+
 
     if (token === null || token === 'undefined') {
 
@@ -100,7 +90,6 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
  
         return await req.delete(url, { data: userSubmissionDTO })
         .then((response) => {
-            console.log(response)
             return response
 
         }, (error) => {
@@ -126,8 +115,6 @@ async function uploadSingleSubmission(file, onUploadProgress, major, module, sub
     
 
 
-    console.log(formData)
-    console.log("=======================================")
     
     return await axios.post(url, formData, {
         headers: {

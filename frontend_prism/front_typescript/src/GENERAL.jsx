@@ -86,7 +86,7 @@ export default class General extends React.Component {
 			getAllSubmissionsInMajor(major).then((submissions)=>{
 				if (submissions !== undefined){
 					
-					//console.log(majors)
+					
 					if (majors.includes(major)){
 						this.getAllMyMajorSubmissions(major,submissions)
 					}
@@ -110,7 +110,7 @@ export default class General extends React.Component {
 	}
 
 	getAllMyMajorSubmissions(major,submissions){
-		console.log("here")
+
 		let allMajorSubmission = submissions.data
 		
 		
@@ -179,10 +179,7 @@ export default class General extends React.Component {
     render() {
 
 
-		console.log("-----------")
-		console.log(this.major)
-		console.log("-----------")
-		
+	
 		
 		let verticalSoldiers = []
 		let verticalSubmissions = []

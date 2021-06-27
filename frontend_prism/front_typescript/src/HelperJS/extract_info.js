@@ -139,8 +139,6 @@ async function getSoldiersByMajors(majors) {
 
 async function getAllMySoldiers(major_selected){
 
-	//console.log(major_selected)
-	//console.log(">?>?>?>?>?>?>?>>?>?>?>?>")
 	
 	let token = LocalStorage.getItem(LocalStorage.token);
 	// User has no token

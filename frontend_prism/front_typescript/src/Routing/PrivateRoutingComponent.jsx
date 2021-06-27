@@ -49,12 +49,7 @@ export default class PrivateRoutingComponent extends React.Component {
 	sameIdURLAndToken(personalId, pathContainingId){
 		
 		let idInUrl = this.retrievePersonalIdURL(pathContainingId)
-		
-		console.log("=================")
-		console.log(idInUrl)
-		console.log(pathContainingId)
-		console.log("=================")
-		
+				
 		let userId = personalId
 
 		// no personal id in url
@@ -81,7 +76,7 @@ export default class PrivateRoutingComponent extends React.Component {
 			return <h2>I am checking</h2>
 		}
 
-		console.log("----------Start cheching----------")
+
 
 
 		// pretending attempt detection
@@ -102,8 +97,7 @@ export default class PrivateRoutingComponent extends React.Component {
 
 		
 		let path = this.props.path;
-		console.log("----path was requested ---")
-		console.log(path)
+
 
 
 		let isLoggedIn = this.state.isLoggedIn;
@@ -123,9 +117,8 @@ export default class PrivateRoutingComponent extends React.Component {
 			// if role was defined, but user try to pretend 
 			// with higher role. If it occurs => redirects to no permission
 			validateRoleByToken(rolesRequired).then((resp) =>{
-				//console.log(resp + "---------I am here -----------")
+				//(resp + "---------I am here -----------")
 				if (resp === false ){
-					console.log("want to redirect this hara")
 					//return <h2> NIHUI PRETEND OKK ?</h2>
 					this.setState({pretentAttempt: true})
 				}
@@ -147,21 +140,15 @@ export default class PrivateRoutingComponent extends React.Component {
 				} else {
 	
 					
-					console.log("--------here user was given----------")
 					user = user.data
 					
 					let personalId = user["personalId"]
 					let pathContainingId = this.props.path;
 
-					console.log("--+--")
-					console.log(pathContainingId)
-					console.log("--+--")
-
 					
 					let allowed = this.sameIdURLAndToken(personalId, pathContainingId)
 
 					if (!allowed){
-						console.log("personal id is forged ( it is not your id)")
 						this.setState({pretentAttempt: 555})
 					}
 					
@@ -196,8 +183,6 @@ export default class PrivateRoutingComponent extends React.Component {
 		// has permission & is log_in
 		if (isLoggedIn === true && (indexInRoles !== -1 || allowedToEveryOne))
 		{
-			console.log("is log in----------------=> redirects to " + path);
-	
 			return (
 				<Route  path={this.props.path} exact={this.props.exact} component={this.props.component} />
 			)  

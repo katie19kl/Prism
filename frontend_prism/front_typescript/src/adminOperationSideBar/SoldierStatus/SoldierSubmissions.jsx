@@ -160,7 +160,6 @@ class SoldierSubmissions extends React.Component {
 		}
 
 		let allRESOLVEV = Promise.all(arrPromises) 
-		//console.log("all pormises are resolved")
 
 		
 		return allRESOLVEV;
@@ -185,14 +184,14 @@ class SoldierSubmissions extends React.Component {
 					let newPromise =  new Promise((resolv, rej)=>{
 					
 						
-						getSoldierClosedSubjects(this.props.selectedMajor,module,soldier).then((responce) => {
-			
-							if (responce !== undefined)
+						getSoldierClosedSubjects(this.props.selectedMajor,module,soldier).then((response) => {
+							console.log(response)
+							if (response !== undefined)
 							{
-								if (responce.data !== undefined){				
+								if (response.data !== undefined){				
 									//this.soldierClosed = responce.data
-									this.subjectClosed[module] = responce.data
-									this.soldierClosed = Object.keys(responce.data)
+									this.subjectClosed[module] = response.data
+									this.soldierClosed = this.props.selectedSoldier
 								}else {
 									this.subjectClosed[module] = []
 									this.soldierClosed = -1
@@ -201,7 +200,7 @@ class SoldierSubmissions extends React.Component {
 								this.subjectClosed[module] = []
 								this.soldierClosed = -1
 							}
-							resolv(responce.data)
+							resolv(response.data)
 				
 						})
 					});
@@ -209,7 +208,7 @@ class SoldierSubmissions extends React.Component {
 				}
 				Promise.all(promises).then(()=>{
 
-					//console.log("HERE ALL PROMISES MUST BE HERE")
+		
 					
 					this.getSubjectsOfModules(modules_, selectedMajor).then((modules_subjects)=>{
 
@@ -394,23 +393,19 @@ class SoldierSubmissions extends React.Component {
 
 	render() {
         
-		console.log("Closed stuff of soldier is")
-		console.log(this.subjectClosed)
-		console.log(this.soldierClosed)
-		console.log("--------------------------")
-
         let classes = this.props.classes
-
+		
         // all steps of extracting data were finished
         let displayTable = (this.state.module_submissions !== undefined && this.subjectClosed !== undefined)
 		
 		
+
 		// prevents case when soldier was changed 
 		// but updated response till arrived
 		if (this.soldierClosed !== undefined){
-			displayTable = (this.props.selectedSoldier === this.soldierClosed[0])
+			displayTable = (this.props.selectedSoldier === this.soldierClosed)
 		}
-		
+	
 		if (displayTable && 1) {
 
 			let mod_subject_colors = this.convertToColors()

@@ -103,7 +103,7 @@ async function getReviews(soldierId, major, module, subject) {
             response = response.data;
             let currRole = response.role;
 
-            console.log("current role: ", currRole);
+        
 
             return await getAllReviewsByRole(major, module, subject, soldierId, currRole)
             .then((result) => {

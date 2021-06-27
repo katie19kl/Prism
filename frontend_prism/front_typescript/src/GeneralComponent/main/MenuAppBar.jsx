@@ -119,7 +119,6 @@ class MenuAppBar extends React.Component {
         let currUsername = this.getUserName();
 
         
-        console.log("main app setting state with  " + currUsername + " to " + this.state.username)
         this.setState({
             username: currUsername
         })
@@ -139,7 +138,7 @@ class MenuAppBar extends React.Component {
 
     render() {
 
-        console.log("main app bar")
+
 
         const { classes, theme } = this.props;
         const { username } = this.state;
@@ -200,7 +199,7 @@ class MenuAppBar extends React.Component {
                     </div>
                 <Divider />
 
-                <img alt="" src={prism} height="350" width="231"></img>
+                <img alt="" src={prism}  height="100%" width="100%"></img>
 
                 </Drawer>
 

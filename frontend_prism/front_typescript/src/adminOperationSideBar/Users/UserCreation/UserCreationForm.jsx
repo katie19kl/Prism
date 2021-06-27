@@ -259,7 +259,6 @@ class UserCreationForm extends React.Component {
 
     componentDidUpdate() {
         
-        console.log("in did update: " + this.props.myRole);
         if (this.props.myRole !== this.state.role) {
             this.setState({
                 role: this.props.myRole
@@ -300,11 +299,11 @@ class UserCreationForm extends React.Component {
         }
 
         sendCreateUserRequest(data).then((res) => {
-            console.log(res);
+
             this.handleResponse(res);
 
         }, (err) => {
-            console.log(err);
+;
             this.handleResponse(err);
             
         })

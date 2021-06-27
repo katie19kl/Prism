@@ -7,8 +7,7 @@ import { prefix_server_url } from "../../../HelperJS/url_helper";
 async function getListOfAllFiles(major, module, subject) {
 
 
-    console.log("ASK A LIST OF FILE ASK A LIST OF FILE ASK A LIST OF FILE ASK A LIST OF FILE ")
-
+   
     let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/file-handling/files_in_subject";
     let url  = prefix_server_url + "file-handling/files_in_subject";
@@ -53,7 +52,7 @@ async function uploadSingleFiles(file, onUploadProgress, major, module, subject)
 
     //for (const file of  FileList)
     formData.append("file",file);
-    console.log(formData)
+
     
     return await axios.post(url, formData, {
         headers: {

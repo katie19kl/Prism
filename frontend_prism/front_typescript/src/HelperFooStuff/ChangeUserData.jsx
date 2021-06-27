@@ -59,7 +59,7 @@ class ChangeUserData extends React.Component {
 			.then((res) => {
 				if (res !== undefined) {
 					
-					console.log(res)
+		
 					window.location.reload(false)
 				}
             });

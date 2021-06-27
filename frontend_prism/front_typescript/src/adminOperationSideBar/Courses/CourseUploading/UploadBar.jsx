@@ -174,7 +174,7 @@ class UploadBar extends Component {
 			}
 		
 		}).catch(error => {
-			console.log(error)
+		
 			
 			_progressInfos[idx].percentage = 0;
 			this.setState((prev) => {
