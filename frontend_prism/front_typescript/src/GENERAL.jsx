@@ -10,7 +10,8 @@ import { Major } from "./HelperJS/Major"
 import { Status } from "./GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import OK_Status from "./soldierOperationSideBar/soldierSubmission/OK_Status"
 import { Grid } from "@material-ui/core"
-import TesterMenu from "./GeneralComponent/tester/TesterMenu"
+import TesterMenu from "./GeneralComponent/tester/TesterMenu";
+import WaiterLoading from "./HelperFooStuff/WaiterLoading"
 
 
 export default class General extends React.Component {
@@ -95,7 +96,9 @@ export default class General extends React.Component {
 		
 		
 		let ok = []
-		
+
+		let not_reviewed = []
+		let not_ok = []
 
 
 		for (const submission of allMajorSubmission) {
@@ -148,6 +151,10 @@ export default class General extends React.Component {
 			verticalSubmissions.push(amountSubmissions);
 		}
 
+		if (this.myRole === undefined) {
+			return <WaiterLoading />;
+		}
+
 		let menu = undefined;
 		if (this.myRole === Role.Commander || this.myRole === Role.Admin) {
 			menu = <CommanderMenu />;
@@ -195,8 +202,6 @@ export default class General extends React.Component {
 						
 						<h2>Submissions' status in your major</h2>
 
-
-						
 					</div>
 				
 				</div>
