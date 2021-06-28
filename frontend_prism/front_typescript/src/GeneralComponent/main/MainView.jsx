@@ -3,8 +3,9 @@ import { currentUserRole, currentUserUsername } from "../../HelperJS/authentific
 import CommanderMainPage from "../admin/CommanderMainPage.jsx";
 import NoPermessions from "../../HelperFooStuff/NoPermissions";
 import Role from '../../Roles/Role';
-
 import SoldierMainPage from './../soldier/SoldierMainPage'
+import TesterMainPage from "../tester/TesterMainPage.jsx";
+
 
 export default class MainPage extends React.Component {
 
@@ -31,24 +32,25 @@ export default class MainPage extends React.Component {
   
 
 	render() {
-		const { username, role } = this.state;
+		const { /*username,*/ role } = this.state;
 
 		if ((role === Role.Admin) || (role === Role.Commander)) {
 		
-			return <CommanderMainPage/>;
+			return <CommanderMainPage />;
 		
 		} else if (role === Role.Soldier) {
 			
-			return <SoldierMainPage/>
+			return <SoldierMainPage />
 
 		} else if (role === Role.Tester) {
-
+			
+			return <TesterMainPage />
 
 		} else {
 			// return an error to the UI.
 			return <NoPermessions/>;
 		}
-		return (
+		/*return (
 			<div>
                 <h1>Main page view Component</h1>
                 <p>Your role is: <strong>{role}</strong>.</p>
@@ -58,7 +60,7 @@ export default class MainPage extends React.Component {
                     { username }
                 </div>
             </div>
-		);
+		);*/
 	}
 }
 	

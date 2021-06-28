@@ -3,37 +3,44 @@ import LocalStorage from "./LocalStorage";
 import { prefix_server_url } from "./url_helper";
 
 
-function update_fields(newUserName, newFirstName,newLastName, newPhoneNum){
-	let updatedUser = {}
+function update_fields(newUserName, newFirstName, newLastName,
+	newPhoneNum, newPassword, newCommander) {
+
+	let updatedUser = {};
 
 	if (newUserName !== undefined && newUserName  !== "") {
-		updatedUser["username"] = newUserName
+		updatedUser["username"] = newUserName;
 	}
 
 	if (newFirstName !== undefined && newFirstName !== "") {
-		updatedUser["firstName"] = newFirstName
+		updatedUser["firstName"] = newFirstName;
 	}
 
 	if (newLastName !== undefined && newLastName  !== "") {
-		updatedUser["lastName"] = newLastName
+		updatedUser["lastName"] = newLastName;
 	}
 
 	if (newPhoneNum !== undefined && newPhoneNum  !== "") {
-		updatedUser["phoneNumber"] = newPhoneNum
+		updatedUser["phoneNumber"] = newPhoneNum;
 	}
 
-	console.log(updatedUser)
+	if (newPassword !== undefined && newPassword  !== "") {
+		updatedUser["password"] = newPassword;
+	}
+
+	if (newCommander !== undefined && newCommander  !== "") {
+		updatedUser["commander"] = newCommander;
+	}
 	
-	return updatedUser
+	return updatedUser;
 }
 
 
+async function updateUser(username, newUserName, newFirstName, 
+	newLastName, newPhoneNum, newPassword, newCommander, me) {
 
-async function updateUser(username, newUserName, newFirstName,newLastName, newPhoneNum,me) {
-
-
-	let updated_user_json = update_fields(newUserName, newFirstName,newLastName, newPhoneNum)
-
+	let updated_user_json = update_fields(newUserName, newFirstName,
+		newLastName, newPhoneNum, newPassword, newCommander);
 
 	let token = LocalStorage.getItem(LocalStorage.token);
 
@@ -65,23 +72,26 @@ async function updateUser(username, newUserName, newFirstName,newLastName, newPh
 		});
 
 		return await req.put(url, updated_user_json)
-			.then((response) => {
-				
-				console.log("update ------------------")
-				if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined"){
-					console.log("update curr with" + newUserName)
-					// if change my username => update local storage
-					if (me){
-	
-						LocalStorage.setItem(LocalStorage.username, newUserName)
-					}
-				}
-        		console.log(response + "--------------------------------------")
-				return response;
+		.then((response) => {
+			
+			console.log("update ------------------")
 
-			}, (error) => {
-				return undefined
-			});
+			if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined") {
+
+				console.log("update curr with" + newUserName)
+
+				// if change my username => update local storage
+				if (me) {
+					LocalStorage.setItem(LocalStorage.username, newUserName)
+				}
+			}
+			console.log(response + "--------------------------------------")
+
+			return response;
+
+		}, (error) => {
+			return error;
+		});
 	}
 }
 

@@ -82,7 +82,6 @@ class UserCreationForm extends React.Component {
 
 
         this.state = {
-            buttonDisable: true,
             msgOpen: false,
             role: this.props.myRole,
             updated: false,
@@ -338,7 +337,6 @@ class UserCreationForm extends React.Component {
 
         } else {
             if (res.status === 201) {
-                //window.location.reload(false);
 
                 this.personalId = "";
                 this.username = "";
@@ -429,6 +427,7 @@ class UserCreationForm extends React.Component {
                         variant="outlined"
                         label="Required - Password"
                         value={this.password}
+                        type="password"
                         error={this.state.passwordErr.length === 0 ? false : true}
                         helperText={this.state.passwordErr}
                         onChange={this.handleChangePassword}
@@ -495,14 +494,14 @@ class UserCreationForm extends React.Component {
                         onChange={this.handleChangePhoneNumber}
                         />
 
-                        {(this.props.myRole === Role.Commander) 
+                        {(this.props.myRole === Role.Commander || this.props.myRole === Role.Tester) 
                         ? <FormControl component="fieldset" className={classes.formControl}>
-                            <FormLabel component="legend">Choose Your Majors</FormLabel>
+                            <FormLabel component="legend"> Choose Your Majors </FormLabel>
                             <FormGroup style={{display: 'flex', flexDirection: 'row'}}>
                                 <FormControlLabel
                                     control={
-                                        <Checkbox 
-                                        checked={software} 
+                                        <Checkbox
+                                        checked={software}
                                         onChange={this.handleChangeCommanderMajor} 
                                         name="software" />
                                     }

@@ -4,26 +4,18 @@ import React from "react"
 
 
 const useStyles = (theme) => ({
+    root2: {
+        background: 'linear-gradient(45deg, #d1b3ff 30%, #6600ff 90%)',
+        //boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+        color: 'black',
+    },
     root: {
         flexGrow: 1,
         '& .MuiTextField-root': {
             margin: theme.spacing(2),
-            width: '20ch',
+            width: '30ch',
         },
     },
-    padding: {
-        flexGrow: 1,
-        marginTop: theme.spacing(2),
-        marginLeft: theme.spacing(10),
-    },
-    myFont: {
-        fontFamily: "Comic Sans MS, Comic Sans, cursive",
-        marginLeft: theme.spacing(5),
-        marginTop: theme.spacing(2),
-    },
-    select: {
-        marginRight: theme.spacing(20),
-    }
 });
 
 
@@ -38,17 +30,17 @@ class DisplayUserData extends React.Component {
 
                     <Grid container item justify='center' alignItems='center'>
                         <TextField
-                            disabled id="standard-disabled_" 
+                            disabled id="user" 
                             variant="filled"
-                            label="username" 
+                            label="Username"
                             defaultValue= {this.props.username}>
 
                         </TextField>
                 
                         <TextField
-                            disabled id="standard-disabled=" 
+                            disabled id="pwd"
                             variant="filled"
-                            label="password" 
+                            label="Password" 
                             defaultValue="******" >
 
                         </TextField>
@@ -59,15 +51,15 @@ class DisplayUserData extends React.Component {
                 
                     <Grid container item justify='center' alignItems='center'>
                         <TextField	
-                            disabled id="standard-disabled!" 	
+                            disabled id="major" 	
                             variant="filled"
-                            label="majors"
+                            label="Major"
                             defaultValue={this.props.major} >
                         </TextField>
 
                         
                         <TextField	
-                            disabled id="standard-disabled__" 	
+                            disabled id="gender" 	
                             variant="filled"
                             label="Gender"
                             defaultValue={this.props.gender} >
@@ -79,7 +71,7 @@ class DisplayUserData extends React.Component {
 
                     <Grid container item justify='center' alignItems='center'>
                         <TextField 
-                            disabled id="standard-disabled=_"
+                            disabled id="first_name"
                             variant="filled"
                             label="First Name" 
                             defaultValue={this.props.firstName}>
@@ -88,7 +80,7 @@ class DisplayUserData extends React.Component {
 
 
                         <TextField 
-                            disabled id="standard-disabled=_="
+                            disabled id="last_name"
                             variant="filled"
                             label="Last Name" 
                             defaultValue={this.props.lastName}>
@@ -101,20 +93,31 @@ class DisplayUserData extends React.Component {
 
                     <Grid container item justify='center' alignItems='center'>
                         <TextField	
-                            disabled id="standard-disabled=_=_" 	
+                            disabled id="role" 	
                             variant="filled"
                             label="Role"
                             defaultValue={this.props.role} >
                         </TextField>
 
                         <TextField 
-                            disabled id="standard-disabled_=__" 
+                            disabled id="phone" 
                             variant="filled"
-                            label="Phone number" 
+                            label="Phone Number" 
                             defaultValue={this.props.phone_number}>
 
                         </TextField>
                     </Grid>
+
+
+                    <Grid container item justify='center' alignItems='center'>
+                        <TextField	
+                            disabled id="personal_id" 	
+                            variant="filled"
+                            label="Personal ID"
+                            defaultValue={this.props.personalId} >
+                        </TextField>
+                    </Grid>
+
                 </Grid>
             </div>
         );

@@ -11,7 +11,6 @@ const useStyles = (theme) => ({
 });
 
 
-
 class MajorSelect extends React.Component {
 
     constructor(props) {

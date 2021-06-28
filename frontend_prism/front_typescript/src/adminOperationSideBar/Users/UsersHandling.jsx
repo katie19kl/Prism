@@ -1,4 +1,4 @@
-import { Button, Typography } from "@material-ui/core";
+import { Button, Typography, Grid } from "@material-ui/core";
 import React from "react";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
@@ -11,23 +11,8 @@ import DeletionDialog from "./DeleteUser/DeletionDialog";
 
 
 const useStyles = (theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    padding: {
-        flexGrow: 1,
-        marginLeft: theme.spacing(40),
-        marginTop: theme.spacing(15),
-    },
-    padding2: {
-        flexGrow: 1,
-        marginLeft: theme.spacing(36),
-        marginTop: theme.spacing(7),
-    },
     button: {
-        marginLeft: theme.spacing(50),
-        marginTop: theme.spacing(2),
-
+        marginTop: theme.spacing(5),
     },
 });
 
@@ -55,15 +40,21 @@ class UsersHandling extends React.Component {
         const { classes } = this.props;
         return(
             <MenuAppBar
-                role = " Commander"
-                menu={
-                    <CommanderMenu />
-                }
-                content={
-                    <div>
-                        <Typography variant="h6" className={classes.padding}>
-                            To create a user, please press below
-                        </Typography>
+            role="Commander"
+            menu={
+                <CommanderMenu />
+            }
+            content={
+                <Grid container item justify='center' alignItems='center' xs={12}>
+
+                    <Grid container item justify='center' alignItems='center'>
+                        
+                        <Grid container item justify='center' alignItems='center'>
+                            <Typography variant="h6" className={classes.button}>
+                                To create a user, please press below
+                            </Typography>
+                        </Grid>
+
                         <Link to="/admin/create_user" style={{ textDecoration: 'none', color: 'inherit' }}>
 
                             <Button 
@@ -75,10 +66,15 @@ class UsersHandling extends React.Component {
                             </Button>
 
                         </Link>
+                    </Grid>
 
-                        <Typography variant="h6" className={classes.padding2}>
-                            To edit an existing user, please press below
-                        </Typography>
+                    <Grid container item justify='center' alignItems='center'>
+
+                        <Grid container item justify='center' alignItems='center'>
+                            <Typography variant="h6" className={classes.button}>
+                                To edit an existing user, please press below
+                            </Typography>
+                        </Grid>
 
                         <Link to="/admin/update_user" style={{ textDecoration: 'none', color: 'inherit' }}>
 
@@ -91,11 +87,15 @@ class UsersHandling extends React.Component {
                             </Button>
                         
                         </Link>
+                    </Grid>
 
+                    <Grid container item justify='center' alignItems='center'>
 
-                        <Typography variant="h6" className={classes.padding2}>
-                            To delete an existing user, please press below
-                        </Typography>
+                        <Grid container item justify='center' alignItems='center'>
+                            <Typography variant="h6" className={classes.button}>
+                                To delete an existing user, please press below
+                            </Typography>
+                        </Grid>
 
                         <Button 
                             variant="contained"
@@ -106,13 +106,16 @@ class UsersHandling extends React.Component {
                             Delete User
                         </Button>
 
-                        <DeletionDialog 
-                        open={this.state.open}
-                        handleClose={this.handleClose}
-                        handleClickOpen={this.handleClickOpen}
-                        />
-                    </div>
-                }/>
+                    </Grid>
+
+                    <DeletionDialog 
+                    open={this.state.open}
+                    handleClose={this.handleClose}
+                    handleClickOpen={this.handleClickOpen}
+                    />
+
+                </Grid>
+            }/>
         );
     }
 }

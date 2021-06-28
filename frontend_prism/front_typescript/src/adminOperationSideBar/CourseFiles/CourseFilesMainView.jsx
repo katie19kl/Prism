@@ -1,11 +1,14 @@
 import { Grid, withStyles } from "@material-ui/core";
 import React from "react";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+import TesterMenu from "../../GeneralComponent/tester/TesterMenu";
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 import { getModulesByMajor, getSubjectsByModule, getFilesBySubject } from "./files_request_handler";
 import MajorSelect from "../Courses/CourseDisplaying/MajorSelect";
 import FileSystemDisplay from "../Courses/CourseDisplaying/FileSystemDisplay";
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import Role from "../../Roles/Role";
 
 
 const useStyles = (theme) => ({
@@ -44,10 +47,11 @@ class CourseFilesMainView extends React.Component {
         this.moduleData = undefined;
         this.modules_subjects = undefined;
 
+        this.myRole = undefined;
+
         this.state = {
             updated: false,
             chosenMajor: undefined,
-
             finalMajor: undefined,
             modules: undefined,
             modulesToSubjects: undefined,
@@ -126,7 +130,6 @@ class CourseFilesMainView extends React.Component {
                                 modulesToDictSubsToFiles[module] = currModuleToDict;
                             }
 
-                            console.log("in parent!!!!!!!!!!!!!!!!")
                             console.log(modulesToDictSubsToFiles)
 
                             const listModules = Object.keys(modulesToDictSubsToFiles);
@@ -227,6 +230,7 @@ class CourseFilesMainView extends React.Component {
                         
                     // Retrieve the user info.
                     user = user.data;
+                    this.myRole = user["role"];
                     this.majors = user["major"];
                     this.setState({
                         updated: true
@@ -241,13 +245,20 @@ class CourseFilesMainView extends React.Component {
         
         if (this.state.updated) {
 
+            let menu = undefined;
+
+            if (this.myRole === Role.Commander || this.myRole === Role.Admin) {
+                menu = <CommanderMenu />
+            
+            } else if (this.myRole === Role.Tester) {
+                menu = <TesterMenu />
+            }
+
             return (
                 <Grid container>
                     <MenuAppBar
-                    role = "Commander"
-                    menu={
-                        <CommanderMenu />
-                    }
+                    role ={this.myRole}
+                    menu={menu}
                     content={
                         
                         <Grid 
@@ -267,7 +278,7 @@ class CourseFilesMainView extends React.Component {
                             subjectsToFiles={this.state.subjectsToFiles}
                             sendGetModulesRequest={this.sendGetModulesRequest} 
                             modulesToDictSubsToFiles={this.state.modulesToDictSubsToFiles}
-                            />
+                            role={this.myRole}/>
                             
                         </Grid>
                     }>
@@ -275,14 +286,7 @@ class CourseFilesMainView extends React.Component {
                 </Grid>
             );
         } else {
-            return (
-                <MenuAppBar
-                    role = "Commander"
-                    menu={
-                        <CommanderMenu />
-                    }>   
-                </MenuAppBar>
-            );
+            return <WaiterLoading />
         }
     }
 }

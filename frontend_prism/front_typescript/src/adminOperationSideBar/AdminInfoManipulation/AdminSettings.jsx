@@ -2,12 +2,15 @@ import React from "react"
 import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import Button from '@material-ui/core/Button';
 import SaveIcon from '@material-ui/icons/Save';
-import {getUserInfoByJWT } from '../../HelperJS/extract_info'
+import { getUserInfoByJWT } from '../../HelperJS/extract_info'
 import { Link } from 'react-router-dom';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
+import TesterMenu from '../../GeneralComponent/tester/TesterMenu';
 import DisplayUserData from "../../HelperFooStuff/DisplayUserData"
 import { Grid, withStyles } from "@material-ui/core";
+import Role from "../../Roles/Role";
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({
@@ -22,7 +25,8 @@ const useStyles = (theme) => ({
         marginLeft: theme.spacing(10),
     },
     myFont: {
-        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        //fontFamily: "Comic Sans MS, Comic Sans, cursive",
+		fontFamily: 'monospace',
     },
 });
 
@@ -31,6 +35,8 @@ class AdminSettings extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.myRole = undefined;
+
 		this.state = {
 			username: undefined,
 			major: undefined,
@@ -38,7 +44,8 @@ class AdminSettings extends React.Component {
 			gender: undefined,
 			lastName: undefined,
 			role: undefined,
-			phone_number:undefined
+			phone_number: undefined,
+			personalId: undefined,
 		}
 	}
 
@@ -50,10 +57,13 @@ class AdminSettings extends React.Component {
 		getUserInfoByJWT().then((user) => {
 
 			//if (user === undefined){
-			if (user === undefined || user.data === undefined){	
+			if (user === undefined || user.data === undefined) {	
 			} else {
 
 				user = user.data;
+
+				this.myRole = user["role"];
+
 				let username_ = user["username"];
 				let majors_ = user["major"];
 				let role_ = user["role"];
@@ -61,6 +71,7 @@ class AdminSettings extends React.Component {
 				let lastName_ = user["lastName"];
 				let phoneNum = user["phoneNumber"];
 				let gender_ = user["gender"];
+				let personalId_ = user["personalId"];
 				
 				// server answer differs from out current
 				let wasChanges = (username_ !== this.state.username);
@@ -75,24 +86,28 @@ class AdminSettings extends React.Component {
 						lastName: lastName_,
 						phone_number: phoneNum,
 						gender: gender_,
+						personalId: personalId_,
 					});
 				}
 			}
 		});
 		
 		if (this.state.username === undefined) {
-			return (
-				<MenuAppBar role = "Commander" menu={
-					<CommanderMenu/>
-				}></MenuAppBar>
-			);
+
+			return <WaiterLoading />;
 
 		} else {
+
+			let menu = undefined;
+			if (this.myRole === Role.Commander || this.myRole === Role.Admin) {
+				menu = <CommanderMenu />;
+			} else {
+				menu = <TesterMenu />;
+			}
+			
 			return (
-				<MenuAppBar menu={
-					<CommanderMenu/>
-				}
-				role = "Commander"
+				<MenuAppBar menu={menu}
+				role={this.myRole}
 				content={
 				<Grid>
 					<br/>
@@ -100,15 +115,16 @@ class AdminSettings extends React.Component {
 
 					<DisplayUserData
 						title={<Grid justify='center' alignItems='center' container item xs={12}>
-							<h4 className={classes.myFont}>Your Current Info</h4>
+							<h4 className={classes.myFont}><b> Your Current Info </b></h4>
 						</Grid>}
-						phone_number = {this.state.phone_number} 
+						phone_number = {this.state.phone_number}
 						role = {this.state.role}
 						lastName = {this.state.lastName}
 						firstName = {this.state.firstName}
 						gender = {this.state.gender}
 						major = {this.state.major}
 						username = {this.state.username}
+						personalId = {this.state.personalId}
 						>
 
 					</DisplayUserData>

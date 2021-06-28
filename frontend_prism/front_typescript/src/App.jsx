@@ -40,8 +40,6 @@ export default function App() {
 
 			<PrivateRoutingComponent path="/10- XUI/10.5- SUB XUI/987654321	" component={General} />
 
-
-
 			<Route path="/general" component={General}>
 			</Route>
 
@@ -97,7 +95,6 @@ export default function App() {
 			<Route path="/submission/info/:major/:moduleName/:subject/:personalId" component={UserSubmission}></Route>
 
 
-			{/*<Route path='/admin/table/soldier_status' component={SoldierStatusKatie}></Route> */}
 			<Route 
 			path="/admin/soldier_status/:personalId/:major/:module/:subject"
 			component={SubmissionStatusObject}>

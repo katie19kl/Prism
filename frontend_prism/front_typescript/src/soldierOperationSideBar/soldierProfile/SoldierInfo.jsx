@@ -20,7 +20,8 @@ const useStyles = (theme) => ({
         marginLeft: theme.spacing(6),
     },
     myFont: {
-        fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        //fontFamily: "Comic Sans MS, Comic Sans, cursive",
+        fontFamily: 'monospace'
     },
     padding: {
         flexGrow: 1,
@@ -40,7 +41,8 @@ class SoldierInfo extends React.Component {
 			gender: undefined,
 			lastName: undefined,
 			role: undefined,
-			phone_number:undefined
+			phone_number: undefined,
+            personalId: undefined,
 		}
 	}
 
@@ -61,6 +63,7 @@ class SoldierInfo extends React.Component {
                 let lastName_ = user["lastName"];
                 let phoneNum = user["phoneNumber"];
                 let gender_ = user["gender"];
+                let personalId_ = user["personalId"];
 
                 // server answer differs from out current
                 let wasChanged = (username_ !== this.state.username);
@@ -75,6 +78,7 @@ class SoldierInfo extends React.Component {
                         lastName: lastName_,
                         phone_number: phoneNum,            
                         gender: gender_,
+                        personalId: personalId_
                     });
                 }
             }
@@ -99,13 +103,11 @@ class SoldierInfo extends React.Component {
                     <Grid container justify='center' alignItems='center'>
 
                         <br/>
-                        <br/>
-                        <br/>
 
                         <DisplayUserData
                             title={
                                 <Grid justify='center' alignItems='center' container item xs={12}>
-                                    <h4 className={classes.myFont}>Your Current Info</h4>
+                                    <h4 className={classes.myFont}><b> Your Current Info </b></h4>
                                 </Grid>
                             }
                             phone_number = {this.state.phone_number} 
@@ -115,8 +117,12 @@ class SoldierInfo extends React.Component {
                             gender = {this.state.gender}
                             major = {this.state.major}
                             username = {this.state.username}
+                            personalId = {this.state.personalId}
                             >
                         </DisplayUserData>
+
+                        <br/>
+                        <br/>
                     </Grid>
                     }>	
                 </MenuAppBar>

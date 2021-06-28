@@ -1,4 +1,3 @@
-
 import React from "react"
 import TableBody from '@material-ui/core/TableBody'
 import TableCell from '@material-ui/core/TableCell'
@@ -13,8 +12,7 @@ import { Link } from "react-router-dom"
 import CommentIcon from  "@material-ui/icons/Comment"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
 import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
-import {openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier} from "./subject_on_demand"
-import { CgArrowsMergeAltH } from "react-icons/cg"
+import { openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier } from "./subject_on_demand"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -75,21 +73,14 @@ const useStyles = (theme) => ({
 });
 
 
-
 class TableStatus extends React.Component {
-
 
 	constructor(props) {
 		super(props);
-
-		this.handleOpenningToUser = this.handleOpenningToUser.bind(this)
-		this.handleClosingToUser = this.handleClosingToUser.bind(this)
-
-		this.soldierClosed = {}
-		
-
-		this.last = false
-		
+		this.handleOpenningToUser = this.handleOpenningToUser.bind(this);
+		this.handleClosingToUser = this.handleClosingToUser.bind(this);
+		this.soldierClosed = {};
+		this.last = false;		
 
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
@@ -98,14 +89,9 @@ class TableStatus extends React.Component {
 			soldiers: [],
 			subjects: [],
 			submissionData: undefined,
-
-
 			FOO:0
-
-
-		}
+		};
 	}
-
 
 	handleClosingToUser(soldierId,subject){
 
@@ -139,7 +125,6 @@ class TableStatus extends React.Component {
 		})
 
 	}
-
 
 	/*
 	 I take care of openning task, also should be taken care of closing task to soldier
@@ -183,8 +168,6 @@ class TableStatus extends React.Component {
 		
 		
 	}
-
-
 
 	// extracts all soldiers of major defined in state
 	getAllSoldiersMajor() {
@@ -307,11 +290,7 @@ class TableStatus extends React.Component {
 		})
 	}
 
-
 	componentDidUpdate() {
-		let x = 45;
-		x = 45 * 2
-
 		this.last = false
 
 		// if check box (MySoldiers) state was changed
@@ -413,7 +392,6 @@ class TableStatus extends React.Component {
 			});
 		}
 	}
-
 
 	componentDidMount() {
 
@@ -535,12 +513,9 @@ class TableStatus extends React.Component {
 		return idSubjectColors
 	}
 
-
 	render() {
 
-
-
-		if (this.edit !== undefined &&  this.props.editMode !== this.edit){
+		if (this.edit !== undefined && this.props.editMode !== this.edit) {
 		
 			console.log("00")
 			this.last = true
@@ -549,9 +524,9 @@ class TableStatus extends React.Component {
 
 		this.edit  = this.props.editMode
 
-		if (!this.last){
+		if (!this.last) {
 			console.log("11")
-			return <WaiterLoading/>
+			return <WaiterLoading />
 		}
 
 

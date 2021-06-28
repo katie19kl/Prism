@@ -9,6 +9,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import UserCreationForm from "./UserCreationForm";
+import Role from "../../../Roles/Role";
 
 
 const useStyles = (theme) => ({
@@ -19,8 +20,8 @@ const useStyles = (theme) => ({
         flexGrow: 1,
         marginTop: theme.spacing(5),
         marginLeft: theme.spacing(20),
-        fontFamily: "Comic Sans MS, Comic Sans, cursive", 
-
+        //fontFamily: "Comic Sans MS, Comic Sans, cursive", 
+        fontFamily: 'monospace',
     },
     radio: {
         flexGrow: 1,
@@ -30,9 +31,6 @@ const useStyles = (theme) => ({
         marginTop: theme.spacing(5),
         marginLeft: theme.spacing(35),
     },
-    myFont: {
-        fontFamily: "Comic Sans MS, Comic Sans, cursive", 
-    }
 });
 
 
@@ -51,7 +49,6 @@ class CreateUser extends React.Component {
         }
     }
 
-    
     handleChange(event) {
 
         this.setState({
@@ -60,7 +57,6 @@ class CreateUser extends React.Component {
         }, () => this.getForm(this.state.value));
         
     }
-
 
     getForm(role) {
 
@@ -100,19 +96,16 @@ class CreateUser extends React.Component {
 
         const { classes } = this.props;
         
-        console.log("in render")
-
         return (
             <MenuAppBar
-
-            role = "Commander"
+            role ={Role.Commander}
             menu={
                 <CommanderMenu />
             }
             content={
                 <div>
                     <Typography variant="h5" className={classes.padding}>
-                        I would like to create a user with the following role:
+                        <b>I would like to create a user with the following role: </b>
                     </Typography>
 
                     <FormControl component="fieldset" className={classes.role}>

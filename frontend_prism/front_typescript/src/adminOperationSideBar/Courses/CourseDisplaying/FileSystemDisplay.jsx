@@ -25,8 +25,9 @@ const useStyles = (_theme) => ({
         width: '100%',
     },
     myFont: {
-        fontFamily: "Comic Sans MS, Comic Sans, cursive", 
-    }
+        //fontFamily: "Comic Sans MS, Comic Sans, cursive", 
+        fontFamily: 'monospace'
+    },
 });
 
 
@@ -71,6 +72,7 @@ class FileSystemDisplay extends React.Component {
         this.handleCloseEditSubject = this.handleCloseEditSubject.bind(this);
         this.handleCloseCancel = this.handleCloseCancel.bind(this);
 
+        this.role = this.props.role;
 
         // used when sending the deletion req. to the server.
         this.moduleToDelete = undefined;
@@ -91,11 +93,7 @@ class FileSystemDisplay extends React.Component {
 
         this.state = {
 
-            // new code from here
-            //modulesToSubjects: this.props.modulesToSubjects,
-            //subjectsToFiles: this.props.subjectsToFiles,
             modulesToDictSubsToFiles: this.props.modulesToDictSubsToFiles,
-            // to here!!!!!!!!!!!!
 
             /////////////////////// CHECK IF NEEDED
             chosenModule: undefined,
@@ -175,30 +173,6 @@ class FileSystemDisplay extends React.Component {
 
         /*let moduleName = panel;*/
     }
-
-    /* 
-    helper function for handleAccordionChange- calls 
-    the getSubjectsByModule function and re-renders view.
-     */
-    /*handleGetSubjectRequest(moduleName) {
-        
-            getSubjectsByModule(this.state.chosenMajor, moduleName).then((data) => {
-            if (data !== undefined){
-                data = data.data
-            }
-            
-            if (data === undefined || data === 'None' || data === null || data.length === 0) {
-                data = undefined;
-            }
-
-            this.subjectsData = data;
-
-            this.setState({
-                moduleUpdate: true,
-                chosenModule: moduleName,
-            });
-        });
-    }*/
 
     /* handles opening of a subject accordion. */
     handleSubjectChange = (panel) => (_event, isExpanded) => {
@@ -698,7 +672,6 @@ class FileSystemDisplay extends React.Component {
         const { classes } = this.props;
 
         console.log(this.props.modulesToDictSubsToFiles)
-        //console.log(this.state.modules)
 
         return (
             <Grid item xs={11}>             
@@ -714,7 +687,6 @@ class FileSystemDisplay extends React.Component {
                     {this.msg}
                     </Alert>
                 </Snackbar> : '' }
-
 
                 <DialogsManager
                 handleCloseInsertModule={this.handleCloseInsertModule}
@@ -746,7 +718,6 @@ class FileSystemDisplay extends React.Component {
                 subjectRenameDialogOpen={this.state.subjectRenameDialogOpen}
                 />
 
-
                 <List>
 
                 {this.state.modules.map((module) => (
@@ -763,16 +734,20 @@ class FileSystemDisplay extends React.Component {
                                     {module}
                             </Typography>
 
+                            {(this.role === Role.Admin || this.role === Role.Commander) ?
                             <IconButton aria-label="edit" 
                             onClick={(event) => this.renameModuleOnClick(event, module)}>                        
                                 <CreateIcon color="primary"/>
                             </IconButton>
+                            : ''}
 
+                            {(this.role === Role.Admin || this.role === Role.Commander) ?
                             <IconButton aria-label="delete" 
                             onClick={(event) => this.moduleDeletionButtonHandler(event, module)}>                        
                                 <DeleteIcon color="primary"/>
                             </IconButton>
-                            
+                            : ''}
+ 
                         </AccordionSummary>
 
                         <AccordionDetails>
@@ -785,12 +760,16 @@ class FileSystemDisplay extends React.Component {
                                             <h4 className={classes.myFont}>
                                                 No subjects under the module {module}
                                             </h4>
+                                            
+                                            {(this.role === Role.Admin || this.role === Role.Commander) ?
                                             <ListItem button onClick={this.handleInsertSubject}>
                                                 <ListItemIcon style={{flexBasis: "5.00%"}}>
                                                     <AddCircleOutlineOutlinedIcon color="primary"/>
                                                 </ListItemIcon>
                                                 <ListItemText primary="Create new Subject"/>
                                             </ListItem>
+                                            : ''}
+
                                         </div> : 
                                         <div className={classes.root}>
                                             <List>
@@ -809,15 +788,19 @@ class FileSystemDisplay extends React.Component {
                                                                 {subject}
                                                             </Typography>
 
+                                                            {(this.role === Role.Admin || this.role === Role.Commander) ?
                                                             <IconButton aria-label="edit" 
                                                             onClick={(event) => this.renameSubjectOnClick(event, subject)}>                        
                                                                 <CreateIcon style={{ color: purple[400]}}/>
                                                             </IconButton>
+                                                            : ''}
 
+                                                            {(this.role === Role.Admin || this.role === Role.Commander) ?
                                                             <IconButton aria-label="delete" 
                                                             onClick={(event) => this.subjectDeletionButtonHandler(event, subject)}>                        
                                                                 <DeleteIcon style={{ color: purple[400]}}/>
                                                             </IconButton>
+                                                            : ''}
 
                                                         </AccordionSummary>
 
@@ -829,21 +812,30 @@ class FileSystemDisplay extends React.Component {
                                                                     <h4 className={classes.myFont}>
                                                                         No files under the subject {subject}
                                                                     </h4>
+
+                                                                    {(this.role === Role.Admin || this.role === Role.Commander) ?
                                                                     <CourseUploading 
                                                                     chosenMajor={this.state.chosenMajor}
                                                                     chosenModule={module}
-                                                                    chosenSubject={subject}
-                                                                    />
+                                                                    chosenSubject={subject}/>
+                                                                    : ''}
+                                                                    
                                                                     </div> 
+                                                                    
                                                                     : <div>
                                                                         <DisplayFiles files={this.state.modulesToDictSubsToFiles[module][subject]}
                                                                         FileDeletionButtonHandler={this.FileDeletionButtonHandler}
-                                                                        role={Role.Commander}/>
+                                                                        role={this.role}/>
+
+                                                                        {(this.role === Role.Admin || this.role === Role.Commander) ?
                                                                         <CourseUploading 
                                                                         chosenMajor={this.state.chosenMajor}
                                                                         chosenModule={module}
                                                                         chosenSubject={subject} />
+                                                                        : ''}
+
                                                                     </div>}
+
                                                                 </div>}
                                                             </Typography>
                                                             </Grid>
@@ -851,12 +843,16 @@ class FileSystemDisplay extends React.Component {
                                                     </Accordion>
 
                                                 ))}
+
+                                                {(this.role === Role.Admin || this.role === Role.Commander) ?
                                                 <ListItem button onClick={this.handleInsertSubject}>
                                                     <ListItemIcon style={{flexBasis: "5.00%"}}>
                                                         <AddCircleOutlineOutlinedIcon color="primary"/>
                                                     </ListItemIcon>
                                                     <ListItemText primary="Create new Subject"/>
                                                 </ListItem>
+                                                : ''}
+
                                             </List>
                                         </div>
                                         }
@@ -870,12 +866,15 @@ class FileSystemDisplay extends React.Component {
 
                     </Accordion>
                 ))}
+
+                {(this.role === Role.Admin || this.role === Role.Commander) ?
                 <ListItem button onClick={this.handleInsertModule}>
                     <ListItemIcon style={{flexBasis: "5.00%"}}>
                         <AddCircleOutlineOutlinedIcon color="primary"/>
                     </ListItemIcon>
                     <ListItemText primary="Create new Module"/>
                 </ListItem>
+                : ''}
 
                 </List>
 

@@ -6,6 +6,9 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import Role from "../../Roles/Role";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import SubmissionTableInfo from '../../soldierOperationSideBar/soldierSubmission/SubmissionTableInfo';
+import { getUserInfoByJWT } from "../../HelperJS/extract_info";
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import TesterMenu from "../../GeneralComponent/tester/TesterMenu";
 
 
 const useStyles = (theme) => ({
@@ -36,6 +39,31 @@ const useStyles = (theme) => ({
 
 class SubmissionStatusObject extends React.Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            myRole: undefined
+        };
+    }
+
+    componentDidMount() {
+        getUserInfoByJWT().then((user) => {
+
+            if (user !== undefined) {
+
+                // Retrieve the user info.
+                user = user.data;
+                if (user !== undefined) {
+
+                    let role = user["role"];
+
+                    this.setState({ myRole: role });
+                }
+            }
+        });
+    }
+
 
     render() {
         let personalId = this.props.match.params.personalId;
@@ -46,66 +74,80 @@ class SubmissionStatusObject extends React.Component {
         // classes - for styling
         const { classes } = this.props;
         const { history } = this.props;
-    
-        return (
+
+        if (this.state.myRole === undefined) {
+
+            return <WaiterLoading />;
+
+        } else {
+
+            let currMenu = undefined;
+
+            if (this.state.myRole === Role.Commander || this.state.myRole === Role.Admin) {
+                currMenu = <CommanderMenu />;
+            
+            } else if (this.state.myRole === Role.Tester) {
+                currMenu = <TesterMenu />;
+            }
+
+            return (
  
-            <MenuAppBar
-            role={Role.Commander}
-            menu={
-                <CommanderMenu/>
-            }
-            content={
-                <div>
-                    <br/>
-                    
-                    <Grid item container xs={12} justify="center" alignItems="center">
-                    
-                        <Breadcrumbs 
-                        separator={<NavigateNextIcon fontSize="small" />} 
-                        aria-label="breadcrumb" 
-                        className={classes.nav}>
-
-                            <Typography 
-                            className={classes.myFont} 
-                            variant="h5" 
-                            color="primary">
-                                {major}
-                            </Typography>
-
-                            <Typography 
-                            className={classes.myFont2} 
-                            variant="h5" 
-                            color="primary">
-                                {moduleName}
-                            </Typography>
-
-                            <Typography 
-                            className={classes.myFont1} 
-                            variant="h5" 
-                            color="primary">
-                                {subject}
-                            </Typography>
-                        </Breadcrumbs>
-                    </Grid>
-
-                    <br/>
-                    <br/>
-                            
-                    <SubmissionTableInfo
-
-                        browesHistory={history}
-                        role={Role.Commander}
-                        major={major}
-                        module={moduleName}
-                        subject={subject}
-                        soldierId={personalId}
-                    >
-                    </SubmissionTableInfo>
-                </div>
-            }
-            >
-            </MenuAppBar>
-        );
+                <MenuAppBar
+                role={this.state.myRole}
+                menu={currMenu}
+                content={
+                    <div>
+                        <br/>
+                        
+                        <Grid item container xs={12} justify="center" alignItems="center">
+                        
+                            <Breadcrumbs 
+                            separator={<NavigateNextIcon fontSize="small" />} 
+                            aria-label="breadcrumb" 
+                            className={classes.nav}>
+    
+                                <Typography 
+                                className={classes.myFont} 
+                                variant="h5" 
+                                color="primary">
+                                    {major}
+                                </Typography>
+    
+                                <Typography 
+                                className={classes.myFont2} 
+                                variant="h5" 
+                                color="primary">
+                                    {moduleName}
+                                </Typography>
+    
+                                <Typography 
+                                className={classes.myFont1} 
+                                variant="h5" 
+                                color="primary">
+                                    {subject}
+                                </Typography>
+                            </Breadcrumbs>
+                        </Grid>
+    
+                        <br/>
+                        <br/>
+                                
+                        <SubmissionTableInfo
+    
+                            browesHistory={history}
+                            role={this.state.myRole}
+                            major={major}
+                            module={moduleName}
+                            subject={subject}
+                            soldierId={personalId}
+                        >
+                        </SubmissionTableInfo>
+                    </div>
+                }
+                >
+                </MenuAppBar>
+            );
+        }
     }
 
 }

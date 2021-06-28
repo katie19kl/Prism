@@ -1,3 +1,5 @@
+import Role from "../Roles/Role";
+
 /*
  * The function returns a list of fields which
  * must be defined but are the opposite. 
@@ -50,7 +52,7 @@ function handleOptionalFields(data, role) {
         }
 
     // Commanders may have more than one major.
-    } else if (role === 'commander') {
+    } else if (role === Role.Commander || role === Role.Tester) {
         
         let len = Object.keys(listOfMajors).length;
         if (len > 0) {

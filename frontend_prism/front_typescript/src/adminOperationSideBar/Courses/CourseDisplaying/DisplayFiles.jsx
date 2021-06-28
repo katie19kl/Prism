@@ -19,6 +19,9 @@ const useStyles = (theme) => ({
         flexGrow: 1,
         marginRight: theme.spacing(2),
     },
+    myFont: {
+        fontFamily: 'Comic Sans MS, Comic Sans, cursive',
+    }
 });
 
 
@@ -68,6 +71,8 @@ class DisplayFiles extends React.Component {
 
 	render() {
 
+        const { classes } = this.props;
+
         this.determineFileIcons();
 
 
@@ -81,7 +86,7 @@ class DisplayFiles extends React.Component {
             
                 <div className="card">
                     
-                    <div className="card-header">List of Files</div>
+                    <div className="card-header"><b> List of Files </b></div>
                     
                     <ul className="list-group list-group-flush">
                         {this.state.fileInfos !== [] &&
@@ -93,7 +98,7 @@ class DisplayFiles extends React.Component {
                                 {this.fileNameToIcon[file.file_name]}
                             </IconContext.Provider>
 
-                                <a href={file.url}>{file.file_name}</a>
+                                <a href={file.url} className={classes.myFont}>{file.file_name}</a>
 
                                 {(this.role === Role.Commander || this.role === Role.MyFiles ) ? 
                                 <IconButton aria-label="delete" style={{ float: 'right'}}

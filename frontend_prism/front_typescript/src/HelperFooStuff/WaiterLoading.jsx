@@ -1,4 +1,4 @@
-import { withStyles, CircularProgress } from '@material-ui/core';
+import { withStyles, CircularProgress, Grid } from '@material-ui/core';
 import React from "react"
 
 
@@ -19,8 +19,10 @@ class WaiterLoading extends React.Component {
 
         return (
             <div className={classes.root}>
-
-              <CircularProgress disableShrink size={100} />
+                
+                <Grid container justify='center' alignItems='center' style={{ minHeight: '70vh' }}>
+                    <CircularProgress disableShrink size={70} />
+                </Grid>
             </div>
         );
     }

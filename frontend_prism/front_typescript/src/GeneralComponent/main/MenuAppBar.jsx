@@ -17,7 +17,6 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
 import { currentUserUsername } from '../../HelperJS/authentification_helper';
 import Button from '@material-ui/core/Button';
-
 import LocalStorage from "../../HelperJS/LocalStorage"
 import { Link } from 'react-router-dom';
 import prism from './../../Images/prism.jpg'
@@ -118,39 +117,34 @@ class MenuAppBar extends React.Component {
 
         let currUsername = this.getUserName();
 
-        
-        console.log("main app setting state with  " + currUsername + " to " + this.state.username)
         this.setState({
             username: currUsername
-        })
+        });
     }
 
     handleDrawerOpen() {
-        this.setState({
-            open: true
-        })
+        this.setState({ open: true });
     };
     
     handleDrawerClose() {
-        this.setState({
-            open: false
-        })
+        this.setState({ open: false });
     };
 
     render() {
-
-        console.log("main app bar")
-
         const { classes, theme } = this.props;
         const { username } = this.state;
 
         let role = this.props.role;
-
         
         return (
             <div className={classes.root}>
-                <AppBar position="fixed" className={clsx(classes.appBar, {[classes.appBarShift]: this.state.open,})}>
+                <AppBar 
+                position="fixed" 
+                className={clsx(classes.appBar, 
+                {[classes.appBarShift]: this.state.open,})}>
+
                     <Toolbar>
+
                     <IconButton 
                     edge="start" 
                     className={clsx(classes.menuButton, this.state.open && classes.hide)}
@@ -158,7 +152,9 @@ class MenuAppBar extends React.Component {
                     aria-label="menu"
                     onClick={this.handleDrawerOpen}>
                     <MenuIcon />
+
                     </IconButton>
+
                     <Typography variant="h6" className={classes.title}>
                         Prism Dashboard
                     </Typography>
@@ -166,7 +162,7 @@ class MenuAppBar extends React.Component {
                     <Link to="/login" 
                             style={{ textDecoration: 'none', color:"white" }}
                             onClick={()=> LocalStorage.cleanAll()}>
-                        <Button color="inherit" >Log out </Button>
+                        <Button color="inherit" >Log out</Button>
                     </Link>
                     
                     </Toolbar>
@@ -196,7 +192,7 @@ class MenuAppBar extends React.Component {
 
                 <Divider />
                     <div>
-                    {this.props.menu}
+                        {this.props.menu}
                     </div>
                 <Divider />
 
@@ -207,8 +203,13 @@ class MenuAppBar extends React.Component {
                 {/* Separation from the app bar. */}                
                 <div className={classes.toolbar} />
 
-                <div className={clsx(classes.appBar, {[classes.appBarShift]: this.state.open,})} id="toInsert">
+                <div 
+                className={clsx(classes.appBar,
+                {[classes.appBarShift]: this.state.open,})} 
+                id="toInsert">
+
                     {this.props.content}
+
                 </div>
             </div>
         );

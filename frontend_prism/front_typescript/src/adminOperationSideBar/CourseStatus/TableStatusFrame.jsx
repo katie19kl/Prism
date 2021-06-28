@@ -5,6 +5,7 @@ import { Paper, Table, TableContainer, withStyles } from "@material-ui/core"
 import { Major } from "../../HelperJS/Major";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 import { getModulesByMajor } from "../../adminOperationSideBar/CourseFiles/files_request_handler"
+import Role from "../../Roles/Role";
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -41,6 +42,7 @@ class TableStatusFrame extends React.Component {
 
         this.selectedMajor = undefined;
         this.selectedModule = undefined;
+        this.myRole = undefined;
         
         //this.checkBoxClicked = false
         this.state = {
@@ -53,12 +55,12 @@ class TableStatusFrame extends React.Component {
         };
     }
 
-    handleEdittingMode(event){
+    handleEdittingMode(event) {
         
         this.setState({displayEditMode:event.target.checked});
     }
 
-    handleMySoldiers(event){
+    handleMySoldiers(event) {
         //console.log(event.target.checked)
         //this.checkBoxClicked = event.target.checked
         this.setState({checkBoxClicked:event.target.checked});
@@ -96,7 +98,6 @@ class TableStatusFrame extends React.Component {
         }
     }
 
-
     componentDidMount() {
 
         getUserInfoByJWT().then((user) => {
@@ -107,6 +108,7 @@ class TableStatusFrame extends React.Component {
                 user = user.data;
                 if (user !== undefined) {
                     let majors_ = user["major"];
+                    this.myRole = user["role"];
 
 
                     this.setState({
@@ -121,8 +123,6 @@ class TableStatusFrame extends React.Component {
     render() {
         let modules = this.state.modules;
         let classes = this.props.classes;
-
-        //console.log(this.selectedModule)
 
         return (
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
@@ -170,7 +170,7 @@ class TableStatusFrame extends React.Component {
 
                                 </TableCell>
 
-
+                                {(this.myRole === Role.Commander || this.myRole === Role.Admin) ?
                                 <TableCell>
                                     <FormControlLabel
                                         control={
@@ -186,6 +186,7 @@ class TableStatusFrame extends React.Component {
                                         label="My Soldiers"
                                     />
                                 </TableCell>
+                                : ''}
 
                                 <TableCell>
 
@@ -211,7 +212,8 @@ class TableStatusFrame extends React.Component {
                                     </FormControl>
 
                                 </TableCell>
-
+                                
+                                {(this.myRole === Role.Commander || this.myRole === Role.Admin) ?
                                 <TableCell>
                                     <FormControlLabel
                                         control={
@@ -230,6 +232,7 @@ class TableStatusFrame extends React.Component {
                                         label="Edit Mode"
                                     />
                                 </TableCell>
+                                : ''}
 
                             </TableRow>
                         </TableHead>
@@ -240,8 +243,7 @@ class TableStatusFrame extends React.Component {
                         selectedMajor={this.selectedMajor}
                         selectedModule={this.selectedModule}
                         mySoldiers={this.state.checkBoxClicked}
-                        editMode={this.state.displayEditMode}
-                        >
+                        editMode={this.state.displayEditMode}>
                         </TableStatus>
                     }
 
@@ -254,45 +256,3 @@ class TableStatusFrame extends React.Component {
 }
 
 export default withStyles(useStyles, { withTheme: true })(TableStatusFrame)
-/*
-<TableCell>
-                    <Typography>
-                            Select major
-                    </Typography>
-
-                    <Select
-                        labelId="demo-simple-select-disabled-label"
-                        id="demo-simple-select-disabled"
-                        >
-                        <MenuItem value="">
-                            <em>None</em>
-                        </MenuItem>
-                        <MenuItem value={"MAJOR-1"}>MAJOR-1</MenuItem>
-                        <MenuItem value={"MAJOR-2"}>MAJOR-2</MenuItem>
-                        <MenuItem value={"MAJOR-3"}>MAJOR-3</MenuItem>
-                    </Select>
-                </TableCell>
-
-
-                <TableCell>
-                        <Typography>
-                            Select module
-                        </Typography>
-
-                        <Select
-                            labelId="demo-simple-select-disabled-label"
-                            id="demo-simple-select-disabled"
-                            >
-                            <MenuItem value="">
-                                <em>None</em>
-                            </MenuItem>
-                            <MenuItem value={"Module-1"}>Module-1</MenuItem>
-                            <MenuItem value={"Module-2"}>Module-2</MenuItem>
-                            <MenuItem value={"Module-3"}>Module-3</MenuItem>
-                        </Select>
-
-
-
-                </TableCell>
-
-*/
