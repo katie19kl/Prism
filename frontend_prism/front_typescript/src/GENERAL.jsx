@@ -70,9 +70,9 @@ export default class General extends React.Component {
 			getAllSubmissionsInMajor(major).then((submissions) => {
 				if (submissions !== undefined) {
 					
-					//console.log(majors)
-					if (majors.includes(major)) {
-						this.getAllMyMajorSubmissions(major,submissions);
+					
+					if (majors.includes(major)){
+						this.getAllMyMajorSubmissions(major,submissions)
 					}
 
 					if (submissions.data !== undefined) {
@@ -89,12 +89,14 @@ export default class General extends React.Component {
 		}
 	}
 
-	getAllMyMajorSubmissions(major,submissions) {
-		console.log("here")
-		let allMajorSubmission = submissions.data;
-		let ok = [];
-		let not_ok = [];
-		let not_reviewed = [];
+	getAllMyMajorSubmissions(major,submissions){
+
+		let allMajorSubmission = submissions.data
+		
+		
+		let ok = []
+		
+
 
 		for (const submission of allMajorSubmission) {
 			let grade = submission.gradeDescription;

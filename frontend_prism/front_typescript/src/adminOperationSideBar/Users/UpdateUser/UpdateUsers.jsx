@@ -68,6 +68,7 @@ class UpdateUsers extends React.Component {
 
                         users = users.data;
                         for (user of users) {
+                 
                             let personalIdUser = user.personalId;
                             let firstNameUser = user.firstName;
                             let lastNameUser = user.lastName;

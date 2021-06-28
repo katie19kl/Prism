@@ -85,7 +85,7 @@ class SubmissionTableInfo extends React.Component {
             } else {
                 this.submissionInfo = result.data;
 
-                console.log(this.submissionInfo);
+         
                 this.setState({
                     submittedFiles: this.submissionInfo.submittedFiles,
                     isChecked: this.submissionInfo.isChecked,

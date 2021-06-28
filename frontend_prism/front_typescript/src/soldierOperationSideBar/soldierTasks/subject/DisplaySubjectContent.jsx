@@ -12,13 +12,11 @@ export default class DisplaySubjectContent extends React.Component {
         for (let file of arrFiles){
             let idFile = file.file_name.split("_")[0]
             let isAnotherSolution = (file.file_name.split("_")[1] === "solution")
-            console.log(idFile)
+           
 
 
             if (!(idFile === personalId) && isAnotherSolution){
                 console.log("not mine sol id")
-                console.log(idFile)    
-                console.log("--------------------")
             }else {
                 filteredArr.push(file)
             }

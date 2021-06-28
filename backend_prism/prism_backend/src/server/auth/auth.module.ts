@@ -16,11 +16,12 @@ import { UserSubmissionService } from '../UserSubmission/user-submission.service
         PassportModule.register({ defaultStrategy: 'jwt', session: false }),
         JwtModule.register({
         
-        //secretOrPrivateKey: 'thisismykickasssecretthatiwilltotallychangelater',
-        secretOrPrivateKey : jwtConstants.secret,
-        //secret: jwtConstants.secret,
+        // secretOrPrivateKey is deprecated 
+        // & secret - is currently good     
+        //secretOrPrivateKey : jwtConstants.secret,
+        secret: jwtConstants.secret,
         signOptions: {
-            expiresIn: '30000s'
+            //expiresIn: '30000s'
         }
         }),
         UsersModule,

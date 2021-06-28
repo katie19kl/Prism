@@ -53,7 +53,7 @@ class DisplayModules extends React.Component {
         let modulesOfMajor = this.state.modules;
         let personalId = user["personalId"];
 
-        console.log("personalId: ", personalId);
+
         
         return (
             <div>

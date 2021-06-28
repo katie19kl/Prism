@@ -138,13 +138,13 @@ class SubmissionReview extends React.Component {
     }
 
     nextClick() {
-        console.log("NEXT")
+  
         let prevIndexRev = this.state.currentNumberReview;
         this.setState({ currentNumberReview : prevIndexRev + 1 });
     }
 
     prevClick() {
-        console.log("PREV")
+
         let prevIndexRev = this.state.currentNumberReview;
         this.setState({ currentNumberReview : prevIndexRev - 1 });
     }

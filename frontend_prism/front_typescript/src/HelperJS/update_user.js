@@ -72,22 +72,19 @@ async function updateUser(username, newUserName, newFirstName,
 		});
 
 		return await req.put(url, updated_user_json)
-		.then((response) => {
-			
-			console.log("update ------------------")
-
-			if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined") {
-
-				console.log("update curr with" + newUserName)
-
-				// if change my username => update local storage
-				if (me) {
-					LocalStorage.setItem(LocalStorage.username, newUserName)
+			.then((response) => {
+				
+		
+				if (newUserName !== undefined && newUserName !== "" && newUserName !== "undefined"){
+					
+					// if change my username => update local storage
+					if (me){
+	
+						LocalStorage.setItem(LocalStorage.username, newUserName)
+					}
 				}
-			}
-			console.log(response + "--------------------------------------")
-
-			return response;
+        
+				return response;
 
 		}, (error) => {
 			return error;

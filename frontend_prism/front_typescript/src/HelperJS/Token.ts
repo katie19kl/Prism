@@ -10,8 +10,6 @@ export default class Token  {
 			console.log("token undefined")
 			return null
 		}
-	
-		//console.log(token);
 		return token;
   
   	}

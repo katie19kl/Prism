@@ -1,6 +1,7 @@
 import { ConflictException } from "@nestjs/common";
 import { NotFoundException } from "@nestjs/common";
 import { SubjectsOnDemandService } from "src/server/subjects-on-demand/subjects-on-demand.service";
+import { Synchronizer } from "src/server/synchronizer/Synchronizer";
 import { Major } from "src/server/users/common/major.enum";
 import { UsersService } from "src/server/users/users.service";
 import { IndexingFormat } from "../common/IndexingFormat";
@@ -174,26 +175,20 @@ export class SubjectManager{
 
 
 
-    async decreaseIndexesSubjectAfterRemoved(removedIndex:string, major:Major, module:string){
+    async decreaseIndexesSubjectAfterRemoved(removedIndex:string, major:Major, module:string, syncronizer:Synchronizer){
         
         const fs = require("fs")
         let path = FileHandlingService.pathRootDirectory + "/" + major + "/" + module
         
         let all_dirs = FileHandlingService.getDirList(path)
       
-        
-
-
-        
+       
         return await new Promise( async (resolve, reject) =>{
-            for await (const dir_subject of all_dirs) {
+            for /*await*/ (const dir_subject of all_dirs) {
          
                 let index_dir = this.extractIndexOfSubject(dir_subject)
        
                 if (parseInt(index_dir) > parseInt(removedIndex)) {
-    
-                  
-                    
     
                     let currentPath = path + "/" + dir_subject;
                     //let index_new = parseInt(dir[2]) - 1
@@ -201,7 +196,6 @@ export class SubjectManager{
                     let index_new = parseInt(index_dir) - 1
 
                     // SOLVED : replace problem when name contains numbers
-                    //let dirNew = dir_subject.replace(index_dir, index_new.toString());
                     let leftPart = dir_subject.split(IndexingFormat.SubjectSubIndexing)[0]
                     let rightPart = dir_subject.split(IndexingFormat.SubjectSubIndexing)[1]
                     let newRightPart = rightPart.replace(index_dir,index_new.toString())
@@ -212,14 +206,35 @@ export class SubjectManager{
     
                 
                     
-                    fs.rename(currentPath, newPath, function (err) {
+                    await new Promise((res, rej)=>{
+                        fs.rename(currentPath, newPath, async function (err) {
+                            if (err) {
+                                //reject(-1)
+                                rej(-1) 	          
+                            }else {
+                                console.log("sync renaming", dir_subject, dirNew)
+                                await syncronizer.syncSubjectRenaming(major,module,dir_subject, dirNew)
+                                console.log(".................................")
+                                res(1)
+                            }
+                        })
+                    })
+
+                    /*fs.rename(currentPath, newPath, async function (err) {
                         if (err) {
                             reject(-1) 	          
-                        } 
+                        }else {
+                            console.log("sync renaming", dir_subject, dirNew)
+                            await syncronizer.syncSubjectRenaming(major,module,dir_subject, dirNew)
+                            console.log(".................................")
+                            
+                        }
                     })
+                    */
                 }
             }
-            resolve(all_dirs)
+            let all_dirs_ = FileHandlingService.getDirList(path)
+            resolve(all_dirs_)
         })
  
 
@@ -230,7 +245,7 @@ export class SubjectManager{
 
 
 
-    async removeSubject(major: Major, module: string, subjectToDelete: string) {
+    async removeSubject(major: Major, module: string, subjectToDelete: string, synchronizer:Synchronizer) {
 
 
         //let dir = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_to_del
@@ -259,11 +274,14 @@ export class SubjectManager{
            
 
 
-                    let renaming =  await this.decreaseIndexesSubjectAfterRemoved(indexToRemove, major, module)
+                    let renaming =  await this.decreaseIndexesSubjectAfterRemoved(indexToRemove, major, module,synchronizer)
                     if (renaming == -1){
                         reject(new NotFoundException("Renaming problem"))
                     }
                     else {
+                        console.log(renaming)
+                        console.log("-------in subject after decreasing")
+                        await synchronizer.syncSubjectRemoving(major,module,subjectToDelete)
                         resolve("Deleting & renaming are done")
                     }
                 }
@@ -287,7 +305,7 @@ export class SubjectManager{
 
 
 
-    async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string){
+    async renameSubject(major:Major, module:string, subjectToRename:string, newNameForSubject:string, synchronizer:Synchronizer){
 
         let pathToModule = this.createPathToModule(major,module)
 
@@ -314,21 +332,26 @@ export class SubjectManager{
 
         
         const fs = require("fs")
-        return await new Promise((resolve,reject) =>{
+        return await new Promise( (resolve,reject) =>{
 
             if (newPath === "undefined"){
                 reject(new ConflictException("Provided name already exists!"))
             }
             else {
 
-                fs.rename(currPath, newPath, function (err) {
+                fs.rename(currPath, newPath, async function (err) {
                     if (err) {
                         
                         reject(new NotFoundException("Provided directory was not found"))
                         
                     } else {
+
+                      
                         
+                        await synchronizer.syncSubjectRenaming(major, module, subjectToRename,indexing + newNameForSubject)
+
                         resolve("Successfully renamed the directory")
+
                         
                         
                     }

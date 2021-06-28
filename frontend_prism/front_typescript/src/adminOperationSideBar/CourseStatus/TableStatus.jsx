@@ -255,10 +255,6 @@ class TableStatus extends React.Component {
 				// new soldiers => new submissions have to be exctracted 
 				this.getSoldierSubmissions(newSoldiers).then((subData) => {
 					
-					console.log("ZZZZZZZZZZZZZZZZZZZZZZZ")
-					console.log(subData)
-					console.log(usersToTable)
-					console.log("ZZZZZZZZZZZZZZZZZZZZZZZ")
 					// set state with new-arrived soldiers & their submission data
 					
 					this.last = true
@@ -517,25 +513,21 @@ class TableStatus extends React.Component {
 
 		if (this.edit !== undefined && this.props.editMode !== this.edit) {
 		
-			console.log("00")
 			this.last = true
 		}
 		
 
 		this.edit  = this.props.editMode
 
-		if (!this.last) {
-			console.log("11")
-			return <WaiterLoading />
+		if (!this.last){
+			return <WaiterLoading/>
 		}
 
 
-		console.log("...........Soldier Closed........")
-		console.log(this.soldierClosed)
 		let dictValues = Object.values(this.soldierClosed)
 		if (dictValues.length > 0){
 
-			console.log(dictValues)
+
 			
 			let closed = "x.x"
 			for (const arrNames of dictValues){
@@ -546,24 +538,22 @@ class TableStatus extends React.Component {
 				}
 			}
 			
-			console.log(closed)
+
 			let numClosed = closed.split(".")[0]
 
-			console.log(numClosed)
+
 			
 
 			let moduleNum = this.props.selectedModule.split("-")[0] 
-			console.log(moduleNum)
+
 			if (moduleNum !== numClosed){
 				
-				console.log("22")
+		
 				return <WaiterLoading/>
 			}
 		}
 
 
-
-		console.log("..................................")
 		
 		let isEditMode = this.props.editMode
 		
@@ -585,8 +575,7 @@ class TableStatus extends React.Component {
 
 			let personalIdColors = this.convertToColors(soldierSubmissionData);
 			
-			console.log(this.last)
-			console.log("33")			
+		
 
 			return (
 
@@ -730,7 +719,7 @@ class TableStatus extends React.Component {
 		}
 		else {
 			
-			console.log("44")
+
 			return <WaiterLoading/>
 		}
 	}

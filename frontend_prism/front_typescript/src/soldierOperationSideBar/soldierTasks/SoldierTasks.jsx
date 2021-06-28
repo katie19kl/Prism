@@ -17,19 +17,19 @@ export default class SoldierTasks extends React.Component {
 
 
     componentDidMount() {
-        console.log("000")
+       
         if (this.state.user === undefined){
             
             getUserInfoByJWT().then((user_) => {
-                console.log("444")
+           
                 if (user_ === undefined){
                     
                 } else {
 
-                    console.log("here user was given")
+     
                     user_ = user_.data
                     
-                    console.log(user_)
+        
  
 
                     this.setState({

@@ -118,7 +118,7 @@ class DeletionDialog extends React.Component {
     }
 
     handleUserChange(event) {
-        console.log(event.target.value);
+
 
         let soldierId = event.target.value;
 
@@ -162,8 +162,7 @@ class DeletionDialog extends React.Component {
                 }
 
             } else {
-                console.log(response);
-
+    
                 // show informative message to the screen.
                 this.msg = "User deletion has failed";
                 this.severity = "error";
