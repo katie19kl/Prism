@@ -66,212 +66,6 @@ export class UsersService {
 
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
 	// get role of given token
 	async getRoleByJWT(usertoken){
 
@@ -408,13 +202,25 @@ export class UsersService {
 
 	async updateUserInfo(username: string, updateUserDto: UpdateUserDto) {
 
+		let newUserName = updateUserDto.username;
+
+		// check if a user with the new username exists.
+		if (newUserName !== undefined) {
+			let isExistingUser = await this.findOneByUsername(newUserName);
+
+			if (isExistingUser) {
+				throw new HttpException("Username already exists", HttpStatus.BAD_REQUEST);
+			}
+		}
+
 		let user = await this.findOneByUsername(username);
 
 		if (user) {
+			
+			let updatedUser = this.updateInfoHelper(user, updateUserDto);
 
-			let updatedUser = await this.updateInfoHelper(user, updateUserDto);
-
-			return await updatedUser.save();
+			let result = await updatedUser.save();
+			return result;
 
 		} else {
 
@@ -424,7 +230,7 @@ export class UsersService {
 	}
 
 	// Helper function for updateUserInfo - updates each field if was changed.
-	private async updateInfoHelper(user: IUser, updateUserDto: UpdateUserDto): Promise<IUser> {
+	private updateInfoHelper(user: IUser, updateUserDto: UpdateUserDto): IUser {
 
 		if (updateUserDto.username !== undefined) {
 			user.username = updateUserDto.username;
@@ -482,7 +288,7 @@ export class UsersService {
 	}
 
 	// retrieves first prop of json object
-	getFirstProp(jsonObj){
+	getFirstProp(jsonObj) {
 		let firstProp;
         for(var key in jsonObj) {
             if(jsonObj.hasOwnProperty(key)) {
