@@ -21,7 +21,8 @@ const useStyles = (theme) => ({
     },
     myFont: {
         fontFamily: 'Comic Sans MS, Comic Sans, cursive',
-    }
+    },
+
 });
 
 
@@ -79,6 +80,15 @@ class DisplayFiles extends React.Component {
         if (this.state.fileInfos === undefined) {
             this.state.fileInfos = [];
         }
+        
+        console.log("DIsplaying")
+
+        //console.log(this.state.fileInfos[0])
+
+        //console.log(this.state.fileInfos[0].url)
+
+
+        console.log("DIsplaying")
 
         return (
             <div>
@@ -98,7 +108,28 @@ class DisplayFiles extends React.Component {
                                 {this.fileNameToIcon[file.file_name]}
                             </IconContext.Provider>
 
+                                {// allow to dowload file
+                                file.url !== undefined &&
                                 <a href={file.url} className={classes.myFont}>{file.file_name}</a>
+                                }
+
+                                {// displaying folder to commnder ( with soldier ID)
+                                file.url === undefined && this.role === Role.Commander &&
+                                <p className={classes.myFont}>{file.file_name}</p>    
+                                }
+                                
+                                
+                                {// displaying folder to soldier ( without soldier ID)
+                                file.url === undefined && this.role === Role.Soldier &&
+                                <p className={classes.myFont}> my solution exist</p>    
+                                }
+
+
+
+
+
+
+
 
                                 {(this.role === Role.Commander || this.role === Role.MyFiles ) ? 
                                 <IconButton aria-label="delete" style={{ float: 'right'}}
