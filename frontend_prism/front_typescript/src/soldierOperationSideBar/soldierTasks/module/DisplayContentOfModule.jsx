@@ -6,7 +6,7 @@ import ContentOfModule from "./ContentOfModule"
 import WaiterLoading from "../../../HelperFooStuff/WaiterLoading"
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info"
 import { getAllowedSubjectsOfUser } from "../../../adminOperationSideBar/CourseStatus/subject_on_demand"
-
+import Role from '../../../Roles/Role';
 
 
 export default class DisaplayContentOfModule extends React.Component {
@@ -30,16 +30,13 @@ export default class DisaplayContentOfModule extends React.Component {
 			if (user === undefined || user.data === undefined) {
 				
 			} else {
-
-                
-		
-				user = user.data
+				user = user.data;
 				
-                let personalId = user["personalId"] 
+                let personalId = user["personalId"] ;
 				
 
                 //getSubjectsByModule(major, moduleName).then( (res)=>{
-                getAllowedSubjectsOfUser(major, moduleName, personalId).then((res)=>{
+                getAllowedSubjectsOfUser(major, moduleName, personalId).then((res) => {
                     
                     this.nothingHere = false
                         
@@ -117,7 +114,7 @@ export default class DisaplayContentOfModule extends React.Component {
         if (this.nothingHere){
             return (
                 <MenuAppBar
-                    role = "Soldier" 
+                    role ={Role.Soldier} 
                     menu={
                         <SoldierMenu/>
                     }
@@ -126,27 +123,20 @@ export default class DisaplayContentOfModule extends React.Component {
                         <h2>NOTHING ALLOWED ( ALL IS CLOSED) </h2>
                     }>
 
-                    </MenuAppBar>
-                    )
+                </MenuAppBar>
+            );
         }
 
         if (this.state.dirSubjectFiles !== undefined && subjects !== undefined){
-            
- 
             
             if (this.numberSubjects === Object.keys(this.state.dirSubjectFiles).length){
 
                 
                 let dict = this.state.dirSubjectFiles
-                               
-                for (var key in dict) {
-         
-                }
-
 
                 return (
                     <MenuAppBar
-                        role = "Soldier" 
+                        role ={Role.Soldier} 
                         menu={
                             <SoldierMenu/>
                         }
@@ -169,16 +159,15 @@ export default class DisaplayContentOfModule extends React.Component {
                             
                     </MenuAppBar>
                 )
-            }else {
+            } else {
                 return (
                     <MenuAppBar
-                        role = "Soldier" 
+                        role ={Role.Soldier} 
                         menu={
                             <SoldierMenu/>
                         }
                         content={
                             <WaiterLoading />
-                            //<h2>NOTHING </h2>
                         }>
     
                         </MenuAppBar>
@@ -188,14 +177,13 @@ export default class DisaplayContentOfModule extends React.Component {
         else {
             return (
                 <MenuAppBar
-                    role = "Soldier" 
+                    role ={Role.Soldier} 
                     menu={
                         <SoldierMenu/>
                     }
                     content={
                         
                         <WaiterLoading />
-                        //<h2>NOTHING </h2>
                     }>    
 
                     </MenuAppBar>

@@ -96,7 +96,7 @@ export default class PrivateRoutingComponent extends React.Component {
 		})
 
 		
-		let path = this.props.path;
+		//let path = this.props.path;
 
 
 

@@ -148,7 +148,7 @@ export class UserSubmissionService {
         
         console.log("----------------Create new submission----------------------")
 
-        createUserSubmissionDto.gradeDescription = "xui"
+        createUserSubmissionDto.gradeDescription = "";
         createUserSubmissionDto.isChecked = false
 
 

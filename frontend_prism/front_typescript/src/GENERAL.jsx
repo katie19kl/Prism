@@ -11,6 +11,7 @@ import { Status } from "./GeneralComponent/SubmissionStatusColors/SoldierSubmiss
 import OK_Status from "./soldierOperationSideBar/soldierSubmission/OK_Status"
 import { Grid } from "@material-ui/core"
 import TesterMenu from "./GeneralComponent/tester/TesterMenu"
+import WaiterLoading from "./HelperFooStuff/WaiterLoading"
 
 
 export default class General extends React.Component {
@@ -95,6 +96,8 @@ export default class General extends React.Component {
 		
 		
 		let ok = []
+		let not_reviewed = [];
+		let not_ok = [];
 		
 
 
@@ -146,6 +149,10 @@ export default class General extends React.Component {
 			let amountSubmissions = this.majorSubmissionsAmount[major];
 			verticalSoldiers.push(amountSoldier);
 			verticalSubmissions.push(amountSubmissions);
+		}
+
+		if (this.myRole === undefined) {
+			return <WaiterLoading />;
 		}
 
 		let menu = undefined;
