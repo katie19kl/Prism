@@ -42,11 +42,17 @@ export default class DisplaySubjectContent extends React.Component {
         if (arrFiles.length === 0){
             filteredArrFiles = [{file_name:"ss"}]
             filteredArrFiles[0].file_name = "XUIIII EMPTY"
+            filteredArrFiles[0].url = "NAHUe"
         }else {
             filteredArrFiles = this.removeOtherSoldierFiles(arrFiles, personalId)
         }
         
- 
+        
+        console.log("=================")
+        console.log(filteredArrFiles)
+        console.log("=================")
+        
+
         return (
 
             <div>
