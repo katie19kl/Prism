@@ -96,9 +96,9 @@ export default class General extends React.Component {
 		
 		
 		let ok = []
-		let not_reviewed = [];
-		let not_ok = [];
-		
+
+		let not_reviewed = []
+		let not_ok = []
 
 
 		for (const submission of allMajorSubmission) {
@@ -202,8 +202,6 @@ export default class General extends React.Component {
 						
 						<h2>Submissions' status in your major</h2>
 
-
-						
 					</div>
 				
 				</div>
