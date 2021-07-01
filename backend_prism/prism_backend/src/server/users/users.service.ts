@@ -12,9 +12,6 @@ import { IUserSubmission } from '../UserSubmission/iuser-submission.interface';
 import { ReviewService } from '../review/review.service';
 import { IReview } from '../review/ireview.interface';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
-import { FileHandlingService } from '../file-handling/file-handling.service';
-import { SubjectManager } from '../file-handling/managers/SubjectManager';
-import { ModuleManager } from '../file-handling/managers/ModuleManager';
 import { Synchronizer } from '../synchronizer/Synchronizer';
 
 @Injectable()
@@ -22,7 +19,6 @@ export class UsersService {
 
 	userSubmissionHandler: UserSubmissionService;
 	reviewHandler: ReviewService;
-
 	syncronizer:Synchronizer
 
 	constructor(@InjectModel('User') private userModel: Model<IUser>,
@@ -43,7 +39,6 @@ export class UsersService {
 		await subjectOnDemandService.closeAllSubjectToNewSoldier(majors, soldierId);
 
 	}
-
 
 	// add new user
 	async create(createUserDto: CreateUserDto,subjectOnDemandService: SubjectsOnDemandService) {
@@ -177,9 +172,6 @@ export class UsersService {
 		let soldiersInMajors = [];
 		let soldierData;
 
-		
-		
-		
 		users.forEach(user => {
 
 			let currMajor = user.major;
@@ -195,7 +187,8 @@ export class UsersService {
 					soldierData = {
 						personalId : user.personalId,
 						firstName : user.firstName,
-						lastName: user.lastName
+						lastName: user.lastName,
+						major: user.major
 					};
 					soldiersInMajors.push(soldierData);
 				}
@@ -310,7 +303,6 @@ export class UsersService {
 		return firstProp
 	}
 
-
 	async retrieveSubmissions(soldiersJson, major:Major, module:string){
 
         let soldiers = this.getFirstProp(soldiersJson)
@@ -384,31 +376,36 @@ export class UsersService {
 
 	async getSoldiersByCommanderId(commanderId:string, majorSelected:Major){
 
-		let commanderSoldiers = await this.userModel.find({major:majorSelected,commander:commanderId, role:Role.Soldier})
+		let commanderSoldiers = await this.userModel.find(
+			{major:majorSelected,commander:commanderId, role:Role.Soldier}
+		);
 
-		return commanderSoldiers
+		return commanderSoldiers;
 	}
 
+	async getAllUsersByRole(role: Role) {
 
-   
+		let users = await this.userModel.find();
+		let soldiersInRole = [];
+		let userData;
+		
+		users.forEach(user => {
 
+			let currRole = user.role;
+			
+			// A user with the required role.
+			if (currRole === role) {
+			
+				userData = {
+					personalId : user.personalId,
+					firstName : user.firstName,
+					lastName: user.lastName
+				};
 
+				soldiersInRole.push(userData);
+			}
+		});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		return soldiersInRole;
+	}
 }

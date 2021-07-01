@@ -21,6 +21,7 @@ const useStyles = (theme) => ({
     },
 });
 
+
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -41,16 +42,18 @@ class DeletionDialog extends React.Component {
         this.severity = undefined;
 
         this.defaultChoice = {
-            firstName: 'None',
+            firstName: ' ',
             lastName: ' ',
-            personalId: ' ' 
+            personalId: ' ',
+            major: ' ' 
         };
 
         this.soldierInCommanderMajors = [
             {
-                firstName: 'None',
+                firstName: ' ',
                 lastName: ' ',
-                personalId: ' ' 
+                personalId: ' ',
+                major: ' ' 
             },
         ];
 
@@ -86,11 +89,13 @@ class DeletionDialog extends React.Component {
                             let personalIdUser = user.personalId;
                             let firstNameUser = user.firstName;
                             let lastNameUser = user.lastName;
+                            let majorUser = user.major;
 
                             let line = {
                                 firstName: firstNameUser,
                                 lastName: lastNameUser,
-                                personalId: personalIdUser 
+                                personalId: personalIdUser,
+                                major: majorUser
                             };
 
                             this.soldierInCommanderMajors.push(line);
@@ -119,7 +124,6 @@ class DeletionDialog extends React.Component {
 
     handleUserChange(event) {
 
-
         let soldierId = event.target.value;
 
         // Chose a soldier(which is not 'None').
@@ -138,15 +142,13 @@ class DeletionDialog extends React.Component {
     }
 
     handleCloseConfirm() {
-        // delete the user
 
+        // delete the user
         deleteUserByPersonalId(this.state.chosenSoldier).then((response) => {
             if (response !== undefined) {
                 if (response.status === 200) {
 
                     // deletion was done successfully- refresh the page.
-                    //window.location.reload(false);
-
                     this.msg = "User deleted successfully";
                     this.severity = "success";
 
@@ -179,8 +181,8 @@ class DeletionDialog extends React.Component {
     }
 
     handleCloseCancel() {
-        // do nothing.
 
+        // do nothing.
         this.setState({ confirmDialogOpen: false });
     }
 
@@ -201,7 +203,7 @@ class DeletionDialog extends React.Component {
                         id="alert-dialog-title">
                             {"Choose the user you would like to delete"}
                         </DialogTitle>
-                        <DialogContent style={{height:'120px'}}>
+                        <DialogContent style={{height:'200px'}}>
                         
                         <Grid item>
                         <FormControl>
@@ -214,7 +216,7 @@ class DeletionDialog extends React.Component {
                                 <option key={sld.personalId} value={sld.personalId}>
                                 {
                                 "Personal ID: "  + sld.personalId + " | Full Name: " 
-                                + sld.firstName + " " + sld.lastName
+                                + sld.firstName + " " + sld.lastName + " | Major: " + sld.major
                                 }
                                 </option>
                             ))}

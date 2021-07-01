@@ -1,15 +1,35 @@
 import React from "react"
 import MenuAppBar from "./../../../GeneralComponent/main/MenuAppBar"
 import SoldierMenu from "./../../../GeneralComponent/soldier/SoldierMenu"
-import {getFilesBySubject} from "./../../../adminOperationSideBar/CourseFiles/files_request_handler"
+import { getFilesBySubject } from "./../../../adminOperationSideBar/CourseFiles/files_request_handler"
 import ContentOfModule from "./ContentOfModule"
 import WaiterLoading from "../../../HelperFooStuff/WaiterLoading"
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info"
 import { getAllowedSubjectsOfUser } from "../../../adminOperationSideBar/CourseStatus/subject_on_demand"
+import Role from '../../../Roles/Role';
+import { Typography, withStyles, Grid, Breadcrumbs } from '@material-ui/core';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+import { purple } from "@material-ui/core/colors"
 
 
+const useStyles = (theme) => ({
+    myFont: {
+        fontFamily: 'monospace',
+    },
+    myFont2: {
+        fontFamily: 'Comic Sans MS, Comic Sans, cursive',
+    },
+    myFont3: {
+        fontFamily: 'Comic Sans MS, Comic Sans, cursive',
+        color: purple[400],
+    },
+    padding: {
+        marginTop: theme.spacing(5),
+    }
+});
 
-export default class DisaplayContentOfModule extends React.Component {
+
+class DisaplayContentOfModule extends React.Component {
 
     constructor(props) {
         super(props)
@@ -23,23 +43,18 @@ export default class DisaplayContentOfModule extends React.Component {
         let moduleName = this.props.match.params.moduleName;
         let major = this.props.match.params.major;
 
-
-
         getUserInfoByJWT().then((user) => {
 
 			if (user === undefined || user.data === undefined) {
 				
 			} else {
-
-                
-		
-				user = user.data
+				user = user.data;
 				
-                let personalId = user["personalId"] 
+                let personalId = user["personalId"] ;
 				
 
                 //getSubjectsByModule(major, moduleName).then( (res)=>{
-                getAllowedSubjectsOfUser(major, moduleName, personalId).then((res)=>{
+                getAllowedSubjectsOfUser(major, moduleName, personalId).then((res) => {
                     
                     this.nothingHere = false
                         
@@ -101,52 +116,80 @@ export default class DisaplayContentOfModule extends React.Component {
 
     render() {
 
+        const { classes } = this.props;
+
         let moduleName = this.props.match.params.moduleName;
         let major = this.props.match.params.major;
         let personalId = this.props.match.params.personalId;
         let subjects = this.state.subjects;
 
 
-        if (subjects !== undefined){
-            subjects.sort()
-        
-            
+        if (subjects !== undefined) {
+            subjects.sort();    
         }
 
-
-        if (this.nothingHere){
+        if (this.nothingHere) {
             return (
                 <MenuAppBar
-                    role = "Soldier" 
+                    role ={Role.Soldier} 
                     menu={
                         <SoldierMenu/>
                     }
                     content={
-                        //<WaiterLoading />
-                        <h2>NOTHING ALLOWED ( ALL IS CLOSED) </h2>
-                    }>
+                        <div>
+                            
+                            <Grid className={classes.padding}
+                            item container xs={12} 
+                            justify="center" alignItems="center">
 
-                    </MenuAppBar>
-                    )
+                                <Breadcrumbs separator={<NavigateNextIcon 
+                                fontSize="small" />} 
+                                aria-label="breadcrumb" 
+                                className={classes.nav}>
+
+                                    <Typography 
+                                    className={classes.myFont2}
+                                    variant="h5" 
+                                    color="primary">
+                                        {major}
+                                    </Typography>
+
+
+                                    <Typography 
+                                    className={classes.myFont3} 
+                                    variant="h5" 
+                                    color="primary">
+                                        {moduleName}
+                                    </Typography>
+
+                                </Breadcrumbs>
+                            </Grid>
+
+                            <br />
+
+                            <Grid item container justify='center' alignItems='center' xs={12}>
+                                <Typography 
+                                variant='h5' 
+                                className={classes.myFont}>
+                                    <b> No Assignments were added to this module </b> 
+                                </Typography>
+                            </Grid>
+
+                        </div>
+                    }>
+                </MenuAppBar>
+            );
         }
 
         if (this.state.dirSubjectFiles !== undefined && subjects !== undefined){
             
- 
-            
             if (this.numberSubjects === Object.keys(this.state.dirSubjectFiles).length){
-
                 
                 let dict = this.state.dirSubjectFiles
-                               
-                for (var key in dict) {
-         
-                }
-
 
                 return (
                     <MenuAppBar
-                        role = "Soldier" 
+                        role ={Role.Soldier} 
                         menu={
                             <SoldierMenu/>
                         }
@@ -158,49 +201,44 @@ export default class DisaplayContentOfModule extends React.Component {
                                 major = {major}
                                 subjects = {subjects}
                                 dictSubjectFiles = {dict}
-                                personalId={personalId}
-                                >
-
+                                personalId={personalId}>
                                 </ContentOfModule>
-
-                                
                             </div>
                         }>
                             
                     </MenuAppBar>
-                )
-            }else {
+                );
+            } else {
                 return (
                     <MenuAppBar
-                        role = "Soldier" 
+                        role ={Role.Soldier} 
                         menu={
-                            <SoldierMenu/>
+                            <SoldierMenu />
                         }
                         content={
                             <WaiterLoading />
-                            //<h2>NOTHING </h2>
                         }>
     
-                        </MenuAppBar>
-                )
+                    </MenuAppBar>
+                );
             }
         }
         else {
             return (
                 <MenuAppBar
-                    role = "Soldier" 
+                    role ={Role.Soldier} 
                     menu={
                         <SoldierMenu/>
                     }
                     content={
                         
                         <WaiterLoading />
-                        //<h2>NOTHING </h2>
                     }>    
 
-                    </MenuAppBar>
-            )
+                </MenuAppBar>
+            );
         }
     }
-
 }
+
+export default withStyles(useStyles, { eithTheme: true })(DisaplayContentOfModule)

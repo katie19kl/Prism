@@ -671,8 +671,6 @@ class FileSystemDisplay extends React.Component {
         // classes - for styling
         const { classes } = this.props;
 
-        console.log(this.props.modulesToDictSubsToFiles)
-
         return (
             <Grid item xs={11}>             
             {
@@ -825,7 +823,7 @@ class FileSystemDisplay extends React.Component {
                                                                     : <div>
                                                                         <DisplayFiles files={this.state.modulesToDictSubsToFiles[module][subject]}
                                                                         FileDeletionButtonHandler={this.FileDeletionButtonHandler}
-                                                                        role={this.role}/>
+                                                                        role={this.role} />
 
                                                                         {(this.role === Role.Admin || this.role === Role.Commander) ?
                                                                         <CourseUploading 

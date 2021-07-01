@@ -57,6 +57,8 @@ class ChangeUserData extends React.Component {
 		this.handleResponse = this.handleResponse.bind(this);
 		this.closgMsg = this.closgMsg.bind(this);
 
+		this.toCommander = this.props.toCommander;
+
 		this._username =  "";
 		this._password = "";
 		this._firstName = "";
@@ -429,6 +431,7 @@ class ChangeUserData extends React.Component {
 					<br></br>
 					<br></br>
 
+					{this.toCommander !== true ?
 					<Grid container item justify='center' alignItems='center'>
 						<TextField onChange={this.handleTextFieldChangeCommander}
 						variant="outlined"
@@ -445,6 +448,7 @@ class ChangeUserData extends React.Component {
 						value={this.props.prev_commander}>
 						</TextField>
 					</Grid>
+					: ''}
 
 					<br></br>
 					<br></br>

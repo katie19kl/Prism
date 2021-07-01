@@ -10,8 +10,12 @@ import { Major } from "../../HelperJS/Major"
 import { Status } from "../SubmissionStatusColors/SoldierSubmissionStatus"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
 import { Grid } from "@material-ui/core"
+
 import TesterMenu from "../tester/TesterMenu";
 import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+
+//import TesterMenu from "./GeneralComponent/tester/TesterMenu"
+//import WaiterLoading from "./HelperFooStuff/WaiterLoading"
 
 
 export default class General extends React.Component {

@@ -199,24 +199,12 @@ class SubmissionTableInfo extends React.Component {
     deleteFileFromSubmissionHandler(event, file_name) {
         event.stopPropagation();
         
-
         this.chosenFileName = file_name;
-
 
         this.setState({
             showConfirmDialog: true,
             confirmDialogOpen: true,
         });
-        /*removeFileFromSubmission(this.major, this.module, this.subject, file_name).then((res)=>{
-            if (res !== undefined){
-                res = res.data
-                this.setState({
-                    submittedDate: res.submittedDate,
-                    submittedTime: res.submittedTime,
-                    submittedFiles: res.submittedFiles
-                })
-            }
-        })*/
     }
 
     setReviewContent() {
@@ -267,7 +255,7 @@ class SubmissionTableInfo extends React.Component {
         let history = this.props.browesHistory;
         let gradeDesc = "No grade given yet";
 
-        if (this.state.gradeDescription !== undefined) {
+        if (this.state.gradeDescription !== undefined && this.state.gradeDescription !== "") {
             gradeDesc = this.state.gradeDescription;
         }
 

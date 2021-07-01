@@ -9,18 +9,16 @@ import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
 import { jwtConstants } from '../RolesActivity/constants';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
 import { Synchronizer } from '../synchronizer/Synchronizer';
+import { Role } from '../RolesActivity/role.enum';
 
 
 
 @Controller('users')
 export class UsersController {
 
-    constructor(private usersService: UsersService, private subjectOnDemandService: SubjectsOnDemandService,
-                                        private syncronizer:Synchronizer) { }
-
-
-
-
+    constructor(private usersService: UsersService, 
+                private subjectOnDemandService: SubjectsOnDemandService,
+                private syncronizer:Synchronizer) {}
 
     @Get("role_by_JWT")
     @UseGuards(JwtAuthGuard)
@@ -28,8 +26,6 @@ export class UsersController {
         const usertoken = req.headers.authorization;
         return { role: await this.usersService.getRoleByJWT(usertoken) }
     }
-
-
 
     @Get('info_by_JWT')
     @UseGuards(JwtAuthGuard)
@@ -44,17 +40,11 @@ export class UsersController {
     @UseGuards(IsEmptyGuard)
     // ADMIN/COMMANDER
     async create(@Body() createUserDto: CreateUserDto) {
-      
-        
-    
-        
 
         let result = await this.usersService.create(createUserDto,this.subjectOnDemandService);
-   
-        
+           
         return result;
     }
-
 
     // when the commander wants to see all the soldiers
     // (when wanting to edit someone's details for example).
@@ -62,20 +52,24 @@ export class UsersController {
     @Get('soldiers')
     async getAllSoldiers() {
 
-       
         return await this.usersService.findAllSoldiers();
 
     }
 
+    @Get('all_users/:role')
+    async getAllUsersByRole(@Param('role') role: Role) {
+
+        console.log("i am here kety!")
+        return await this.usersService.getAllUsersByRole(role);
+    }
+
     @Post('submissions/:major/:module')
-    async getUsersSubmissions(@Body() soldiers,@Param('major') major: Major,
-                              @Param('module') module: string){
+    async getUsersSubmissions(@Body() soldiers, @Param('major') major: Major,
+                              @Param('module') module: string) {
         
        return await this.usersService.retrieveSubmissions(soldiers,major,module)
         
     }
-
-
 
 
     @Get(':id')
@@ -86,38 +80,19 @@ export class UsersController {
         
     }
 
-    /*// ADMIN/COMMANDERS.
-    @Get('soldiers/:major')
-    async getSoldiersByMajor(@Param('major') major: Major) {
-
-        console.log("returning list of all soldiers in the major: " + major);
-        return await this.usersService.findAllSoldiersInMajor(major);
-
-    }*/
-
     @Post('soldiers/majors')
     async getAllSoldiersInMajors(@Body() majors: Major[]) {
     
-        
-        
         return await this.usersService.findSoldiersInAllMajors(majors);
     }
-
-
 
     // ADMIN/COMMANDER
     @Put(':username')
     async updateUser(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
 
-      
-        
-       
-        
-
         return await this.usersService.updateUserInfo(username, updateUserDto);
 
     }
-
 
     // ADMIN/COMMANDER
     @Delete(':id')
@@ -129,7 +104,6 @@ export class UsersController {
 
     }
 
-
     // only for checking, to be deleted.
     @Get("fooAdmin")
     @UseGuards(AdminRolesGuard)
@@ -139,42 +113,20 @@ export class UsersController {
         }
     }
 
-
 	// 1 - Get user by commander Id & Major
     @Get('my_soldiers/:major')
     async getSoldierByMajorAndCommanderId(@Param('major') major: Major,@Req() req){
 
-
-
         const usertoken = req.headers.authorization;
         let commander = await this.usersService.getUserByJWT(usertoken);
         let commanderId = commander.personalId;
-      
-        
-
         
         return await this.usersService.getSoldiersByCommanderId(commanderId, major)
-        
-        //return await this.usersService.findOneByPersonalId(personalId)
-        
+                
     }
-
-
-
-
-
-
 
 	// 2 - Given array of users - arrUser --> returns corresponding array of all 
 	//                                        their submision & reviews  
-
-
-
-
-
-
-
-
 
 }
 

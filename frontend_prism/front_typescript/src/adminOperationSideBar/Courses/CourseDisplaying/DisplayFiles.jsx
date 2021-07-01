@@ -1,6 +1,6 @@
 import React from "react"
 import "bootstrap/dist/css/bootstrap.min.css";
-import { IconButton, withStyles } from "@material-ui/core";
+import { IconButton, withStyles, Typography } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { blue } from "@material-ui/core/colors";
 import { IconContext } from "react-icons";
@@ -12,6 +12,8 @@ import {GrDocumentTxt} from "react-icons/gr"; // txt
 import { defineIconOfFile } from "../file_handle";
 import { AiFillFile } from "react-icons/ai"
 import Role from "../../../Roles/Role";
+import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
+import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({
@@ -22,6 +24,10 @@ const useStyles = (theme) => ({
     myFont: {
         fontFamily: 'Comic Sans MS, Comic Sans, cursive',
     },
+    myFont2: {
+        fontFamily: 'Comic Sans MS, Comic Sans, cursive',
+        marginLeft: theme.spacing(3),
+    }
 
 });
 
@@ -34,9 +40,11 @@ class DisplayFiles extends React.Component {
         this.determineFileIcons = this.determineFileIcons.bind(this);
         this.fileNameToIcon = {};
         this.role = this.props.role;
+        this.notAllowed = this.props.notAllowed;
 
         this.state = {
             fileInfos: this.props.files,
+            myRole: undefined,
         };
     }
 
@@ -70,80 +78,88 @@ class DisplayFiles extends React.Component {
         }
     }
 
+    componentDidMount() {
+        getUserInfoByJWT().then((user) => {
+
+            if (user !== undefined) {
+                
+                if (user.data !== undefined){
+                        
+                    // Retrieve the user info.
+                    user = user.data;
+                    let trueRole = user["role"];
+                    this.setState({ myRole: trueRole });
+                }
+            }
+        });
+    }
+
 	render() {
 
         const { classes } = this.props;
 
         this.determineFileIcons();
 
-
         if (this.state.fileInfos === undefined) {
             this.state.fileInfos = [];
         }
+
+        if (this.state.myRole === undefined) {
+            return <WaiterLoading />;
         
-        console.log("DIsplaying")
+        } else {
+            return (
+                <div>
+                    <br></br>
+                
+                    <div className="card">
+                        
+                        <div className="card-header"><b> List of Files </b></div>
+                        
+                        <ul className="list-group list-group-flush">
 
-        //console.log(this.state.fileInfos[0])
-
-        //console.log(this.state.fileInfos[0].url)
-
-
-        console.log("DIsplaying")
-
-        return (
-            <div>
-                <br></br>
-            
-                <div className="card">
-                    
-                    <div className="card-header"><b> List of Files </b></div>
-                    
-                    <ul className="list-group list-group-flush">
-                        {this.state.fileInfos !== [] &&
-                        this.state.fileInfos.map((file, index) => (
-                            <li className="list-group-item" key={index}>
-
-                            <IconContext.Provider
-                            value={{ color: 'black', size: '20px' }}>
-                                {this.fileNameToIcon[file.file_name]}
-                            </IconContext.Provider>
-
-                                {// allow to dowload file
-                                file.url !== undefined &&
-                                <a href={file.url} className={classes.myFont}>{file.file_name}</a>
-                                }
-
-                                {// displaying folder to commnder ( with soldier ID)
-                                file.url === undefined && this.role === Role.Commander &&
-                                <p className={classes.myFont}>{file.file_name}</p>    
-                                }
-                                
-                                
-                                {// displaying folder to soldier ( without soldier ID)
-                                file.url === undefined && this.role === Role.Soldier &&
-                                <p className={classes.myFont}> my solution exist</p>    
-                                }
-
-
-
-
-
-
-
-
-                                {(this.role === Role.Commander || this.role === Role.MyFiles ) ? 
-                                <IconButton aria-label="delete" style={{ float: 'right'}}
-                                onClick={(event) => this.FileDeletionButtonHandler(event, file.file_name)}>                        
-                                    <DeleteIcon style={{ color: blue[300]}}/>
-                                </IconButton>
-                                : ''}
-
-                            </li>
-                        ))}
-                    </ul>
-                </div>       
-            </div>
-        );
+                            {this.state.fileInfos.length !== 0 ?
+                                this.state.fileInfos.map((file, index) => (
+                                    <li className="list-group-item" key={index}>    
+                                    <IconContext.Provider
+                                    value={{ color: 'black', size: '20px' }}>
+                                        {this.fileNameToIcon[file.file_name]}
+                                    </IconContext.Provider>
+        
+                                        {// allow to download file
+                                        file.url !== undefined &&
+                                        <a href={file.url} className={classes.myFont}>{file.file_name}</a>
+                                        }
+        
+                                        {// displaying folder to commander ( with soldier ID)
+                                        file.url === undefined && this.role === Role.Commander &&
+                                        <p className={classes.myFont} style={{ display: 'inline-block' }}>{file.file_name}</p>    
+                                        }
+                                        
+                                        
+                                        {// displaying folder to soldier ( without soldier ID)
+                                        file.url === undefined && this.role === Role.Soldier &&
+                                        <p className={classes.myFont} style={{ display: 'inline-block' }}> my solution</p>    
+                                        }
+        
+                                        {((this.role === Role.Commander || this.role === Role.MyFiles) 
+                                        && (file.url !== undefined) && 
+                                        !(this.state.myRole === Role.Commander && this.role === Role.MyFiles)) ?
+                                        
+                                        <IconButton aria-label="delete" style={{ float: 'right'}}
+                                        onClick={(event) => this.FileDeletionButtonHandler(event, file.file_name)}>                        
+                                            <DeleteIcon style={{ color: blue[300]}}/>
+                                        </IconButton>
+                                        : ''}
+        
+                                    </li>
+                                )) : <Typography className={classes.myFont2} style={{display: 'inline-block'}}>Empty</Typography>
+                            }
+                        </ul>
+                    </div>       
+                </div>
+            );
+        } 
     }
 }
 	

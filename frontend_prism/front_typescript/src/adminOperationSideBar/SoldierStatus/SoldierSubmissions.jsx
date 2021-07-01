@@ -13,83 +13,31 @@ import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
 import { getSoldierClosedSubjects } from "../CourseStatus/subject_on_demand"
 
 
-//	boxShadow: "5px 2px 5px grey" for row
-/*
 const useStyles = (theme) => ({
 
 	head: {
 		boxShadow: "1px 1px 1px 1px grey",
 		background: "white",
 		fontWeight: '300%',
-		borderTopStyle: "solid",
-		borderTopColor: "#0096ff",
-
-
-	},
-
-	sticky: {
-		position: "sticky",
-		left: 0,
-		background: "white",
-		boxShadow: " 2px 5px #0096ff",
-
-		borderRightStyle: "solid",
-		borderRightColor: "#0096ff",
-		display: "tableRowGroup",
-		fontWeight: 'bold',
-		width: '50px'
-
-	},
-
-	tableCell: {
-		//borderRightStyle: "solid",
-		borderRightStyle: "dotted",
-		display: "tableRowGroup",
-		borderRightColor: "#0096ff",//
-		borderBottom: 'dotted 3px #0096ff',
-
-	},
-	table: {
-		height: "89vh"
-	},
-
-});
-*/
-//	boxShadow: "5px 2px 5px grey" for row
-const useStyles = (theme) => ({
-
-	head: {
-		boxShadow: "1px 1px 1px 1px grey",
-		background: "white",
-		fontWeight: '300%',
-
 		borderTopStyle: "solid",
 		//borderTopColor: "#0096ff",
-		
 		borderTopColor: "black",
-
 	},
-
 	sticky: {
 		position: "sticky",
 		left: 0,
 		//background: "black",
 		background: "#3b3745",
 		//boxShadow: " 2px 5px #0096ff",
-
 		boxShadow: " 2px 5px black",
-
 		borderRightStyle: "solid",
 		borderRightColor: "black",
 		display: "tableRowGroup",
 		fontWeight: 'bold',
 		width: '50px',
 		borderBottom: 'solid 3px black',
-
 		//borderLeftStyle: "solid",
 		//borderLeftColor: "#0096ff",
-
-		
 	},
 
 	tableCell: {
@@ -108,37 +56,28 @@ const useStyles = (theme) => ({
 });
 
 
-
-
 class SoldierSubmissions extends React.Component {
-
 
 	constructor(props) {
 		super(props);
 		this.modules = []
 		this.modules_subjects = {}
-
 		this.subjectClosed = {}
 
 		this.state = {
 			selectedMajor: this.props.selectedMajor,
-			///selectedSoldier: this.props.selectedModule,
-			selectedSoldier: this.props.selectedSoldier,
-			
+			selectedSoldier: this.props.selectedSoldier,			
 			submissionData: undefined,
 			module_submissions: undefined
-
 		}
 	}
 
-
-	getSubjectsOfModules(modules, selectedMajor){
+	getSubjectsOfModules(modules, selectedMajor) {
 
 		let arrPromises = []
 	
 		for (const module of modules){
 			
-
 			arrPromises.push(getSubjectsByModule(selectedMajor, module).then((res) => {
 
 				return new Promise ((resol, rej) => {
@@ -246,10 +185,10 @@ class SoldierSubmissions extends React.Component {
 		let modules_submissions_ = {}
 
 		// take element from key afterward
-		for (const module_sub_map of modules_subjects){
+		for (const module_sub_map of modules_subjects) {
 			
 			// user submission of each module
-			for (const module in module_sub_map){
+			for (const module in module_sub_map) {
 				
 
 			//Each promise extracts user submission of specific module
@@ -309,7 +248,7 @@ class SoldierSubmissions extends React.Component {
 	2- Subjects of modules
 	3- Submissions of modules
 	*/
-	extractAllNeededData(){
+	extractAllNeededData() {
 		
 		this.getModulesOfMajor()
 	}
@@ -321,7 +260,7 @@ class SoldierSubmissions extends React.Component {
 	}
 
 	// Converts info of submission to corresponding color to display in table
-	convertToColors(){
+	convertToColors() {
 		let submissions_ = this.state.module_submissions
 		let selectedSoldier = this.props.selectedSoldier
 
@@ -399,8 +338,6 @@ class SoldierSubmissions extends React.Component {
 		return mod_subject_colors
 	}
 
-
-
 	render() {
         
         let classes = this.props.classes
@@ -408,11 +345,9 @@ class SoldierSubmissions extends React.Component {
         // all steps of extracting data were finished
         let displayTable = (this.state.module_submissions !== undefined && this.subjectClosed !== undefined)
 		
-		
-
 		// prevents case when soldier was changed 
 		// but updated response till arrived
-		if (this.soldierClosed !== undefined){
+		if (this.soldierClosed !== undefined) {
 			displayTable = (this.props.selectedSoldier === this.soldierClosed)
 		}
 	
@@ -422,128 +357,101 @@ class SoldierSubmissions extends React.Component {
 		
 			return (
 
-						// stickyHeader
-						<Table className={classes.table} aria-label="simple table" >
-						
-						<TableBody>
+				// stickyHeader
+				<Table className={classes.table} aria-label="simple table" >
+					
+					<TableBody>
 
+						{/*All rows. Module -> subject & submission*/}
+						{this.modules.map((module, index) => (
+							<TableRow key={module}>
 
-							{/*All rows. Module -> subject & submission*/}
-							{this.modules.map((module, index) => (
-								<TableRow key={module}>
-									<TableCell
+								<TableCell
+								className={classes.sticky}
+								component="th"
+								scope="row">
 
-										className={classes.sticky}
-										component="th"
-										scope="row"
-									>
-		
 									{/*Vertical frozen bar of all modules*/}
 									<Typography style={{color:"white", fontFamily: 'monospace'}}>
 										{module}					
-                                    </Typography>
+									</Typography>
+									
+								</TableCell>
+
+								{
+								this.modules_subjects[module].length === 0 &&
+
+									<Typography>
+									No subjects so far
+									</Typography>
+								}
+
+								{
+									this.modules_subjects[module].map((subject_name) => (
+
+										// verify existence of all needed data 
+										mod_subject_colors[module] !== undefined 
+										&&
+										mod_subject_colors[module][subject_name] !== undefined
 										
-
-									</TableCell>
-
-									{
-
-									this.modules_subjects[module].length === 0 &&
-
-										<Typography>
-										No subjects so far 
-										</Typography>
-									}
-									
-									
-
-									
-									
-									
-									{
-								
-										
-
-										this.modules_subjects[module].map((subject_name) => (
-
-
-
-
-
-											// verify existence of all needed data 
+										? // If module & subject exist & submission
+										<TableCell className={classes.sticky} style={{ backgroundColor: mod_subject_colors[module][subject_name].color}}>
+											{// display navigation icon iff review exist
+											
+												<Link to = {"/admin/soldier_status/" + this.state.selectedSoldier + "/" + 
+													this.state.selectedMajor + "/" + module + "/"
+													+ subject_name }>
 												
-												mod_subject_colors[module] !== undefined 
-												&&
-												mod_subject_colors[module][subject_name] !== undefined
-												
-												? // If module & subject exist & submission
-												<TableCell className={classes.sticky} style={{ backgroundColor: mod_subject_colors[module][subject_name].color}}>
-													{// display navigation icon iff review exist
-													//mod_subject_colors[module][subject_name].hasReview
-													// &&
-														<Link to = {"/admin/soldier_status/" + this.state.selectedSoldier + "/" + 
-															this.state.selectedMajor + "/" + module + "/"
-															+ subject_name }>
-														
-															<CommentIcon style={{color:"black", fontSize:15}}>
-				
-															</CommentIcon>	
-														
-														</Link>
-													}
-													
-													<Typography style={{ fontFamily: 'monospace'}}>
-																	
-														{
-															/*mod_subject_colors[module][subject_name].color + "-"+*/ 
-															subject_name.split(" ")[1]
-														}
+													<CommentIcon style={{color:"black", fontSize:15}}>
 		
-												 	</Typography>
+													</CommentIcon>
 												
-												</TableCell>
-												: // lack of data (or not submitted)
-												
-												
-												// Takes care of closed/opened subjects
-												(
-												this.subjectClosed[module][this.props.selectedSoldier].length > 0
-												&& 
-												this.subjectClosed[module][this.props.selectedSoldier].includes(subject_name))
-												?
-												<TableCell className={classes.sticky} style={{ backgroundColor: Status.Closed/*"orange"*/ }}>
+												</Link>
+											}
+											
+											<Typography>
+															
 												{
-													subject_name.split(" ")[1] //+ " not submitted "
+													/*mod_subject_colors[module][subject_name].color + "-"+*/ 
+													subject_name.split(" ")[1]
 												}
-												</TableCell>
-												:
-												<TableCell className={classes.sticky} style={{ backgroundColor: Status.OpenNotSubmitted/*"orange"*/ }}>
-												{
-													subject_name.split(" ")[1] //+ " not submitted "
-												}
-												</TableCell>
 
+											</Typography>
+										
+										</TableCell>
+										: // lack of data (or not submitted)
+										
+										
+										// Takes care of closed/opened subjects
+										(
+										this.subjectClosed[module][this.props.selectedSoldier].length > 0
+										&& 
+										this.subjectClosed[module][this.props.selectedSoldier].includes(subject_name))
+										?
+										<TableCell className={classes.sticky} style={{ backgroundColor: Status.Closed/*"orange"*/ }}>
+										{
+											subject_name.split(" ")[1] //+ " not submitted "
+										}
+										</TableCell>
+										:
+										<TableCell className={classes.sticky} style={{ backgroundColor: Status.OpenNotSubmitted/*"orange"*/ }}>
+										{
+											subject_name.split(" ")[1] //+ " not submitted "
+										}
+										</TableCell>	
+									))
+								}
+							</TableRow>
+						))}
+					</TableBody>
 
-								
-
-												
-										))
-									}
-								</TableRow>
-							))}
-						</TableBody>
-
-					</Table>
-
-
-
-			)
+				</Table>
+			);
 		}
 		else {
-			return <WaiterLoading/>
+			return <WaiterLoading/>;
 		}
-
 	}
-
 }
+
 export default withStyles(useStyles, { withTheme: true })(SoldierSubmissions)

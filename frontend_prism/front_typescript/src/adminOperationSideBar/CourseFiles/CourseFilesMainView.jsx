@@ -143,7 +143,6 @@ class CourseFilesMainView extends React.Component {
                             });
                         });
                     });
-                    //this.setState({ chosenMajor: currMajor });
                 }
             });
         }

@@ -7,30 +7,21 @@ import { getSoldiersByMajors } from "../../HelperJS/extract_info"
 import SoldierSubmissions from "./SoldierSubmissions";
 
 
-//	boxShadow: "5px 2px 5px grey" for row
 const useStyles = (theme) => ({
-
     wrapper: {
         overflowY: "hidden",
         display: "flex",
     },
-
     container: {
         overflowX: "scroll",
-
         height: "89vh",
-        //height:"100%",
-
         borderStyle: "solid"
     },
-
     padding: {
         marginLeft: theme.spacing(30),
         marginBottom: theme.spacing(3)
 
     }
-
-
 });
 
 class SoldierStatusFrame extends React.Component {
@@ -68,10 +59,7 @@ class SoldierStatusFrame extends React.Component {
         // server answer VS field value  by { id & personalId }
         usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
         this.setState({ soldiers: usersToTable });
-
-
     }
-
 
     getAllSoldiersMajor(selectedMajor) {
 
@@ -90,7 +78,6 @@ class SoldierStatusFrame extends React.Component {
         })
 
     }
-
 
     majorSelector(event) {
 
@@ -123,7 +110,6 @@ class SoldierStatusFrame extends React.Component {
                 if (user !== undefined) {
                     let majors_ = user["major"];
 
-
                     this.setState({
                         majors: majors_
                     });
@@ -141,14 +127,11 @@ class SoldierStatusFrame extends React.Component {
             <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
 
                 <TableContainer className={classes.container} component={Paper}
-
-                    style={{
-                        justifyContent: "center",
-                        alignItems: "center",
-                        width: '95%'
-                    }}
-                >
-
+                style={{
+                    justifyContent: "center",
+                    alignItems: "center",
+                    width: '95%'
+                }}>
 
                     <Table>
                         <TableHead>
@@ -161,10 +144,9 @@ class SoldierStatusFrame extends React.Component {
 
                                     <FormControl style={{ minWidth: 200 }}>
                                         <Select
-                                            native
-                                            value={undefined}
-                                            onChange={this.majorSelector}
-                                        >
+                                        native
+                                        value={undefined}
+                                        onChange={this.majorSelector}>
 
                                             <option aria-label="None" value="None" />
                                             {(this.state.majors.includes(Major.Software)) ?

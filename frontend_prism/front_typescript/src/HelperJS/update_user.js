@@ -44,13 +44,8 @@ async function updateUser(username, newUserName, newFirstName,
 
 	let token = LocalStorage.getItem(LocalStorage.token);
 
-	
-	// current username ( before changing )
-	//let url = "http://localhost:4000/users/" + username   
 	let url = prefix_server_url + "users/" + username 
 	
-
-
 	// User has no token
 	if (token === null || token === 'undefined') {
 
