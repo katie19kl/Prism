@@ -21,6 +21,7 @@ import SubmissionStatusObject from './adminOperationSideBar/SubmissionStatusObje
 import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
 import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
 import General from './GENERAL';
+import UpdateUsersAdmin from './adminOperationSideBar/Users/UpdateUser/UpdateUsersAdmin';
 
 
 export default function App() {
@@ -64,7 +65,10 @@ export default function App() {
 
 			<Route path="/admin/create_user" component={CreateUser} />
 
-			<Route path="/admin/update_user" component={UpdateUsers} />
+			<Route path="/commander/update_user" component={UpdateUsers} />
+
+			<Route path="/admin/update_user" component={UpdateUsersAdmin} />
+
 			
 			<Route path="/admin/course_status" component={SubmissionStatus} />
 

@@ -3,7 +3,6 @@ import { withStyles } from '@material-ui/core/styles';
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import { TextField, Grid } from "@material-ui/core";
-//import DisplayUserData from "../../../HelperFooStuff/DisplayUserData";
 import {getUserInfoByJWT, getUserInfoById, getSoldiersByMajors} from "../../../HelperJS/extract_info"
 import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
 import Role from "../../../Roles/Role";
@@ -15,7 +14,7 @@ const useStyles = (theme) => ({
         fontFamily: 'monospace'
     },
     select: {
-        width: "45ch"
+        width: "70ch"
     },
 });
 
@@ -30,9 +29,10 @@ class UpdateUsers extends React.Component {
         this.form = undefined;
         this.soldierInCommanderMajor = [
             {
-                firstName: ' None',
+                firstName: ' ',
                 lastName: ' ',
-                personalId: ' ' 
+                personalId: ' ',
+                major: ' '
             }
  
         ];
@@ -59,6 +59,7 @@ class UpdateUsers extends React.Component {
                 
                 user = user.data;
                 let major = user["major"];
+                
 
                 getSoldiersByMajors(major).then((users) => {
                     if (users === undefined) {
@@ -72,11 +73,13 @@ class UpdateUsers extends React.Component {
                             let personalIdUser = user.personalId;
                             let firstNameUser = user.firstName;
                             let lastNameUser = user.lastName;
+                            let majorUser = user.major;
 
                             let line = {
                                 firstName: firstNameUser,
                                 lastName: lastNameUser,
-                                personalId: personalIdUser 
+                                personalId: personalIdUser,
+                                major: majorUser
                             }
 
                             this.soldierInCommanderMajor.push(line);
@@ -93,75 +96,49 @@ class UpdateUsers extends React.Component {
     // user selected => display its info 
     handleChangeSelectSoldier(event) {
 
-        //const { classes } = this.props;
         this.soldier_id = event.target.value;
         
         // make default values to cause re-rendering when user was selected
         this.setState({_selected: false, _error: false});
 
-        getUserInfoById(this.soldier_id).then((user) => {
+        // check that a soldier was indeed chosen.
+        if (this.soldier_id !== undefined && this.soldier_id !== '' && this.soldier_id !== " ") {
 
-            // none was chosen
-            if (user === undefined) {
-                this.form = <h2> problem with user loading </h2>
-                this.setState({_error: true})
-            }
-            // user doesnt exist
-            else if (user.data === "") {
-                this.form = <h2> problem with user loading </h2>
-                this.setState({_error: true});
+            getUserInfoById(this.soldier_id).then((user) => {
 
-            } else {
-                let data = user.data;
-                let phone_num = data.phoneNumber;
-                let userName = data.username;
-                let firstName = data.firstName;
-                let lastName = data.lastName;
-                let commander = data.commander;
-                //let role = data.role;
-                //let gender = data.gender;
-                //let major = data.major;
-
-                /*this.soldier_phone = phone_num;
-                this.soldier_username = userName;
-                this.soldier_firstName = firstName;
-                this.soldier_secondName = lastName;
-                this.commander = commander;
-                */
-
-                this.setState({
-                    soldier_firstName: firstName,
-                    soldier_secondName: lastName,
-                    soldier_phone: phone_num,
-                    soldier_username: userName,
-                    commander: commander,
-                    _selected: true
-                });
-
-                //this.setState({_selected: true});
-
-                
-                /*this.form = <DisplayUserData title={
-                    <Grid justify='center' alignItems='center' container item xs={12}>
-                        <h4 className={classes.myFont}><b> Current Info </b></h4>
-                    </Grid>
+                // none was chosen
+                if (user === undefined) {
+                    this.form = '';
+                    this.setState({_error: true})
                 }
-                major = {major} 
-                gender = {gender}
-                role = {role}
-                lastName = {lastName}
-                firstName = {firstName}
-                username = {userName}
-                phone_number = {phone_num}
-                personalId = {this.soldier_id}
-                ></DisplayUserData>
-                */
-            }
-        }, (error) => {
-
-            this.form = <h2>problem with user loading </h2>
-            this.setState({error: true})
-        });
+                // user doesnt exist
+                else if (user.data === "") {
+                    this.form = '';
+                    this.setState({_error: true});
+    
+                } else {
+                    let data = user.data;
+                    let phone_num = data.phoneNumber;
+                    let userName = data.username;
+                    let firstName = data.firstName;
+                    let lastName = data.lastName;
+                    let commander = data.commander;
+    
+                    this.setState({
+                        soldier_firstName: firstName,
+                        soldier_secondName: lastName,
+                        soldier_phone: phone_num,
+                        soldier_username: userName,
+                        commander: commander,
+                        _selected: true
+                    });
+                }
+            }, (error) => {
+    
+                this.form = <h2><b>A problem has occured</b></h2>;
+                this.setState({error: true})
+            });
+        }
     }
 
     setUpdatedFieldsOfSoldier(data) {
@@ -171,7 +148,8 @@ class UpdateUsers extends React.Component {
         let phoneNumber = data.phoneNumber;
         let commander = data.commander;
 
-        // set the fields which are not-updated(=undefined) to the ones existing in the state obj.
+        // set the fields which are not-updated(=undefined)
+        // to the ones existing in the state obj.
         if (username === undefined || username === "") {
             username = this.state.soldier_username;
         }
@@ -244,7 +222,8 @@ class UpdateUsers extends React.Component {
                                 {this.soldierInCommanderMajor.map((sld) => (
                                     <option key={sld.personalId} value={sld.personalId}>
                                     {
-                                    "Personal id: "  + sld.personalId + " | First name: " + sld.firstName 
+                                    "Personal ID: "  + sld.personalId + " | Full Name: " 
+                                    + sld.firstName + " " + sld.lastName + " | Major: " + sld.major
                                     }
                                     </option>
                                 ))}

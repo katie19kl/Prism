@@ -22,7 +22,7 @@ const useStyles = (theme) => ({
     title: {
         margin: theme.spacing(4, 0, 2),
         fontFamily: "monospace",
-  },
+    },
 });
 
 

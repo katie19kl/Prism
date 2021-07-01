@@ -7,8 +7,7 @@ import SoldierStatusFrame from "./SoldierStatusFrame"
 
 export default class SoldierStatus extends React.Component {
 
-
-    render(){
+    render() {
         return ( 
             <MenuAppBar 
             menu={

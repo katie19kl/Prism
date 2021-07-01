@@ -261,13 +261,7 @@ class TableStatus extends React.Component {
 					this.setState({ soldiers: usersToTable, submissionData: subData	})
 				})
 
-			})
-			//
-
-
-
-
-
+			});
 		}
 	}
 
