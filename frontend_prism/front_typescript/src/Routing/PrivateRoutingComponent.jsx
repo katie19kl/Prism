@@ -4,6 +4,7 @@ import Role from "./../Roles/Role"
 
 import { validateTokenFunc, currentUserRole, validateRoleByToken} from "../HelperJS/authentification_helper"
 import { getUserInfoByJWT } from "../HelperJS/extract_info";
+import ContentOfModule from "../soldierOperationSideBar/soldierTasks/module/ContentOfModule";
 
 
 export default class PrivateRoutingComponent extends React.Component {
@@ -72,6 +73,45 @@ export default class PrivateRoutingComponent extends React.Component {
 
 	render() {
 
+
+
+
+		let isLoggedIn = this.state.isLoggedIn;
+
+
+		let rolesRequired = this.props.roles;
+		let allowedToEveryOne = false;
+
+		// role of current authentificated user
+		let currentUserRole = this.state.getCurrRole();
+
+
+
+
+		getUserInfoByJWT().then((user) => {
+
+			if (user === undefined || user.data === undefined){
+				
+			} else {
+
+				
+				user = user.data
+
+				
+				let role = user["role"]
+				
+
+
+				if (currentUserRole !== role){
+					this.setState({pretentAttempt: true})
+				}
+				
+				
+				
+			}
+		})
+
+
 		if(this.state.pretentAttempt === 555){
 			return <h2>I am checking</h2>
 		}
@@ -99,12 +139,6 @@ export default class PrivateRoutingComponent extends React.Component {
 		//let path = this.props.path;
 
 
-
-		let isLoggedIn = this.state.isLoggedIn;
-
-
-		let rolesRequired = this.props.roles;
-		let allowedToEveryOne = false;
 		
 		// no specified role restriction 
 		if (rolesRequired === undefined) {
@@ -117,16 +151,18 @@ export default class PrivateRoutingComponent extends React.Component {
 			// if role was defined, but user try to pretend 
 			// with higher role. If it occurs => redirects to no permission
 			validateRoleByToken(rolesRequired).then((resp) =>{
+				console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
 				//(resp + "---------I am here -----------")
 				if (resp === false ){
+
+					
 					//return <h2> NIHUI PRETEND OKK ?</h2>
 					this.setState({pretentAttempt: true})
 				}
 			});
 		}
 
-		// role of current authentificated user
-		let currentUserRole = this.state.getCurrRole();
+
 
 
 		// taking care of url with personalId
@@ -141,16 +177,22 @@ export default class PrivateRoutingComponent extends React.Component {
 	
 					
 					user = user.data
+
 					
 					let personalId = user["personalId"]
 					let pathContainingId = this.props.path;
 
 					
+						
+
+				
 					let allowed = this.sameIdURLAndToken(personalId, pathContainingId)
 
 					if (!allowed){
 						this.setState({pretentAttempt: 555})
 					}
+					
+					
 					
 				}
 			})

@@ -1,10 +1,9 @@
 import React from "react";
 import { currentUserRole, currentUserUsername } from "../../HelperJS/authentification_helper.js"
-import CommanderMainPage from "../admin/CommanderMainPage.jsx";
 import NoPermessions from "../../HelperFooStuff/NoPermissions";
 import Role from '../../Roles/Role';
-import SoldierMainPage from './../soldier/SoldierMainPage'
-import TesterMainPage from "../tester/TesterMainPage.jsx";
+import GeneralSoldier from "../soldier/GeneralSoldier.jsx";
+import General from "../../GeneralComponent/admin/GeneralStaff"
 
 
 export default class MainPage extends React.Component {
@@ -32,35 +31,24 @@ export default class MainPage extends React.Component {
   
 
 	render() {
-		const { /*username,*/ role } = this.state;
+		const { role } = this.state;
 
 		if ((role === Role.Admin) || (role === Role.Commander)) {
 		
-			return <CommanderMainPage />;
+			return <General />;
 		
 		} else if (role === Role.Soldier) {
-			
-			return <SoldierMainPage />
+		
+			return <GeneralSoldier/>
 
 		} else if (role === Role.Tester) {
 			
-			return <TesterMainPage />
+			return <General />
 
 		} else {
-			// return an error to the UI.
 			return <NoPermessions/>;
 		}
-		/*return (
-			<div>
-                <h1>Main page view Component</h1>
-                <p>Your role is: <strong>{role}</strong>.</p>
-                <p>This page can be accessed by all authenticated users.</p>
-                <div>
-                    Current user from secure api end point:
-                    { username }
-                </div>
-            </div>
-		);*/
+
 	}
 }
 	
