@@ -7,12 +7,11 @@ import { UploadedFile } from '@nestjs/common';
 import { Delete } from '@nestjs/common';
 import { Major } from '../users/common/major.enum';
 
-
 @Controller('user-submission')
 export class UserSubmissionController {
 
 
-    constructor(private usersService: UserSubmissionService) { }
+    constructor(private userSubmisssionService: UserSubmissionService) { }
 
     @Post()
     @UseInterceptors(FileInterceptor("file"))
@@ -23,7 +22,7 @@ export class UserSubmissionController {
         //console.log(userSubmissionDto)
   
         const usertoken = req.headers.authorization;
-        return this.usersService.addNewUserSubmission(userSubmissionDto, file, usertoken);
+        return this.userSubmisssionService.addNewUserSubmission(userSubmissionDto, file, usertoken);
     }
 
     @Get(':soldierId/:major/:module/:subject')
@@ -34,7 +33,7 @@ export class UserSubmissionController {
         @Param('subject') subject: string) {
 
         try {
-            let submissionInfo = await this.usersService.getUserSubmissionByKey(
+            let submissionInfo = await this.userSubmisssionService.getUserSubmissionByKey(
                 id, major, module, subject);
             return submissionInfo;
     
@@ -43,7 +42,21 @@ export class UserSubmissionController {
             
             throw error;
         }
-    }    
+    }
+
+    @Get(':soldierId')
+    async getUserSubmission(@Param('soldierId') id: string)
+    {
+        try {
+            let submissionInfo = await this.userSubmisssionService.getUserSubmission(id);
+            return submissionInfo;
+    
+        }
+        catch (error) {
+            
+            throw error;
+        }
+    } 
 
     @Delete("/:file_name")
     async removeSubmittedFile(@Param('file_name') file_name: String, 
@@ -55,7 +68,7 @@ export class UserSubmissionController {
         const usertoken = req.headers.authorization;
 
 
-        let x =  await this.usersService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
+        let x =  await this.userSubmisssionService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
         return x
     }
 
@@ -65,7 +78,7 @@ export class UserSubmissionController {
     {
 
         try {
-            let submissionInfo = await this.usersService.getAllSubmissionsByMajor(major);
+            let submissionInfo = await this.userSubmisssionService.getAllSubmissionsByMajor(major);
             return submissionInfo;
     
         }

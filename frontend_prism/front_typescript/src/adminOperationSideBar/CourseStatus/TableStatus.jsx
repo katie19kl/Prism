@@ -425,6 +425,8 @@ class TableStatus extends React.Component {
 			let submissions = soldierSubmissionData[key]
 
 
+			
+
 
 
 			let allSubjects = this.state.subjects
@@ -460,32 +462,51 @@ class TableStatus extends React.Component {
 					let checked = submission.checked
 					let subject = submission.subject
 
+
+					console.log("-------------||||||||-----")
+					let amountFiles = submission.amoutSubmittedFiles
+					console.log(amountFiles)
+					console.log("-------------||||||||-----")
+
+
+
+
 					if (subject === subject_) {
 						
+						// checked with no files inside
+						if (amountFiles === 0 && checked){
+							status = "checked & no files"
+							color = Status.CheckedNoFiles
+						}
+						else {
+							
+						
 		
-						status = "assigned"
-						color = Status.SubmittedNotReviewed
+							status = "assigned"
+							color = Status.SubmittedNotReviewed
 
 
-		
-						if (checked && gradeDescription===OK_Status.OK) {
+			
+							if (checked && gradeDescription===OK_Status.OK) {
 
-							
+								
 
-					
-							
-							status = "checked & good"
-							color = Status.SubmittedGoodEnough
-
-
-						}else if (checked && gradeDescription===OK_Status.NOT_OK){
+						
+								
+								status = "checked & good"
+								color = Status.SubmittedGoodEnough
 
 
-							
-					
-							
-							status = "checked & NOT good"
-							color = Status.SubmittedNotGoodEnough 
+							}else if (checked && gradeDescription===OK_Status.NOT_OK){
+
+
+								
+						
+								
+								status = "checked & NOT good"
+								color = Status.SubmittedNotGoodEnough 
+							}
+						
 						}
 					}
 				}
@@ -682,7 +703,7 @@ class TableStatus extends React.Component {
 
 														</div>
 
-}
+											}
 
 
 
@@ -703,6 +724,8 @@ class TableStatus extends React.Component {
 													
 												</Link>
 											}
+
+
 											
 											{term.subject.split(" ")[1]}
 

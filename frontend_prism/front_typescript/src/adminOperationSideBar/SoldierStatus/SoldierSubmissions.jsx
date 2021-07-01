@@ -351,33 +351,43 @@ class SoldierSubmissions extends React.Component {
 			}
 			for (let submission of soldier_submissions){
 
-				
+				let amount = submission.amoutSubmittedFiles
+
+
 
 
 				let subject = submission.subject
 				let grade =  submission.grade
+				let gradeDescription = submission.gradeDescription
 				// color to display in table
-				
 				let color = Status.Closed
 
 				
-	
-				if (subjectClosed.includes(subject)){
-
-					color = Status.OpenNotSubmitted
+				// chekced & no files
+				if (amount === 0 && submission.checked){
+					color = Status.CheckedNoFiles	
 				}
+				else {
+
+					
+					
+		
+					if (subjectClosed.includes(subject)){
+
+						color = Status.OpenNotSubmitted
+					}
 
 
-				let gradeDescription = submission.gradeDescription
 
 
-				if (submission.checked && gradeDescription === OK_Status.OK) {
-					color = Status.SubmittedGoodEnough
-				}
-				else if (submission.checked && gradeDescription === OK_Status.NOT_OK) {
-					color = Status.SubmittedNotGoodEnough
-				} else if (!submission.checked){
-					color = Status.SubmittedNotReviewed
+					if (submission.checked && gradeDescription === OK_Status.OK) {
+						color = Status.SubmittedGoodEnough
+					}
+					else if (submission.checked && gradeDescription === OK_Status.NOT_OK) {
+						color = Status.SubmittedNotGoodEnough
+					} else if (!submission.checked){
+						color = Status.SubmittedNotReviewed
+					}
 				}
 				// subject -> its submission info for displaying
 				subjects[subject] = {color:color, grade:grade, hasReview:submission.checked, ok_not_ok:gradeDescription}

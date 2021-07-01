@@ -15,7 +15,7 @@ function TesterMenu() {
 
         <List>
 
-            <Link to="/general" style={{ textDecoration: 'none', color:"black" }}> 
+            <Link to="general_staff" style={{ textDecoration: 'none', color:"black" }}> 
                 <ListItem button key="General">
                     <ListItemIcon>
                         <AccountBalanceIcon color="primary"/>

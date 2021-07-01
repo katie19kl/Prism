@@ -13,4 +13,8 @@ export const Status = {
     
 	// blue
 	SubmittedNotReviewed: "#339EFD",
+
+
+	// light red
+	CheckedNoFiles: "#ff002a"
 }

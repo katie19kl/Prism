@@ -17,7 +17,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import PublishIcon from '@material-ui/icons/Publish';
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 import OK_Status from "../soldierSubmission/OK_Status"
-
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
 
 
 const useStyles = (theme) => ({
@@ -56,6 +56,8 @@ class SubmissionTableInfo extends React.Component {
         this.severity = undefined;
 
         this.state = {
+            infoExtracted: false,
+            submmsionExist: false,
             submittedFiles: [],
             isChecked: false,
             submittedTime: undefined,
@@ -81,12 +83,16 @@ class SubmissionTableInfo extends React.Component {
 
             if (result === undefined) {
                 // no submission yet
+                this.setState({infoExtracted:true})
 
             } else {
                 this.submissionInfo = result.data;
 
          
                 this.setState({
+                    infoExtracted:true,
+
+                    submmsionExist:true,
                     submittedFiles: this.submissionInfo.submittedFiles,
                     isChecked: this.submissionInfo.isChecked,
                     submittedTime: this.submissionInfo.submittedTime,
@@ -102,6 +108,11 @@ class SubmissionTableInfo extends React.Component {
 
         let checked = this.state.isChecked;
         let submitted = this.state.existSubmission;
+
+        
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+            return "No files in submission"
+        }
 
         if (checked && submitted) {
             return "Submitted & Reviewed";
@@ -122,6 +133,10 @@ class SubmissionTableInfo extends React.Component {
         // TO DO
         // ADD WITH OPEN OR NOT OPEN 
 
+
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+            return Status.OpenNotSubmitted
+        }
 
         if (checked && submitted) {
             
@@ -166,6 +181,8 @@ class SubmissionTableInfo extends React.Component {
                 if (res.data !== undefined){
                     res = res.data;
                     this.setState({
+
+
                         submittedDate: res.submittedDate,
                         submittedTime: res.submittedTime,
                         submittedFiles: res.submittedFiles,
@@ -203,6 +220,11 @@ class SubmissionTableInfo extends React.Component {
     }
 
     setReviewContent() {
+        
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+            return "No files in submission"
+        }
+
 
         // if review doesnt exist
         let reviewContent = "There is no review so far";
@@ -223,6 +245,18 @@ class SubmissionTableInfo extends React.Component {
 
     render() {
 
+        
+        console.log("+===============+")
+        console.log(this.state.submittedFiles)
+        console.log(this.state.submittedFiles.length)
+        console.log(this.state.submmsionExist)
+        
+        
+        console.log("+===============+")
+        console.log(this.state.infoExtracted)
+        console.log("-----------------------")
+
+
         let classes = this.props.classes;
         let submissionStatus = this.setSubmissionStatus();
         let reviewContent = this.setReviewContent();
@@ -238,6 +272,11 @@ class SubmissionTableInfo extends React.Component {
         }
 
         let x = 1
+
+        if (!this.state.infoExtracted){
+            return <WaiterLoading/>
+        }
+        
 
         if (submissionExist || x) {
 

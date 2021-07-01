@@ -20,7 +20,8 @@ import UserSubmission from "./soldierOperationSideBar/soldierSubmission/UserSubm
 import SubmissionStatusObject from './adminOperationSideBar/SubmissionStatusObject/SubmissionStatusObject';
 import SubmissionStatus from './adminOperationSideBar/CourseStatus/SubmissionStatus';
 import SoldierStatus from './adminOperationSideBar/SoldierStatus/SoldierStatus';
-import General from './GENERAL';
+import General from './GeneralComponent/admin/GeneralStaff';
+import GeneralSoldier from './GeneralComponent/soldier/GeneralSoldier';
 
 
 export default function App() {
@@ -40,8 +41,10 @@ export default function App() {
 
 			<PrivateRoutingComponent path="/10- XUI/10.5- SUB XUI/987654321	" component={General} />
 
-			<Route path="/general" component={General}>
-			</Route>
+			<Route path="/general_staff" component={General}></Route>
+
+			<Route path="/general_soldier" component={GeneralSoldier}></Route>
+
 
 			<Route path="/login" component={LogINComp}>
 			</Route>
