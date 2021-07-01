@@ -24,6 +24,14 @@ export class SubjectsOnDemandService {
 
     }
 
+
+    async getSoldierOpened(personalId:string){
+        const filter_ = {soldierId : personalId} ;
+
+        return await this.userSubmissionModel.find(filter_);
+    }
+
+
     // close all subjects to specific soldier
     async closeAllSubjectToNewSoldier(majors: Major[], soldierId:string) {
         

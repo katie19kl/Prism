@@ -258,7 +258,7 @@ class TableStatus extends React.Component {
 					// set state with new-arrived soldiers & their submission data
 					
 					this.last = true
-					this.setState({ soldiers: usersToTable, submissionData: subData	})
+					this.setState({ soldiers: usersToTable, submissionData: subData})
 				})
 
 			});
@@ -268,12 +268,13 @@ class TableStatus extends React.Component {
 	// extract ONLY my soldiers in selected major
 	extractAllMySoldiers() {
 
-		
+		console.log("all my soldiers")
 		let selectedMajor = this.props.selectedMajor
 
 		getAllMySoldiers(selectedMajor).then((response) => {
 			if (response !== undefined) {
 				if (response.data !== undefined) {
+					console.log("Proccess new arrived:: ", response.data)
 					this.processNewSoldiers(response.data)
 				}
 			}
@@ -285,8 +286,10 @@ class TableStatus extends React.Component {
 
 		// if check box (MySoldiers) state was changed
 		if (this.props.mySoldiers !== this.state.mySoldiers) {
-		
-			this.setState({ mySoldiers: this.props.mySoldiers }, function () {
+			
+			
+
+			this.setState({ mySoldiers: this.props.mySoldiers, soldiers : undefined }, function () {
 				let mySoliders = this.props.mySoldiers
 			
 				if (mySoliders) {
