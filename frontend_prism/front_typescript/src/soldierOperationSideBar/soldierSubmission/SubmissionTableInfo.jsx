@@ -17,7 +17,8 @@ import MuiAlert from '@material-ui/lab/Alert';
 import PublishIcon from '@material-ui/icons/Publish';
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 import OK_Status from "../soldierSubmission/OK_Status"
-
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import { getUserInfoById, getUserInfoByJWT } from "../../HelperJS/extract_info";
 
 
 const useStyles = (theme) => ({
@@ -56,6 +57,8 @@ class SubmissionTableInfo extends React.Component {
         this.severity = undefined;
 
         this.state = {
+            infoExtracted: false,
+            submmsionExist: false,
             submittedFiles: [],
             isChecked: false,
             submittedTime: undefined,
@@ -75,33 +78,54 @@ class SubmissionTableInfo extends React.Component {
     }
 
     getSubmissionInfo() {
-        getListSubmissionOfSubject(this.major, this.module, this.subject, this.soldierId)
-        .then((result) => {
 
-
-            if (result === undefined) {
-                // no submission yet
-
-            } else {
-                this.submissionInfo = result.data;
-
-         
-                this.setState({
-                    submittedFiles: this.submissionInfo.submittedFiles,
-                    isChecked: this.submissionInfo.isChecked,
-                    submittedTime: this.submissionInfo.submittedTime,
-                    submittedDate: this.submissionInfo.submittedDate,
-                    existSubmission: true,
-                    gradeDescription: this.submissionInfo.gradeDescription
-                });
+        getUserInfoByJWT().then((user)=>{
+            if (user !== undefined){
+                if (user.data !== undefined){
+                    this.role  = user.data["role"]
+                    if (this.role === Role.Soldier){
+                        this.role = Role.MyFiles
+                    }
+                }
             }
-        });
+            getListSubmissionOfSubject(this.major, this.module, this.subject, this.soldierId)
+                        .then((result) => {
+
+
+                            if (result === undefined) {
+                                // no submission yet
+                                this.setState({infoExtracted:true})
+
+                            } else {
+                                this.submissionInfo = result.data;
+
+                        
+                                this.setState({
+                                    infoExtracted:true,
+
+                                    submmsionExist:true,
+                                    submittedFiles: this.submissionInfo.submittedFiles,
+                                    isChecked: this.submissionInfo.isChecked,
+                                    submittedTime: this.submissionInfo.submittedTime,
+                                    submittedDate: this.submissionInfo.submittedDate,
+                                    existSubmission: true,
+                                    gradeDescription: this.submissionInfo.gradeDescription
+                                });
+                            }
+                        });
+        })
+        
     }
 
     setSubmissionStatus() {
 
         let checked = this.state.isChecked;
         let submitted = this.state.existSubmission;
+
+        
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+            return "No files in submission"
+        }
 
         if (checked && submitted) {
             return "Submitted & Reviewed";
@@ -122,6 +146,10 @@ class SubmissionTableInfo extends React.Component {
         // TO DO
         // ADD WITH OPEN OR NOT OPEN 
 
+
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+            return Status.OpenNotSubmitted
+        }
 
         if (checked && submitted) {
             
@@ -166,6 +194,8 @@ class SubmissionTableInfo extends React.Component {
                 if (res.data !== undefined){
                     res = res.data;
                     this.setState({
+
+
                         submittedDate: res.submittedDate,
                         submittedTime: res.submittedTime,
                         submittedFiles: res.submittedFiles,
@@ -191,6 +221,11 @@ class SubmissionTableInfo extends React.Component {
     }
 
     setReviewContent() {
+        
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+            return "No files in submission"
+        }
+
 
         // if review doesnt exist
         let reviewContent = "There is no review so far";
@@ -211,6 +246,18 @@ class SubmissionTableInfo extends React.Component {
 
     render() {
 
+        /*
+        console.log("+===============+")
+        console.log(this.state.submittedFiles)
+        console.log(this.state.submittedFiles.length)
+        console.log(this.state.submmsionExist)
+        
+        
+        console.log("+===============+")
+        console.log(this.state.infoExtracted)
+        console.log("-----------------------")*/
+
+
         let classes = this.props.classes;
         let submissionStatus = this.setSubmissionStatus();
         let reviewContent = this.setReviewContent();
@@ -226,6 +273,14 @@ class SubmissionTableInfo extends React.Component {
         }
 
         let x = 1
+
+        
+    
+
+        if (!this.state.infoExtracted){
+            return <WaiterLoading/>
+        }
+        
 
         if (submissionExist || x) {
 
@@ -336,7 +391,7 @@ class SubmissionTableInfo extends React.Component {
 
                         </TableContainer>
 
-                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester) ? 
+                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester || this.role === Role.Admin) ? 
                             <div>
 
                                 <br/>
@@ -345,9 +400,12 @@ class SubmissionTableInfo extends React.Component {
 
                                     {this.role === Role.MyFiles &&
                                     <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
+
+               
                                         <Button variant='contained' color="primary" className={classes.padding} startIcon={<PublishIcon />}>
                                             Create new Submission
                                         </Button>
+                                   
 
                                     </Link>
                                     }

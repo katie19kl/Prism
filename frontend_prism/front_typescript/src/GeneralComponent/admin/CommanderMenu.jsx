@@ -4,7 +4,6 @@ import SchoolIcon from '@material-ui/icons/School';
 import BlurOnRoundedIcon from '@material-ui/icons/BlurOnRounded';
 import AdjustRoundedIcon from '@material-ui/icons/AdjustRounded';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import LocalPostOfficeRoundedIcon from '@material-ui/icons/LocalPostOfficeRounded';
 import GroupRoundedIcon from '@material-ui/icons/GroupRounded';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -18,7 +17,7 @@ function CommanderMenu() {
         <List>
 
             
-            <Link to="/general" style={{ textDecoration: 'none', color:"black" }}> 
+            <Link to="/general_staff" style={{ textDecoration: 'none', color:"black" }}> 
                 <ListItem button key="General">
                     <ListItemIcon>
                         <AccountBalanceIcon color="primary"/>
@@ -63,13 +62,6 @@ function CommanderMenu() {
                 <ListItemText primary="Soldier Status"/>
             </ListItem>
             </Link>
-
-            <ListItem button key="posts">
-                <ListItemIcon>
-                    <LocalPostOfficeRoundedIcon color="primary"/>
-                </ListItemIcon>
-                <ListItemText primary="Posts"/>
-            </ListItem>
 
             <Link to="/admin/info" style={{ textDecoration: 'none', color:"black" }}> 
 

@@ -108,6 +108,10 @@ class DisplayFiles extends React.Component {
             return <WaiterLoading />;
         
         } else {
+
+            console.log("DISPLAYING")
+            console.log(this.state.myRole)
+
             return (
                 <div>
                     <br></br>
@@ -131,8 +135,8 @@ class DisplayFiles extends React.Component {
                                         <a href={file.url} className={classes.myFont}>{file.file_name}</a>
                                         }
         
-                                        {// displaying folder to commander ( with soldier ID)
-                                        file.url === undefined && this.role === Role.Commander &&
+                                        {// displaying folder to commander & admin ( with soldier ID)
+                                        file.url === undefined && (this.role === Role.Commander || this.role === Role.Admin) &&
                                         <p className={classes.myFont} style={{ display: 'inline-block' }}>{file.file_name}</p>    
                                         }
                                         
@@ -141,6 +145,7 @@ class DisplayFiles extends React.Component {
                                         file.url === undefined && this.role === Role.Soldier &&
                                         <p className={classes.myFont} style={{ display: 'inline-block' }}> my solution</p>    
                                         }
+        
         
                                         {((this.role === Role.Commander || this.role === Role.MyFiles) 
                                         && (file.url !== undefined) && 

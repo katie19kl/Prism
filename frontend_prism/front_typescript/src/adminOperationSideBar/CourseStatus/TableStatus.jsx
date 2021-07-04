@@ -258,7 +258,7 @@ class TableStatus extends React.Component {
 					// set state with new-arrived soldiers & their submission data
 					
 					this.last = true
-					this.setState({ soldiers: usersToTable, submissionData: subData	})
+					this.setState({ soldiers: usersToTable, submissionData: subData})
 				})
 
 			});
@@ -268,12 +268,14 @@ class TableStatus extends React.Component {
 	// extract ONLY my soldiers in selected major
 	extractAllMySoldiers() {
 
-		
+		console.log("all my soldiers")
 		let selectedMajor = this.props.selectedMajor
 
 		getAllMySoldiers(selectedMajor).then((response) => {
 			if (response !== undefined) {
 				if (response.data !== undefined) {
+
+					console.log("Proccess new arrived:: ", response.data)
 					this.processNewSoldiers(response.data)
 				}
 			}
@@ -285,8 +287,10 @@ class TableStatus extends React.Component {
 
 		// if check box (MySoldiers) state was changed
 		if (this.props.mySoldiers !== this.state.mySoldiers) {
-		
-			this.setState({ mySoldiers: this.props.mySoldiers }, function () {
+			
+			
+
+			this.setState({ mySoldiers: this.props.mySoldiers, soldiers : undefined }, function () {
 				let mySoliders = this.props.mySoldiers
 			
 				if (mySoliders) {
@@ -419,6 +423,8 @@ class TableStatus extends React.Component {
 			let submissions = soldierSubmissionData[key]
 
 
+			
+
 
 
 			let allSubjects = this.state.subjects
@@ -454,32 +460,51 @@ class TableStatus extends React.Component {
 					let checked = submission.checked
 					let subject = submission.subject
 
+
+					console.log("-------------||||||||-----")
+					let amountFiles = submission.amoutSubmittedFiles
+					console.log(amountFiles)
+					console.log("-------------||||||||-----")
+
+
+
+
 					if (subject === subject_) {
 						
+						// checked with no files inside
+						if (amountFiles === 0 && checked){
+							status = "checked & no files"
+							color = Status.CheckedNoFiles
+						}
+						else {
+							
+						
 		
-						status = "assigned"
-						color = Status.SubmittedNotReviewed
+							status = "assigned"
+							color = Status.SubmittedNotReviewed
 
 
-		
-						if (checked && gradeDescription===OK_Status.OK) {
+			
+							if (checked && gradeDescription===OK_Status.OK) {
 
-							
+								
 
-					
-							
-							status = "checked & good"
-							color = Status.SubmittedGoodEnough
-
-
-						}else if (checked && gradeDescription===OK_Status.NOT_OK){
+						
+								
+								status = "checked & good"
+								color = Status.SubmittedGoodEnough
 
 
-							
-					
-							
-							status = "checked & NOT good"
-							color = Status.SubmittedNotGoodEnough 
+							}else if (checked && gradeDescription===OK_Status.NOT_OK){
+
+
+								
+						
+								
+								status = "checked & NOT good"
+								color = Status.SubmittedNotGoodEnough 
+							}
+						
 						}
 					}
 				}
@@ -505,6 +530,17 @@ class TableStatus extends React.Component {
 
 	render() {
 
+
+
+		if (this.XUIusers !== undefined){
+			if (this.XUIusers.length === 0){
+				return <h2>You have no soldiers</h2>
+			}
+		}
+
+
+
+
 		if (this.edit !== undefined && this.props.editMode !== this.edit) {
 		
 			this.last = true
@@ -514,6 +550,7 @@ class TableStatus extends React.Component {
 		this.edit  = this.props.editMode
 
 		if (!this.last){
+
 			return <WaiterLoading/>
 		}
 
@@ -676,7 +713,7 @@ class TableStatus extends React.Component {
 
 														</div>
 
-}
+											}
 
 
 
@@ -697,6 +734,8 @@ class TableStatus extends React.Component {
 													
 												</Link>
 											}
+
+
 											
 											{term.subject.split(" ")[1]}
 

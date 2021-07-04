@@ -45,6 +45,7 @@ async function getListOfAllFiles(major, module, subject) {
 async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
   
+    let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
     let url  = prefix_server_url + "file-handling/files/" + major + "/" + module + "/" + subject;
     
@@ -56,6 +57,7 @@ async function uploadSingleFiles(file, onUploadProgress, major, module, subject)
     
     return await axios.post(url, formData, {
         headers: {
+        'Authorization': 'Bearer ' + token,
         'Content-Type': 'multipart/form-data'
         },
         onUploadProgress,

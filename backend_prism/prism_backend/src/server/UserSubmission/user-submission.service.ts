@@ -60,6 +60,22 @@ export class UserSubmissionService {
         } 
     }
 
+
+    async getUserSubmission(id: string) {
+                
+        const filter = { 
+            soldierId: id
+        };
+        let result = await this.userSubmissionModel.find(filter);
+
+        if (result) {
+            return result;
+        
+        } else {
+            throw new HttpException("No submission has been made by the soldier", HttpStatus.NOT_FOUND);
+        } 
+    }
+
     // removes from file root & removes from db only one file
     async removeSubmittedFile(createUserSubmissionDto: UserSubmissionDTO, usertoken, file_name){
         

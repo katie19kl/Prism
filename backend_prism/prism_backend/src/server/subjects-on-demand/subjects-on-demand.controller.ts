@@ -13,7 +13,7 @@ export class SubjectsOnDemandController {
 
             
     @Post('open/:major/:module/:subject/:soldierId')
-    async openSubjectToUser(  @Param('major') major: Major,@Param('module') module : string,
+    async openSubjectToUser(@Param('major') major: Major,@Param('module') module : string,
                                             @Param('subject') subject:string,  @Param('soldierId') soldierId: string)
     {
 
@@ -54,5 +54,15 @@ export class SubjectsOnDemandController {
         console.log(" HERERERERRERERE")
         return await this.subjectsOnDemandService.getSoldierOpenedSubjects(major,module,personalId)
     }
+
+
+    @Get("my_on_demands/:personalId")
+    async getSoldierOpened(@Param('personalId') personalId: string){
+        console.log("XXX")
+        return await this.subjectsOnDemandService.getSoldierOpened(personalId)
+    }
+
+
+
 
 }

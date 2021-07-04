@@ -35,6 +35,11 @@ class ContentOfModule extends React.Component {
         let moduleName = this.props.moduleName;
         let major = this.props.major;
         let subjects = this.props.subjects;
+        console.log("-------")
+        console.log(subjects)
+        console.log("-------")
+
+
         let personalId = this.props.personalId;
 
         let dictSubjectFiles = this.props.dictSubjectFiles

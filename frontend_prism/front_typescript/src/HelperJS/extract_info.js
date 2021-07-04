@@ -184,7 +184,7 @@ async function getAllUsersByRole(role) {
 		
 		let url = prefix_server_url + "users/all_users/" + role;
 
-		console.log(url)
+	
 
 		const req = await axios.create({
 			baseURL: url,
@@ -205,5 +205,79 @@ async function getAllUsersByRole(role) {
 }
 
 
-export { getUserInfoByJWT, getUserInfoById, getSoldiersByMajors,
-		 getAllMySoldiers, getAllSubmissionsInMajor, getAllUsersByRole }
+async function getAllSoldierSubmissions(personalId){
+	let token = LocalStorage.getItem(LocalStorage.token);
+
+	// User has no token
+	if (token === null || token === 'undefined') {
+
+		return false;
+
+	} else {
+		
+		let url = prefix_server_url + "user-submission/" + personalId;
+
+	
+		
+
+		const req = await axios.create({
+			baseURL: url,
+			timeout: 1000,
+			headers: { 'Authorization': 'Bearer ' + token }
+		});
+
+		return await req.get(url, {
+		})
+		.then((response) => {
+
+			return response;
+
+		}, (error) => {
+			return undefined;
+		});
+	}
+}
+
+
+
+async function getSoldierOpened(personalId){
+	let token = LocalStorage.getItem(LocalStorage.token);
+
+	// User has no token
+	if (token === null || token === 'undefined') {
+
+		return false;
+
+	} else {
+		
+		let url = prefix_server_url + "subjects-on-demand/my_on_demands/" + personalId;
+
+	
+		
+
+		const req = await axios.create({
+			baseURL: url,
+			timeout: 1000,
+			headers: { 'Authorization': 'Bearer ' + token }
+		});
+
+		return await req.get(url, {
+		})
+		.then((response) => {
+
+			return response;
+
+		}, (error) => {
+			return undefined;
+		});
+	}
+}
+
+
+
+
+
+
+
+export { getUserInfoByJWT, getUserInfoById, getSoldiersByMajors,getAllMySoldiers, 
+			getAllSubmissionsInMajor, getAllUsersByRole,getAllSoldierSubmissions,getSoldierOpened}

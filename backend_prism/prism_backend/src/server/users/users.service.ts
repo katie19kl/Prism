@@ -324,7 +324,7 @@ export class UsersService {
 			for (let submission of submissions){
 				
 			
-				
+				let amoutSubmittedFiles_ = submission.submittedFiles.length
 			
 				let grade_ = undefined
 				let gradeDescription_ = undefined
@@ -339,6 +339,8 @@ export class UsersService {
 					for (let review of reviews){
 						grade_ = review.grade
 						gradeDescription_ = review.gradeDescription
+
+						
 					}
 				}
 
@@ -351,10 +353,13 @@ export class UsersService {
 									checked:submission.isChecked,
 									subject:submission.subject,
 									grade:grade_,
-									gradeDescription:gradeDescription_
+									gradeDescription:gradeDescription_,
 									
+									amoutSubmittedFiles:amoutSubmittedFiles_
 								}
 				)
+				
+				//console.log(sendSubmission[submission.soldierId])
 							
 								
 								

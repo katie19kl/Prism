@@ -1,17 +1,21 @@
 import React from "react"
-import CustomCalendar from "./GeneralComponent/commonGeneral/CustomCalendar"
-import CustomClock from "./GeneralComponent/commonGeneral/CustomClock"
-import CommanderMenu from "./GeneralComponent/admin/CommanderMenu"
-import MenuAppBar from "./GeneralComponent/main/MenuAppBar"
-import Role from "./Roles/Role";
-import VerticalGraph from "./GeneralComponent/admin/graphs/VerticalGraph"
-import { getAllSubmissionsInMajor, getSoldiersByMajors, getUserInfoByJWT } from "./HelperJS/extract_info"
-import { Major } from "./HelperJS/Major"
-import { Status } from "./GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
-import OK_Status from "./soldierOperationSideBar/soldierSubmission/OK_Status"
+import CustomCalendar from "../commonGeneral/CustomCalendar"
+import CustomClock from "../commonGeneral/CustomClock"
+import CommanderMenu from "./CommanderMenu"
+import MenuAppBar from "../main/MenuAppBar"
+import Role from "../../Roles/Role";
+import VerticalGraph from "./graphs/VerticalGraph"
+import { getAllSubmissionsInMajor, getSoldiersByMajors, getUserInfoByJWT } from "../../HelperJS/extract_info"
+import { Major } from "../../HelperJS/Major"
+import { Status } from "../SubmissionStatusColors/SoldierSubmissionStatus"
+import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
 import { Grid } from "@material-ui/core"
-import TesterMenu from "./GeneralComponent/tester/TesterMenu"
-import WaiterLoading from "./HelperFooStuff/WaiterLoading"
+
+import TesterMenu from "../tester/TesterMenu";
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+
+//import TesterMenu from "./GeneralComponent/tester/TesterMenu"
+//import WaiterLoading from "./HelperFooStuff/WaiterLoading"
 
 
 export default class General extends React.Component {
