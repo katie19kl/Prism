@@ -136,7 +136,8 @@ class DisplayFiles extends React.Component {
                                         }
         
                                         {// displaying folder to commander & admin ( with soldier ID)
-                                        file.url === undefined && (this.role === Role.Commander || this.role === Role.Admin) &&
+                                        file.url === undefined && (this.role === Role.Commander || this.role === Role.Admin
+                                            || this.role === Role.Tester) &&
                                         <p className={classes.myFont} style={{ display: 'inline-block' }}>{file.file_name}</p>    
                                         }
                                         
