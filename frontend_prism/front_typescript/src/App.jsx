@@ -33,6 +33,9 @@ export default function App() {
 		<div>
 
 		  <Switch>
+
+			
+	
 				
 			<PrivateRoutingComponent path="/mainPage" component={MainView} />
 
@@ -52,8 +55,11 @@ export default function App() {
 
 			<Route path="/login" component={LogINComp}>
 			</Route>
+			
+			<Route path="/noPermissions" component={NoPermissions}>
+				</Route>
 
-			{/* /////////////////////////////////////////CHANGE AFTER TO PRIVATE */}
+
 			<PrivateRoutingComponent path="/admin/info" roles={[Role.Admin, Role.Commander, Role.Tester]} component={AdminSettings}/>
 			
 			<PrivateRoutingComponent path="/admin/info_change" roles={[Role.Admin, Role.Commander, Role.Tester]} component={ChangeAdminSettings}/>
@@ -74,8 +80,7 @@ export default function App() {
 
 			<PrivateRoutingComponent path="/admin/soldier/soldier_status" roles={[Role.Admin, Role.Commander]} component={SoldierStatus}/>
 			
-			<Route path="/noPermissions" component={NoPermissions}>
-			</Route>
+		
 
 			<PrivateRoutingComponent path="/soldier_info" roles={[Role.Soldier]} component={SoldierInfo}/>
 
@@ -83,9 +88,8 @@ export default function App() {
 			
 			<PrivateRoutingComponent path="/module_content/:moduleName/:major/:personalId" roles={[Role.Soldier]} component={DisplayContentOfModule}/>
 			
-			<PrivateRoutingComponent path="/submission/info/:major/:moduleName/:subject/:personalId" roles={[Role.Soldier]} component={UserSubmission}/>
+			<PrivateRoutingComponent path="/submission/info/:major/:moduleName/:subject/:personalId" /*roles={[Role.Soldier]}*/ component={UserSubmission}/>
 			
-
 			<PrivateRoutingComponent path="/admin/soldier_status/:personalId/:major/:module/:subject" role={[Role.Commander, Role.Tester, Role.Admin]}
 			component={SubmissionStatusObject}/>
 	
@@ -99,11 +103,6 @@ export default function App() {
 	);
 }
 
-
-function About() {
-	
-	return <h2> About Page </h2>;
-}
 
 
 /*

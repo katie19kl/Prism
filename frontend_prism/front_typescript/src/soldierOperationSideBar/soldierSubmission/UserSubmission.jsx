@@ -90,7 +90,8 @@ class UserSubmission extends React.Component {
                     <SubmissionTableInfo
 
                         browesHistory={history}
-                        role={Role.MyFiles}
+                        //role={Role.MyFiles}
+                        role={""}
                         major={major}
                         module={moduleName}
                         subject={subject}

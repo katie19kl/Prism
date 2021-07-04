@@ -21,6 +21,8 @@ import { blue, purple } from "@material-ui/core/colors";
 import Role from "../../../Roles/Role";
 import {uploadSingleSubmission} from "./../../../soldierOperationSideBar/soldierSubmission/submission_handling"
 import SoldierInfo from "../../../soldierOperationSideBar/soldierProfile/SoldierInfo";
+import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
+import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({
@@ -78,7 +80,9 @@ class UploadBar extends Component {
 		this.role = this.props.match.params.role;
 		this.funcUploader = undefined;
 
-		if (this.role === Role.Commander) {
+
+		
+		if (this.role === Role.Commander || this.role === Role.Admin) {
 			this.funcUploader =  uploadSingleFiles;
 		}
 		else if (this.role === Role.MyFiles) {
@@ -308,10 +312,37 @@ class UploadBar extends Component {
 
 	componentDidMount() {
 	
-		this.setState({emptyFileList:this.myRef_toInput.current.files});
+		//this.setState({emptyFileList:this.myRef_toInput.current.files});
+		getUserInfoByJWT().then((user)=>{
+			if(user !== undefined){
+				if (user.data !== undefined){
+					this.role = user.data["role"]
+					if (this.role === Role.Soldier){
+						this.role = Role.MyFiles
+
+						this.done = 1
+					}
+					if (this.role === Role.Commander ||  this.role === Role.Admin) {
+						this.funcUploader =  uploadSingleFiles;
+					}
+					else if (this.role === Role.MyFiles) {
+						this.funcUploader = uploadSingleSubmission;
+					}
+
+				}
+			}
+
+			this.setState({emptyFileList:this.myRef_toInput.current.files});	
+	
+			
+		})
+		
 	}
 
 	render() {
+
+
+
 
 		const { classes } = this.props;
 
@@ -335,6 +366,7 @@ class UploadBar extends Component {
 		let menu_  = "";
 		let role_ = "";
 
+
 		if (this.role === Role.Commander) {
 			menu_ = <CommanderMenu />;
 			role_ = Role.Commander;
@@ -342,7 +374,12 @@ class UploadBar extends Component {
 		} else if (this.role === Role.MyFiles) {
 			menu_ = <SoldierInfo />;
 			role_ = Role.Soldier;
+		} else if (this.role === Role.Admin){
+			menu_ = <CommanderMenu />;
+			role_ = Role.Admin;
 		}
+
+
 	
 		return (
 			<MenuAppBar menu={menu_} role={role_}
