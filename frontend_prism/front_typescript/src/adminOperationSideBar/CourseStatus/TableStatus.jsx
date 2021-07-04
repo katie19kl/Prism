@@ -274,6 +274,7 @@ class TableStatus extends React.Component {
 		getAllMySoldiers(selectedMajor).then((response) => {
 			if (response !== undefined) {
 				if (response.data !== undefined) {
+
 					console.log("Proccess new arrived:: ", response.data)
 					this.processNewSoldiers(response.data)
 				}
@@ -529,6 +530,17 @@ class TableStatus extends React.Component {
 
 	render() {
 
+
+
+		if (this.XUIusers !== undefined){
+			if (this.XUIusers.length === 0){
+				return <h2>You have no soldiers</h2>
+			}
+		}
+
+
+
+
 		if (this.edit !== undefined && this.props.editMode !== this.edit) {
 		
 			this.last = true
@@ -538,6 +550,7 @@ class TableStatus extends React.Component {
 		this.edit  = this.props.editMode
 
 		if (!this.last){
+
 			return <WaiterLoading/>
 		}
 

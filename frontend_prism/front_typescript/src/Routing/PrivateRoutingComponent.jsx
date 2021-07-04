@@ -100,10 +100,14 @@ export default class PrivateRoutingComponent extends React.Component {
 				
 				let role = user["role"]
 				
-
+				console.log("validating: " + this.state.pretentAttempt)
 
 				if (currentUserRole !== role){
-					this.setState({pretentAttempt: true})
+					
+					if (this.state.pretentAttempt !== true){
+
+						this.setState({pretentAttempt: true})
+					}
 				}
 				
 				
@@ -151,11 +155,11 @@ export default class PrivateRoutingComponent extends React.Component {
 			// if role was defined, but user try to pretend 
 			// with higher role. If it occurs => redirects to no permission
 			validateRoleByToken(rolesRequired).then((resp) =>{
-				console.log("hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+				
 				//(resp + "---------I am here -----------")
 				if (resp === false ){
 
-					
+					console.log("validating role by token")
 					//return <h2> NIHUI PRETEND OKK ?</h2>
 					this.setState({pretentAttempt: true})
 				}

@@ -2,9 +2,10 @@ import React from "react"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuAppBar from '../main/MenuAppBar';
 import CommanderMenu from "./CommanderMenu";
+import LocalStorage from "../../HelperJS/LocalStorage";
 
 
-export default class CommanderMainPage extends React.Component {
+export default class RoleMainPage extends React.Component {
 
 	render() {
 
@@ -12,7 +13,7 @@ export default class CommanderMainPage extends React.Component {
 			<div>
 				<CssBaseline />
 				<MenuAppBar
-					role = "Commander"
+					role = {LocalStorage.getItem('currentRole')}
 					menu={
 						<CommanderMenu />
 					} />

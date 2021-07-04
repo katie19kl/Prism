@@ -1,7 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LogINComp from './Login/LogINComp' 
-import CommanderMainPage from './GeneralComponent/admin/CommanderMainPage';
+import CommanderMainPage from './GeneralComponent/admin/RoleMainPage';
 import NoPermissions from './HelperFooStuff/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './GeneralComponent/main/MainView'
