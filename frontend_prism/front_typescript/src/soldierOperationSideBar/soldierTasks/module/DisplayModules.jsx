@@ -6,7 +6,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 
 const useStyles = (theme) => ({
-
     padding: {
         marginRight: theme.spacing(2),
     },
@@ -17,32 +16,28 @@ const useStyles = (theme) => ({
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
     }
-})
+});
 
-
-  
 
 class DisplayModules extends React.Component {
 
     constructor(props) {
-        super(props)
-        this.state  = { modules:undefined}
+        super(props);
+        this.state  = { modules:undefined };
     }
-
 
     componentDidMount() {
 
-        let user = this.props.user
+        let user = this.props.user;
 
-        let major = user["major"]
+        let major = user["major"];
 
-        getModulesByMajor(major).then((res)=>{
-            if (res !== undefined){
+        getModulesByMajor(major).then((res) => {
+            if (res !== undefined) {
                 
-
-                this.setState({modules: res.data})
+                this.setState({ modules: res.data });
             }
-        })
+        });
     }
 
     render() {
@@ -52,8 +47,6 @@ class DisplayModules extends React.Component {
         let major = user["major"];
         let modulesOfMajor = this.state.modules;
         let personalId = user["personalId"];
-
-
         
         return (
             <div>
@@ -73,7 +66,7 @@ class DisplayModules extends React.Component {
                     
                         <a href={"./module_content/" + module + "/" + major + "/" + personalId }
 
-                            style={{color: '#5E1363', ':visited': {color: 'pink'}}}>
+                            /*style={{color: '#5E1363', ':visited': {color: 'pink'}}}*/>
                                  
                             {module}
 
@@ -91,14 +84,4 @@ class DisplayModules extends React.Component {
 
 }
 
-
 export default withStyles(useStyles, { eithTheme: true })(DisplayModules)
-
-
-/*
-fileInfos.map((file, index) => (
-                            <li className="list-group-item" key={index}>
-                            <a href={file.url}>{file.file_name}</a>
-                            </li>
-                        ))}
-*/

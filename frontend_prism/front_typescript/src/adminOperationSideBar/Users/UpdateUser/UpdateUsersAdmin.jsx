@@ -7,7 +7,7 @@ import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
 import Role from "../../../Roles/Role";
 import MuiAlert from '@material-ui/lab/Alert';
 import { getAllUsersByRole } from '../../../HelperJS/extract_info'; 
-import { getUserInfoByJWT, getUserInfoById, getSoldiersByMajors } 
+import { getUserInfoById } 
         from "../../../HelperJS/extract_info";
 
 
@@ -81,8 +81,6 @@ class UpdateUsersAdmin extends React.Component {
                     this.showMsg = true;
                     users = res.data;
 
-                    console.log(users);
-
                 } else {
                     this.setErrorMsg("Failed to load the users");
                     users = [];
@@ -110,6 +108,7 @@ class UpdateUsersAdmin extends React.Component {
                 }
             }
             
+            this.userId = this.firstElem.personalId;
             this.setState({
                 _selected: false,
                 roleToUpdate: chosenRole, 
@@ -186,7 +185,7 @@ class UpdateUsersAdmin extends React.Component {
         }
 
         if (firstName === undefined || firstName === "") {
-            firstName = this.state.userFirstName
+            firstName = this.state.userFirstName;
         }
 
         if (lastName === undefined || lastName === "") {
@@ -201,6 +200,14 @@ class UpdateUsersAdmin extends React.Component {
             commander = this.state.userCommander;
         }
 
+        // update the values in the select
+        for (const user of this.listUsers) {
+            if (user.personalId === this.userId) {
+                user.firstName = firstName;
+                user.lastName = lastName;
+            }
+        }
+
         this.setState({
             userFirstName: firstName,
             userLastName: lastName,
@@ -208,9 +215,7 @@ class UpdateUsersAdmin extends React.Component {
             userUsername: username,
             userCommander: commander,
         });
-
 	}
-
 
     render() {
         const { classes } = this.props;

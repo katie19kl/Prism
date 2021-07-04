@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
-import { Checkbox, FormControl, FormControlLabel,
-     FormGroup, FormHelperText, FormLabel, Snackbar, TextField } from "@material-ui/core";
+import { Checkbox, FormControl, FormControlLabel, Grid,
+         FormGroup, FormHelperText, FormLabel, Snackbar, TextField } from "@material-ui/core";
 import SaveIcon from '@material-ui/icons/Save';
 import Button from '@material-ui/core/Button';
 import { Gender, genders } from '../../../HelperJS/Gender';
@@ -26,7 +26,7 @@ const useStyles = (theme) => ({
             width: '25ch',
         },
         marginTop: theme.spacing(3),
-        marginLeft: theme.spacing(15),
+        //marginLeft: theme.spacing(15),
     },
     padding: {
         flexGrow: 1,
@@ -34,7 +34,7 @@ const useStyles = (theme) => ({
         marginTop: theme.spacing(15),
     },
     button: {
-        marginLeft: theme.spacing(48),
+        //marginLeft: theme.spacing(48),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
@@ -575,18 +575,19 @@ class UserCreationForm extends React.Component {
 
                     </div>
                 </form>
-
-                <Button
-                variant="contained"
-                color="primary"
-                size="large"
-                disabled={!buttonEnable}
-                startIcon={<SaveIcon />}
-                className={classes.button}
-                onClick={this.handleSave}
-                >
-                Save
-                </Button>
+                
+                <Grid item container justify='center' alignItems='center'>
+                    <Button
+                    variant="contained"
+                    color="primary"
+                    size="large"
+                    disabled={!buttonEnable}
+                    startIcon={<SaveIcon />}
+                    className={classes.button}
+                    onClick={this.handleSave}>
+                    Save
+                    </Button>
+                </Grid>
 
                 <br/>
                 <br/>
