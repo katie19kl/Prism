@@ -138,7 +138,7 @@ class MenuAppBar extends React.Component {
         
         return (
             <div className={classes.root}>
-                <AppBar 
+                <AppBar
                 position="fixed" 
                 className={clsx(classes.appBar, 
                 {[classes.appBarShift]: this.state.open,})}>
@@ -146,7 +146,7 @@ class MenuAppBar extends React.Component {
                     <Toolbar>
 
                     <IconButton 
-                    edge="start" 
+                    edge="start"
                     className={clsx(classes.menuButton, this.state.open && classes.hide)}
                     color="inherit"
                     aria-label="menu"
