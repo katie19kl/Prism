@@ -141,7 +141,7 @@ async function updateReview(soldierId, major, module, subject, date, time,
         } else {
 
             //let url = 'http://localhost:4000/review/'
-            let url = prefix_server_url + "/review/"
+            let url = prefix_server_url + "review/"
 
             let payload = {
                 soldierId: soldierId,
