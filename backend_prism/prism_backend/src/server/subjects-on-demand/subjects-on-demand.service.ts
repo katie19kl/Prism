@@ -260,6 +260,7 @@ export class SubjectsOnDemandService {
     async getSoldiersClosedSubjects(major:Major, module:string, soldiers_) {
         let soldiers = this.getFirstProp(soldiers_);
 
+        console.log("------------")
         console.log(soldiers)
         let soldiersClosed = {};
         for (const soldier of soldiers) {

@@ -31,7 +31,6 @@ export default class PrivateRoutingComponent extends React.Component {
 	retrievePersonalIdURL(pathContainingId){
 		let parsedURL = pathContainingId.split("/")
 
-		console.log(parsedURL)
 		for (const partURL of parsedURL){
 			
 		
@@ -53,13 +52,6 @@ export default class PrivateRoutingComponent extends React.Component {
 		let userId = personalId
 
 
-		console.log("----------------")
-		console.log(idInUrl)
-		console.log(userId)
-		console.log("----------------")
-
-
-		
 
 		// no personal id in url
 		if (idInUrl === undefined){
@@ -108,7 +100,8 @@ export default class PrivateRoutingComponent extends React.Component {
 				
 				let role = user["role"]
 				
-				console.log("validating: " + this.state.pretentAttempt)
+				
+
 
 				if (currentUserRole !== role){
 					
@@ -167,7 +160,8 @@ export default class PrivateRoutingComponent extends React.Component {
 				//(resp + "---------I am here -----------")
 				if (resp === false ){
 
-					console.log("validating role by token")
+		
+					
 					//return <h2> NIHUI PRETEND OKK ?</h2>
 					this.setState({pretentAttempt: true})
 				}
@@ -195,13 +189,13 @@ export default class PrivateRoutingComponent extends React.Component {
 					//let pathContainingId = this.props.path;
 					let pathContainingId = window.location.pathname
 					
-					console.log("PATH IS :", pathContainingId )
+		
 					
 					
 					
 				
 					let allowed = this.sameIdURLAndToken(personalId, pathContainingId)
-					console.log("is allowed: " + allowed)
+			
 					if (!allowed){
 						this.setState({pretentAttempt: 555})
 					}
@@ -231,7 +225,7 @@ export default class PrivateRoutingComponent extends React.Component {
 		// roles were specified & user's role does not presents 
 		if (isLoggedIn === true && indexInRoles === -1 &&  allowedToEveryOne === false ){
 			
-			console.log("To no permissions")
+		
 			return (
 				
 				<Redirect to={{ pathname: '/noPermissions'}} />

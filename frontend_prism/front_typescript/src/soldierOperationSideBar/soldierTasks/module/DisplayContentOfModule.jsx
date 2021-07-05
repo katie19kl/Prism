@@ -10,6 +10,9 @@ import Role from '../../../Roles/Role';
 import { Typography, withStyles, Grid, Breadcrumbs } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { purple } from "@material-ui/core/colors"
+import { getListSubmissionOfSubject } from "../../soldierSubmission/submission_handling"
+import { Status } from "../../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
+import OK_Status from "../../soldierSubmission/OK_Status"
 
 
 const useStyles = (theme) => ({
@@ -36,9 +39,13 @@ class DisaplayContentOfModule extends React.Component {
         this.state  = { subjects:undefined, dirSubjectFiles:undefined };
         this.numberSubjects = -1;
         this.nothingHere = false;
+
+        this.subjectWithSubmission = []
     }
 
     componentDidMount() {
+
+        console.log("Submmsion ifo ggeeett")
 
         let moduleName = this.props.match.params.moduleName;
         let major = this.props.match.params.major;
@@ -50,8 +57,9 @@ class DisaplayContentOfModule extends React.Component {
 			} else {
 				user = user.data;
 				
-                let personalId = user["personalId"] ;
+                let personalId = user["personalId"];
 				
+           
 
                 //getSubjectsByModule(major, moduleName).then( (res)=>{
                 getAllowedSubjectsOfUser(major, moduleName, personalId).then((res) => {
@@ -86,19 +94,48 @@ class DisaplayContentOfModule extends React.Component {
                             let dir = {}
                             for (const subject of toSet) {
                             
-                            
-                          
-                
-                            
-                                getFilesBySubject(major,moduleName,subject).then((res_files)=>{
-        
-                                    if (res_files !== undefined){
-                                        let files = res_files.data
-                                        
-                                        dir[subject] = files
-                                        this.setState({dirSubjectFiles:dir})
-                                        
+                 
+                                getListSubmissionOfSubject(major, moduleName,subject,personalId).then((res)=>{
+
+
+                                
+                                
+                                    let submissionExist = false
+                                    let submissionGrade
+                                    if (res !== undefined){
+                                        if (res.data !== undefined){
+
+                                            submissionGrade = res.data.gradeDescription
+                                            
+                                        }
                                     }
+
+                           
+
+                                    if (submissionGrade === OK_Status.OK || submissionGrade === OK_Status.NOT_OK){
+                                        submissionExist = true
+                                    }
+
+
+
+                                    if (submissionExist){
+                                        this.subjectWithSubmission.push(subject)                          
+                                    }
+                            
+                                    getFilesBySubject(major,moduleName,subject).then((res_files)=>{
+            
+                                        if (res_files !== undefined){
+                                            let files = res_files.data
+                                            
+
+
+                                            
+                                            dir[subject] = files
+
+                                            this.setState({dirSubjectFiles:dir})
+                                            
+                                        }
+                                    })
                                 })
         
                             }
@@ -115,6 +152,9 @@ class DisaplayContentOfModule extends React.Component {
     }
 
     render() {
+
+        console.log(this.subjectWithSubmission)
+
 
         const { classes } = this.props;
 
@@ -187,6 +227,7 @@ class DisaplayContentOfModule extends React.Component {
                 
                 let dict = this.state.dirSubjectFiles
 
+                console.log(dict)
                 return (
                     <MenuAppBar
                         role ={Role.Soldier} 
@@ -201,7 +242,8 @@ class DisaplayContentOfModule extends React.Component {
                                 major = {major}
                                 subjects = {subjects}
                                 dictSubjectFiles = {dict}
-                                personalId={personalId}>
+                                personalId={personalId}
+                                reviewedSubjects={this.subjectWithSubmission}>
                                 </ContentOfModule>
                             </div>
                         }>

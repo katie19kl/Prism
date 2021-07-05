@@ -1,5 +1,6 @@
 import React from "react"
 import DisplayFiles from "../../../adminOperationSideBar/Courses/CourseDisplaying/DisplayFiles";
+import { Status } from "../../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 import Role from "../../../Roles/Role";
 
 export default class DisplaySubjectContent extends React.Component {
@@ -25,7 +26,16 @@ export default class DisplaySubjectContent extends React.Component {
 
     render() {
 
+
+
         let subject = this.props.subject;
+
+
+ 
+
+
+
+
         let dictSubjectFiles = this.props.dictSubjectFiles;
 
         let arrFiles = dictSubjectFiles[subject];
@@ -33,6 +43,8 @@ export default class DisplaySubjectContent extends React.Component {
         let personalId = this.props.personalId;
 
         let filteredArrFiles = [];
+
+        
         
         // if there is no files yet 
         if (arrFiles.length === 0) {
@@ -40,11 +52,25 @@ export default class DisplaySubjectContent extends React.Component {
         } else {
             filteredArrFiles = this.removeOtherSoldierFiles(arrFiles, personalId);
         }
+
+
+        console.log("=========================================================")
+        let existSubmission = this.props.reviewedSubjects.includes(subject)
+
+        for (let i = 0; i< filteredArrFiles.length; i = i + 1){
+            let idFile = filteredArrFiles[i].file_name.split("_")[0]
+            
+            if (idFile === personalId && existSubmission){
+                filteredArrFiles[i].file_name = Status.Reviewed
+            } 
+        }
+        console.log(filteredArrFiles)
+  
         
         return (
 
             <div>
-                <DisplayFiles files={filteredArrFiles} role={Role.Soldier} />
+                <DisplayFiles files={filteredArrFiles} role={Role.Soldier} reviewedSubjects={this.props.reviewedSubjects}/>
         
             </div>
 

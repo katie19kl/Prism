@@ -14,6 +14,7 @@ import { AiFillFile } from "react-icons/ai"
 import Role from "../../../Roles/Role";
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
 import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
+import { Status } from "../../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 
 
 const useStyles = (theme) => ({
@@ -46,6 +47,12 @@ class DisplayFiles extends React.Component {
             fileInfos: this.props.files,
             myRole: undefined,
         };
+
+        // to display that review exist
+        this.submittedForSoldier = this.props.reviewedSubjects
+        if (this.submittedForSoldier === undefined){
+            this.submittedForSoldier = []
+        }
     }
 
     componentDidUpdate() {
@@ -55,10 +62,16 @@ class DisplayFiles extends React.Component {
     }
 
     determineFileIcons() {
+
+        
+
         const { classes } = this.props;
         if (this.state.fileInfos !== undefined && this.state.fileInfos !== []) {
             
             for (let currFileInfo of this.state.fileInfos) {
+
+
+
                 let extention = defineIconOfFile(currFileInfo.file_name);
 
                 if (extention === 'txt') {
@@ -96,6 +109,8 @@ class DisplayFiles extends React.Component {
 
 	render() {
 
+
+
         const { classes } = this.props;
 
         this.determineFileIcons();
@@ -109,8 +124,9 @@ class DisplayFiles extends React.Component {
         
         } else {
 
-            console.log("DISPLAYING")
-            console.log(this.state.myRole)
+
+            console.log("--------------------------------")
+            console.log(this.state.fileInfos)
 
             return (
                 <div>
@@ -140,10 +156,16 @@ class DisplayFiles extends React.Component {
                                             || this.role === Role.Tester) &&
                                         <p className={classes.myFont} style={{ display: 'inline-block' }}>{file.file_name}</p>    
                                         }
+
+
+                                        {// displaying folder to soldier ( without soldier ID) with review
+                                        file.url === undefined && file.file_name === Status.Reviewed && this.role === Role.Soldier &&
+                                        <p className={classes.myFont} style={{ display: 'inline-block' }}> my solution ( reviewed )</p>    
+                                        }
                                         
                                         
-                                        {// displaying folder to soldier ( without soldier ID)
-                                        file.url === undefined && this.role === Role.Soldier &&
+                                        {// displaying folder to soldier ( without soldier ID) ( without review)
+                                        file.url === undefined && file.file_name !== Status.Reviewed && this.role === Role.Soldier &&
                                         <p className={classes.myFont} style={{ display: 'inline-block' }}> my solution</p>    
                                         }
         

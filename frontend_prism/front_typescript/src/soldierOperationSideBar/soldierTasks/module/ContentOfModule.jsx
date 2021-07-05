@@ -31,13 +31,15 @@ class ContentOfModule extends React.Component {
 
     render() {
 
+
+
+        
+
         const { classes } = this.props;
         let moduleName = this.props.moduleName;
         let major = this.props.major;
         let subjects = this.props.subjects;
-        console.log("-------")
-        console.log(subjects)
-        console.log("-------")
+
 
 
         let personalId = this.props.personalId;
@@ -72,6 +74,7 @@ class ContentOfModule extends React.Component {
                                 major = {major}
                                 moduleName={moduleName}
                                 personalId={personalId}
+                                reviewedSubjects={this.props.reviewedSubjects}
                                 >
                                 </DisplaySubjectContent>
 

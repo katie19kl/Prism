@@ -16,5 +16,8 @@ export const Status = {
 
 
 	// light red
-	CheckedNoFiles: "#ff002a"
+	CheckedNoFiles: "#ff002a",
+
+
+	Reviewed: "reviewed"
 }
