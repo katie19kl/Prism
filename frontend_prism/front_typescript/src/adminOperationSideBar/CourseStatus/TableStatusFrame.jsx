@@ -242,7 +242,8 @@ class TableStatusFrame extends React.Component {
                         selectedMajor={this.selectedMajor}
                         selectedModule={this.selectedModule}
                         mySoldiers={this.state.checkBoxClicked}
-                        editMode={this.state.displayEditMode}>
+                        editMode={this.state.displayEditMode}
+                        role={this.myRole}>
                         </TableStatus>
                     }
 

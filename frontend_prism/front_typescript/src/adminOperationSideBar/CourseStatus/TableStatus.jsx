@@ -13,6 +13,7 @@ import CommentIcon from  "@material-ui/icons/Comment"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
 import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
 import { openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier } from "./subject_on_demand"
+import Role from "../../Roles/Role"
 
 
 //	boxShadow: "5px 2px 5px grey" for row
@@ -530,6 +531,9 @@ class TableStatus extends React.Component {
 
 	render() {
 
+		console.log(this.props.role)
+		console.log(this.props.role)
+		console.log(this.props.role)
 
 
 		if (this.XUIusers !== undefined){
@@ -651,9 +655,21 @@ class TableStatus extends React.Component {
 									component="th"
 									scope="row"
 								>
-                                    <Typography style={{color:"white", fontFamily: 'monospace'}}>
+									{// only id display for tester
+									this.props.role === Role.Tester
+                                    &&
+									<Typography style={{color:"white", fontFamily: 'monospace'}}>
+                                        	{/*soldier*/ soldier.split("\n")[1]}
+                                    </Typography>
+									}
+
+									{// full info for commander and admini abut soldier
+									(this.props.role === Role.Admin || this.props.role === Role.Commander)
+                                    &&
+									<Typography style={{color:"white", fontFamily: 'monospace'}}>
                                         	{soldier}
                                     </Typography>
+									}
 
 								</TableCell>
 
