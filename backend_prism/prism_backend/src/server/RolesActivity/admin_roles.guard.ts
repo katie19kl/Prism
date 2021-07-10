@@ -1,22 +1,31 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, Inject } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { UsersService } from '../users/users.service';
 import { Role } from './role.enum';
 
 
 @Injectable()
 export class AdminRolesGuard implements CanActivate {
 
-  	constructor(private reflector: Reflector) {}
+  	constructor(private reflector: Reflector, 
+				@Inject('UsersService') private readonly userService: UsersService) {}
 
-	canActivate(context: ExecutionContext): boolean {
+	async canActivate(context: ExecutionContext): Promise<boolean> {
 		console.log("in admin roles guard!")
+
+		let request = context.switchToHttp().getRequest();
+
+		const userToken = request.headers.authorization;
+		console.log(userToken)
+
+		let user = await this.userService.getUserByJWT(userToken);
+
+		let currRole = user.role;
+
+		let res = (currRole == Role.Admin)
 		
-		let text = context.switchToHttp().getRequest();
-		let body_request = text.body;
-		let role = body_request.role
-		
-		let res = (role == Role.Admin)
-		
-		return res
+		return res;
 	}
+
+
 }

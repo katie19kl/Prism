@@ -1,4 +1,3 @@
-
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Role } from './role.enum';
@@ -12,10 +11,10 @@ export class SoldierRolesGuard implements CanActivate {
 		
 		let text = context.switchToHttp().getRequest();
 		let body_request = text.body;
-		let role = body_request.role
+		let role = body_request.role;
 		
-		let res = (role == Role.Soldier)
+		let res = (role == Role.Soldier);
 		
-		return res
+		return res;
 	}
 }

@@ -20,6 +20,21 @@ export class UsersController {
                 private subjectOnDemandService: SubjectsOnDemandService,
                 private syncronizer:Synchronizer) {}
 
+
+                
+    // only for checking, to be deleted.
+    @Get("fooAdmin")
+    @UseGuards(AdminRolesGuard)
+    checkAdminPermission() {
+
+        console.log("hererererererrererere-----")
+        return {
+            allowed: true
+        }
+    }
+
+
+
     @Get("role_by_JWT")
     @UseGuards(JwtAuthGuard)
     async extractUserRole(@Req() req) {
@@ -71,7 +86,6 @@ export class UsersController {
         
     }
 
-
     @Get(':id')
     async getSoldierById(@Param('id') personalId: string){
 
@@ -104,14 +118,6 @@ export class UsersController {
 
     }
 
-    // only for checking, to be deleted.
-    @Get("fooAdmin")
-    @UseGuards(AdminRolesGuard)
-    checkAdminPermission() {
-        return {
-            allowed: true
-        }
-    }
 
 	// 1 - Get user by commander Id & Major
     @Get('my_soldiers/:major')

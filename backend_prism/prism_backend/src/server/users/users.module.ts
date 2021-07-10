@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
 import { UsersController } from './users.controller';
@@ -14,6 +14,7 @@ import { Synchronizer } from '../synchronizer/Synchronizer';
 import { SynchronizerModule } from '../synchronizer/Synctonized.module';
 
 
+@Global()
 @Module({
   imports: [
   
