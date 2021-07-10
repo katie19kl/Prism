@@ -5,26 +5,25 @@ import { Role } from './role.enum';
 
 
 @Injectable()
-export class SoldierRolesGuard implements CanActivate {
+export class CommanderRolesGuard implements CanActivate {
 
   	constructor(private reflector: Reflector, 
 				@Inject('UsersService') private readonly userService: UsersService) {}
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
-		console.log("in SoldierRolesGuard roles guard!")
+		console.log("in CommanderRolesGuard roles guard!")
 
 		let request = context.switchToHttp().getRequest();
 
 		const userToken = request.headers.authorization;
 		
 		let user = await this.userService.getUserByJWT(userToken);
-		if (user === undefined){
+        if (user === undefined){
             return false
         }
-		
 		let currRole = user.role;
 
-		let res = (currRole == Role.Soldier)
+		let res = (currRole == Role.Commander)
 		
 		return res;
 	}

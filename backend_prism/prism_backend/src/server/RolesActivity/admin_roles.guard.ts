@@ -16,9 +16,11 @@ export class AdminRolesGuard implements CanActivate {
 		let request = context.switchToHttp().getRequest();
 
 		const userToken = request.headers.authorization;
-		console.log(userToken)
-
+		
 		let user = await this.userService.getUserByJWT(userToken);
+		if (user === undefined){
+            return false
+        }
 
 		let currRole = user.role;
 
