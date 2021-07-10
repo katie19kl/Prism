@@ -78,25 +78,34 @@ export class UsersService {
 	async getUserByJWT(usertoken){
 
 		let jwt = require('jsonwebtoken')
+		
+		try {
+		
+		 
+			const token = usertoken.split(' ');
+			
+			// decode JWT & retrieve username
+			const decoded = jwt.verify(token[1], jwtConstants.secret);
 	
-		const token = usertoken.split(' ');
-		
-		// decode JWT & retrieve username
-		const decoded = jwt.verify(token[1], jwtConstants.secret);
-		
-		
-		let personalId = decoded['personalId'];
+			
+			let personalId = decoded['personalId'];
+			// obtain user by his username  & return it outside
+			let user = await this.findOneByPersonalId(personalId)
+			// return outside without password ( password is hashed )
+			user.password = "";
+			
+			return user;
 	
+		}
+		catch (e) {
+;
+			return undefined
+		}
+
+
+
+
 		
-
-		// obtain user by his username  & return it outside
-		let user = await this.findOneByPersonalId(personalId)
-		// return outside without password ( password is hashed )
-		user.password = "";
-
-
-		
-		return user;
 	}
 
 	// get user by its personalId
