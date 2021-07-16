@@ -1,18 +1,17 @@
-import { Controller, Get, Post, Body, UseGuards, Param, Put, Delete, Req } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Param, Put, Delete, Req, SetMetadata } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
-import { AdminRolesGuard } from '../RolesActivity/admin_roles.guard';
 import { IsEmptyGuard } from './guards/isEmptyGuard.guard';
 import { Major } from './common/major.enum';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
-import { jwtConstants } from '../RolesActivity/constants';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
 import { Synchronizer } from '../synchronizer/Synchronizer';
 import { Role } from '../RolesActivity/role.enum';
+import { Role_Guard } from '../RolesActivity/Role_Guard.guard';
 
 
-
+@UseGuards(JwtAuthGuard)
 @Controller('users')
 export class UsersController {
 
@@ -22,16 +21,6 @@ export class UsersController {
 
 
                 
-    // only for checking, to be deleted.
-    @Get("fooAdmin")
-    @UseGuards(AdminRolesGuard)
-    checkAdminPermission() {
-
-        console.log("hererererererrererere-----")
-        return {
-            allowed: true
-        }
-    }
 
 
 
@@ -42,6 +31,7 @@ export class UsersController {
         return { role: await this.usersService.getRoleByJWT(usertoken) }
     }
 
+
     @Get('info_by_JWT')
     @UseGuards(JwtAuthGuard)
     async extractUserInfo(@Req() req) {
@@ -51,9 +41,10 @@ export class UsersController {
 
     }
 
+    @SetMetadata('roles', [Role.Admin, Role.Commander])
+	@UseGuards(Role_Guard)
     @Post()
     @UseGuards(IsEmptyGuard)
-    // ADMIN/COMMANDER
     async create(@Body() createUserDto: CreateUserDto) {
 
         let result = await this.usersService.create(createUserDto,this.subjectOnDemandService);
@@ -61,9 +52,9 @@ export class UsersController {
         return result;
     }
 
-    // when the commander wants to see all the soldiers
-    // (when wanting to edit someone's details for example).
-    // ADMIN/COMMANDER.
+    
+    @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Get('soldiers')
     async getAllSoldiers() {
 
@@ -71,6 +62,8 @@ export class UsersController {
 
     }
 
+    @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Get('all_users/:role')
     async getAllUsersByRole(@Param('role') role: Role) {
 
@@ -78,6 +71,8 @@ export class UsersController {
         return await this.usersService.getAllUsersByRole(role);
     }
 
+    @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Post('submissions/:major/:module')
     async getUsersSubmissions(@Body() soldiers, @Param('major') major: Major,
                               @Param('module') module: string) {
@@ -94,13 +89,17 @@ export class UsersController {
         
     }
 
+    
+    @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Post('soldiers/majors')
     async getAllSoldiersInMajors(@Body() majors: Major[]) {
     
         return await this.usersService.findSoldiersInAllMajors(majors);
     }
 
-    // ADMIN/COMMANDER
+    @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Put(':username')
     async updateUser(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
 
@@ -108,7 +107,8 @@ export class UsersController {
 
     }
 
-    // ADMIN/COMMANDER
+    @SetMetadata('roles', [Role.Admin, Role.Commander])
+	@UseGuards(Role_Guard)
     @Delete(':id')
     async deleteUser(@Param('id') personalId: string) {
 
@@ -119,7 +119,8 @@ export class UsersController {
     }
 
 
-	// 1 - Get user by commander Id & Major
+    @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Get('my_soldiers/:major')
     async getSoldierByMajorAndCommanderId(@Param('major') major: Major,@Req() req){
 
@@ -131,11 +132,7 @@ export class UsersController {
                 
     }
 
-	// 2 - Given array of users - arrUser --> returns corresponding array of all 
-	//                                        their submision & reviews  
 
 }
 
-function FormDataRequest() {
-    throw new Error('Function not implemented.');
-}
+

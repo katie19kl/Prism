@@ -1,30 +1,40 @@
 import { UserSubmissionDTO } from './dto/user-submission.dto';
 import { UserSubmissionService } from './user-submission.service'
-import { Controller, Get, Param, Post, Req, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Param, Post, Req, SetMetadata, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Body } from '@nestjs/common';
 import { UploadedFile } from '@nestjs/common';
 import { Delete } from '@nestjs/common';
 import { Major } from '../users/common/major.enum';
+import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
+import { Role_Guard } from '../RolesActivity/Role_Guard.guard';
+import { Role } from '../RolesActivity/role.enum';
 
+
+
+@UseGuards(JwtAuthGuard)
 @Controller('user-submission')
 export class UserSubmissionController {
 
 
     constructor(private userSubmisssionService: UserSubmissionService) { }
 
+ 
+	@SetMetadata('roles', [Role.Soldier])
+	@UseGuards(Role_Guard)
     @Post()
     @UseInterceptors(FileInterceptor("file"))
     createUserSubmission(@UploadedFile() file: Express.Multer.File,
                          @Body() userSubmissionDto: UserSubmissionDTO
                          ,@Req() req) {
         
-        //console.log(userSubmissionDto)
+
   
         const usertoken = req.headers.authorization;
         return this.userSubmisssionService.addNewUserSubmission(userSubmissionDto, file, usertoken);
     }
 
+    
     @Get(':soldierId/:major/:module/:subject')
     async getUserSubmissionByKey(
         @Param('soldierId') id: string,
@@ -44,6 +54,7 @@ export class UserSubmissionController {
         }
     }
 
+
     @Get(':soldierId')
     async getUserSubmission(@Param('soldierId') id: string)
     {
@@ -58,13 +69,16 @@ export class UserSubmissionController {
         }
     } 
 
+    @SetMetadata('roles', [Role.Soldier])
+	@UseGuards(Role_Guard)
     @Delete("/:file_name")
     async removeSubmittedFile(@Param('file_name') file_name: String, 
                               @Body() userSubmissionDto: UserSubmissionDTO,
                               @Req() req){
         
     
-        
+   
+
         const usertoken = req.headers.authorization;
 
 
@@ -72,6 +86,8 @@ export class UserSubmissionController {
         return x
     }
 
+    @SetMetadata('roles', [Role.Admin,Role.Commander, Role.Tester])
+	@UseGuards(Role_Guard)
     @Get('/:major')
     async getAllSubmissionsByMajor(@Param('major') major: Major) 
         
