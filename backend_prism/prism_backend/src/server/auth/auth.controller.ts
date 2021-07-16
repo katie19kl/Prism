@@ -10,6 +10,11 @@ import { NoJWTFilter } from './filters/NoJWTFilter.filter';
 import { UsersService } from '../users/users.service';
 import { jwtConstants } from '../RolesActivity/constants';
 
+/*
+
+    @SetMetadata('roles', [Role.Admin,Role.Soldier])
+    @UseGuards(Role_Guard)
+*/
 
 @Controller('auth')
 export class AuthController {
@@ -20,8 +25,7 @@ export class AuthController {
     @UseGuards(JwtAuthGuard)
     @UseFilters(NoJWTFilter)
     async tokenValidator(@Res() res) {
-
-  
+        
         return res.json({ isValid: true});
         
     }
