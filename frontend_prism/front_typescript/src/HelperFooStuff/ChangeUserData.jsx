@@ -33,6 +33,9 @@ const useStyles = (theme) => ({
     select: {
         marginRight: theme.spacing(20),
     },
+	button: {
+		marginLeft: theme.spacing(12),
+	}
 });
 
 
@@ -299,6 +302,7 @@ class ChangeUserData extends React.Component {
 
     render() {
 		const { classes } = this.props;
+		let history = this.props.history;
 
 		let buttonEnable = false;
 
@@ -458,19 +462,29 @@ class ChangeUserData extends React.Component {
 
 				<Grid item container justify='center' alignItems='center'>
 					
-				<br></br>
-				<br></br>
-				<br></br>
-				<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
+					<br></br>
 
 					<Button
+                    variant='contained'
+                    color="primary"
+                    size="large"
+                    style={{backgroundColor: "red"}}
+                    onClick={() => history.goBack()}>
+                       <b>GO BACK</b>
+                    </Button>
+
+					<Button
+					className={classes.button}
 					onClick={this.updateUserInfo}
 					variant="contained"
 					color="primary"
 					size="large"
 					disabled={!buttonEnable}
 					startIcon={<SaveIcon />}>
-						Update user info                    
+						<b>Update user info</b>                    
 					</Button>
 				</Grid>
 

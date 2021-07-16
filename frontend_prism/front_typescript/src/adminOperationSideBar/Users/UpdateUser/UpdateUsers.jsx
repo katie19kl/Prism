@@ -182,6 +182,7 @@ class UpdateUsers extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const { history } = this.props;
             
         if (this.state._users_retrieved) {
             return (
@@ -247,7 +248,8 @@ class UpdateUsers extends React.Component {
                                 prev_firstName = {this.state.soldier_firstName}
                                 prev_username = {this.state.soldier_username}
                                 prev_commander = {this.state.commander}
-                                setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}>
+                                setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
+                                history={history}>
                                 </ChangeUserData>
                                 
                                 : ''
@@ -286,7 +288,7 @@ class UpdateUsers extends React.Component {
             return (
                 
                 <MenuAppBar
-                    role = "Commander" 
+                    role={Role.Commander} 
                     menu={
                         <CommanderMenu/>
                     }>

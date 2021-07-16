@@ -33,10 +33,7 @@ export default function App() {
 		<div>
 
 		  <Switch>
-
 			
-	
-				
 			<PrivateRoutingComponent path="/mainPage" component={MainView} />
 
 			<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin, Role.Commander]} component={CommanderMainPage}>
@@ -56,9 +53,7 @@ export default function App() {
 			<Route path="/login" component={LogINComp}>
 			</Route>
 			
-			<Route path="/noPermissions" component={NoPermissions}>
-				</Route>
-
+			<Route path="/noPermissions" component={NoPermissions} />
 
 			<PrivateRoutingComponent path="/admin/info" roles={[Role.Admin, Role.Commander, Role.Tester]} component={AdminSettings}/>
 			
@@ -80,8 +75,6 @@ export default function App() {
 
 			<PrivateRoutingComponent path="/admin/soldier/soldier_status" roles={[Role.Admin, Role.Commander]} component={SoldierStatus}/>
 			
-		
-
 			<PrivateRoutingComponent path="/soldier_info" roles={[Role.Soldier]} component={SoldierInfo}/>
 
 			<PrivateRoutingComponent path="/soldier_tasks" roles={[Role.Soldier]} component={SoldierTasks}/>

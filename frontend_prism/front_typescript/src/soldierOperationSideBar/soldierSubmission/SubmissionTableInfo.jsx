@@ -18,18 +18,19 @@ import PublishIcon from '@material-ui/icons/Publish';
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 import OK_Status from "../soldierSubmission/OK_Status"
 import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
-import { getUserInfoById, getUserInfoByJWT } from "../../HelperJS/extract_info";
+import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 
 
 const useStyles = (theme) => ({
     table: {
         minWidth: 650,
- 
+        border: '3px solid #adebeb'
     },
     space: {
         marginLeft: theme.spacing(2),
     }
 });
+
 
 /* shows the alert msg when creation attempt is done. */
 function Alert(props) {
@@ -69,7 +70,6 @@ class SubmissionTableInfo extends React.Component {
             showConfirmDialog: false,
             showMsg: false,
             msgOpen: false,
-
         };
     }
 
@@ -79,42 +79,43 @@ class SubmissionTableInfo extends React.Component {
 
     getSubmissionInfo() {
 
-        getUserInfoByJWT().then((user)=>{
-            if (user !== undefined){
-                if (user.data !== undefined){
-                    this.role  = user.data["role"]
-                    if (this.role === Role.Soldier){
-                        this.role = Role.MyFiles
+        getUserInfoByJWT().then((user) => {
+
+            if (user !== undefined) {
+
+                if (user.data !== undefined) {
+
+                    this.role  = user.data["role"];
+
+                    if (this.role === Role.Soldier) {
+                        this.role = Role.MyFiles;
                     }
                 }
             }
+
             getListSubmissionOfSubject(this.major, this.module, this.subject, this.soldierId)
-                        .then((result) => {
+            .then((result) => {
 
+                if (result === undefined) {
 
-                            if (result === undefined) {
-                                // no submission yet
-                                this.setState({infoExtracted:true})
+                    // no submission yet
+                    this.setState({infoExtracted:true})
 
-                            } else {
-                                this.submissionInfo = result.data;
-
-                        
-                                this.setState({
-                                    infoExtracted:true,
-
-                                    submmsionExist:true,
-                                    submittedFiles: this.submissionInfo.submittedFiles,
-                                    isChecked: this.submissionInfo.isChecked,
-                                    submittedTime: this.submissionInfo.submittedTime,
-                                    submittedDate: this.submissionInfo.submittedDate,
-                                    existSubmission: true,
-                                    gradeDescription: this.submissionInfo.gradeDescription
-                                });
-                            }
-                        });
-        })
-        
+                } else {
+                    this.submissionInfo = result.data;
+                    this.setState({
+                        infoExtracted:true,
+                        submmsionExist:true,
+                        submittedFiles: this.submissionInfo.submittedFiles,
+                        isChecked: this.submissionInfo.isChecked,
+                        submittedTime: this.submissionInfo.submittedTime,
+                        submittedDate: this.submissionInfo.submittedDate,
+                        existSubmission: true,
+                        gradeDescription: this.submissionInfo.gradeDescription
+                    });
+                }
+            });
+        });
     }
 
     setSubmissionStatus() {
@@ -122,7 +123,6 @@ class SubmissionTableInfo extends React.Component {
         let checked = this.state.isChecked;
         let submitted = this.state.existSubmission;
 
-        
         if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
             return "No files in submission"
         }
@@ -160,16 +160,14 @@ class SubmissionTableInfo extends React.Component {
             }
             else if (grade === OK_Status.NOT_OK){
                 
-                //Yellow
+                // yellow
                 return Status.SubmittedNotGoodEnough
             }
-
-
         } 
         else if (!checked && submitted) {
-            // BLUE 
-            return Status.SubmittedNotReviewed;
 
+            // blue 
+            return Status.SubmittedNotReviewed;
         }
         else {
             return "";
@@ -211,7 +209,6 @@ class SubmissionTableInfo extends React.Component {
 
     deleteFileFromSubmissionHandler(event, file_name) {
         event.stopPropagation();
-        
         this.chosenFileName = file_name;
 
         this.setState({
@@ -222,10 +219,9 @@ class SubmissionTableInfo extends React.Component {
 
     setReviewContent() {
         
-        if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
+        if (this.state.submittedFiles.length === 0 && this.state.existSubmission) {
             return "No files in submission"
         }
-
 
         // if review doesnt exist
         let reviewContent = "There is no review so far";
@@ -246,18 +242,6 @@ class SubmissionTableInfo extends React.Component {
 
     render() {
 
-        /*
-        console.log("+===============+")
-        console.log(this.state.submittedFiles)
-        console.log(this.state.submittedFiles.length)
-        console.log(this.state.submmsionExist)
-        
-        
-        console.log("+===============+")
-        console.log(this.state.infoExtracted)
-        console.log("-----------------------")*/
-
-
         let classes = this.props.classes;
         let submissionStatus = this.setSubmissionStatus();
         let reviewContent = this.setReviewContent();
@@ -274,13 +258,9 @@ class SubmissionTableInfo extends React.Component {
 
         let x = 1
 
-        
-    
-
-        if (!this.state.infoExtracted){
-            return <WaiterLoading/>
+        if (!this.state.infoExtracted) {
+            return <WaiterLoading />;
         }
-        
 
         if (submissionExist || x) {
 
@@ -289,8 +269,7 @@ class SubmissionTableInfo extends React.Component {
                 style={{
                 display: "flex",
                 justifyContent: "center",
-                alignItems: "center"
-                }}>
+                alignItems: "center"}}>
 
                 {(this.state.showMsg === true) ? 
                     <Snackbar open={this.state.msgOpen} 
@@ -308,15 +287,13 @@ class SubmissionTableInfo extends React.Component {
                         handleCloseConfirm={this.handleCloseConfirm}
                         handleCloseCancel={this.handleCloseCancel}
                         handleClose={this.handleCloseCancel}
-                        dialogGoal="File Deletion"
-                        /> : ''}
+                        dialogGoal="File Deletion" /> : ''}
 
 
                     <div style={{ height: 400, width: '80%'}} >
                         <TableContainer component={Paper}>
 
                             <Table className={classes.table} aria-label="simple table">
-
 
                                 <TableBody>
 
@@ -328,7 +305,6 @@ class SubmissionTableInfo extends React.Component {
 
                                     </TableRow>
 
-
                                     {/* Row of update time */}
                                     <TableRow>
 
@@ -337,7 +313,6 @@ class SubmissionTableInfo extends React.Component {
 
                                     </TableRow>
 
-
                                     {/* Row of update date */}
                                     <TableRow>
 
@@ -345,8 +320,6 @@ class SubmissionTableInfo extends React.Component {
                                         <TableCell component="th" scope="row">  Last updated  date       </TableCell>
 
                                     </TableRow>
-
-
 
                                     {/* Row of review content */}
                                     <TableRow>
@@ -367,16 +340,14 @@ class SubmissionTableInfo extends React.Component {
                                     {/* Row of submitted files */}
                                     <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
 
-                                        <TableCell >
+                                        <TableCell>
 
                                             <div>
 
                                                 <DisplayFiles 
                                                 FileDeletionButtonHandler = {this.deleteFileFromSubmissionHandler}
                                                 role ={Role.MyFiles}
-                                                files={this.state.submittedFiles}>
-
-                                                </DisplayFiles>
+                                                files={this.state.submittedFiles} />
 
                                             </div>
 
@@ -414,21 +385,20 @@ class SubmissionTableInfo extends React.Component {
                         : " "
                         }
                       
-                        {/*(this.state.isChecked === true) ?*/ 
+                        {
                             <Grid item container xs={12} justify='center' alignItems='center'>
                                 <SubmissionReview
-                                major = {this.major}
-                                module = {this.module}
-                                subject = {this.subject}
-                                soldierId = {this.soldierId}
-                                role = {this.role}
-                                showReviews={this.showReviews}
+                                major={this.major}
+                                module={this.module}
+                                subject={this.subject}
+                                soldierId={this.soldierId}
+                                role={this.role}
                                 history={history}
                                 updateSubmissionInfo={this.getSubmissionInfo}
                                 />
 
                             </Grid>
-                        /*: ''}*/}
+                        }
                     </div>
 
                 </div>
@@ -436,7 +406,7 @@ class SubmissionTableInfo extends React.Component {
             );
         } else {
             return (
-                <h2> NO submission was made by u </h2>
+                <h2> No Submission Was Made By You </h2>
             );
         }
     }

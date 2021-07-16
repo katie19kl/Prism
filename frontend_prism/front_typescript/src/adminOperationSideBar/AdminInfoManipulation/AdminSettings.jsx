@@ -132,26 +132,29 @@ class AdminSettings extends React.Component {
 					<br/>
 					
 					<Grid container justify='center' alignItems='center'>
-						<Link to = "/admin/info_change" style={{ textDecoration: 'none'}}>
-							<Button
-								variant="contained"
-								color="primary"
-								size="large"
-								startIcon={<SaveIcon />}>
-									Update
-							</Button>
-						</Link>
-						
+
 						<Link to = "/admin" style={{ textDecoration: 'none'}}>
 							<Button
 								variant="contained"
 								color="primary"
 								size="large"
-								className={classes.button}
+								style={{backgroundColor: "red"}}
 								startIcon={<LaptopMacIcon />}>
-									Go to main
+									<b>Go to main</b>
 							</Button>
 						</Link>
+
+						<Link to = "/admin/info_change" style={{ textDecoration: 'none'}}>
+							<Button
+								variant="contained"
+								color="primary"
+								size="large"
+								className={classes.button}
+								startIcon={<SaveIcon />}>
+									<b>Update</b>
+							</Button>
+						</Link>
+
 					</Grid>
 
 					<br></br>

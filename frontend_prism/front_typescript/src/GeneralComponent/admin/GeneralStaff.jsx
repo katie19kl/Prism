@@ -1,24 +1,41 @@
-import React from "react"
-import CustomCalendar from "../commonGeneral/CustomCalendar"
-import CustomClock from "../commonGeneral/CustomClock"
-import CommanderMenu from "./CommanderMenu"
-import MenuAppBar from "../main/MenuAppBar"
+import React from "react";
+import CustomCalendar from "../commonGeneral/CustomCalendar";
+import CustomClock from "../commonGeneral/CustomClock";
+import CommanderMenu from "./CommanderMenu";
+import MenuAppBar from "../main/MenuAppBar";
 import Role from "../../Roles/Role";
-import VerticalGraph from "./graphs/VerticalGraph"
-import { getAllSubmissionsInMajor, getSoldiersByMajors, getUserInfoByJWT } from "../../HelperJS/extract_info"
-import { Major } from "../../HelperJS/Major"
-import { Status } from "../SubmissionStatusColors/SoldierSubmissionStatus"
-import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
-import { Grid } from "@material-ui/core"
-
+import VerticalGraph from "./graphs/VerticalGraph";
+import { Major } from "../../HelperJS/Major";
+import { Status } from "../SubmissionStatusColors/SoldierSubmissionStatus";
+import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status";
+import { Grid, Typography, withStyles } from "@material-ui/core";
 import TesterMenu from "../tester/TesterMenu";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import { 
+	getAllSubmissionsInMajor, 
+	getSoldiersByMajors, 
+	getUserInfoByJWT 
+} from "../../HelperJS/extract_info";
 
-//import TesterMenu from "./GeneralComponent/tester/TesterMenu"
-//import WaiterLoading from "./HelperFooStuff/WaiterLoading"
+
+const useStyles = (theme) => ({
+	div: {
+        border: '5px solid rgba(51, 51, 153, 1)',
+		background: 'linear-gradient(45deg, #ccffe6 30%, #ccffff 90%)'
+    },
+	title: {
+		color: '#3a3a64',
+		fontFamily: 'monospace',
+		marginTop: theme.spacing(5),
+
+	},
+	padding: {
+		marginBottom: theme.spacing(15),
+	},
+});
 
 
-export default class General extends React.Component {
+class General extends React.Component {
 
 	constructor(props) {
         super(props);
@@ -44,6 +61,7 @@ export default class General extends React.Component {
 	getMajorsUsers() {
 		
 		for (const major of this.allMajors) {
+
 			let majorToGet = [];
 			majorToGet.push(major);
 	
@@ -54,7 +72,7 @@ export default class General extends React.Component {
 					if (response.data !== undefined) {
 						
 						// sets state soldier with id & first name only
-						this.majorSoldierAmount[majorToGet] = response.data.length ;
+						this.majorSoldierAmount[majorToGet] = response.data.length;
 					} else {
 						this.majorSoldierAmount[majorToGet] = 0;
 					}
@@ -72,9 +90,10 @@ export default class General extends React.Component {
 	getMajorsSubmissions(majors) {
 
 		for (const major of this.allMajors) {
+			
 			getAllSubmissionsInMajor(major).then((submissions) => {
+				
 				if (submissions !== undefined) {
-					
 					
 					if (majors.includes(major)){
 						this.getAllMyMajorSubmissions(major,submissions)
@@ -85,10 +104,12 @@ export default class General extends React.Component {
 					} else {
 						this.majorSubmissionsAmount[major] = 0;
 					}
+
 				} else {
 					this.majorSubmissionsAmount[major] = 0;
 
 				}
+
 				this.setState({FOO: this.state.FOO + 1});
 			});
 		}
@@ -96,14 +117,10 @@ export default class General extends React.Component {
 
 	getAllMyMajorSubmissions(major,submissions){
 
-		let allMajorSubmission = submissions.data
-		
-		
-		let ok = []
-
-		let not_reviewed = []
-		let not_ok = []
-
+		let allMajorSubmission = submissions.data;
+		let ok = [];
+		let not_reviewed = [];
+		let not_ok = [];
 
 		for (const submission of allMajorSubmission) {
 			let grade = submission.gradeDescription;
@@ -143,7 +160,10 @@ export default class General extends React.Component {
 		});
 	}
 
-    render() {		
+    render() {
+
+		const { classes } = this.props;
+
 		let verticalSoldiers = [];
 		let verticalSubmissions = [];
 
@@ -181,31 +201,37 @@ export default class General extends React.Component {
 						</Grid>
 					</div>
 					
-					<div>
+					<div className={classes.padding}>
 						<Grid container item justify='flex-start' alignItems='flex-start'>
 							<CustomClock />
 						</Grid>
 					</div>
 
-					<br />
-					<br/>
-					<br/>
-					<br/>
+					<div className={classes.div}>
+						<Grid container item justify='center' alignItems='center'>
 
-					<div>
-						<h2>#Soldiers in major</h2>
+							<Typography variant='h4' 
+							className={classes.title}>
+								<b>Soldiers in major</b>
+							</Typography>
+
+						</Grid>
+											
 						<VerticalGraph horizontal={this.allMajors} vertical={verticalSoldiers}/>
-					</div>
-
-					<div>
-						<h2>#Submissions in majors</h2>
-						<VerticalGraph horizontal={this.allMajors} vertical={verticalSubmissions}/>
-					</div>
-
-					<div style={{width: '600px',height: '300px'}}>
 						
-						<h2>Submissions' status in your major</h2>
+					</div>
 
+					<div className={classes.div}>
+						<Grid container item justify='center' alignItems='center'>
+
+							<Typography variant='h4'
+							className={classes.title}>
+								<b>Submissions in majors</b>
+							</Typography>
+
+						</Grid>
+
+						<VerticalGraph horizontal={this.allMajors} vertical={verticalSubmissions}/>
 					</div>
 				
 				</div>
@@ -214,3 +240,5 @@ export default class General extends React.Component {
 		);
     }
 }
+
+export default withStyles(useStyles, { withTheme: true })(General);

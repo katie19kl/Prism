@@ -12,7 +12,7 @@ import {
     isNumeric, 
     onlyLettersAndDigits, 
     checkPassword,
-    isValidName 
+    isValidName
 } from '../../HelperJS/validator';
 import Role from "../../Roles/Role";
 import TesterMenu from "../../GeneralComponent/tester/TesterMenu";
@@ -433,7 +433,6 @@ class ChangeAdminSettings extends React.Component {
 								disabled id="last_name"
 								variant="filled"
 								label="Last Name" 
-								//defaultValue={this.state.prev_lastName}>
 								value={this.state.prev_lastName}>
 								</TextField>
 
@@ -471,7 +470,7 @@ class ChangeAdminSettings extends React.Component {
 								disabled={!buttonEnable}
 								className={classes.padding}
 								startIcon={<SaveIcon />}>
-									Update new info	
+									<b>Update new info</b>	
 								</Button>	
 							
 							</Grid>

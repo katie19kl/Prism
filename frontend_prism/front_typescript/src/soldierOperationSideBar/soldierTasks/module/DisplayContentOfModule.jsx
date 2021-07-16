@@ -11,7 +11,6 @@ import { Typography, withStyles, Grid, Breadcrumbs } from '@material-ui/core';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import { purple } from "@material-ui/core/colors"
 import { getListSubmissionOfSubject } from "../../soldierSubmission/submission_handling"
-import { Status } from "../../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import OK_Status from "../../soldierSubmission/OK_Status"
 
 

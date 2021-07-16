@@ -270,6 +270,12 @@ class CourseFilesMainView extends React.Component {
                             majors={this.majors} 
                             handleMajorChange={this.handleMajorChange}/>
 
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+
                             <FileSystemDisplay 
                             chosenMajor={this.state.chosenMajor} 
                             modules={this.state.modules}
@@ -277,7 +283,7 @@ class CourseFilesMainView extends React.Component {
                             subjectsToFiles={this.state.subjectsToFiles}
                             sendGetModulesRequest={this.sendGetModulesRequest} 
                             modulesToDictSubsToFiles={this.state.modulesToDictSubsToFiles}
-                            role={this.myRole}/>
+                            role={this.myRole} />
                             
                         </Grid>
                     }>

@@ -168,19 +168,28 @@ export class ReviewService {
         let allReviews = await this.getAllReviewsPerAssignment(id, major, module, subject);
         let finalReviews = [];
 
-        // check for reviews that are to be shown to the role specified by the 'role'.
-        for (let review of allReviews) {
+        // Admin sees all reviews.
+        if (role === Role.Admin) {
+            finalReviews = allReviews;
 
-            if (review.showTo.includes(role)) {
-                finalReviews.push(review);
+            return finalReviews;
+
+        } else {
+
+            // check for reviews that are to be shown to the role specified by the 'role'.
+            for (let review of allReviews) {
+
+                if (review.showTo.includes(role)) {
+                    finalReviews.push(review);
+                }
             }
+
+            finalReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
+                ? 1 : (a.submittedDate === b.submittedDate) 
+                    ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
+
+            return finalReviews;
         }
-
-        finalReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
-            ? 1 : (a.submittedDate === b.submittedDate) 
-                ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
-
-        return finalReviews;
     }
 
     async updateReview(updateReviewDto: updateReviewDto) {

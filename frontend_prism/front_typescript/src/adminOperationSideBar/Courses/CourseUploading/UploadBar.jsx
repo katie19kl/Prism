@@ -22,7 +22,6 @@ import Role from "../../../Roles/Role";
 import {uploadSingleSubmission} from "./../../../soldierOperationSideBar/soldierSubmission/submission_handling"
 import SoldierInfo from "../../../soldierOperationSideBar/soldierProfile/SoldierInfo";
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
-import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

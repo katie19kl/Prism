@@ -49,7 +49,7 @@ class UsersHandling extends React.Component {
                 user = user.data;
                 let role = user["role"];
 
-                this.setState({ myRole: role});
+                this.setState({ myRole: role });
             }
         });
 
@@ -65,7 +65,8 @@ class UsersHandling extends React.Component {
             
             return (
                 <MenuAppBar
-                role={Role.Commander}
+                //role={Role.Commander}
+                role={this.state.myRole}
                 menu={
                     <CommanderMenu />
                 }

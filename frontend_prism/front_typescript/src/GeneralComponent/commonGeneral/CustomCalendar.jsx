@@ -7,8 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
     root: {
         background: 'linear-gradient(45deg, #d1b3ff 30%, #6600ff 90%)',
-        border: 0,
-        borderRadius: 3,
+        border: '3px rgba(255, 0, 0, 0.05)', 
+        borderRadius: 10,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'black',
         fontFamily: 'monospace',
@@ -17,6 +17,9 @@ const useStyles = makeStyles({
         marginLeft: '300px',
         marginTop: '20px'
     },
+    div: {
+        border: '5px solid rgba(0, 0, 0, 0.05)'
+    }
 });
 
 

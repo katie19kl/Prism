@@ -1,6 +1,5 @@
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import LocalPostOfficeRoundedIcon from '@material-ui/icons/LocalPostOfficeRounded';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';

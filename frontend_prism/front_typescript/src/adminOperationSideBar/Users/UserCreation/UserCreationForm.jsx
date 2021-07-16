@@ -26,7 +26,6 @@ const useStyles = (theme) => ({
             width: '25ch',
         },
         marginTop: theme.spacing(3),
-        //marginLeft: theme.spacing(15),
     },
     padding: {
         flexGrow: 1,
@@ -34,7 +33,7 @@ const useStyles = (theme) => ({
         marginTop: theme.spacing(15),
     },
     button: {
-        //marginLeft: theme.spacing(48),
+        marginLeft: theme.spacing(3),
     },
     myFont: {
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
@@ -66,16 +65,15 @@ class UserCreationForm extends React.Component {
         this.handleResponse = this.handleResponse.bind(this);
         this.handleMsgClose = this.handleMsgClose.bind(this);
 
-        // TODO - CHANGE TO EMPTY STRINGS!
-        this.personalId = undefined;
-        this.username = undefined;
-        this.password = undefined;
-        this.firstName = undefined;
-        this.lastName = undefined;
+        this.personalId = '';
+        this.username = '';
+        this.password = '';
+        this.firstName = '';
+        this.lastName = '';
         this.gender = Gender.Undefined;
-        this.phoneNumber = undefined;
+        this.phoneNumber = '';
         this.major = Major.Undefined;
-        this.commander = undefined;
+        this.commander = '';
         this.showWarning = false;
         this.msg = undefined;
         this.severity = undefined;
@@ -100,6 +98,7 @@ class UserCreationForm extends React.Component {
             phoneNumberErr: "",
             majorErr: "",
             commanderErr: "",
+            majorCommanderErr: ""
         }
     }
 
@@ -232,6 +231,8 @@ class UserCreationForm extends React.Component {
 
     handleChangeMajor(event) {
         this.major = event.target.value
+
+        this.setState({ updated: true });
     }
 
     handleChangeCommanderMajor(event) {
@@ -352,7 +353,7 @@ class UserCreationForm extends React.Component {
                 this.msg = "Created Successfully!";
                 this.setState({ 
                     updated: true, msgOpen: true, software: false, research: false, 
-                    firmware: false, validation: false, network: false
+                    firmware: false, validation: false
                 });
      
             }
@@ -367,12 +368,15 @@ class UserCreationForm extends React.Component {
     render() {
         const { classes } = this.props;
         const { software, research, firmware, validation } = this.state;
-
-
+        let history = this.props.history;
         let buttonEnable = false;
+
+
         if (this.personalId !== undefined && this.username !== undefined && this.password !== undefined
             && this.firstName !== undefined && this.lastName !== undefined && this.gender !== 'None'
-            && this.gender !== Gender.Undefined) {  
+            && this.gender !== Gender.Undefined && (this.major !== Major.Undefined 
+            || (this.state.software !== false || this.state.research !== false 
+            || this.state.firmware !== false || this.state.validation !== false))) {  
 
             if (this.state.personalIdErr === "" && this.state.usernameErr === ""
                 && this.state.passwordErr === "" && this.state.firstNameErr === ""
@@ -443,8 +447,7 @@ class UserCreationForm extends React.Component {
                         value={this.firstName}
                         error={this.state.firstNameErr.length === 0 ? false : true}
                         helperText={this.state.firstNameErr}
-                        onChange={this.handleChangeFirstName}
-                        />
+                        onChange={this.handleChangeFirstName} />
 
                         <TextField
                         required
@@ -454,8 +457,7 @@ class UserCreationForm extends React.Component {
                         value={this.lastName}
                         error={this.state.lastNameErr.length === 0 ? false : true}
                         helperText={this.state.lastNameErr}
-                        onChange={this.handleChangeLastName}
-                        />
+                        onChange={this.handleChangeLastName} />
 
                         <TextField
                         id="outlined-select-gender"
@@ -490,11 +492,10 @@ class UserCreationForm extends React.Component {
                         value={this.phoneNumber}
                         error={this.state.phoneNumberErr.length === 0 ? false : true}
                         helperText={this.state.phoneNumberErr}
-                        onChange={this.handleChangePhoneNumber}
-                        />
+                        onChange={this.handleChangePhoneNumber} />
 
                         {(this.props.myRole === Role.Commander || this.props.myRole === Role.Tester) 
-                        ? <FormControl component="fieldset" className={classes.formControl}>
+                        ? <FormControl component="fieldset" className={classes.formControl} required>
                             <FormLabel component="legend"> Choose Your Majors </FormLabel>
                             <FormGroup style={{display: 'flex', flexDirection: 'row'}}>
                                 <FormControlLabel
@@ -538,6 +539,7 @@ class UserCreationForm extends React.Component {
                         }
 
                         {(this.props.myRole === Role.Soldier) ? <TextField
+                            required
                             id="outlined-select-major"
                             select
                             label="Major"
@@ -577,16 +579,27 @@ class UserCreationForm extends React.Component {
                 </form>
                 
                 <Grid item container justify='center' alignItems='center'>
+
                     <Button
+                    variant='contained'
+                    color="primary"
+                    size="large"
+                    style={{backgroundColor: "red"}}
+                    onClick={() => history.goBack()}>
+                        <b>GO BACK</b>
+                    </Button>
+
+                    <Button
+                    className={classes.button}
                     variant="contained"
                     color="primary"
                     size="large"
                     disabled={!buttonEnable}
                     startIcon={<SaveIcon />}
-                    className={classes.button}
                     onClick={this.handleSave}>
-                    Save
+                        <b>Save</b>
                     </Button>
+
                 </Grid>
 
                 <br/>

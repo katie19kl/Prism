@@ -6,12 +6,12 @@ export class MajorManager {
     
 
     // deletes directory & its content on major level
-    async deleteMajorDir(directory_name_delete : Major){
+    async deleteMajorDir(directory_name_delete : Major) {
     
         let fs = require('fs');
-        let deleteMajorDir = this.createPathMajor(directory_name_delete)
+        let deleteMajorDir = this.createPathMajor(directory_name_delete);
         
-        return await new Promise( (resolve, reject) => {
+        return await new Promise((resolve, reject) => {
 
         
                 fs.rmdir(deleteMajorDir, {recursive:true}, function(err) {

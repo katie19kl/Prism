@@ -1,10 +1,9 @@
 import React from "react";
 import { Redirect, Route } from "react-router";
-import Role from "./../Roles/Role"
-
-import { validateTokenFunc, currentUserRole, validateRoleByToken} from "../HelperJS/authentification_helper"
+import Role from "./../Roles/Role";
+import { validateTokenFunc, currentUserRole, validateRoleByToken} from "../HelperJS/authentification_helper";
 import { getUserInfoByJWT } from "../HelperJS/extract_info";
-import ContentOfModule from "../soldierOperationSideBar/soldierTasks/module/ContentOfModule";
+import { Typography } from "@material-ui/core";
 
 
 export default class PrivateRoutingComponent extends React.Component {
@@ -27,20 +26,19 @@ export default class PrivateRoutingComponent extends React.Component {
 		return /\d/.test(myString);
 	}
 
+	retrievePersonalIdURL(pathContainingId) {
+		let parsedURL = pathContainingId.split("/");
 
-	retrievePersonalIdURL(pathContainingId){
-		let parsedURL = pathContainingId.split("/")
-
-		for (const partURL of parsedURL){
+		for (const partURL of parsedURL) {
 			
 		
-			if (this.hasNumber(partURL)){
+			if (this.hasNumber(partURL)) {
 
 				// if number & is not port number
-				if (this.isNumeric(partURL) && partURL.length > 5){
-					// Here we are sure that we have retrieved personal Id
+				if (this.isNumeric(partURL) && partURL.length > 5) {
 
-					return partURL
+					// Here we are sure that we have retrieved personal Id
+					return partURL;
 				}
 			}
 		}
@@ -48,102 +46,78 @@ export default class PrivateRoutingComponent extends React.Component {
 
 	sameIdURLAndToken(personalId, pathContainingId){
 		
-		let idInUrl = this.retrievePersonalIdURL(pathContainingId)
-		let userId = personalId
-
-
+		let idInUrl = this.retrievePersonalIdURL(pathContainingId);
+		let userId = personalId;
 
 		// no personal id in url
-		if (idInUrl === undefined){
-			return true
+		if (idInUrl === undefined) {
+			return true;
 		}
 		
 		// there is personal id in url
-		if (userId === idInUrl){
-			return true
+		if (userId === idInUrl) {
+			return true;
 		}
 		
-
-
-		return false
-
-
+		return false;
 	}
   
 
 	render() {
-
-
-
-
 		let isLoggedIn = this.state.isLoggedIn;
-
-
 		let rolesRequired = this.props.roles;
 		let allowedToEveryOne = false;
 
 		// role of current authentificated user
 		let currentUserRole = this.state.getCurrRole();
 
-
-
-
 		getUserInfoByJWT().then((user) => {
 
-			if (user === undefined || user.data === undefined){
+			if (user === undefined || user.data === undefined) {
 				
 			} else {
+				user = user.data;				
+				let role = user["role"];
 
-				
-				user = user.data
-
-				
-				let role = user["role"]
-				
-				
-
-
-				if (currentUserRole !== role){
+				if (currentUserRole !== role) {
 					
-					if (this.state.pretentAttempt !== true){
+					if (this.state.pretentAttempt !== true) {
 
-						this.setState({pretentAttempt: true})
+						this.setState({ pretentAttempt: true });
 					}
 				}
-				
-				
-				
 			}
-		})
+		});
 
 
-		if(this.state.pretentAttempt === 555){
-			return <h2>Soldier access not his page</h2>
+		if (this.state.pretentAttempt === 555) {
+			return (	
+				<Redirect to={{ pathname: '/noPermissions'}} />
+			);
 		}
 
-
-
-
 		// pretending attempt detection
-		if (this.state.pretentAttempt){
-			return <h2>DONT PRETEND PIDOR</h2>
+		if (this.state.pretentAttempt) {
+			return <div>
+				<Typography variant='h5' align='center' style={{ fontFamily: 'monospace', marginTop: '20px' }}>
+					<b>Your Attemption To Pretend Has Failed</b>
+				</Typography>
+
+				<Typography variant='h6' align='center' style={{ fontFamily: 'monospace'}}>
+					<b>Please Go Back And Revert The Changes You Have Made (Or Log Out)</b>
+				</Typography>
+			</div>
 		}
 
 		// validate token with server
 		this.state.validateToken().then((isAuthenticated) => {
 			
 			// server answer differs from out current
-			if (isAuthenticated !== this.state.isLoggedIn)
-			{
+			if (isAuthenticated !== this.state.isLoggedIn) {
 
-				this.setState({isLoggedIn: isAuthenticated})
+				this.setState({isLoggedIn: isAuthenticated});
 			}
-		})
-
-		
-		//let path = this.props.path;
-
-
+		});
 		
 		// no specified role restriction 
 		if (rolesRequired === undefined) {
@@ -152,94 +126,64 @@ export default class PrivateRoutingComponent extends React.Component {
 		}
 		else {
 
-			//Call back validation --> if problem -> redirects to no permissions			
+			// Call back validation --> if problem -> redirects to no permissions			
 			// if role was defined, but user try to pretend 
 			// with higher role. If it occurs => redirects to no permission
-			validateRoleByToken(rolesRequired).then((resp) =>{
+			validateRoleByToken(rolesRequired).then((resp) => {
 				
-				//(resp + "---------I am here -----------")
-				if (resp === false ){
+				if (resp === false ) {
 
-		
-					
 					//return <h2> NIHUI PRETEND OKK ?</h2>
 					this.setState({pretentAttempt: true})
 				}
 			});
 		}
 
-
-
-
 		// taking care of url with personalId
 		// check only if user is soldier -> that it is his personal ID
 		
-		if (currentUserRole === Role.Soldier){
+		if (currentUserRole === Role.Soldier) {
 			getUserInfoByJWT().then((user) => {
 
-				if (user === undefined || user.data === undefined){
+				if (user === undefined || user.data === undefined) {
 					
 				} else {
-	
-					
-					user = user.data
-
-					
-					let personalId = user["personalId"]
-					//let pathContainingId = this.props.path;
-					let pathContainingId = window.location.pathname
-					
-		
-					
-					
-					
-				
-					let allowed = this.sameIdURLAndToken(personalId, pathContainingId)
+					user = user.data;
+					let personalId = user["personalId"];
+					let pathContainingId = window.location.pathname;
+					let allowed = this.sameIdURLAndToken(personalId, pathContainingId);
 			
 					if (!allowed){
-						this.setState({pretentAttempt: 555})
+						this.setState({pretentAttempt: 555});
 					}
-					
-					
-					
 				}
-			})
+			});
 		}
 		
-
-
-
-
 		// if role of current user resides in roles restrictions
 		let indexInRoles = rolesRequired.indexOf(currentUserRole);
-		
 
 		// not logged in system
 		if (isLoggedIn === false) {
 
-			return <Redirect to={{ pathname: '/login'}} />
+			return <Redirect to={{ pathname: '/login'}} />;
 		}
-
-			
 
 		// roles were specified & user's role does not presents 
 		if (isLoggedIn === true && indexInRoles === -1 &&  allowedToEveryOne === false ){
 			
-		
-			return (
-				
+			return (	
 				<Redirect to={{ pathname: '/noPermissions'}} />
-			)
+			);
 		}
 
-
 		// has permission & is log_in
-		if (isLoggedIn === true && (indexInRoles !== -1 || allowedToEveryOne))
-		{
+		if (isLoggedIn === true && (indexInRoles !== -1 || allowedToEveryOne)) {
 			return (
-				<Route  path={this.props.path} exact={this.props.exact} component={this.props.component} />
-			)  
-
+				<Route path={this.props.path}
+				exact={this.props.exact} 
+				component={this.props.component} />
+			);
 		}
 
 		return null;
