@@ -90,7 +90,7 @@ class General extends React.Component {
 	getMajorsSubmissions(majors) {
 
 		for (const major of this.allMajors) {
-			
+			// extracting submissions per major
 			getAllSubmissionsInMajor(major).then((submissions) => {
 				
 				if (submissions !== undefined) {
@@ -121,7 +121,7 @@ class General extends React.Component {
 		let ok = [];
 		let not_reviewed = [];
 		let not_ok = [];
-
+		// extracting grade of submissions
 		for (const submission of allMajorSubmission) {
 			let grade = submission.gradeDescription;
 

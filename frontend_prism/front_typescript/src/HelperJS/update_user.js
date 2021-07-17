@@ -43,7 +43,6 @@ async function updateUser(username, newUserName, newFirstName,
 		newLastName, newPhoneNum, newPassword, newCommander);
 
 	let token = LocalStorage.getItem(LocalStorage.token);
-
 	let url = prefix_server_url + "users/" + username 
 	
 	// User has no token
@@ -53,9 +52,7 @@ async function updateUser(username, newUserName, newFirstName,
 
 	} else {
 
-
 		// send the token to the server and check its response.
-		
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,

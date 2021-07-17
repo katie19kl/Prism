@@ -90,9 +90,8 @@ class SoldierSubmissions extends React.Component {
 				});
 			}));
 		}
-
+		// waits for all promises to be resolved
 		let allRESOLVEV = Promise.all(arrPromises) 
-
 		
 		return allRESOLVEV;
 	}
@@ -107,11 +106,12 @@ class SoldierSubmissions extends React.Component {
 		  		let modules_ = response.data
 				this.modules = modules_
 				
-				/////////////////////////////////////////////////////////////
+				
 				let soldier = []
 				soldier.push({"personalId" : this.props.selectedSoldier})
 
 				let promises = []
+				// modules arrived => process each module separetely
 				for (const module of modules_){
 					let newPromise =  new Promise((resolv, rej)=>{
 					
@@ -120,8 +120,7 @@ class SoldierSubmissions extends React.Component {
 							
 							if (response !== undefined)
 							{
-								if (response.data !== undefined){				
-									//this.soldierClosed = responce.data
+								if (response.data !== undefined){			
 									this.subjectClosed[module] = response.data
 									this.soldierClosed = this.props.selectedSoldier
 								}else {
@@ -140,8 +139,6 @@ class SoldierSubmissions extends React.Component {
 				}
 				Promise.all(promises).then(()=>{
 
-		
-					
 					this.getSubjectsOfModules(modules_, selectedMajor).then((modules_subjects)=>{
 
 						let mod_sub = {};
@@ -256,24 +253,17 @@ class SoldierSubmissions extends React.Component {
 	convertToColors() {
 		let submissions_ = this.state.module_submissions
 		let selectedSoldier = this.props.selectedSoldier
-
 		let mod_subject_colors = {}		
-		
-
 
 		
 		for (let module_ in submissions_){
 
 			let module = submissions_[module_]
-			
-			
 			let subjectClosed = this.subjectClosed[module_][this.props.selectedSoldier]
+
 			if (subjectClosed === undefined){
 				subjectClosed = []
 			}
-	
-
-
 			// submission of user from server
 			let soldier_submissions = module[selectedSoldier]
 			
@@ -284,33 +274,22 @@ class SoldierSubmissions extends React.Component {
 			for (let submission of soldier_submissions){
 
 				let amount = submission.amoutSubmittedFiles
-
-
-
-
 				let subject = submission.subject
 				let grade =  submission.grade
 				let gradeDescription = submission.gradeDescription
+
 				// color to display in table
 				let color = Status.Closed
 
-				
 				// chekced & no files
 				if (amount === 0 && submission.checked){
 					color = Status.CheckedNoFiles	
 				}
 				else {
-
-					
-					
 		
 					if (subjectClosed.includes(subject)){
-
 						color = Status.OpenNotSubmitted
 					}
-
-
-
 
 					if (submission.checked && gradeDescription === OK_Status.OK) {
 						color = Status.SubmittedGoodEnough
@@ -344,7 +323,7 @@ class SoldierSubmissions extends React.Component {
 			displayTable = (this.props.selectedSoldier === this.soldierClosed)
 		}
 	
-		if (displayTable && 1) {
+		if (displayTable) {
 
 			let mod_subject_colors = this.convertToColors()
 		
@@ -405,7 +384,6 @@ class SoldierSubmissions extends React.Component {
 											<Typography>
 															
 												{
-													/*mod_subject_colors[module][subject_name].color + "-"+*/ 
 													subject_name.split(" ")[1]
 												}
 

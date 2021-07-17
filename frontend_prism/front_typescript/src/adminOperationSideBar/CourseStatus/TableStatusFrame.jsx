@@ -44,10 +44,8 @@ class TableStatusFrame extends React.Component {
         this.selectedModule = undefined;
         this.myRole = undefined;
         
-        //this.checkBoxClicked = false
         this.state = {
             majors: [],
-            //modules: [],
             modules: undefined,
             displayTable: false,
             checkBoxClicked: false,
@@ -67,10 +65,7 @@ class TableStatusFrame extends React.Component {
 
     majorSelector(event) {
         this.selectedMajor = event.target.value
-
         if (this.selectedMajor !== "None") {
-
-       
 
             getModulesByMajor(this.selectedMajor).then((response) => {
                 if (response !== undefined) {
@@ -88,10 +83,8 @@ class TableStatusFrame extends React.Component {
         this.selectedModule = event.target.value;
 
         if (this.selectedModule !== "None") {
-            
             this.setState({ displayTable: true });
         }
-
         else {
             this.setState({ displayTable: false });
         }
@@ -108,7 +101,6 @@ class TableStatusFrame extends React.Component {
                 if (user !== undefined) {
                     let majors_ = user["major"];
                     this.myRole = user["role"];
-
 
                     this.setState({
                         majors: majors_

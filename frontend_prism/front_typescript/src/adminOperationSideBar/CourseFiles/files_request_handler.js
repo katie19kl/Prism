@@ -3,9 +3,6 @@ import LocalStorage from "../../HelperJS/LocalStorage";
 import { prefix_server_url } from "../../HelperJS/url_helper";
 
 
-
-
-
 async function getModulesByMajor(major) {
 
 	let urlPostFix = "major/modules/" + major;
@@ -20,7 +17,8 @@ async function getSubjectsByModule(major, module) {
 
 	return await sendGetRequest(urlPostFix);
 }
-///////////////////////
+
+
 async function getFilesBySubject(major, module, subject) {
 	
 	let urlPostFix = "files/" + major + "/" + module + "/" + subject;
@@ -31,7 +29,6 @@ async function getFilesBySubject(major, module, subject) {
 async function deleteModuleByMajor(listParams) {
 
 	let urlPostFix = "module/"
-
 	let finalUrlPostfix = createUrlPostfix(urlPostFix, listParams);
 
 	return await sendDeleteRequest(finalUrlPostfix);
@@ -40,7 +37,6 @@ async function deleteModuleByMajor(listParams) {
 async function deleteSubjectByModule(listParams) {
 	
 	let urlPostFix = "subject/";
-
 	let finalUrlPostfix = createUrlPostfix(urlPostFix, listParams);
 
 	return await sendDeleteRequest(finalUrlPostfix);
@@ -49,7 +45,6 @@ async function deleteSubjectByModule(listParams) {
 async function deleteFileBySubject(listParams) {
 
 	let urlPostFix = "file/";
-
 	let finalUrlPostfix = createUrlPostfix(urlPostFix, listParams);
 
 	return await sendDeleteRequest(finalUrlPostfix);

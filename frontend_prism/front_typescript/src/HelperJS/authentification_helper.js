@@ -18,8 +18,6 @@ async function validateTokenFunc()  {
 		// send the token to the server and check its response.
 		//let url = "http://localhost:4000/auth/validate"; 
 		let url = prefix_server_url + "auth/validate";
-		
-
 
 		const req = await axios.create({
 			baseURL: url,
@@ -44,9 +42,6 @@ async function validateTokenFunc()  {
 		},(error) => {
       
 			// In case the token was "undefined".
-	
-			
-			//this.isAuthenticated = false;
 			return false;
     	});
   	}
@@ -101,7 +96,6 @@ async function validateRoleByToken(rolesRequired){
 
 	}
 }
-
 
 function currentUserRole(){
 

@@ -40,7 +40,6 @@ class UpdateUsers extends React.Component {
             _selected: false,
             _error: false,
             _users_retrieved: false,
-
             soldier_firstName: undefined,
             soldier_secondName: undefined,
             soldier_phone: undefined,
@@ -59,7 +58,6 @@ class UpdateUsers extends React.Component {
                 user = user.data;
                 let major = user["major"];
                 
-
                 getSoldiersByMajors(major).then((users) => {
                     if (users === undefined) {
                         this.setState({_users_retrieved: true});

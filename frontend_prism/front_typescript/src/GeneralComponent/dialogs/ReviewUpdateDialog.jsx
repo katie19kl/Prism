@@ -65,7 +65,7 @@ class ReviewUpdateDialog extends React.Component {
             this.setState({ gradeErr: 'You must enter a number in the range [0-100]' });
 
         } else {
-
+            // validation grade
             if (Number(val) < 0 || Number(val) > 100) {
                 this.setState({ gradeErr: 'You must enter a number in the range [0-100]' });
 

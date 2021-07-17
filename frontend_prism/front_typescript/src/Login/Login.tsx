@@ -143,13 +143,8 @@ const Login = () => {
 	const handleLogin = () => {
 
 		let url: string;
-
-
-
 		//url = "http://localhost:4000/auth/user";
 		url = prefix_server_url + "auth/user";
-		
-		
 
 		let data = {
 			username: state.username,
@@ -175,7 +170,6 @@ const Login = () => {
 
 				// Save the username and his role in the localStorage.
 				setUserInfo(response)
-
 
 				// Since it's a successful login.
 				RedirectToMainPage();
@@ -212,15 +206,8 @@ const Login = () => {
 			});
 		};
 
-		/*
-	function Foo(e: Event) { // works, to be deleted!
 
-		e.preventDefault()
-		history.push("/about");
-
-	}*/
-
-	return (
+		return (
 		<form className={classes.container} noValidate autoComplete="off">
 			<Card className={classes.card}>
 				<CardHeader className={classes.header} title="Login" />

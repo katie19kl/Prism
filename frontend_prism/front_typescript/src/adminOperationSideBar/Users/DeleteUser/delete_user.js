@@ -15,8 +15,6 @@ async function deleteUserByPersonalId(personalId) {
 		//let url = "http://localhost:4000/users/" + personalId;
 		let url = prefix_server_url	+ "users/" + personalId;
 
-
-
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,

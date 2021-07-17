@@ -31,6 +31,7 @@ export default class MainPage extends React.Component {
   
 
 	render() {
+		// Render page based on role
 		const { role } = this.state;
 
 		if ((role === Role.Admin) || (role === Role.Commander)) {

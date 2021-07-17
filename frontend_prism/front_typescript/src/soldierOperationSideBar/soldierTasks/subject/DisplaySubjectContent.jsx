@@ -5,8 +5,6 @@ import Role from "../../../Roles/Role";
 
 export default class DisplaySubjectContent extends React.Component {
 
-
-
     removeOtherSoldierFiles(arrFiles,personalId) {
 
         let filteredArr = [];
@@ -26,26 +24,12 @@ export default class DisplaySubjectContent extends React.Component {
 
     render() {
 
-
-
         let subject = this.props.subject;
-
-
- 
-
-
-
-
         let dictSubjectFiles = this.props.dictSubjectFiles;
-
         let arrFiles = dictSubjectFiles[subject];
-        
         let personalId = this.props.personalId;
-
         let filteredArrFiles = [];
 
-        
-        
         // if there is no files yet 
         if (arrFiles.length === 0) {
             // do nothing.
@@ -53,9 +37,9 @@ export default class DisplaySubjectContent extends React.Component {
             filteredArrFiles = this.removeOtherSoldierFiles(arrFiles, personalId);
         }
 
-
         let existSubmission = this.props.reviewedSubjects.includes(subject)
 
+        // remove indexing for file displaying
         for (let i = 0; i< filteredArrFiles.length; i = i + 1){
             let idFile = filteredArrFiles[i].file_name.split("_")[0]
             

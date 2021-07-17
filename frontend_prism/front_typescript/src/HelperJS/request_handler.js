@@ -5,19 +5,14 @@ import { prefix_server_url } from "./url_helper";
 
 async function sendCreateUserRequest(data) {
 
-
     //let url = "http://localhost:4000/users";
     let url = prefix_server_url + "users";
     
-    
-
     let token = LocalStorage.getItem(LocalStorage.token);
-    
     if (token === null || token === 'undefined') {
-
 		// return the user to login.
-
-	} else {
+        return false
+    } else {
 
         let req = axios.create({
 			baseURL: url,

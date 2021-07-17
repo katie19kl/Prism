@@ -24,8 +24,7 @@ const useStyles = (_theme) => ({
         flexGrow: 1,
         width: '100%',
     },
-    myFont: {
-        //fontFamily: "Comic Sans MS, Comic Sans, cursive", 
+    myFont: { 
         fontFamily: 'monospace'
     },
     accordion: {
@@ -177,7 +176,6 @@ class FileSystemDisplay extends React.Component {
             });
         }
 
-        /*let moduleName = panel;*/
     }
 
     /* handles opening of a subject accordion. */
@@ -192,7 +190,6 @@ class FileSystemDisplay extends React.Component {
                 expandedSubject: false
             });
         }
-        /////////////////////////////////////////////let subjectName = panel;
     }
 
     moduleDeletionButtonHandler(event, module) {
@@ -371,9 +368,6 @@ class FileSystemDisplay extends React.Component {
             this.setState({ showMsg: true, msgOpen: true});
         }
 
-        // change back to undefined
-        //this.newSubjectName = undefined;
-
         this.setState({ subjectInsertionDialogOpen: false });
     }
 
@@ -547,9 +541,6 @@ class FileSystemDisplay extends React.Component {
             this.setState({ showMsg: true, msgOpen: true});
         }
 
-        //this.newModuleName = undefined;
-        //this.oldModuleName = undefined;
-
         this.setState({ 
             moduleRenameDialogOpen: false
         });
@@ -656,10 +647,6 @@ class FileSystemDisplay extends React.Component {
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});
         }
-
-        // change back to undefined
-        //this.newSubjectName = undefined;
-        //this.oldSubjectName = undefined;
 
         this.setState({ subjectRenameDialogOpen: false });
     }

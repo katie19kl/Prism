@@ -139,14 +139,13 @@ class SubmissionTableInfo extends React.Component {
     }
 
     setSubmissionColor() {
+
+
         let grade = this.state.gradeDescription;
         let checked = this.state.isChecked;
         let submitted = this.state.existSubmission;
 
-        // TO DO
-        // ADD WITH OPEN OR NOT OPEN 
-
-
+        // Set color according to submission status
         if (this.state.submittedFiles.length === 0 && this.state.existSubmission){
             return Status.OpenNotSubmitted
         }
@@ -258,159 +257,154 @@ class SubmissionTableInfo extends React.Component {
             gradeDesc = this.state.gradeDescription;
         }
 
-        let x = 1
 
         if (!this.state.infoExtracted) {
             return <WaiterLoading />;
         }
 
-        if (submissionExist || x) {
-
-            return (
-                <div         
-                style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center"}}>
-
-                {(this.state.showMsg === true) ? 
-                    <Snackbar open={this.state.msgOpen} 
-                    autoHideDuration={3000}
-                    anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                    onClose={this.handleMsgClose}>
-                        <Alert onClose={this.handleMsgClose} severity={this.severity}>
-                            {this.message}
-                        </Alert>
-                    </Snackbar> : ""}
-
-                    {(this.state.showConfirmDialog === true) ?
-                        <ConfirmationDialog
-                        confirmDialogOpen={this.state.confirmDialogOpen}
-                        handleCloseConfirm={this.handleCloseConfirm}
-                        handleCloseCancel={this.handleCloseCancel}
-                        handleClose={this.handleCloseCancel}
-                        dialogGoal="File Deletion" /> : ''}
 
 
-                    <div style={{ height: 400, width: '80%'}} >
-                        <TableContainer component={Paper}>
+        return (
+            <div         
+            style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"}}>
 
-                            <Table className={classes.table} aria-label="simple table">
+            {(this.state.showMsg === true) ? 
+                <Snackbar open={this.state.msgOpen} 
+                autoHideDuration={3000}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                onClose={this.handleMsgClose}>
+                    <Alert onClose={this.handleMsgClose} severity={this.severity}>
+                        {this.message}
+                    </Alert>
+                </Snackbar> : ""}
 
-                                <TableBody>
+                {(this.state.showConfirmDialog === true) ?
+                    <ConfirmationDialog
+                    confirmDialogOpen={this.state.confirmDialogOpen}
+                    handleCloseConfirm={this.handleCloseConfirm}
+                    handleCloseCancel={this.handleCloseCancel}
+                    handleClose={this.handleCloseCancel}
+                    dialogGoal="File Deletion" /> : ''}
 
-                                    {/* Row of submission status */}
-                                    <TableRow >
 
-                                        <TableCell style={{ background: colorSubmissionStatus }}> {submissionStatus} </TableCell>
-                                        <TableCell component="th" scope="row">   Submission status       </TableCell>
+                <div style={{ height: 400, width: '80%'}} >
+                    <TableContainer component={Paper}>
 
-                                    </TableRow>
+                        <Table className={classes.table} aria-label="simple table">
 
-                                    {/* Row of update time */}
-                                    <TableRow>
+                            <TableBody>
 
-                                        <TableCell >{this.state.submittedTime}</TableCell>
-                                        <TableCell component="th" scope="row">   Last update time       </TableCell>
+                                {/* Row of submission status */}
+                                <TableRow >
 
-                                    </TableRow>
+                                    <TableCell style={{ background: colorSubmissionStatus }}> {submissionStatus} </TableCell>
+                                    <TableCell component="th" scope="row">   Submission status       </TableCell>
 
-                                    {/* Row of update date */}
-                                    <TableRow>
+                                </TableRow>
 
-                                        <TableCell >{this.state.submittedDate}</TableCell>
-                                        <TableCell component="th" scope="row">  Last updated  date       </TableCell>
+                                {/* Row of update time */}
+                                <TableRow>
 
-                                    </TableRow>
+                                    <TableCell >{this.state.submittedTime}</TableCell>
+                                    <TableCell component="th" scope="row">   Last update time       </TableCell>
 
-                                    {/* Row of review content */}
-                                    <TableRow>
+                                </TableRow>
 
-                                        <TableCell > {reviewContent} </TableCell>
-                                        <TableCell component="th" scope="row">   Review       </TableCell>
+                                {/* Row of update date */}
+                                <TableRow>
 
-                                    </TableRow>
+                                    <TableCell >{this.state.submittedDate}</TableCell>
+                                    <TableCell component="th" scope="row">  Last updated  date       </TableCell>
 
-                                    {/* Row of grade description */}
-                                    <TableRow>
+                                </TableRow>
 
-                                        <TableCell > {gradeDesc} </TableCell>
-                                        <TableCell component="th" scope="row">   Grade Description       </TableCell>
+                                {/* Row of review content */}
+                                <TableRow>
 
-                                    </TableRow>
+                                    <TableCell > {reviewContent} </TableCell>
+                                    <TableCell component="th" scope="row">   Review       </TableCell>
 
-                                    {/* Row of submitted files */}
-                                    <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
+                                </TableRow>
 
-                                        <TableCell>
+                                {/* Row of grade description */}
+                                <TableRow>
 
-                                            <div>
+                                    <TableCell > {gradeDesc} </TableCell>
+                                    <TableCell component="th" scope="row">   Grade Description       </TableCell>
 
-                                                <DisplayFiles 
-                                                FileDeletionButtonHandler = {this.deleteFileFromSubmissionHandler}
-                                                role ={Role.MyFiles}
-                                                files={this.state.submittedFiles} />
+                                </TableRow>
 
-                                            </div>
+                                {/* Row of submitted files */}
+                                <TableRow style = {{overflow: "hidden", whiteSpace: "unset" }} >
 
-                                        </TableCell>
+                                    <TableCell>
 
-                                        <TableCell component="th" scope="row">   Submitted files        </TableCell>
+                                        <div>
 
-                                    </TableRow>
+                                            <DisplayFiles 
+                                            FileDeletionButtonHandler = {this.deleteFileFromSubmissionHandler}
+                                            role ={Role.MyFiles}
+                                            files={this.state.submittedFiles} />
 
-                                </TableBody>
-                            </Table>
+                                        </div>
 
-                        </TableContainer>
+                                    </TableCell>
 
-                        {(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester || this.role === Role.Admin) ? 
-                            <div>
+                                    <TableCell component="th" scope="row">   Submitted files        </TableCell>
 
-                                <br/>
+                                </TableRow>
+
+                            </TableBody>
+                        </Table>
+
+                    </TableContainer>
+
+                    {(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester || this.role === Role.Admin) ? 
+                        <div>
+
+                            <br/>
+                            
+                            <Box textAlign='center'>
+
+                                {this.role === Role.MyFiles &&
+                                <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
+
+            
+                                    <Button variant='contained' color="primary" className={classes.padding} startIcon={<PublishIcon />}>
+                                        Create new Submission
+                                    </Button>
                                 
-                                <Box textAlign='center'>
 
-                                    {this.role === Role.MyFiles &&
-                                    <Link to={url} style={{ textDecoration: 'none', color: "black" }}>
+                                </Link>
+                                }
+                            </Box>
+                        </div>
+                    : " "
+                    }
+                    
+                    {
+                        <Grid item container xs={12} justify='center' alignItems='center'>
+                            <SubmissionReview
+                            major={this.major}
+                            module={this.module}
+                            subject={this.subject}
+                            soldierId={this.soldierId}
+                            role={this.role}
+                            history={history}
+                            updateSubmissionInfo={this.getSubmissionInfo}
+                            />
 
-               
-                                        <Button variant='contained' color="primary" className={classes.padding} startIcon={<PublishIcon />}>
-                                            Create new Submission
-                                        </Button>
-                                   
-
-                                    </Link>
-                                    }
-                                </Box>
-                            </div>
-                        : " "
-                        }
-                      
-                        {
-                            <Grid item container xs={12} justify='center' alignItems='center'>
-                                <SubmissionReview
-                                major={this.major}
-                                module={this.module}
-                                subject={this.subject}
-                                soldierId={this.soldierId}
-                                role={this.role}
-                                history={history}
-                                updateSubmissionInfo={this.getSubmissionInfo}
-                                />
-
-                            </Grid>
-                        }
-                    </div>
-
+                        </Grid>
+                    }
                 </div>
 
-            );
-        } else {
-            return (
-                <h2> No Submission Was Made By You </h2>
-            );
-        }
+            </div>
+
+        );
+        
     }
 }
 

@@ -33,7 +33,6 @@ class ConfirmationDialog extends React.Component {
         if (this.props.confirmDialogOpen !== this.state.open) {
 
             this.setState({ open: this.props.confirmDialogOpen });
-
         }
     }
 

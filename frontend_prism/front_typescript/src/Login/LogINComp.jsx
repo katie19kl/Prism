@@ -21,8 +21,7 @@ export default class LogINComp extends React.Component {
 		const { history } = this.props;
 		
 		if (history) {
-			history.push('/mainPage');
-			
+			history.push('/mainPage');	
 		}
 	}
 
@@ -35,7 +34,6 @@ export default class LogINComp extends React.Component {
 
 			
 			this.setState({isLoggedIn: isAuthenticated})
-			
 			
 			if (isAuthenticated){
 				this.goToMain()

@@ -207,14 +207,6 @@ class UploadBar extends Component {
 				}
 				
 			}
-			/*
-						async () => {
-				for (let i = 0; i < selectedFiles.length; i++) {
-					await this.upload(i, selectedFiles[i]);
-				}
-				
-			} 
-			*/ 
 		);
 	}
 
@@ -311,7 +303,6 @@ class UploadBar extends Component {
 
 	componentDidMount() {
 	
-		//this.setState({emptyFileList:this.myRef_toInput.current.files});
 		getUserInfoByJWT().then((user)=>{
 			if(user !== undefined){
 				if (user.data !== undefined){
@@ -340,11 +331,7 @@ class UploadBar extends Component {
 
 	render() {
 
-
-
-
 		const { classes } = this.props;
-
 		const { progressInfos, message, doesSelected} = this.state;
 		
 		let uploaded_files = [];

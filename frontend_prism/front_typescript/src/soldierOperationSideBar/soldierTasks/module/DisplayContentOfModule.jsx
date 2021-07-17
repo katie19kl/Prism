@@ -57,20 +57,16 @@ class DisaplayContentOfModule extends React.Component {
 				
                 let personalId = user["personalId"];
 				
-           
-
-                //getSubjectsByModule(major, moduleName).then( (res)=>{
                 getAllowedSubjectsOfUser(major, moduleName, personalId).then((res) => {
                     
                     this.nothingHere = false
-                        
+
                     if (res !== undefined){
                         
-
                         let toSet = res.data
-                        
                         if (res.data === undefined){
                             toSet = []
+
                         }else {
                             toSet = res.data
                         }
@@ -95,8 +91,6 @@ class DisaplayContentOfModule extends React.Component {
                  
                                 getListSubmissionOfSubject(major, moduleName,subject,personalId).then((res)=>{
 
-
-                                
                                 
                                     let submissionExist = false
                                     let submissionGrade
@@ -125,26 +119,16 @@ class DisaplayContentOfModule extends React.Component {
                                         if (res_files !== undefined){
                                             let files = res_files.data
                                             
-
-
-                                            
                                             dir[subject] = files
-
                                             this.setState({dirSubjectFiles:dir})
                                             
                                         }
                                     })
                                 })
-        
                             }
                         }
-                        
-                    
                     }
-        
-        
                 })
-
             }
         })
     }
@@ -152,7 +136,6 @@ class DisaplayContentOfModule extends React.Component {
     render() {
 
         
-
         const { classes } = this.props;
 
         let moduleName = this.props.match.params.moduleName;
