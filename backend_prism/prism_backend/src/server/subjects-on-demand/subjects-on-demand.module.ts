@@ -10,7 +10,7 @@ import { SubjectsOnDemandService } from './subjects-on-demand.service';
     providers: [ SubjectsOnDemandService ],
     exports: [SubjectsOnDemandService],
     imports: [
-        MongooseModule.forFeature([{ name: 'SubjectsOnDemand', schema: SubjectsOnDemandSchema }])
+        MongooseModule.forFeature([{ name: 'Subjects-On-Demand', schema: SubjectsOnDemandSchema }])
 	],
 })
 export class SubjectsOnDemandModule {}
