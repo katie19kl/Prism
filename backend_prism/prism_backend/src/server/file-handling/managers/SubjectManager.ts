@@ -105,6 +105,7 @@ export class SubjectManager {
         let dirPath = this.createSubjectPathDir(major, module, newNameSubject, newIndex);
         let existAlready = this.subjectNameExist(major, module, newNameSubject, parseInt(newIndex));
 
+        // will fail after 
         if (existAlready) {
             dirPath = "undefined";
             return;
@@ -118,9 +119,10 @@ export class SubjectManager {
         }
 
         return await FileHandlingService.createNewDir(dirPath);
+
     }
 
-
+    // composing name according to indexing
     createNewFinalSubjectName(moduleName, newIndex, subjectName) {
         let indexModule = moduleName.split(IndexingFormat.ModuleSeparator)[0];
 
@@ -151,13 +153,12 @@ export class SubjectManager {
         return " ";
     }
 
-
+    // Update indexes of all subjects with lower indexes
     async decreaseIndexesSubjectAfterRemoved(removedIndex: string, major: Major, module: string, syncronizer: Synchronizer) {
 
         const fs = require("fs");
         let path = FileHandlingService.pathRootDirectory + "/" + major + "/" + module;
         let all_dirs = FileHandlingService.getDirList(path);
-
 
         return await new Promise(async (resolve, _reject) => {
             for (const dir_subject of all_dirs) {
@@ -168,8 +169,12 @@ export class SubjectManager {
 
                     let currentPath = path + "/" + dir_subject;
                     let index_new = parseInt(index_dir) - 1;
+
+                    // parsing part
                     let leftPart = dir_subject.split(IndexingFormat.SubjectSubIndexing)[0];
                     let rightPart = dir_subject.split(IndexingFormat.SubjectSubIndexing)[1];
+
+                    // new-composed path (actually updating name)
                     let newRightPart = rightPart.replace(index_dir, index_new.toString());
                     let dirNew = leftPart + IndexingFormat.SubjectSubIndexing + newRightPart;
                     let newPath = path + "/" + dirNew;
@@ -189,16 +194,18 @@ export class SubjectManager {
                     });
                 }
             }
+
             let all_dirs_ = FileHandlingService.getDirList(path);
             resolve(all_dirs_);
         });
     }
 
 
+    // Delete subject & rename higher indexed
     async removeSubject(major: Major, module: string, subjectToDelete: string, synchronizer: Synchronizer) {
 
         let dir = this.concateSubjectPath(major, module, subjectToDelete);
-        const fs = require("fs")
+        const fs = require("fs");
         let indexToRemove = this.extractIndexOfSubject(subjectToDelete);
 
         return await new Promise((resolve, reject) => {
@@ -208,16 +215,19 @@ export class SubjectManager {
                 fs.rmdir(dir, { recursive: true }, async (err) => {
 
                     if (err) {
-
                         reject(new NotFoundException("Deleting problem"));
                     } else {
 
+                        // rename higher indexed subjects 
+                        // substract one 
                         let renaming = await this.decreaseIndexesSubjectAfterRemoved(indexToRemove,
                             major, module, synchronizer);
 
                         if (renaming == -1) {
                             reject(new NotFoundException("Renaming problem"));
                         } else {
+
+                            // sync the db collections
                             await synchronizer.syncSubjectRemoving(major, module, subjectToDelete);
                             resolve("Deleting & renaming are done");
                         }
@@ -231,15 +241,13 @@ export class SubjectManager {
 
 
     getCurrIndexing(subjectToRename: string) {
-
         let indexNum = subjectToRename.split(IndexingFormat.ModuleSeparator)[0];
         return indexNum + IndexingFormat.SubjectSeparator;
     }
 
 
-
-    async renameSubject(major: Major, module: string, subjectToRename: string,
-        newNameForSubject: string, synchronizer: Synchronizer) {
+    // Rename requested subject & sync db & update rest subjects
+    async renameSubject(major: Major, module: string, subjectToRename: string, newNameForSubject: string, synchronizer: Synchronizer) {
 
         let pathToModule = this.createPathToModule(major, module);
         let lastSubjectIndex = await this.getLastIndexOfSubject(pathToModule);
@@ -247,10 +255,10 @@ export class SubjectManager {
         let currPath = this.concateSubjectPath(major, module, subjectToRename);
         let indexing = this.getCurrIndexing(subjectToRename);
         let newPath = this.concateSubjectPath(major, module, indexing + newNameForSubject);
-
         let alreadyExist = this.subjectNameExist(major, module, newNameForSubject, parseInt(lastIndex));
-        if (alreadyExist) {
 
+        // will fail afterward
+        if (alreadyExist) {
             newPath = "undefined";
         }
 
@@ -264,13 +272,15 @@ export class SubjectManager {
             else {
 
                 fs.rename(currPath, newPath, async function (err) {
+                    
                     if (err) {
 
                         reject(new NotFoundException("Provided directory was not found"));
                     } else {
 
-                        await synchronizer.syncSubjectRenaming(major, module, subjectToRename, indexing + newNameForSubject);
-
+                        await synchronizer.syncSubjectRenaming(major, module, subjectToRename,
+                            indexing + newNameForSubject);
+                            
                         resolve("Successfully renamed the directory");
                     }
                 });

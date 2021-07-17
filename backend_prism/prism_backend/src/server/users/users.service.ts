@@ -31,12 +31,10 @@ export class UsersService {
 		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionModel, userSubmissionService);
 	}
 
-
+	// new soldier has no access to anything
 	async closeAllToNewSoldier(soldierId,majors:Major[],subjectOnDemandService: SubjectsOnDemandService){
 
-
 		await subjectOnDemandService.closeAllSubjectToNewSoldier(majors, soldierId);
-
 	}
 
 	// add new user
@@ -92,27 +90,19 @@ export class UsersService {
 			let user = await this.findOneByPersonalId(personalId)
 			// return outside without password ( password is hashed )
 			user.password = "";
-			
+
 			return user;
 	
 		}
 		catch (e) {
-;
 			return undefined
 		}
-
-
-
-
-		
 	}
 
 	// get user by its personalId
 	async findOneByPersonalId(personalId: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"personalId": personalId});
-	
-		
 		return user;
 	}
 
@@ -120,7 +110,6 @@ export class UsersService {
 	async findOneByUsername(username: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"username": username});
-
 		return user;
 	}
 
@@ -129,18 +118,14 @@ export class UsersService {
 		let listNames = [];
 
 		let tempList = await this.userModel.find();
-
 		tempList.forEach(user => {
 
 			if (user.role == Role.Soldier) {
 
 				let fullString = user.username + " - " + user.firstName + " " + user.lastName;
 				listNames.push(fullString);
-
 			}
 		});
-
-
 		return listNames;
 	}
 
@@ -149,9 +134,8 @@ export class UsersService {
 		
 		let users = await this.userModel.find();
 		let soldiersInMajor = [];
-
 		let soldierData;
-		
+	
 		users.forEach(user => {
 
 			let currMajor = user.major;
@@ -224,8 +208,8 @@ export class UsersService {
 		if (user) {
 			
 			let updatedUser = this.updateInfoHelper(user, updateUserDto);
-
 			let result = await updatedUser.save();
+
 			return result;
 
 		} else {
@@ -346,22 +330,15 @@ export class UsersService {
 				sendSubmission[submission.soldierId].push( 
 								
 								{
-									
-									//firstName :soldier.firstName,  	
 									checked:submission.isChecked,
 									subject:submission.subject,
 									grade:grade_,
 									gradeDescription:gradeDescription_,
-									
 									amoutSubmittedFiles:amoutSubmittedFiles_
 								}
 				)
-				
-			
 			}
 		}
-
-		
 		return sendSubmission
 	}
 

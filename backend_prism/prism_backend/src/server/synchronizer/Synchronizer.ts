@@ -8,6 +8,8 @@ import { IUserSubmission } from '../UserSubmission/iuser-submission.interface';
 
 
 @Injectable()
+// Over each update it is resposible for updating 
+// all db collections
 export class Synchronizer {
 
 
@@ -129,9 +131,10 @@ export class Synchronizer {
         let foundObjects = await this.subjectOnDemandModel.find({ major: major_ });
 
         for (const object of foundObjects) {
-
+            
             let moduleOpenSubjects = object.moduleToOpenedSubjects.get(module_);
-
+            
+            // search in opened & pop deleted subject
             if (moduleOpenSubjects.includes(removedSubject)) {
 
                 let newModuleOpenedSub = [];
@@ -147,8 +150,9 @@ export class Synchronizer {
                 object.moduleToOpenedSubjects.set(module_, newModuleOpenedSub);
             }
 
+            // search in closed & pop deleted subject
             let moduleClosedSubjects = object.moduleToClosedSubjects.get(module_);
-
+            
             if (moduleClosedSubjects.includes(removedSubject)) {
 
                 let newModuleClosedSub = [];
@@ -187,15 +191,16 @@ export class Synchronizer {
     private async renameModuleInSubjectDemand(major_: Major, prevModuleName: string, newModuleName: string) {
 
         let foundObjects = await this.subjectOnDemandModel.find({ major: major_ });
-
         for (const object of foundObjects) {
-
+            
+            // rename module & all its sub-directories (subjects)
+            // Both opened & closed subjects
             let openedMap = object.moduleToOpenedSubjects;
 
             if (openedMap.has(prevModuleName)) {
 
                 let updatedOpenMap = new Map();
-
+                
                 for (const [key, value] of openedMap.entries()) {
 
                     if (key === prevModuleName) {
@@ -214,8 +219,7 @@ export class Synchronizer {
 
             if (closedMap.has(prevModuleName)) {
 
-                let updatedClosedMap = new Map();
-
+                let updatedClosedMap = new Map()
                 for (const [key, value] of closedMap.entries()) {
 
                     if (key === prevModuleName) {
@@ -256,8 +260,9 @@ export class Synchronizer {
 
         for (const object of foundObjects) {
 
-            let openedMap = object.moduleToOpenedSubjects;
-
+            // delete module & all its sub-directories (subjects)
+            // Both opened & closed subjects
+            let openedMap = object.moduleToOpenedSubjects
             if (openedMap.has(moduleToDelete)) {
 
                 let updatedOpenMap = new Map();

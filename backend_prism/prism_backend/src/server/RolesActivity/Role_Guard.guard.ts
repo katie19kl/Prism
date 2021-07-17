@@ -6,14 +6,14 @@ import { UsersService } from '../users/users.service';
 @Injectable()
 export class Role_Guard implements CanActivate {
 	constructor(private readonly reflector: Reflector,
-				@Inject('UsersService') private readonly userService: UsersService) {}
+		@Inject('UsersService') private readonly userService: UsersService) { }
 
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
-		
+
 		let request_ = context.switchToHttp().getRequest();
 		const userToken = request_.headers.authorization;
-		
+
 		let user_ = await this.userService.getUserByJWT(userToken);
 
 		// no token was provided
@@ -28,7 +28,7 @@ export class Role_Guard implements CanActivate {
 			return true;
 		}
 
-		let currRole = user_.role;		
-		return roles.includes(currRole);
+		let currRole = user_.role;
+		return roles.includes(currRole)
 	}
 }

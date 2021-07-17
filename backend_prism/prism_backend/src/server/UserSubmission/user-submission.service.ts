@@ -10,6 +10,7 @@ import { Major } from '../users/common/major.enum';
 
 
 @Injectable()
+// Handles user submission operation
 export class UserSubmissionService {
 
     userSubmissionFileHandler: UserSubmissionFileHandler;
@@ -28,14 +29,11 @@ export class UserSubmissionService {
 	
 		const token = usertoken.split(' ');
 		
-		
 		const decoded = jwt.verify(token[1], jwtConstants.secret);
 		let personalId = decoded['personalId'];
 
-        
         return personalId;
     }
-
 
     async getUserSubmissionByKey(id: string, major: Major, module: string, subject: string) {
                 
@@ -97,19 +95,13 @@ export class UserSubmissionService {
 
         const filter = { 
             soldierId: UserSubmissionService.getIdFromJWT(usertoken),
-            //soldierId: "12345678",
             major: createUserSubmissionDto.major,
             module: createUserSubmissionDto.module,
             subject: createUserSubmissionDto.subject
         };
       
-      
         createUserSubmissionDto.submittedFiles = filesToUpdate;
-        
-
         createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
-
-
         
         const update = { 
             submittedFiles: filesToUpdate,
@@ -143,7 +135,6 @@ export class UserSubmissionService {
 
     updateCurrentTime(createUserSubmissionDto: UserSubmissionDTO){
         createUserSubmissionDto.submittedTime = new Date().toLocaleTimeString(); // 11:18:48 AM
-
         createUserSubmissionDto.submittedDate = new Date().toLocaleDateString(); // 11/16/2015
 
         return createUserSubmissionDto
@@ -153,7 +144,6 @@ export class UserSubmissionService {
     /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
         
-
         createUserSubmissionDto.gradeDescription = "";
         createUserSubmissionDto.isChecked = false
 
@@ -182,20 +172,17 @@ export class UserSubmissionService {
 
         
         let docExist = dirExist
-
-        
         if (docExist){
-            
-            let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)
 
+            let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)
             return await updatedSubmissionOfUser
+
         }else {
             
             // assigning files info to db
             createUserSubmissionDto.submittedFiles = filesInDirSolution;
-
-
             createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
+
             return await this.userSubmissionModel.create(createUserSubmissionDto)
         }
     }
