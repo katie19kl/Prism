@@ -17,7 +17,7 @@ import MuiAlert from '@material-ui/lab/Alert';
 import PublishIcon from '@material-ui/icons/Publish';
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 import OK_Status from "../soldierSubmission/OK_Status"
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading"
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 
 

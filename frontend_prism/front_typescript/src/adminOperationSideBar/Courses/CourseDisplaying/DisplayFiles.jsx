@@ -13,7 +13,7 @@ import { defineIconOfFile } from "../file_handle";
 import { AiFillFile } from "react-icons/ai"
 import Role from "../../../Roles/Role";
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
-import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../../HelperComponentStuff/WaiterLoading"
 import { Status } from "../../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus";
 
 
@@ -90,7 +90,7 @@ class DisplayFiles extends React.Component {
         getUserInfoByJWT().then((user) => {
 
             if (user !== undefined) {
-                
+                 
                 if (user.data !== undefined){
                         
                     // Retrieve the user info.
@@ -160,9 +160,10 @@ class DisplayFiles extends React.Component {
                                         { /* this.role indicates to which role we are displaying the files for.
                                            * this.state.myRole indicates the current logged-in user's role
                                            */
-                                        ((this.role === Role.Commander || this.role === Role.MyFiles || this.role === Role.Admin) 
+                                        ((this.role === Role.Commander || this.role === Role.MyFiles ||
+                                           this.role === Role.Tester || this.role === Role.Admin) 
                                         && (file.url !== undefined) && 
-                                        !((this.state.myRole === Role.Commander || this.state.myRole === Role.Admin)
+                                        !((this.state.myRole === Role.Tester || this.state.myRole === Role.Commander || this.state.myRole === Role.Admin)
                                         && this.role === Role.MyFiles)) ?
                                         
                                         <IconButton aria-label="delete" style={{ float: 'right'}}

@@ -10,7 +10,7 @@ import { Status } from "../SubmissionStatusColors/SoldierSubmissionStatus";
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import TesterMenu from "../tester/TesterMenu";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 import { 
 	getAllSubmissionsInMajor, 
 	getSoldiersByMajors, 
@@ -95,6 +95,10 @@ class General extends React.Component {
 				
 				if (submissions !== undefined) {
 					
+					
+					console.log("--------------------------")
+					console.log(submissions.data)
+					console.log("--------------------------")
 					if (majors.includes(major)){
 						this.getAllMyMajorSubmissions(major,submissions)
 					}
@@ -174,6 +178,9 @@ class General extends React.Component {
 			verticalSoldiers.push(amountSoldier);
 			verticalSubmissions.push(amountSubmissions);
 		}
+		console.log("========================================")
+		console.log(this.majorSubmissionsAmount)
+		console.log(verticalSubmissions)
 
 		if (this.myRole === undefined) {
 			return <WaiterLoading />;
@@ -185,6 +192,10 @@ class General extends React.Component {
 		} else if (this.myRole === Role.Tester) {
 			menu = <TesterMenu />;
 		}
+
+
+
+
 
 		return (
 

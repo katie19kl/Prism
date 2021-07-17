@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import DeletionDialog from "./DeleteUser/DeletionDialog";
 import Role from "../../Roles/Role";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

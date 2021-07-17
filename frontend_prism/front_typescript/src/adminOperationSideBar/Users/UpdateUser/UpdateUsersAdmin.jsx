@@ -3,12 +3,12 @@ import { withStyles } from '@material-ui/core/styles';
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import { TextField, Grid, FormControl, FormLabel, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
-import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
+import ChangeUserData from "../../../HelperComponentStuff/ChangeUserData";
 import Role from "../../../Roles/Role";
 import { getAllUsersByRole, getUserInfoByJWT } from '../../../HelperJS/extract_info'; 
 import { getUserInfoById } 
         from "../../../HelperJS/extract_info";
-import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../../HelperComponentStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

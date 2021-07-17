@@ -8,7 +8,7 @@ import ConfirmationDialog from "../../../GeneralComponent/dialogs/ConfirmationDi
 import { deleteUserByPersonalId } from './delete_user';
 import MuiAlert from '@material-ui/lab/Alert';
 import Role from "../../../Roles/Role";
-import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../../HelperComponentStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

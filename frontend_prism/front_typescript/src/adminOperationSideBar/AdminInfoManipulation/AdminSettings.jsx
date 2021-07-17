@@ -7,10 +7,10 @@ import { Link } from 'react-router-dom';
 import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import TesterMenu from '../../GeneralComponent/tester/TesterMenu';
-import DisplayUserData from "../../HelperFooStuff/DisplayUserData"
+import DisplayUserData from "../../HelperComponentStuff/DisplayUserData"
 import { Grid, withStyles } from "@material-ui/core";
 import Role from "../../Roles/Role";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

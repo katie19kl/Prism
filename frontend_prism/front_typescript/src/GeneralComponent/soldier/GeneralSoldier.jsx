@@ -3,7 +3,7 @@ import CustomCalendar from "../commonGeneral/CustomCalendar";
 import CustomClock from "../commonGeneral/CustomClock";
 import MenuAppBar from "../main/MenuAppBar";
 import { Grid, Typography, withStyles } from "@material-ui/core";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 import SoldierMenu from "./SoldierMenu";
 import VerticalGraph from "./../admin/graphs/VerticalGraph";
 import { 

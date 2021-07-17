@@ -148,8 +148,7 @@ async function getAllSubmissionsInMajor(major_selected) {
 
 	} else {
 		// send the token to the server and check its response.
-		//let url = "http://localhost:4000/users/my_soldiers/" + major_selected;
-		let url = prefix_server_url + "user-submission/" + major_selected;
+		let url = prefix_server_url + "user-submission/all/" + major_selected;
 
 		const req = await axios.create({
 			baseURL: url,

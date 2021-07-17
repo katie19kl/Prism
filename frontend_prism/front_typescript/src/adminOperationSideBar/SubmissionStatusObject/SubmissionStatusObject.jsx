@@ -7,7 +7,7 @@ import Role from "../../Roles/Role";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import SubmissionTableInfo from '../../soldierOperationSideBar/soldierSubmission/SubmissionTableInfo';
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 import TesterMenu from "../../GeneralComponent/tester/TesterMenu";
 
 
@@ -70,6 +70,7 @@ class SubmissionStatusObject extends React.Component {
         let major = this.props.match.params.major;
         let moduleName = this.props.match.params.module;
         let subject = this.props.match.params.subject;
+
         
         // classes - for styling
         const { classes } = this.props;
@@ -124,6 +125,7 @@ class SubmissionStatusObject extends React.Component {
                                 className={classes.myFont1} 
                                 variant="h5" 
                                 color="primary">
+                                    {subject}
                                 </Typography>
                             </Breadcrumbs>
                         </Grid>
