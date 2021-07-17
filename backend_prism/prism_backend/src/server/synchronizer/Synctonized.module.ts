@@ -9,7 +9,7 @@ import { Synchronizer } from './Synchronizer';
 @Module({
 
     imports: [
-        MongooseModule.forFeature([{name: 'SubjectsOnDemand', schema: SubjectsOnDemandSchema}]),
+        MongooseModule.forFeature([{name: 'Subjects-On-Demand', schema: SubjectsOnDemandSchema}]),
         MongooseModule.forFeature([{name: 'Reviews', schema: ReviewSchema}]),
         MongooseModule.forFeature([{name: 'User-Submission', schema: UserSubmissionSchema}]),
     ],

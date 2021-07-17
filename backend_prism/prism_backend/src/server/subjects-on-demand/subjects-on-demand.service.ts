@@ -15,7 +15,7 @@ export class SubjectsOnDemandService {
     majorManager: MajorManager;
 
 
-    constructor(@InjectModel('SubjectsOnDemand') private userSubmissionModel: Model<ISubjectsOnDemand>) {
+    constructor(@InjectModel('Subjects-On-Demand') private userSubmissionModel: Model<ISubjectsOnDemand>) {
 
         this.moduleManager = new ModuleManager();
         this.majorManager = new MajorManager();

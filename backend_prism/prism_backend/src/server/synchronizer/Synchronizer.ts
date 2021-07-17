@@ -14,7 +14,7 @@ export class Synchronizer {
 
 
     constructor(
-        @InjectModel('SubjectsOnDemand') private subjectOnDemandModel: Model<ISubjectsOnDemand>,
+        @InjectModel('Subjects-On-Demand') private subjectOnDemandModel: Model<ISubjectsOnDemand>,
         @InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
         @InjectModel('Reviews') private reviewsModel: Model<IReview>) {}
 
