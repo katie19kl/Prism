@@ -37,6 +37,7 @@ export default function App() {
 
 			<PrivateRoutingComponent path="/adminPage" roles={[Role.Admin, Role.Commander]} component={CommanderMainPage}>
 			</PrivateRoutingComponent>
+			
 
 			<PrivateRoutingComponent path="/general_staff" roles={[Role.Admin, Role.Commander, Role.Tester]} component={General}/>
 
@@ -80,7 +81,7 @@ export default function App() {
 			component={SubmissionStatusObject}/>
 	
 			<PrivateRoutingComponent path="/" component={MainView}/>
-
+			
 			</Switch>
 		</div>
 	  </Router>

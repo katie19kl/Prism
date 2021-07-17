@@ -11,11 +11,15 @@ export class Role_Guard implements CanActivate {
 
 	async canActivate(context: ExecutionContext): Promise<boolean> {
 
+
+
 		let request_ = context.switchToHttp().getRequest();
 		const userToken = request_.headers.authorization;
 
+	
 		let user_ = await this.userService.getUserByJWT(userToken);
 
+	
 		// no token was provided
 		if (user_ === undefined) {
 			return false;
@@ -27,8 +31,10 @@ export class Role_Guard implements CanActivate {
 		if (roles === undefined) {
 			return true;
 		}
-
+		
 		let currRole = user_.role;
+
+		console.log(roles.includes(currRole))
 		return roles.includes(currRole)
 	}
 }

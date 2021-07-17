@@ -124,7 +124,6 @@ class SubmissionStatusObject extends React.Component {
                                 className={classes.myFont1} 
                                 variant="h5" 
                                 color="primary">
-                                    {subject}
                                 </Typography>
                             </Breadcrumbs>
                         </Grid>

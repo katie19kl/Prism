@@ -99,6 +99,7 @@ async function removeFileFromSubmission(major_, module_, subject_, file_name){
 
 async function uploadSingleSubmission(file, onUploadProgress, major, module, subject) {
 
+
     let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/user-submission"
     let url  = prefix_server_url + "user-submission"
