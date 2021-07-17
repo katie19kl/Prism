@@ -161,7 +161,7 @@ class TableStatusFrame extends React.Component {
 
                                 </TableCell>
 
-                                {(this.myRole === Role.Commander || this.myRole === Role.Admin) ?
+                                {(this.myRole === Role.Commander) ?
                                 <TableCell>
                                     <FormControlLabel
                                         control={

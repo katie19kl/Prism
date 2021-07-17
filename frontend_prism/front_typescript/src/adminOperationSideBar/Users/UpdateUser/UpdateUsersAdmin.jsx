@@ -5,9 +5,10 @@ import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import { TextField, Grid, FormControl, FormLabel, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
 import Role from "../../../Roles/Role";
-import { getAllUsersByRole } from '../../../HelperJS/extract_info'; 
+import { getAllUsersByRole, getUserInfoByJWT } from '../../../HelperJS/extract_info'; 
 import { getUserInfoById } 
         from "../../../HelperJS/extract_info";
+import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({
@@ -45,6 +46,8 @@ class UpdateUsersAdmin extends React.Component {
             userPhone: undefined,
             userUsername: undefined,
             userCommander: undefined,
+
+            myRole: undefined,
         };
     }
 
@@ -185,134 +188,154 @@ class UpdateUsersAdmin extends React.Component {
         });
 	}
 
+    componentDidMount() {
+        getUserInfoByJWT().then((user) => {
+
+            if (user !== undefined) {
+                
+                user = user.data;
+                let role = user["role"];
+
+                this.setState({ myRole: role });
+            }
+        });
+    }
+
+
     render() {
         const { classes } = this.props;
         const { history } = this.props;
 
-        return (
-            <MenuAppBar
-            role={Role.Commander} 
-            menu={
-                <CommanderMenu />
-            }
-            content={
-                <div>
+        if (this.state.myRole === undefined) {
+            return <WaiterLoading />;
+        
+        } else {
 
-                    <Grid container justify='center' alignItems='center'>
-
-                        <br />
-                        <br />
-                        <br />
-
-                        <Grid container item justify='center' alignItems='center'>
-                            <h4 className={classes.myFont}>
-                                <b> Choose which one you want to update </b>
-                            </h4>                          
-                        </Grid>
-
-                        <br/>
-
-                        <Grid item container justify='center' alignItems='center'>
-
-                            <FormControl component="fieldset" className={classes.role}>
-                                <FormLabel component="legend">Role</FormLabel>
-                                <RadioGroup
-                                row
-                                aria-label="role"
-                                name="role1"
-                                value={this.state.roleToUpdate}
-                                onChange={this.handleChangeRoleToUpdate}>
-                                    <FormControlLabel
-                                    value={Role.Commander}
-                                    control={<Radio />}
-                                    label="Commanders" />
-
-                                    <FormControlLabel 
-                                    value={Role.Tester}
-                                    control={<Radio />} 
-                                    label="Testers" />
-
-                                    <FormControlLabel 
-                                    value={Role.Soldier} 
-                                    control={<Radio />} 
-                                    label="Soldiers" />
-                                </RadioGroup>
-                            </FormControl>
-
-                        </Grid>
-
-                        {this.state.roleToUpdate !== '' ?
+            return (
+                <MenuAppBar
+                role={this.state.myRole}
+                menu={
+                    <CommanderMenu />
+                }
+                content={
+                    <div>
+    
+                        <Grid container justify='center' alignItems='center'>
+    
+                            <br />
+                            <br />
+                            <br />
+    
                             <Grid container item justify='center' alignItems='center'>
-                                <TextField
-                                select
-                                label="User Info"
-                                value={this.userId}
-                                className={classes.select}
-                                onChange={this.handleChangeSelectUser}
-                                SelectProps={{
-                                    native: true,
-                                }}
-                                helperText="Please select user to update"
-                                variant="outlined"
-                                >
-                                {this.listUsers.map((usr) => (
-                                    <option key={usr.personalId} value={usr.personalId}>
-                                    {
-                                    "Personal ID: "  + usr.personalId + " | Full Name: " 
-                                    + usr.firstName + " " + usr.lastName
-                                    }
-                                    </option>
-                                ))}
-                                </TextField>
+                                <h4 className={classes.myFont}>
+                                    <b> Choose which one you want to update </b>
+                                </h4>                          
                             </Grid>
-                        : ''}
-
-
-                        { // a user was selected
-                        (this.state._selected && this.state.roleToUpdate === Role.Soldier) 
-                        ?
-                        <ChangeUserData 
-                        soldier_id_={this.userId}
-                        toChangeByUserName={this.state.userUsername}
-                        prev_phone_number={this.state.userPhone}
-                        prev_lastName={this.state.userLastName}
-                        prev_firstName={this.state.userFirstName}
-                        prev_username={this.state.userUsername}
-                        prev_commander={this.state.userCommander}
-                        setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
-                        toCommander={false}
-                        history={history}>
-                        </ChangeUserData>
-                        
-                        : ''
-                        }
-
-                        { // a user was selected
-                        (this.state._selected && (this.state.roleToUpdate === Role.Commander
-                            || this.state.roleToUpdate === Role.Tester)) 
-                        ?
-                        <ChangeUserData 
-                        soldier_id_={this.userId}
-                        toChangeByUserName={this.state.userUsername}
-                        prev_phone_number={this.state.userPhone}
-                        prev_lastName={this.state.userLastName}
-                        prev_firstName={this.state.userFirstName}
-                        prev_username={this.state.userUsername}
-                        prev_commander={this.state.userCommander}
-                        setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
-                        toCommander={true}
-                        history={history}>
-                        </ChangeUserData>
-                        
-                        : ''
-                        }
-
-                    </Grid>
-                        
-                </div>
-            }>
-            </MenuAppBar>
-        );
+    
+                            <br/>
+    
+                            <Grid item container justify='center' alignItems='center'>
+    
+                                <FormControl component="fieldset" className={classes.role}>
+                                    <FormLabel component="legend">Role</FormLabel>
+                                    <RadioGroup
+                                    row
+                                    aria-label="role"
+                                    name="role1"
+                                    value={this.state.roleToUpdate}
+                                    onChange={this.handleChangeRoleToUpdate}>
+                                        <FormControlLabel
+                                        value={Role.Commander}
+                                        control={<Radio />}
+                                        label="Commanders" />
+    
+                                        <FormControlLabel 
+                                        value={Role.Tester}
+                                        control={<Radio />} 
+                                        label="Testers" />
+    
+                                        <FormControlLabel 
+                                        value={Role.Soldier} 
+                                        control={<Radio />} 
+                                        label="Soldiers" />
+                                    </RadioGroup>
+                                </FormControl>
+    
+                            </Grid>
+    
+                            {this.state.roleToUpdate !== '' ?
+                                <Grid container item justify='center' alignItems='center'>
+                                    <TextField
+                                    select
+                                    label="User Info"
+                                    value={this.userId}
+                                    className={classes.select}
+                                    onChange={this.handleChangeSelectUser}
+                                    SelectProps={{
+                                        native: true,
+                                    }}
+                                    helperText="Please select user to update"
+                                    variant="outlined"
+                                    >
+                                    {this.listUsers.map((usr) => (
+                                        <option key={usr.personalId} value={usr.personalId}>
+                                        {
+                                        "Personal ID: "  + usr.personalId + " | Full Name: " 
+                                        + usr.firstName + " " + usr.lastName
+                                        }
+                                        </option>
+                                    ))}
+                                    </TextField>
+                                </Grid>
+                            : ''}
+    
+    
+                            { // a user was selected
+                            (this.state._selected && this.state.roleToUpdate === Role.Soldier) 
+                            ?
+                            <ChangeUserData 
+                            soldier_id_={this.userId}
+                            toChangeByUserName={this.state.userUsername}
+                            prev_phone_number={this.state.userPhone}
+                            prev_lastName={this.state.userLastName}
+                            prev_firstName={this.state.userFirstName}
+                            prev_username={this.state.userUsername}
+                            prev_commander={this.state.userCommander}
+                            setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
+                            toCommander={false}
+                            history={history}>
+                            </ChangeUserData>
+                            
+                            : ''
+                            }
+    
+                            { // a user was selected
+                            (this.state._selected && (this.state.roleToUpdate === Role.Commander
+                                || this.state.roleToUpdate === Role.Tester)) 
+                            ?
+                            <ChangeUserData 
+                            soldier_id_={this.userId}
+                            toChangeByUserName={this.state.userUsername}
+                            prev_phone_number={this.state.userPhone}
+                            prev_lastName={this.state.userLastName}
+                            prev_firstName={this.state.userFirstName}
+                            prev_username={this.state.userUsername}
+                            prev_commander={this.state.userCommander}
+                            setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
+                            toCommander={true}
+                            history={history}>
+                            </ChangeUserData>
+                            
+                            : ''
+                            }
+    
+                        </Grid>
+                            
+                    </div>
+                }>
+                </MenuAppBar>
+            );
+        }
     }
 }
 

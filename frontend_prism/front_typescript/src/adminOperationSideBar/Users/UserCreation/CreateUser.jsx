@@ -10,6 +10,8 @@ import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import UserCreationForm from "./UserCreationForm";
 import Role from "../../../Roles/Role";
+import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
+import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({
@@ -32,7 +34,8 @@ class CreateUser extends React.Component {
         this.state = {
             value: 'undefined',
             viewForm: false,
-            updated: false
+            updated: false,
+            myRole: undefined
         }
     }
 
@@ -82,56 +85,75 @@ class CreateUser extends React.Component {
         this.setState({ updated: true})
     }
 
+    componentDidMount() {
+        getUserInfoByJWT().then((user) => {
+
+            if (user !== undefined) {
+                
+                user = user.data;
+                let role = user["role"];
+
+                this.setState({ myRole: role });
+            }
+        });
+    }
+
 
     render() {
 
         const { classes } = this.props;
+
+        if (this.state.myRole === undefined) {
+            return <WaiterLoading />;
         
-        return (
-            <MenuAppBar
-            role ={Role.Commander}
-            menu={
-                <CommanderMenu />
-            }
-            content={
-                <div>
-                    <Grid container item justify='center' alignItems='center'>
-
+        } else {
+            return (
+                <MenuAppBar
+                role ={this.state.myRole}
+                menu={
+                    <CommanderMenu />
+                }
+                content={
+                    <div>
                         <Grid container item justify='center' alignItems='center'>
-                            <Typography variant="h5" className={classes.padding}>
-                                <b>I would like to create a user with the following role: </b>
-                            </Typography>
+    
+                            <Grid container item justify='center' alignItems='center'>
+                                <Typography variant="h5" className={classes.padding}>
+                                    <b>I would like to create a user with the following role: </b>
+                                </Typography>
+                            </Grid>
+                            
+                            <Grid container item justify='center' alignItems='center'>
+                                <FormControl component="fieldset">
+                                    <FormLabel component="legend">Role</FormLabel>
+                                    <RadioGroup
+                                    row
+                                    aria-label="role"
+                                    name="role1"
+                                    value={this.state.value}
+                                    onChange={this.handleChange}>
+                                        <FormControlLabel value="commander" control={<Radio />} label="Commander" />
+                                        <FormControlLabel value="tester" control={<Radio />} label="Tester" />
+                                        <FormControlLabel value="soldier" control={<Radio />} label="Soldier" />
+                                    </RadioGroup>
+                                </FormControl>
+                            </Grid>
+    
+                            <Grid container item justify='center' alignItems='center'>
+                                <div id="form-based-on-roles">
+                                    {
+                                    // if view - true -> render this.form o.w. -> render ''
+                                    (this.state.viewForm) ? this.form : ''
+                                    }
+                                </div>
+                            </Grid>
                         </Grid>
-                        
-                        <Grid container item justify='center' alignItems='center'>
-                            <FormControl component="fieldset">
-                                <FormLabel component="legend">Role</FormLabel>
-                                <RadioGroup
-                                row
-                                aria-label="role"
-                                name="role1"
-                                value={this.state.value}
-                                onChange={this.handleChange}>
-                                    <FormControlLabel value="commander" control={<Radio />} label="Commander" />
-                                    <FormControlLabel value="tester" control={<Radio />} label="Tester" />
-                                    <FormControlLabel value="soldier" control={<Radio />} label="Soldier" />
-                                </RadioGroup>
-                            </FormControl>
-                        </Grid>
-
-                        <Grid container item justify='center' alignItems='center'>
-                            <div id="form-based-on-roles">
-                                {
-                                // if view - true -> render this.form o.w. -> render ''
-                                (this.state.viewForm) ? this.form : ''
-                                }
-                            </div>
-                        </Grid>
-                    </Grid>
-                </div>
-            }>
-            </MenuAppBar>
-        );
+                    </div>
+                }>
+                </MenuAppBar>
+            );
+        }
+        
     }
 }
 

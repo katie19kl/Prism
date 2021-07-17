@@ -65,7 +65,6 @@ class UsersHandling extends React.Component {
             
             return (
                 <MenuAppBar
-                //role={Role.Commander}
                 role={this.state.myRole}
                 menu={
                     <CommanderMenu />

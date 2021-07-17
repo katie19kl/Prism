@@ -237,22 +237,24 @@ export class SubjectsOnDemandService {
 
         const filter_ = { soldierId: personalId, major: major };
 
-        let res = await this.userSubmissionModel.findOne(filter_)
+        let res = await this.userSubmissionModel.findOne(filter_);
+        
         // if db was not created yes
-        if (res !== null){
+        if (res !== null) {
             return res.moduleToClosedSubjects.get(module); 
         }
-        return [""]
+        return [""];
     }
 
 
     async getSoldierOpenedSubjects(major: Major, module_: string, personalId: string) {
 
         const filter_ = { soldierId: personalId, major: major };
-        let res = await this.userSubmissionModel.findOne(filter_)
-        if (res !== null){
+        let res = await this.userSubmissionModel.findOne(filter_);
+
+        if (res !== null) {
             return res.moduleToOpenedSubjects.get(module_);
         } 
-        return [""]
+        return [""];
     }
 }
