@@ -12,20 +12,40 @@ type VerticalGraphProps = {
 const VerticalGraph	= ({ horizontal, vertical }: VerticalGraphProps) => {
 	const options = {
 		
-		//grid: { top: 8, right: 8, bottom: 24, left: 36 },
-
 		xAxis: {
 			type: 'category',
-			//data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-			data: horizontal
+			data: horizontal,
+			axisLine: {
+				show: true,
+				lineStyle: {
+					color: "rgba(0,0,0,1)",
+					width: 1,
+					type: "solid"
+				}
+			},
+			
 			
 		},
 		yAxis: {
-			type: 'value'
+			type: 'value',
+			axisLine: {
+				show: false,
+				lineStyle: {
+					color: "rgba(0,0,0,1)",
+					width: 1,
+					type: "solid"
+				}
+			},
+			splitLine: {
+                show:true,
+                lineStyle: {
+                    color: "rgba(0,0,0,1)",
+                }
+            }
 		},
 		series: [{
 			data: vertical,
-			type: 'bar'
+			type: 'bar',			
 		}],
 		
 		// mouse hovering => displaying

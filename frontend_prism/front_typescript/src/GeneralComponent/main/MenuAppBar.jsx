@@ -63,6 +63,7 @@ const useStyles = (theme) => ({
         display: 'flex',
         alignItems: 'center',
         padding: theme.spacing(0, 1),
+        
         // necessary for content to be below app bar
         toolbar: theme.mixins.toolbar,
         justifyContent: 'flex-end',
@@ -196,7 +197,7 @@ class MenuAppBar extends React.Component {
                     </div>
                 <Divider />
 
-                <img alt="" src={prism}  height="100%" width="100%"></img>
+                <img alt="" src={prism} height="200" width="100%"></img>
 
                 </Drawer>
 

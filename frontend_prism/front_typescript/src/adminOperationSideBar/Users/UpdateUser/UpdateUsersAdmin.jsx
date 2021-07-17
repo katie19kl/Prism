@@ -2,10 +2,9 @@ import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
-import { TextField, Grid, FormControl, FormLabel, FormControlLabel, Radio, RadioGroup, Snackbar } from "@material-ui/core";
+import { TextField, Grid, FormControl, FormLabel, FormControlLabel, Radio, RadioGroup } from "@material-ui/core";
 import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
 import Role from "../../../Roles/Role";
-import MuiAlert from '@material-ui/lab/Alert';
 import { getAllUsersByRole } from '../../../HelperJS/extract_info'; 
 import { getUserInfoById } 
         from "../../../HelperJS/extract_info";
@@ -22,25 +21,14 @@ const useStyles = (theme) => ({
 });
 
 
-/* shows the alert msg when creation attempt is done. */
-function Alert(props) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}
-
-
 class UpdateUsersAdmin extends React.Component {
 
     constructor(props) {
         super(props);
         this.handleChangeRoleToUpdate = this.handleChangeRoleToUpdate.bind(this);
-        this.handleMsgClose = this.handleMsgClose.bind(this);
-        this.setErrorMsg = this.setErrorMsg.bind(this);
         this.handleChangeSelectUser = this.handleChangeSelectUser.bind(this);
         this.setUpdatedFieldsOfSoldier = this.setUpdatedFieldsOfSoldier.bind(this);
 
-        this.msg = undefined;
-        this.severity = undefined;
-        this.showMsg = false;
         this.userId = undefined;
         this.listUsers = [];
         this.firstElem = {
@@ -51,7 +39,6 @@ class UpdateUsersAdmin extends React.Component {
 
         this.state = {
             roleToUpdate: '',
-            msgOpen: false,
             _selected: false,
 
             userFirstName: undefined,
@@ -62,11 +49,6 @@ class UpdateUsersAdmin extends React.Component {
         };
     }
 
-    handleMsgClose() {
-        this.showMsg = false;
-        this.setState({ msgOpen: false });
-    }
-
     handleChangeRoleToUpdate(event) {
         let chosenRole = event.target.value;
         let users;
@@ -75,19 +57,13 @@ class UpdateUsersAdmin extends React.Component {
             if (res !== undefined) {
 
                 if (res.data !== undefined) {
-
-                    this.msg = "Successfully loaded the users";
-                    this.severity = 'success';
-                    this.showMsg = true;
                     users = res.data;
 
                 } else {
-                    this.setErrorMsg("Failed to load the users");
                     users = [];
                 }
 
             } else {
-                this.setErrorMsg("Failed to load the users");
                 users = [];
             }
 
@@ -112,7 +88,6 @@ class UpdateUsersAdmin extends React.Component {
             this.setState({
                 _selected: false,
                 roleToUpdate: chosenRole, 
-                msgOpen: true,
                 userFirstName: undefined,
                 userUsername: undefined,
                 userLastName: undefined,
@@ -120,12 +95,6 @@ class UpdateUsersAdmin extends React.Component {
                 userCommander: undefined,
             });
         });
-    }
-
-    setErrorMsg(message) {
-        this.msg = message;
-        this.severity = 'error';
-        this.showMsg = true;
     }
 
     handleChangeSelectUser(event) {
@@ -219,7 +188,8 @@ class UpdateUsersAdmin extends React.Component {
 
     render() {
         const { classes } = this.props;
-            
+        const { history } = this.props;
+
         return (
             <MenuAppBar
             role={Role.Commander} 
@@ -228,16 +198,6 @@ class UpdateUsersAdmin extends React.Component {
             }
             content={
                 <div>
-
-                {(this.showMsg) 
-                ? <Snackbar open={this.state.msgOpen} 
-                autoHideDuration={3000}
-                anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                onClose={this.handleMsgClose}>
-                    <Alert onClose={this.handleMsgClose} severity={this.severity}>
-                        {this.msg}
-                    </Alert>
-                </Snackbar> : ""}
 
                     <Grid container justify='center' alignItems='center'>
 
@@ -321,7 +281,8 @@ class UpdateUsersAdmin extends React.Component {
                         prev_username={this.state.userUsername}
                         prev_commander={this.state.userCommander}
                         setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
-                        toCommander={false}>
+                        toCommander={false}
+                        history={history}>
                         </ChangeUserData>
                         
                         : ''
@@ -340,7 +301,8 @@ class UpdateUsersAdmin extends React.Component {
                         prev_username={this.state.userUsername}
                         prev_commander={this.state.userCommander}
                         setUpdatedFieldsOfSoldier={this.setUpdatedFieldsOfSoldier}
-                        toCommander={true}>
+                        toCommander={true}
+                        history={history}>
                         </ChangeUserData>
                         
                         : ''

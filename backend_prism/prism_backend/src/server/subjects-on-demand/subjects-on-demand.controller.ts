@@ -13,9 +13,6 @@ export class SubjectsOnDemandController {
 
     constructor(private subjectsOnDemandService: SubjectsOnDemandService) { }
 
-
-
-        
     @SetMetadata('roles', [Role.Admin, Role.Commander])
 	@UseGuards(Role_Guard)    
     @Post('open/:major/:module/:subject/:soldierId')
@@ -64,8 +61,5 @@ export class SubjectsOnDemandController {
         console.log("XXX")
         return await this.subjectsOnDemandService.getSoldierOpened(personalId)
     }
-
-
-
 
 }

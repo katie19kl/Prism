@@ -184,8 +184,6 @@ async function getAllUsersByRole(role) {
 		
 		let url = prefix_server_url + "users/all_users/" + role;
 
-	
-
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,
@@ -274,10 +272,13 @@ async function getSoldierOpened(personalId){
 }
 
 
-
-
-
-
-
-export { getUserInfoByJWT, getUserInfoById, getSoldiersByMajors,getAllMySoldiers, 
-			getAllSubmissionsInMajor, getAllUsersByRole,getAllSoldierSubmissions,getSoldierOpened}
+export { 
+	getUserInfoByJWT,
+	getUserInfoById, 
+	getSoldiersByMajors,
+	getAllMySoldiers, 
+    getAllSubmissionsInMajor,
+	getAllUsersByRole,
+	getAllSoldierSubmissions,
+	getSoldierOpened
+}

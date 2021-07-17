@@ -18,11 +18,7 @@ export class UsersController {
     constructor(private usersService: UsersService, 
                 private subjectOnDemandService: SubjectsOnDemandService,
                 private syncronizer:Synchronizer) {}
-
-
                 
-
-
 
     @Get("role_by_JWT")
     @UseGuards(JwtAuthGuard)

@@ -1,39 +1,49 @@
-import React from "react"
-import CustomCalendar from "../commonGeneral/CustomCalendar"
-import CustomClock from "../commonGeneral/CustomClock"
-import MenuAppBar from "../main/MenuAppBar"
-import {getAllSoldierSubmissions,  getSoldierOpened, getUserInfoByJWT } from "../../HelperJS/extract_info"
-import { Grid } from "@material-ui/core"
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
-import SoldierMenu from "./SoldierMenu"
-import VerticalGraph from "./../admin/graphs/VerticalGraph"
-import { getSoldierClosedSubjects } from "../../adminOperationSideBar/CourseStatus/subject_on_demand"
+import React from "react";
+import CustomCalendar from "../commonGeneral/CustomCalendar";
+import CustomClock from "../commonGeneral/CustomClock";
+import MenuAppBar from "../main/MenuAppBar";
+import { Grid, Typography, withStyles } from "@material-ui/core";
+import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import SoldierMenu from "./SoldierMenu";
+import VerticalGraph from "./../admin/graphs/VerticalGraph";
+import { 
+	getAllSoldierSubmissions, 
+	getSoldierOpened, 
+	getUserInfoByJWT 
+} from "../../HelperJS/extract_info";
 
 
 
+const useStyles = (theme) => ({
+	div: {
+        border: '5px solid rgba(51, 51, 153, 1)',
+		background: 'linear-gradient(45deg, #ccffe6 30%, #ccffff 90%)'
+    },
+	title: {
+		color: '#3a3a64',
+		fontFamily: 'monospace',
+		marginTop: theme.spacing(5),
+	},
+	padding: {
+		marginBottom: theme.spacing(7),
+	},
+});
 
 
-export default class GeneralSoldier extends React.Component {
+class GeneralSoldier extends React.Component {
 
     constructor(props) {
         super(props);
-
-		this.ok_amount = 0
-		this.not_ok_amount = 0
-		this.not_checked = 0
+		this.ok_amount = 0;
+		this.not_ok_amount = 0;
+		this.not_checked = 0;
 
         this.state = {
 			my_role:undefined,
 			amountSubmitted:-1,
 			amountOpened: -1,
 		};
-
     }
-
-
-
-
-	
 
 	componentDidMount() {
 		getUserInfoByJWT().then((user) => {
@@ -42,92 +52,72 @@ export default class GeneralSoldier extends React.Component {
 				
 			} else {
 				this.myRole = user.data["role"];
-				let majors = user.data["major"];
-                let personalId = user.data["personalId"]
-				
-               
-				console.log("||||||||-----------||")
-				
-                getAllSoldierSubmissions(personalId).then((submissions)=>{
-                    if (submissions !== undefined){
-						if (submissions.data !== undefined){
+                let personalId = user.data["personalId"];
+								
+                getAllSoldierSubmissions(personalId).then((submissions) => {
+                    if (submissions !== undefined) {
+						if (submissions.data !== undefined) {
 							
-							console.log("----------------")
-							console.log(submissions.data)
-							for (const submission of submissions.data){
-								if (submission.isChecked){
-									if (submission.gradeDescription === "OK"){
-										this.ok_amount += 1 
-									}else {
-										this.not_ok_amount += 1
+							for (const submission of submissions.data) {
+
+								if (submission.isChecked) {
+
+									if (submission.gradeDescription === "OK") {
+										this.ok_amount += 1;
+									} else {
+										this.not_ok_amount += 1;
 									}
 
-								}else {
-									this.not_checked += 1 
+								} else {
+									this.not_checked += 1;
 								}
 							}
 
-							console.log("----------------")
-							let amountSubmitted = submissions.data.length
+							let amountSubmitted = submissions.data.length;
 							
-							getSoldierOpened(personalId).then((subjectOnDemands)=>{
+							getSoldierOpened(personalId).then((subjectOnDemands) => {
 
-								if (subjectOnDemands !== undefined){
-									if (subjectOnDemands.data !== undefined){
+								if (subjectOnDemands !== undefined) {
+									if (subjectOnDemands.data !== undefined) {
 
-										let amountOpened = 0
-										let openedSubjects = subjectOnDemands.data[0].moduleToOpenedSubjects
+										let amountOpened = 0;
+										let openedSubjects = subjectOnDemands.data[0].moduleToOpenedSubjects;
 										
-										for(const [key, val] of Object.entries(openedSubjects)) {
+										for (const [key, val] of Object.entries(openedSubjects)) {
 											console.log(key);
 											console.log(val);
 											
-											amountOpened = amountOpened + val.length
+											amountOpened = amountOpened + val.length;
 										}
 
-
-										console.log(amountOpened)
-										console.log(amountOpened)
-										console.log(amountOpened)
-
-										console.log(amountOpened)
-
-										this.setState({my_role:this.myRole,
-														amountSubmitted: amountSubmitted,
-														amountOpened: amountOpened
-													})
-
-
+										this.setState({
+											my_role:this.myRole,
+											amountSubmitted: amountSubmitted,
+											amountOpened: amountOpened
+										});
 									}
 								}
-
-
-							})
-							
+							});
 						}
 					}
-                })
-
+                });
 			}
 		});
 	}
 
-    render() {		
-		
+    render() {
 
+		const { classes } = this.props;
+		
 		if (this.myRole === undefined) {
 			return <WaiterLoading />;
 		}
 
-		let submittedAmount = this.state.amountSubmitted
-		let openedAmount = this.state.amountOpened
-		console.log(submittedAmount)
-		console.log(openedAmount)
-
-
-		let okAmount = this.ok_amount
-		let notOkAmount = this.not_ok_amount
-		let notCheckedAmount = this.not_checked
+		let submittedAmount = this.state.amountSubmitted;
+		let openedAmount = this.state.amountOpened;
+		let okAmount = this.ok_amount;
+		let notOkAmount = this.not_ok_amount;
+		let notCheckedAmount = this.not_checked;
 
 
 		return (
@@ -136,7 +126,6 @@ export default class GeneralSoldier extends React.Component {
 			menu={<SoldierMenu/>} 
 			role={this.myRole}
 			content={
-			
 				<div>
 					<div>
 						<Grid container item justify='center' alignItems='center'>
@@ -145,7 +134,7 @@ export default class GeneralSoldier extends React.Component {
 						</Grid>
 					</div>
 					
-					<div>
+					<div className={classes.padding}>
 						<Grid container item justify='flex-start' alignItems='flex-start'>
 							<CustomClock />
 						</Grid>
@@ -155,31 +144,37 @@ export default class GeneralSoldier extends React.Component {
 					<br/>
 					<br/>
 
+					<div className={classes.div}>
+						<Grid container item justify='center' alignItems='center'>
 
-
-					<Grid container item justify='center' alignItems='center'>
-						<div style={{width:"50%"}}>
-							
-							<h2>My open and not submitted AND submitted</h2> 
+							<Typography variant='h4' className={classes.title}>
+								<b>Assignment Status</b>
+							</Typography>
+						</Grid>
 						
-						<VerticalGraph horizontal={["Submitted", "Opened", "To submit"]} vertical={[submittedAmount,openedAmount,openedAmount-submittedAmount]}/>
+						<VerticalGraph horizontal={["Submitted", "Opened", "To submit"]} 
+						vertical={[submittedAmount, openedAmount, openedAmount-submittedAmount]}/>
 					</div>
 
-					
-					<div style={{width:"50%"}}>
-						<h2>My OK and not OK were given</h2> 
-					
-						<VerticalGraph horizontal={["OK graded","NOT OK","Not checked"]} vertical={[okAmount,notOkAmount,notCheckedAmount]}/>
-					
-					</div>
+					<div className={classes.div}>
+						<Grid container item justify='center' alignItems='center'>
 							
-					</Grid>
+							<Typography variant='h4' className={classes.title}>
+								<b>Assignment Review</b>
+							</Typography>
 
+						</Grid>
 					
-				
+						<VerticalGraph horizontal={["Done Well", "Re-do", "Not Checked"]} 
+						vertical={[okAmount, notOkAmount, notCheckedAmount]}/>
+					
+					</div>
+					
 				</div>
 			}>
 			</MenuAppBar>
 		);
     }
 }
+
+export default withStyles(useStyles, { withTheme: true })(GeneralSoldier);

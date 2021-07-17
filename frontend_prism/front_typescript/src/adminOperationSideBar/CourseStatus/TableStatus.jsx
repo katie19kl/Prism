@@ -23,10 +23,7 @@ const useStyles = (theme) => ({
 		boxShadow: "1px 1px 1px 1px grey",
 		background: "white",
 		fontWeight: '300%',
-
-		borderTopStyle: "solid",
-		//borderTopColor: "#0096ff",
-		
+		borderTopStyle: "solid",		
 		borderTopColor: "black",
 
 	},
@@ -34,37 +31,21 @@ const useStyles = (theme) => ({
 	sticky: {
 		position: "sticky",
 		left: 0,
-		//background: "black",
 		background: "#3b3745",
-		//boxShadow: " 2px 5px #0096ff",
-
 		boxShadow: " 2px 5px black",
-
 		borderRightStyle: "solid",
 		borderRightColor: "black",
 		display: "tableRowGroup",
 		fontWeight: 'bold',
 		width: '50px',
 		borderBottom: 'solid 3px black',
-
-		//borderLeftStyle: "solid",
-		//borderLeftColor: "#0096ff",
-
-		
 	},
 
 	tableCell: {
 		borderRightStyle: "solid",
-		//borderRightStyle: "dotted",
 		display: "tableRowGroup",
-		//borderRightColor: "#0096ff",//
 		borderRightColor: "black",
-		//borderBottom: 'dotted 3px #0096ff',
 		borderBottom: 'solid 3px black',
-
-
-
-		// new by 18.06.21
 		borderTopStyle: "solid"
 	},
 	table: {
@@ -288,8 +269,6 @@ class TableStatus extends React.Component {
 
 		// if check box (MySoldiers) state was changed
 		if (this.props.mySoldiers !== this.state.mySoldiers) {
-			
-			
 
 			this.setState({ mySoldiers: this.props.mySoldiers, soldiers : undefined }, function () {
 				let mySoliders = this.props.mySoldiers
@@ -299,31 +278,30 @@ class TableStatus extends React.Component {
 				} else {
 					this.getAllSoldiersMajor()
 				}
-			})
+			});
 		}
 
 
 		// If another major was selected
 		if (this.props.selectedMajor !== this.state.selectedMajor) {
 
-			this.setState({ selectedMajor: this.props.selectedMajor }, function () {
+			this.setState({ selectedMajor: this.props.selectedMajor }, function() {
+
 				// if major was changed => retrieve another students
-				let mySoliders = this.props.mySoldiers
+				let mySoliders = this.props.mySoldiers;
 				if (mySoliders) {
-					this.extractAllMySoldiers()
+					this.extractAllMySoldiers();
 				} else {
-					this.getAllSoldiersMajor()
+					this.getAllSoldiersMajor();
 				}
 
-				this.getAllSubject()
-			})
+				this.getAllSubject();
+			});
 
 		}
 
 		// if another module was selected
 		if (this.props.selectedModule !== this.state.selectedModule) {
-
-			/////////////
 
 			getSoldierClosedSubjects(this.props.selectedMajor,this.props.selectedModule,this.XUIusers).then((responce) => {
 
@@ -335,9 +313,6 @@ class TableStatus extends React.Component {
 					}
 				}
 				
-
-
-
 				this.setState({ selectedModule: this.props.selectedModule }, function () {
 					// extract all submissions of new extracted-module
 					this.getSoldierSubmissions(this.state.soldiers).then((subData) => {
@@ -345,15 +320,10 @@ class TableStatus extends React.Component {
 						this.setState({ submissionData: subData }, function () {
 							// extract all subjects of new selected-module
 							this.getAllSubject()
-						})
-					})
-				})
-	
-	
-
-			})
-
-
+						});
+					});
+				});
+			});
 		}
 	}
 
@@ -463,7 +433,7 @@ class TableStatus extends React.Component {
 
 
 					console.log("-------------||||||||-----")
-					let amountFiles = submission.amoutSubmittedFiles
+					let amountFiles = submission.amoutSubmittedFiles;
 					console.log(amountFiles)
 					console.log("-------------||||||||-----")
 
@@ -478,32 +448,18 @@ class TableStatus extends React.Component {
 							color = Status.CheckedNoFiles
 						}
 						else {
-							
-						
 		
-							status = "assigned"
-							color = Status.SubmittedNotReviewed
-
-
+							status = "assigned";
+							color = Status.SubmittedNotReviewed;
 			
-							if (checked && gradeDescription===OK_Status.OK) {
-
-								
-
-						
-								
+							if (checked && gradeDescription === OK_Status.OK) {
 								status = "checked & good"
 								color = Status.SubmittedGoodEnough
 
+							} else if (checked && gradeDescription === OK_Status.NOT_OK){
 
-							}else if (checked && gradeDescription===OK_Status.NOT_OK){
-
-
-								
-						
-								
-								status = "checked & NOT good"
-								color = Status.SubmittedNotGoodEnough 
+								status = "checked & NOT good";
+								color = Status.SubmittedNotGoodEnough;
 							}
 						
 						}
@@ -524,17 +480,10 @@ class TableStatus extends React.Component {
 			idSubjectColors[id] = subjectColor
 
 		}
-
-		
-		return idSubjectColors
+		return idSubjectColors;
 	}
 
 	render() {
-
-		console.log(this.props.role)
-		console.log(this.props.role)
-		console.log(this.props.role)
-
 
 		if (this.XUIusers !== undefined){
 			if (this.XUIusers.length === 0){
@@ -542,63 +491,43 @@ class TableStatus extends React.Component {
 			}
 		}
 
-
-
-
 		if (this.edit !== undefined && this.props.editMode !== this.edit) {
-		
-			this.last = true
+			this.last = true;
 		}
 		
+		this.edit  = this.props.editMode;
 
-		this.edit  = this.props.editMode
+		if (!this.last) {
 
-		if (!this.last){
-
-			return <WaiterLoading/>
+			return <WaiterLoading />;
 		}
 
 
 		let dictValues = Object.values(this.soldierClosed)
-		if (dictValues.length > 0){
+		if (dictValues.length > 0) {
 
-
-			
-			let closed = "x.x"
-			for (const arrNames of dictValues){
+			let closed = "x.x";
+			for (const arrNames of dictValues) {
 		
-				if (arrNames.length > 0){
+				if (arrNames.length > 0) {
 					closed = arrNames[0]
-
 				}
 			}
-			
 
 			let numClosed = closed.split(".")[0]
-
-
-			
-
 			let moduleNum = this.props.selectedModule.split("-")[0] 
 
 			if (moduleNum !== numClosed){
 				
-		
-				return <WaiterLoading/>
+				return <WaiterLoading />;
 			}
 		}
 
-
-		
 		let isEditMode = this.props.editMode
-		
-		
-
 		let classes = this.props.classes;
 		let soldierSubmissionData = this.state.submissionData;
-
-
 		let allSoldierDisplay = [];
+
 		// prepare for displaying
 		for (let soldier of this.state.soldiers) {
 			let add = soldier.firstName + "\n" + soldier.personalId;
@@ -609,8 +538,6 @@ class TableStatus extends React.Component {
 		if (allSoldierDisplay.length > 0 && soldierSubmissionData !== undefined) {
 
 			let personalIdColors = this.convertToColors(soldierSubmissionData);
-			
-		
 
 			return (
 
@@ -650,11 +577,10 @@ class TableStatus extends React.Component {
 						{allSoldierDisplay.map((soldier, index) => (
 							<TableRow key={index}>
 								<TableCell
+								className={classes.sticky}
+								component="th"
+								scope="row">
 
-									className={classes.sticky}
-									component="th"
-									scope="row"
-								>
 									{// only id display for tester
 									this.props.role === Role.Tester
                                     &&
@@ -674,12 +600,10 @@ class TableStatus extends React.Component {
 								</TableCell>
 
 
-								{ personalIdColors[soldier.split("\n")[1]].length === 0 
-									&&
+								{ personalIdColors[soldier.split("\n")[1]].length === 0 &&
 									<TableCell className={classes.tableCell} style={{ backgroundColor: "white" }}>
 										No subjects so far
 									</TableCell>
-
 								}
 
 								{
@@ -689,57 +613,47 @@ class TableStatus extends React.Component {
 											
 											{isEditMode && term.color === Status.Closed &&
 
-													<div>
+												<div>
 
-														{
+													{
 													<FormControlLabel
-														control={
-															<Checkbox
-																onChange={() => {this.handleOpenningToUser(soldier.split("\n")[1], term.subject)}}
-																name="checkedB"
-																color="primary"
-															/>
-														}
-														label="Open"
-													
-													/>
+													control={
+														<Checkbox
+															onChange={() => {this.handleOpenningToUser(soldier.split("\n")[1], term.subject)}}
+															name="checkedB"
+															color="primary"
+														/>
+													}
+													label="Open"/>
 													}
 
-													</div>
+												</div>
 
 											}
 
 											{isEditMode && term.color === Status.OpenNotSubmitted &&
 
-														<div>
-
-															{
-														<FormControlLabel
-															control={
-																<Checkbox
-																	onChange={() => {this.handleClosingToUser(soldier.split("\n")[1], term.subject)}}
-																	name="checkedB"
-																	color="primary"
-																/>
-															}
-															label="Close"
-
-														/>
+												<div>
+													{
+													<FormControlLabel
+														control={
+															<Checkbox
+															onChange={() => {this.handleClosingToUser(soldier.split("\n")[1], term.subject)}}
+															name="checkedB"
+															color="primary"/>
 														}
+														label="Close" />
+													}
 
-														</div>
-
+												</div>
 											}
 
-
-
-											{ (term.color !== Status.Closed) && (term.color !== Status.OpenNotSubmitted)
-											 &&
+											{(term.color !== Status.Closed) && (term.color !== Status.OpenNotSubmitted) &&
 												<Link 
 												to = {"/admin/soldier_status/" + soldier.split("\n")[1] + "/" + this.state.selectedMajor 
-													+ "/" + this.state.selectedModule + "/" + term.subject} /*disabled*/>
+													+ "/" + this.state.selectedModule + "/" + term.subject}>
 													
-													<CommentIcon /*disabled*/ style={{color:"black", fontSize:15}}>
+													<CommentIcon style={{color:"black", fontSize:15}}>
 
 														<Typography style={{ fontFamily: 'monospace'}}>
 															{term.subject.split(" ")[1]}
@@ -763,13 +677,10 @@ class TableStatus extends React.Component {
 					</TableBody>
 
 				</Table>
-
-			)
+			);
 		}
 		else {
-			
-
-			return <WaiterLoading/>
+			return <WaiterLoading />;
 		}
 	}
 }

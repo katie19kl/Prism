@@ -5,7 +5,7 @@ import { FileHandlingService } from "../file-handling.service";
 
 
 
-export class FileManager{
+export class FileManager {
 
 
 

@@ -28,8 +28,7 @@ const useStyles = (theme) => ({
     myFont2: {
         fontFamily: 'Comic Sans MS, Comic Sans, cursive',
         marginLeft: theme.spacing(3),
-    }
-
+    },
 });
 
 
@@ -63,14 +62,10 @@ class DisplayFiles extends React.Component {
 
     determineFileIcons() {
 
-        
-
         const { classes } = this.props;
         if (this.state.fileInfos !== undefined && this.state.fileInfos !== []) {
             
             for (let currFileInfo of this.state.fileInfos) {
-
-
 
                 let extention = defineIconOfFile(currFileInfo.file_name);
 
@@ -108,11 +103,7 @@ class DisplayFiles extends React.Component {
     }
 
 	render() {
-
-
-
         const { classes } = this.props;
-
         this.determineFileIcons();
 
         if (this.state.fileInfos === undefined) {
@@ -123,13 +114,9 @@ class DisplayFiles extends React.Component {
             return <WaiterLoading />;
         
         } else {
-
-
-            console.log("--------------------------------")
-            console.log(this.state.fileInfos)
-
+            
             return (
-                <div>
+                <div className={classes.border}>
                     <br></br>
                 
                     <div className="card">
@@ -170,9 +157,13 @@ class DisplayFiles extends React.Component {
                                         }
         
         
-                                        {((this.role === Role.Commander || this.role === Role.MyFiles) 
+                                        { /* this.role indicates to which role we are displaying the files for.
+                                           * this.state.myRole indicates the current logged-in user's role
+                                           */
+                                        ((this.role === Role.Commander || this.role === Role.MyFiles || this.role === Role.Admin) 
                                         && (file.url !== undefined) && 
-                                        !(this.state.myRole === Role.Commander && this.role === Role.MyFiles)) ?
+                                        !((this.state.myRole === Role.Commander || this.state.myRole === Role.Admin)
+                                        && this.role === Role.MyFiles)) ?
                                         
                                         <IconButton aria-label="delete" style={{ float: 'right'}}
                                         onClick={(event) => this.FileDeletionButtonHandler(event, file.file_name)}>                        

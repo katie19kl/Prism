@@ -13,18 +13,10 @@ import { IUserSubmission } from '../UserSubmission/iuser-submission.interface';
 export class Synchronizer {
 
 	
-    constructor(
-                
-            @InjectModel('SubjectsOnDemand') private subjectOnDemandModel: Model<ISubjectsOnDemand>,
-            @InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
-            @InjectModel('Reviews') private reviewsModel: Model<IReview>,
-
-
-            ){
-
-    }
-
-
+    constructor(     
+        @InjectModel('SubjectsOnDemand') private subjectOnDemandModel: Model<ISubjectsOnDemand>,
+        @InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
+        @InjectModel('Reviews') private reviewsModel: Model<IReview>,) {}
 
 
     private async deleteSubmissionsByFilter(filter){

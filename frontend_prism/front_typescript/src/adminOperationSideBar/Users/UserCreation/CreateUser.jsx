@@ -48,19 +48,23 @@ class CreateUser extends React.Component {
 
     getForm(role) {
 
+        const { history } = this.props;
+
         switch (role) {
             case "commander":
                 this.form = <UserCreationForm 
                 myRole={
                     role
-                }/>
+                }
+                history={history} />
                 break;
 
             case "tester":
                 this.form = <UserCreationForm 
                 myRole={
                     role
-                }/>
+                }
+                history={history} />
                 break;
 
             case "soldier":           
@@ -68,8 +72,8 @@ class CreateUser extends React.Component {
                 myRole={
                     role
                 }
-                />
-                break
+                history={history}/>
+                break;
 
             default:
                 this.form = null;

@@ -1,6 +1,6 @@
 import React from "react";
 import { currentUserRole, currentUserUsername } from "../../HelperJS/authentification_helper.js"
-import NoPermessions from "../../HelperFooStuff/NoPermissions";
+import NoPermissions from "../../HelperFooStuff/NoPermissions";
 import Role from '../../Roles/Role';
 import GeneralSoldier from "../soldier/GeneralSoldier.jsx";
 import General from "../../GeneralComponent/admin/GeneralStaff"
@@ -46,7 +46,7 @@ export default class MainPage extends React.Component {
 			return <General />
 
 		} else {
-			return <NoPermessions/>;
+			return <NoPermissions />;
 		}
 
 	}

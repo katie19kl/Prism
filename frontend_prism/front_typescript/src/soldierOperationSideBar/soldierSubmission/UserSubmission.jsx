@@ -50,9 +50,9 @@ class UserSubmission extends React.Component {
         return (
  
             <MenuAppBar
-            role = "Soldier" 
+            role={Role.Soldier}
             menu={
-                <SoldierMenu/>
+                <SoldierMenu />
             }
             content={
                 

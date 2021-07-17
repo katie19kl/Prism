@@ -11,8 +11,6 @@ async function getAllReviewsByRole(major, module, subject, studentId, role) {
     //let url  = "http://localhost:4000/review/reviews-role/";
     let url  = prefix_server_url + "review/reviews-role/";
     
-    
-    
     let postfix = studentId + "/" + major + "/" + module + "/" + subject + "/" + role;
     url = url + postfix;
 
@@ -55,9 +53,6 @@ async function deleteReview(soldierId, major, module, subject, date, time, check
         //let url = 'http://localhost:4000/review/'
         let url = prefix_server_url + "review/"
         
-        
-
-
         let payload = {
             soldierId: soldierId,
             major: major,

@@ -28,6 +28,12 @@ const useStyles = (_theme) => ({
         //fontFamily: "Comic Sans MS, Comic Sans, cursive", 
         fontFamily: 'monospace'
     },
+    accordion: {
+        border: '1.5px solid #adebeb'
+    },
+    border: {
+        background: 'linear-gradient(45deg, #ccffe6 30%, #ccffff 90%)'
+    }
 });
 
 
@@ -720,6 +726,7 @@ class FileSystemDisplay extends React.Component {
 
                 {this.state.modules.map((module) => (
                     <Accordion
+                    className={classes.accordion}
                     expanded={this.state.expanded === module}
                     onChange={this.handleAccordionChange(module)}
                     key={module}>
@@ -773,7 +780,8 @@ class FileSystemDisplay extends React.Component {
                                             <List>
                                                 {Object.keys(this.state.modulesToDictSubsToFiles[module]).map((subject) => (
 
-                                                    <Accordion 
+                                                    <Accordion
+                                                    className={classes.accordion}
                                                     expanded={this.state.expandedSubject === subject}
                                                     onChange={this.handleSubjectChange(subject)}                                                                key={subject}
                                                     labelname={subject}>
@@ -843,7 +851,7 @@ class FileSystemDisplay extends React.Component {
                                                 ))}
 
                                                 {(this.role === Role.Admin || this.role === Role.Commander) ?
-                                                <ListItem button onClick={this.handleInsertSubject}>
+                                                <ListItem button onClick={this.handleInsertSubject} className={classes.border}>
                                                     <ListItemIcon style={{flexBasis: "5.00%"}}>
                                                         <AddCircleOutlineOutlinedIcon color="primary"/>
                                                     </ListItemIcon>
@@ -866,7 +874,7 @@ class FileSystemDisplay extends React.Component {
                 ))}
 
                 {(this.role === Role.Admin || this.role === Role.Commander) ?
-                <ListItem button onClick={this.handleInsertModule}>
+                <ListItem button onClick={this.handleInsertModule} className={classes.border}>
                     <ListItemIcon style={{flexBasis: "5.00%"}}>
                         <AddCircleOutlineOutlinedIcon color="primary"/>
                     </ListItemIcon>

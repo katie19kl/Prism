@@ -35,20 +35,24 @@ export class SubjectsOnDemandService {
     // close all subjects to specific soldier
     async closeAllSubjectToNewSoldier(majors: Major[], soldierId:string) {
         
+        console.log(majors)
         
-        for (const major of majors) {
+        if (majors !== undefined) {
+            
+            for (const major of majors) {
 			
-			let modules = await this.majorManager.getAllDirOfMajor(major);
-			for (const module of modules) {
-		
-				let subjects = await this.moduleManager.getAllDirOfModule(major, module);
-                for (const subject of subjects) {
-                    
-                    await this.closeNewSubjectToSoldier(major, module, subject, soldierId);
-	
+                let modules = await this.majorManager.getAllDirOfMajor(major);
+                for (const module of modules) {
+            
+                    let subjects = await this.moduleManager.getAllDirOfModule(major, module);
+                    for (const subject of subjects) {
+                        
+                        await this.closeNewSubjectToSoldier(major, module, subject, soldierId);
+        
+                    }
                 }
-			}
-		}
+            }
+        }
     }
 
     // From creating new subject -> close to all soldiers

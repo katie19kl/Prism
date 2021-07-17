@@ -7,7 +7,7 @@ import { UsersService } from "src/server/users/users.service";
 import { IndexingFormat } from "../common/IndexingFormat";
 import { FileHandlingService } from "../file-handling.service";
 
-export class SubjectManager{
+export class SubjectManager {
 
 
     constructor(){}
