@@ -1,29 +1,30 @@
-import { Grade } from "src/server/users/common/grade.enum";
 import { Major } from "../../users/common/major.enum";
+import { IsNotEmpty, IsNumberString, IsOptional } from "class-validator";
+
 
 export class UserSubmissionDTO {
     
+    @IsNumberString()
+    @IsNotEmpty()
     soldierId: string;
 
-    major : Major
+    @IsNotEmpty()
+    major: Major
+
+    @IsNotEmpty()
     module: string
+
+    @IsNotEmpty()
     subject: string 
 
+    @IsNotEmpty()
     isChecked: boolean;
 
     submittedFiles: string[];
-    
-    grade: number;
 
     submittedTime: string;
 
     submittedDate: string;
 
     gradeDescription: string;
-
-
 }
-
-
-
-

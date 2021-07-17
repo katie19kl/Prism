@@ -14,5 +14,7 @@ export interface IUserSubmission extends Document {
 
     // If review exist.
     isChecked: boolean;
-    gradeDescription: String;//Grade;
+
+    // Grade;
+    gradeDescription: String;
 }

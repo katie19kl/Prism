@@ -1,6 +1,5 @@
 import { UserSubmissionDTO } from './dto/user-submission.dto';
 import { UserSubmissionService } from './user-submission.service'
-import { Controller, Get, Param, Post, Req, SetMetadata, UseGuards, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Body } from '@nestjs/common';
 import { UploadedFile } from '@nestjs/common';
@@ -9,12 +8,22 @@ import { Major } from '../users/common/major.enum';
 import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
 import { Role_Guard } from '../RolesActivity/Role_Guard.guard';
 import { Role } from '../RolesActivity/role.enum';
+import { 
+    Controller,
+    Get, 
+    Param, 
+    Post, 
+    Req, 
+    SetMetadata, 
+    UseGuards, 
+    UseInterceptors 
+} from '@nestjs/common';
+
 
 
 @UseGuards(JwtAuthGuard)
 @Controller('user-submission')
 export class UserSubmissionController {
-
 
     constructor(private userSubmisssionService: UserSubmissionService) { }
 
@@ -27,8 +36,6 @@ export class UserSubmissionController {
                          @Body() userSubmissionDto: UserSubmissionDTO
                          ,@Req() req) {
         
-
-  
         const usertoken = req.headers.authorization;
         return this.userSubmisssionService.addNewUserSubmission(userSubmissionDto, file, usertoken);
     }
@@ -44,6 +51,7 @@ export class UserSubmissionController {
         try {
             let submissionInfo = await this.userSubmisssionService.getUserSubmissionByKey(
                 id, major, module, subject);
+
             return submissionInfo;
     
         }
@@ -55,12 +63,10 @@ export class UserSubmissionController {
 
 
     @Get(':soldierId')
-    async getUserSubmission(@Param('soldierId') id: string)
-    {
+    async getUserSubmission(@Param('soldierId') id: string) {
         try {
             let submissionInfo = await this.userSubmisssionService.getUserSubmission(id);
             return submissionInfo;
-    
         }
         catch (error) {
             
@@ -68,29 +74,25 @@ export class UserSubmissionController {
         }
     } 
 
+
     @SetMetadata('roles', [Role.Soldier])
 	@UseGuards(Role_Guard)
     @Delete("/:file_name")
     async removeSubmittedFile(@Param('file_name') file_name: String, 
                               @Body() userSubmissionDto: UserSubmissionDTO,
-                              @Req() req){
+                              @Req() req) {
         
-    
-   
-
         const usertoken = req.headers.authorization;
 
-
-        let x =  await this.userSubmisssionService.removeSubmittedFile(userSubmissionDto,usertoken,file_name)
-        return x
+        let x =  await this.userSubmisssionService.removeSubmittedFile(userSubmissionDto, usertoken, file_name);
+        return x;
     }
+
 
     @SetMetadata('roles', [Role.Admin,Role.Commander, Role.Tester])
 	@UseGuards(Role_Guard)
     @Get('/:major')
-    async getAllSubmissionsByMajor(@Param('major') major: Major) 
-        
-    {
+    async getAllSubmissionsByMajor(@Param('major') major: Major) {
 
         try {
             let submissionInfo = await this.userSubmisssionService.getAllSubmissionsByMajor(major);
@@ -102,5 +104,4 @@ export class UserSubmissionController {
             throw error;
         }
     }    
-
 }

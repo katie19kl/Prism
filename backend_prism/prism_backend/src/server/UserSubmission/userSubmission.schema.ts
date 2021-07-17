@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose';
 import { Major } from '../users/common/major.enum';
 
+
 // how it looks like in db
 export const UserSubmissionSchema = new mongoose.Schema({
 
@@ -30,7 +31,6 @@ export const UserSubmissionSchema = new mongoose.Schema({
         type: Array
     },
     gradeDescription: {
-        //type: Grade
         type:String
     },
     submittedTime: {

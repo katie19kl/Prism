@@ -31,6 +31,7 @@ export class UsersService {
 		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionModel, userSubmissionService);
 	}
 
+
 	// new soldier has no access to anything
 	async closeAllToNewSoldier(soldierId,majors:Major[],subjectOnDemandService: SubjectsOnDemandService){
 
@@ -63,22 +64,21 @@ export class UsersService {
 
 	}
 
+
 	// get role of given token
-	async getRoleByJWT(usertoken){
+	async getRoleByJWT(usertoken) {
 
 		let user = await this.getUserByJWT(usertoken);
 		return user.role;
-
 	}
+
 
 	// Returns user object based on his token
 	async getUserByJWT(usertoken){
 
-		let jwt = require('jsonwebtoken')
+		let jwt = require('jsonwebtoken');
 		
 		try {
-		
-		 
 			const token = usertoken.split(' ');
 			
 			// decode JWT & retrieve username
@@ -86,8 +86,10 @@ export class UsersService {
 	
 			
 			let personalId = decoded['personalId'];
+
 			// obtain user by his username  & return it outside
-			let user = await this.findOneByPersonalId(personalId)
+			let user = await this.findOneByPersonalId(personalId);
+
 			// return outside without password ( password is hashed )
 			user.password = "";
 
@@ -95,9 +97,10 @@ export class UsersService {
 	
 		}
 		catch (e) {
-			return undefined
+			return undefined;
 		}
 	}
+
 
 	// get user by its personalId
 	async findOneByPersonalId(personalId: string): Promise<IUser> {
@@ -106,12 +109,14 @@ export class UsersService {
 		return user;
 	}
 
+
 	// get user by its username
 	async findOneByUsername(username: string): Promise<IUser> {
 
 		const user = await this.userModel.findOne({"username": username});
 		return user;
 	}
+
 
 	// get all soldiers 
 	async findAllSoldiers(): Promise<string[]> {
@@ -126,8 +131,10 @@ export class UsersService {
 				listNames.push(fullString);
 			}
 		});
+
 		return listNames;
 	}
+
 
 	// get all soldiers with same majors
 	async findAllSoldiersInMajor(major: Major): Promise<string[]> {
@@ -151,7 +158,8 @@ export class UsersService {
 						firstName : user.firstName,
 						lastName: user.lastName
 					}
-					soldiersInMajor.push(soldierData)
+
+					soldiersInMajor.push(soldierData);
 				}
 			}
 		});
@@ -159,7 +167,9 @@ export class UsersService {
 		return soldiersInMajor;
 	}
 
+
 	async findSoldiersInAllMajors(majors: Major[]) {
+
 		let users = await this.userModel.find();
 		let soldiersInMajors = [];
 		let soldierData;
@@ -190,6 +200,7 @@ export class UsersService {
 		return soldiersInMajors;
 	}
 
+
 	async updateUserInfo(username: string, updateUserDto: UpdateUserDto) {
 
 		let newUserName = updateUserDto.username;
@@ -215,9 +226,9 @@ export class UsersService {
 		} else {
 
 			throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
-
 		}
 	}
+
 
 	// Helper function for updateUserInfo - updates each field if was changed.
 	private updateInfoHelper(user: IUser, updateUserDto: UpdateUserDto): IUser {
@@ -262,6 +273,7 @@ export class UsersService {
 		return user;
 	}
 
+
 	// delete user by its username
 	async deleteUser(personalId: string, syncronizer: Synchronizer) {
 		let user = await this.userModel.findOne({"personalId": personalId});
@@ -269,88 +281,86 @@ export class UsersService {
 		if (user) {
 					
 			await user.deleteOne();
-			return await syncronizer.syncUserDeletion(user.personalId)
+			return await syncronizer.syncUserDeletion(user.personalId);
 			
 		} else {
 
 			throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
-
 		}
 	}
+
 
 	// retrieves first prop of json object
 	getFirstProp(jsonObj) {
 		let firstProp;
-        for(var key in jsonObj) {
-            if(jsonObj.hasOwnProperty(key)) {
+
+        for (var key in jsonObj) {
+            if (jsonObj.hasOwnProperty(key)) {
+
                 firstProp = jsonObj[key];
                 break;
             }
         }
-		return firstProp
+		return firstProp;
 	}
+
 
 	async retrieveSubmissions(soldiersJson, major:Major, module:string){
 
-        let soldiers = this.getFirstProp(soldiersJson)
+        let soldiers = this.getFirstProp(soldiersJson);
+		let sendSubmission = {};
 
-		let sendSubmission = {}
-		for (let soldier of soldiers)
-		{
+		for (let soldier of soldiers) {
 			
-			
-			sendSubmission[soldier.personalId] = []
-			let submissions = await this.userSubmissionHandler.getAllSoldierSubmissions(soldier.personalId,major,module)
+			sendSubmission[soldier.personalId] = [];
+			let submissions = await this.userSubmissionHandler.getAllSoldierSubmissions(soldier.personalId,major,module);
 
-			
-			for (let submission of submissions){
+			for (let submission of submissions) {
 				
+				let amoutSubmittedFiles_ = submission.submittedFiles.length;
 			
-				let amoutSubmittedFiles_ = submission.submittedFiles.length
-			
-				let grade_ = undefined
-				let gradeDescription_ = undefined
-				// there is review => retrieve grade from review
-				if (submission.isChecked){
-					let id = submission.soldierId
-					let major = submission.major
-					let module = submission.module
-					let subject = submission.subject
-					let reviews = await this.reviewHandler.getAllReviewsPerAssignment(id, major, module, subject)
-					
-					for (let review of reviews){
-						grade_ = review.grade
-						gradeDescription_ = review.gradeDescription
+				let grade_ = undefined;
+				let gradeDescription_ = undefined;
 
-						
+				// there is review => retrieve grade from review
+				if (submission.isChecked) {
+					let id = submission.soldierId;
+					let major = submission.major;
+					let module = submission.module;
+					let subject = submission.subject;
+					let reviews = await this.reviewHandler.getAllReviewsPerAssignment(id, major, module, subject);
+					
+					for (let review of reviews) {
+						grade_ = review.grade;
+						gradeDescription_ = review.gradeDescription;
 					}
 				}
 
 				// compose neccessary data for displpaying in commander table
-				sendSubmission[submission.soldierId].push( 
-								
-								{
-									checked:submission.isChecked,
-									subject:submission.subject,
-									grade:grade_,
-									gradeDescription:gradeDescription_,
-									amoutSubmittedFiles:amoutSubmittedFiles_
-								}
-				)
+				sendSubmission[submission.soldierId].push({
+					checked:submission.isChecked,
+					subject:submission.subject,
+					grade:grade_,
+					gradeDescription:gradeDescription_,
+					amoutSubmittedFiles:amoutSubmittedFiles_
+				});
 			}
 		}
-		return sendSubmission
+
+		return sendSubmission;
 	}
+
 
 	async getSoldiersByCommanderId(commanderId:string, majorSelected:Major){
 
 		let commanderSoldiers = await this.userModel.find(
-			{major:majorSelected,commander:commanderId, role:Role.Soldier}
+			{ major:majorSelected, commander:commanderId, role:Role.Soldier }
 		);
 
 		return commanderSoldiers;
 	}
 
+	
 	async getAllUsersByRole(role: Role) {
 
 		let users = await this.userModel.find();

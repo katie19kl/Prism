@@ -10,6 +10,7 @@ import { Major } from '../users/common/major.enum';
 
 
 @Injectable()
+
 // Handles user submission operation
 export class UserSubmissionService {
 
@@ -17,16 +18,15 @@ export class UserSubmissionService {
 
 
     // Model<IUserSubmission> ---- Broker  between DB & ME
-    constructor(@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>)   
-    {
+    constructor(@InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>) {
         this.userSubmissionFileHandler = new UserSubmissionFileHandler()
     }
+
 
     // retrieve personal id, where token is given
     static getIdFromJWT(usertoken){
 
         let jwt = require('jsonwebtoken');
-	
 		const token = usertoken.split(' ');
 		
 		const decoded = jwt.verify(token[1], jwtConstants.secret);
@@ -34,6 +34,7 @@ export class UserSubmissionService {
 
         return personalId;
     }
+
 
     async getUserSubmissionByKey(id: string, major: Major, module: string, subject: string) {
                 
@@ -43,6 +44,7 @@ export class UserSubmissionService {
             module: module,
             subject: subject
         };
+
         let result = await this.userSubmissionModel.findOne(filter);
 
         if (result) {
@@ -59,6 +61,7 @@ export class UserSubmissionService {
         const filter = { 
             soldierId: id
         };
+
         let result = await this.userSubmissionModel.find(filter);
 
         if (result) {
@@ -70,28 +73,26 @@ export class UserSubmissionService {
     }
 
     // removes from file root & removes from db only one file
-    async removeSubmittedFile(createUserSubmissionDto: UserSubmissionDTO, usertoken, file_name){
+    async removeSubmittedFile(createUserSubmissionDto: UserSubmissionDTO, usertoken, file_name) {
         
-        let userId = UserSubmissionService.getIdFromJWT(usertoken)
-        createUserSubmissionDto.soldierId = userId
+        let userId = UserSubmissionService.getIdFromJWT(usertoken);
+        createUserSubmissionDto.soldierId = userId;
  
         // delete file from directory
-        await this.userSubmissionFileHandler.deleteFile(createUserSubmissionDto, file_name)
+        await this.userSubmissionFileHandler.deleteFile(createUserSubmissionDto, file_name);
         
         // get new file list - currently presented in solution dir
-        let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto)
+        let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto);
         
-
         // update db with currentl file list 
-        let updatedInDB = await this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)        
+        let updatedInDB = await this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)   ;     
     
-
-        return updatedInDB
+        return updatedInDB;
     }
 
 
     // puts new files & date of submission
-    async updateUserSubmissionDB(createUserSubmissionDto: UserSubmissionDTO, usertoken, filesToUpdate){
+    async updateUserSubmissionDB(createUserSubmissionDto: UserSubmissionDTO, usertoken, filesToUpdate) {
 
         const filter = { 
             soldierId: UserSubmissionService.getIdFromJWT(usertoken),
@@ -101,43 +102,39 @@ export class UserSubmissionService {
         };
       
         createUserSubmissionDto.submittedFiles = filesToUpdate;
-        createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
+        createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto);
         
         const update = { 
             submittedFiles: filesToUpdate,
             submittedTime: createUserSubmissionDto.submittedTime,
             submittedDate: createUserSubmissionDto.submittedDate,
-            
         };
         
-
-        let updatedSubmissionOfUser =  await this.userSubmissionModel.findOneAndUpdate(filter, update, {
-        new: true
-        });
+        let updatedSubmissionOfUser =  await this.userSubmissionModel.findOneAndUpdate(filter, update, { new: true });
         return updatedSubmissionOfUser;
-
     }
 
+
     // сhecks if document in db already exist
-    async checkDocExist(createUserSubmissionDto, idFromJWT){
+    async checkDocExist(createUserSubmissionDto, idFromJWT) {
+
         const filter = { 
             soldierId: idFromJWT,
             major: createUserSubmissionDto.major,
             module: createUserSubmissionDto.module,
             subject: createUserSubmissionDto.subject
-        
         };
         
         let docExist =  await this.userSubmissionModel.exists(filter);
-        return docExist
+        return docExist;
     }
 
 
     updateCurrentTime(createUserSubmissionDto: UserSubmissionDTO){
-        createUserSubmissionDto.submittedTime = new Date().toLocaleTimeString(); // 11:18:48 AM
-        createUserSubmissionDto.submittedDate = new Date().toLocaleDateString(); // 11/16/2015
+        createUserSubmissionDto.submittedTime = new Date().toLocaleTimeString();
+        createUserSubmissionDto.submittedDate = new Date().toLocaleDateString();
 
-        return createUserSubmissionDto
+        return createUserSubmissionDto;
     }
    
 
@@ -145,18 +142,18 @@ export class UserSubmissionService {
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
         
         createUserSubmissionDto.gradeDescription = "";
-        createUserSubmissionDto.isChecked = false
+        createUserSubmissionDto.isChecked = false;
 
+        let idFromJWT = UserSubmissionService.getIdFromJWT(usertoken);
+                
+        createUserSubmissionDto.soldierId = idFromJWT;
 
-        let idFromJWT = UserSubmissionService.getIdFromJWT(usertoken)
-        
-        
-        createUserSubmissionDto.soldierId = idFromJWT
         // dir with user solutions
         let pathSolutionDir = this.userSubmissionFileHandler.createPathSolution(createUserSubmissionDto);
         
         // if checks if above dir exist (sync)
         let dirExist = this.userSubmissionFileHandler.checkDirExist(pathSolutionDir);
+
         if (!dirExist) {
 
             // if not -- create this dir
@@ -164,47 +161,48 @@ export class UserSubmissionService {
         }
 
         // uploading single file to directory
-        await this.userSubmissionFileHandler.uploadFile(createUserSubmissionDto,file);
+        await this.userSubmissionFileHandler.uploadFile(createUserSubmissionDto, file);
         
         // get list of all files in dir solution to update list of files in submission info
         let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto);
         
+        let docExist = dirExist;
 
-        
-        let docExist = dirExist
-        if (docExist){
+        if (docExist) {
 
-            let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)
-            return await updatedSubmissionOfUser
+            let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto,
+                usertoken, filesInDirSolution);
 
-        }else {
+            return await updatedSubmissionOfUser;
+
+        } else {
             
             // assigning files info to db
             createUserSubmissionDto.submittedFiles = filesInDirSolution;
-            createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto)
+            createUserSubmissionDto = this.updateCurrentTime(createUserSubmissionDto);
 
-            return await this.userSubmissionModel.create(createUserSubmissionDto)
+            return await this.userSubmissionModel.create(createUserSubmissionDto);
         }
     }
 
 
-    async getAllSoldierSubmissions(personalId:string, major_:Major, module_:string){
+    async getAllSoldierSubmissions(personalId: string, major_: Major, module_: string) {
                 
+        const filter = { 
+            soldierId: personalId,
+            major: major_,
+            module: module_,
+        };
         
-            const filter = { 
-                    soldierId: personalId,
-                    major: major_,
-                    module: module_,
-            };
-            let result = await this.userSubmissionModel.find(filter);
-            return result;
-
+        let result = await this.userSubmissionModel.find(filter);
+        return result;
     }
 
-    async getAllSubmissionsByMajor(major_:Major){
-        const filter = {major:major_}
 
-        return await this.userSubmissionModel.find(filter)
+    async getAllSubmissionsByMajor(major_: Major) {
+
+        const filter = { major: major_ };
+
+        return await this.userSubmissionModel.find(filter);
     }
-
 }

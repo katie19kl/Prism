@@ -8,13 +8,11 @@ import {UserSubmissionSchema } from './userSubmission.schema'
 
 
 @Module({
-
 	imports: [
 		MongooseModule.forFeature([{name: 'User-Submission', schema: UserSubmissionSchema}]),
 		AuthModule,
 		UsersModule
 	],
-	
 	controllers: [UserSubmissionController],
 	providers: [UserSubmissionService],
 	exports: [UserSubmissionService]
