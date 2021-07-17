@@ -25,8 +25,7 @@ const useStyles = (theme) => ({
         marginLeft: theme.spacing(10),
     },
     myFont: {
-        //fontFamily: "Comic Sans MS, Comic Sans, cursive",
-		fontFamily: 'monospace',
+        fontFamily: 'monospace',
     },
 });
 

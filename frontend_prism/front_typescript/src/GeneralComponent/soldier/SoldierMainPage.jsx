@@ -2,6 +2,7 @@ import React from "react"
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuAppBar from '../main/MenuAppBar';
 import SoldierMenu from './SoldierMenu'
+import Role from "../../Roles/Role";
 
 
 export default class SoldierMainPage extends React.Component {
@@ -13,7 +14,7 @@ export default class SoldierMainPage extends React.Component {
             <CssBaseline />
             <MenuAppBar
 
-                role = "Soldier"
+                role = {Role.Soldier}
 
                 menu={
                     <SoldierMenu />

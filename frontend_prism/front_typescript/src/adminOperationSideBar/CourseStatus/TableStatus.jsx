@@ -71,7 +71,7 @@ class TableStatus extends React.Component {
 			soldiers: [],
 			subjects: [],
 			submissionData: undefined,
-			FOO:0
+			slackVar:0
 		};
 	}
 
@@ -82,14 +82,12 @@ class TableStatus extends React.Component {
 
 		closeSubjectToSoldier(soldierId,major,module,subject).then((responce)=>{
 			
-
-
-
 			if (responce !== undefined){
 				if (responce.status === 201){
+
 					let soldierClosed = this.soldierClosed[soldierId]
-					
 					let updatedArr = []
+
 					for (const closed of soldierClosed){
 						if (closed !== subject){
 							updatedArr.push(closed)
@@ -97,35 +95,22 @@ class TableStatus extends React.Component {
 					}
 					
 					this.soldierClosed[soldierId].push(subject) 		
-					
-					
-
 					this.last = true
-					this.setState({FOO: this.state.FOO + 1})
+					this.setState({slackVar: this.state.slackVar + 1})
 				}
 			}
 		})
 
 	}
 
-	/*
-	 I take care of openning task, also should be taken care of closing task to soldier
-
-	
-	*/
 
 	handleOpenningToUser(soldierId, subject){
 		
-
-	
 		let module =  this.props.selectedModule
 		let major = this.props.selectedMajor
 
 		openSubjectToSoldier(soldierId,major,module,subject).then((responce)=>{
 			
-
-
-
 			if (responce !== undefined){
 				if (responce.status === 201){
 					let soldierClosed = this.soldierClosed[soldierId]
@@ -137,18 +122,11 @@ class TableStatus extends React.Component {
 						}
 					}
 					this.soldierClosed[soldierId] = updatedArr
-
-	
 					this.last = true
-					this.setState({FOO: this.state.FOO + 1})
+					this.setState({slackVar: this.state.slackVar + 1})
 				}
 			}
-		})
-		
-
-
-		
-		
+		})	
 	}
 
 	// extracts all soldiers of major defined in state
@@ -181,7 +159,6 @@ class TableStatus extends React.Component {
 			if (res !== undefined) {
 				if (res.data !== undefined) {
 
-
 					this.last = true
 					this.setState({ subjects: res.data })
 
@@ -195,8 +172,6 @@ class TableStatus extends React.Component {
 
 		let allMySoldiers = soldiersFromResponse
 		
-
-
 		let usersToTable = []
 		let term
 		// take neccessary fields only
@@ -207,17 +182,13 @@ class TableStatus extends React.Component {
 
 		// server answer VS field value  by { id & personalId }
 		usersToTable.sort(function (a, b) { return a.firstName.localeCompare(b.firstName) });
-		this.XUIusers = usersToTable
+		this.copyUsers = usersToTable
 
 		let equal = (JSON.stringify(usersToTable) === JSON.stringify(this.state.soldiers))
 		
-		
-
 		// if different answer => update table
 		if (!equal) {
 
-
-			//
 			// get personalId-->closed .then ()
 			let major = this.props.selectedMajor
 			let module = this.props.selectedModule
@@ -231,18 +202,15 @@ class TableStatus extends React.Component {
 
 					}
 				}
-				
 
 				let newSoldiers = usersToTable
 				// new soldiers => new submissions have to be exctracted 
 				this.getSoldierSubmissions(newSoldiers).then((subData) => {
 					
 					// set state with new-arrived soldiers & their submission data
-					
 					this.last = true
 					this.setState({ soldiers: usersToTable, submissionData: subData})
 				})
-
 			});
 		}
 	}
@@ -251,7 +219,6 @@ class TableStatus extends React.Component {
 	extractAllMySoldiers() {
 
 		let selectedMajor = this.props.selectedMajor
-
 		getAllMySoldiers(selectedMajor).then((response) => {
 			if (response !== undefined) {
 				if (response.data !== undefined) {
@@ -301,7 +268,7 @@ class TableStatus extends React.Component {
 		// if another module was selected
 		if (this.props.selectedModule !== this.state.selectedModule) {
 
-			getSoldierClosedSubjects(this.props.selectedMajor,this.props.selectedModule,this.XUIusers).then((responce) => {
+			getSoldierClosedSubjects(this.props.selectedMajor,this.props.selectedModule,this.copyUsers).then((responce) => {
 
 				if (responce !== undefined)
 				{
@@ -375,14 +342,10 @@ class TableStatus extends React.Component {
 
 
 		let idSubjectColors = {}
-
 		// key - soldier personalId
 		for (let key in soldierSubmissionData) {
 
 			let closedUserSubjects = this.soldierClosed[key]
-
-
-
 			// subject-sorted sequence of colors/state/subject-name
 			let subjectColor = []
 
@@ -391,49 +354,33 @@ class TableStatus extends React.Component {
 			// submissions of soldier 
 			let submissions = soldierSubmissionData[key]
 
-
-			
-
-
-
 			let allSubjects = this.state.subjects
-
 			// subjects are selected by sub-indexing (on the server side)
 			// iterating in same way on subjects as displaying will be done
 			for (let subject_ of allSubjects) {
 
 				let closedSubject = true
 				if (closedUserSubjects !== undefined){
-					
+
 					closedSubject = closedUserSubjects.includes(subject_)
-				
 				}
 				// or not assigned
 				let color = Status.OpenNotSubmitted
 				let status = "non assigned"
-
 
 				if (closedSubject){
 					color = Status.Closed
 					status = "closed"
 				}
 
-
 				// existing submission per subject
 				for (let submission of submissions) {
 				
-					
 					let gradeDescription = submission.gradeDescription
-					
 					// verifying status of submission
 					let checked = submission.checked
 					let subject = submission.subject
-
-
 					let amountFiles = submission.amoutSubmittedFiles;
-					
-
-
 
 					if (subject === subject_) {
 						
@@ -443,7 +390,7 @@ class TableStatus extends React.Component {
 							color = Status.CheckedNoFiles
 						}
 						else {
-		
+							//assign color according to status
 							status = "assigned";
 							color = Status.SubmittedNotReviewed;
 			
@@ -460,12 +407,10 @@ class TableStatus extends React.Component {
 						}
 					}
 				}
-
+				// compose info to display with colors
 				subjectColor.push({
 					status: status,
-					//subject: subject_.split(" ")[1],
 					subject: subject_,
-					
 					color: color
 				})
 			}
@@ -479,28 +424,27 @@ class TableStatus extends React.Component {
 	}
 
 	render() {
-
-		if (this.XUIusers !== undefined){
-			if (this.XUIusers.length === 0){
+		// there was empty my users
+		if (this.copyUsers !== undefined){
+			if (this.copyUsers.length === 0){
 				return <h2>You have no soldiers</h2>
 			}
 		}
 
+		// answer from server was obtained
 		if (this.edit !== undefined && this.props.editMode !== this.edit) {
 			this.last = true;
 		}
 		
 		this.edit  = this.props.editMode;
-
+		// wait for server answer
 		if (!this.last) {
-
 			return <WaiterLoading />;
 		}
 
-
 		let dictValues = Object.values(this.soldierClosed)
 		if (dictValues.length > 0) {
-
+			// not all answer arrived => wait for the rest
 			let closed = "x.x";
 			for (const arrNames of dictValues) {
 		
@@ -660,8 +604,7 @@ class TableStatus extends React.Component {
 												</Link>
 											}
 
-
-											
+										
 											{term.subject.split(" ")[1]}
 
 										</TableCell>

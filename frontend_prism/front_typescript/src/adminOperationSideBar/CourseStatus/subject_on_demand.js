@@ -13,13 +13,9 @@ async function openSubjectToSoldier(soldierId, major, module, subjectToOpen) {
 		return false;
 
 	} else {
-
 		// send the token to the server and check its response.
 		//let url = "http://localhost:4000/subjects-on-demand/open/" + major + "/" + module + "/" + subjectToOpen + "/" + soldierId;
 		let url = prefix_server_url + "subjects-on-demand/open/" + major + "/" + module + "/" + subjectToOpen + "/" + soldierId;
-		
-		
-
 
 		const req = await axios.create({
 			baseURL: url,
@@ -79,7 +75,6 @@ async function getSoldierClosedSubjects(major,module, soldiers){
 
 
 	let data_body = {"soldiers": soldiers}
-
 	let token = LocalStorage.getItem(LocalStorage.token);
     
 	// User has no token

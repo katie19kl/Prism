@@ -15,7 +15,6 @@ export default class SoldierTasks extends React.Component {
         }
     }
 
-
     componentDidMount() {
        
         if (this.state.user === undefined){
@@ -26,18 +25,11 @@ export default class SoldierTasks extends React.Component {
                     
                 } else {
 
-     
                     user_ = user_.data
-                    
-        
- 
 
                     this.setState({
-                                        
                         user:user_
                     })
-                    
-
                 }
             })
         }

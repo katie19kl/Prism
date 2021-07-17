@@ -85,6 +85,7 @@ class ChangeAdminSettings extends React.Component {
 		};
 	}
 
+	// username changes
 	handleTextFieldChangeUsername(event) {
 		let input =  event.target.value;
 		this._username = input;
@@ -102,7 +103,7 @@ class ChangeAdminSettings extends React.Component {
 			this.setState({ usernameErr: "" });
 		} 
 	}
-
+	// password changes
 	handleTextFieldChangePassword(event) {
 		let val = event.target.value;
         this._password = val;
@@ -124,7 +125,7 @@ class ChangeAdminSettings extends React.Component {
 			this.setState({ passwordErr: "" });
 		}
 	}
-
+	// firstname changes
 	handleTextFieldChangeFirstName(event) {
 		let val =  event.target.value;
 		this._firstName = val;
@@ -146,6 +147,7 @@ class ChangeAdminSettings extends React.Component {
 
 	}
 
+	// lastname changes
 	handleTextFieldChangeLastName(event) {
 		let val =  event.target.value;
 		this._lastName = val;
@@ -167,6 +169,8 @@ class ChangeAdminSettings extends React.Component {
 		}
 	}
 
+	
+	// phone changes
 	handleTextFieldChangePhoneNum(event) {
 		let val =  event.target.value;
 		this._phone_number = val;

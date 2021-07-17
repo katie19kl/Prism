@@ -7,21 +7,14 @@ import { prefix_server_url } from "../../HelperJS/url_helper";
 // module & major & subject
 async function getListOfAllFiles(major, module, subject) {
 
-
-   
-
     let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/file-handling/files_in_subject";
     let url  = prefix_server_url + "file-handling/files_in_subject";
-    
-    
-   
     
     let postfix = "/" + major + "/" + module + "/" + subject;
     url = url + postfix;
 
     if (token === null || token === 'undefined') {
-
 		return false;
 
 	} else {
@@ -44,7 +37,6 @@ async function getListOfAllFiles(major, module, subject) {
             }, (error) => {
                 return undefined
             });
-
     }
 }
 
@@ -52,18 +44,18 @@ async function getListOfAllFiles(major, module, subject) {
 
 async function uploadSingleFiles(file, onUploadProgress, major, module, subject){
 
+
+    let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/file-handling/files/" + major + "/" + module + "/" + subject;
     let url  = prefix_server_url + "file-handling/files/" + major + "/" + module + "/" + subject;
     
-    
     let formData = new FormData();
-
-    //for (const file of  FileList)
     formData.append("file",file);
   
     
     return await axios.post(url, formData, {
         headers: {
+        'Authorization': 'Bearer ' + token,
         'Content-Type': 'multipart/form-data'
         },
         onUploadProgress,

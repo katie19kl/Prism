@@ -31,23 +31,15 @@ class ContentOfModule extends React.Component {
 
     render() {
 
-
-
-        
-
         const { classes } = this.props;
         let moduleName = this.props.moduleName;
+        // extracting data from props
         let major = this.props.major;
         let subjects = this.props.subjects;
-
-
-
         let personalId = this.props.personalId;
-
         let dictSubjectFiles = this.props.dictSubjectFiles
- 
+        
         let postfix_param = major + "/" + moduleName + "/"
-
 
         return (
  

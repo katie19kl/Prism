@@ -83,7 +83,7 @@ class DeletionDialog extends React.Component {
 
                 user = user.data;
                 let majors = user['major'];
-
+                // extract all soldiers in given major
                 getSoldiersByMajors(majors).then((users) => {
 
                     if (users === undefined) {
@@ -92,7 +92,6 @@ class DeletionDialog extends React.Component {
                     } else {
 
                         users = users.data;
-                        
                         for (var user of users) {
 
                             let personalIdUser = user.personalId;
@@ -100,6 +99,7 @@ class DeletionDialog extends React.Component {
                             let lastNameUser = user.lastName;
                             let majorUser = user.major;
 
+                            // fill fields to display
                             let line = {
                                 firstName: firstNameUser,
                                 lastName: lastNameUser,
@@ -109,7 +109,6 @@ class DeletionDialog extends React.Component {
 
                             this.soldierInCommanderMajors.push(line);
                         }
-
                         this.soldierInCommanderMajors.sort((a,b) => a.personalId - b.personalId)
                         this.setState({ usersRetrieved: true });
                     }
@@ -138,9 +137,7 @@ class DeletionDialog extends React.Component {
     componentDidUpdate() {
 
         if (this.props.open !== this.state.open) {
-
             this.setState({ open: this.props.open });
-
         }
     }
 
@@ -245,7 +242,7 @@ class DeletionDialog extends React.Component {
             if (res !== undefined) {
 
                 if (res.data !== undefined) {
-                    
+
                     users = res.data;
 
                 } else {

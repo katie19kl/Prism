@@ -8,12 +8,9 @@ export async function usersSubmissions(soldiers,major,module) {
     
     // can be changed -- it should be one only
     let data_body = {"soldiers": soldiers}
- 
-
 
 	// User has no token
 	if (token === null || token === 'undefined') {
-
 		return false;
 
 	} else {
@@ -26,8 +23,6 @@ export async function usersSubmissions(soldiers,major,module) {
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,
-            //data:{data_body},
-  
             headers: { 'Authorization': 'Bearer ' + token }
 		});
 

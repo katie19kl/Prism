@@ -106,7 +106,7 @@ class UserCreationForm extends React.Component {
         
         let val = event.target.value;
         this.personalId = val;
-
+        // validations
         if (val.length === 0) {
             this.setState({ personalIdErr: "You must enter the personal ID"});
 
@@ -123,7 +123,7 @@ class UserCreationForm extends React.Component {
 
         let val = event.target.value;
         this.username = val;
-
+        // validations
         if (val.length === 0) {
             this.setState({ usernameErr: "You must enter the username"});
 
@@ -140,7 +140,7 @@ class UserCreationForm extends React.Component {
 
         let val = event.target.value;
         this.password = val;
-
+        // validations
         if (val.length === 0) {
             this.setState({ passwordErr: "You must enter the password"});
 
@@ -160,7 +160,7 @@ class UserCreationForm extends React.Component {
 
         let val = event.target.value;
         this.firstName = val;
-
+        // validations
         if (val.length === 0) {
             this.setState({ firstNameErr: "You must enter the first name"});
 
@@ -179,7 +179,7 @@ class UserCreationForm extends React.Component {
 
         let val = event.target.value;
         this.lastName = val;
-
+        // validations
         if (val.length === 0) {
             this.setState({ lastNameErr: "You must enter the last name"});
 
@@ -209,7 +209,7 @@ class UserCreationForm extends React.Component {
 
         let val = event.target.value;
         this.phoneNumber = val;
-
+        // validations
         if (val.length > 0 && val.length < 10) {
             this.setState({ phoneNumberErr: "The phone number is not valid" });
 
@@ -231,7 +231,6 @@ class UserCreationForm extends React.Component {
 
     handleChangeMajor(event) {
         this.major = event.target.value
-
         this.setState({ updated: true });
     }
 
@@ -243,7 +242,7 @@ class UserCreationForm extends React.Component {
 
         let val = event.target.value;
         this.commander = val;
-
+        // validations
         if (val.length === 0) {
             this.commander = undefined;
             this.setState({ commanderErr: ""});

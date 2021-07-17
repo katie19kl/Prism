@@ -5,8 +5,6 @@ import { prefix_server_url } from "../../../HelperJS/url_helper";
 
 // module & major & subject
 async function getListOfAllFiles(major, module, subject) {
-
-
    
     let token = LocalStorage.getItem(LocalStorage.token);
     //let url  = "http://localhost:4000/file-handling/files_in_subject";

@@ -53,7 +53,8 @@ class GeneralSoldier extends React.Component {
 			} else {
 				this.myRole = user.data["role"];
                 let personalId = user.data["personalId"];
-								
+				
+				// extract my submissions
                 getAllSoldierSubmissions(personalId).then((submissions) => {
                     if (submissions !== undefined) {
 						if (submissions.data !== undefined) {
@@ -75,6 +76,8 @@ class GeneralSoldier extends React.Component {
 
 							let amountSubmitted = submissions.data.length;
 							
+							// extract opened subjects 
+							// complement ones are closed
 							getSoldierOpened(personalId).then((subjectOnDemands) => {
 
 								if (subjectOnDemands !== undefined) {

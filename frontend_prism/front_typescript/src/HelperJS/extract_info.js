@@ -215,9 +215,6 @@ async function getAllSoldierSubmissions(personalId){
 		
 		let url = prefix_server_url + "user-submission/" + personalId;
 
-	
-		
-
 		const req = await axios.create({
 			baseURL: url,
 			timeout: 1000,
@@ -249,9 +246,6 @@ async function getSoldierOpened(personalId){
 	} else {
 		
 		let url = prefix_server_url + "subjects-on-demand/my_on_demands/" + personalId;
-
-	
-		
 
 		const req = await axios.create({
 			baseURL: url,

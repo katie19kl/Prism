@@ -46,8 +46,8 @@ class ReviewCreationDialog extends React.Component {
     }
 
     componentDidUpdate() {
-        if (this.props.reviewDialogOpen !== this.state.open) {
 
+        if (this.props.reviewDialogOpen !== this.state.open) {
             this.setState({ open: this.props.reviewDialogOpen });
 
         }
