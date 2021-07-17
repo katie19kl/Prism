@@ -1,11 +1,19 @@
-import { ArgumentsHost, Catch, ExceptionFilter, ForbiddenException, HttpException } from '@nestjs/common';
+import { 
+	ArgumentsHost, 
+	Catch, 
+	ExceptionFilter, 
+	ForbiddenException, 
+	HttpException 
+} from '@nestjs/common';
 import { UserNotFoundException } from '../exception/UserNotFound.exception';
 import { Request, Response } from 'express';
+
 
 @Catch()
 export class EmptyExceptionFilter<T> implements ExceptionFilter {
 	
-	catch(exception: ForbiddenException, host: ArgumentsHost) {		
+	catch(exception: ForbiddenException, host: ArgumentsHost) {
+		
 		const status =
 		exception instanceof HttpException ? exception.getStatus() 
 		: UserNotFoundException.NotFound;

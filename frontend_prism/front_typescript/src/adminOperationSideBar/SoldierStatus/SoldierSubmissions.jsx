@@ -20,15 +20,12 @@ const useStyles = (theme) => ({
 		background: "white",
 		fontWeight: '300%',
 		borderTopStyle: "solid",
-		//borderTopColor: "#0096ff",
 		borderTopColor: "black",
 	},
 	sticky: {
 		position: "sticky",
 		left: 0,
-		//background: "black",
 		background: "#3b3745",
-		//boxShadow: " 2px 5px #0096ff",
 		boxShadow: " 2px 5px black",
 		borderRightStyle: "solid",
 		borderRightColor: "black",
@@ -36,17 +33,13 @@ const useStyles = (theme) => ({
 		fontWeight: 'bold',
 		width: '50px',
 		borderBottom: 'solid 3px black',
-		//borderLeftStyle: "solid",
-		//borderLeftColor: "#0096ff",
+		
 	},
 
 	tableCell: {
 		borderRightStyle: "solid",
-		//borderRightStyle: "dotted",
 		display: "tableRowGroup",
-		//borderRightColor: "#0096ff",//
 		borderRightColor: "black",
-		//borderBottom: 'dotted 3px #0096ff',
 		borderBottom: 'solid 3px black',
 	},
 	table: {
@@ -124,7 +117,7 @@ class SoldierSubmissions extends React.Component {
 					
 						
 						getSoldierClosedSubjects(this.props.selectedMajor,module,soldier).then((response) => {
-							console.log(response)
+							
 							if (response !== undefined)
 							{
 								if (response.data !== undefined){				

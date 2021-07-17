@@ -45,7 +45,7 @@ export default function App() {
 
 
 
-			<PrivateRoutingComponent path="/general_staff" roles={[Role.Admin, Role.Commander]} component={General}/>
+			<PrivateRoutingComponent path="/general_staff" roles={[Role.Admin, Role.Commander, Role.Tester]} component={General}/>
 
 			<PrivateRoutingComponent path="/general_soldier" roles={[Role.Soldier]} component={GeneralSoldier}></PrivateRoutingComponent>
 

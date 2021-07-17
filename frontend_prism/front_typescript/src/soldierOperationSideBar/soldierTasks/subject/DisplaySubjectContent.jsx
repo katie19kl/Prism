@@ -54,7 +54,6 @@ export default class DisplaySubjectContent extends React.Component {
         }
 
 
-        console.log("=========================================================")
         let existSubmission = this.props.reviewedSubjects.includes(subject)
 
         for (let i = 0; i< filteredArrFiles.length; i = i + 1){
@@ -64,8 +63,7 @@ export default class DisplaySubjectContent extends React.Component {
                 filteredArrFiles[i].file_name = Status.Reviewed
             } 
         }
-        console.log(filteredArrFiles)
-  
+        
         
         return (
 

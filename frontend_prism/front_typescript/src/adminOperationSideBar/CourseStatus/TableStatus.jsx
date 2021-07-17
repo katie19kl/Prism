@@ -250,14 +250,12 @@ class TableStatus extends React.Component {
 	// extract ONLY my soldiers in selected major
 	extractAllMySoldiers() {
 
-		console.log("all my soldiers")
 		let selectedMajor = this.props.selectedMajor
 
 		getAllMySoldiers(selectedMajor).then((response) => {
 			if (response !== undefined) {
 				if (response.data !== undefined) {
 
-					console.log("Proccess new arrived:: ", response.data)
 					this.processNewSoldiers(response.data)
 				}
 			}
@@ -432,11 +430,8 @@ class TableStatus extends React.Component {
 					let subject = submission.subject
 
 
-					console.log("-------------||||||||-----")
 					let amountFiles = submission.amoutSubmittedFiles;
-					console.log(amountFiles)
-					console.log("-------------||||||||-----")
-
+					
 
 
 

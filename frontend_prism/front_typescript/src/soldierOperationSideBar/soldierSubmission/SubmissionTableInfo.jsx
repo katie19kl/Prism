@@ -208,6 +208,8 @@ class SubmissionTableInfo extends React.Component {
     }
 
     deleteFileFromSubmissionHandler(event, file_name) {
+
+
         event.stopPropagation();
         this.chosenFileName = file_name;
 

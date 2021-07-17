@@ -14,51 +14,47 @@ export class SubjectsOnDemandController {
     constructor(private subjectsOnDemandService: SubjectsOnDemandService) { }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander])
-	@UseGuards(Role_Guard)    
+    @UseGuards(Role_Guard)
     @Post('open/:major/:module/:subject/:soldierId')
-    async openSubjectToUser(@Param('major') major: Major,@Param('module') module : string,
-                                            @Param('subject') subject:string,  @Param('soldierId') soldierId: string)
-    {
+    async openSubjectToUser(@Param('major') major: Major, @Param('module') module: string,
+        @Param('subject') subject: string, @Param('soldierId') soldierId: string) {
 
 
-        return await this.subjectsOnDemandService.openNewSubjectToSoldier(major,module,subject,soldierId)
+        return await this.subjectsOnDemandService.openNewSubjectToSoldier(major, module, subject, soldierId)
 
     }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander])
-	@UseGuards(Role_Guard)  
+    @UseGuards(Role_Guard)
     @Post('close/:major/:module/:subject/:soldierId')
-    async closeSubjectToUser(  @Param('major') major: Major,@Param('module') module : string,
-                                            @Param('subject') subject:string,  @Param('soldierId') soldierId: string)
-    {
+    async closeSubjectToUser(@Param('major') major: Major, @Param('module') module: string,
+        @Param('subject') subject: string, @Param('soldierId') soldierId: string) {
 
-        
-        return await this.subjectsOnDemandService.closeSubjectToSoldier(major,module,subject,soldierId)
+
+        return await this.subjectsOnDemandService.closeSubjectToSoldier(major, module, subject, soldierId)
 
     }
 
 
 
     @Post('user_closed/:major/:module')
-    async getSoldierClosedSubjects( @Body() soldiers,  
-        @Param('major') major: Major, @Param('module') module : string)
-    {    
-        return await this.subjectsOnDemandService.getSoldiersClosedSubjects(major,module,soldiers)
+    async getSoldierClosedSubjects(@Body() soldiers,
+        @Param('major') major: Major, @Param('module') module: string) {
+        return await this.subjectsOnDemandService.getSoldiersClosedSubjects(major, module, soldiers)
     }
 
 
     @Get('user_opened/:major/:module/:personalId')
     async getSoldierOpenedSubjects(@Param('personalId') personalId: string,
-        @Param('major') major: Major, @Param('module') module : string
-    ){
-        console.log(" HERERERERRERERE")
-        return await this.subjectsOnDemandService.getSoldierOpenedSubjects(major,module,personalId)
+        @Param('major') major: Major, @Param('module') module: string
+    ) {
+
+        return await this.subjectsOnDemandService.getSoldierOpenedSubjects(major, module, personalId)
     }
 
 
     @Get("my_on_demands/:personalId")
-    async getSoldierOpened(@Param('personalId') personalId: string){
-        console.log("XXX")
+    async getSoldierOpened(@Param('personalId') personalId: string) {
         return await this.subjectsOnDemandService.getSoldierOpened(personalId)
     }
 

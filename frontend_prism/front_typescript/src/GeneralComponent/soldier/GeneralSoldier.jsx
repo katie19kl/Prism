@@ -84,8 +84,6 @@ class GeneralSoldier extends React.Component {
 										let openedSubjects = subjectOnDemands.data[0].moduleToOpenedSubjects;
 										
 										for (const [key, val] of Object.entries(openedSubjects)) {
-											console.log(key);
-											console.log(val);
 											
 											amountOpened = amountOpened + val.length;
 										}

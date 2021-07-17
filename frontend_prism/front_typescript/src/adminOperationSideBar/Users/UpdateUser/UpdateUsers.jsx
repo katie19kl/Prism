@@ -10,7 +10,6 @@ import Role from "../../../Roles/Role";
 
 const useStyles = (theme) => ({
     myFont: {
-        //fontFamily: "Comic Sans MS, Comic Sans, cursive",
         fontFamily: 'monospace'
     },
     select: {

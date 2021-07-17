@@ -7,7 +7,6 @@ import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import SubmissionTableInfo from "./SubmissionTableInfo";
 import Role from "../../Roles/Role";
 
-
 const useStyles = (theme) => ({
 
     myFont: {
@@ -52,7 +51,7 @@ class UserSubmission extends React.Component {
             <MenuAppBar
             role={Role.Soldier}
             menu={
-                <SoldierMenu />
+                <SoldierMenu/>
             }
             content={
                 
@@ -90,7 +89,6 @@ class UserSubmission extends React.Component {
                     <SubmissionTableInfo
 
                         browesHistory={history}
-                        //role={Role.MyFiles}
                         role={""}
                         major={major}
                         module={moduleName}

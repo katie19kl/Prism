@@ -1,16 +1,11 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { model, Model } from 'mongoose';
-import { UserSubmissionSchema } from './userSubmission.schema';
+import { Model } from 'mongoose';
 import { UserSubmissionDTO } from './dto/user-submission.dto';
 import { IUserSubmission } from './iuser-submission.interface';
 import { FileHandlingService } from '../file-handling/file-handling.service';
 import { UserSubmissionFileHandler } from './userServiceFileHelper/userSubmissionFileHandler';
-import { AuthService } from '../auth/auth.service';
-import { JwtService } from '@nestjs/jwt';
-import { UsersService } from '../users/users.service';
 import { jwtConstants } from '../RolesActivity/constants';
-import { resolve } from 'node:path';
 import { Major } from '../users/common/major.enum';
 
 
@@ -80,11 +75,10 @@ export class UserSubmissionService {
     async removeSubmittedFile(createUserSubmissionDto: UserSubmissionDTO, usertoken, file_name){
         
         let userId = UserSubmissionService.getIdFromJWT(usertoken)
-        //let userId = "12345678"
         createUserSubmissionDto.soldierId = userId
  
         // delete file from directory
-        let deletedFromDir = await this.userSubmissionFileHandler.deleteFile(createUserSubmissionDto, file_name)
+        await this.userSubmissionFileHandler.deleteFile(createUserSubmissionDto, file_name)
         
         // get new file list - currently presented in solution dir
         let filesInDirSolution = await this.userSubmissionFileHandler.getFiles(createUserSubmissionDto)
@@ -143,9 +137,6 @@ export class UserSubmissionService {
         };
         
         let docExist =  await this.userSubmissionModel.exists(filter);
-        console.log("Doc already exist  ")
-        console.log(docExist)
-        console.log("--------------------")
         return docExist
     }
 
@@ -162,14 +153,13 @@ export class UserSubmissionService {
     /// take care of adding to empty folder
     async addNewUserSubmission(createUserSubmissionDto: UserSubmissionDTO, file, usertoken) {
         
-        console.log("----------------Create new submission----------------------")
 
         createUserSubmissionDto.gradeDescription = "";
         createUserSubmissionDto.isChecked = false
 
 
         let idFromJWT = UserSubmissionService.getIdFromJWT(usertoken)
-        //let idFromJWT = "12345678"
+        
         
         createUserSubmissionDto.soldierId = idFromJWT
         // dir with user solutions
@@ -191,11 +181,9 @@ export class UserSubmissionService {
         
 
         
-        //let docExist = await this.checkDocExist(createUserSubmissionDto, idFromJWT)
         let docExist = dirExist
 
         
-        console.log("Document exist ? ::        " + docExist.toString())
         if (docExist){
             
             let updatedSubmissionOfUser = this.updateUserSubmissionDB(createUserSubmissionDto, usertoken,filesInDirSolution)
@@ -214,7 +202,7 @@ export class UserSubmissionService {
 
 
     async getAllSoldierSubmissions(personalId:string, major_:Major, module_:string){
-                //////////////// SUKA WHY MAJOR ARRAY ???? ////////////////
+                
         
             const filter = { 
                     soldierId: personalId,

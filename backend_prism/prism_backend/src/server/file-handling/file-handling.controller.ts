@@ -175,20 +175,11 @@ export class FileHandlingController {
 	@SetMetadata('roles', [Role.Admin, Role.Commander, Role.Soldier])
 	@UseGuards(Role_Guard)
 	@Delete("file/:major/:module/:subject/:file_name")
-	async deleteFile(@Req() req,
+	async deleteFile(
 		@Param('major') major: Major, @Param('module') module: string,
 		@Param('subject') subject: string, @Param('file_name') file_name: string) {
 
-		const usertoken = req.headers.authorization;
-		let user = await this.userService.getUserByJWT(usertoken);
-		let userRole = user.role;
-
-		if (userRole === Role.Soldier) {
-			let userId  = user.personalId;
-			let nameFolder = userId + IndexingFormat.SoldierSolutionSeparator;
-			
-		}
-			
+	
 		return this.fileHandlingService.deleteFile(major, module, subject, file_name);
 	}
 

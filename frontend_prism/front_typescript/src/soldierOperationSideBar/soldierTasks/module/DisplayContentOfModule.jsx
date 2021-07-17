@@ -44,8 +44,7 @@ class DisaplayContentOfModule extends React.Component {
 
     componentDidMount() {
 
-        console.log("Submmsion ifo ggeeett")
-
+        
         let moduleName = this.props.match.params.moduleName;
         let major = this.props.match.params.major;
 
@@ -109,7 +108,7 @@ class DisaplayContentOfModule extends React.Component {
                                         }
                                     }
 
-                           
+                        
 
                                     if (submissionGrade === OK_Status.OK || submissionGrade === OK_Status.NOT_OK){
                                         submissionExist = true
@@ -152,8 +151,7 @@ class DisaplayContentOfModule extends React.Component {
 
     render() {
 
-        console.log(this.subjectWithSubmission)
-
+        
 
         const { classes } = this.props;
 
@@ -226,7 +224,6 @@ class DisaplayContentOfModule extends React.Component {
                 
                 let dict = this.state.dirSubjectFiles
 
-                console.log(dict)
                 return (
                     <MenuAppBar
                         role ={Role.Soldier} 

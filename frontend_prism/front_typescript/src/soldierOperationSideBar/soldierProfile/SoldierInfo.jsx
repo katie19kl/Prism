@@ -20,7 +20,6 @@ const useStyles = (theme) => ({
         marginLeft: theme.spacing(6),
     },
     myFont: {
-        //fontFamily: "Comic Sans MS, Comic Sans, cursive",
         fontFamily: 'monospace'
     },
     padding: {

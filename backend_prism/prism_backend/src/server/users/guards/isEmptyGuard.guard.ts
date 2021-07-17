@@ -6,7 +6,6 @@ export class IsEmptyGuard implements CanActivate {
 
 	canActivate(context: ExecutionContext): boolean | Promise<boolean> {
 
-		console.log("I am in Empty guard(in users)");
 		let text = context.switchToHttp().getRequest();
 		let bodyRequest = text.body;
 

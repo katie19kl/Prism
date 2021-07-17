@@ -130,7 +130,6 @@ class CourseFilesMainView extends React.Component {
                                 modulesToDictSubsToFiles[module] = currModuleToDict;
                             }
 
-                            console.log(modulesToDictSubsToFiles)
 
                             const listModules = Object.keys(modulesToDictSubsToFiles);
 

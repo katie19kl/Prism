@@ -16,7 +16,6 @@ const useStyles = (theme) => ({
     padding: {
         marginTop: theme.spacing(5),
         marginBottom: theme.spacing(3),
-        //fontFamily: "Comic Sans MS, Comic Sans, cursive", 
         fontFamily: 'monospace',
     },
 });

@@ -12,6 +12,7 @@ export class AuthService {
 
     constructor(private usersService: UsersService, private jwtService: JwtService) {}
 
+    
     async validateUserByPassword(loginAttempt: LoginUserDto): Promise<any | undefined> {
 
         // This will be used for the initial login
@@ -64,15 +65,15 @@ export class AuthService {
     }
 
     async createJwtPayload(user) {
-              
-        // Generates rand || CurrentTime
-        // new string per server activating.
-        let randStr = jwtStaticRandomSTR.stringRandomTime;
+      
+        // Generates rand||CurrentTime
+        // new string per server activating
+        let randStr = jwtStaticRandomSTR.stringRandomTime
 
         let data: JwtPayload = {
 
             // adding randomality
-            personalId: user.personalId,
+            personalId: user.personalId,  
             randString: randStr
         };
 

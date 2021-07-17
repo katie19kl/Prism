@@ -3,52 +3,49 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { MajorManager } from '../file-handling/managers/MajorManager';
 import { ModuleManager } from '../file-handling/managers/ModuleManager';
-import { SubjectManager } from '../file-handling/managers/SubjectManager';
 import { Major } from '../users/common/major.enum';
-import { UsersService } from '../users/users.service';
 import { CreateSubjectsOnDemandDto } from './dto/subjects-on-demand.dto';
 import { ISubjectsOnDemand } from './subjects-on-demand.interface';
 
 @Injectable()
 export class SubjectsOnDemandService {
 
-	moduleManager: ModuleManager
+    moduleManager: ModuleManager
     majorManager: MajorManager
 
 
-    constructor(@InjectModel('SubjectsOnDemand') private userSubmissionModel: Model<ISubjectsOnDemand>){
-	
+    constructor(@InjectModel('SubjectsOnDemand') private userSubmissionModel: Model<ISubjectsOnDemand>) {
 
-		this.moduleManager = new ModuleManager()
+
+        this.moduleManager = new ModuleManager()
         this.majorManager = new MajorManager()
 
     }
 
 
-    async getSoldierOpened(personalId:string){
-        const filter_ = {soldierId : personalId} ;
+    async getSoldierOpened(personalId: string) {
+        const filter_ = { soldierId: personalId };
 
         return await this.userSubmissionModel.find(filter_);
     }
 
 
     // close all subjects to specific soldier
-    async closeAllSubjectToNewSoldier(majors: Major[], soldierId:string) {
-        
-        console.log(majors)
-        
+    async closeAllSubjectToNewSoldier(majors: Major[], soldierId: string) {
+
+
         if (majors !== undefined) {
-            
+
             for (const major of majors) {
-			
+
                 let modules = await this.majorManager.getAllDirOfMajor(major);
                 for (const module of modules) {
-            
+
                     let subjects = await this.moduleManager.getAllDirOfModule(major, module);
                     for (const subject of subjects) {
-                        
+
                         await this.closeNewSubjectToSoldier(major, module, subject, soldierId);
-        
+
                     }
                 }
             }
@@ -56,36 +53,33 @@ export class SubjectsOnDemandService {
     }
 
     // From creating new subject -> close to all soldiers
-    async closeNewSubjectToAllSoldier(major_:Major, module:string, subject:string) {
+    async closeNewSubjectToAllSoldier(major_: Major, module: string, subject: string) {
 
         let allSoldiers = [];
         for (const soldier of allSoldiers) {
 
-            let soldierId = soldier["personalId"]  ;          
-            await this.closeNewSubjectToSoldier(major_, module,subject, soldierId) ;
-        
+            let soldierId = soldier["personalId"];
+            await this.closeNewSubjectToSoldier(major_, module, subject, soldierId);
+
         }
     }
 
 
     // closing subject to specific user
-    async closeNewSubjectToSoldier(major_:Major, module:string, subject:string, soldierId_:string) {
+    async closeNewSubjectToSoldier(major_: Major, module: string, subject: string, soldierId_: string) {
 
         // get all soldiers by major
-  
-        const filter_ = {soldierId : soldierId_, major: major_};
+
+        const filter_ = { soldierId: soldierId_, major: major_ };
 
 
         let foundObject = await this.userSubmissionModel.findOneAndDelete(filter_);
-        
-       
-        
+
+
+
         // was found - delete & store ( updating )
         if (foundObject) {
-            
-      
-            
-            
+
             // add another subject to module-subject list
             if (foundObject.moduleToClosedSubjects.has(module)) {
                 foundObject.moduleToClosedSubjects.get(module).push(subject);
@@ -108,15 +102,15 @@ export class SubjectsOnDemandService {
 
             // create dto with above fields to save it
             let newObject = new CreateSubjectsOnDemandDto();
-            
+
             newObject.major = foundObject.major;
             newObject.soldierId = foundObject.soldierId;
             newObject.moduleToOpenedSubjects = foundObject.moduleToOpenedSubjects;
             newObject.moduleToClosedSubjects = foundObject.moduleToClosedSubjects;
-            
+
             let toSave = new this.userSubmissionModel(newObject);
-    
-            
+
+
             await toSave.save();
 
 
@@ -124,12 +118,9 @@ export class SubjectsOnDemandService {
         } // It is the first subject of user ( in module )
         else {
 
-          
-            
-            
             // create the very first document of user
             let newObject = new CreateSubjectsOnDemandDto();
-            
+
             newObject.soldierId = soldierId_;
             newObject.major = major_;
 
@@ -143,7 +134,7 @@ export class SubjectsOnDemandService {
             // closed contains exactly one new-subject
             let closedSubjects = [];
             closedSubjects.push(subject);
-            
+
             let mapModuleToClosedSubjects = new Map();
             mapModuleToClosedSubjects.set(module, closedSubjects);
 
@@ -152,42 +143,36 @@ export class SubjectsOnDemandService {
 
 
             let toSave = new this.userSubmissionModel(newObject);
-    
-           
-            
+
+
+
             await toSave.save();
         }
     }
 
-    
 
 
 
-    arrayRemove(arr, value) { 
-    
-        return arr.filter(function(ele) { 
-            return ele != value; 
+
+    arrayRemove(arr, value) {
+
+        return arr.filter(function (ele) {
+            return ele != value;
         });
     }
 
 
 
-    async openNewSubjectToSoldier(major:Major, module:string, subject:string, personalId:string) {
+    async openNewSubjectToSoldier(major: Major, module: string, subject: string, personalId: string) {
 
-        const filter_ = {soldierId : personalId, major: major};
-
-
-
+        const filter_ = { soldierId: personalId, major: major };
 
         let foundObject = await this.userSubmissionModel.findOne(filter_);
 
-    
-        
-        
         let openedSubjects = foundObject.moduleToOpenedSubjects.get(module);
         openedSubjects.push(subject);
         let updatedOpenedSubjects = openedSubjects;
-        
+
         let closedSubjects = foundObject.moduleToClosedSubjects.get(module);
         let updatedClosedSubjects = this.arrayRemove(closedSubjects, subject);
 
@@ -197,7 +182,7 @@ export class SubjectsOnDemandService {
 
 
         let updatedClosedMap = foundObject.moduleToClosedSubjects;
-        updatedClosedMap.set(module,updatedClosedSubjects);
+        updatedClosedMap.set(module, updatedClosedSubjects);
 
 
         return await this.userSubmissionModel.updateOne(filter_, {
@@ -207,17 +192,9 @@ export class SubjectsOnDemandService {
     }
 
 
-    async closeSubjectToSoldier(major:Major, module:string, subject:string, personalId:string) {
+    async closeSubjectToSoldier(major: Major, module: string, subject: string, personalId: string) {
 
-
-       
-        
-
-        const filter_ = {soldierId : personalId, major: major};
-
-
-
-
+        const filter_ = { soldierId: personalId, major: major };
         let foundObject = await this.userSubmissionModel.findOne(filter_);
 
 
@@ -225,7 +202,7 @@ export class SubjectsOnDemandService {
         let closedModule = closedMap.get(module);
         closedModule.push(subject);
         closedMap.set(module, closedModule);
-        
+
         let updatedClosedMap = closedMap;
 
 
@@ -236,20 +213,15 @@ export class SubjectsOnDemandService {
 
         let updatedOpenedMap = openedMap;
 
- 
-        
-
-
-
         return await this.userSubmissionModel.updateOne(filter_, {
-                moduleToOpenedSubjects: updatedOpenedMap,
-                moduleToClosedSubjects: updatedClosedMap,
+            moduleToOpenedSubjects: updatedOpenedMap,
+            moduleToClosedSubjects: updatedClosedMap,
 
         });
     }
 
-    getFirstProp(jsonObj){
-		let firstProp;
+    getFirstProp(jsonObj) {
+        let firstProp;
 
         for (var key in jsonObj) {
             if (jsonObj.hasOwnProperty(key)) {
@@ -257,50 +229,36 @@ export class SubjectsOnDemandService {
                 break;
             }
         }
-		return firstProp;
-	}
+        return firstProp;
+    }
 
 
-    async getSoldiersClosedSubjects(major:Major, module:string, soldiers_) {
+    async getSoldiersClosedSubjects(major: Major, module: string, soldiers_) {
         let soldiers = this.getFirstProp(soldiers_);
 
-        console.log("------------")
-        console.log(soldiers)
         let soldiersClosed = {};
         for (const soldier of soldiers) {
-            
-  
-            
+
             let closedSubjects = await this.getSoldierClosedSubjects(major, module, soldier.personalId);
-            
-            
             soldiersClosed[soldier.personalId] = closedSubjects;
         }
 
-        
         return soldiersClosed;
     }
 
 
-    async getSoldierClosedSubjects(major:Major, module:string, personalId:string){
-        
-        const filter_ = {soldierId : personalId, major: major};
+    async getSoldierClosedSubjects(major: Major, module: string, personalId: string) {
+
+        const filter_ = { soldierId: personalId, major: major };
 
         return (await this.userSubmissionModel.findOne(filter_)).moduleToClosedSubjects.get(module);
     }
 
 
 
-    async getSoldierOpenedSubjects(major:Major, module_:string, personalId:string) {
-        
-        
-        
-        const filter_ = {soldierId : personalId, major: major};
+    async getSoldierOpenedSubjects(major: Major, module_: string, personalId: string) {
 
- 
-        
-      
-        
+        const filter_ = { soldierId: personalId, major: major };
         return (await this.userSubmissionModel.findOne(filter_)).moduleToOpenedSubjects.get(module_);
-    }    
+    }
 }

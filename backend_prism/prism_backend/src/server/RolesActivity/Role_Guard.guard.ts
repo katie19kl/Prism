@@ -16,23 +16,19 @@ export class Role_Guard implements CanActivate {
     const userToken = request_.headers.authorization;
     
     let user_ = await this.userService.getUserByJWT(userToken);
+	// no token was provided
     if (user_ === undefined){
         return false
     }
 
 	
 	const roles = this.reflector.get<string[]>('roles', context.getHandler());
+	// everyone is allowed to enter
 	if (roles === undefined) {
 		return true;
 	}
 
     let currRole = user_.role;
-
-    console.log("----------------")
-    console.log(roles)
-    console.log(roles.includes(currRole))
-    console.log(currRole)
-    console.log("----------------")
     
     return roles.includes(currRole)
 
