@@ -110,7 +110,7 @@ class DisaplayContentOfModule extends React.Component {
                                         }
                                     }
 
-                           
+                        
 
                                     if (submissionGrade === OK_Status.OK || submissionGrade === OK_Status.NOT_OK){
                                         submissionExist = true
