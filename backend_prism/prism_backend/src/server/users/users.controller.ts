@@ -21,7 +21,6 @@ export class UsersController {
 
 
     @Get("role_by_JWT")
-    @UseGuards(JwtAuthGuard)
     async extractUserRole(@Req() req) {
         const usertoken = req.headers.authorization;
         return { role: await this.usersService.getRoleByJWT(usertoken) };
@@ -29,7 +28,6 @@ export class UsersController {
 
 
     @Get('info_by_JWT')
-    @UseGuards(JwtAuthGuard)
     async extractUserInfo(@Req() req) {
 
         const usertoken = req.headers.authorization;

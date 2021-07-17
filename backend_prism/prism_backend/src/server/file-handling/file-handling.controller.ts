@@ -146,9 +146,11 @@ export class FileHandlingController {
 		@Param('major') major: Major, @Param('module') module: string,
 		@Param('subject') subject: string) {
 
+		
 		let module_choosen = module;
 		let subject_choosen = subject;
 		let major_choosen = major;
+
 
 		return this.fileHandlingService.uploadFile(file, major_choosen, module_choosen, subject_choosen);
 	}

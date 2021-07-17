@@ -131,7 +131,13 @@ class SoldierSubmissions extends React.Component {
 								this.subjectClosed[module] = []
 								this.soldierClosed = -1
 							}
-							resolv(response.data)
+							if (response !== undefined){
+								resolv(response.data)
+							}
+							else {
+								resolv("")
+							}
+							
 				
 						})
 					});

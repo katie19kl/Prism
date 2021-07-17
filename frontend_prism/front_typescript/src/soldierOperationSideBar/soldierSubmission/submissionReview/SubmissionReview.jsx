@@ -502,7 +502,7 @@ class SubmissionReview extends React.Component {
                                 {/* Row of reviewer */}
                                 <TableRow>
 
-                                    <TableCell > {checkerId + " - " + checkerRole} </TableCell>
+                                    <TableCell > {checkerRole} </TableCell>
                                     <TableCell component="th" scope="row">   Reviewer       </TableCell>
 
                                 </TableRow>
