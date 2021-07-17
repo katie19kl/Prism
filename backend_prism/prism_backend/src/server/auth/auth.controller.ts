@@ -8,7 +8,6 @@ import { UserNotFoundException } from './exception/UserNotFound.exception';
 import { JwtAuthGuard } from './guards/JWT_AuthGuard.guard';
 import { NoJWTFilter } from './filters/NoJWTFilter.filter';
 import { UsersService } from '../users/users.service';
-import { jwtConstants } from '../RolesActivity/constants';
 
 /*
 

@@ -1,6 +1,4 @@
 import { Controller, Get, Post, SetMetadata, UseFilters, UseGuards } from '@nestjs/common';
-import { MainJWTFilter } from '../auth/filters/MainJWTFilter.filter';
-import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
 import { Role } from '../RolesActivity/role.enum';
 import { AppService } from './app.service';
 import { Role_Guard } from '../RolesActivity/Role_Guard.guard';

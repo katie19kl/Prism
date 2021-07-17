@@ -1,5 +1,4 @@
 import { Document } from 'mongoose'
-import { Grade } from '../users/common/grade.enum';
 import { Major } from '../users/common/major.enum';
 
 

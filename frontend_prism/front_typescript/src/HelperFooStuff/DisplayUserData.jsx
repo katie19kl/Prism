@@ -6,7 +6,6 @@ import React from "react"
 const useStyles = (theme) => ({
     root2: {
         background: 'linear-gradient(45deg, #d1b3ff 30%, #6600ff 90%)',
-        //boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
         color: 'black',
     },
     root: {

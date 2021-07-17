@@ -15,10 +15,10 @@ import { Role_Guard } from '../RolesActivity/Role_Guard.guard';
 @Controller('users')
 export class UsersController {
 
-    constructor(private usersService: UsersService, 
-                private subjectOnDemandService: SubjectsOnDemandService,
-                private syncronizer:Synchronizer) {}
-                
+    constructor(private usersService: UsersService,
+        private subjectOnDemandService: SubjectsOnDemandService,
+        private syncronizer: Synchronizer) { }
+
 
     @Get("role_by_JWT")
     @UseGuards(JwtAuthGuard)
@@ -38,19 +38,19 @@ export class UsersController {
     }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Post()
     @UseGuards(IsEmptyGuard)
     async create(@Body() createUserDto: CreateUserDto) {
 
-        let result = await this.usersService.create(createUserDto,this.subjectOnDemandService);
-           
+        let result = await this.usersService.create(createUserDto, this.subjectOnDemandService);
+
         return result;
     }
 
-    
+
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Get('soldiers')
     async getAllSoldiers() {
 
@@ -59,43 +59,42 @@ export class UsersController {
     }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Get('all_users/:role')
     async getAllUsersByRole(@Param('role') role: Role) {
 
-        console.log("i am here kety!")
         return await this.usersService.getAllUsersByRole(role);
     }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Post('submissions/:major/:module')
     async getUsersSubmissions(@Body() soldiers, @Param('major') major: Major,
-                              @Param('module') module: string) {
-        
-       return await this.usersService.retrieveSubmissions(soldiers,major,module)
-        
+        @Param('module') module: string) {
+
+        return await this.usersService.retrieveSubmissions(soldiers, major, module)
+
     }
 
     @Get(':id')
-    async getSoldierById(@Param('id') personalId: string){
+    async getSoldierById(@Param('id') personalId: string) {
 
 
         return await this.usersService.findOneByPersonalId(personalId)
-        
+
     }
 
-    
+
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Post('soldiers/majors')
     async getAllSoldiersInMajors(@Body() majors: Major[]) {
-    
+
         return await this.usersService.findSoldiersInAllMajors(majors);
     }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Put(':username')
     async updateUser(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
 
@@ -104,28 +103,28 @@ export class UsersController {
     }
 
     @SetMetadata('roles', [Role.Admin, Role.Commander])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Delete(':id')
     async deleteUser(@Param('id') personalId: string) {
 
-     
-        
-        return await this.usersService.deleteUser(personalId,this.syncronizer);
+
+
+        return await this.usersService.deleteUser(personalId, this.syncronizer);
 
     }
 
 
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
-	@UseGuards(Role_Guard)
+    @UseGuards(Role_Guard)
     @Get('my_soldiers/:major')
-    async getSoldierByMajorAndCommanderId(@Param('major') major: Major,@Req() req){
+    async getSoldierByMajorAndCommanderId(@Param('major') major: Major, @Req() req) {
 
         const usertoken = req.headers.authorization;
         let commander = await this.usersService.getUserByJWT(usertoken);
         let commanderId = commander.personalId;
-        
+
         return await this.usersService.getSoldiersByCommanderId(commanderId, major)
-                
+
     }
 
 

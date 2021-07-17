@@ -3,8 +3,6 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { SubjectsOnDemandSchema } from './subjects-on-demand.schema';
 import { SubjectsOnDemandController } from './subjects-on-demand.controller';
 import { SubjectsOnDemandService } from './subjects-on-demand.service';
-import { FileHandlingModule } from '../file-handling/file-handling.module';
-import { UsersModule } from '../users/users.module';
 
 @Module({
     controllers: [ SubjectsOnDemandController ],

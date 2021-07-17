@@ -7,7 +7,6 @@ export default class Token  {
 		const token = LocalStorage.getItem(LocalStorage.token)!;
 	
 		if (token === "undefined" || token === undefined){
-			console.log("token undefined")
 			return null
 		}
 		return token;

@@ -7,7 +7,6 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { jwtConstants } from '../RolesActivity/constants';
-import { UserSubmissionService } from '../UserSubmission/user-submission.service';
 
 @Module({
     exports: [AuthService, JwtModule],

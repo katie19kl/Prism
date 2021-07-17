@@ -247,7 +247,6 @@ class SubmissionReview extends React.Component {
                     }
                     
                 } else if (res === '') {
-                    console.log("there is no data fields in res");
                     this.severity = 'error';
                     this.msg = 'There are no changes made to the data';
                 }

@@ -22,7 +22,7 @@ export default class LogINComp extends React.Component {
 		
 		if (history) {
 			history.push('/mainPage');
-			//history.push('/about');
+			
 		}
 	}
 

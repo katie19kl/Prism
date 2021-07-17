@@ -271,7 +271,7 @@ class FileSystemDisplay extends React.Component {
                     if (response !== undefined) {
                         if (response.status === 201) {
                             
-                            console.log(this.newModuleName);
+                           
 
                             // update the view to contain the new created module.
                             this.sendGetModulesRequest(this.state.chosenMajor);
@@ -283,7 +283,6 @@ class FileSystemDisplay extends React.Component {
 
         } else {
 
-            console.log("error");
             this.msg = "You did not enter the new module name";
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});
@@ -321,7 +320,6 @@ class FileSystemDisplay extends React.Component {
             }
 
         } else {
-            console.log("error");
             this.msg = "Failed to create the " + objToInsert;
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});
@@ -451,7 +449,6 @@ class FileSystemDisplay extends React.Component {
             });
 
         } else {
-            console.log("I am here in else when the data is not valid");
             return undefined;
         }
     }
@@ -461,20 +458,17 @@ class FileSystemDisplay extends React.Component {
         if (response !== undefined) {
 
             if (response.status !== undefined && response.status === 200) {
-                console.log('success');
                 this.msg = objToDelete + " deleted successfully";
                 this.severity = "success";
                 this.setState({ showMsg: true, msgOpen: true});
 
             } else {
-                console.log("error");
                 this.msg = "Failed to delete the " + objToDelete;
                 this.severity = "error";
                 this.setState({ showMsg: true, msgOpen: true});
             }
 
         } else {
-            console.log("error");
             this.msg = "Failed to delete the " + objToDelete;
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});
@@ -548,7 +542,6 @@ class FileSystemDisplay extends React.Component {
 
         } else {
 
-            console.log("error");
             this.msg = "You did not enter the new module name";
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});
@@ -659,7 +652,6 @@ class FileSystemDisplay extends React.Component {
 
         } else {
 
-            console.log("error");
             this.msg = "You did not enter the new subject name";
             this.severity = "error";
             this.setState({ showMsg: true, msgOpen: true});

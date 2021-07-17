@@ -6,7 +6,6 @@ import { Request, Response } from 'express';
 export class EmptyExceptionFilter<T> implements ExceptionFilter {
 	
 	catch(exception: ForbiddenException, host: ArgumentsHost) {
-		console.log("in empty filter");
 		
 		const status =
 		exception instanceof HttpException

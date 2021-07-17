@@ -2,6 +2,7 @@ import { Major } from "src/server/users/common/major.enum";
 import { IndexingFormat } from "../common/IndexingFormat";
 import { FileHandlingService } from "../file-handling.service";
 
+// Manager resposible for handling operations on major level
 export class MajorManager {
     
 
@@ -13,7 +14,7 @@ export class MajorManager {
         
         return await new Promise((resolve, reject) => {
 
-        
+                // all sub folders too
                 fs.rmdir(deleteMajorDir, {recursive:true}, function(err) {
                 if (err) { 
 
@@ -37,11 +38,12 @@ export class MajorManager {
         let fullPath = this.createPathMajor(major);
         let allModules =  FileHandlingService.getDirList(fullPath);
         
+        
         const transform = k => {
 
             return parseInt(k.split(IndexingFormat.ModuleSeparator)[0])
         }
-        // sort by subindexing
+        // sort by subindexing to preserve order in front
         if (allModules !== undefined){
             
             allModules.sort(function (a,b){

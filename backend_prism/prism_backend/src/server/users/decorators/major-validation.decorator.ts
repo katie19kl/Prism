@@ -13,7 +13,6 @@ export function IsMajor(validationOptions?: ValidationOptions) {
             validator: {
                 validate(value: any, _args: ValidationArguments) {
                     
-                    console.log(value)
 
                     // you can return a Promise<boolean> here as well, if you want to make async validation
                     if (Array.isArray(value)) {

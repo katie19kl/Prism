@@ -5,9 +5,8 @@ import { Request, Response } from 'express';
 export class FileErrorHandling<T> implements ExceptionFilter {
 	
 	catch(exception: ForbiddenException, host: ArgumentsHost) {
-		console.log("in empty filter");
 		
-
+		
 
 		const ctx = host.switchToHttp();
 		const response = ctx.getResponse<Response>();

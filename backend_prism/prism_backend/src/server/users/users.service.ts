@@ -284,15 +284,10 @@ export class UsersService {
 		let user = await this.userModel.findOne({"personalId": personalId});
 
 		if (user) {
-			
-			//return await user.deleteOne();
-			
-			
+					
 			await user.deleteOne();
 			return await syncronizer.syncUserDeletion(user.personalId)
 			
-
-
 		} else {
 
 			throw new HttpException('User does not exist', HttpStatus.NOT_FOUND);
@@ -315,11 +310,6 @@ export class UsersService {
 	async retrieveSubmissions(soldiersJson, major:Major, module:string){
 
         let soldiers = this.getFirstProp(soldiersJson)
-		
-
-		
-		
-		let allSubmissions = []
 
 		let sendSubmission = {}
 		for (let soldier of soldiers)
@@ -329,7 +319,7 @@ export class UsersService {
 			sendSubmission[soldier.personalId] = []
 			let submissions = await this.userSubmissionHandler.getAllSoldierSubmissions(soldier.personalId,major,module)
 
-			//let sendSubmission = {}
+			
 			for (let submission of submissions){
 				
 			
@@ -368,19 +358,12 @@ export class UsersService {
 								}
 				)
 				
-				//console.log(sendSubmission[submission.soldierId])
-							
-								
-								
-							
-
+			
 			}
-			//allSubmissions.push(sendSubmission)
 		}
 
 		
 		return sendSubmission
-		//return allSubmissions
 	}
 
 	async getSoldiersByCommanderId(commanderId:string, majorSelected:Major){

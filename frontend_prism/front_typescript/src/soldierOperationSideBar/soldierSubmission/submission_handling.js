@@ -1,4 +1,3 @@
-//('user-submission'):soldierId/:major/:module/:subject
 import axios from "axios";
 import LocalStorage from "../../HelperJS/LocalStorage";
 import { getUserInfoByJWT } from '../../HelperJS/extract_info';

@@ -1,5 +1,4 @@
-import { ArgumentsHost, Catch, ExceptionFilter, ForbiddenException,
-	 HttpException, HttpStatus, UnauthorizedException } from '@nestjs/common';
+import { ArgumentsHost, Catch, ExceptionFilter, HttpException,  UnauthorizedException } from '@nestjs/common';
 import { UserNotFoundException } from '../exception/UserNotFound.exception';
 import { Request, Response } from 'express';
 

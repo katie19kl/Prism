@@ -12,7 +12,6 @@ import { getUserInfoById }
 
 const useStyles = (theme) => ({
     myFont: {
-        //fontFamily: "Comic Sans MS, Comic Sans, cursive",
         fontFamily: 'monospace'
     },
     select: {
