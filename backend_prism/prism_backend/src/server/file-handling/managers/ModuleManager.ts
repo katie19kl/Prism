@@ -120,6 +120,7 @@ export class ModuleManager {
                                 // index updating
                                 let indexNew = (parseInt(dir_subject.split(
                                     IndexingFormat.SubjectSubIndexing)[0]) - 1).toString();
+                                    
                                 let indexPrev = parseInt(dir_subject.split(
                                     IndexingFormat.SubjectSubIndexing)[0]).toString();
 
