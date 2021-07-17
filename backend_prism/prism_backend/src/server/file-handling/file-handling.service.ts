@@ -1,7 +1,5 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { Module } from '@nestjs/core/injector/module';
 import { Major } from '../users/common/major.enum';
-import { IndexingFormat } from './common/IndexingFormat';
 import { MajorManager } from './managers/MajorManager';
 import { ModuleManager } from './managers/ModuleManager';
 import { SubjectManager } from './managers/SubjectManager';
@@ -17,6 +15,7 @@ const dowloadSomeFileUrl = 'http://localhost:4000/file-handling/files/';
 
 
 @Injectable()
+// Its main functionality is - activate appropriate manager
 export class FileHandlingService {
 
     majorManager: MajorManager;
@@ -32,6 +31,7 @@ export class FileHandlingService {
         this.fileManager = new FileManager()
     }
 
+
     static get dowloadSomeFileUrl_() {
         return dowloadSomeFileUrl;
     }
@@ -40,7 +40,7 @@ export class FileHandlingService {
         return pathRootDirectory_;
     } 
 
-       // returs dir list in given path 
+    // returs dir list in given path 
     static getDirList(path:string) {
         const { readdirSync } = require('fs')
 
@@ -50,8 +50,6 @@ export class FileHandlingService {
                 readdirSync(source, { withFileTypes: true })
                 .filter(dirent => dirent.isDirectory())
                 .map(dirent => dirent.name);
-            
-            
                 
             let listDir = getDirectories(path)
             return listDir;
@@ -59,9 +57,6 @@ export class FileHandlingService {
         } catch(err) {
             if (err.code === "ENOENT") {
          
-                
-                
-                ///////////////
                 let empty = []
                 return empty
             }
@@ -69,25 +64,22 @@ export class FileHandlingService {
     }
 
 
-    static  async createNewDir(path: string) {
+    static async createNewDir(path: string) {
 
         let fs = require('fs');
 
         return await new Promise((resolve, reject) => {
             
-            if (path == "undefined") {
+            if (path === "undefined") {
                 reject(new ConflictException("This name already exist"));
 
             } else {
                 
-
                 fs.mkdir(path, function (err) {
+
                     if (err) {
-
                         reject(new NotFoundException("Is not able to create file"));
-
                     } else {
-
                         resolve("New directory " + path + " successfully created.");
                     }
                 });
@@ -96,33 +88,25 @@ export class FileHandlingService {
     }
     
 
-//////////////////////////////////MAJOR//////////////////////////////////////////////
-    async deleteMajorDir(directory_name_delete : Major) {
-    
+    // activate appropriate manager
+    async deleteMajorDir(directory_name_delete : Major) {    
         this.majorManager.deleteMajorDir(directory_name_delete);
     }
 
     // composes root/MAJOR
     createPathMajor(major:Major) {
-
         return this.majorManager.createPathMajor(major)
     }
     
     
     async getAllDirOfMajor(major:Major) {
-        
         return this.majorManager.getAllDirOfMajor(major)
     }
 
-        // creates directory on major level
-    async createNewMajorDir(directory_name : String) {
-        
+    // creates directory on major level
+    async createNewMajorDir(directory_name : String) {    
         return await this.majorManager.createNewMajorDir(directory_name) 
     }
-/////////////////////////////////////////////////////////////////////////////////////////
-
-
-/////////////////////MODULE//////////////////////////////////////////////////////////////
 
 
     async getAllDirOfModule(major: Major, module: string) {
@@ -132,8 +116,8 @@ export class FileHandlingService {
     async createNewModuleDirInMajor(new_directory_name : string, major:Major) {
 
         return await this.moduleManager.createNewModuleDirInMajor(new_directory_name, major)
-
     }
+
     async removeModuleDirInMajor(module_to_del:string, major:Major, synchronizer:Synchronizer) {
    
         return await this.moduleManager.removeModuleDirInMajor(module_to_del,major,synchronizer);
@@ -144,11 +128,6 @@ export class FileHandlingService {
         
         return await this.moduleManager.renameModule(major, currentModuleName, newModuleName,synchronizer)  
     }
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-//////////////////////////////////////////SUBJECTS////////////////////////////////////////////////////
-
 
     async createNewSubject(major:Major,module: string,newNameSubject: string, 
                             userService: UsersService,subjectOnDemandService:SubjectsOnDemandService) {
@@ -157,8 +136,7 @@ export class FileHandlingService {
         
     }
 
-    async removeSubject(major:Major, module:string, subjectToDelete:string,synchronizer:Synchronizer) {
-        
+    async removeSubject(major:Major, module:string, subjectToDelete:string,synchronizer:Synchronizer) {       
         return await this.subjectManager.removeSubject(major, module, subjectToDelete,synchronizer)
     }
 
@@ -172,15 +150,11 @@ export class FileHandlingService {
         return await this.subjectManager.renameSubject(major, module, subjectToRename, newNameForSubject, synchronizer)
     }
 
-    ///////////////////////////////////////FILE MANAGER/////////////////////////////////////////////
-
-
     async getAllFilesOfPath(major, module, subject) {
         return await this.fileManager.getAllFilesOfPath(major, module,subject)
     }
 
     async getFileByName(file_name:String, res, major, module, subject ){
-
         return await this.fileManager.getFileByName(file_name, res, major, module, subject)
     }
 

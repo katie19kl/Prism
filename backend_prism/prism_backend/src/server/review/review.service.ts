@@ -10,6 +10,7 @@ import { updateReviewDto } from './dto/update-review.dto';
 import { IReview } from './ireview.interface';
 
 @Injectable()
+// Reviewing soldier submissions 
 export class ReviewService {
 
     constructor(@InjectModel('Reviews') private reviewsModel: Model<IReview>,

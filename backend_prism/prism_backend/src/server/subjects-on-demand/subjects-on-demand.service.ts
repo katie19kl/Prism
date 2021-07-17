@@ -153,7 +153,7 @@ export class SubjectsOnDemandService {
 
 
 
-
+    // helper function
     arrayRemove(arr, value) {
 
         return arr.filter(function (ele) {
@@ -167,12 +167,18 @@ export class SubjectsOnDemandService {
 
         const filter_ = { soldierId: personalId, major: major };
 
+        // find submision
         let foundObject = await this.userSubmissionModel.findOne(filter_);
 
+        // extract opened subjects (dictionary)
         let openedSubjects = foundObject.moduleToOpenedSubjects.get(module);
+        // add new one
         openedSubjects.push(subject);
+
+        
         let updatedOpenedSubjects = openedSubjects;
 
+        // delete from closed subjects 
         let closedSubjects = foundObject.moduleToClosedSubjects.get(module);
         let updatedClosedSubjects = this.arrayRemove(closedSubjects, subject);
 
@@ -184,7 +190,7 @@ export class SubjectsOnDemandService {
         let updatedClosedMap = foundObject.moduleToClosedSubjects;
         updatedClosedMap.set(module, updatedClosedSubjects);
 
-
+        // restore the above changes
         return await this.userSubmissionModel.updateOne(filter_, {
             moduleToOpenedSubjects: updateOpenedMap,
             moduleToClosedSubjects: updatedClosedMap,
@@ -197,22 +203,23 @@ export class SubjectsOnDemandService {
         const filter_ = { soldierId: personalId, major: major };
         let foundObject = await this.userSubmissionModel.findOne(filter_);
 
-
+        // add new subject to closed
         let closedMap = foundObject.moduleToClosedSubjects;
         let closedModule = closedMap.get(module);
         closedModule.push(subject);
         closedMap.set(module, closedModule);
 
         let updatedClosedMap = closedMap;
-
-
+        // updated closed subjects
         let openedMap = foundObject.moduleToOpenedSubjects;
         let openedModule = openedMap.get(module);
+
         let updatedModule = this.arrayRemove(openedModule, subject);
         openedMap.set(module, updatedModule);
 
         let updatedOpenedMap = openedMap;
 
+        // update fields
         return await this.userSubmissionModel.updateOne(filter_, {
             moduleToOpenedSubjects: updatedOpenedMap,
             moduleToClosedSubjects: updatedClosedMap,

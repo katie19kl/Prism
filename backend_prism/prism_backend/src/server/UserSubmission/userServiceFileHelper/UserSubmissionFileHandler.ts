@@ -4,6 +4,7 @@ import { FileManager } from "src/server/file-handling/managers/FileManager";
 import { Major } from "src/server/users/common/major.enum";
 import { UserSubmissionDTO } from "../dto/user-submission.dto";
 
+// File handler to user submission cases
 export class UserSubmissionFileHandler {
 
     fileManager: FileManager;
@@ -13,7 +14,7 @@ export class UserSubmissionFileHandler {
     }
   
     checkDirExist(pathSolutionDir:string){
-        const fs = require("fs"); // Or `import fs from "fs";` with ESM
+        const fs = require("fs"); // Or `import fs from "fs";
         if (!fs.existsSync(pathSolutionDir)) {
             console.log("Solution dir not exist")
             return false    
@@ -26,7 +27,6 @@ export class UserSubmissionFileHandler {
     createPathToSolutionDir(createUserSubmissionDto: UserSubmissionDTO){
 
         let subject_choosen = createUserSubmissionDto.subject
-
         let newSubject = subject_choosen + "/" + createUserSubmissionDto.soldierId + IndexingFormat.SoldierSolutionSeparator
 
         return newSubject
@@ -37,11 +37,7 @@ export class UserSubmissionFileHandler {
 
         let major_choosen = createUserSubmissionDto.major
         let module_choosen = createUserSubmissionDto.module
-        
-
         let newSubject = this.createPathToSolutionDir(createUserSubmissionDto)
-       
-
 
         return this.fileManager.uploadFile(file,major_choosen, module_choosen, newSubject);
     }
@@ -98,8 +94,6 @@ export class UserSubmissionFileHandler {
 
         let major_choosen = createUserSubmissionDto.major
         let module_choosen = createUserSubmissionDto.module
-
-
         let newSubjectPath = this.createPathToSolutionDir(createUserSubmissionDto)
         
 
