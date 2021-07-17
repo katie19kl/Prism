@@ -74,8 +74,7 @@ export class FileManager {
             file_name = file.originalname;
         }
 
-        let pathToStore = FileHandlingService.pathRootDirectory + "/";
-            + major + "/" + module_choosen + "/" + subject_choosen;
+        let pathToStore = FileHandlingService.pathRootDirectory + "/" + major + "/" + module_choosen + "/" + subject_choosen;
 
         pathToStore = pathToStore + "/" + file_name;
 
