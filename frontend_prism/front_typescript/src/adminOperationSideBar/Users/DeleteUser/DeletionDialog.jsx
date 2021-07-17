@@ -83,6 +83,7 @@ class DeletionDialog extends React.Component {
 
                 user = user.data;
                 let majors = user['major'];
+                
                 // extract all soldiers in given major
                 getSoldiersByMajors(majors).then((users) => {
 

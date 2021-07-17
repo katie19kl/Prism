@@ -257,12 +257,9 @@ class SubmissionTableInfo extends React.Component {
             gradeDesc = this.state.gradeDescription;
         }
 
-
         if (!this.state.infoExtracted) {
             return <WaiterLoading />;
         }
-
-
 
         return (
             <div         
