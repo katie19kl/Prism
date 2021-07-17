@@ -445,7 +445,7 @@ class SubmissionReview extends React.Component {
                 showTo={showToArray}
                 /> : ''}
 
-                {/*(this.role === Role.MyFiles || this.role === Role.Commander || this.role === Role.Tester)*/ (this.role !== Role.Soldier) ? 
+                {(this.role !== Role.Soldier) ? 
                     <div>
                         <br/>
 

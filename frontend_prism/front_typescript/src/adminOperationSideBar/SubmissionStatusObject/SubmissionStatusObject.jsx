@@ -120,10 +120,11 @@ class SubmissionStatusObject extends React.Component {
                                     {moduleName}
                                 </Typography>
     
-                                <Typography 
+                                <Typography
                                 className={classes.myFont1} 
                                 variant="h5" 
                                 color="primary">
+                                    {subject}
                                 </Typography>
                             </Breadcrumbs>
                         </Grid>
