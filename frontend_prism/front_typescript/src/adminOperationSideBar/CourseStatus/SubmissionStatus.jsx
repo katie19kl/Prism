@@ -2,7 +2,7 @@ import React from "react";
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu";
 import TesterMenu from "../../GeneralComponent/tester/TesterMenu";
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 import Role from "../../Roles/Role";
 import TableStatusFrame from "./TableStatusFrame";

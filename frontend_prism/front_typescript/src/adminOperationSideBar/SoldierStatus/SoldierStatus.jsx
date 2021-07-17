@@ -1,7 +1,7 @@
 import React from "react"
 import CommanderMenu from "../../GeneralComponent/admin/CommanderMenu"
 import MenuAppBar from "../../GeneralComponent/main/MenuAppBar"
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading"
 import { getUserInfoByJWT } from "../../HelperJS/extract_info"
 import SoldierStatusFrame from "./SoldierStatusFrame"
 

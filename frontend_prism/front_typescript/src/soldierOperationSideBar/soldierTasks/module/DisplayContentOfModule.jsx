@@ -3,7 +3,7 @@ import MenuAppBar from "./../../../GeneralComponent/main/MenuAppBar"
 import SoldierMenu from "./../../../GeneralComponent/soldier/SoldierMenu"
 import { getFilesBySubject } from "./../../../adminOperationSideBar/CourseFiles/files_request_handler"
 import ContentOfModule from "./ContentOfModule"
-import WaiterLoading from "../../../HelperFooStuff/WaiterLoading"
+import WaiterLoading from "../../../HelperComponentStuff/WaiterLoading"
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info"
 import { getAllowedSubjectsOfUser } from "../../../adminOperationSideBar/CourseStatus/subject_on_demand"
 import Role from '../../../Roles/Role';

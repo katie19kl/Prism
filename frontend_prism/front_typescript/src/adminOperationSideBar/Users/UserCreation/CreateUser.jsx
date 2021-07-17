@@ -11,7 +11,7 @@ import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import UserCreationForm from "./UserCreationForm";
 import Role from "../../../Roles/Role";
 import { getUserInfoByJWT } from "../../../HelperJS/extract_info";
-import WaiterLoading from "../../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../../HelperComponentStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

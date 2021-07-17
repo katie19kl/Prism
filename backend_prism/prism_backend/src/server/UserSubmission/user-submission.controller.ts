@@ -63,6 +63,18 @@ export class UserSubmissionController {
     }
 
 
+    @Get('all/:major')
+    async getMajorSubmissions(@Param('major') major: Major) {
+        try {
+            let submissionInfo = await this.userSubmisssionService.getAllSubmissionsByMajor(major);
+            return submissionInfo;
+        }
+        catch (error) {
+            
+            throw error;
+        }
+    } 
+
     @Get(':soldierId')
     async getUserSubmission(@Param('soldierId') id: string) {
         try {

@@ -11,7 +11,7 @@ import { usersSubmissions } from "./user_submissions"
 import { Link } from "react-router-dom"
 import CommentIcon from  "@material-ui/icons/Comment"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading"
 import { openSubjectToSoldier, getSoldierClosedSubjects, closeSubjectToSoldier } from "./subject_on_demand"
 import Role from "../../Roles/Role"
 
@@ -595,7 +595,8 @@ class TableStatus extends React.Component {
 													<CommentIcon style={{color:"black", fontSize:15}}>
 
 														<Typography style={{ fontFamily: 'monospace'}}>
-															{term.subject.split(" ")[1]}
+															{term.subject.substring(term.subject.indexOf(" "))}
+															
 														</Typography>
 
 														
@@ -605,7 +606,7 @@ class TableStatus extends React.Component {
 											}
 
 										
-											{term.subject.split(" ")[1]}
+											{term.subject.substring(term.subject.indexOf(" "))}
 
 										</TableCell>
 									))

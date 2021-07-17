@@ -7,7 +7,7 @@ import { getUserInfoByJWT } from "../../HelperJS/extract_info";
 import { getModulesByMajor, getSubjectsByModule, getFilesBySubject } from "./files_request_handler";
 import MajorSelect from "../Courses/CourseDisplaying/MajorSelect";
 import FileSystemDisplay from "../Courses/CourseDisplaying/FileSystemDisplay";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 import Role from "../../Roles/Role";
 
 

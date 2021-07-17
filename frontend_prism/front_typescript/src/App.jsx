@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import LogINComp from './Login/LogINComp' 
 import CommanderMainPage from './GeneralComponent/admin/RoleMainPage';
-import NoPermissions from './HelperFooStuff/NoPermissions';
+import NoPermissions from './HelperComponentStuff/NoPermissions';
 import PrivateRoutingComponent from './Routing/PrivateRoutingComponent'
 import MainView from './GeneralComponent/main/MainView'
 import Role from './Roles/Role';
@@ -75,7 +75,7 @@ export default function App() {
 			
 			<PrivateRoutingComponent path="/module_content/:moduleName/:major/:personalId" roles={[Role.Soldier]} component={DisplayContentOfModule}/>
 			
-			<PrivateRoutingComponent path="/submission/info/:major/:moduleName/:subject/:personalId" /*roles={[Role.Soldier]}*/ component={UserSubmission}/>
+			<PrivateRoutingComponent path="/submission/info/:major/:moduleName/:subject/:personalId"  component={UserSubmission}/>
 			
 			<PrivateRoutingComponent path="/admin/soldier_status/:personalId/:major/:module/:subject" role={[Role.Commander, Role.Tester, Role.Admin]}
 			component={SubmissionStatusObject}/>

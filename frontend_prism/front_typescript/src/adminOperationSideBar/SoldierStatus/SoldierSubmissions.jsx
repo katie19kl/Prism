@@ -9,7 +9,7 @@ import CommentIcon from  "@material-ui/icons/Comment"
 import { Status } from "../../GeneralComponent/SubmissionStatusColors/SoldierSubmissionStatus"
 import { Link } from "react-router-dom"
 import OK_Status from "../../soldierOperationSideBar/soldierSubmission/OK_Status"
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading"
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading"
 import { getSoldierClosedSubjects } from "../CourseStatus/subject_on_demand"
 
 
@@ -377,8 +377,7 @@ class SoldierSubmissions extends React.Component {
 											{// display navigation icon iff review exist
 											
 												<Link to = {"/admin/soldier_status/" + this.state.selectedSoldier + "/" + 
-													this.state.selectedMajor + "/" + module + "/"
-													+ subject_name }>
+													this.state.selectedMajor + "/" + module + "/" + subject_name }>
 												
 													<CommentIcon style={{color:"black", fontSize:15}}>
 		
@@ -390,7 +389,7 @@ class SoldierSubmissions extends React.Component {
 											<Typography>
 															
 												{
-													subject_name.split(" ")[1]
+													subject_name
 												}
 
 											</Typography>
@@ -407,13 +406,14 @@ class SoldierSubmissions extends React.Component {
 										?
 										<TableCell className={classes.sticky} style={{ backgroundColor: Status.Closed/*"orange"*/ }}>
 										{
-											subject_name.split(" ")[1] //+ " not submitted "
+											subject_name.substring(subject_name.indexOf(" "))
+											
 										}
 										</TableCell>
 										:
 										<TableCell className={classes.sticky} style={{ backgroundColor: Status.OpenNotSubmitted/*"orange"*/ }}>
 										{
-											subject_name.split(" ")[1] //+ " not submitted "
+											subject_name.substring(subject_name.indexOf(" "))
 										}
 										</TableCell>	
 									))

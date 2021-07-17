@@ -1,6 +1,6 @@
 import React from "react"
 import { getUserInfoByJWT } from './../../HelperJS/extract_info'
-import  DisplayUserData from './../../HelperFooStuff/DisplayUserData'
+import  DisplayUserData from '../../HelperComponentStuff/DisplayUserData'
 import SoldierMenu from "../../GeneralComponent/soldier/SoldierMenu";
 import MenuAppBar from '../../GeneralComponent/main/MenuAppBar';
 import { withStyles, Grid } from "@material-ui/core";

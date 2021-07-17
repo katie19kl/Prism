@@ -16,7 +16,7 @@ import {
 } from '../../HelperJS/validator';
 import Role from "../../Roles/Role";
 import TesterMenu from "../../GeneralComponent/tester/TesterMenu";
-import WaiterLoading from "../../HelperFooStuff/WaiterLoading";
+import WaiterLoading from "../../HelperComponentStuff/WaiterLoading";
 
 
 const useStyles = (theme) => ({

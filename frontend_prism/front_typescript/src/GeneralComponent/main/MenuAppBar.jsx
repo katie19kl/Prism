@@ -197,7 +197,7 @@ class MenuAppBar extends React.Component {
                     </div>
                 <Divider />
 
-                <img alt="" src={prism} height="200" width="100%"></img>
+                <img alt="" src={prism} height="100%" width="100%"></img>
 
                 </Drawer>
 

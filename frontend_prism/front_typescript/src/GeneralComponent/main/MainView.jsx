@@ -1,6 +1,6 @@
 import React from "react";
 import { currentUserRole, currentUserUsername } from "../../HelperJS/authentification_helper.js"
-import NoPermissions from "../../HelperFooStuff/NoPermissions";
+import NoPermissions from "../../HelperComponentStuff/NoPermissions";
 import Role from '../../Roles/Role';
 import GeneralSoldier from "../soldier/GeneralSoldier.jsx";
 import General from "../../GeneralComponent/admin/GeneralStaff"

@@ -4,7 +4,7 @@ import CommanderMenu from "../../../GeneralComponent/admin/CommanderMenu";
 import MenuAppBar from "../../../GeneralComponent/main/MenuAppBar";
 import { TextField, Grid } from "@material-ui/core";
 import {getUserInfoByJWT, getUserInfoById, getSoldiersByMajors} from "../../../HelperJS/extract_info"
-import ChangeUserData from "../../../HelperFooStuff/ChangeUserData";
+import ChangeUserData from "../../../HelperComponentStuff/ChangeUserData";
 import Role from "../../../Roles/Role";
 
 
