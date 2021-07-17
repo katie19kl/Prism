@@ -3,7 +3,9 @@ import { Major } from '../common/major.enum';
 
 
 export function IsMajor(validationOptions?: ValidationOptions) {
+
     return function (object: Object, propertyName: string) {
+        
         registerDecorator({
             name: 'isMajor',
             target: object.constructor,
@@ -13,8 +15,6 @@ export function IsMajor(validationOptions?: ValidationOptions) {
             validator: {
                 validate(value: any, _args: ValidationArguments) {
                     
-
-                    // you can return a Promise<boolean> here as well, if you want to make async validation
                     if (Array.isArray(value)) {
 
                         for (let i = 0; i < value.length; i++) {

@@ -22,7 +22,7 @@ export class CreateReviewDto {
     @IsNotEmpty()
     subject: string 
 
-    // grading. Might change to an enum {checked-is good, checked-to be fixed}.
+    // grading
     @IsOptional()
     @IsNumberString()
     grade: number;

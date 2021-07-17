@@ -7,6 +7,7 @@ import { CreateReviewDto } from './dto/create-review.dto';
 import { updateReviewDto } from './dto/update-review.dto';
 import { ReviewService } from './review.service';
 
+
 @UseGuards(JwtAuthGuard)
 @Controller('review')
 export class ReviewController {
@@ -47,9 +48,8 @@ export class ReviewController {
         @Param('soldierId') id: string,
         @Param('major') major: Major,
         @Param('module') module: string,
-        @Param('subject') subject: string
-        )  
-    {
+        @Param('subject') subject: string) {
+
         return this.reviewService.getAllReviewsPerAssignment(id, major, module, subject);
     }
 
@@ -76,6 +76,7 @@ export class ReviewController {
         return this.reviewService.getReviewsByRole(id, major, module, subject, role);
     }
 
+    
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
 	@UseGuards(Role_Guard)
     @Put()

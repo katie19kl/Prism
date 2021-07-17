@@ -10,7 +10,6 @@ import { CreateReviewDto } from "./create-review.dto";
 
 export class updateReviewDto extends PartialType(CreateReviewDto) {
     
-
     @IsNotEmpty()
     @IsNumberString()
     soldierId: string;
@@ -25,15 +24,13 @@ export class updateReviewDto extends PartialType(CreateReviewDto) {
     @IsNotEmpty()
     subject: string 
 
-    // grading. Might change to an enum {checked-is good, checked-to be fixed}.
-    // one of the variables that could be updated.
+    // grading.
     @IsOptional()
     @IsNumberString()
     grade: number;
 
     @IsOptional()
     gradeDescription: Grade;
-
 
     // time of the review submitting.
     @IsNotEmpty()
@@ -53,14 +50,11 @@ export class updateReviewDto extends PartialType(CreateReviewDto) {
     @IsNumberString()
     checkerId: string;
 
-    // the review itself - one of the variables that could be updated.
+    // the review itself
     @IsOptional()
     comment: string;
 
-    // define who can see the review - one of the variables that could be updated.
+    // define who can see the review
     @IsOptional()
     showTo: Role[];
-
-
-    
 }

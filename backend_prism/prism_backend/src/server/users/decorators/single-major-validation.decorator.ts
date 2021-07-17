@@ -3,7 +3,9 @@ import { Major } from '../common/major.enum';
 
 
 export function IsSingleMajor(validationOptions?: ValidationOptions) {
+
     return function (object: Object, propertyName: string) {
+        
         registerDecorator({
             name: 'isSingleMajor',
             target: object.constructor,

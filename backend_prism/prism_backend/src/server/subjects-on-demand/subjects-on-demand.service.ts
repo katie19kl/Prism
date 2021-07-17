@@ -7,19 +7,18 @@ import { Major } from '../users/common/major.enum';
 import { CreateSubjectsOnDemandDto } from './dto/subjects-on-demand.dto';
 import { ISubjectsOnDemand } from './subjects-on-demand.interface';
 
+
 @Injectable()
 export class SubjectsOnDemandService {
 
-    moduleManager: ModuleManager
-    majorManager: MajorManager
+    moduleManager: ModuleManager;
+    majorManager: MajorManager;
 
 
     constructor(@InjectModel('SubjectsOnDemand') private userSubmissionModel: Model<ISubjectsOnDemand>) {
 
-
-        this.moduleManager = new ModuleManager()
-        this.majorManager = new MajorManager()
-
+        this.moduleManager = new ModuleManager();
+        this.majorManager = new MajorManager();
     }
 
 
@@ -33,7 +32,6 @@ export class SubjectsOnDemandService {
     // close all subjects to specific soldier
     async closeAllSubjectToNewSoldier(majors: Major[], soldierId: string) {
 
-
         if (majors !== undefined) {
 
             for (const major of majors) {
@@ -45,12 +43,12 @@ export class SubjectsOnDemandService {
                     for (const subject of subjects) {
 
                         await this.closeNewSubjectToSoldier(major, module, subject, soldierId);
-
                     }
                 }
             }
         }
     }
+
 
     // From creating new subject -> close to all soldiers
     async closeNewSubjectToAllSoldier(major_: Major, module: string, subject: string) {
@@ -60,7 +58,6 @@ export class SubjectsOnDemandService {
 
             let soldierId = soldier["personalId"];
             await this.closeNewSubjectToSoldier(major_, module, subject, soldierId);
-
         }
     }
 
@@ -69,13 +66,8 @@ export class SubjectsOnDemandService {
     async closeNewSubjectToSoldier(major_: Major, module: string, subject: string, soldierId_: string) {
 
         // get all soldiers by major
-
         const filter_ = { soldierId: soldierId_, major: major_ };
-
-
         let foundObject = await this.userSubmissionModel.findOneAndDelete(filter_);
-
-
 
         // was found - delete & store ( updating )
         if (foundObject) {
@@ -83,22 +75,22 @@ export class SubjectsOnDemandService {
             // add another subject to module-subject list
             if (foundObject.moduleToClosedSubjects.has(module)) {
                 foundObject.moduleToClosedSubjects.get(module).push(subject);
+
             } else {
+
                 // create arr with one element
                 let arr = [];
                 arr.push(subject);
                 foundObject.moduleToClosedSubjects.set(module, arr);
             }
 
-
             // opened subject should be empty array
             if (foundObject.moduleToOpenedSubjects.has(module)) {
-
+                // empty.
             } else {
                 let arr = [];
                 foundObject.moduleToOpenedSubjects.set(module, arr);
             }
-
 
             // create dto with above fields to save it
             let newObject = new CreateSubjectsOnDemandDto();
@@ -107,13 +99,9 @@ export class SubjectsOnDemandService {
             newObject.soldierId = foundObject.soldierId;
             newObject.moduleToOpenedSubjects = foundObject.moduleToOpenedSubjects;
             newObject.moduleToClosedSubjects = foundObject.moduleToClosedSubjects;
-
             let toSave = new this.userSubmissionModel(newObject);
 
-
             await toSave.save();
-
-
 
         } // It is the first subject of user ( in module )
         else {
@@ -124,12 +112,10 @@ export class SubjectsOnDemandService {
             newObject.soldierId = soldierId_;
             newObject.major = major_;
 
-
             // open is empty arr
             let mapModuleToOpenedSubjects = new Map();
             mapModuleToOpenedSubjects.set(module, []);
             newObject.moduleToOpenedSubjects = mapModuleToOpenedSubjects;
-
 
             // closed contains exactly one new-subject
             let closedSubjects = [];
@@ -137,21 +123,12 @@ export class SubjectsOnDemandService {
 
             let mapModuleToClosedSubjects = new Map();
             mapModuleToClosedSubjects.set(module, closedSubjects);
-
             newObject.moduleToClosedSubjects = mapModuleToClosedSubjects;
 
-
-
             let toSave = new this.userSubmissionModel(newObject);
-
-
-
             await toSave.save();
         }
     }
-
-
-
 
 
     arrayRemove(arr, value) {
@@ -162,28 +139,23 @@ export class SubjectsOnDemandService {
     }
 
 
-
     async openNewSubjectToSoldier(major: Major, module: string, subject: string, personalId: string) {
 
         const filter_ = { soldierId: personalId, major: major };
-
         let foundObject = await this.userSubmissionModel.findOne(filter_);
-
         let openedSubjects = foundObject.moduleToOpenedSubjects.get(module);
-        openedSubjects.push(subject);
-        let updatedOpenedSubjects = openedSubjects;
 
+        openedSubjects.push(subject);
+
+        let updatedOpenedSubjects = openedSubjects;
         let closedSubjects = foundObject.moduleToClosedSubjects.get(module);
         let updatedClosedSubjects = this.arrayRemove(closedSubjects, subject);
-
-
         let updateOpenedMap = foundObject.moduleToOpenedSubjects;
-        updateOpenedMap.set(module, updatedOpenedSubjects);
 
+        updateOpenedMap.set(module, updatedOpenedSubjects);
 
         let updatedClosedMap = foundObject.moduleToClosedSubjects;
         updatedClosedMap.set(module, updatedClosedSubjects);
-
 
         return await this.userSubmissionModel.updateOne(filter_, {
             moduleToOpenedSubjects: updateOpenedMap,
@@ -197,18 +169,17 @@ export class SubjectsOnDemandService {
         const filter_ = { soldierId: personalId, major: major };
         let foundObject = await this.userSubmissionModel.findOne(filter_);
 
-
         let closedMap = foundObject.moduleToClosedSubjects;
         let closedModule = closedMap.get(module);
+
         closedModule.push(subject);
         closedMap.set(module, closedModule);
 
         let updatedClosedMap = closedMap;
-
-
         let openedMap = foundObject.moduleToOpenedSubjects;
         let openedModule = openedMap.get(module);
         let updatedModule = this.arrayRemove(openedModule, subject);
+
         openedMap.set(module, updatedModule);
 
         let updatedOpenedMap = openedMap;
@@ -216,9 +187,9 @@ export class SubjectsOnDemandService {
         return await this.userSubmissionModel.updateOne(filter_, {
             moduleToOpenedSubjects: updatedOpenedMap,
             moduleToClosedSubjects: updatedClosedMap,
-
         });
     }
+
 
     getFirstProp(jsonObj) {
         let firstProp;
@@ -253,7 +224,6 @@ export class SubjectsOnDemandService {
 
         return (await this.userSubmissionModel.findOne(filter_)).moduleToClosedSubjects.get(module);
     }
-
 
 
     async getSoldierOpenedSubjects(major: Major, module_: string, personalId: string) {

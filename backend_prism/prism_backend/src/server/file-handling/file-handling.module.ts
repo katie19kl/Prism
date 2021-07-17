@@ -5,6 +5,7 @@ import { UsersModule } from '../users/users.module';
 import { SubjectsOnDemandModule } from '../subjects-on-demand/subjects-on-demand.module';
 import { SynchronizerModule } from '../synchronizer/Synctonized.module';
 
+
 @Module({
 	exports : [FileHandlingService], 
 	imports : [SubjectsOnDemandModule, UsersModule, SynchronizerModule],

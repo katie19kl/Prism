@@ -7,7 +7,6 @@ import { FileHandlingService } from "../file-handling.service";
 // Manager resposible for handling operations on files
 export class FileManager {
 
-
     createPathMajorModuleSubject(major: Major, module: string, subject: string) {
         let path = FileHandlingService.pathRootDirectory;
         let pathMajor = path + '/' + major + '/' + module + '/' + subject;
@@ -15,89 +14,73 @@ export class FileManager {
     }
 
 
-
-
     async getAllFilesOfPath(major, module_, subject) {
 
         let path = this.createPathMajorModuleSubject(major, module_, subject);
-        let pathToDowload = "/" + major + "/" + module_ + "/" + subject
+        let pathToDowload = "/" + major + "/" + module_ + "/" + subject;
         let all_file_url_ = FileHandlingService.dowloadSomeFileUrl_;
         
         // list of files in dir
         let files_name = [];
         const directory = path;
-
-
-
         const fs = require('fs');
-
-
 
         const get_f = async () => {
             await new Promise((resolve, reject) => {
+
                 // get content of directory
                 fs.readdir(directory, async (err, files) => {
 
                     if (err) {
                         reject(new NotFoundException("Provided directory doesnt exists"));
-                    }
-                    else {
+
+                    } else {
                         for await (const file of files) {
 
                             const stat = await fs.promises.stat(directory + "/" + file);
                             
                             // file => add link to allow dowload it
                             if (await stat.isFile()) {
-                                files_name.push(
-                                    {
-                                        file_name: file,
-                                        url: all_file_url_ + file + pathToDowload,
-                                    }
-                                )
-                            }
-                            else {
-                                files_name.push(
-                                    {
-                                        file_name: file,
-                                    }
-                                )
-
+                                files_name.push({
+                                    file_name: file,
+                                    url: all_file_url_ + file + pathToDowload,
+                                });
+                            } else {
+                                files_name.push({
+                                    file_name: file,
+                                });
                             }
                         }
 
-                        resolve(files)
+                        resolve(files);
                     }
                 });
-            })
+            });
         }
 
-        await get_f()
-
-        return files_name
+        await get_f();
+        return files_name;
     }
-
-
-
 
 
     async uploadFile(file, major: Major, module_choosen: string, subject_choosen: string) {
 
         let file_name = " ";
+
         if (file === undefined) {
-            file_name = "undefined"
+            file_name = "undefined";
+
         } else {
             file_name = file.originalname;
         }
 
-
-        let pathToStore = FileHandlingService.pathRootDirectory + "/"
+        let pathToStore = FileHandlingService.pathRootDirectory + "/";
             + major + "/" + module_choosen + "/" + subject_choosen;
 
         pathToStore = pathToStore + "/" + file_name;
 
         return this.storingFileToPath(file, pathToStore);
     }
-
 
 
     storingFileToPath(file, pathToStore) {
@@ -107,7 +90,9 @@ export class FileManager {
 
             // open file descriptor
             fs.open(pathToStore, 'wx', (err, file_descriptor) => {
+
                 if (!err && file_descriptor) {
+
                     // use it
                     fs.writeFile(file_descriptor, file.buffer, (err) => {
 
@@ -125,15 +110,14 @@ export class FileManager {
                         if (err) {
                             reject(new NotFoundException("Not able to create file.Please check directory!"));
                         }
-
-                    })
+                    });
                 }
                 else {
                     reject(new ConflictException("Not able to create file. File already exist"));
 
                 }
-            })
-        })
+            });
+        });
     }
 
     // loads file to responce
@@ -141,15 +125,10 @@ export class FileManager {
 
         let dirPath = this.createPathMajorModuleSubject(major, module, subject);
         const directory = dirPath + "/";
-
         let path = require('path');
         let mime = require('mime');
-
         let fs = require('fs');
         let file = directory + file_name;
-
-
-
         let fileExist = false;
 
         try {
@@ -158,7 +137,7 @@ export class FileManager {
             }
 
         } catch (err) {
-            fileExist = false
+            fileExist = false;
         }
 
         if (fileExist) {
@@ -174,13 +153,14 @@ export class FileManager {
         } else {
 
             await new Promise((res, rej) => {
-                rej(new NotFoundException("Desired file does not exist"))
+                rej(new NotFoundException("Desired file does not exist"));
             });
         }
     }
 
 
     createFileFullPath(major: Major, module: string, subject: string, fileName: string) {
+
         let path = this.createPathMajorModuleSubject(major, module, subject) + "/" + fileName;
         return path;
     }
@@ -189,9 +169,7 @@ export class FileManager {
     async deleteFile(major: Major, module: string, subject: string, file_to_delete: string) {
 
         let file_path = this.createFileFullPath(major, module, subject, file_to_delete);
-
         const fs = require('fs').promises;
-
 
         let isDeleted = await (async () => {
             try {
@@ -209,7 +187,7 @@ export class FileManager {
 
             await new Promise((res, rej) => {
                 rej(new NotFoundException("Provided file does not  exist"));
-            })
+            });
         }
     }
 }

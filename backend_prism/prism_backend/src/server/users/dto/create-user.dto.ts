@@ -10,11 +10,10 @@ import { IsRole } from "../decorators/role-validation.decorator";
 
 export class CreateUserDto {
 
-    // IN CASE SOMETHING AS TO REMAIN THE SAME- DEFINE AS READONLY.
-
     @IsNotEmpty()
     @IsNumberString()
     personalId: string;
+
 
     @IsAlphanumeric()
     @IsNotEmpty()
@@ -72,5 +71,4 @@ export class CreateUserDto {
         message: "The given major does not exist"
     })
     major: Major[];
-
 }

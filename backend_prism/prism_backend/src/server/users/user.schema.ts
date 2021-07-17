@@ -49,8 +49,9 @@ export const UserSchema = new mongoose.Schema({
         required: false
     }
 });
-// NOTE: Arrow functions are not used here as we do not want to use lexical scope for 'this'
-UserSchema.pre<IUser>('save', function(next){
+
+
+UserSchema.pre<IUser>('save', function(next) {
 
     let user = this;
 
@@ -67,10 +68,10 @@ UserSchema.pre<IUser>('save', function(next){
             if (err) return next(err);
             user.password = hash;
             next();
-
         });
     });
 }); 
+
 
 UserSchema.methods.checkPassword = function(password: string): Promise<boolean> {
     const user = <IUser>this;

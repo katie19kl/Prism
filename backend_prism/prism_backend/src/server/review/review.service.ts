@@ -9,12 +9,14 @@ import { CreateReviewDto } from './dto/create-review.dto';
 import { updateReviewDto } from './dto/update-review.dto';
 import { IReview } from './ireview.interface';
 
+
 @Injectable()
 export class ReviewService {
 
     constructor(@InjectModel('Reviews') private reviewsModel: Model<IReview>,
                 @InjectModel('User-Submission') private userSubmissionModel: Model<IUserSubmission>,
                 private usersSubmissionService: UserSubmissionService) {}
+
 
     async create(createReviewDto: CreateReviewDto) {
 
@@ -63,6 +65,7 @@ export class ReviewService {
         }
     }
 
+
     async delete(deleteReview: updateReviewDto) {
 
         let filter = {
@@ -94,8 +97,6 @@ export class ReviewService {
 
             if (userSubmission) {
              
-                
-
                 let filterUserSub = {
                     soldierId: deleteReview.soldierId,
                     major: deleteReview.major,
@@ -116,6 +117,7 @@ export class ReviewService {
         return result;
     }
 
+
     async getAllReviewsPerAssignment(id: string, major: Major, module: string, subject: string) {
 
         let filter = {
@@ -127,14 +129,13 @@ export class ReviewService {
 
         let allReviews =  await this.reviewsModel.find(filter);
     
-      
-        
         allReviews.sort((a, b) => (a.submittedDate > b.submittedDate)
             ? 1 : (a.submittedDate === b.submittedDate) 
                 ? ((a.submittedTime > b.submittedTime) ? 1 : -1) : -1);
 
         return allReviews;
     }
+
 
     async getAllReviewsToShowSoldier(id: string, major: Major, module: string, subject: string) {
 
@@ -161,6 +162,7 @@ export class ReviewService {
 
         return result;
     }
+
 
     async getReviewsByRole(id: string, major: Major, 
         module: string, subject: string, role: Role) {
@@ -191,6 +193,7 @@ export class ReviewService {
             return finalReviews;
         }
     }
+
 
     async updateReview(updateReviewDto: updateReviewDto) {
 
@@ -231,7 +234,5 @@ export class ReviewService {
         } else {
             throw new HttpException("Review does not exist", HttpStatus.NOT_FOUND);
         }
-
     }
-
 }

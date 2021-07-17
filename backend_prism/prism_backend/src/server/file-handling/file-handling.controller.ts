@@ -12,7 +12,6 @@ import { Synchronizer } from '../synchronizer/Synchronizer';
 import { Role } from '../RolesActivity/role.enum';
 import { Role_Guard } from '../RolesActivity/Role_Guard.guard';
 import { JwtAuthGuard } from '../auth/guards/JWT_AuthGuard.guard';
-import { IndexingFormat } from './common/IndexingFormat';
 
 
 @UseGuards(JwtAuthGuard)
@@ -179,8 +178,6 @@ export class FileHandlingController {
 		@Param('major') major: Major, @Param('module') module: string,
 		@Param('subject') subject: string, @Param('file_name') file_name: string) {
 
-	
 		return this.fileHandlingService.deleteFile(major, module, subject, file_name);
 	}
-
 }

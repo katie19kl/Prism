@@ -13,18 +13,16 @@ import { SynchronizerModule } from '../synchronizer/Synctonized.module';
 
 @Global()
 @Module({
-  imports: [
-  
-    SubjectsOnDemandModule,
-    SynchronizerModule,
-    MongooseModule.forFeature([{name: 'Reviews', schema: ReviewSchema}]),
-    MongooseModule.forFeature([{name: 'User', schema: UserSchema}]),
-    MongooseModule.forFeature([{name: 'User-Submission', schema: UserSubmissionSchema}]),
-    PassportModule.register({ defaultStrategy: 'jwt', session: false }),
-  ],
-
-  exports: [UsersService],
-  controllers: [UsersController],
-  providers: [UsersService, UserSubmissionService ]
+	imports: [
+		SubjectsOnDemandModule,
+		SynchronizerModule,
+		MongooseModule.forFeature([{name: 'Reviews', schema: ReviewSchema}]),
+		MongooseModule.forFeature([{name: 'User', schema: UserSchema}]),
+		MongooseModule.forFeature([{name: 'User-Submission', schema: UserSubmissionSchema}]),
+		PassportModule.register({ defaultStrategy: 'jwt', session: false }),
+	],
+	exports: [UsersService],
+	controllers: [UsersController],
+	providers: [UsersService, UserSubmissionService ]
 })
 export class UsersModule {}

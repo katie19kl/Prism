@@ -1,5 +1,4 @@
-import { IsNotEmpty, IsNumberString, IsOptional } from "class-validator";
-
+import { IsNotEmpty, IsNumberString } from "class-validator";
 import { Major } from "../../users/common/major.enum";
 
 

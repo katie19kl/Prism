@@ -24,7 +24,6 @@ export class IsEmptyGuard implements CanActivate {
 			|| (personalId === undefined)) {
 
 			return false;
-		
 		}
 
 		return true;

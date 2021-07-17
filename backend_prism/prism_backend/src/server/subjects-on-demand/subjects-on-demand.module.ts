@@ -4,14 +4,13 @@ import { SubjectsOnDemandSchema } from './subjects-on-demand.schema';
 import { SubjectsOnDemandController } from './subjects-on-demand.controller';
 import { SubjectsOnDemandService } from './subjects-on-demand.service';
 
+
 @Module({
     controllers: [ SubjectsOnDemandController ],
     providers: [ SubjectsOnDemandService ],
     exports: [SubjectsOnDemandService],
-    
     imports: [
-    
-    MongooseModule.forFeature([{ name: 'SubjectsOnDemand', schema: SubjectsOnDemandSchema }])
+        MongooseModule.forFeature([{ name: 'SubjectsOnDemand', schema: SubjectsOnDemandSchema }])
 	],
 })
 export class SubjectsOnDemandModule {}

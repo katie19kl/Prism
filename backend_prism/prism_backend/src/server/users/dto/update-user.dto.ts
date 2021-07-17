@@ -16,6 +16,7 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
     @IsNumberString()
     personalId: string;
 
+
     @IsAlphanumeric()
     @IsOptional()
     readonly username: string;
@@ -74,5 +75,4 @@ export class UpdateUserDto extends PartialType(CreateUserDto) {
         message: "The given major does not exist"
     })
     readonly major: Major[];
-    
 }

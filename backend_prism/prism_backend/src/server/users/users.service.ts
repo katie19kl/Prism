@@ -14,6 +14,7 @@ import { IReview } from '../review/ireview.interface';
 import { SubjectsOnDemandService } from '../subjects-on-demand/subjects-on-demand.service';
 import { Synchronizer } from '../synchronizer/Synchronizer';
 
+
 @Injectable()
 export class UsersService {
 
@@ -28,8 +29,6 @@ export class UsersService {
 		
 		this.userSubmissionHandler = new UserSubmissionService(userSubmissionModel);
 		this.reviewHandler = new ReviewService(reviewsModel, userSubmissionModel, userSubmissionService);
-	
-		
 	}
 
 

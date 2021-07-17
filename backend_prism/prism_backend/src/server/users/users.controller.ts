@@ -24,7 +24,7 @@ export class UsersController {
     @UseGuards(JwtAuthGuard)
     async extractUserRole(@Req() req) {
         const usertoken = req.headers.authorization;
-        return { role: await this.usersService.getRoleByJWT(usertoken) }
+        return { role: await this.usersService.getRoleByJWT(usertoken) };
     }
 
 
@@ -34,8 +34,8 @@ export class UsersController {
 
         const usertoken = req.headers.authorization;
         return await this.usersService.getUserByJWT(usertoken);
-
     }
+
 
     @SetMetadata('roles', [Role.Admin, Role.Commander])
     @UseGuards(Role_Guard)
@@ -44,7 +44,6 @@ export class UsersController {
     async create(@Body() createUserDto: CreateUserDto) {
 
         let result = await this.usersService.create(createUserDto, this.subjectOnDemandService);
-
         return result;
     }
 
@@ -55,8 +54,8 @@ export class UsersController {
     async getAllSoldiers() {
 
         return await this.usersService.findAllSoldiers();
-
     }
+
 
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
     @UseGuards(Role_Guard)
@@ -66,22 +65,20 @@ export class UsersController {
         return await this.usersService.getAllUsersByRole(role);
     }
 
+
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
     @UseGuards(Role_Guard)
     @Post('submissions/:major/:module')
     async getUsersSubmissions(@Body() soldiers, @Param('major') major: Major,
         @Param('module') module: string) {
 
-        return await this.usersService.retrieveSubmissions(soldiers, major, module)
-
+        return await this.usersService.retrieveSubmissions(soldiers, major, module);
     }
 
     @Get(':id')
     async getSoldierById(@Param('id') personalId: string) {
-
-
-        return await this.usersService.findOneByPersonalId(personalId)
-
+        return await this.usersService.findOneByPersonalId(personalId);
+    
     }
 
 
@@ -93,24 +90,22 @@ export class UsersController {
         return await this.usersService.findSoldiersInAllMajors(majors);
     }
 
+
     @SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
     @UseGuards(Role_Guard)
     @Put(':username')
     async updateUser(@Param('username') username: string, @Body() updateUserDto: UpdateUserDto) {
 
         return await this.usersService.updateUserInfo(username, updateUserDto);
-
     }
+
 
     @SetMetadata('roles', [Role.Admin, Role.Commander])
     @UseGuards(Role_Guard)
     @Delete(':id')
     async deleteUser(@Param('id') personalId: string) {
 
-
-
         return await this.usersService.deleteUser(personalId, this.syncronizer);
-
     }
 
 
@@ -123,11 +118,6 @@ export class UsersController {
         let commander = await this.usersService.getUserByJWT(usertoken);
         let commanderId = commander.personalId;
 
-        return await this.usersService.getSoldiersByCommanderId(commanderId, major)
-
+        return await this.usersService.getSoldiersByCommanderId(commanderId, major);
     }
-
-
 }
-
-
