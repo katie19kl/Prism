@@ -26,13 +26,13 @@ export class AuthService {
         let isMatch = false;
 
         try {
+
             // passport is right
             isMatch = await userToAttempt.checkPassword(loginAttempt.password);
 
         } catch (error) {
 
           return undefined;
-        
         }
         
         if (isMatch) {
@@ -64,20 +64,15 @@ export class AuthService {
     }
 
     async createJwtPayload(user) {
-      
-        
-        //let userObj = await this.usersService.findOneByUsername(user.username);
-        
-        
-        // Generates rand||CurrentTime
-        // new string per server activating
-        let randStr = jwtStaticRandomSTR.stringRandomTime
-        //console.log(randStr + '\\n-------')
-
+              
+        // Generates rand || CurrentTime
+        // new string per server activating.
+        let randStr = jwtStaticRandomSTR.stringRandomTime;
 
         let data: JwtPayload = {
+
             // adding randomality
-            personalId: user.personalId,  //+ jwtStaticRandomSTR.stringRandomTime
+            personalId: user.personalId,
             randString: randStr
         };
 
@@ -87,7 +82,4 @@ export class AuthService {
             token: jwt
         }
     }
-
-
-
 }

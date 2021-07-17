@@ -11,16 +11,16 @@ import { SubjectsOnDemandModule } from '../subjects-on-demand/subjects-on-demand
 
 
 @Module({
-  imports: [
-    UserSubmissionModule,
-    ReviewModule,
-    AuthModule, 
-    UsersModule,
-    FileHandlingModule,
-    SubjectsOnDemandModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/nest-prism-project')
-  ],
-  controllers: [AppController],
-  providers: [AppService],
+	imports: [
+		UserSubmissionModule,
+		ReviewModule,
+		AuthModule, 
+		UsersModule,
+		FileHandlingModule,
+		SubjectsOnDemandModule,
+		MongooseModule.forRoot('mongodb://localhost:27017/nest-prism-project')
+	],
+  	controllers: [AppController],
+  	providers: [AppService],
 })
 export class AppModule {}

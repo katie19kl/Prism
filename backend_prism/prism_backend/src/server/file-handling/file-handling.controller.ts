@@ -19,10 +19,11 @@ import { IndexingFormat } from './common/IndexingFormat';
 @Controller('file-handling')
 export class FileHandlingController {
 
-	constructor(private readonly fileHandlingService: FileHandlingService,
-		private subjectOnDemandService: SubjectsOnDemandService, private userService: UsersService,
-		private synchronizer: Synchronizer) { }
-
+	constructor(
+		private readonly fileHandlingService: FileHandlingService,
+		private subjectOnDemandService: SubjectsOnDemandService, 
+		private userService: UsersService,
+		private synchronizer: Synchronizer) {}
 
 
 	@SetMetadata('roles', [Role.Admin])
@@ -30,9 +31,8 @@ export class FileHandlingController {
 	@Post("major/:dirMajorName")
 	async createNewMajorDir(@Param('dirMajorName') dirMajorName: String) {
 
-		return await this.fileHandlingService.createNewMajorDir(dirMajorName)
+		return await this.fileHandlingService.createNewMajorDir(dirMajorName);
 	}
-
 
 
 	@SetMetadata('roles', [Role.Admin])
@@ -40,18 +40,18 @@ export class FileHandlingController {
 	@Delete("major/:dirMajorName")
 	async deleteMajorDir(@Param('dirMajorName') dirMajorName: Major) {
 
-		return await this.fileHandlingService.deleteMajorDir(dirMajorName)
+		return await this.fileHandlingService.deleteMajorDir(dirMajorName);
 	}
+
 
 	@SetMetadata('roles', [Role.Admin, Role.Commander, Role.Tester])
 	@UseGuards(Role_Guard)
 	@Get('majors')
 	async getAllMajors() {
-		let majors = FileHandlingService.getDirList(FileHandlingService.pathRootDirectory)
-		return majors
+
+		let majors = FileHandlingService.getDirList(FileHandlingService.pathRootDirectory);
+		return majors;
 	}
-
-
 
 	@Get('major/modules/:major')
 	async getAllModulesByMajor(@Param('major') major: Major) {
@@ -61,13 +61,12 @@ export class FileHandlingController {
 	}
 
 
-
 	@SetMetadata('roles', [Role.Admin, Role.Commander])
 	@UseGuards(Role_Guard)
 	@Post('module/:major/:newModule')
 	async addNewModuleToMajor(@Param('major') major: Major, @Param('newModule') newModule: string) {
 
-		return this.fileHandlingService.createNewModuleDirInMajor(newModule, major)
+		return this.fileHandlingService.createNewModuleDirInMajor(newModule, major);
 	}
 
 
@@ -78,26 +77,22 @@ export class FileHandlingController {
 		@Param('currentModuleName') currentModuleName: string,
 		@Param('newModuleName') newModuleName: string) {
 
-
-		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName, this.synchronizer)
+		return this.fileHandlingService.renameModule(major, currentModuleName, newModuleName, this.synchronizer);
 	}
+
 
 	@SetMetadata('roles', [Role.Admin, Role.Commander])
 	@UseGuards(Role_Guard)
 	@Delete('module/:major/:module_to_del')
 	async removeModuleFromMajor(@Param('major') major: Major, @Param('module_to_del') module_to_del: string) {
 
-
-		return this.fileHandlingService.removeModuleDirInMajor(module_to_del, major, this.synchronizer)
-
+		return this.fileHandlingService.removeModuleDirInMajor(module_to_del, major, this.synchronizer);
 	}
 
 	
-
-
-
 	@Get('subjects/:major/:module')
 	async getAllSubjectInModule(@Param('major') major: Major, @Param('module') module: string) {
+
 		let result = await this.fileHandlingService.getAllDirOfModule(major, module);
 		return result;
 	}
@@ -109,8 +104,9 @@ export class FileHandlingController {
 	async createNewSubject(@Param('major') major: Major,
 		@Param('module') module: string, @Param('newNameSubject') newNameSubject: string) {
 
-		return this.fileHandlingService.createNewSubject(major, module, newNameSubject, this.userService, this.subjectOnDemandService)
-
+		return this.fileHandlingService.createNewSubject(
+			major, module, newNameSubject, this.userService,
+			this.subjectOnDemandService);
 	}
 
 
@@ -120,9 +116,7 @@ export class FileHandlingController {
 	async deleteSubject(@Param('major') major: Major,
 		@Param('module') module: string, @Param('subjectToDelete') subjectToDelete: string) {
 
-
-		return this.fileHandlingService.removeSubject(major, module, subjectToDelete, this.synchronizer)
-
+		return this.fileHandlingService.removeSubject(major, module, subjectToDelete, this.synchronizer);
 	}
 
 
@@ -137,14 +131,11 @@ export class FileHandlingController {
 	}
 
 
-
 	@Get('files/:major/:module/:subject')
 	async getFiles(@Param('major') major: Major, @Param('module') module: string,
 		@Param('subject') subject: string) {
 
 		return await this.fileHandlingService.getAllFilesOfPath(major, module, subject);
-
-
 	}
 
 
@@ -156,14 +147,11 @@ export class FileHandlingController {
 		@Param('major') major: Major, @Param('module') module: string,
 		@Param('subject') subject: string) {
 
-		let module_choosen = module
-		let subject_choosen = subject
-		let major_choosen = major
+		let module_choosen = module;
+		let subject_choosen = subject;
+		let major_choosen = major;
 
 		return this.fileHandlingService.uploadFile(file, major_choosen, module_choosen, subject_choosen);
-
-
-
 	}
 
 
@@ -171,9 +159,7 @@ export class FileHandlingController {
 	async getFileByName(@Param('file_name') file_name: String, @Res() res,
 		@Param('major') major: Major, @Param('module') module: string, @Param('subject') subject: string) {
 
-
 		return this.fileHandlingService.getFileByName(file_name, res, major, module, subject);
-
 	}
 
 
@@ -182,9 +168,7 @@ export class FileHandlingController {
 		@Param('major') major: Major, @Param('module') module: string, @Param('subject') subject: string,
 		@Param('solutionDir') solutionDir: string) {
 
-
 		return this.fileHandlingService.getFileByName(file_name, res, major, module, subject + "/" + solutionDir);
-
 	}
 
 
@@ -193,24 +177,19 @@ export class FileHandlingController {
 	@Delete("file/:major/:module/:subject/:file_name")
 	async deleteFile(@Req() req,
 		@Param('major') major: Major, @Param('module') module: string,
-		@Param('subject') subject: string, @Param('file_name') file_name: string,) {
-
-
-		console.log("=====================================")	
-		console.log(module)
-		console.log(subject)
-		console.log(file_name)
+		@Param('subject') subject: string, @Param('file_name') file_name: string) {
 
 		const usertoken = req.headers.authorization;
-		let user = await this.userService.getUserByJWT(usertoken)
-		let userRole = user.role
-		if (userRole === Role.Soldier){
-			let userId  = user.personalId
-			let nameFolder = userId + IndexingFormat.SoldierSolutionSeparator
+		let user = await this.userService.getUserByJWT(usertoken);
+		let userRole = user.role;
+
+		if (userRole === Role.Soldier) {
+			let userId  = user.personalId;
+			let nameFolder = userId + IndexingFormat.SoldierSolutionSeparator;
 			
 		}
 			
-		return this.fileHandlingService.deleteFile(major, module, subject, file_name)
+		return this.fileHandlingService.deleteFile(major, module, subject, file_name);
 	}
 
 }

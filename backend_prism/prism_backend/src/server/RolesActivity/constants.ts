@@ -1,25 +1,19 @@
 export class jwtStaticRandomSTR {
     static stringRandomTime: string = jwtStaticRandomSTR.randomStringWithTime();
 
-    private static randomStringWithTime() : string{
-        let randSize = 1
+    private static randomStringWithTime() : string {
+        let randSize = 1;
         let r = Math.random().toString(36).substring(randSize);
  
-        let dateTime = new Date()
-        let finalStr : string
-        finalStr = r + dateTime
- 
-        
-        console.log("random str to output", finalStr);
-        return finalStr
-
-        
+        let dateTime = new Date();
+        let finalStr : string;
+        finalStr = r + dateTime;
+         
+        return finalStr;
     }
 }
-  
 
-
-//By exporting the same secret used when we signed the JWT,
+// By exporting the same secret used when we signed the JWT,
 // we ensure that the verify phase performed by Passport, 
 // and the sign phase performed in our AuthService, use a common secret.
 export const jwtConstants = {

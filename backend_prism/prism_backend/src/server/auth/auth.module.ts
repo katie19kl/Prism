@@ -7,7 +7,7 @@ import { UsersModule } from '../users/users.module';
 import { PassportModule } from '@nestjs/passport';
 import { LocalStrategy } from './strategies/local.strategy';
 import { jwtConstants } from '../RolesActivity/constants';
-import { UserSubmissionService } from '../UserSubmission/user-submission.service';
+
 
 @Module({
     exports: [AuthService, JwtModule],
@@ -15,19 +15,15 @@ import { UserSubmissionService } from '../UserSubmission/user-submission.service
     imports: [
         PassportModule.register({ defaultStrategy: 'jwt', session: false }),
         JwtModule.register({
-        
-        // secretOrPrivateKey is deprecated 
-        // & secret - is currently good     
-        //secretOrPrivateKey : jwtConstants.secret,
-        secret: jwtConstants.secret,
-        signOptions: {
-            //expiresIn: '30000s'
-        }
+            secret: jwtConstants.secret,
+            signOptions: {
+                // empty
+            }
         }),
         UsersModule,
         PassportModule
     ],
     controllers: [AuthController],
-    providers: [AuthService, JwtStrategy,LocalStrategy]
+    providers: [AuthService, JwtStrategy, LocalStrategy]
 })
 export class AuthModule {}

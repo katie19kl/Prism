@@ -5,6 +5,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { JwtPayload } from '../interfaces/jwt-payload.interface';
 import { jwtConstants } from '../../RolesActivity/constants';
 
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
 
@@ -20,7 +21,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     async validate(payload: JwtPayload) {
 
-        console.log("I am in validate");
         const user = await this.authService.validateUserByJwt(payload);
 
         if (!user) {

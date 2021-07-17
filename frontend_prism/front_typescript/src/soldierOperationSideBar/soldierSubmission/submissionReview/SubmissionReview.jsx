@@ -18,6 +18,7 @@ import ReviewUpdateDialog from "../../../GeneralComponent/dialogs/ReviewUpdateDi
 const useStyles = (theme) => ({
     table: {
         minWidth: 400,
+        border: '3px solid #adebeb'
     },
     padding: {
         marginLeft: theme.spacing(3)
@@ -40,7 +41,7 @@ class SubmissionReview extends React.Component {
         this.deleteOnClick = this.deleteOnClick.bind(this);
         this.updateOnClick = this.updateOnClick.bind(this);
         this.handleMsgClose = this.handleMsgClose.bind(this);
-        this.showReviews = this.props.showReviews;
+        //this.showReviews = this.props.showReviews;
         this.handleCloseCreate = this.handleCloseCreate.bind(this);
         this.setErrorMsg = this.setErrorMsg.bind(this);
         this.handleCloseCancel = this.handleCloseCancel.bind(this);
@@ -502,7 +503,7 @@ class SubmissionReview extends React.Component {
                                 {/* Row of reviewer */}
                                 <TableRow>
 
-                                    <TableCell > {checkerId + " |-| " + checkerRole} </TableCell>
+                                    <TableCell > {checkerId + " - " + checkerRole} </TableCell>
                                     <TableCell component="th" scope="row">   Reviewer       </TableCell>
 
                                 </TableRow>
@@ -588,7 +589,7 @@ class SubmissionReview extends React.Component {
                             }
 
                             backButton={
-                                <Button size="small"  onClick={this.prevClick} disabled={currIndex === 0} >
+                                <Button size="small" onClick={this.prevClick} disabled={currIndex === 0} >
                                     <KeyboardArrowLeft />
                                     Back
                                 </Button>
